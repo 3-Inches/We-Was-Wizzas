@@ -65,7 +65,7 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
 
   return (
     <Card title="Original research" tour="original-research">
-      <RulesNote book="HoH_TL" line={849} endLine={943}>
+      <RulesNote book="HoH_TL" line={850} endLine={944}>
         Experiment until a Discovery, then stabilize it the next season: its magnitude counts toward the Breakthrough, at a cost in Warping.
       </RulesNote>
       {!edit ? (

@@ -7,7 +7,7 @@
   "text": "Give an animal a +1 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12478,
+   "line": 12494,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -19,7 +19,7 @@
   "text": "Give an animal a +3 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12479,
+   "line": 12495,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -31,7 +31,7 @@
   "text": "Preserve a corpse from decay",
   "source": {
    "book": "DE",
-   "line": 12479,
+   "line": 12495,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -43,7 +43,7 @@
   "text": "Give an animal a +6 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12480,
+   "line": 12496,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -55,7 +55,7 @@
   "text": "Give an animal a +9 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12481,
+   "line": 12497,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -67,7 +67,7 @@
   "text": "Create an animal product, such as spidersilk or wool (Note that an Individual is a single hair, a single hide, or a single tusk)",
   "source": {
    "book": "DE",
-   "line": 12482,
+   "line": 12498,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -79,7 +79,7 @@
   "text": "Create an insect or similar bug",
   "source": {
    "book": "DE",
-   "line": 12482,
+   "line": 12498,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -91,7 +91,7 @@
   "text": "Give an animal a +12 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12482,
+   "line": 12498,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -103,7 +103,7 @@
   "text": "Create the corpse of an animal",
   "source": {
    "book": "DE",
-   "line": 12483,
+   "line": 12499,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -115,7 +115,7 @@
   "text": "Create a bird, reptile, fish, or amphibian",
   "source": {
    "book": "DE",
-   "line": 12483,
+   "line": 12499,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -127,7 +127,7 @@
   "text": "Give an animal a +15 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12483,
+   "line": 12499,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -139,7 +139,7 @@
   "text": "Heal a Light Wound",
   "source": {
    "book": "DE",
-   "line": 12484,
+   "line": 12500,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -151,7 +151,7 @@
   "text": "Give an animal a +18 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12484,
+   "line": 12500,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -163,7 +163,7 @@
   "text": "Create a mammal",
   "source": {
    "book": "DE",
-   "line": 12484,
+   "line": 12500,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -175,7 +175,7 @@
   "text": "Cause an animal to reach full maturity over a single day or night (requires Sun Duration spell; maturation only applies during spell's Duration)",
   "source": {
    "book": "DE",
-   "line": 12484,
+   "line": 12500,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -187,7 +187,7 @@
   "text": "Heal a Medium Wound",
   "source": {
    "book": "DE",
-   "line": 12485,
+   "line": 12501,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -199,7 +199,7 @@
   "text": "Give an animal a +21 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 12485,
+   "line": 12501,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -211,7 +211,7 @@
   "text": "Cause an animal to reach full maturity over about two hours",
   "source": {
    "book": "DE",
-   "line": 12485,
+   "line": 12501,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -223,7 +223,7 @@
   "text": "Stop the progress of a disease",
   "source": {
    "book": "DE",
-   "line": 12486,
+   "line": 12502,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -235,7 +235,7 @@
   "text": "Heal a Heavy Wound",
   "source": {
    "book": "DE",
-   "line": 12486,
+   "line": 12502,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -247,7 +247,7 @@
   "text": "Restore a lost sense",
   "source": {
    "book": "DE",
-   "line": 12486,
+   "line": 12502,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -259,7 +259,7 @@
   "text": "Restore a lost limb",
   "source": {
    "book": "DE",
-   "line": 12486,
+   "line": 12502,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -271,7 +271,7 @@
   "text": "Cure a disease, counteracting its effects (unless Momentary Ritual, same as stopping progress)",
   "source": {
    "book": "DE",
-   "line": 12486,
+   "line": 12502,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -283,7 +283,7 @@
   "text": "Cause an animal to reach full maturity over ten Diameters (twenty minutes)",
   "source": {
    "book": "DE",
-   "line": 12486,
+   "line": 12502,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -295,7 +295,7 @@
   "text": "Heal an Incapacitating Wound",
   "source": {
    "book": "DE",
-   "line": 12487,
+   "line": 12503,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -307,7 +307,7 @@
   "text": "Increase one of an animal's Characteristics by one point, to no more than the average score for that kind of animal",
   "source": {
    "book": "DE",
-   "line": 12487,
+   "line": 12503,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -319,7 +319,7 @@
   "text": "Cause an animal to reach full maturity over the course of a single Diameter",
   "source": {
    "book": "DE",
-   "line": 12487,
+   "line": 12503,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -331,7 +331,7 @@
   "text": "Heal all wounds",
   "source": {
    "book": "DE",
-   "line": 12488,
+   "line": 12504,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -343,7 +343,7 @@
   "text": "Increase one of an animal's Characteristics by one point, to no more than one higher than the average score for that kind of animal",
   "source": {
    "book": "DE",
-   "line": 12488,
+   "line": 12504,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -355,7 +355,7 @@
   "text": "Increase one of an animal's Characteristics by one point, to no more than two higher than the average score for that kind of animal",
   "source": {
    "book": "DE",
-   "line": 12489,
+   "line": 12505,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -367,7 +367,7 @@
   "text": "Cause an animal to reach full maturity in a moment",
   "source": {
    "book": "DE",
-   "line": 12489,
+   "line": 12505,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -379,7 +379,7 @@
   "text": "Increase one of an animal's Characteristics by one point, to no more than three higher than the average score for that kind of animal",
   "source": {
    "book": "DE",
-   "line": 12490,
+   "line": 12506,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -391,7 +391,7 @@
   "text": "Create a magical beast. When creating a magical creature, the Magic Might of the creature cannot exceed the level of the spell, and requisites must be included for any special powers (for example, Ignem if it can breathe fire, Rego and Mentem if it can control people's minds). A Vim requisite, for the magical nature, is always required.",
   "source": {
    "book": "DE",
-   "line": 12491,
+   "line": 12507,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -403,7 +403,7 @@
   "text": "Increase one of an animal's Characteristics by one point, to no more than four higher than the average score for that kind of animal",
   "source": {
    "book": "DE",
-   "line": 12491,
+   "line": 12507,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -415,7 +415,7 @@
   "text": "Increase one of an animal's Characteristics by one point, to no more than five higher than the average score for that kind of animal. A greater increase is not within the natural range for the animal, and thus cannot be effected by Creo magic.",
   "source": {
    "book": "DE",
-   "line": 12492,
+   "line": 12508,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -427,7 +427,7 @@
   "text": "Raise an animal from the dead",
   "source": {
    "book": "DE",
-   "line": 12493,
+   "line": 12509,
    "anchor": "creo-animal-guidelines"
   }
  },
@@ -439,7 +439,7 @@
   "text": "Get a mental image of an animal",
   "source": {
    "book": "DE",
-   "line": 12542,
+   "line": 12558,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -451,7 +451,7 @@
   "text": "Sense the state of consciousness of a beast",
   "source": {
    "book": "DE",
-   "line": 12543,
+   "line": 12559,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -463,7 +463,7 @@
   "text": "Get general information about an animal's body",
   "source": {
    "book": "DE",
-   "line": 12543,
+   "line": 12559,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -475,7 +475,7 @@
   "text": "Sense the dominant drive of a beast",
   "source": {
    "book": "DE",
-   "line": 12544,
+   "line": 12560,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -487,7 +487,7 @@
   "text": "Learn a specific fact about an animal's body",
   "source": {
    "book": "DE",
-   "line": 12544,
+   "line": 12560,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -499,7 +499,7 @@
   "text": "Learn the origin, age, and history of something made of animal products",
   "source": {
    "book": "DE",
-   "line": 12545,
+   "line": 12561,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -511,7 +511,7 @@
   "text": "Speak with an animal",
   "source": {
    "book": "DE",
-   "line": 12546,
+   "line": 12562,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -523,7 +523,7 @@
   "text": "Read an animal's surface thoughts",
   "source": {
    "book": "DE",
-   "line": 12546,
+   "line": 12562,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -535,7 +535,7 @@
   "text": "Read the recent memories of a beast",
   "source": {
    "book": "DE",
-   "line": 12547,
+   "line": 12563,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -547,7 +547,7 @@
   "text": "Thoroughly probe the mind of a beast",
   "source": {
    "book": "DE",
-   "line": 12548,
+   "line": 12564,
    "anchor": "intellego-animal-guidelines"
   }
  },
@@ -559,7 +559,7 @@
   "text": "Make a superficial change to something made of animal products (like changing its color)",
   "source": {
    "book": "DE",
-   "line": 12590,
+   "line": 12606,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -571,7 +571,7 @@
   "text": "Make a major change to something made of animal products that preserves the substance (for example, turn a leather jerkin into a saddle)",
   "source": {
    "book": "DE",
-   "line": 12591,
+   "line": 12607,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -583,7 +583,7 @@
   "text": "Make a superficial change to a beast",
   "source": {
    "book": "DE",
-   "line": 12591,
+   "line": 12607,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -595,7 +595,7 @@
   "text": "Change an animal's limb",
   "source": {
    "book": "DE",
-   "line": 12592,
+   "line": 12608,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -607,7 +607,7 @@
   "text": "Change something made of animal products into a different animal product",
   "source": {
    "book": "DE",
-   "line": 12592,
+   "line": 12608,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -619,7 +619,7 @@
   "text": "Make a major change in a beast, while leaving it recognizably the same sort of animal (for example, make a horse bigger and change its color)",
   "source": {
    "book": "DE",
-   "line": 12593,
+   "line": 12609,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -631,7 +631,7 @@
   "text": "Change something made of animal products in a minor unnatural way",
   "source": {
    "book": "DE",
-   "line": 12593,
+   "line": 12609,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -643,7 +643,7 @@
   "text": "Change an animal into a different animal",
   "source": {
    "book": "DE",
-   "line": 12594,
+   "line": 12610,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -655,7 +655,7 @@
   "text": "Change an animal in a minor way so that it is no longer natural (for example, change the color of a horse's coat to match the covenant's coat of arms)",
   "source": {
    "book": "DE",
-   "line": 12594,
+   "line": 12610,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -667,7 +667,7 @@
   "text": "Change something made of animal products in a major unnatural way",
   "source": {
    "book": "DE",
-   "line": 12594,
+   "line": 12610,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -679,7 +679,7 @@
   "text": "Change an animal into a human (though it retains its animal mentality and does not gain a soul; requires a Corpus requisite)",
   "source": {
    "book": "DE",
-   "line": 12595,
+   "line": 12611,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -691,7 +691,7 @@
   "text": "Change an animal into a plant (requires a Herbam requisite)",
   "source": {
    "book": "DE",
-   "line": 12595,
+   "line": 12611,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -703,7 +703,7 @@
   "text": "Change an animal in a major unnatural way (for example, give a horse claws, fangs, and scaly armored skin)",
   "source": {
    "book": "DE",
-   "line": 12596,
+   "line": 12612,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -715,7 +715,7 @@
   "text": "Change an animal into a non-living item (appropriate requisite required)",
   "source": {
    "book": "DE",
-   "line": 12596,
+   "line": 12612,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -727,7 +727,7 @@
   "text": "Radically change an animal in an unnatural way (for example, give a horse wings); give an animal a 'magical' ability, such as the ability to breathe fire (requires a requisite for the ability)",
   "source": {
    "book": "DE",
-   "line": 12597,
+   "line": 12613,
    "anchor": "muto-animal-guidelines"
   }
  },
@@ -739,7 +739,7 @@
   "text": "Damage something made of animal products",
   "source": {
    "book": "DE",
-   "line": 12657,
+   "line": 12673,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -751,7 +751,7 @@
   "text": "Do superficial damage to a beast (for example, remove its hair)",
   "source": {
    "book": "DE",
-   "line": 12658,
+   "line": 12674,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -763,7 +763,7 @@
   "text": "Destroy something made of animal products",
   "source": {
    "book": "DE",
-   "line": 12659,
+   "line": 12675,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -775,7 +775,7 @@
   "text": "Cause a beast pain, but do no real damage",
   "source": {
    "book": "DE",
-   "line": 12659,
+   "line": 12675,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -787,7 +787,7 @@
   "text": "Make a beast lose one Fatigue level",
   "source": {
    "book": "DE",
-   "line": 12659,
+   "line": 12675,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -799,7 +799,7 @@
   "text": "Injure an animal so that it is hampered, but not damaged (for example, make a horse lame, a bird lose its voice, or weaken the scales of a serpent; this roughly halves the effectiveness of the targeted thing; recovery as from a Light Wound)",
   "source": {
    "book": "DE",
-   "line": 12660,
+   "line": 12676,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -811,7 +811,7 @@
   "text": "Destroy an animal's corpse",
   "source": {
    "book": "DE",
-   "line": 12660,
+   "line": 12676,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -823,7 +823,7 @@
   "text": "Inflict a Light Wound",
   "source": {
    "book": "DE",
-   "line": 12660,
+   "line": 12676,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -835,7 +835,7 @@
   "text": "Inflict a Medium Wound",
   "source": {
    "book": "DE",
-   "line": 12661,
+   "line": 12677,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -847,7 +847,7 @@
   "text": "Destroy one of a beast's minor senses",
   "source": {
    "book": "DE",
-   "line": 12662,
+   "line": 12678,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -859,7 +859,7 @@
   "text": "Inflict a Heavy Wound",
   "source": {
    "book": "DE",
-   "line": 12662,
+   "line": 12678,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -871,7 +871,7 @@
   "text": "Cripple a beast's limb, so that it is unusable but could heal",
   "source": {
    "book": "DE",
-   "line": 12662,
+   "line": 12678,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -883,7 +883,7 @@
   "text": "Age a beast by one-twelfth of its natural lifespan (only affects beasts that have already reached maturity)",
   "source": {
    "book": "DE",
-   "line": 12662,
+   "line": 12678,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -895,7 +895,7 @@
   "text": "Inflict an Incapacitating Wound",
   "source": {
    "book": "DE",
-   "line": 12663,
+   "line": 12679,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -907,7 +907,7 @@
   "text": "Destroy or sever a beast's limb, so that it cannot naturally regain it",
   "source": {
    "book": "DE",
-   "line": 12663,
+   "line": 12679,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -919,7 +919,7 @@
   "text": "Destroy one of a beast's major senses",
   "source": {
    "book": "DE",
-   "line": 12663,
+   "line": 12679,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -931,7 +931,7 @@
   "text": "Kill an animal",
   "source": {
    "book": "DE",
-   "line": 12664,
+   "line": 12680,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -943,7 +943,7 @@
   "text": "Destroy one property of an animal, such as its weight or aggression",
   "source": {
    "book": "DE",
-   "line": 12665,
+   "line": 12681,
    "anchor": "perdo-animal-guidelines"
   }
  },
@@ -955,7 +955,7 @@
   "text": "Ward against beings associated with Animal from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 12714,
+   "line": 12730,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -967,7 +967,7 @@
   "text": "Create a circle warding against animals from one realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle). Note that animals are not necessarily associated with Animal, or vice versa",
   "source": {
    "book": "DE",
-   "line": 12714,
+   "line": 12730,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -979,7 +979,7 @@
   "text": "Manipulate items made from animal products",
   "source": {
    "book": "DE",
-   "line": 12715,
+   "line": 12731,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -991,7 +991,7 @@
   "text": "Plant a single suggestion in the mind of an animal",
   "source": {
    "book": "DE",
-   "line": 12716,
+   "line": 12732,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1003,7 +1003,7 @@
   "text": "Protect the target from animal attacks (only affects animals without supernatural abilities)",
   "source": {
    "book": "DE",
-   "line": 12716,
+   "line": 12732,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1015,7 +1015,7 @@
   "text": "Treat items made of animal products",
   "source": {
    "book": "DE",
-   "line": 12716,
+   "line": 12732,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1027,7 +1027,7 @@
   "text": "Treat and process items made of animal products",
   "source": {
    "book": "DE",
-   "line": 12717,
+   "line": 12733,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1039,7 +1039,7 @@
   "text": "Calm an animal",
   "source": {
    "book": "DE",
-   "line": 12718,
+   "line": 12734,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1051,7 +1051,7 @@
   "text": "Manipulate an animal's emotions",
   "source": {
    "book": "DE",
-   "line": 12719,
+   "line": 12735,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1063,7 +1063,7 @@
   "text": "Paralyze an animal",
   "source": {
    "book": "DE",
-   "line": 12719,
+   "line": 12735,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1075,7 +1075,7 @@
   "text": "Ward against animals or objects made from animal products (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 12719,
+   "line": 12735,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1087,7 +1087,7 @@
   "text": "Control a disembodied spirit associated with Animal",
   "source": {
    "book": "DE",
-   "line": 12719,
+   "line": 12735,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1099,7 +1099,7 @@
   "text": "Cause vermin to spontaneously generate in appropriate matter, such as flesh, plants, soil, or water",
   "source": {
    "book": "DE",
-   "line": 12719,
+   "line": 12735,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1111,7 +1111,7 @@
   "text": "Make an animal completely passive",
   "source": {
    "book": "DE",
-   "line": 12720,
+   "line": 12736,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1123,7 +1123,7 @@
   "text": "Transport an animal instantly up to 5 paces; non-living animal products are transported with Rego Terram (add 1 magnitude to increase distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
   "source": {
    "book": "DE",
-   "line": 12720,
+   "line": 12736,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1135,7 +1135,7 @@
   "text": "Completely control an animal",
   "source": {
    "book": "DE",
-   "line": 12721,
+   "line": 12737,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1147,7 +1147,7 @@
   "text": "Summon a disembodied spirit associated with Animal",
   "source": {
    "book": "DE",
-   "line": 12721,
+   "line": 12737,
    "anchor": "rego-animal-guidelines"
   }
  },
@@ -1159,7 +1159,7 @@
   "text": "Create a corrosive substance doing +(Level) damage (increasing the range to more than Touch is a very good idea)",
   "source": {
    "book": "DE",
-   "line": 12812,
+   "line": 12828,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1171,7 +1171,7 @@
   "text": "Fill a container with water (or some other natural liquid, with appropriate requisites)",
   "source": {
    "book": "DE",
-   "line": 12813,
+   "line": 12829,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1183,7 +1183,7 @@
   "text": "Create water (or some other natural liquid) that is not contained (for example, spread over a surface)",
   "source": {
    "book": "DE",
-   "line": 12814,
+   "line": 12830,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1195,7 +1195,7 @@
   "text": "Create ice in a natural shape, such as a floe or icicle",
   "source": {
    "book": "DE",
-   "line": 12814,
+   "line": 12830,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1207,7 +1207,7 @@
   "text": "Create water (or some other natural liquid) in an unnatural shape (for example, in a sphere over someone's head) — but water so created will behave normally",
   "source": {
    "book": "DE",
-   "line": 12815,
+   "line": 12831,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1219,7 +1219,7 @@
   "text": "Create a spring with a low rate of flow",
   "source": {
    "book": "DE",
-   "line": 12815,
+   "line": 12831,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1231,7 +1231,7 @@
   "text": "Create a poison that causes a Light Wound",
   "source": {
    "book": "DE",
-   "line": 12816,
+   "line": 12832,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1243,7 +1243,7 @@
   "text": "Create a spring with a high rate of flow",
   "source": {
    "book": "DE",
-   "line": 12816,
+   "line": 12832,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1255,7 +1255,7 @@
   "text": "Create a geyser with a very high rate of flow",
   "source": {
    "book": "DE",
-   "line": 12817,
+   "line": 12833,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1267,7 +1267,7 @@
   "text": "Create poison that causes a Medium Wound",
   "source": {
    "book": "DE",
-   "line": 12817,
+   "line": 12833,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1279,7 +1279,7 @@
   "text": "Create poison that causes a Heavy Wound",
   "source": {
    "book": "DE",
-   "line": 12818,
+   "line": 12834,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1291,7 +1291,7 @@
   "text": "Create a poison that causes an Incapacitating Wound",
   "source": {
    "book": "DE",
-   "line": 12819,
+   "line": 12835,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1303,7 +1303,7 @@
   "text": "Create a poison that causes a Fatal Wound",
   "source": {
    "book": "DE",
-   "line": 12820,
+   "line": 12836,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1315,7 +1315,7 @@
   "text": "Create a water elemental from a base amount of elemental material (Ritual)",
   "source": {
    "book": "DE",
-   "line": 12820,
+   "line": 12836,
    "anchor": "creo-aquam-guidelines"
   }
  },
@@ -1327,7 +1327,7 @@
   "text": "Make a sense unaffected by water",
   "source": {
    "book": "DE",
-   "line": 12863,
+   "line": 12879,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1339,7 +1339,7 @@
   "text": "Get an image of water within range",
   "source": {
    "book": "DE",
-   "line": 12864,
+   "line": 12880,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1351,7 +1351,7 @@
   "text": "Get an image of water and its immediate surroundings within range",
   "source": {
    "book": "DE",
-   "line": 12865,
+   "line": 12881,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1363,7 +1363,7 @@
   "text": "Learn the natural properties of a liquid",
   "source": {
    "book": "DE",
-   "line": 12865,
+   "line": 12881,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1375,7 +1375,7 @@
   "text": "Learn the natural properties of a mixture of liquids",
   "source": {
    "book": "DE",
-   "line": 12866,
+   "line": 12882,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1387,7 +1387,7 @@
   "text": "Learn the magical properties of a liquid",
   "source": {
    "book": "DE",
-   "line": 12867,
+   "line": 12883,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1399,7 +1399,7 @@
   "text": "Learn the magical properties of a mixture of liquids",
   "source": {
    "book": "DE",
-   "line": 12868,
+   "line": 12884,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1411,7 +1411,7 @@
   "text": "Speak with a natural body of water",
   "source": {
    "book": "DE",
-   "line": 12869,
+   "line": 12885,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1423,7 +1423,7 @@
   "text": "Speak with an artificial body of water (like a fountain)",
   "source": {
    "book": "DE",
-   "line": 12870,
+   "line": 12886,
    "anchor": "intellego-aquam-guidelines"
   }
  },
@@ -1435,7 +1435,7 @@
   "text": "Change a liquid into a liquid that does +(Level) points of damage on contact",
   "source": {
    "book": "DE",
-   "line": 12924,
+   "line": 12940,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1447,7 +1447,7 @@
   "text": "Convert part of a water elemental's body into another type of water (salt water to fresh water, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
   "source": {
    "book": "DE",
-   "line": 12924,
+   "line": 12940,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1459,7 +1459,7 @@
   "text": "Change a natural liquid into another natural liquid",
   "source": {
    "book": "DE",
-   "line": 12925,
+   "line": 12941,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1471,7 +1471,7 @@
   "text": "Change a liquid into a poison causing a Light Wound",
   "source": {
    "book": "DE",
-   "line": 12925,
+   "line": 12941,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1483,7 +1483,7 @@
   "text": "Change a liquid into a poison causing a Medium Wound",
   "source": {
    "book": "DE",
-   "line": 12926,
+   "line": 12942,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1495,7 +1495,7 @@
   "text": "Change a natural liquid into a slightly unnatural liquid (for example, make blue water or strawberry flavored castor oil), or vice versa",
   "source": {
    "book": "DE",
-   "line": 12926,
+   "line": 12942,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1507,7 +1507,7 @@
   "text": "Change a liquid into an unrelated solid or gas (with requisites; Terram for solids and Auram for gases)",
   "source": {
    "book": "DE",
-   "line": 12927,
+   "line": 12943,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1519,7 +1519,7 @@
   "text": "Change a natural liquid into two or more different natural liquids, with the two types separate (although they will mix again normally)",
   "source": {
    "book": "DE",
-   "line": 12927,
+   "line": 12943,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1531,7 +1531,7 @@
   "text": "Change a liquid into a poison causing a Heavy Wound",
   "source": {
    "book": "DE",
-   "line": 12927,
+   "line": 12943,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1543,7 +1543,7 @@
   "text": "Change a liquid into a very unnatural liquid (for example, a shocking pink liquid that causes bizarre hallucinations) — requisites will often be required",
   "source": {
    "book": "DE",
-   "line": 12927,
+   "line": 12943,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1555,7 +1555,7 @@
   "text": "Change a liquid into a mixture of any liquid, solid (with Terram requisite), or gas (with Auram requisite)",
   "source": {
    "book": "DE",
-   "line": 12928,
+   "line": 12944,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1567,7 +1567,7 @@
   "text": "Change a liquid into a slightly unnatural solid or gas",
   "source": {
    "book": "DE",
-   "line": 12928,
+   "line": 12944,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1579,7 +1579,7 @@
   "text": "Change a liquid into a poison causing an Incapacitating Wound",
   "source": {
    "book": "DE",
-   "line": 12928,
+   "line": 12944,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1591,7 +1591,7 @@
   "text": "Change a liquid into a very unnatural solid or gas",
   "source": {
    "book": "DE",
-   "line": 12929,
+   "line": 12945,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1603,7 +1603,7 @@
   "text": "Change a liquid into a poison causing a Fatal Wound",
   "source": {
    "book": "DE",
-   "line": 12929,
+   "line": 12945,
    "anchor": "muto-aquam-guidelines"
   }
  },
@@ -1615,7 +1615,7 @@
   "text": "Destroy sufficient matter to reduce a water elemental's Might Score by the level of the spell +2 magnitudes",
   "source": {
    "book": "DE",
-   "line": 12963,
+   "line": 12979,
    "anchor": "perdo-aquam-guidelines"
   }
  },
@@ -1627,7 +1627,7 @@
   "text": "Completely dry something (up to the size of a small house) that is wet",
   "source": {
    "book": "DE",
-   "line": 12964,
+   "line": 12980,
    "anchor": "perdo-aquam-guidelines"
   }
  },
@@ -1639,7 +1639,7 @@
   "text": "Greatly reduce the amount of a liquid without destroying it completely",
   "source": {
    "book": "DE",
-   "line": 12965,
+   "line": 12981,
    "anchor": "perdo-aquam-guidelines"
   }
  },
@@ -1651,7 +1651,7 @@
   "text": "Destroy a liquid (requisites may be required)",
   "source": {
    "book": "DE",
-   "line": 12966,
+   "line": 12982,
    "anchor": "perdo-aquam-guidelines"
   }
  },
@@ -1663,7 +1663,7 @@
   "text": "Destroy one property of a liquid (like alcohol's ability to intoxicate or sea water's saltiness)",
   "source": {
    "book": "DE",
-   "line": 12967,
+   "line": 12983,
    "anchor": "perdo-aquam-guidelines"
   }
  },
@@ -1675,7 +1675,7 @@
   "text": "Destroy a small spring, so that it never flows again",
   "source": {
    "book": "DE",
-   "line": 12968,
+   "line": 12984,
    "anchor": "perdo-aquam-guidelines"
   }
  },
@@ -1687,7 +1687,7 @@
   "text": "Ward against beings associated with Aquam from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 13016,
+   "line": 13032,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1699,7 +1699,7 @@
   "text": "Control a liquid in an extremely gentle way",
   "source": {
    "book": "DE",
-   "line": 13017,
+   "line": 13033,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1711,7 +1711,7 @@
   "text": "Change a liquid into the corresponding solid or gas (for example, change water into ice or steam); this does not require requisites",
   "source": {
    "book": "DE",
-   "line": 13018,
+   "line": 13034,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1723,7 +1723,7 @@
   "text": "Control a liquid in a forceful but calm way, such as a fast but constant current",
   "source": {
    "book": "DE",
-   "line": 13019,
+   "line": 13035,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1735,7 +1735,7 @@
   "text": "Transport a liquid instantly up to 5 paces (add 1 magnitude to increase the distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
   "source": {
    "book": "DE",
-   "line": 13019,
+   "line": 13035,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1747,7 +1747,7 @@
   "text": "Ward against mundane water",
   "source": {
    "book": "DE",
-   "line": 13020,
+   "line": 13036,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1759,7 +1759,7 @@
   "text": "Control a liquid in a violent way",
   "source": {
    "book": "DE",
-   "line": 13020,
+   "line": 13036,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1771,7 +1771,7 @@
   "text": "Control a disembodied spirit associated with Aquam",
   "source": {
    "book": "DE",
-   "line": 13020,
+   "line": 13036,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1783,7 +1783,7 @@
   "text": "Completely control a water elemental",
   "source": {
    "book": "DE",
-   "line": 13020,
+   "line": 13036,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1795,7 +1795,7 @@
   "text": "Control a liquid in an extremely violent way",
   "source": {
    "book": "DE",
-   "line": 13021,
+   "line": 13037,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1807,7 +1807,7 @@
   "text": "Summon a disembodied spirit associated with Aquam",
   "source": {
    "book": "DE",
-   "line": 13022,
+   "line": 13038,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1819,7 +1819,7 @@
   "text": "Ward against liquids (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 13023,
+   "line": 13039,
    "anchor": "rego-aquam-guidelines"
   }
  },
@@ -1831,7 +1831,7 @@
   "text": "Create a minor weather phenomenon: a breeze, a mist, a light drizzle",
   "source": {
    "book": "DE",
-   "line": 13130,
+   "line": 13146,
    "anchor": "creo-auram-guidelines"
   }
  },
@@ -1843,7 +1843,7 @@
   "text": "Create a normal weather phenomenon: a cloud, wind, fog, rain from a cloud that already exists",
   "source": {
    "book": "DE",
-   "line": 13131,
+   "line": 13147,
    "anchor": "creo-auram-guidelines"
   }
  },
@@ -1855,7 +1855,7 @@
   "text": "Create a severe weather phenomenon: deafening thunder, monsoon rain, impenetrable fog, gale force wind",
   "source": {
    "book": "DE",
-   "line": 13132,
+   "line": 13148,
    "anchor": "creo-auram-guidelines"
   }
  },
@@ -1867,7 +1867,7 @@
   "text": "Create a debilitating kind of air: noxious stench, mild poison, etc.",
   "source": {
    "book": "DE",
-   "line": 13132,
+   "line": 13148,
    "anchor": "creo-auram-guidelines"
   }
  },
@@ -1879,7 +1879,7 @@
   "text": "Create a very severe weather phenomenon: hurricane force winds, lightning strike, tornado",
   "source": {
    "book": "DE",
-   "line": 13133,
+   "line": 13149,
    "anchor": "creo-auram-guidelines"
   }
  },
@@ -1891,7 +1891,7 @@
   "text": "Create an air elemental from a base amount of elemental material (Ritual)",
   "source": {
    "book": "DE",
-   "line": 13134,
+   "line": 13150,
    "anchor": "creo-auram-guidelines"
   }
  },
@@ -1903,7 +1903,7 @@
   "text": "Make your senses unhindered by the air (for example, you can hear over a howling wind)",
   "source": {
    "book": "DE",
-   "line": 13240,
+   "line": 13256,
    "anchor": "intellego-auram-guidelines"
   }
  },
@@ -1915,7 +1915,7 @@
   "text": "Sense one property of air (for example, determine if it is safe to breathe)",
   "source": {
    "book": "DE",
-   "line": 13241,
+   "line": 13257,
    "anchor": "intellego-auram-guidelines"
   }
  },
@@ -1927,7 +1927,7 @@
   "text": "Learn all mundane properties of the air",
   "source": {
    "book": "DE",
-   "line": 13242,
+   "line": 13258,
    "anchor": "intellego-auram-guidelines"
   }
  },
@@ -1939,7 +1939,7 @@
   "text": "Have an intuition about some fact regarding the air",
   "source": {
    "book": "DE",
-   "line": 13242,
+   "line": 13258,
    "anchor": "intellego-auram-guidelines"
   }
  },
@@ -1951,7 +1951,7 @@
   "text": "Speak with air",
   "source": {
    "book": "DE",
-   "line": 13243,
+   "line": 13259,
    "anchor": "intellego-auram-guidelines"
   }
  },
@@ -1963,7 +1963,7 @@
   "text": "Transform air into a gas doing +level damage",
   "source": {
    "book": "DE",
-   "line": 13279,
+   "line": 13295,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -1975,7 +1975,7 @@
   "text": "Convert part of an air elemental's body into another type of air (wind to smoke, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
   "source": {
    "book": "DE",
-   "line": 13279,
+   "line": 13295,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -1987,7 +1987,7 @@
   "text": "Transform an amount of air into another form of air",
   "source": {
    "book": "DE",
-   "line": 13280,
+   "line": 13296,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -1999,7 +1999,7 @@
   "text": "Transform an amount of air into another element (fire, earth, or water)",
   "source": {
    "book": "DE",
-   "line": 13281,
+   "line": 13297,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -2011,7 +2011,7 @@
   "text": "Transform a gas into a harmful gas causing a Light Wound (Stamina roll against Ease Factor 6 to resist)",
   "source": {
    "book": "DE",
-   "line": 13281,
+   "line": 13297,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -2023,7 +2023,7 @@
   "text": "Transform an amount of air into a mixture of elements",
   "source": {
    "book": "DE",
-   "line": 13282,
+   "line": 13298,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -2035,7 +2035,7 @@
   "text": "Transform an amount of air into something slightly unnatural",
   "source": {
    "book": "DE",
-   "line": 13282,
+   "line": 13298,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -2047,7 +2047,7 @@
   "text": "Transform a gas into a harmful gas causing a Medium Wound (Stamina roll against Ease Factor 6 to resist)",
   "source": {
    "book": "DE",
-   "line": 13282,
+   "line": 13298,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -2059,7 +2059,7 @@
   "text": "Transform an amount of air into something wholly unnatural",
   "source": {
    "book": "DE",
-   "line": 13283,
+   "line": 13299,
    "anchor": "muto-auram-guidelines"
   }
  },
@@ -2071,7 +2071,7 @@
   "text": "Destroy sufficient matter to reduce an air elemental's Might Score by the level of the spell +2 magnitudes",
   "source": {
    "book": "DE",
-   "line": 13330,
+   "line": 13346,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2083,7 +2083,7 @@
   "text": "Make air stuffy and poor for breathing",
   "source": {
    "book": "DE",
-   "line": 13331,
+   "line": 13347,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2095,7 +2095,7 @@
   "text": "Destroy still air",
   "source": {
    "book": "DE",
-   "line": 13332,
+   "line": 13348,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2107,7 +2107,7 @@
   "text": "Destroy a minor weather phenomenon: a breeze, a mist, a light drizzle",
   "source": {
    "book": "DE",
-   "line": 13332,
+   "line": 13348,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2119,7 +2119,7 @@
   "text": "Reduce the intensity of a weather phenomenon by one step (for example, from very severe to severe, or from normal to minor)",
   "source": {
    "book": "DE",
-   "line": 13332,
+   "line": 13348,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2131,7 +2131,7 @@
   "text": "Destroy a normal weather phenomenon: a cloud, wind, fog, rain from a cloud that already exists",
   "source": {
    "book": "DE",
-   "line": 13333,
+   "line": 13349,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2143,7 +2143,7 @@
   "text": "Destroy a severe weather phenomenon: deafening thunder, monsoon rain, impenetrable fog, gale force wind",
   "source": {
    "book": "DE",
-   "line": 13334,
+   "line": 13350,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2155,7 +2155,7 @@
   "text": "Destroy a debilitating kind of air: noxious stench, mild poison, etc.",
   "source": {
    "book": "DE",
-   "line": 13334,
+   "line": 13350,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2167,7 +2167,7 @@
   "text": "Destroy a very severe weather phenomenon: hurricane force winds, lightning strike, tornado",
   "source": {
    "book": "DE",
-   "line": 13335,
+   "line": 13351,
    "anchor": "perdo-auram-guidelines"
   }
  },
@@ -2179,7 +2179,7 @@
   "text": "Ward against beings associated with Auram from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 13368,
+   "line": 13384,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2191,7 +2191,7 @@
   "text": "Control a minor weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13369,
+   "line": 13385,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2203,7 +2203,7 @@
   "text": "Control a normal weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13370,
+   "line": 13386,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2215,7 +2215,7 @@
   "text": "Ward someone against a type of minor weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13370,
+   "line": 13386,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2227,7 +2227,7 @@
   "text": "Control a severe weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13371,
+   "line": 13387,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2239,7 +2239,7 @@
   "text": "Ward someone against a type of normal weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13371,
+   "line": 13387,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2251,7 +2251,7 @@
   "text": "Control a very severe weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13372,
+   "line": 13388,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2263,7 +2263,7 @@
   "text": "Control a disembodied spirit associated with Auram",
   "source": {
    "book": "DE",
-   "line": 13372,
+   "line": 13388,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2275,7 +2275,7 @@
   "text": "Completely control an air elemental",
   "source": {
    "book": "DE",
-   "line": 13372,
+   "line": 13388,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2287,7 +2287,7 @@
   "text": "Ward someone against a type of severe weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13372,
+   "line": 13388,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2299,7 +2299,7 @@
   "text": "Ward someone against a type of very severe weather phenomenon",
   "source": {
    "book": "DE",
-   "line": 13373,
+   "line": 13389,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2311,7 +2311,7 @@
   "text": "Summon a disembodied spirit associated with Auram",
   "source": {
    "book": "DE",
-   "line": 13374,
+   "line": 13390,
    "anchor": "rego-auram-guidelines"
   }
  },
@@ -2323,7 +2323,7 @@
   "text": "Give a character a +1 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 13435,
+   "line": 13451,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2335,7 +2335,7 @@
   "text": "The target's wounds are treated as one category less serious for the purposes of activities while injured",
   "source": {
    "book": "DE",
-   "line": 13435,
+   "line": 13451,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2347,7 +2347,7 @@
   "text": "Give a character a +3 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 13436,
+   "line": 13452,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2359,7 +2359,7 @@
   "text": "Preserve a corpse from decay",
   "source": {
    "book": "DE",
-   "line": 13436,
+   "line": 13452,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2371,7 +2371,7 @@
   "text": "Give a character a +6 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 13437,
+   "line": 13453,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2383,7 +2383,7 @@
   "text": "Prevent all of a target's wounds from getting any worse",
   "source": {
    "book": "DE",
-   "line": 13437,
+   "line": 13453,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2395,7 +2395,7 @@
   "text": "Give a character a +9 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 13438,
+   "line": 13454,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2407,7 +2407,7 @@
   "text": "Give a character a +12 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 13439,
+   "line": 13455,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2419,7 +2419,7 @@
   "text": "Create an entire human corpse",
   "source": {
    "book": "DE",
-   "line": 13439,
+   "line": 13455,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2431,7 +2431,7 @@
   "text": "Give a character a +15 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 13440,
+   "line": 13456,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2443,7 +2443,7 @@
   "text": "Heal a Light Wound",
   "source": {
    "book": "DE",
-   "line": 13441,
+   "line": 13457,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2455,7 +2455,7 @@
   "text": "Give a character a +18 bonus to Recovery rolls",
   "source": {
    "book": "DE",
-   "line": 13441,
+   "line": 13457,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2467,7 +2467,7 @@
   "text": "Resolve a minor aging crisis",
   "source": {
    "book": "DE",
-   "line": 13441,
+   "line": 13457,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2479,7 +2479,7 @@
   "text": "Heal a Medium Wound",
   "source": {
    "book": "DE",
-   "line": 13442,
+   "line": 13458,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2491,7 +2491,7 @@
   "text": "Heal the debilitating after-effects of a disease, poison, or injury",
   "source": {
    "book": "DE",
-   "line": 13442,
+   "line": 13458,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2503,7 +2503,7 @@
   "text": "Resolve a serious aging crisis",
   "source": {
    "book": "DE",
-   "line": 13442,
+   "line": 13458,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2515,7 +2515,7 @@
   "text": "Heal a Heavy Wound",
   "source": {
    "book": "DE",
-   "line": 13443,
+   "line": 13459,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2527,7 +2527,7 @@
   "text": "Improve all wounds by one level of severity",
   "source": {
    "book": "DE",
-   "line": 13443,
+   "line": 13459,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2539,7 +2539,7 @@
   "text": "Restore a lost limb",
   "source": {
    "book": "DE",
-   "line": 13443,
+   "line": 13459,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2551,7 +2551,7 @@
   "text": "Resolve a major aging crisis",
   "source": {
    "book": "DE",
-   "line": 13443,
+   "line": 13459,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2563,7 +2563,7 @@
   "text": "Heal an Incapacitating Wound",
   "source": {
    "book": "DE",
-   "line": 13444,
+   "line": 13460,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2575,7 +2575,7 @@
   "text": "Increase one of a person's physical Characteristics by one point, to no more than 0",
   "source": {
    "book": "DE",
-   "line": 13444,
+   "line": 13460,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2587,7 +2587,7 @@
   "text": "Cause a person to reach full physical maturity over the course of a single day or night (accelerated maturation only applies during the spell's Duration; people do not learn under the influence of this spell; full maturity is reached around age twenty)",
   "source": {
    "book": "DE",
-   "line": 13444,
+   "line": 13460,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2599,7 +2599,7 @@
   "text": "Resolve a critical aging crisis",
   "source": {
    "book": "DE",
-   "line": 13444,
+   "line": 13460,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2611,7 +2611,7 @@
   "text": "Heal all wounds",
   "source": {
    "book": "DE",
-   "line": 13445,
+   "line": 13461,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2623,7 +2623,7 @@
   "text": "Resolve a terminal aging crisis",
   "source": {
    "book": "DE",
-   "line": 13445,
+   "line": 13461,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2635,7 +2635,7 @@
   "text": "Increase one of a person's physical Characteristics by one point, to no more than +1",
   "source": {
    "book": "DE",
-   "line": 13445,
+   "line": 13461,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2647,7 +2647,7 @@
   "text": "Increase one of a person's physical Characteristics by one point, to no more than +2",
   "source": {
    "book": "DE",
-   "line": 13446,
+   "line": 13462,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2659,7 +2659,7 @@
   "text": "Increase one of a person's physical Characteristics by one point, to no more than +3",
   "source": {
    "book": "DE",
-   "line": 13447,
+   "line": 13463,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2671,7 +2671,7 @@
   "text": "Increase one of a person's physical Characteristics by one point, to no more than +4",
   "source": {
    "book": "DE",
-   "line": 13448,
+   "line": 13464,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2683,7 +2683,7 @@
   "text": "Increase one of a person's physical Characteristics by one point, to no more than +5 (further increases are not natural to human beings, and thus cannot be effected by Creo magic)",
   "source": {
    "book": "DE",
-   "line": 13449,
+   "line": 13465,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2695,7 +2695,7 @@
   "text": "Raise the dead, to a point (see The Shadow of Life Renewed)",
   "source": {
    "book": "DE",
-   "line": 13450,
+   "line": 13466,
    "anchor": "creo-corpus-guidelines"
   }
  },
@@ -2707,7 +2707,7 @@
   "text": "Locate a person",
   "source": {
    "book": "DE",
-   "line": 13536,
+   "line": 13552,
    "anchor": "intellego-corpus-guidelines"
   }
  },
@@ -2719,7 +2719,7 @@
   "text": "Sense very general information about a body",
   "source": {
    "book": "DE",
-   "line": 13537,
+   "line": 13553,
    "anchor": "intellego-corpus-guidelines"
   }
  },
@@ -2731,7 +2731,7 @@
   "text": "Sense a specific piece of information about a body",
   "source": {
    "book": "DE",
-   "line": 13538,
+   "line": 13554,
    "anchor": "intellego-corpus-guidelines"
   }
  },
@@ -2743,7 +2743,7 @@
   "text": "Speak with a dead body",
   "source": {
    "book": "DE",
-   "line": 13538,
+   "line": 13554,
    "anchor": "intellego-corpus-guidelines"
   }
  },
@@ -2755,7 +2755,7 @@
   "text": "Sense all useful information about a body",
   "source": {
    "book": "DE",
-   "line": 13539,
+   "line": 13555,
    "anchor": "intellego-corpus-guidelines"
   }
  },
@@ -2767,7 +2767,7 @@
   "text": "Change someone to give them a minor ability",
   "source": {
    "book": "DE",
-   "line": 13605,
+   "line": 13621,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2779,7 +2779,7 @@
   "text": "Utterly change the appearance or size of a person (though they must still remain human in form)",
   "source": {
    "book": "DE",
-   "line": 13606,
+   "line": 13622,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2791,7 +2791,7 @@
   "text": "Change non-living human bone to have an unnatural property (requisites may be needed)",
   "source": {
    "book": "DE",
-   "line": 13606,
+   "line": 13622,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2803,7 +2803,7 @@
   "text": "Make a body resistant to damage (+1 Soak)",
   "source": {
    "book": "DE",
-   "line": 13607,
+   "line": 13623,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2815,7 +2815,7 @@
   "text": "Add or remove human body parts from the target in such a way that he no longer looks human; these parts are normally functional, although a spell may be deliberately designed so that they are not (the Target is Part, not Individual, although Group and higher Targets work as normal)",
   "source": {
    "book": "DE",
-   "line": 13607,
+   "line": 13623,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2827,7 +2827,7 @@
   "text": "Turn a human into a land animal (with an Animal requisite)",
   "source": {
    "book": "DE",
-   "line": 13608,
+   "line": 13624,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2839,7 +2839,7 @@
   "text": "Make a body resistant to damage (+2 Soak)",
   "source": {
    "book": "DE",
-   "line": 13608,
+   "line": 13624,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2851,7 +2851,7 @@
   "text": "Make a body resistant to damage (+3 Soak)",
   "source": {
    "book": "DE",
-   "line": 13609,
+   "line": 13625,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2863,7 +2863,7 @@
   "text": "Turn a human into a bird or a fish (Animal requisite)",
   "source": {
    "book": "DE",
-   "line": 13610,
+   "line": 13626,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2875,7 +2875,7 @@
   "text": "Make a body resistant to damage (+4 Soak)",
   "source": {
    "book": "DE",
-   "line": 13610,
+   "line": 13626,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2887,7 +2887,7 @@
   "text": "Turn a human into a solid inanimate object (Terram requisite)",
   "source": {
    "book": "DE",
-   "line": 13611,
+   "line": 13627,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2899,7 +2899,7 @@
   "text": "Make a body resistant to damage (+5 Soak)",
   "source": {
    "book": "DE",
-   "line": 13611,
+   "line": 13627,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2911,7 +2911,7 @@
   "text": "Turn a human into a plant (Herbam requisite)",
   "source": {
    "book": "DE",
-   "line": 13611,
+   "line": 13627,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2923,7 +2923,7 @@
   "text": "Turn a human into an insubstantial object (Auram requisite)",
   "source": {
    "book": "DE",
-   "line": 13612,
+   "line": 13628,
    "anchor": "muto-corpus-guidelines"
   }
  },
@@ -2935,7 +2935,7 @@
   "text": "Do superficial damage to a body (for example, remove its hair)",
   "source": {
    "book": "DE",
-   "line": 13731,
+   "line": 13747,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -2947,7 +2947,7 @@
   "text": "Cause a person pain, but do no real damage",
   "source": {
    "book": "DE",
-   "line": 13732,
+   "line": 13748,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -2959,7 +2959,7 @@
   "text": "Inflict a Light Wound",
   "source": {
    "book": "DE",
-   "line": 13733,
+   "line": 13749,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -2971,7 +2971,7 @@
   "text": "Destroy a corpse",
   "source": {
    "book": "DE",
-   "line": 13733,
+   "line": 13749,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -2983,7 +2983,7 @@
   "text": "Hamper a person without actually injuring them (for example, make them lame, blur their eyesight; heals as a Light Wound)",
   "source": {
    "book": "DE",
-   "line": 13733,
+   "line": 13749,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -2995,7 +2995,7 @@
   "text": "Inflict a Medium Wound",
   "source": {
    "book": "DE",
-   "line": 13734,
+   "line": 13750,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3007,7 +3007,7 @@
   "text": "Cause the loss of a Fatigue level",
   "source": {
    "book": "DE",
-   "line": 13734,
+   "line": 13750,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3019,7 +3019,7 @@
   "text": "Age someone by up to five years",
   "source": {
    "book": "DE",
-   "line": 13735,
+   "line": 13751,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3031,7 +3031,7 @@
   "text": "Cripple a limb, making it unusable but still capable of healing (heals as a Medium Wound)",
   "source": {
    "book": "DE",
-   "line": 13735,
+   "line": 13751,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3043,7 +3043,7 @@
   "text": "Destroy one of a person's minor senses (heals as a Medium Wound)",
   "source": {
    "book": "DE",
-   "line": 13735,
+   "line": 13751,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3055,7 +3055,7 @@
   "text": "Inflict a Heavy Wound",
   "source": {
    "book": "DE",
-   "line": 13735,
+   "line": 13751,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3067,7 +3067,7 @@
   "text": "Destroy one of a person's major senses (heals as a Heavy Wound)",
   "source": {
    "book": "DE",
-   "line": 13736,
+   "line": 13752,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3079,7 +3079,7 @@
   "text": "Inflict a major disease",
   "source": {
    "book": "DE",
-   "line": 13736,
+   "line": 13752,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3091,7 +3091,7 @@
   "text": "Destroy or sever a limb, so that it cannot heal naturally",
   "source": {
    "book": "DE",
-   "line": 13736,
+   "line": 13752,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3103,7 +3103,7 @@
   "text": "Inflict an Incapacitating Wound",
   "source": {
    "book": "DE",
-   "line": 13736,
+   "line": 13752,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3115,7 +3115,7 @@
   "text": "Kill a person",
   "source": {
    "book": "DE",
-   "line": 13737,
+   "line": 13753,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3127,7 +3127,7 @@
   "text": "Destroy one property of a person, such as their weight or solidity",
   "source": {
    "book": "DE",
-   "line": 13738,
+   "line": 13754,
    "anchor": "perdo-corpus-guidelines"
   }
  },
@@ -3139,7 +3139,7 @@
   "text": "Ward against creatures associated with Corpus from one realm (Divine, Faerie, Infernal, or Magic) with a Might less than or equal to the level of the spell (note that Hermetic magi have no Might, and thus are not affected by such spells) (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 13826,
+   "line": 13842,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3151,7 +3151,7 @@
   "text": "Make a target lose control of a body part",
   "source": {
    "book": "DE",
-   "line": 13827,
+   "line": 13843,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3163,7 +3163,7 @@
   "text": "Move a target slowly in one direction, as long as the surface can support its weight",
   "source": {
    "book": "DE",
-   "line": 13828,
+   "line": 13844,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3175,7 +3175,7 @@
   "text": "Invoke a minor symptom of a disease without creating any underlying malaise (e.g. rash, mild fever, cough)",
   "source": {
    "book": "DE",
-   "line": 13828,
+   "line": 13844,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3187,7 +3187,7 @@
   "text": "Control the large-scale physical movements of a target",
   "source": {
    "book": "DE",
-   "line": 13829,
+   "line": 13845,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3199,7 +3199,7 @@
   "text": "Move a target slowly in any direction you please",
   "source": {
    "book": "DE",
-   "line": 13829,
+   "line": 13845,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3211,7 +3211,7 @@
   "text": "Move a target slowly straight up, or in one direction over surfaces that cannot support it",
   "source": {
    "book": "DE",
-   "line": 13829,
+   "line": 13845,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3223,7 +3223,7 @@
   "text": "Hold a target's body motionless",
   "source": {
    "book": "DE",
-   "line": 13830,
+   "line": 13846,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3235,7 +3235,7 @@
   "text": "Invoke a major symptom of a disease without creating any underlying malaise (e.g. vomiting, boils, paralysis)",
   "source": {
    "book": "DE",
-   "line": 13830,
+   "line": 13846,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3247,7 +3247,7 @@
   "text": "Move a target slowly in any direction you please, even if the target is unsupported",
   "source": {
    "book": "DE",
-   "line": 13830,
+   "line": 13846,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3259,7 +3259,7 @@
   "text": "Perform a trivial surgical procedure (inflicting a Fatigue level)",
   "source": {
    "book": "DE",
-   "line": 13830,
+   "line": 13846,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3271,7 +3271,7 @@
   "text": "Control a disembodied spirit associated with Corpus",
   "source": {
    "book": "DE",
-   "line": 13830,
+   "line": 13846,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3283,7 +3283,7 @@
   "text": "Control a target's motions",
   "source": {
    "book": "DE",
-   "line": 13831,
+   "line": 13847,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3295,7 +3295,7 @@
   "text": "Eliminate the penalties of Fatigue and wounds",
   "source": {
    "book": "DE",
-   "line": 13831,
+   "line": 13847,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3307,7 +3307,7 @@
   "text": "Animate a corpse",
   "source": {
    "book": "DE",
-   "line": 13831,
+   "line": 13847,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3319,7 +3319,7 @@
   "text": "Transport the target instantly up to 5 paces",
   "source": {
    "book": "DE",
-   "line": 13831,
+   "line": 13847,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3331,7 +3331,7 @@
   "text": "Perform a minor surgical procedure, inflicting a Light Wound or preventing a Light Wound from worsening",
   "source": {
    "book": "DE",
-   "line": 13831,
+   "line": 13847,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3343,7 +3343,7 @@
   "text": "Direct the flow of bodily energy",
   "source": {
    "book": "DE",
-   "line": 13832,
+   "line": 13848,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3355,7 +3355,7 @@
   "text": "Move a target quickly in any direction you please, even if it is unsupported",
   "source": {
    "book": "DE",
-   "line": 13832,
+   "line": 13848,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3367,7 +3367,7 @@
   "text": "Summon a disembodied spirit associated with Corpus",
   "source": {
    "book": "DE",
-   "line": 13832,
+   "line": 13848,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3379,7 +3379,7 @@
   "text": "Transport the target instantly up to 50 paces",
   "source": {
    "book": "DE",
-   "line": 13832,
+   "line": 13848,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3391,7 +3391,7 @@
   "text": "Ward a target against other human beings (to ward off a Hermetic magus, the ward must penetrate his Magic Resistance)",
   "source": {
    "book": "DE",
-   "line": 13832,
+   "line": 13848,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3403,7 +3403,7 @@
   "text": "Perform a major surgical procedure, inflicting a Medium Wound or preventing a Medium Wound from worsening",
   "source": {
    "book": "DE",
-   "line": 13832,
+   "line": 13848,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3415,7 +3415,7 @@
   "text": "Transport the target instantly up to 500 paces",
   "source": {
    "book": "DE",
-   "line": 13833,
+   "line": 13849,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3427,7 +3427,7 @@
   "text": "Perform a critical surgical procedure, preventing a Heavy Wound from worsening",
   "source": {
    "book": "DE",
-   "line": 13833,
+   "line": 13849,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3439,7 +3439,7 @@
   "text": "Transport the target instantly up to one league",
   "source": {
    "book": "DE",
-   "line": 13834,
+   "line": 13850,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3451,7 +3451,7 @@
   "text": "Perform a life-saving surgical procedure, preventing an Incapacitating or Fatal Wound from worsening",
   "source": {
    "book": "DE",
-   "line": 13834,
+   "line": 13850,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3463,7 +3463,7 @@
   "text": "Transport the target instantly up to seven leagues",
   "source": {
    "book": "DE",
-   "line": 13835,
+   "line": 13851,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3475,7 +3475,7 @@
   "text": "Transport the target instantly to a place you have an Arcane Connection to",
   "source": {
    "book": "DE",
-   "line": 13836,
+   "line": 13852,
    "anchor": "rego-corpus-guidelines"
   }
  },
@@ -3487,7 +3487,7 @@
   "text": "Ensure that a plant grows well for the duration of the spell (can affect a plant up to ten paces in each direction, i.e. a large tree; includes a +3 Size enhancement)",
   "source": {
    "book": "DE",
-   "line": 13939,
+   "line": 13955,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3499,7 +3499,7 @@
   "text": "Create a plant product (like a fruit or leaf)",
   "source": {
    "book": "DE",
-   "line": 13939,
+   "line": 13955,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3511,7 +3511,7 @@
   "text": "Create a plant",
   "source": {
    "book": "DE",
-   "line": 13939,
+   "line": 13955,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3523,7 +3523,7 @@
   "text": "Prevent a plant from becoming sick",
   "source": {
    "book": "DE",
-   "line": 13939,
+   "line": 13955,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3535,7 +3535,7 @@
   "text": "Heal a Light Wound to a plant",
   "source": {
    "book": "DE",
-   "line": 13939,
+   "line": 13955,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3547,7 +3547,7 @@
   "text": "Create a processed plant product, like a finished plank of wood",
   "source": {
    "book": "DE",
-   "line": 13940,
+   "line": 13956,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3559,7 +3559,7 @@
   "text": "Preserve a dead plant from decay",
   "source": {
    "book": "DE",
-   "line": 13940,
+   "line": 13956,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3571,7 +3571,7 @@
   "text": "Heal a Medium Wound to a plant",
   "source": {
    "book": "DE",
-   "line": 13940,
+   "line": 13956,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3583,7 +3583,7 @@
   "text": "Create wood in an unnatural shape, such as a living wall or bridge",
   "source": {
    "book": "DE",
-   "line": 13941,
+   "line": 13957,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3595,7 +3595,7 @@
   "text": "Heal a Heavy Wound to a plant",
   "source": {
    "book": "DE",
-   "line": 13941,
+   "line": 13957,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3607,7 +3607,7 @@
   "text": "Heal an Incapacitating Wound to a plant",
   "source": {
    "book": "DE",
-   "line": 13942,
+   "line": 13958,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3619,7 +3619,7 @@
   "text": "Heal all Wounds to a plant",
   "source": {
    "book": "DE",
-   "line": 13943,
+   "line": 13959,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3631,7 +3631,7 @@
   "text": "Heal all damage to a plant, including wounds, disease, and poison",
   "source": {
    "book": "DE",
-   "line": 13944,
+   "line": 13960,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3643,7 +3643,7 @@
   "text": "Bring a plant to maturity in a single day or night (accelerated growth only happens during the duration of the spell; full maturity requires a Sun duration spell cast soon after sunrise or sunset)",
   "source": {
    "book": "DE",
-   "line": 13945,
+   "line": 13961,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3655,7 +3655,7 @@
   "text": "Restore a manufactured wooden item that has been damaged to the peak of its capabilities (can also restore decay, but the damage must be light)",
   "source": {
    "book": "DE",
-   "line": 13945,
+   "line": 13961,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3667,7 +3667,7 @@
   "text": "Bring a plant to maturity in about two hours",
   "source": {
    "book": "DE",
-   "line": 13946,
+   "line": 13962,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3679,7 +3679,7 @@
   "text": "Bring a plant to maturity in about ten Diameters (twenty minutes)",
   "source": {
    "book": "DE",
-   "line": 13947,
+   "line": 13963,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3691,7 +3691,7 @@
   "text": "Bring a plant to maturity in a single Diameter",
   "source": {
    "book": "DE",
-   "line": 13948,
+   "line": 13964,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3703,7 +3703,7 @@
   "text": "Bring a plant to maturity in a moment",
   "source": {
    "book": "DE",
-   "line": 13949,
+   "line": 13965,
    "anchor": "creo-herbam-guidelines"
   }
  },
@@ -3715,7 +3715,7 @@
   "text": "Gain an intuitive knowledge of a plant (for example, know whether a given action would harm a plant)",
   "source": {
    "book": "DE",
-   "line": 13999,
+   "line": 14015,
    "anchor": "intellego-herbam-guidelines"
   }
  },
@@ -3727,7 +3727,7 @@
   "text": "Locate a plant",
   "source": {
    "book": "DE",
-   "line": 14000,
+   "line": 14016,
    "anchor": "intellego-herbam-guidelines"
   }
  },
@@ -3739,7 +3739,7 @@
   "text": "Learn general information, or a single specific fact about a plant or an item made from plant products",
   "source": {
    "book": "DE",
-   "line": 14001,
+   "line": 14017,
    "anchor": "intellego-herbam-guidelines"
   }
  },
@@ -3751,7 +3751,7 @@
   "text": "Learn all mundane properties of a plant or an item made from plant products",
   "source": {
    "book": "DE",
-   "line": 14002,
+   "line": 14018,
    "anchor": "intellego-herbam-guidelines"
   }
  },
@@ -3763,7 +3763,7 @@
   "text": "Speak with a plant",
   "source": {
    "book": "DE",
-   "line": 14003,
+   "line": 14019,
    "anchor": "intellego-herbam-guidelines"
   }
  },
@@ -3775,7 +3775,7 @@
   "text": "Change a plant or item made from plant products",
   "source": {
    "book": "DE",
-   "line": 14050,
+   "line": 14066,
    "anchor": "muto-herbam-guidelines"
   }
  },
@@ -3787,7 +3787,7 @@
   "text": "Change a plant or item made from plant products into metal or stone (Terram requisite)",
   "source": {
    "book": "DE",
-   "line": 14051,
+   "line": 14067,
    "anchor": "muto-herbam-guidelines"
   }
  },
@@ -3799,7 +3799,7 @@
   "text": "Awaken the consciousness of a plant (Mentem requisite)",
   "source": {
    "book": "DE",
-   "line": 14051,
+   "line": 14067,
    "anchor": "muto-herbam-guidelines"
   }
  },
@@ -3811,7 +3811,7 @@
   "text": "Cause a plant to bend or twist rapidly in place",
   "source": {
    "book": "DE",
-   "line": 14052,
+   "line": 14068,
    "anchor": "muto-herbam-guidelines"
   }
  },
@@ -3823,7 +3823,7 @@
   "text": "Cause the leaves to fall off a plant",
   "source": {
    "book": "DE",
-   "line": 14116,
+   "line": 14132,
    "anchor": "perdo-herbam-guidelines"
   }
  },
@@ -3835,7 +3835,7 @@
   "text": "Spoil an amount of food",
   "source": {
    "book": "DE",
-   "line": 14117,
+   "line": 14133,
    "anchor": "perdo-herbam-guidelines"
   }
  },
@@ -3847,7 +3847,7 @@
   "text": "Destroy an amount of dead wood",
   "source": {
    "book": "DE",
-   "line": 14118,
+   "line": 14134,
    "anchor": "perdo-herbam-guidelines"
   }
  },
@@ -3859,7 +3859,7 @@
   "text": "Destroy a plant",
   "source": {
    "book": "DE",
-   "line": 14119,
+   "line": 14135,
    "anchor": "perdo-herbam-guidelines"
   }
  },
@@ -3871,7 +3871,7 @@
   "text": "Ward against beings associated with Herbam from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14166,
+   "line": 14182,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3883,7 +3883,7 @@
   "text": "Control an amount of wood",
   "source": {
    "book": "DE",
-   "line": 14167,
+   "line": 14183,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3895,7 +3895,7 @@
   "text": "Manipulate items made of plant products",
   "source": {
    "book": "DE",
-   "line": 14167,
+   "line": 14183,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3907,7 +3907,7 @@
   "text": "Deflect a single attack by a wooden weapon",
   "source": {
    "book": "DE",
-   "line": 14168,
+   "line": 14184,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3919,7 +3919,7 @@
   "text": "Control an entire plant, moving it around as you direct, although it remains rooted if it is a rooted plant",
   "source": {
    "book": "DE",
-   "line": 14168,
+   "line": 14184,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3931,7 +3931,7 @@
   "text": "Treat items made of plant products",
   "source": {
    "book": "DE",
-   "line": 14168,
+   "line": 14184,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3943,7 +3943,7 @@
   "text": "Control an entire plant, moving it around as you direct, and it need not remain rooted",
   "source": {
    "book": "DE",
-   "line": 14169,
+   "line": 14185,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3955,7 +3955,7 @@
   "text": "Control a disembodied spirit associated with Herbam",
   "source": {
    "book": "DE",
-   "line": 14169,
+   "line": 14185,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3967,7 +3967,7 @@
   "text": "Summon a mobile plant",
   "source": {
    "book": "DE",
-   "line": 14169,
+   "line": 14185,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3979,7 +3979,7 @@
   "text": "Treat and process items made of plant products",
   "source": {
    "book": "DE",
-   "line": 14169,
+   "line": 14185,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -3991,7 +3991,7 @@
   "text": "Ward a plant against mundane plant diseases",
   "source": {
    "book": "DE",
-   "line": 14169,
+   "line": 14185,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -4003,7 +4003,7 @@
   "text": "Make a plant or thing made of plant products move with purpose and intelligence, without requiring your constant control",
   "source": {
    "book": "DE",
-   "line": 14170,
+   "line": 14186,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -4015,7 +4015,7 @@
   "text": "Transport a plant instantly up to 5 paces; non-living plant products are transported with Rego Terram (add 1 magnitude to increase the distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
   "source": {
    "book": "DE",
-   "line": 14170,
+   "line": 14186,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -4027,7 +4027,7 @@
   "text": "Ward someone against mundane plant products",
   "source": {
    "book": "DE",
-   "line": 14171,
+   "line": 14187,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -4039,7 +4039,7 @@
   "text": "Make a tree blossom out of season, in a moment",
   "source": {
    "book": "DE",
-   "line": 14171,
+   "line": 14187,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -4051,7 +4051,7 @@
   "text": "Weave thread into a tunic",
   "source": {
    "book": "DE",
-   "line": 14171,
+   "line": 14187,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -4063,7 +4063,7 @@
   "text": "Summon a disembodied spirit associated with Herbam",
   "source": {
    "book": "DE",
-   "line": 14171,
+   "line": 14187,
    "anchor": "rego-herbam-guidelines"
   }
  },
@@ -4075,7 +4075,7 @@
   "text": "Create light equivalent to moonlight",
   "source": {
    "book": "DE",
-   "line": 14270,
+   "line": 14286,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4087,7 +4087,7 @@
   "text": "Create light equivalent to candlelight",
   "source": {
    "book": "DE",
-   "line": 14271,
+   "line": 14287,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4099,7 +4099,7 @@
   "text": "Heat an object to be warm to the touch",
   "source": {
    "book": "DE",
-   "line": 14271,
+   "line": 14287,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4111,7 +4111,7 @@
   "text": "Ignite something extremely flammable (like oil or a wick)",
   "source": {
    "book": "DE",
-   "line": 14271,
+   "line": 14287,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4123,7 +4123,7 @@
   "text": "Create light equivalent to torchlight",
   "source": {
    "book": "DE",
-   "line": 14272,
+   "line": 14288,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4135,7 +4135,7 @@
   "text": "Heat an object to be hot to the touch",
   "source": {
    "book": "DE",
-   "line": 14272,
+   "line": 14288,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4147,7 +4147,7 @@
   "text": "Ignite something very flammable (like parchment)",
   "source": {
    "book": "DE",
-   "line": 14272,
+   "line": 14288,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4159,7 +4159,7 @@
   "text": "Create a fire doing +5 damage",
   "source": {
    "book": "DE",
-   "line": 14273,
+   "line": 14289,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4171,7 +4171,7 @@
   "text": "Create light as bright as a cloudy day",
   "source": {
    "book": "DE",
-   "line": 14273,
+   "line": 14289,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4183,7 +4183,7 @@
   "text": "Ignite something flammable (like dry wood or charcoal)",
   "source": {
    "book": "DE",
-   "line": 14273,
+   "line": 14289,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4195,7 +4195,7 @@
   "text": "Heat an object enough to boil water",
   "source": {
    "book": "DE",
-   "line": 14273,
+   "line": 14289,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4207,7 +4207,7 @@
   "text": "Create a fire doing +10 damage",
   "source": {
    "book": "DE",
-   "line": 14274,
+   "line": 14290,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4219,7 +4219,7 @@
   "text": "Create a fire doing +5 damage in an unnatural shape, such as in a ring or sheet, or covering an item (purely cosmetic shapes are free)",
   "source": {
    "book": "DE",
-   "line": 14274,
+   "line": 14290,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4231,7 +4231,7 @@
   "text": "Create light as bright as direct sunlight on a clear day",
   "source": {
    "book": "DE",
-   "line": 14274,
+   "line": 14290,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4243,7 +4243,7 @@
   "text": "Ignite something slightly flammable (like leather or damp wood)",
   "source": {
    "book": "DE",
-   "line": 14274,
+   "line": 14290,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4255,7 +4255,7 @@
   "text": "Heat an object enough to make it glow red-hot (hot enough to melt tin or lead)",
   "source": {
    "book": "DE",
-   "line": 14274,
+   "line": 14290,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4267,7 +4267,7 @@
   "text": "Create a fire doing +15 damage",
   "source": {
    "book": "DE",
-   "line": 14275,
+   "line": 14291,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4279,7 +4279,7 @@
   "text": "Create a fire doing +10 damage in an unnatural shape",
   "source": {
    "book": "DE",
-   "line": 14275,
+   "line": 14291,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4291,7 +4291,7 @@
   "text": "Ignite something barely flammable (like a human body)",
   "source": {
    "book": "DE",
-   "line": 14275,
+   "line": 14291,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4303,7 +4303,7 @@
   "text": "Heat an object enough to make it glow white-hot (hot enough to melt almost all metals, and many rocks)",
   "source": {
    "book": "DE",
-   "line": 14275,
+   "line": 14291,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4315,7 +4315,7 @@
   "text": "Create a fire doing +20 damage",
   "source": {
    "book": "DE",
-   "line": 14276,
+   "line": 14292,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4327,7 +4327,7 @@
   "text": "Create a fire doing +25 damage",
   "source": {
    "book": "DE",
-   "line": 14277,
+   "line": 14293,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4339,7 +4339,7 @@
   "text": "Create a fire doing +20 damage in an unnatural shape",
   "source": {
    "book": "DE",
-   "line": 14277,
+   "line": 14293,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4351,7 +4351,7 @@
   "text": "Create a fire doing +30 damage",
   "source": {
    "book": "DE",
-   "line": 14278,
+   "line": 14294,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4363,7 +4363,7 @@
   "text": "Create a fire elemental from a base amount of elemental matter (Ritual)",
   "source": {
    "book": "DE",
-   "line": 14278,
+   "line": 14294,
    "anchor": "creo-ignem-guidelines"
   }
  },
@@ -4375,7 +4375,7 @@
   "text": "Sense one property of a fire",
   "source": {
    "book": "DE",
-   "line": 14358,
+   "line": 14374,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4387,7 +4387,7 @@
   "text": "Locate a fire",
   "source": {
    "book": "DE",
-   "line": 14358,
+   "line": 14374,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4399,7 +4399,7 @@
   "text": "Sense all mundane properties of a fire",
   "source": {
    "book": "DE",
-   "line": 14359,
+   "line": 14375,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4411,7 +4411,7 @@
   "text": "Become aware of all fires within the target area",
   "source": {
    "book": "DE",
-   "line": 14359,
+   "line": 14375,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4423,7 +4423,7 @@
   "text": "See a fire",
   "source": {
    "book": "DE",
-   "line": 14359,
+   "line": 14375,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4435,7 +4435,7 @@
   "text": "Sense levels of heat",
   "source": {
    "book": "DE",
-   "line": 14359,
+   "line": 14375,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4447,7 +4447,7 @@
   "text": "Sense all mundane properties of ash",
   "source": {
    "book": "DE",
-   "line": 14360,
+   "line": 14376,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4459,7 +4459,7 @@
   "text": "Detect the traces of fires which burned within the last lunar month",
   "source": {
    "book": "DE",
-   "line": 14360,
+   "line": 14376,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4471,7 +4471,7 @@
   "text": "See clearly through raging fire (an Auram requisite may be necessary if smoke is present as well)",
   "source": {
    "book": "DE",
-   "line": 14361,
+   "line": 14377,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4483,7 +4483,7 @@
   "text": "Learn the magical properties of a fire",
   "source": {
    "book": "DE",
-   "line": 14361,
+   "line": 14377,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4495,7 +4495,7 @@
   "text": "See a fire and all things it illuminates (for example, see a campfire and everything within its circle of light)",
   "source": {
    "book": "DE",
-   "line": 14362,
+   "line": 14378,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4507,7 +4507,7 @@
   "text": "Speak with a fire",
   "source": {
    "book": "DE",
-   "line": 14363,
+   "line": 14379,
    "anchor": "intellego-ignem-guidelines"
   }
  },
@@ -4519,7 +4519,7 @@
   "text": "Convert part of a fire elemental's body into another type of fire (clear to sooty flame, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
   "source": {
    "book": "DE",
-   "line": 14406,
+   "line": 14422,
    "anchor": "muto-ignem-guidelines"
   }
  },
@@ -4531,7 +4531,7 @@
   "text": "Change one characteristic of a fire within the target area (for example, make a fire burn more brightly, or produce more smoke)",
   "source": {
    "book": "DE",
-   "line": 14407,
+   "line": 14423,
    "anchor": "muto-ignem-guidelines"
   }
  },
@@ -4543,7 +4543,7 @@
   "text": "Totally change a fire into another natural fire (changing any or all of its characteristics)",
   "source": {
    "book": "DE",
-   "line": 14408,
+   "line": 14424,
    "anchor": "muto-ignem-guidelines"
   }
  },
@@ -4555,7 +4555,7 @@
   "text": "Change a fire so that it is slightly unnatural (for example, make the flames colored, or make the smoke smell of roses); may require requisites",
   "source": {
    "book": "DE",
-   "line": 14409,
+   "line": 14425,
    "anchor": "muto-ignem-guidelines"
   }
  },
@@ -4567,7 +4567,7 @@
   "text": "Change a fire so that it is completely unnatural (for example, multicolored flames that form images while the popping of the fire plays music); often requires requisites",
   "source": {
    "book": "DE",
-   "line": 14410,
+   "line": 14426,
    "anchor": "muto-ignem-guidelines"
   }
  },
@@ -4579,7 +4579,7 @@
   "text": "Change a fire into a natural example of another element, with an appropriate requisite",
   "source": {
    "book": "DE",
-   "line": 14411,
+   "line": 14427,
    "anchor": "muto-ignem-guidelines"
   }
  },
@@ -4591,7 +4591,7 @@
   "text": "Change a fire into an unnatural example of another element, with an appropriate requisite",
   "source": {
    "book": "DE",
-   "line": 14412,
+   "line": 14428,
    "anchor": "muto-ignem-guidelines"
   }
  },
@@ -4603,7 +4603,7 @@
   "text": "Destroy sufficient matter to reduce a fire elemental's Might Score by the level of the spell +2 magnitudes",
   "source": {
    "book": "DE",
-   "line": 14467,
+   "line": 14483,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4615,7 +4615,7 @@
   "text": "Greatly reduce the amount of light in an area",
   "source": {
    "book": "DE",
-   "line": 14468,
+   "line": 14484,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4627,7 +4627,7 @@
   "text": "Completely extinguish all light in an area",
   "source": {
    "book": "DE",
-   "line": 14469,
+   "line": 14485,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4639,7 +4639,7 @@
   "text": "Reduce the size of a fire without destroying it completely",
   "source": {
    "book": "DE",
-   "line": 14469,
+   "line": 14485,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4651,7 +4651,7 @@
   "text": "Extinguish a fire, cooling the ashes to merely warm",
   "source": {
    "book": "DE",
-   "line": 14470,
+   "line": 14486,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4663,7 +4663,7 @@
   "text": "Chill an object",
   "source": {
    "book": "DE",
-   "line": 14470,
+   "line": 14486,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4675,7 +4675,7 @@
   "text": "Chill a person so that they lose a Fatigue level",
   "source": {
    "book": "DE",
-   "line": 14470,
+   "line": 14486,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4687,7 +4687,7 @@
   "text": "Strongly chill an object (for example, freeze water)",
   "source": {
    "book": "DE",
-   "line": 14471,
+   "line": 14487,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4699,7 +4699,7 @@
   "text": "Chill a person so that they take +5 damage",
   "source": {
    "book": "DE",
-   "line": 14471,
+   "line": 14487,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4711,7 +4711,7 @@
   "text": "Destroy one aspect of a fire (for example, heat or light)",
   "source": {
    "book": "DE",
-   "line": 14472,
+   "line": 14488,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4723,7 +4723,7 @@
   "text": "Chill a person so strongly that they take +10 damage",
   "source": {
    "book": "DE",
-   "line": 14472,
+   "line": 14488,
    "anchor": "perdo-ignem-guidelines"
   }
  },
@@ -4735,7 +4735,7 @@
   "text": "Ward against beings associated with Ignem from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14531,
+   "line": 14547,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4747,7 +4747,7 @@
   "text": "Control a fire in a natural fashion (for example, control its direction of spread)",
   "source": {
    "book": "DE",
-   "line": 14532,
+   "line": 14548,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4759,7 +4759,7 @@
   "text": "Move a fire quickly through space while leaving it burning naturally",
   "source": {
    "book": "DE",
-   "line": 14532,
+   "line": 14548,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4771,7 +4771,7 @@
   "text": "Transport a fire instantly up to 5 paces (add 1 magnitude to increase the distance to 50 paces, 2 magnitudes for 500 paces, 3 magnitudes for 1 league, 4 magnitudes for seven leagues, and 5 magnitudes to a place for which you have an Arcane Connection)",
   "source": {
    "book": "DE",
-   "line": 14532,
+   "line": 14548,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4783,7 +4783,7 @@
   "text": "Control a fire in a slightly unnatural fashion (for example, stop it from burning a person)",
   "source": {
    "book": "DE",
-   "line": 14533,
+   "line": 14549,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4795,7 +4795,7 @@
   "text": "Control a disembodied spirit associated with Ignem",
   "source": {
    "book": "DE",
-   "line": 14534,
+   "line": 14550,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4807,7 +4807,7 @@
   "text": "Completely control a fire elemental",
   "source": {
    "book": "DE",
-   "line": 14534,
+   "line": 14550,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4819,7 +4819,7 @@
   "text": "Control a fire in a very unnatural fashion (for example, fashion into a dancing humanoid shape)",
   "source": {
    "book": "DE",
-   "line": 14535,
+   "line": 14551,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4831,7 +4831,7 @@
   "text": "Summon a disembodied spirit associated with Ignem",
   "source": {
    "book": "DE",
-   "line": 14536,
+   "line": 14552,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4843,7 +4843,7 @@
   "text": "Ward against fire doing up to +5 damage (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14536,
+   "line": 14552,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4855,7 +4855,7 @@
   "text": "Ward against fire doing up to +10 damage (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14537,
+   "line": 14553,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4867,7 +4867,7 @@
   "text": "Ward against fire doing up to +15 damage (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14538,
+   "line": 14554,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4879,7 +4879,7 @@
   "text": "Ward against fire doing up to +20 damage (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14539,
+   "line": 14555,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4891,7 +4891,7 @@
   "text": "Ward against fire doing up to +25 damage (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14540,
+   "line": 14556,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4903,7 +4903,7 @@
   "text": "Ward against fire doing up to +30 damage (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14541,
+   "line": 14557,
    "anchor": "rego-ignem-guidelines"
   }
  },
@@ -4915,7 +4915,7 @@
   "text": "Create an image that affects a single sense",
   "source": {
    "book": "DE",
-   "line": 14604,
+   "line": 14620,
    "anchor": "creo-imaginem-guidelines"
   }
  },
@@ -4927,7 +4927,7 @@
   "text": "Create an image that affects two senses",
   "source": {
    "book": "DE",
-   "line": 14605,
+   "line": 14621,
    "anchor": "creo-imaginem-guidelines"
   }
  },
@@ -4939,7 +4939,7 @@
   "text": "Create an image that affects three senses",
   "source": {
    "book": "DE",
-   "line": 14606,
+   "line": 14622,
    "anchor": "creo-imaginem-guidelines"
   }
  },
@@ -4951,7 +4951,7 @@
   "text": "Create an image that affects four senses",
   "source": {
    "book": "DE",
-   "line": 14607,
+   "line": 14623,
    "anchor": "creo-imaginem-guidelines"
   }
  },
@@ -4963,7 +4963,7 @@
   "text": "Create an image that affects five senses",
   "source": {
    "book": "DE",
-   "line": 14608,
+   "line": 14624,
    "anchor": "creo-imaginem-guidelines"
   }
  },
@@ -4975,7 +4975,7 @@
   "text": "Discern illusions caused by spells of equal or lower level than the level of this spell (Vision target)",
   "source": {
    "book": "DE",
-   "line": 14665,
+   "line": 14681,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -4987,7 +4987,7 @@
   "text": "Use one sense at a distance",
   "source": {
    "book": "DE",
-   "line": 14666,
+   "line": 14682,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -4999,7 +4999,7 @@
   "text": "Memorize or perfect your memory about an image you have encountered",
   "source": {
    "book": "DE",
-   "line": 14666,
+   "line": 14682,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -5011,7 +5011,7 @@
   "text": "Be able to discern your own false images",
   "source": {
    "book": "DE",
-   "line": 14666,
+   "line": 14682,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -5023,7 +5023,7 @@
   "text": "Use two senses at a distance",
   "source": {
    "book": "DE",
-   "line": 14667,
+   "line": 14683,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -5035,7 +5035,7 @@
   "text": "Use three senses at a distance",
   "source": {
    "book": "DE",
-   "line": 14668,
+   "line": 14684,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -5047,7 +5047,7 @@
   "text": "Enhance one of your senses in one way (to see clearly at a distance, to see small things, or to see in the dark, for example)",
   "source": {
    "book": "DE",
-   "line": 14668,
+   "line": 14684,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -5059,7 +5059,7 @@
   "text": "Use four senses at a distance",
   "source": {
    "book": "DE",
-   "line": 14669,
+   "line": 14685,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -5071,7 +5071,7 @@
   "text": "Use all senses at a distance",
   "source": {
    "book": "DE",
-   "line": 14670,
+   "line": 14686,
    "anchor": "intellego-imaginem-guidelines"
   }
  },
@@ -5083,7 +5083,7 @@
   "text": "Change one sensation of an object (for example, make a leaf look like a coin), but not its type (i.e. not from sight to sound)",
   "source": {
    "book": "DE",
-   "line": 14724,
+   "line": 14740,
    "anchor": "muto-imaginem-guidelines"
   }
  },
@@ -5095,7 +5095,7 @@
   "text": "Change two sensations of an object",
   "source": {
    "book": "DE",
-   "line": 14725,
+   "line": 14741,
    "anchor": "muto-imaginem-guidelines"
   }
  },
@@ -5107,7 +5107,7 @@
   "text": "Transform species that affect one sense into those that affect another (for example, transform audible species into visual species, so that sounds can be seen)",
   "source": {
    "book": "DE",
-   "line": 14725,
+   "line": 14741,
    "anchor": "muto-imaginem-guidelines"
   }
  },
@@ -5119,7 +5119,7 @@
   "text": "Change three sensations of an object",
   "source": {
    "book": "DE",
-   "line": 14726,
+   "line": 14742,
    "anchor": "muto-imaginem-guidelines"
   }
  },
@@ -5131,7 +5131,7 @@
   "text": "Change four sensations of an object",
   "source": {
    "book": "DE",
-   "line": 14727,
+   "line": 14743,
    "anchor": "muto-imaginem-guidelines"
   }
  },
@@ -5143,7 +5143,7 @@
   "text": "Change the appearance of an object completely, in all things except solidity",
   "source": {
    "book": "DE",
-   "line": 14728,
+   "line": 14744,
    "anchor": "muto-imaginem-guidelines"
   }
  },
@@ -5155,7 +5155,7 @@
   "text": "Destroy an object's ability to affect taste or touch",
   "source": {
    "book": "DE",
-   "line": 14777,
+   "line": 14793,
    "anchor": "perdo-imaginem-guidelines"
   }
  },
@@ -5167,7 +5167,7 @@
   "text": "Destroy an object's ability to affect smell or hearing",
   "source": {
    "book": "DE",
-   "line": 14778,
+   "line": 14794,
    "anchor": "perdo-imaginem-guidelines"
   }
  },
@@ -5179,7 +5179,7 @@
   "text": "Destroy an object's ability to affect taste and touch",
   "source": {
    "book": "DE",
-   "line": 14778,
+   "line": 14794,
    "anchor": "perdo-imaginem-guidelines"
   }
  },
@@ -5191,7 +5191,7 @@
   "text": "Destroy an object's ability to affect sight",
   "source": {
    "book": "DE",
-   "line": 14779,
+   "line": 14795,
    "anchor": "perdo-imaginem-guidelines"
   }
  },
@@ -5203,7 +5203,7 @@
   "text": "Destroy an object's ability to affect any three of taste, touch, smell, or hearing",
   "source": {
    "book": "DE",
-   "line": 14779,
+   "line": 14795,
    "anchor": "perdo-imaginem-guidelines"
   }
  },
@@ -5215,7 +5215,7 @@
   "text": "Destroy an object's ability to affect any four senses",
   "source": {
    "book": "DE",
-   "line": 14780,
+   "line": 14796,
    "anchor": "perdo-imaginem-guidelines"
   }
  },
@@ -5227,7 +5227,7 @@
   "text": "Destroy an object's ability to affect all five senses",
   "source": {
    "book": "DE",
-   "line": 14781,
+   "line": 14797,
    "anchor": "perdo-imaginem-guidelines"
   }
  },
@@ -5239,7 +5239,7 @@
   "text": "Ward against beings associated with Imaginem from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 14845,
+   "line": 14861,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5251,7 +5251,7 @@
   "text": "Make an object appear (to one sense) to be up to one pace away from its actual position",
   "source": {
    "book": "DE",
-   "line": 14846,
+   "line": 14862,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5263,7 +5263,7 @@
   "text": "Make an object appear (to one sense) to be up to five paces away from its actual position",
   "source": {
    "book": "DE",
-   "line": 14847,
+   "line": 14863,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5275,7 +5275,7 @@
   "text": "Make objects appear to move rapidly in a disorientating way",
   "source": {
    "book": "DE",
-   "line": 14847,
+   "line": 14863,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5287,7 +5287,7 @@
   "text": "Make an object appear (to one sense) to be up to fifteen paces from its actual position",
   "source": {
    "book": "DE",
-   "line": 14848,
+   "line": 14864,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5299,7 +5299,7 @@
   "text": "Make an object appear (to one sense) to be contained in or attached to another object defined at the time of casting (for example, make someone's voice appear to come from within a bag)",
   "source": {
    "book": "DE",
-   "line": 14848,
+   "line": 14864,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5311,7 +5311,7 @@
   "text": "Make an object appear (to one sense) to be up to one hundred paces from its actual position",
   "source": {
    "book": "DE",
-   "line": 14849,
+   "line": 14865,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5323,7 +5323,7 @@
   "text": "Control a disembodied spirit associated with Imaginem",
   "source": {
    "book": "DE",
-   "line": 14849,
+   "line": 14865,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5335,7 +5335,7 @@
   "text": "Make an object appear (to one sense) to be in Sight of its actual position",
   "source": {
    "book": "DE",
-   "line": 14850,
+   "line": 14866,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5347,7 +5347,7 @@
   "text": "Make an object appear (to one sense) to be in a location that the caster has an Arcane Connection to",
   "source": {
    "book": "DE",
-   "line": 14851,
+   "line": 14867,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5359,7 +5359,7 @@
   "text": "Summon a disembodied spirit associated with Imaginem",
   "source": {
    "book": "DE",
-   "line": 14851,
+   "line": 14867,
    "anchor": "rego-imaginem-guidelines"
   }
  },
@@ -5371,7 +5371,7 @@
   "text": "Form words in another's mind",
   "source": {
    "book": "DE",
-   "line": 14921,
+   "line": 14937,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5383,7 +5383,7 @@
   "text": "Put a thought or emotion into another's mind",
   "source": {
    "book": "DE",
-   "line": 14922,
+   "line": 14938,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5395,7 +5395,7 @@
   "text": "Restore a memory of a brief event to a fresh state, as long as a fragment of it remains (the affected memory can be no more extensive than a short conversation of two or three rounds)",
   "source": {
    "book": "DE",
-   "line": 14922,
+   "line": 14938,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5407,7 +5407,7 @@
   "text": "Create a memory in another's mind",
   "source": {
    "book": "DE",
-   "line": 14923,
+   "line": 14939,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5419,7 +5419,7 @@
   "text": "Restore a memory of an event to a fresh state, as long as a fragment of it remains (the affected memory can be no more extensive than about two minutes)",
   "source": {
    "book": "DE",
-   "line": 14923,
+   "line": 14939,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5431,7 +5431,7 @@
   "text": "Restore a memory of a day's events to a fresh state, as long as a fragment of it remains (events are remembered as if they had occurred only an hour before)",
   "source": {
    "book": "DE",
-   "line": 14924,
+   "line": 14940,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5443,7 +5443,7 @@
   "text": "Spark a twinge of conscience in an intelligent being's mind, overriding the temporary obsession of a demon",
   "source": {
    "book": "DE",
-   "line": 14924,
+   "line": 14940,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5455,7 +5455,7 @@
   "text": "Increase one of a person's mental Characteristics by one point, to no more than 0",
   "source": {
    "book": "DE",
-   "line": 14925,
+   "line": 14941,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5467,7 +5467,7 @@
   "text": "Increase one of a person's mental Characteristics by one point, to no more than +1",
   "source": {
    "book": "DE",
-   "line": 14926,
+   "line": 14942,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5479,7 +5479,7 @@
   "text": "Increase one of a person's mental Characteristics by one point, to no more than +2",
   "source": {
    "book": "DE",
-   "line": 14927,
+   "line": 14943,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5491,7 +5491,7 @@
   "text": "Increase one of a person's mental Characteristics by one point, to no more than +3",
   "source": {
    "book": "DE",
-   "line": 14928,
+   "line": 14944,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5503,7 +5503,7 @@
   "text": "Increase one of a person's mental Characteristics by one point, to no more than +4",
   "source": {
    "book": "DE",
-   "line": 14929,
+   "line": 14945,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5515,7 +5515,7 @@
   "text": "Increase one of a person's mental Characteristics by one point, to no more than +5",
   "source": {
    "book": "DE",
-   "line": 14930,
+   "line": 14946,
    "anchor": "creo-mentem-guidelines"
   }
  },
@@ -5527,7 +5527,7 @@
   "text": "Sense the state of consciousness of one intelligent being (for example, asleep, awake, meditating, dead, drugged, insane, or comatose)",
   "source": {
    "book": "DE",
-   "line": 14993,
+   "line": 15009,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5539,7 +5539,7 @@
   "text": "Sense a single emotion in a being",
   "source": {
    "book": "DE",
-   "line": 14994,
+   "line": 15010,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5551,7 +5551,7 @@
   "text": "Understand the meaning behind spoken sounds",
   "source": {
    "book": "DE",
-   "line": 14994,
+   "line": 15010,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5563,7 +5563,7 @@
   "text": "Sense all of the emotions in a being",
   "source": {
    "book": "DE",
-   "line": 14995,
+   "line": 15011,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5575,7 +5575,7 @@
   "text": "Discover the truth of a statement",
   "source": {
    "book": "DE",
-   "line": 14995,
+   "line": 15011,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5587,7 +5587,7 @@
   "text": "Speak with any one human",
   "source": {
    "book": "DE",
-   "line": 14996,
+   "line": 15012,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5599,7 +5599,7 @@
   "text": "Read a person's surface thoughts",
   "source": {
    "book": "DE",
-   "line": 14996,
+   "line": 15012,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5611,7 +5611,7 @@
   "text": "Pick a single answer from the mind of a target",
   "source": {
    "book": "DE",
-   "line": 14996,
+   "line": 15012,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5623,7 +5623,7 @@
   "text": "Read the last day's memories from one person",
   "source": {
    "book": "DE",
-   "line": 14997,
+   "line": 15013,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5635,7 +5635,7 @@
   "text": "Learn all the information you wish from a person's mind",
   "source": {
    "book": "DE",
-   "line": 14998,
+   "line": 15014,
    "anchor": "intellego-mentem-guidelines"
   }
  },
@@ -5647,7 +5647,7 @@
   "text": "Make a minor change in a person's memory of an event",
   "source": {
    "book": "DE",
-   "line": 15058,
+   "line": 15074,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5659,7 +5659,7 @@
   "text": "Make a major change to a person's memory of an event",
   "source": {
    "book": "DE",
-   "line": 15059,
+   "line": 15075,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5671,7 +5671,7 @@
   "text": "Make a major change to a person's memory of a series of events",
   "source": {
    "book": "DE",
-   "line": 15060,
+   "line": 15076,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5683,7 +5683,7 @@
   "text": "Make a major change to a person's emotion",
   "source": {
    "book": "DE",
-   "line": 15060,
+   "line": 15076,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5695,7 +5695,7 @@
   "text": "Make major changes to a person's memory of a period of their life",
   "source": {
    "book": "DE",
-   "line": 15061,
+   "line": 15077,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5707,7 +5707,7 @@
   "text": "Completely change a person's emotions",
   "source": {
    "book": "DE",
-   "line": 15061,
+   "line": 15077,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5719,7 +5719,7 @@
   "text": "Turn a single memory or emotion into a solid object (requisite of the Form of the shape; the person whose memory or emotion was transformed must be touching the item to feel the emotion or recall the memory; other people touching the object do not experience its mental aspects)",
   "source": {
    "book": "DE",
-   "line": 15062,
+   "line": 15078,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5731,7 +5731,7 @@
   "text": "Completely rewrite a person's memories",
   "source": {
    "book": "DE",
-   "line": 15063,
+   "line": 15079,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5743,7 +5743,7 @@
   "text": "Make a mind or spirit visible (Imaginem requisite)",
   "source": {
    "book": "DE",
-   "line": 15064,
+   "line": 15080,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5755,7 +5755,7 @@
   "text": "Utterly change a person's mind",
   "source": {
    "book": "DE",
-   "line": 15064,
+   "line": 15080,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5767,7 +5767,7 @@
   "text": "Make a mind or spirit solid (requisite of the Form of the shape)",
   "source": {
    "book": "DE",
-   "line": 15065,
+   "line": 15081,
    "anchor": "muto-mentem-guidelines"
   }
  },
@@ -5779,7 +5779,7 @@
   "text": "Remove a minor detail from a person's memory",
   "source": {
    "book": "DE",
-   "line": 15111,
+   "line": 15127,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5791,7 +5791,7 @@
   "text": "Remove an important detail from a person's memory",
   "source": {
    "book": "DE",
-   "line": 15112,
+   "line": 15128,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5803,7 +5803,7 @@
   "text": "Diminish a single mental capability in a person",
   "source": {
    "book": "DE",
-   "line": 15112,
+   "line": 15128,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5815,7 +5815,7 @@
   "text": "Reduce the intensity of all of a person's emotions",
   "source": {
    "book": "DE",
-   "line": 15112,
+   "line": 15128,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5827,7 +5827,7 @@
   "text": "Quell an emotion in a person",
   "source": {
    "book": "DE",
-   "line": 15113,
+   "line": 15129,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5839,7 +5839,7 @@
   "text": "Remove a minor or short memory from a person's mind",
   "source": {
    "book": "DE",
-   "line": 15114,
+   "line": 15130,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5851,7 +5851,7 @@
   "text": "Reduce all of a person's mental capabilities",
   "source": {
    "book": "DE",
-   "line": 15114,
+   "line": 15130,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5863,7 +5863,7 @@
   "text": "Remove a major or long memory from a person's mind",
   "source": {
    "book": "DE",
-   "line": 15115,
+   "line": 15131,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5875,7 +5875,7 @@
   "text": "Remove all emotions from a person",
   "source": {
    "book": "DE",
-   "line": 15115,
+   "line": 15131,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5887,7 +5887,7 @@
   "text": "Drive a person insane",
   "source": {
    "book": "DE",
-   "line": 15115,
+   "line": 15131,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5899,7 +5899,7 @@
   "text": "Leave a person a mindless husk",
   "source": {
    "book": "DE",
-   "line": 15116,
+   "line": 15132,
    "anchor": "perdo-mentem-guidelines"
   }
  },
@@ -5911,7 +5911,7 @@
   "text": "Ward against beings associated with Mentem from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 15192,
+   "line": 15208,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -5923,7 +5923,7 @@
   "text": "Ward against spirits belonging to one realm (Divine, Faerie, Infernal, or Magic) with a Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 15192,
+   "line": 15208,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -5935,7 +5935,7 @@
   "text": "Make a subtle difference to the target's mental state",
   "source": {
    "book": "DE",
-   "line": 15193,
+   "line": 15209,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -5947,7 +5947,7 @@
   "text": "Control a target's mental state (for example, awake, asleep, or confused)",
   "source": {
    "book": "DE",
-   "line": 15194,
+   "line": 15210,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -5959,7 +5959,7 @@
   "text": "Control a natural emotion (for example, calm, fear); the target must feel the emotion before you can control it",
   "source": {
    "book": "DE",
-   "line": 15195,
+   "line": 15211,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -5971,7 +5971,7 @@
   "text": "Control a disembodied spirit associated with Mentem, such as most ghosts",
   "source": {
    "book": "DE",
-   "line": 15195,
+   "line": 15211,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -5983,7 +5983,7 @@
   "text": "Incline a person to a particular sort of response",
   "source": {
    "book": "DE",
-   "line": 15195,
+   "line": 15211,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -5995,7 +5995,7 @@
   "text": "Control an unnatural emotion (for example, cultivate a person's feelings of bravery where he is usually cowardly)",
   "source": {
    "book": "DE",
-   "line": 15196,
+   "line": 15212,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -6007,7 +6007,7 @@
   "text": "Imbue all of a person's responses with a particular emotion",
   "source": {
    "book": "DE",
-   "line": 15196,
+   "line": 15212,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -6019,7 +6019,7 @@
   "text": "Control a person as long as you can see them",
   "source": {
    "book": "DE",
-   "line": 15197,
+   "line": 15213,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -6031,7 +6031,7 @@
   "text": "Summon a disembodied spirit associated with Mentem, such as a ghost",
   "source": {
    "book": "DE",
-   "line": 15197,
+   "line": 15213,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -6043,7 +6043,7 @@
   "text": "Give a person one complex command, which he tries to carry out to the best of his ability",
   "source": {
    "book": "DE",
-   "line": 15198,
+   "line": 15214,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -6055,7 +6055,7 @@
   "text": "Completely control a person's mind and emotions",
   "source": {
    "book": "DE",
-   "line": 15199,
+   "line": 15215,
    "anchor": "rego-mentem-guidelines"
   }
  },
@@ -6067,7 +6067,7 @@
   "text": "Create sand, dirt, mud, or clay",
   "source": {
    "book": "DE",
-   "line": 15306,
+   "line": 15322,
    "anchor": "creo-terram-guidelines"
   }
  },
@@ -6079,7 +6079,7 @@
   "text": "Create stone or glass",
   "source": {
    "book": "DE",
-   "line": 15307,
+   "line": 15323,
    "anchor": "creo-terram-guidelines"
   }
  },
@@ -6091,7 +6091,7 @@
   "text": "Create base metal",
   "source": {
    "book": "DE",
-   "line": 15308,
+   "line": 15324,
    "anchor": "creo-terram-guidelines"
   }
  },
@@ -6103,7 +6103,7 @@
   "text": "Create precious metal",
   "source": {
    "book": "DE",
-   "line": 15309,
+   "line": 15325,
    "anchor": "creo-terram-guidelines"
   }
  },
@@ -6115,7 +6115,7 @@
   "text": "Repair a crafted item, returning it to an \"as new\" state",
   "source": {
    "book": "DE",
-   "line": 15309,
+   "line": 15325,
    "anchor": "creo-terram-guidelines"
   }
  },
@@ -6127,7 +6127,7 @@
   "text": "Create gemstone",
   "source": {
    "book": "DE",
-   "line": 15310,
+   "line": 15326,
    "anchor": "creo-terram-guidelines"
   }
  },
@@ -6139,7 +6139,7 @@
   "text": "Create an earth elemental from a base amount of elemental matter (Ritual)",
   "source": {
    "book": "DE",
-   "line": 15310,
+   "line": 15326,
    "anchor": "creo-terram-guidelines"
   }
  },
@@ -6151,7 +6151,7 @@
   "text": "Learn one visible property of an object (a property that someone with appropriate skills could determine just by looking)",
   "source": {
    "book": "DE",
-   "line": 15350,
+   "line": 15366,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6163,7 +6163,7 @@
   "text": "Learn one mundane property of an object",
   "source": {
    "book": "DE",
-   "line": 15351,
+   "line": 15367,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6175,7 +6175,7 @@
   "text": "See an object and its surroundings",
   "source": {
    "book": "DE",
-   "line": 15351,
+   "line": 15367,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6187,7 +6187,7 @@
   "text": "Learn all components of a mixture or alloy",
   "source": {
    "book": "DE",
-   "line": 15352,
+   "line": 15368,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6199,7 +6199,7 @@
   "text": "Learn all the natural properties of an object",
   "source": {
    "book": "DE",
-   "line": 15353,
+   "line": 15369,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6211,7 +6211,7 @@
   "text": "Sense all the mundane properties of a composite object",
   "source": {
    "book": "DE",
-   "line": 15354,
+   "line": 15370,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6223,7 +6223,7 @@
   "text": "Learn the magical properties of an object",
   "source": {
    "book": "DE",
-   "line": 15355,
+   "line": 15371,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6235,7 +6235,7 @@
   "text": "Make your senses unhindered by earth (for example, see right through a rock)",
   "source": {
    "book": "DE",
-   "line": 15355,
+   "line": 15371,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6247,7 +6247,7 @@
   "text": "Speak with a natural rock (for example, a boulder)",
   "source": {
    "book": "DE",
-   "line": 15355,
+   "line": 15371,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6259,7 +6259,7 @@
   "text": "Speak with an artificial rock (for example, a statue)",
   "source": {
    "book": "DE",
-   "line": 15356,
+   "line": 15372,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6271,7 +6271,7 @@
   "text": "Commune with a natural rock; speak with a metal object (for example, a knife)",
   "source": {
    "book": "DE",
-   "line": 15357,
+   "line": 15373,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6283,7 +6283,7 @@
   "text": "Commune with an artificial rock (for example, a statue)",
   "source": {
    "book": "DE",
-   "line": 15358,
+   "line": 15374,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6295,7 +6295,7 @@
   "text": "Commune with a metal object (for example, a knife)",
   "source": {
    "book": "DE",
-   "line": 15359,
+   "line": 15375,
    "anchor": "intellego-terram-guidelines"
   }
  },
@@ -6307,7 +6307,7 @@
   "text": "Convert part of an earth elemental's body into another type of earth (soil to dust, etc.), reducing the elemental's Might pool by the level of the spell +2 magnitudes. If the elemental is not destroyed by this effect, when the duration ends it can restore this Might by re-absorbing the matter",
   "source": {
    "book": "DE",
-   "line": 15430,
+   "line": 15446,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6319,7 +6319,7 @@
   "text": "Change one property of dirt",
   "source": {
    "book": "DE",
-   "line": 15431,
+   "line": 15447,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6331,7 +6331,7 @@
   "text": "Change dirt to another type of natural earth (for example, sand to loam)",
   "source": {
    "book": "DE",
-   "line": 15432,
+   "line": 15448,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6343,7 +6343,7 @@
   "text": "Change dirt so that it is slightly unnatural (requisites may be required)",
   "source": {
    "book": "DE",
-   "line": 15433,
+   "line": 15449,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6355,7 +6355,7 @@
   "text": "Change dirt into a liquid or gas (with requisites)",
   "source": {
    "book": "DE",
-   "line": 15433,
+   "line": 15449,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6367,7 +6367,7 @@
   "text": "Change dirt to stone, or vice versa",
   "source": {
    "book": "DE",
-   "line": 15433,
+   "line": 15449,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6379,7 +6379,7 @@
   "text": "Change dirt so that it is highly unnatural (requisites will often be required)",
   "source": {
    "book": "DE",
-   "line": 15434,
+   "line": 15450,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6391,7 +6391,7 @@
   "text": "Change dirt into a mixture of liquids, solids, and gases (with requisites)",
   "source": {
    "book": "DE",
-   "line": 15434,
+   "line": 15450,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6403,7 +6403,7 @@
   "text": "Change dirt into a plant (with requisites)",
   "source": {
    "book": "DE",
-   "line": 15434,
+   "line": 15450,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6415,7 +6415,7 @@
   "text": "Make something grow to ten times its previous volume",
   "source": {
    "book": "DE",
-   "line": 15434,
+   "line": 15450,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6427,7 +6427,7 @@
   "text": "Change dirt into a slightly unnatural liquid or gas (with requisites)",
   "source": {
    "book": "DE",
-   "line": 15435,
+   "line": 15451,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6439,7 +6439,7 @@
   "text": "Change dirt into an animal (with requisites)",
   "source": {
    "book": "DE",
-   "line": 15435,
+   "line": 15451,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6451,7 +6451,7 @@
   "text": "Change dirt into a highly unnatural liquid or gas (with requisites)",
   "source": {
    "book": "DE",
-   "line": 15436,
+   "line": 15452,
    "anchor": "muto-terram-guidelines"
   }
  },
@@ -6463,7 +6463,7 @@
   "text": "Destroy sufficient matter to reduce an earth elemental's Might Score by the level of the spell +2 magnitudes",
   "source": {
    "book": "DE",
-   "line": 15492,
+   "line": 15508,
    "anchor": "perdo-terram-guidelines"
   }
  },
@@ -6475,7 +6475,7 @@
   "text": "Weaken dirt",
   "source": {
    "book": "DE",
-   "line": 15493,
+   "line": 15509,
    "anchor": "perdo-terram-guidelines"
   }
  },
@@ -6487,7 +6487,7 @@
   "text": "Destroy dirt",
   "source": {
    "book": "DE",
-   "line": 15494,
+   "line": 15510,
    "anchor": "perdo-terram-guidelines"
   }
  },
@@ -6499,7 +6499,7 @@
   "text": "Destroy one aspect of dirt, such as its weight or its cohesiveness",
   "source": {
    "book": "DE",
-   "line": 15495,
+   "line": 15511,
    "anchor": "perdo-terram-guidelines"
   }
  },
@@ -6511,7 +6511,7 @@
   "text": "Ward against beings associated with Terram from one supernatural realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 15553,
+   "line": 15569,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6523,7 +6523,7 @@
   "text": "Control or move dirt in a natural fashion",
   "source": {
    "book": "DE",
-   "line": 15554,
+   "line": 15570,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6535,7 +6535,7 @@
   "text": "Control or move dirt in a slightly unnatural fashion",
   "source": {
    "book": "DE",
-   "line": 15555,
+   "line": 15571,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6547,7 +6547,7 @@
   "text": "Keep dirt away from you, under your conscious control (that is, you must be aware of its presence)",
   "source": {
    "book": "DE",
-   "line": 15555,
+   "line": 15571,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6559,7 +6559,7 @@
   "text": "Shape and form dirt, as if a craftsman had worked it",
   "source": {
    "book": "DE",
-   "line": 15555,
+   "line": 15571,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6571,7 +6571,7 @@
   "text": "Control or move dirt in a very unnatural fashion",
   "source": {
    "book": "DE",
-   "line": 15556,
+   "line": 15572,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6583,7 +6583,7 @@
   "text": "Transport a non-living object instantly up to 5 paces (add one magnitude for 50 paces, two magnitudes for 500 paces, three magnitudes for one league, four magnitudes for seven leagues, and five magnitudes for a place to which you have an Arcane Connection; casting requisites may be needed if the item is primarily not under the Form of Terram)",
   "source": {
    "book": "DE",
-   "line": 15557,
+   "line": 15573,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6595,7 +6595,7 @@
   "text": "Keep all dirt away from your body, or ward a target against dirt",
   "source": {
    "book": "DE",
-   "line": 15558,
+   "line": 15574,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6607,7 +6607,7 @@
   "text": "Control a disembodied spirit associated with Terram",
   "source": {
    "book": "DE",
-   "line": 15558,
+   "line": 15574,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6619,7 +6619,7 @@
   "text": "Completely control an earth elemental",
   "source": {
    "book": "DE",
-   "line": 15558,
+   "line": 15574,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6631,7 +6631,7 @@
   "text": "Hurl a hard projectile with enough force to do +5 damage (range increment of 20 paces; this applies magical force to the projectile at the moment of casting, and the projectile then moves naturally)",
   "source": {
    "book": "DE",
-   "line": 15558,
+   "line": 15574,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6643,7 +6643,7 @@
   "text": "Hurl a hard projectile with enough force to do +10 damage (range increment of 20 paces; this applies magical force to the projectile at the moment of casting, and the projectile then moves naturally)",
   "source": {
    "book": "DE",
-   "line": 15559,
+   "line": 15575,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6655,7 +6655,7 @@
   "text": "Summon a disembodied spirit associated with Terram",
   "source": {
    "book": "DE",
-   "line": 15560,
+   "line": 15576,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6667,7 +6667,7 @@
   "text": "Hurl a hard projectile with enough force to do +15 damage (range increment of 20 paces; this applies magical force to the projectile at the moment of casting, and the projectile then moves naturally)",
   "source": {
    "book": "DE",
-   "line": 15560,
+   "line": 15576,
    "anchor": "rego-terram-guidelines"
   }
  },
@@ -6679,7 +6679,7 @@
   "text": "Create a magical shell which looks real to Intellego spells with a level less than or equal to twice its level, plus one magnitude (this aura is generic 'magic' only — no misleading information can be supplied)",
   "source": {
    "book": "DE",
-   "line": 15684,
+   "line": 15700,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6691,7 +6691,7 @@
   "text": "Create a magical shell which prevents Intellego spells with a level less than or equal to its level, plus one magnitude from learning any details about the magic on the target",
   "source": {
    "book": "DE",
-   "line": 15684,
+   "line": 15700,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6703,7 +6703,7 @@
   "text": "Create a magical shell which gives false information about the target to Intellego spells with level less than or equal to half its level plus one magnitude",
   "source": {
    "book": "DE",
-   "line": 15684,
+   "line": 15700,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6715,7 +6715,7 @@
   "text": "Refreshes all spell traces within the target that are less than the magnitude of the guideline –1, in negative magnitude (this restores them to their initial strength, generally half the magnitude of the spell)",
   "source": {
    "book": "DE",
-   "line": 15684,
+   "line": 15700,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6727,7 +6727,7 @@
   "text": "Taint something with magic",
   "source": {
    "book": "DE",
-   "line": 15685,
+   "line": 15701,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6739,7 +6739,7 @@
   "text": "Create a temporary Arcane Connection to a target within range (this Arcane Connection cannot be fixed in a laboratory, and does not itself give a bonus to Penetration, but does allow the magus to use other methods to boost Penetration and to use other spells on the target even if the magus can no longer perceive it; note that this spell must Penetrate the target's Magic Resistance like any other spell)",
   "source": {
    "book": "DE",
-   "line": 15686,
+   "line": 15702,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6751,7 +6751,7 @@
   "text": "Create a burst of magic that gives the target one Warping Point (spells that grant Warping cannot have a duration of greater than Momentary; note that doing this to a magus is an attack and clearly against the Code)",
   "source": {
    "book": "DE",
-   "line": 15687,
+   "line": 15703,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6763,7 +6763,7 @@
   "text": "Decrease the rate of decay of an Arcane Connection as if the connection were one step higher on the table on page 220 (if this increases the Duration to Years or greater, the duration continues to be measured in years; Hermetic magic cannot make an Arcane Connection last indefinitely without fixing it in the laboratory)",
   "source": {
    "book": "DE",
-   "line": 15687,
+   "line": 15703,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6775,7 +6775,7 @@
   "text": "Give the target two Warping Points",
   "source": {
    "book": "DE",
-   "line": 15688,
+   "line": 15704,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6787,7 +6787,7 @@
   "text": "Decrease the rate of decay of an Arcane Connection as if the connection were two steps higher on the table on page 220, subject to the same limits as above",
   "source": {
    "book": "DE",
-   "line": 15688,
+   "line": 15704,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6799,7 +6799,7 @@
   "text": "Give the target three Warping Points",
   "source": {
    "book": "DE",
-   "line": 15689,
+   "line": 15705,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6811,7 +6811,7 @@
   "text": "Decrease the rate of decay of an Arcane Connection as if the connection were three steps higher on the table on page 220, subject to the same limits as above",
   "source": {
    "book": "DE",
-   "line": 15689,
+   "line": 15705,
    "anchor": "creo-vim-guidelines"
   }
  },
@@ -6823,7 +6823,7 @@
   "text": "Detect the traces of magic of negative magnitude up to the magnitude of the guideline used – 2",
   "source": {
    "book": "DE",
-   "line": 15744,
+   "line": 15760,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6835,7 +6835,7 @@
   "text": "Detect magic of tenth magnitude or higher",
   "source": {
    "book": "DE",
-   "line": 15745,
+   "line": 15761,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6847,7 +6847,7 @@
   "text": "Detect the presence of a supernatural aura",
   "source": {
    "book": "DE",
-   "line": 15745,
+   "line": 15761,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6859,7 +6859,7 @@
   "text": "Detect the presence of vis (as concentrated magic, vis is not hard to spot)",
   "source": {
    "book": "DE",
-   "line": 15745,
+   "line": 15761,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6871,7 +6871,7 @@
   "text": "Detect magic of eighth magnitude or higher",
   "source": {
    "book": "DE",
-   "line": 15746,
+   "line": 15762,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6883,7 +6883,7 @@
   "text": "Determine the power of a supernatural aura",
   "source": {
    "book": "DE",
-   "line": 15746,
+   "line": 15762,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6895,7 +6895,7 @@
   "text": "Detect magic of sixth magnitude or higher",
   "source": {
    "book": "DE",
-   "line": 15747,
+   "line": 15763,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6907,7 +6907,7 @@
   "text": "Detect regio boundaries (if cast with a Vision target, this provides enough information to find a way between levels for regiones that allow that sort of entrance; otherwise, it reveals the presence of a regio, and possibly its rough shape)",
   "source": {
    "book": "DE",
-   "line": 15747,
+   "line": 15763,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6919,7 +6919,7 @@
   "text": "Detect magic of third magnitude or higher",
   "source": {
    "book": "DE",
-   "line": 15748,
+   "line": 15764,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6931,7 +6931,7 @@
   "text": "Judge the amount of vis present",
   "source": {
    "book": "DE",
-   "line": 15748,
+   "line": 15764,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6943,7 +6943,7 @@
   "text": "Discern the Art of vis",
   "source": {
    "book": "DE",
-   "line": 15748,
+   "line": 15764,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6955,7 +6955,7 @@
   "text": "Detect any active magic",
   "source": {
    "book": "DE",
-   "line": 15749,
+   "line": 15765,
    "anchor": "intellego-vim-guidelines"
   }
  },
@@ -6967,7 +6967,7 @@
   "text": "Superficially change a spell of less than or equal to twice the (level + 1 magnitude) of the Vim spell (this may not change the primary effect of the spell, or its power)",
   "source": {
    "book": "DE",
-   "line": 15830,
+   "line": 15846,
    "anchor": "muto-vim-guidelines"
   }
  },
@@ -6979,7 +6979,7 @@
   "text": "Significantly change a spell of less than or equal to the level + 1 magnitude of the Vim spell (this may not change either the Technique or Form of the target spell; a change in power of plus or minus one magnitude is a significant change, as is a change of target if the target was possible for the original spell)",
   "source": {
    "book": "DE",
-   "line": 15830,
+   "line": 15846,
    "anchor": "muto-vim-guidelines"
   }
  },
@@ -6991,7 +6991,7 @@
   "text": "Totally change a spell of less than or equal to half the (level + 1 magnitude) of the Vim spell (this may change the Technique, Form, or both of the target spell, and needs no requisites for those Arts; the Vim spell affects the structure of the spell, not the things that the spell targets; a change in power of up to two magnitudes is a total change; any greater change requires either Creo or Perdo to create more magical energy or destroy some)",
   "source": {
    "book": "DE",
-   "line": 15830,
+   "line": 15846,
    "anchor": "muto-vim-guidelines"
   }
  },
@@ -7003,7 +7003,7 @@
   "text": "Make something (including a magical item) seem non-magical to any Intellego spell of less than or equal to twice the (level + 2 magnitudes) of this spell",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7015,7 +7015,7 @@
   "text": "Dispel effects of a specific type with a level less than or equal to the level + 4 magnitudes of the Vim spell + a stress die (no botch); a specific type could be Hermetic Terram magic, or Shamanic spirit control magic; a magus must have some knowledge of a type of magic to invent a spell to affect it",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7027,7 +7027,7 @@
   "text": "Reduce a target's Might Score by the level of the spell + 2 magnitudes, as long as the spell penetrates the creature's Magic Resistance",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7039,7 +7039,7 @@
   "text": "Reduce a target's Might Pool by the level of the spell + 2 magnitudes, as long as the spell penetrates the creature's Magic Resistance",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7051,7 +7051,7 @@
   "text": "Dispel any supernatural effect of one realm with a level less than or equal to half the (level + 4 magnitudes + a stress die (no botch)) of the Vim spell",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7063,7 +7063,7 @@
   "text": "Reduce the casting total for all supernatural powers of one realm cast by the target by half the (level + 2 magnitudes) of the spell (if two or more such spells affect one target, only the highest has any effect; the spell must penetrate the target's Magic Resistance)",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7075,7 +7075,7 @@
   "text": "Reduce the casting total for a specific type of supernatural effect cast by the target by the (level + 2 magnitudes) of the spell (if two or more such spells affect one target, only the highest has any effect; the spell must penetrate the target's Magic Resistance; a maga must be familiar with a type of supernatural effect to invent a spell to affect it)",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7087,7 +7087,7 @@
   "text": "Age a spell trace to a negative magnitude equal to the guideline used (for example, –2 for a level 10 guideline)",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7099,7 +7099,7 @@
   "text": "Dispel a Hermetic enchantment with a level less than the guideline level used + 1 magnitude + a stress die (no botch); the spell must be a Ritual",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7111,7 +7111,7 @@
   "text": "Dispel a specific type of enchantment with a level less than twice the guideline level used + 2 magnitudes + a stress die (no botch); the spell must specify a particular Hermetic Form or a specific type of enchantment such as Talismans, Familiars or Longevity Rituals; spell must be a Ritual",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7123,7 +7123,7 @@
   "text": "Dispel Hermetic Form Resistance aligned to a given Form with a level less than or equal to the level of the Vim spell + 2 magnitudes + a stress die (no botch); spell must penetrate the Vim-based Magic Resistance of the target",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7135,7 +7135,7 @@
   "text": "Dispel Magic Resistance from a Might score aligned to one Realm with a level less than or equal to the level of the Vim spell + 4 magnitudes + a stress die (no botch); spell must penetrate the Vim-based Magic Resistance of the target",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7147,7 +7147,7 @@
   "text": "Destroy an amount of raw vis equal to the level of the spell",
   "source": {
    "book": "DE",
-   "line": 15890,
+   "line": 15906,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7159,7 +7159,7 @@
   "text": "Reduce the duration of an Arcane Connection by one step on the table on page 220 (if this reduces the duration below Hours, the connection expires immediately; does not work on connections that naturally have Indefinite duration, but can make a fixed connection expire; note that the Range is the range to the Arcane Connection)",
   "source": {
    "book": "DE",
-   "line": 15891,
+   "line": 15907,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7171,7 +7171,7 @@
   "text": "Reduce the duration of an Arcane Connection by two steps on the table on page 220, subject to the same limits as above",
   "source": {
    "book": "DE",
-   "line": 15892,
+   "line": 15908,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7183,7 +7183,7 @@
   "text": "Reduce the duration of an Arcane Connection by three steps on the table on page 220, subject to the same limits as above",
   "source": {
    "book": "DE",
-   "line": 15893,
+   "line": 15909,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7195,7 +7195,7 @@
   "text": "Reduce the duration of an Arcane Connection by four steps on the table on page 220, subject to the same limits as above",
   "source": {
    "book": "DE",
-   "line": 15894,
+   "line": 15910,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7207,7 +7207,7 @@
   "text": "Reduce the duration of an Arcane Connection by five steps on the table on page 220, subject to the same limits as above",
   "source": {
    "book": "DE",
-   "line": 15895,
+   "line": 15911,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7219,7 +7219,7 @@
   "text": "Reduce the duration of an Arcane Connection by six steps on the table on page 220, subject to the same limits as above (this level of effect is sufficient to make almost any Arcane Connection expire instantly)",
   "source": {
    "book": "DE",
-   "line": 15896,
+   "line": 15912,
    "anchor": "perdo-vim-guidelines"
   }
  },
@@ -7231,7 +7231,7 @@
   "text": "Ward against all supernatural beings from one realm (Divine, Faerie, Infernal, or Magic) with Might less than or equal to the level of the spell (Touch, Ring, Circle)",
   "source": {
    "book": "DE",
-   "line": 15935,
+   "line": 15951,
    "anchor": "rego-vim-guidelines"
   }
  },
@@ -7243,7 +7243,7 @@
   "text": "Sustain or suppress a spell you have cast whose level is less than or equal to the level + 2 magnitudes of the Vim spell (this cannot make a spell last longer than it could have naturally, so the sustaining version is only useful with Concentration Duration among standard Hermetic Durations; a suppressed spell still ends when its original duration expires)",
   "source": {
    "book": "DE",
-   "line": 15935,
+   "line": 15951,
    "anchor": "rego-vim-guidelines"
   }
  },
@@ -7255,7 +7255,7 @@
   "text": "Create a conduit or container for spells with level less than or equal to the level + 5 magnitudes of the Vim spell (a conduit puts you in mystical contact with the target at effective Touch range, while a container holds a spell for a specific length of time before releasing it)",
   "source": {
    "book": "DE",
-   "line": 15935,
+   "line": 15951,
    "anchor": "rego-vim-guidelines"
   }
  },
@@ -7267,7 +7267,7 @@
   "text": "Sustain or suppress a spell cast by another with level less than or equal to half the (level + 5 magnitudes) of the Vim spell (this guideline may target the spell itself or the caster of the spells)",
   "source": {
    "book": "DE",
-   "line": 15935,
+   "line": 15951,
    "anchor": "rego-vim-guidelines"
   }
  },
@@ -7279,7 +7279,7 @@
   "text": "Sustain or suppress a spell or spells of a specific type cast by another with level less than the level + 2 magnitudes of the Vim spell (examples of specific types include Hermetic Terram magic and Shamanic spirit control magic; this guideline may target the spell itself or the caster of the spells)",
   "source": {
    "book": "DE",
-   "line": 15935,
+   "line": 15951,
    "anchor": "rego-vim-guidelines"
   }
  },
@@ -7291,7 +7291,7 @@
   "text": "Control any disembodied spirit associated with one of the four supernatural realms (a different spell is needed for each realm)",
   "source": {
    "book": "DE",
-   "line": 15936,
+   "line": 15952,
    "anchor": "rego-vim-guidelines"
   }
  },
@@ -7303,7 +7303,7 @@
   "text": "Move raw vis from one physical object to another, without needing a laboratory",
   "source": {
    "book": "DE",
-   "line": 15937,
+   "line": 15953,
    "anchor": "rego-vim-guidelines"
   }
  },
@@ -7315,7 +7315,7 @@
   "text": "Summon any disembodied spirit associated with one of the four supernatural realms (a different spell is needed for each realm)",
   "source": {
    "book": "DE",
-   "line": 15938,
+   "line": 15954,
    "anchor": "rego-vim-guidelines"
   }
  }

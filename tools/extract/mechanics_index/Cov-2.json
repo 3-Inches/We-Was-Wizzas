@@ -2,8 +2,8 @@
  {
   "title": "Covenant Income",
   "heading": "Income",
-  "line": 3234,
-  "endLine": 3236,
+  "line": 3287,
+  "endLine": 3289,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -22,8 +22,8 @@
  {
   "title": "The Mythic Pound",
   "heading": "The Mythic Pound",
-  "line": 3238,
-  "endLine": 3242,
+  "line": 3291,
+  "endLine": 3295,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -42,8 +42,8 @@
  {
   "title": "Income Baseline",
   "heading": "Baseline",
-  "line": 3244,
-  "endLine": 3248,
+  "line": 3297,
+  "endLine": 3301,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -63,8 +63,8 @@
  {
   "title": "Customizing Income Sources",
   "heading": "Customization",
-  "line": 3250,
-  "endLine": 3252,
+  "line": 3303,
+  "endLine": 3305,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -83,8 +83,8 @@
  {
   "title": "Improving or Reducing Income Each Year",
   "heading": "Improvement",
-  "line": 3254,
-  "endLine": 3256,
+  "line": 3307,
+  "endLine": 3309,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -104,8 +104,8 @@
  {
   "title": "Magical Improvement of Income",
   "heading": "Magical Improvement",
-  "line": 3258,
-  "endLine": 3287,
+  "line": 3311,
+  "endLine": 3340,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -128,8 +128,8 @@
  {
   "title": "Source of Income Categories",
   "heading": "Source of Income Categories",
-  "line": 3262,
-  "endLine": 3270,
+  "line": 3315,
+  "endLine": 3323,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -148,8 +148,8 @@
  {
   "title": "Income Modification Table",
   "heading": "Income Modification",
-  "line": 3272,
-  "endLine": 3282,
+  "line": 3325,
+  "endLine": 3335,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -161,15 +161,15 @@
   "requires": "",
   "summary": "Table of yearly effects on a source of income (Slump to Boom), each with an income multiplier and the stress die result used if the effect is rolled randomly.",
   "quotes": [
-   "| Status Quo  | x 1               | 3\u20138               |"
+   "| Status Quo  | x 1               | 3–8               |"
   ],
   "related": []
  },
  {
   "title": "Option: Extremely Complex Wealth Management",
   "heading": "Option: Extremely Complex Wealth Management",
-  "line": 3289,
-  "endLine": 3291,
+  "line": 3342,
+  "endLine": 3344,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -188,8 +188,8 @@
  {
   "title": "Sources of Income (general rules)",
   "heading": "Sources of Income",
-  "line": 3293,
-  "endLine": 3305,
+  "line": 3346,
+  "endLine": 3358,
   "category": "covenant",
   "topic": "Covenant income",
   "audience": [
@@ -209,8 +209,8 @@
  {
   "title": "Option: No Wealth Management",
   "heading": "Option: No Wealth Management",
-  "line": 3299,
-  "endLine": 3301,
+  "line": 3352,
+  "endLine": 3354,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -227,8 +227,8 @@
  {
   "title": "Income Source: Agriculture",
   "heading": "Agriculture",
-  "line": 3307,
-  "endLine": 3325,
+  "line": 3360,
+  "endLine": 3378,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -245,8 +245,8 @@
  {
   "title": "Income Source: Charity",
   "heading": "Charity",
-  "line": 3327,
-  "endLine": 3343,
+  "line": 3380,
+  "endLine": 3398,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -263,8 +263,8 @@
  {
   "title": "Income Source: Crime",
   "heading": "Crime",
-  "line": 3345,
-  "endLine": 3361,
+  "line": 3400,
+  "endLine": 3416,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -281,8 +281,8 @@
  {
   "title": "Income Source: Fishing",
   "heading": "Fishing",
-  "line": 3363,
-  "endLine": 3381,
+  "line": 3418,
+  "endLine": 3436,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -299,8 +299,8 @@
  {
   "title": "Income Source: Forestry",
   "heading": "Forestry",
-  "line": 3394,
-  "endLine": 3412,
+  "line": 3449,
+  "endLine": 3467,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -317,8 +317,8 @@
  {
   "title": "Income Source: Hospitality",
   "heading": "Hospitality",
-  "line": 3414,
-  "endLine": 3430,
+  "line": 3469,
+  "endLine": 3485,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -335,8 +335,8 @@
  {
   "title": "Income Source: Livestock",
   "heading": "Livestock",
-  "line": 3432,
-  "endLine": 3451,
+  "line": 3487,
+  "endLine": 3506,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -353,8 +353,8 @@
  {
   "title": "Income Source: Manufacturing",
   "heading": "Manufacturing",
-  "line": 3453,
-  "endLine": 3469,
+  "line": 3508,
+  "endLine": 3524,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -371,8 +371,8 @@
  {
   "title": "Income Source: Mining",
   "heading": "Mining",
-  "line": 3471,
-  "endLine": 3487,
+  "line": 3526,
+  "endLine": 3542,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -389,8 +389,8 @@
  {
   "title": "Income Source: Money",
   "heading": "Money",
-  "line": 3501,
-  "endLine": 3519,
+  "line": 3556,
+  "endLine": 3574,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -407,8 +407,8 @@
  {
   "title": "Income Source: Service",
   "heading": "Service",
-  "line": 3521,
-  "endLine": 3539,
+  "line": 3576,
+  "endLine": 3594,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -425,8 +425,8 @@
  {
   "title": "Income Source: Toll-Gathering",
   "heading": "Toll-Gathering",
-  "line": 3553,
-  "endLine": 3570,
+  "line": 3608,
+  "endLine": 3625,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -443,8 +443,8 @@
  {
   "title": "Income Source: Trade",
   "heading": "Trade",
-  "line": 3572,
-  "endLine": 3592,
+  "line": 3627,
+  "endLine": 3647,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -461,8 +461,8 @@
  {
   "title": "Income Source: Wizardry",
   "heading": "Wizardry",
-  "line": 3594,
-  "endLine": 3612,
+  "line": 3649,
+  "endLine": 3667,
   "category": "covenant",
   "topic": "Covenant income sources",
   "audience": [
@@ -480,8 +480,8 @@
  {
   "title": "Covenant Expenditure",
   "heading": "Expenditure",
-  "line": 3614,
-  "endLine": 3620,
+  "line": 3669,
+  "endLine": 3675,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -501,8 +501,8 @@
  {
   "title": "Points of Inhabitants",
   "heading": "Points of Inhabitants",
-  "line": 3622,
-  "endLine": 3632,
+  "line": 3677,
+  "endLine": 3687,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -522,8 +522,8 @@
  {
   "title": "Covenfolk Categories",
   "heading": "Covenfolk Categories",
-  "line": 3634,
-  "endLine": 3658,
+  "line": 3689,
+  "endLine": 3713,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -544,8 +544,8 @@
  {
   "title": "Points of Laboratories",
   "heading": "Points of Laboratories",
-  "line": 3660,
-  "endLine": 3684,
+  "line": 3715,
+  "endLine": 3739,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -568,8 +568,8 @@
  {
   "title": "Points of Weapons and Armor",
   "heading": "Points of Weapons and Armor",
-  "line": 3686,
-  "endLine": 3696,
+  "line": 3741,
+  "endLine": 3751,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -588,8 +588,8 @@
  {
   "title": "Yearly Expenditure Categories",
   "heading": "Yearly Expenditure Categories",
-  "line": 3698,
-  "endLine": 3700,
+  "line": 3753,
+  "endLine": 3755,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -608,8 +608,8 @@
  {
   "title": "Buildings Expenditure",
   "heading": "Buildings",
-  "line": 3702,
-  "endLine": 3708,
+  "line": 3757,
+  "endLine": 3763,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -631,8 +631,8 @@
  {
   "title": "Consumables Expenditure",
   "heading": "Consumables",
-  "line": 3710,
-  "endLine": 3714,
+  "line": 3765,
+  "endLine": 3769,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -651,8 +651,8 @@
  {
   "title": "Inflation",
   "heading": "Inflation",
-  "line": 3716,
-  "endLine": 3720,
+  "line": 3771,
+  "endLine": 3775,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -672,8 +672,8 @@
  {
   "title": "Laboratories Expenditure",
   "heading": "Laboratories",
-  "line": 3722,
-  "endLine": 3726,
+  "line": 3777,
+  "endLine": 3781,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -695,8 +695,8 @@
  {
   "title": "Provisions Expenditure",
   "heading": "Provisions",
-  "line": 3728,
-  "endLine": 3732,
+  "line": 3783,
+  "endLine": 3787,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -715,8 +715,8 @@
  {
   "title": "Tithes",
   "heading": "Tithes",
-  "line": 3734,
-  "endLine": 3736,
+  "line": 3789,
+  "endLine": 3791,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -733,8 +733,8 @@
  {
   "title": "Wages Expenditure",
   "heading": "Wages",
-  "line": 3738,
-  "endLine": 3746,
+  "line": 3793,
+  "endLine": 3801,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -756,8 +756,8 @@
  {
   "title": "Cost Saving Limits by Craft",
   "heading": "Cost Saving Limits by Craft",
-  "line": 3748,
-  "endLine": 3756,
+  "line": 3803,
+  "endLine": 3811,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -776,8 +776,8 @@
  {
   "title": "Weapons and Armor Expenditure",
   "heading": "Weapons and Armor",
-  "line": 3758,
-  "endLine": 3762,
+  "line": 3813,
+  "endLine": 3817,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -796,8 +796,8 @@
  {
   "title": "Writing Materials Expenditure",
   "heading": "Writing Materials",
-  "line": 3764,
-  "endLine": 3768,
+  "line": 3819,
+  "endLine": 3823,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -820,8 +820,8 @@
  {
   "title": "Cost Saving",
   "heading": "Cost Saving",
-  "line": 3770,
-  "endLine": 3772,
+  "line": 3825,
+  "endLine": 3827,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -840,8 +840,8 @@
  {
   "title": "Cost Saving by Laborers",
   "heading": "Laborers",
-  "line": 3774,
-  "endLine": 3776,
+  "line": 3829,
+  "endLine": 3831,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -861,8 +861,8 @@
  {
   "title": "Cost Saving by Craftsmen",
   "heading": "Craftsmen",
-  "line": 3778,
-  "endLine": 3784,
+  "line": 3833,
+  "endLine": 3839,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -882,8 +882,8 @@
  {
   "title": "Cost Saving by Magic",
   "heading": "Magic",
-  "line": 3786,
-  "endLine": 3790,
+  "line": 3841,
+  "endLine": 3845,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -906,8 +906,8 @@
  {
   "title": "Yearly Expenditure Summary",
   "heading": "Yearly Expenditure Summary",
-  "line": 3792,
-  "endLine": 3827,
+  "line": 3847,
+  "endLine": 3882,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -926,9 +926,9 @@
  },
  {
   "title": "Expenditure Worked Example (Vernus)",
-  "heading": "Expenditure \u2014 A Simple Example",
-  "line": 3829,
-  "endLine": 3867,
+  "heading": "Expenditure — A Simple Example",
+  "line": 3884,
+  "endLine": 3922,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -947,8 +947,8 @@
  {
   "title": "Expenditure Worked Example (Semita Errabunda)",
   "heading": "The Finances of Semita Errabunda",
-  "line": 3869,
-  "endLine": 3920,
+  "line": 3924,
+  "endLine": 3972,
   "category": "covenant",
   "topic": "Covenant expenditure",
   "audience": [
@@ -967,8 +967,8 @@
  {
   "title": "Emergency Savings",
   "heading": "Emergency Savings",
-  "line": 3922,
-  "endLine": 3924,
+  "line": 3974,
+  "endLine": 3976,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -987,8 +987,8 @@
  {
   "title": "Sundry Expenses",
   "heading": "Sundry Expenses",
-  "line": 3926,
-  "endLine": 3928,
+  "line": 3978,
+  "endLine": 3980,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1005,8 +1005,8 @@
  {
   "title": "The Price of Vis",
   "heading": "The Price of Vis",
-  "line": 3930,
-  "endLine": 3932,
+  "line": 3982,
+  "endLine": 3984,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1028,8 +1028,8 @@
  {
   "title": "Sundry Expense: Books",
   "heading": "Books",
-  "line": 3934,
-  "endLine": 3938,
+  "line": 3986,
+  "endLine": 3990,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1052,8 +1052,8 @@
  {
   "title": "Sundry Expense: Hermetic Commodities",
   "heading": "Hermetic Commodities",
-  "line": 3940,
-  "endLine": 3942,
+  "line": 3992,
+  "endLine": 3994,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1073,8 +1073,8 @@
  {
   "title": "Sundry Expense: Hospitality",
   "heading": "Hospitality",
-  "line": 3944,
-  "endLine": 3946,
+  "line": 3996,
+  "endLine": 3998,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1095,8 +1095,8 @@
  {
   "title": "Sundry Expense: Laboratory Construction",
   "heading": "Laboratory Construction",
-  "line": 3952,
-  "endLine": 3954,
+  "line": 4004,
+  "endLine": 4006,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1118,8 +1118,8 @@
  {
   "title": "Sundry Expense: Magi",
   "heading": "Magi",
-  "line": 3956,
-  "endLine": 3958,
+  "line": 4008,
+  "endLine": 4010,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1136,8 +1136,8 @@
  {
   "title": "The Pound of Enumerus",
   "heading": "The Pound of Enumerus",
-  "line": 3960,
-  "endLine": 3964,
+  "line": 4012,
+  "endLine": 4016,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1156,8 +1156,8 @@
  {
   "title": "Sundry Expense: Property",
   "heading": "Property",
-  "line": 3966,
-  "endLine": 3970,
+  "line": 4018,
+  "endLine": 4022,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1178,8 +1178,8 @@
  {
   "title": "Sundry Expense: Training",
   "heading": "Training",
-  "line": 3972,
-  "endLine": 3974,
+  "line": 4024,
+  "endLine": 4026,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1198,8 +1198,8 @@
  {
   "title": "Sundry Expense: Travel",
   "heading": "Travel",
-  "line": 3976,
-  "endLine": 3978,
+  "line": 4028,
+  "endLine": 4030,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1219,8 +1219,8 @@
  {
   "title": "Price List",
   "heading": "Price List",
-  "line": 3980,
-  "endLine": 4095,
+  "line": 4032,
+  "endLine": 4147,
   "category": "covenant",
   "topic": "Prices and wealth",
   "audience": [
@@ -1240,8 +1240,8 @@
  {
   "title": "Quality and Size Multipliers",
   "heading": "Quality and Size Multipliers",
-  "line": 3984,
-  "endLine": 3994,
+  "line": 4036,
+  "endLine": 4046,
   "category": "covenant",
   "topic": "Prices and wealth",
   "audience": [
@@ -1261,9 +1261,9 @@
  },
  {
   "title": "Vis Sources: Yield and Design",
-  "heading": "Chapter Six : Vis Sources",
-  "line": 4098,
-  "endLine": 4104,
+  "heading": "Chapter Six: Vis Sources",
+  "line": 4150,
+  "endLine": 4156,
   "category": "covenant",
   "topic": "Vis sources",
   "audience": [
@@ -1284,8 +1284,8 @@
  {
   "title": "Vis Source Yields",
   "heading": "Vis Source Yields",
-  "line": 4106,
-  "endLine": 4112,
+  "line": 4158,
+  "endLine": 4164,
   "category": "covenant",
   "topic": "Vis sources",
   "audience": [
@@ -1304,8 +1304,8 @@
  {
   "title": "The Manufacture of Books",
   "heading": "The Manufacture of Books",
-  "line": 4602,
-  "endLine": 4614,
+  "line": 4654,
+  "endLine": 4666,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1327,8 +1327,8 @@
  {
   "title": "Extended Quality of Books (introduction)",
   "heading": "Extended Suggestions on the Quality of Books",
-  "line": 4714,
-  "endLine": 4720,
+  "line": 4768,
+  "endLine": 4774,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1350,8 +1350,8 @@
  {
   "title": "Resonances and Clarification of Books",
   "heading": "Resonances",
-  "line": 4722,
-  "endLine": 4778,
+  "line": 4776,
+  "endLine": 4832,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1375,8 +1375,8 @@
  {
   "title": "Potentially Resonant Book Components",
   "heading": "Potentially Resonant Book Components",
-  "line": 4730,
-  "endLine": 4742,
+  "line": 4784,
+  "endLine": 4796,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1395,8 +1395,8 @@
  {
   "title": "Summary of Quality Rules",
   "heading": "Summary of Quality Rules",
-  "line": 4744,
-  "endLine": 4774,
+  "line": 4798,
+  "endLine": 4828,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1419,8 +1419,8 @@
  {
   "title": "Extended Quality Rules (Summa and Tractatus)",
   "heading": "Extended Rules",
-  "line": 4758,
-  "endLine": 4774,
+  "line": 4812,
+  "endLine": 4828,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1443,8 +1443,8 @@
  {
   "title": "Secondary Functions of Books",
   "heading": "Secondary Functions",
-  "line": 4780,
-  "endLine": 4814,
+  "line": 4834,
+  "endLine": 4868,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1457,8 +1457,8 @@
   "requires": "",
   "summary": "Book variants that trade quality for another purpose (damaged, edition de luxe, epitome, ex libris, exemplar, flap-bound, holographical, huge and congregational codices, juvenilia, palimpsest, unbound), each with its own quality modifier or restriction.",
   "quotes": [
-   "An exemplar has a \u20133 modification to quality.",
-   "A flap book has a quality modifier of \u20131 and cannot have resonant materials incorporated as cover ornamentation.",
+   "An exemplar has a –3 modification to quality.",
+   "A flap book has a quality modifier of –1 and cannot have resonant materials incorporated as cover ornamentation.",
    "For the purposes of enchantment, a book has a material level of 2 and a size multiplier of 4.",
    "A literate person may make 15 levels of juvenile copy in a season."
   ],
@@ -1467,8 +1467,8 @@
  {
   "title": "Opus Types",
   "heading": "Opus Types",
-  "line": 4816,
-  "endLine": 4818,
+  "line": 4870,
+  "endLine": 4872,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1485,8 +1485,8 @@
  {
   "title": "Casting Tablets",
   "heading": "Casting Tablets",
-  "line": 4820,
-  "endLine": 4840,
+  "line": 4874,
+  "endLine": 4894,
   "category": "magic",
   "topic": "Casting tablets",
   "audience": [
@@ -1508,8 +1508,8 @@
  {
   "title": "Scriptoria",
   "heading": "Scriptoria",
-  "line": 4842,
-  "endLine": 4848,
+  "line": 4896,
+  "endLine": 4902,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1528,8 +1528,8 @@
  {
   "title": "Other Opus Types",
   "heading": "Other Opus Types",
-  "line": 4850,
-  "endLine": 4878,
+  "line": 4904,
+  "endLine": 4932,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1554,8 +1554,8 @@
  {
   "title": "The Hermetic Book Cycle",
   "heading": "The Hermetic Book Cycle",
-  "line": 4944,
-  "endLine": 4946,
+  "line": 4998,
+  "endLine": 5000,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1575,8 +1575,8 @@
  {
   "title": "Standard Texts (Roots and Branches of the Arts)",
   "heading": "Standard Texts",
-  "line": 4954,
-  "endLine": 4964,
+  "line": 5008,
+  "endLine": 5018,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1597,8 +1597,8 @@
  {
   "title": "Hermetic Books: Categories of Value",
   "heading": "Hermetic Books: Definition of Categories of Value",
-  "line": 4966,
-  "endLine": 4978,
+  "line": 5020,
+  "endLine": 5032,
   "category": "covenant",
   "topic": "Book quality",
   "audience": [
@@ -1618,8 +1618,8 @@
  {
   "title": "Acquisition of Hermetic Books",
   "heading": "Acquisition",
-  "line": 4980,
-  "endLine": 4982,
+  "line": 5034,
+  "endLine": 5036,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1641,8 +1641,8 @@
  {
   "title": "The Sale of Hermetic Books",
   "heading": "The Sale of Hermetic Books",
-  "line": 4984,
-  "endLine": 4996,
+  "line": 5038,
+  "endLine": 5050,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1662,8 +1662,8 @@
  {
   "title": "Prices for Books",
   "heading": "Prices for Books",
-  "line": 4998,
-  "endLine": 5030,
+  "line": 5052,
+  "endLine": 5084,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1686,8 +1686,8 @@
  {
   "title": "Scribal Magic and Replacing Crafts",
   "heading": "Scribal Magic",
-  "line": 5032,
-  "endLine": 5038,
+  "line": 5086,
+  "endLine": 5092,
   "category": "magic",
   "topic": "Books and libraries",
   "audience": [
@@ -1705,8 +1705,8 @@
  {
   "title": "Accession",
   "heading": "Accession",
-  "line": 5220,
-  "endLine": 5222,
+  "line": 5274,
+  "endLine": 5276,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1724,8 +1724,8 @@
  {
   "title": "Shelf-Readying",
   "heading": "Shelf-Readying",
-  "line": 5224,
-  "endLine": 5236,
+  "line": 5278,
+  "endLine": 5290,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1745,8 +1745,8 @@
  {
   "title": "Catalog as Proxy",
   "heading": "Catalog as Proxy",
-  "line": 5238,
-  "endLine": 5242,
+  "line": 5292,
+  "endLine": 5296,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1766,8 +1766,8 @@
  {
   "title": "Study in a Library",
   "heading": "Study",
-  "line": 5248,
-  "endLine": 5250,
+  "line": 5302,
+  "endLine": 5304,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1780,15 +1780,15 @@
   "requires": "",
   "summary": "Study rules assume optimal reading conditions; poor conditions can impose a quality penalty at the storyguide's discretion, and magic gives no extra mechanical advantage to a reading room.",
   "quotes": [
-   "A magus working in poor conditions suffers a quality penalty of up to \u20136, at the storyguide's discretion."
+   "A magus working in poor conditions suffers a quality penalty of up to –6, at the storyguide's discretion."
   ],
   "related": []
  },
  {
   "title": "Library Research",
   "heading": "Research",
-  "line": 5252,
-  "endLine": 5262,
+  "line": 5306,
+  "endLine": 5316,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1809,8 +1809,8 @@
  {
   "title": "Enchanted Space (Libraries)",
   "heading": "Enchanted Space",
-  "line": 5274,
-  "endLine": 5288,
+  "line": 5328,
+  "endLine": 5342,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1830,8 +1830,8 @@
  {
   "title": "Alternatives to Books",
   "heading": "Alternatives to Books",
-  "line": 5444,
-  "endLine": 5448,
+  "line": 5498,
+  "endLine": 5502,
   "category": "covenant",
   "topic": "Books and libraries",
   "audience": [
@@ -1851,8 +1851,8 @@
  {
   "title": "Significatos",
   "heading": "Significatos",
-  "line": 5454,
-  "endLine": 5460,
+  "line": 5508,
+  "endLine": 5514,
   "category": "covenant",
   "topic": "Alternatives to books",
   "audience": [
@@ -1872,8 +1872,8 @@
  {
   "title": "Realia",
   "heading": "Realia",
-  "line": 5462,
-  "endLine": 5478,
+  "line": 5516,
+  "endLine": 5532,
   "category": "covenant",
   "topic": "Alternatives to books",
   "audience": [
@@ -1898,8 +1898,8 @@
  {
   "title": "Alternatives to Parchment",
   "heading": "Alternatives to Books",
-  "line": 5484,
-  "endLine": 5486,
+  "line": 5538,
+  "endLine": 5540,
   "category": "covenant",
   "topic": "Alternatives to books",
   "audience": [
@@ -1919,8 +1919,8 @@
  {
   "title": "Great Works",
   "heading": "Great Works",
-  "line": 5488,
-  "endLine": 5498,
+  "line": 5542,
+  "endLine": 5552,
   "category": "covenant",
   "topic": "Alternatives to books",
   "audience": [
@@ -1942,8 +1942,8 @@
  {
   "title": "Knowledge-Based Libraries",
   "heading": "Knowledge",
-  "line": 5500,
-  "endLine": 5502,
+  "line": 5554,
+  "endLine": 5556,
   "category": "covenant",
   "topic": "Alternatives to books",
   "audience": [
@@ -1963,8 +1963,8 @@
  {
   "title": "Sanctum and the Code",
   "heading": "Chapter Eight: Sanctum",
-  "line": 5504,
-  "endLine": 5508,
+  "line": 5558,
+  "endLine": 5562,
   "category": "order",
   "topic": "Sanctum",
   "audience": [
@@ -1984,8 +1984,8 @@
  {
   "title": "Defending the Sanctum",
   "heading": "Defending the Sanctum",
-  "line": 5520,
-  "endLine": 5522,
+  "line": 5574,
+  "endLine": 5576,
   "category": "covenant",
   "topic": "Sanctum",
   "audience": [
@@ -2002,8 +2002,8 @@
  {
   "title": "Mundane Defenses",
   "heading": "Mundane Defenses",
-  "line": 5524,
-  "endLine": 5528,
+  "line": 5578,
+  "endLine": 5582,
   "category": "covenant",
   "topic": "Sanctum",
   "audience": [
@@ -2022,8 +2022,8 @@
  {
   "title": "Ring and Circle Wards",
   "heading": "Ring and Circle Wards",
-  "line": 5530,
-  "endLine": 5532,
+  "line": 5584,
+  "endLine": 5586,
   "category": "magic",
   "topic": "Sanctum",
   "audience": [
@@ -2041,8 +2041,8 @@
  {
   "title": "Sanctum Magic Items",
   "heading": "Magic Items",
-  "line": 5572,
-  "endLine": 5578,
+  "line": 5626,
+  "endLine": 5632,
   "category": "magic",
   "topic": "Sanctum",
   "audience": [
@@ -2060,8 +2060,8 @@
  {
   "title": "Laboratory Personalization (introduction)",
   "heading": "Chapter Nine: Laboratories",
-  "line": 5586,
-  "endLine": 5590,
+  "line": 5640,
+  "endLine": 5644,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -2080,8 +2080,8 @@
  {
   "title": "The Standard Hermetic Laboratory",
   "heading": "The Standard Hermetic Laboratory",
-  "line": 5592,
-  "endLine": 5598,
+  "line": 5646,
+  "endLine": 5652,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -2095,15 +2095,15 @@
   "quotes": [
    "The required outfittings cost five Mythic Pounds to procure.",
    "It takes someone with a Magic Theory of three or more two seasons of work to set up the lab.",
-   "albeit with the Basic Flaw (see below), giving a \u20133 penalty to all Lab Totals."
+   "albeit with the Basic Flaw (see below), giving a –3 penalty to all Lab Totals."
   ],
   "related": []
  },
  {
   "title": "The Principles of Labwork",
   "heading": "The Principles of Labwork",
-  "line": 5614,
-  "endLine": 5630,
+  "line": 5668,
+  "endLine": 5684,
   "category": "lab",
   "topic": "Laboratory personalization",
   "audience": [
@@ -2125,8 +2125,8 @@
  {
   "title": "Life in the Laboratory (Standard Routine)",
   "heading": "Life in the Laboratory",
-  "line": 5632,
-  "endLine": 5636,
+  "line": 5686,
+  "endLine": 5690,
   "category": "lab",
   "topic": "Lab routines",
   "audience": [
@@ -2148,8 +2148,8 @@
  {
   "title": "Non-Standard Laboratory Routines",
   "heading": "Non-Standard Laboratory Routines",
-  "line": 5638,
-  "endLine": 5660,
+  "line": 5692,
+  "endLine": 5714,
   "category": "lab",
   "topic": "Lab routines",
   "audience": [

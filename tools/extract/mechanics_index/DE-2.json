@@ -2,8 +2,8 @@
  {
   "title": "Virtues and Flaws Basics",
   "heading": "Chapter 4: Virtues and Flaws",
-  "line": 2838,
-  "endLine": 2850,
+  "line": 2854,
+  "endLine": 2866,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -21,8 +21,8 @@
  {
   "title": "Social Status Requirement",
   "heading": "Social Status Virtues and Flaws",
-  "line": 2860,
-  "endLine": 2866,
+  "line": 2876,
+  "endLine": 2882,
   "category": "creation",
   "topic": "Social Status",
   "audience": [
@@ -39,8 +39,8 @@
  {
   "title": "Virtue and Flaw Limits",
   "heading": "Virtues and Flaws Rules and Guidelines",
-  "line": 2880,
-  "endLine": 2888,
+  "line": 2896,
+  "endLine": 2904,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -58,7 +58,7 @@
  {
   "title": "Virtues and Flaws for Grogs",
   "heading": "Grogs",
-  "line": 2890,
+  "line": 2906,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -76,7 +76,7 @@
  {
   "title": "Virtues and Flaws for Companions",
   "heading": "Companions",
-  "line": 2900,
+  "line": 2916,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -94,7 +94,7 @@
  {
   "title": "Virtues and Flaws for Mythic Companions",
   "heading": "Mythic Companions",
-  "line": 2910,
+  "line": 2926,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -111,7 +111,7 @@
  {
   "title": "Virtues and Flaws for Magi",
   "heading": "Magi",
-  "line": 2921,
+  "line": 2937,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -129,8 +129,8 @@
  {
   "title": "The Gift (Virtue Type)",
   "heading": "The Gift",
-  "line": 2936,
-  "endLine": 2944,
+  "line": 2952,
+  "endLine": 2960,
   "category": "creation",
   "topic": "The Gift",
   "audience": [
@@ -153,8 +153,8 @@
  {
   "title": "Hermetic Virtues and Flaws",
   "heading": "Hermetic",
-  "line": 2946,
-  "endLine": 2950,
+  "line": 2962,
+  "endLine": 2966,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -171,8 +171,8 @@
  {
   "title": "Social Status Types",
   "heading": "Social Status",
-  "line": 2952,
-  "endLine": 2954,
+  "line": 2968,
+  "endLine": 2970,
   "category": "creation",
   "topic": "Social Status",
   "audience": [
@@ -189,8 +189,8 @@
  {
   "title": "Social Statuses by Culture",
   "heading": "Social Statuses by Culture",
-  "line": 2956,
-  "endLine": 3025,
+  "line": 2972,
+  "endLine": 3041,
   "category": "creation",
   "topic": "Social Status",
   "audience": [
@@ -211,8 +211,8 @@
  {
   "title": "Supernatural Virtues and Flaws",
   "heading": "Supernatural",
-  "line": 3026,
-  "endLine": 3030,
+  "line": 3042,
+  "endLine": 3046,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -233,8 +233,8 @@
  {
   "title": "Personality Flaws",
   "heading": "Personality",
-  "line": 3032,
-  "endLine": 3046,
+  "line": 3048,
+  "endLine": 3062,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -252,8 +252,8 @@
  {
   "title": "Story Flaws",
   "heading": "Story",
-  "line": 3048,
-  "endLine": 3056,
+  "line": 3064,
+  "endLine": 3072,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -270,8 +270,8 @@
  {
   "title": "Personality and Story Flaw Frequency",
   "heading": "Personality & Story Flaws",
-  "line": 3058,
-  "endLine": 3060,
+  "line": 3074,
+  "endLine": 3076,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -286,8 +286,8 @@
  {
   "title": "Tainted Virtues and Flaws",
   "heading": "Tainted Virtues and Flaws",
-  "line": 3066,
-  "endLine": 3070,
+  "line": 3082,
+  "endLine": 3086,
   "category": "creation",
   "topic": "Virtues and Flaws",
   "audience": [
@@ -309,8 +309,8 @@
  {
   "title": "Abilities Overview and Ability Rolls",
   "heading": "Chapter 5: Abilities",
-  "line": 7182,
-  "endLine": 7187,
+  "line": 7198,
+  "endLine": 7203,
   "category": "basics",
   "topic": "Ability rolls",
   "audience": [
@@ -330,7 +330,7 @@
  {
   "title": "Specializations",
   "heading": "Specializations",
-  "line": 7188,
+  "line": 7204,
   "category": "basics",
   "topic": "Ability rolls",
   "audience": [
@@ -347,7 +347,7 @@
  {
   "title": "Abilities With No Score",
   "heading": "Abilities With No Score",
-  "line": 7194,
+  "line": 7210,
   "category": "basics",
   "topic": "Ability rolls",
   "audience": [
@@ -365,8 +365,8 @@
  {
   "title": "Ability Roll (summary box)",
   "heading": "Ability Roll:",
-  "line": 7202,
-  "endLine": 7207,
+  "line": 7218,
+  "endLine": 7223,
   "category": "basics",
   "topic": "Ability rolls",
   "audience": [
@@ -383,8 +383,8 @@
  {
   "title": "Ability Types",
   "heading": "Ability Types",
-  "line": 7209,
-  "endLine": 7211,
+  "line": 7225,
+  "endLine": 7227,
   "category": "basics",
   "topic": "Ability types",
   "audience": [
@@ -401,7 +401,7 @@
  {
   "title": "General Abilities (type)",
   "heading": "General Abilities",
-  "line": 7213,
+  "line": 7229,
   "category": "basics",
   "topic": "Ability types",
   "audience": [
@@ -418,7 +418,7 @@
  {
   "title": "Academic Abilities (type)",
   "heading": "Academic Abilities",
-  "line": 7217,
+  "line": 7233,
   "category": "basics",
   "topic": "Ability types",
   "audience": [
@@ -436,7 +436,7 @@
  {
   "title": "Arcane Abilities (type)",
   "heading": "Arcane Abilities",
-  "line": 7223,
+  "line": 7239,
   "category": "basics",
   "topic": "Ability types",
   "audience": [
@@ -454,7 +454,7 @@
  {
   "title": "Martial Abilities (type)",
   "heading": "Martial Abilities",
-  "line": 7227,
+  "line": 7243,
   "category": "basics",
   "topic": "Ability types",
   "audience": [
@@ -472,7 +472,7 @@
  {
   "title": "Spell Mastery Abilities (type)",
   "heading": "Spell Mastery Abilities",
-  "line": 7231,
+  "line": 7247,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -492,8 +492,8 @@
  {
   "title": "Supernatural Abilities (type)",
   "heading": "Supernatural Abilities",
-  "line": 7235,
-  "endLine": 7241,
+  "line": 7251,
+  "endLine": 7257,
   "category": "basics",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -516,7 +516,7 @@
  {
   "title": "Animal Ken",
   "heading": "Animal Ken\\*",
-  "line": 7346,
+  "line": 7362,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -533,8 +533,8 @@
  {
   "title": "Art of Memory",
   "heading": "Art of Memory\\*",
-  "line": 7354,
-  "endLine": 7364,
+  "line": 7370,
+  "endLine": 7380,
   "category": "basics",
   "topic": "Art of Memory",
   "audience": [
@@ -552,8 +552,8 @@
  {
   "title": "Memorization Ease Factors",
   "heading": "Memorization Ease Factors",
-  "line": 7366,
-  "endLine": 7374,
+  "line": 7382,
+  "endLine": 7390,
   "category": "basics",
   "topic": "Art of Memory",
   "audience": [
@@ -571,8 +571,8 @@
  {
   "title": "Artes Liberales and Literacy",
   "heading": "Artes Liberales\\*",
-  "line": 7376,
-  "endLine": 7388,
+  "line": 7392,
+  "endLine": 7404,
   "category": "basics",
   "topic": "Literacy",
   "audience": [
@@ -589,8 +589,8 @@
  {
   "title": "Brawl and Dodging",
   "heading": "Brawl",
-  "line": 7406,
-  "endLine": 7408,
+  "line": 7422,
+  "endLine": 7424,
   "category": "combat",
   "topic": "Dodge",
   "audience": [
@@ -607,8 +607,8 @@
  {
   "title": "Chirurgy",
   "heading": "Chirurgy (kie-RUHR-gee)\\*",
-  "line": 7418,
-  "endLine": 7420,
+  "line": 7434,
+  "endLine": 7436,
   "category": "hazards",
   "topic": "Wound recovery",
   "audience": [
@@ -628,8 +628,8 @@
  {
   "title": "Concentration",
   "heading": "Concentration",
-  "line": 7434,
-  "endLine": 7436,
+  "line": 7450,
+  "endLine": 7452,
   "category": "basics",
   "topic": "Concentration",
   "audience": [
@@ -647,8 +647,8 @@
  {
   "title": "Corpse Magic",
   "heading": "Corpse Magic\\*",
-  "line": 7438,
-  "endLine": 7446,
+  "line": 7454,
+  "endLine": 7462,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -666,8 +666,8 @@
  {
   "title": "Corpse Magic Ease Factor Outcome",
   "heading": "Corpse Magic Ease Factor Outcome",
-  "line": 7448,
-  "endLine": 7455,
+  "line": 7464,
+  "endLine": 7471,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -687,8 +687,8 @@
  {
   "title": "Crafter's Healing",
   "heading": "Crafter's Healing\\*",
-  "line": 7461,
-  "endLine": 7463,
+  "line": 7477,
+  "endLine": 7479,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -708,8 +708,8 @@
  {
   "title": "Curse-Throwing",
   "heading": "Curse-Throwing\\*",
-  "line": 7465,
-  "endLine": 7494,
+  "line": 7481,
+  "endLine": 7510,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -721,7 +721,7 @@
   "summary": "Supernatural Ability that moves diseases, curses and harmful effects from a sufferer to another recipient through a ritual, with a Casting Total against Ease Factors for the curse and modifiers for the recipient's link.",
   "quotes": [
    "Presence + Curse-Throwing + Aura + stress die",
-   "PENETRATION TOTAL: Casting Total \u2013 Ease Factor + Penetration Bonus"
+   "PENETRATION TOTAL: Casting Total – Ease Factor + Penetration Bonus"
   ],
   "related": [
    "Art & Academe, chapter 4: Medicine"
@@ -730,8 +730,8 @@
  {
   "title": "Dowsing",
   "heading": "Dowsing\\*",
-  "line": 7508,
-  "endLine": 7510,
+  "line": 7524,
+  "endLine": 7526,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -748,8 +748,8 @@
  {
   "title": "Enchanting (Ability)",
   "heading": "Enchanting (Ability)\\*",
-  "line": 7515,
-  "endLine": 7521,
+  "line": 7531,
+  "endLine": 7537,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -769,8 +769,8 @@
  {
   "title": "Entrancement",
   "heading": "Entrancement\\*",
-  "line": 7526,
-  "endLine": 7537,
+  "line": 7542,
+  "endLine": 7553,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -790,8 +790,8 @@
  {
   "title": "Finesse",
   "heading": "Finesse",
-  "line": 7550,
-  "endLine": 7552,
+  "line": 7566,
+  "endLine": 7568,
   "category": "magic",
   "topic": "Finesse",
   "audience": [
@@ -808,8 +808,8 @@
  {
   "title": "Folk Ken",
   "heading": "Folk Ken",
-  "line": 7554,
-  "endLine": 7556,
+  "line": 7570,
+  "endLine": 7572,
   "category": "social",
   "topic": "Folk Ken",
   "audience": [
@@ -826,8 +826,8 @@
  {
   "title": "Font of Knowledge",
   "heading": "Font of Knowledge\\*",
-  "line": 7558,
-  "endLine": 7560,
+  "line": 7574,
+  "endLine": 7576,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -844,8 +844,8 @@
  {
   "title": "Guile",
   "heading": "Guile",
-  "line": 7566,
-  "endLine": 7568,
+  "line": 7582,
+  "endLine": 7584,
   "category": "social",
   "topic": "Guile",
   "audience": [
@@ -863,8 +863,8 @@
  {
   "title": "Hex",
   "heading": "Hex\\*",
-  "line": 7573,
-  "endLine": 7579,
+  "line": 7589,
+  "endLine": 7595,
   "category": "magic",
   "topic": "Hex",
   "audience": [
@@ -881,8 +881,8 @@
  {
   "title": "Hex Delay Modifiers and Roll",
   "heading": "Hex Delay Modifiers",
-  "line": 7580,
-  "endLine": 7601,
+  "line": 7596,
+  "endLine": 7617,
   "category": "magic",
   "topic": "Hex",
   "audience": [
@@ -900,8 +900,8 @@
  {
   "title": "Hex Effects",
   "heading": "Hex Effects",
-  "line": 7602,
-  "endLine": 7611,
+  "line": 7618,
+  "endLine": 7627,
   "category": "magic",
   "topic": "Hex",
   "audience": [
@@ -919,8 +919,8 @@
  {
   "title": "Induction",
   "heading": "Induction\\*",
-  "line": 7616,
-  "endLine": 7649,
+  "line": 7632,
+  "endLine": 7665,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -938,8 +938,8 @@
  {
   "title": "Entrancement and Induction",
   "heading": "Entrancement and Induction",
-  "line": 7651,
-  "endLine": 7653,
+  "line": 7667,
+  "endLine": 7669,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -957,8 +957,8 @@
  {
   "title": "Legerdemain",
   "heading": "Legerdemain\\*",
-  "line": 7675,
-  "endLine": 7677,
+  "line": 7691,
+  "endLine": 7693,
   "category": "basics",
   "topic": "Legerdemain",
   "audience": [
@@ -975,8 +975,8 @@
  {
   "title": "Living Languages",
   "heading": "(Living Language)\\*",
-  "line": 7679,
-  "endLine": 7698,
+  "line": 7695,
+  "endLine": 7714,
   "category": "basics",
   "topic": "Languages",
   "audience": [
@@ -996,8 +996,8 @@
  {
   "title": "Magic Sensitivity",
   "heading": "Magic Sensitivity\\*",
-  "line": 7704,
-  "endLine": 7713,
+  "line": 7720,
+  "endLine": 7729,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -1009,14 +1009,14 @@
   "summary": "Supernatural Ability to sense the magical nature of places, items, spells and creatures, which lowers Magic Resistance and uses a roll against storyguide-set Ease Factors with guidelines for each target.",
   "quotes": [
    "simply roll a simple die + Perception + Magic Sensitivity",
-   "Detecting a Magic aura would normally have an Ease Factor equal to 12 \u2013 aura level"
+   "Detecting a Magic aura would normally have an Ease Factor equal to 12 – aura level"
   ]
  },
  {
   "title": "Magic Theory",
   "heading": "Magic Theory\\*",
-  "line": 7715,
-  "endLine": 7717,
+  "line": 7731,
+  "endLine": 7733,
   "category": "lab",
   "topic": "Magic Theory",
   "audience": [
@@ -1033,8 +1033,8 @@
  {
   "title": "(Mystery Cult) Lore",
   "heading": "(Mystery Cult) Lore\\*",
-  "line": 7727,
-  "endLine": 7740,
+  "line": 7743,
+  "endLine": 7756,
   "category": "mysteries",
   "topic": "Mystery Cult Lore",
   "audience": [
@@ -1053,8 +1053,8 @@
  {
   "title": "Parma Magica",
   "heading": "Parma Magica\\*",
-  "line": 7746,
-  "endLine": 7755,
+  "line": 7762,
+  "endLine": 7771,
   "category": "magic",
   "topic": "Parma Magica",
   "audience": [
@@ -1075,8 +1075,8 @@
  {
   "title": "Persona",
   "heading": "Persona\\*",
-  "line": 7761,
-  "endLine": 7763,
+  "line": 7777,
+  "endLine": 7779,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -1094,8 +1094,8 @@
  {
   "title": "Premonitions",
   "heading": "Premonitions\\*",
-  "line": 7769,
-  "endLine": 7771,
+  "line": 7785,
+  "endLine": 7787,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -1112,8 +1112,8 @@
  {
   "title": "Second Sight",
   "heading": "Second Sight\\*",
-  "line": 7785,
-  "endLine": 7787,
+  "line": 7801,
+  "endLine": 7803,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -1135,8 +1135,8 @@
  {
   "title": "Sense Holiness and Unholiness",
   "heading": "Sense Holiness and Unholiness\\*",
-  "line": 7789,
-  "endLine": 7791,
+  "line": 7805,
+  "endLine": 7807,
   "category": "realms",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -1156,8 +1156,8 @@
  {
   "title": "Sense Passions",
   "heading": "Sense Passions\\*",
-  "line": 7793,
-  "endLine": 7807,
+  "line": 7809,
+  "endLine": 7823,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -1178,8 +1178,8 @@
  {
   "title": "Shapeshifter",
   "heading": "Shapeshifter\\*",
-  "line": 7809,
-  "endLine": 7811,
+  "line": 7825,
+  "endLine": 7827,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [
@@ -1197,8 +1197,8 @@
  {
   "title": "Stealth",
   "heading": "Stealth",
-  "line": 7817,
-  "endLine": 7819,
+  "line": 7833,
+  "endLine": 7835,
   "category": "basics",
   "topic": "Stealth",
   "audience": [
@@ -1215,8 +1215,8 @@
  {
   "title": "Wilderness Sense",
   "heading": "Wilderness Sense\\*",
-  "line": 7855,
-  "endLine": 7857,
+  "line": 7871,
+  "endLine": 7873,
   "category": "magic",
   "topic": "Supernatural Abilities",
   "audience": [

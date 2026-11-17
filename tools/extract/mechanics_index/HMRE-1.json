@@ -602,7 +602,7 @@
   "requires": "Supernatural Ability: Magic Sensitivity",
   "summary": "A character with Magic Sensitivity can tell whether an object holds vis by rolling against an Ease Factor that falls as the vis in it rises.",
   "quotes": [
-   "make a roll of Perception + Magic Sensitivity against an Ease Factor of (12 \u2014 the number of pawns of vis contained in the object)"
+   "make a roll of Perception + Magic Sensitivity against an Ease Factor of (12 — the number of pawns of vis contained in the object)"
   ],
   "related": [
    "ArM5 p.66 Magic Sensitivity"
@@ -2214,7 +2214,7 @@
    "**FOLK WITCH CASTING SCORE:** Characteristic + Ability + Aura Modifier",
    "**MAGNITUDE OF EFFECT:** Ability",
    "**EQUIVALENT SPELL LEVEL:** (5 x Ability)",
-   "**PENETRATION TOTAL:** Casting Total + Penetration Bonus \u2014 Ease Factor",
+   "**PENETRATION TOTAL:** Casting Total + Penetration Bonus — Ease Factor",
    "**MAXIMUM VIS EXPENDITURE:** Ability + Effect Vis Cost"
   ],
   "related": []
@@ -2439,7 +2439,7 @@
   "title": "Folk Witch Magical Defenses",
   "heading": "Magical Defenses",
   "line": 1851,
-  "endLine": 1872,
+  "endLine": 1874,
   "category": "traditions",
   "topic": "Hedge magical defenses",
   "audience": [
@@ -2460,8 +2460,8 @@
  {
   "title": "Witch's Kitchen",
   "heading": "Witch's Kitchen",
-  "line": 1874,
-  "endLine": 1884,
+  "line": 1876,
+  "endLine": 1886,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2480,8 +2480,8 @@
  {
   "title": "Folk Witch Magic Theory",
   "heading": "Folk Witch Magic Theory",
-  "line": 1886,
-  "endLine": 1888,
+  "line": 1888,
+  "endLine": 1890,
   "category": "traditions",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2500,8 +2500,8 @@
  {
   "title": "Building the Kitchen",
   "heading": "Building the Kitchen",
-  "line": 1890,
-  "endLine": 1900,
+  "line": 1892,
+  "endLine": 1902,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2523,8 +2523,8 @@
  {
   "title": "Help in the Kitchen",
   "heading": "Help in the Kitchen",
-  "line": 1902,
-  "endLine": 1904,
+  "line": 1904,
+  "endLine": 1906,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2541,8 +2541,8 @@
  {
   "title": "Experimenting (folk witches)",
   "heading": "Experimenting",
-  "line": 1906,
-  "endLine": 1910,
+  "line": 1908,
+  "endLine": 1912,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2563,8 +2563,8 @@
  {
   "title": "Folk Witch Lab Texts",
   "heading": "Lab Texts",
-  "line": 1912,
-  "endLine": 1916,
+  "line": 1914,
+  "endLine": 1918,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2583,8 +2583,8 @@
  {
   "title": "Folk Witch Vis (extraction, transfer, use)",
   "heading": "Vis",
-  "line": 1918,
-  "endLine": 1926,
+  "line": 1920,
+  "endLine": 1928,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2604,8 +2604,8 @@
  {
   "title": "Fixing Arcane Connections",
   "heading": "Fixing Arcane Connections",
-  "line": 1928,
-  "endLine": 1932,
+  "line": 1930,
+  "endLine": 1934,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2626,8 +2626,8 @@
  {
   "title": "Folk Witch Study",
   "heading": "Study",
-  "line": 1934,
-  "endLine": 1936,
+  "line": 1936,
+  "endLine": 1938,
   "category": "seasons",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2646,8 +2646,8 @@
  {
   "title": "Curse Fetish Weaving",
   "heading": "Curse Fetish Weaving",
-  "line": 1938,
-  "endLine": 1944,
+  "line": 1940,
+  "endLine": 1946,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2666,8 +2666,8 @@
  {
   "title": "Dowsing Rod Binding",
   "heading": "Dowsing Rod Binding",
-  "line": 1946,
-  "endLine": 1948,
+  "line": 1948,
+  "endLine": 1950,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2686,8 +2686,8 @@
  {
   "title": "Flight Broom Preparation",
   "heading": "Flight Broom Preparation",
-  "line": 1950,
-  "endLine": 1952,
+  "line": 1952,
+  "endLine": 1954,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2706,8 +2706,8 @@
  {
   "title": "Skin Knitting",
   "heading": "Skin Knitting",
-  "line": 1954,
-  "endLine": 1956,
+  "line": 1956,
+  "endLine": 1958,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2726,8 +2726,8 @@
  {
   "title": "Potion Brewing",
   "heading": "Potion Brewing",
-  "line": 1958,
-  "endLine": 1984,
+  "line": 1960,
+  "endLine": 1986,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2749,8 +2749,8 @@
  {
   "title": "Potion Effects",
   "heading": "Potion Effects",
-  "line": 1986,
-  "endLine": 2015,
+  "line": 1988,
+  "endLine": 2017,
   "category": "traditions",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2769,8 +2769,8 @@
  {
   "title": "Enriching Things of Virtue",
   "heading": "Enriching Things of Virtue",
-  "line": 2017,
-  "endLine": 2019,
+  "line": 2019,
+  "endLine": 2021,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2789,8 +2789,8 @@
  {
   "title": "Folk Witch Longevity Ritual",
   "heading": "Longevity Ritual",
-  "line": 2021,
-  "endLine": 2023,
+  "line": 2023,
+  "endLine": 2025,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2811,8 +2811,8 @@
  {
   "title": "Investigating a Potion",
   "heading": "Investigating a Potion",
-  "line": 2025,
-  "endLine": 2031,
+  "line": 2027,
+  "endLine": 2033,
   "category": "lab",
   "topic": "Folk witch kitchen",
   "audience": [
@@ -2835,8 +2835,8 @@
  {
   "title": "Folk Witch Familiars",
   "heading": "Familiars",
-  "line": 2033,
-  "endLine": 2041,
+  "line": 2035,
+  "endLine": 2043,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -2858,8 +2858,8 @@
  {
   "title": "Benefits of a Folk Witch Familiar",
   "heading": "Benefits of a Familiar",
-  "line": 2043,
-  "endLine": 2063,
+  "line": 2045,
+  "endLine": 2065,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -2878,8 +2878,8 @@
  {
   "title": "Folk Witch Warping",
   "heading": "Warping",
-  "line": 2065,
-  "endLine": 2069,
+  "line": 2067,
+  "endLine": 2071,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -2900,8 +2900,8 @@
  {
   "title": "The Witch Moon",
   "heading": "The Witch Moon",
-  "line": 2071,
-  "endLine": 2077,
+  "line": 2073,
+  "endLine": 2079,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -2913,7 +2913,7 @@
   "requires": "Tradition: Folk Witches",
   "summary": "The folk witch's equivalent of Wizard's Twilight: a month or more of lost Supernatural Abilities and a fever Medium Wound, with a monthly roll to end it and extra Warping Points on failure or botch.",
   "quotes": [
-   "**TO END WITCH MOON:** Stamina \u2013 Warping Score + stress die vs Ease Factor 6"
+   "**TO END WITCH MOON:** Stamina – Warping Score + stress die vs Ease Factor 6"
   ],
   "related": [
    "ArM5 Wizard's Twilight"
@@ -2922,8 +2922,8 @@
  {
   "title": "Effects of the Witch Moon",
   "heading": "Effects of the Witch Moon",
-  "line": 2079,
-  "endLine": 2081,
+  "line": 2081,
+  "endLine": 2083,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -2942,8 +2942,8 @@
  {
   "title": "Witch Moon: Good Experiences",
   "heading": "Good Experiences",
-  "line": 2083,
-  "endLine": 2089,
+  "line": 2085,
+  "endLine": 2091,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -2962,8 +2962,8 @@
  {
   "title": "Witch Moon: Bad Experiences",
   "heading": "Bad Experinces",
-  "line": 2091,
-  "endLine": 2095,
+  "line": 2093,
+  "endLine": 2097,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -2982,8 +2982,8 @@
  {
   "title": "Covens",
   "heading": "Covens",
-  "line": 2097,
-  "endLine": 2103,
+  "line": 2099,
+  "endLine": 2105,
   "category": "covenant",
   "topic": "Folk witches",
   "audience": [
@@ -3000,8 +3000,8 @@
  {
   "title": "Folk Witch Opening the Gift",
   "heading": "Opening the Gift",
-  "line": 2109,
-  "endLine": 2115,
+  "line": 2111,
+  "endLine": 2117,
   "category": "traditions",
   "topic": "Opening the Gift",
   "audience": [
@@ -3022,8 +3022,8 @@
  {
   "title": "Organization Lore: Folk Witches",
   "heading": "Organization Lore: Folk Witches",
-  "line": 2117,
-  "endLine": 2119,
+  "line": 2119,
+  "endLine": 2121,
   "category": "basics",
   "topic": "Hedge Abilities",
   "audience": [
@@ -3044,8 +3044,8 @@
  {
   "title": "Initiations for unGifted Folk Witches",
   "heading": "Initiations for unGifted Folk Witches",
-  "line": 2121,
-  "endLine": 2177,
+  "line": 2123,
+  "endLine": 2179,
   "category": "mysteries",
   "topic": "Initiation",
   "audience": [
@@ -3068,8 +3068,8 @@
  {
   "title": "Precocious Girls",
   "heading": "Precocious Girls",
-  "line": 2133,
-  "endLine": 2135,
+  "line": 2135,
+  "endLine": 2137,
   "category": "traditions",
   "topic": "Opening the Gift",
   "audience": [
@@ -3085,8 +3085,8 @@
  {
   "title": "Sabbat",
   "heading": "Sabbat",
-  "line": 2179,
-  "endLine": 2183,
+  "line": 2181,
+  "endLine": 2185,
   "category": "traditions",
   "topic": "Folk witches",
   "audience": [
@@ -3103,8 +3103,8 @@
  {
   "title": "Sabbat Politics",
   "heading": "Sabbat Politics",
-  "line": 2191,
-  "endLine": 2203,
+  "line": 2193,
+  "endLine": 2205,
   "category": "social",
   "topic": "Folk witches",
   "audience": [
@@ -3120,8 +3120,8 @@
  {
   "title": "Sabbat Magic",
   "heading": "Sabbat Magic",
-  "line": 2205,
-  "endLine": 2227,
+  "line": 2207,
+  "endLine": 2229,
   "category": "lab",
   "topic": "Folk witches",
   "audience": [
@@ -3142,8 +3142,8 @@
  {
   "title": "Sabbat Times",
   "heading": "Sabbat Times",
-  "line": 2229,
-  "endLine": 2240,
+  "line": 2231,
+  "endLine": 2242,
   "category": "setting",
   "topic": "Folk witches",
   "audience": [
@@ -3159,8 +3159,8 @@
  {
   "title": "Creating a Coven",
   "heading": "Creating a Coven",
-  "line": 2246,
-  "endLine": 2248,
+  "line": 2248,
+  "endLine": 2250,
   "category": "covenant",
   "topic": "Coven creation",
   "audience": [
@@ -3180,8 +3180,8 @@
  {
   "title": "Guidelines for a Coven",
   "heading": "Guidelines for a Coven",
-  "line": 2250,
-  "endLine": 2275,
+  "line": 2252,
+  "endLine": 2277,
   "category": "covenant",
   "topic": "Coven creation",
   "audience": [
@@ -3203,8 +3203,8 @@
  {
   "title": "Hermetic Integration of folk witch magic",
   "heading": "Hermetic Integration",
-  "line": 2553,
-  "endLine": 2555,
+  "line": 2555,
+  "endLine": 2557,
   "category": "magic",
   "topic": "Integrating hedge magic",
   "audience": [
@@ -3225,8 +3225,8 @@
  {
   "title": "Breakthrough: Subtle Opening",
   "heading": "Subtle Opening",
-  "line": 2557,
-  "endLine": 2562,
+  "line": 2559,
+  "endLine": 2564,
   "category": "magic",
   "topic": "Integrating hedge magic",
   "audience": [
@@ -3248,8 +3248,8 @@
  {
   "title": "Subtle Opening: Integration Effects",
   "heading": "Integration Effects",
-  "line": 2569,
-  "endLine": 2571,
+  "line": 2571,
+  "endLine": 2573,
   "category": "magic",
   "topic": "Integrating hedge magic",
   "audience": [
@@ -3270,8 +3270,8 @@
  {
   "title": "Breakthrough: Energy Magic",
   "heading": "Energy Magic",
-  "line": 2595,
-  "endLine": 2597,
+  "line": 2597,
+  "endLine": 2599,
   "category": "magic",
   "topic": "Integrating hedge magic",
   "audience": [
@@ -3290,8 +3290,8 @@
  {
   "title": "New Perdo Corpus Guidelines (Energy Magic)",
   "heading": "New Perdo Corpus Guidelines",
-  "line": 2610,
-  "endLine": 2617,
+  "line": 2612,
+  "endLine": 2619,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -3312,8 +3312,8 @@
  {
   "title": "New Creo Corpus Guidelines (Energy Magic)",
   "heading": "New Creo Corpus Guidelines",
-  "line": 2619,
-  "endLine": 2627,
+  "line": 2621,
+  "endLine": 2629,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -3334,8 +3334,8 @@
  {
   "title": "Breakthrough: Sense of the Mystic",
   "heading": "Sense of the Mystic",
-  "line": 2683,
-  "endLine": 2686,
+  "line": 2685,
+  "endLine": 2688,
   "category": "magic",
   "topic": "Integrating hedge magic",
   "audience": [
@@ -3356,8 +3356,8 @@
  {
   "title": "Breakthrough: Ritual Items",
   "heading": "Ritual Items",
-  "line": 2712,
-  "endLine": 2715,
+  "line": 2714,
+  "endLine": 2717,
   "category": "magic",
   "topic": "Integrating hedge magic",
   "audience": [
@@ -3376,8 +3376,8 @@
  {
   "title": "Ritual Items (charged items with ritual effects)",
   "heading": "New Virtue: Ritual Items",
-  "line": 2771,
-  "endLine": 2774,
+  "line": 2773,
+  "endLine": 2776,
   "category": "lab",
   "topic": "Integrating hedge magic",
   "audience": [

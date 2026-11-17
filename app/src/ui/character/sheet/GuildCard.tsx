@@ -69,7 +69,7 @@ export function GuildCard({ ed }: { ed: CharEditor }) {
 
   return (
     <Card title={`Guild${g.name ? `: ${g.name}` : ''}${r ? ` (${r.label})` : ''}`} tour="guild">
-      <RulesNote book="CG" line={1147} endLine={1503}>
+      <RulesNote book="CG" line={1141} endLine={1497}>
         {r ? r.note : 'Not a guild member: a craftsman may join through stories, starting as an apprentice or, with a passed apprentice piece, a journeyman.'}
       </RulesNote>
       <div className="row">

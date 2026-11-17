@@ -33,7 +33,7 @@ function PatronSection({ cov, update, saga }: { cov: Covenant; update: Update; s
   const stock = cov.visStocks.filter((v) => (v.art === 'Cr' || v.art === 'Vi') && !v.pair).reduce((s, v) => s + v.pawns, 0);
   return (
     <div>
-      <RulesNote book="SE" line={1391} endLine={1430}>
+      <RulesNote book="SE" line={1397} endLine={1436}>
         <b>Patron.</b> Its protection is the covenant’s Powerful or Local Ally Boon; a covenant without one is deemed to have expired.
       </RulesNote>
       <div className="row">

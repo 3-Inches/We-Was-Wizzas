@@ -194,7 +194,7 @@ export function RedcapCard({ ed }: { ed: CharEditor }) {
   const ritual = () =>
     update((x) => void (x.longevity = { labTotal: 50, bonus: longevityBonus(50, 0, true), extraVis: 0, createdBy: 'a magus of the Mercer House', createdYear: x.birthYear + x.age }));
   return (
-    <Card title={<h3>The Mercer House’s devices <BookBadge book="DE" line={4910} /></h3>}>
+    <Card title={<h3>The Mercer House’s devices <BookBadge book="DE" line={4926} /></h3>}>
       <p className="small" style={{ marginTop: 0 }}>
         A Redcap carries enchanted devices for the road: fifty levels of effects at the Gauntlet and two more for each year of good service
         {extra ? `, with Magic Items ${25 * extra} more and ${extra} more a year (no effect over level 30)` : ''}. They are for carrying messages, never for killing, wounding or

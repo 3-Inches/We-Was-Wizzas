@@ -2,8 +2,8 @@
  {
   "title": "Constantine's Visions: wards of Constantinople",
   "heading": "Constantine's Visions",
-  "line": 872,
-  "endLine": 891,
+  "line": 877,
+  "endLine": 896,
   "category": "realms",
   "topic": "Local wards and auras",
   "audience": [
@@ -24,8 +24,8 @@
  {
   "title": "The Hermetic Polity",
   "heading": "The Hermetic Polity",
-  "line": 1198,
-  "endLine": 1203,
+  "line": 1203,
+  "endLine": 1208,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -43,8 +43,8 @@
  {
   "title": "Origins of the Polity (archai, archon, logothete, polemarch)",
   "heading": "The Origins of the Polity",
-  "line": 1204,
-  "endLine": 1209,
+  "line": 1209,
+  "endLine": 1214,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -63,8 +63,8 @@
  {
   "title": "Citizenship: politai and metoikoi",
   "heading": "Citizenship",
-  "line": 1210,
-  "endLine": 1219,
+  "line": 1215,
+  "endLine": 1224,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -83,8 +83,8 @@
  {
   "title": "The Phylai (four tribes)",
   "heading": "The Phylai",
-  "line": 1220,
-  "endLine": 1233,
+  "line": 1225,
+  "endLine": 1238,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -102,8 +102,8 @@
  {
   "title": "The Council of Magistrates",
   "heading": "The Council of Magistrates",
-  "line": 1234,
-  "endLine": 1241,
+  "line": 1239,
+  "endLine": 1246,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -122,8 +122,8 @@
  {
   "title": "Theban Quaesitores",
   "heading": "Theban Quaesitores",
-  "line": 1242,
-  "endLine": 1247,
+  "line": 1247,
+  "endLine": 1252,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -141,8 +141,8 @@
  {
   "title": "The Archon",
   "heading": "The Archon",
-  "line": 1248,
-  "endLine": 1253,
+  "line": 1253,
+  "endLine": 1258,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -160,8 +160,8 @@
  {
   "title": "The Polemarch",
   "heading": "The Polemarch",
-  "line": 1254,
-  "endLine": 1261,
+  "line": 1259,
+  "endLine": 1266,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -179,8 +179,8 @@
  {
   "title": "The Logothete",
   "heading": "The Logothete",
-  "line": 1262,
-  "endLine": 1271,
+  "line": 1267,
+  "endLine": 1276,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -198,8 +198,8 @@
  {
   "title": "The Boards of Magistrates",
   "heading": "The Boards of Magistrates",
-  "line": 1272,
-  "endLine": 1287,
+  "line": 1277,
+  "endLine": 1292,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -222,8 +222,8 @@
  {
   "title": "The Treasury Council (apodektai)",
   "heading": "The Treasury Council",
-  "line": 1306,
-  "endLine": 1315,
+  "line": 1311,
+  "endLine": 1320,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -242,8 +242,8 @@
  {
   "title": "Tokens and Shards",
   "heading": "Tokens and Shards",
-  "line": 1316,
-  "endLine": 1359,
+  "line": 1321,
+  "endLine": 1364,
   "category": "order",
   "topic": "Tokens and shards",
   "audience": [
@@ -255,7 +255,7 @@
   "requires": "Saga set in the Theban Tribunal",
   "summary": "The Tribunal's social currency: tokens credit service to the polity, shards debit antisocial acts, tokens may neutralize shards for a season of service, and shards expose a citizen to ostracism.",
   "quotes": [
-   "The principle use of the tokens is neutralization.",
+   "The principal use of the tokens is neutralization.",
    "Being found guilty of a High Crime (three per crime in addition to any other penalty);",
    "Any citizen possessing one or more shards is liable to the vote of ostracism"
   ]
@@ -263,8 +263,8 @@
  {
   "title": "The Language of Magi (Classical Greek)",
   "heading": "The Language of Magi",
-  "line": 1364,
-  "endLine": 1369,
+  "line": 1369,
+  "endLine": 1374,
   "category": "setting",
   "topic": "Languages and casting",
   "audience": [
@@ -287,8 +287,8 @@
  {
   "title": "Common Vis Sources",
   "heading": "Common Vis Sources",
-  "line": 1370,
-  "endLine": 1375,
+  "line": 1375,
+  "endLine": 1380,
   "category": "order",
   "topic": "Tribunal vis",
   "audience": [
@@ -306,8 +306,8 @@
  {
   "title": "Provision of Longevity Rituals",
   "heading": "Provision of Longevity Rituals",
-  "line": 1380,
-  "endLine": 1383,
+  "line": 1385,
+  "endLine": 1388,
   "category": "order",
   "topic": "Tribunal vis",
   "audience": [
@@ -326,8 +326,8 @@
  {
   "title": "Provision of Healing",
   "heading": "Provision of Healing",
-  "line": 1384,
-  "endLine": 1387,
+  "line": 1389,
+  "endLine": 1392,
   "category": "order",
   "topic": "Tribunal vis",
   "audience": [
@@ -345,8 +345,8 @@
  {
   "title": "Donation of Apprentices",
   "heading": "Donation of Apprentices",
-  "line": 1388,
-  "endLine": 1390,
+  "line": 1393,
+  "endLine": 1396,
   "category": "order",
   "topic": "Apprentices in Thebes",
   "audience": [
@@ -364,8 +364,8 @@
  {
   "title": "The Covenant Patrons",
   "heading": "The Covenant Patrons",
-  "line": 1391,
-  "endLine": 1397,
+  "line": 1397,
+  "endLine": 1403,
   "category": "covenant",
   "topic": "Covenant patrons",
   "audience": [
@@ -388,8 +388,8 @@
  {
   "title": "Other Tasks for the Common Good",
   "heading": "Other Tasks for the Common Good",
-  "line": 1398,
-  "endLine": 1414,
+  "line": 1404,
+  "endLine": 1420,
   "category": "order",
   "topic": "Tokens and shards",
   "audience": [
@@ -407,8 +407,8 @@
  {
   "title": "Gifts of Vis",
   "heading": "Gifts of Vis",
-  "line": 1416,
-  "endLine": 1419,
+  "line": 1422,
+  "endLine": 1425,
   "category": "order",
   "topic": "Tribunal vis",
   "audience": [
@@ -429,8 +429,8 @@
  {
   "title": "The Ceremony of Propitiation",
   "heading": "The Ceremony of Propitiation",
-  "line": 1420,
-  "endLine": 1429,
+  "line": 1426,
+  "endLine": 1435,
   "category": "covenant",
   "topic": "Covenant patrons",
   "audience": [
@@ -454,8 +454,8 @@
  {
   "title": "The Founding of Covenants",
   "heading": "The Founding of Covenants",
-  "line": 1430,
-  "endLine": 1433,
+  "line": 1436,
+  "endLine": 1439,
   "category": "covenant",
   "topic": "Founding covenants",
   "audience": [
@@ -474,8 +474,8 @@
  {
   "title": "The Tribunal Meeting",
   "heading": "The Tribunal Meeting",
-  "line": 1434,
-  "endLine": 1439,
+  "line": 1440,
+  "endLine": 1445,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -493,8 +493,8 @@
  {
   "title": "Pre-Tribunal Procedure",
   "heading": "Pre-Tribunal Procedure",
-  "line": 1440,
-  "endLine": 1443,
+  "line": 1446,
+  "endLine": 1449,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -510,8 +510,8 @@
  {
   "title": "Selection of Archai Candidates",
   "heading": "Selection of Archai Candidates",
-  "line": 1444,
-  "endLine": 1447,
+  "line": 1450,
+  "endLine": 1453,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -529,8 +529,8 @@
  {
   "title": "Interviews with Apprentices",
   "heading": "Interviews with Apprentices",
-  "line": 1448,
-  "endLine": 1451,
+  "line": 1454,
+  "endLine": 1457,
   "category": "order",
   "topic": "Apprentices in Thebes",
   "audience": [
@@ -548,8 +548,8 @@
  {
   "title": "The Hermetic Assembly",
   "heading": "The Hermetic Assembly",
-  "line": 1452,
-  "endLine": 1457,
+  "line": 1458,
+  "endLine": 1463,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -567,8 +567,8 @@
  {
   "title": "Decrees of Citizenship",
   "heading": "Decrees of Citizenship",
-  "line": 1458,
-  "endLine": 1461,
+  "line": 1464,
+  "endLine": 1467,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -586,8 +586,8 @@
  {
   "title": "Decrees of Defamation",
   "heading": "Decrees of Defamation",
-  "line": 1462,
-  "endLine": 1465,
+  "line": 1468,
+  "endLine": 1471,
   "category": "order",
   "topic": "Tokens and shards",
   "audience": [
@@ -605,8 +605,8 @@
  {
   "title": "Decrees of Contrition",
   "heading": "Decrees of Contrition",
-  "line": 1466,
-  "endLine": 1471,
+  "line": 1472,
+  "endLine": 1477,
   "category": "order",
   "topic": "Tokens and shards",
   "audience": [
@@ -624,8 +624,8 @@
  {
   "title": "The Apprentice Presentation",
   "heading": "The Apprentice Presentation",
-  "line": 1476,
-  "endLine": 1483,
+  "line": 1482,
+  "endLine": 1489,
   "category": "order",
   "topic": "Apprentices in Thebes",
   "audience": [
@@ -646,8 +646,8 @@
  {
   "title": "Ostrakismos (ostracism)",
   "heading": "Ostrakismos",
-  "line": 1494,
-  "endLine": 1496,
+  "line": 1500,
+  "endLine": 1503,
   "category": "order",
   "topic": "Tokens and shards",
   "audience": [
@@ -665,8 +665,8 @@
  {
   "title": "The Nature of the Law",
   "heading": "The Nature of the Law",
-  "line": 1497,
-  "endLine": 1500,
+  "line": 1504,
+  "endLine": 1507,
   "category": "order",
   "topic": "Theban Tribunal polity",
   "audience": [
@@ -684,8 +684,8 @@
  {
   "title": "The Law Council",
   "heading": "The Law Council",
-  "line": 1501,
-  "endLine": 1506,
+  "line": 1508,
+  "endLine": 1513,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -706,8 +706,8 @@
  {
   "title": "The People's Court",
   "heading": "The People's Court",
-  "line": 1507,
-  "endLine": 1512,
+  "line": 1514,
+  "endLine": 1519,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -728,8 +728,8 @@
  {
   "title": "Execution of Sentences",
   "heading": "Execution of Sentences",
-  "line": 1517,
-  "endLine": 1522,
+  "line": 1524,
+  "endLine": 1529,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -751,8 +751,8 @@
  {
   "title": "Conduct of Archai",
   "heading": "Conduct of Archai",
-  "line": 1523,
-  "endLine": 1526,
+  "line": 1530,
+  "endLine": 1533,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -770,8 +770,8 @@
  {
   "title": "Sortition of Archai",
   "heading": "Sortition of Archai",
-  "line": 1527,
-  "endLine": 1534,
+  "line": 1534,
+  "endLine": 1541,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -789,8 +789,8 @@
  {
   "title": "Election of the Archon and Polemarch",
   "heading": "Election of the Archon and Polemarch",
-  "line": 1535,
-  "endLine": 1540,
+  "line": 1542,
+  "endLine": 1547,
   "category": "order",
   "topic": "Tribunal meeting",
   "audience": [
@@ -808,8 +808,8 @@
  {
   "title": "The Dynatoi as Player Characters",
   "heading": "The Dynatoi as Player Characters",
-  "line": 1575,
-  "endLine": 1578,
+  "line": 1582,
+  "endLine": 1585,
   "category": "creation",
   "topic": "Byzantine character backgrounds",
   "audience": [
@@ -827,8 +827,8 @@
  {
   "title": "Languages of the Theban Tribunal",
   "heading": "Languages",
-  "line": 1709,
-  "endLine": 1749,
+  "line": 1716,
+  "endLine": 1756,
   "category": "setting",
   "topic": "Languages",
   "audience": [
@@ -851,8 +851,8 @@
  {
   "title": "Taxation (kommerkion)",
   "heading": "Taxation",
-  "line": 1824,
-  "endLine": 1827,
+  "line": 1831,
+  "endLine": 1834,
   "category": "social",
   "topic": "Wealth and trade",
   "audience": [
@@ -869,8 +869,8 @@
  {
   "title": "Coinage",
   "heading": "Coinage",
-  "line": 1828,
-  "endLine": 1832,
+  "line": 1835,
+  "endLine": 1839,
   "category": "social",
   "topic": "Wealth and trade",
   "audience": [
@@ -887,8 +887,8 @@
  {
   "title": "Hermetic Correspondence",
   "heading": "Hermetic Correspondence",
-  "line": 1834,
-  "endLine": 1839,
+  "line": 1841,
+  "endLine": 1846,
   "category": "social",
   "topic": "Hermetic correspondence",
   "audience": [
@@ -907,8 +907,8 @@
  {
   "title": "The Color Purple (Shape & Material bonuses)",
   "heading": "The Color Purple",
-  "line": 1864,
-  "endLine": 1866,
+  "line": 1871,
+  "endLine": 1873,
   "category": "lab",
   "topic": "Shape and Material bonuses",
   "audience": [
@@ -929,8 +929,8 @@
  {
   "title": "Greek Fire",
   "heading": "Greek Fire",
-  "line": 1880,
-  "endLine": 1890,
+  "line": 1887,
+  "endLine": 1897,
   "category": "combat",
   "topic": "Greek Fire",
   "audience": [
@@ -957,8 +957,8 @@
  {
   "title": "The Alaphroiskiotoi",
   "heading": "The Alaphroiskiotoi",
-  "line": 1900,
-  "endLine": 1905,
+  "line": 1907,
+  "endLine": 1912,
   "category": "setting",
   "topic": "Folk beliefs and powers",
   "audience": [
@@ -980,8 +980,8 @@
  {
   "title": "Adelphopoiesis (ritual brotherhood)",
   "heading": "Adelphopoiesis",
-  "line": 1940,
-  "endLine": 1944,
+  "line": 1947,
+  "endLine": 1951,
   "category": "setting",
   "topic": "Oaths and bonds",
   "audience": [
@@ -1003,8 +1003,8 @@
  {
   "title": "The Power of Oaths",
   "heading": "The Power of Oaths",
-  "line": 1952,
-  "endLine": 1962,
+  "line": 1959,
+  "endLine": 1969,
   "category": "realms",
   "topic": "Oaths",
   "audience": [
@@ -1026,8 +1026,8 @@
  {
   "title": "Punishments for Oath-Breaking",
   "heading": "Punishments for Oath-Breaking",
-  "line": 1964,
-  "endLine": 1980,
+  "line": 1971,
+  "endLine": 1987,
   "category": "realms",
   "topic": "Oaths",
   "audience": [

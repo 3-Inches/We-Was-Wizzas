@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { BOOKS, BOOK_BY_ID, type VirtueFlawDef } from '../../data';
+import { BOOKS, BOOK_BY_ID, BOOK_SHELVES, type VirtueFlawDef } from '../../data';
 import { EX_MISC_TRADITIONS, HOUSES } from '../../data/houses';
 import { useGameData } from '../../store/hooks';
 import { useStore } from '../../store/store';
@@ -313,6 +313,18 @@ function BookList() {
       {cats.map((c) => (
         <Card key={c} title={c[0].toUpperCase() + c.slice(1)}>
           {BOOKS.filter((b) => b.category === c).map((b) => (
+            <div key={b.id} className="list-row">
+              <Link to={`/reference/book/${b.id}`}>{b.title}</Link>
+              <span className="badge book">{b.abbr}</span>
+              {b.status === 'wip' && <span className="badge warn">WIP</span>}
+            </div>
+          ))}
+        </Card>
+      ))}
+      {BOOK_SHELVES.filter((s) => s.note).map((s) => (
+        <Card key={s.label} title={s.label}>
+          <p className="small muted">{s.note}</p>
+          {s.books.map((b) => (
             <div key={b.id} className="list-row">
               <Link to={`/reference/book/${b.id}`}>{b.title}</Link>
               <span className="badge book">{b.abbr}</span>

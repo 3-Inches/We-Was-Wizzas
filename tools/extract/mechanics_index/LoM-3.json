@@ -2,8 +2,8 @@
  {
   "title": "Siegecraft",
   "heading": "Siegecraft",
-  "line": 4490,
-  "endLine": 4494,
+  "line": 4488,
+  "endLine": 4492,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -23,8 +23,8 @@
  {
   "title": "Magic on the Battlefield",
   "heading": "Magic on the Battlefield",
-  "line": 4496,
-  "endLine": 4506,
+  "line": 4494,
+  "endLine": 4504,
   "category": "magic",
   "topic": "Mass combat",
   "audience": [
@@ -44,8 +44,8 @@
  {
   "title": "Example Battle",
   "heading": "Example Battle",
-  "line": 4508,
-  "endLine": 4514,
+  "line": 4506,
+  "endLine": 4512,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -63,8 +63,8 @@
  {
   "title": "Castle Free Choices",
   "heading": "Free Choices",
-  "line": 4526,
-  "endLine": 4545,
+  "line": 4524,
+  "endLine": 4543,
   "category": "creation",
   "topic": "Castles",
   "audience": [
@@ -86,8 +86,8 @@
  {
   "title": "Minor Castles",
   "heading": "Minor Castles",
-  "line": 4546,
-  "endLine": 4567,
+  "line": 4544,
+  "endLine": 4565,
   "category": "creation",
   "topic": "Castles",
   "audience": [
@@ -109,8 +109,8 @@
  {
   "title": "Curtain Walls and Mural Towers",
   "heading": "Curtain Walls and Mural Towers",
-  "line": 4568,
-  "endLine": 4577,
+  "line": 4566,
+  "endLine": 4575,
   "category": "creation",
   "topic": "Castles",
   "audience": [
@@ -129,8 +129,8 @@
  {
   "title": "Keep Alternatives for Castles with Curtain Walls",
   "heading": "Keep Alternatives for Castles with Curtain Walls",
-  "line": 4578,
-  "endLine": 4597,
+  "line": 4576,
+  "endLine": 4595,
   "category": "creation",
   "topic": "Castles",
   "audience": [
@@ -150,8 +150,8 @@
  {
   "title": "Describing Castles",
   "heading": "Describing Castles",
-  "line": 4598,
-  "endLine": 4601,
+  "line": 4596,
+  "endLine": 4599,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -169,8 +169,8 @@
  {
   "title": "Castle Garrison",
   "heading": "Garrison",
-  "line": 4602,
-  "endLine": 4614,
+  "line": 4600,
+  "endLine": 4612,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -188,8 +188,8 @@
  {
   "title": "Castle Defenses",
   "heading": "Defenses",
-  "line": 4615,
-  "endLine": 4638,
+  "line": 4613,
+  "endLine": 4636,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -211,8 +211,8 @@
  {
   "title": "Castle Supplies",
   "heading": "Supplies",
-  "line": 4639,
-  "endLine": 4651,
+  "line": 4637,
+  "endLine": 4649,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -230,8 +230,8 @@
  {
   "title": "Life Under Siege",
   "heading": "Life Under Siege",
-  "line": 4652,
-  "endLine": 4657,
+  "line": 4650,
+  "endLine": 4655,
   "category": "hazards",
   "topic": "Siege warfare",
   "audience": [
@@ -243,15 +243,15 @@
   "requires": "",
   "summary": "Explains what happens when a siege begins, how besieged castles and cities handle their populations, and the Living Conditions penalty for characters who spend a season under siege.",
   "quotes": [
-   "Characters under siege suffer from a \u20132 Living Conditions modifier each year in which at least one season is spent under siege."
+   "Characters under siege suffer from a –2 Living Conditions modifier each year in which at least one season is spent under siege."
   ],
   "related": []
  },
  {
   "title": "Stockade",
   "heading": "Stockade",
-  "line": 4658,
-  "endLine": 4673,
+  "line": 4656,
+  "endLine": 4671,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -272,8 +272,8 @@
  {
   "title": "Making Supply Rolls",
   "heading": "Making Supply Rolls",
-  "line": 4674,
-  "endLine": 4676,
+  "line": 4672,
+  "endLine": 4674,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -291,8 +291,8 @@
  {
   "title": "Laying Siege",
   "heading": "Laying Siege",
-  "line": 4686,
-  "endLine": 4693,
+  "line": 4684,
+  "endLine": 4691,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -310,8 +310,8 @@
  {
   "title": "Siege Engines",
   "heading": "Siege Engines",
-  "line": 4694,
-  "endLine": 4712,
+  "line": 4692,
+  "endLine": 4710,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -331,8 +331,8 @@
  {
   "title": "Troop Deployment",
   "heading": "Troop Deployment",
-  "line": 4714,
-  "endLine": 4719,
+  "line": 4712,
+  "endLine": 4717,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -350,8 +350,8 @@
  {
   "title": "Undermining",
   "heading": "Undermining",
-  "line": 4720,
-  "endLine": 4758,
+  "line": 4718,
+  "endLine": 4756,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -371,8 +371,8 @@
  {
   "title": "New Abilities",
   "heading": "New Abilities",
-  "line": 4736,
-  "endLine": 4754,
+  "line": 4734,
+  "endLine": 4752,
   "category": "basics",
   "topic": "Siege warfare",
   "audience": [
@@ -392,8 +392,8 @@
  {
   "title": "Artillery",
   "heading": "Artillery",
-  "line": 4760,
-  "endLine": 4770,
+  "line": 4758,
+  "endLine": 4768,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -414,8 +414,8 @@
  {
   "title": "Escalade",
   "heading": "Escalade",
-  "line": 4772,
-  "endLine": 4788,
+  "line": 4770,
+  "endLine": 4786,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -433,8 +433,8 @@
  {
   "title": "Option: External Defenses",
   "heading": "Option: External Defenses",
-  "line": 4789,
-  "endLine": 4791,
+  "line": 4787,
+  "endLine": 4789,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -452,8 +452,8 @@
  {
   "title": "Escalade Weapons and Defenses",
   "heading": "Escalade Weapons and Defenses",
-  "line": 4793,
-  "endLine": 4797,
+  "line": 4791,
+  "endLine": 4795,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -474,8 +474,8 @@
  {
   "title": "Counterattack",
   "heading": "Counterattack",
-  "line": 4799,
-  "endLine": 4803,
+  "line": 4797,
+  "endLine": 4801,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -495,8 +495,8 @@
  {
   "title": "Example Siege Events",
   "heading": "Example Siege Events",
-  "line": 4805,
-  "endLine": 4837,
+  "line": 4803,
+  "endLine": 4835,
   "category": "combat",
   "topic": "Siege warfare",
   "audience": [
@@ -515,8 +515,8 @@
  {
   "title": "Chapter Nine: Optional Combat Rules",
   "heading": "Chapter Nine: Optional Combat Rules",
-  "line": 4889,
-  "endLine": 4891,
+  "line": 4887,
+  "endLine": 4889,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -535,8 +535,8 @@
  {
   "title": "The Combat Round",
   "heading": "The Combat Round",
-  "line": 4893,
-  "endLine": 4898,
+  "line": 4891,
+  "endLine": 4896,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -557,8 +557,8 @@
  {
   "title": "When to Use Combat Rounds",
   "heading": "When to Use Combat Rounds",
-  "line": 4899,
-  "endLine": 4902,
+  "line": 4897,
+  "endLine": 4900,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -576,8 +576,8 @@
  {
   "title": "Initiative",
   "heading": "Initiative",
-  "line": 4903,
-  "endLine": 4908,
+  "line": 4901,
+  "endLine": 4906,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -598,8 +598,8 @@
  {
   "title": "When to Roll Initiative",
   "heading": "When to Roll Initiative",
-  "line": 4909,
-  "endLine": 4914,
+  "line": 4907,
+  "endLine": 4912,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -617,8 +617,8 @@
  {
   "title": "Actions in Combat",
   "heading": "Actions in Combat",
-  "line": 4915,
-  "endLine": 4922,
+  "line": 4913,
+  "endLine": 4920,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -637,8 +637,8 @@
  {
   "title": "Not Everything is an Action",
   "heading": "Not Everything is an Action",
-  "line": 4923,
-  "endLine": 4926,
+  "line": 4921,
+  "endLine": 4924,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -657,8 +657,8 @@
  {
   "title": "Examples of Actions",
   "heading": "Examples of Actions",
-  "line": 4927,
-  "endLine": 4941,
+  "line": 4925,
+  "endLine": 4939,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -680,8 +680,8 @@
  {
   "title": "Reactions",
   "heading": "Reactions",
-  "line": 4942,
-  "endLine": 4956,
+  "line": 4940,
+  "endLine": 4954,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -703,8 +703,8 @@
  {
   "title": "Extended Actions",
   "heading": "Extended Actions",
-  "line": 4957,
-  "endLine": 4984,
+  "line": 4955,
+  "endLine": 4982,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -725,8 +725,8 @@
  {
   "title": "Option: Fast Actions",
   "heading": "Option: Fast Actions",
-  "line": 4985,
-  "endLine": 5006,
+  "line": 4983,
+  "endLine": 5004,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -749,8 +749,8 @@
  {
   "title": "Delaying Actions",
   "heading": "Delaying Actions",
-  "line": 5007,
-  "endLine": 5022,
+  "line": 5005,
+  "endLine": 5020,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -771,8 +771,8 @@
  {
   "title": "Option: Interrupting Actions",
   "heading": "Option: Interrupting Actions",
-  "line": 5023,
-  "endLine": 5048,
+  "line": 5021,
+  "endLine": 5046,
   "category": "combat",
   "topic": "Combat actions",
   "audience": [
@@ -784,7 +784,7 @@
   "requires": "",
   "summary": "Optional rule letting a character who delayed his action interrupt an opponent through an action priority contest in which the winner resolves first; magi use Finesse and may still try Fast Casting afterwards.",
   "quotes": [
-   "Action Priority Total: Quickness + Ability \u2013 Encumbrance + stress die",
+   "Action Priority Total: Quickness + Ability – Encumbrance + stress die",
    "Whoever has the highest Action Priority Total resolves his action first."
   ],
   "related": [
@@ -794,8 +794,8 @@
  {
   "title": "Option: Fast Casting as Interruption",
   "heading": "Option: Fast Casting as Interruption",
-  "line": 5049,
-  "endLine": 5054,
+  "line": 5047,
+  "endLine": 5052,
   "category": "magic",
   "topic": "Combat actions",
   "audience": [
@@ -815,8 +815,8 @@
  {
   "title": "Tactical Movement",
   "heading": "Tactical Movement",
-  "line": 5055,
-  "endLine": 5058,
+  "line": 5053,
+  "endLine": 5056,
   "category": "combat",
   "topic": "Tactical movement",
   "audience": [
@@ -833,8 +833,8 @@
  {
   "title": "Moving in Combat",
   "heading": "Moving in Combat",
-  "line": 5059,
-  "endLine": 5075,
+  "line": 5057,
+  "endLine": 5073,
   "category": "combat",
   "topic": "Tactical movement",
   "audience": [
@@ -846,9 +846,9 @@
   "requires": "",
   "summary": "Moving is an action with a choice of walk, hurry or run rates, each computed in paces per round from Quickness and Encumbrance; engaged characters must disengage first and running may require a Fatigue roll.",
   "quotes": [
-   "Walk: 10 + Quickness \u2212 Encumbrance paces per round",
-   "Hurry: 2 x (10 + Quickness \u2013 Encumbrance) paces per round",
-   "Run: 4 x (10 + Quickness \u2013 Encumbrance) paces per round"
+   "Walk: 10 + Quickness − Encumbrance paces per round",
+   "Hurry: 2 x (10 + Quickness – Encumbrance) paces per round",
+   "Run: 4 x (10 + Quickness – Encumbrance) paces per round"
   ],
   "related": [
    "ArM5 p.178 Fatigue"
@@ -857,8 +857,8 @@
  {
   "title": "Movement and Groups",
   "heading": "Movement and Groups",
-  "line": 5076,
-  "endLine": 5079,
+  "line": 5074,
+  "endLine": 5077,
   "category": "combat",
   "topic": "Tactical movement",
   "audience": [
@@ -876,8 +876,8 @@
  {
   "title": "Obstacles, Barriers, and Movement",
   "heading": "Obstacles, Barriers, and Movement",
-  "line": 5080,
-  "endLine": 5085,
+  "line": 5078,
+  "endLine": 5083,
   "category": "combat",
   "topic": "Tactical movement",
   "audience": [
@@ -895,8 +895,8 @@
  {
   "title": "Terrain Examples",
   "heading": "Terrain Examples",
-  "line": 5086,
-  "endLine": 5130,
+  "line": 5084,
+  "endLine": 5128,
   "category": "combat",
   "topic": "Tactical movement",
   "audience": [
@@ -919,8 +919,8 @@
  {
   "title": "Engaging and Disengaging",
   "heading": "Engaging and Disengaging",
-  "line": 5132,
-  "endLine": 5139,
+  "line": 5130,
+  "endLine": 5137,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -941,8 +941,8 @@
  {
   "title": "Engaging in Combat",
   "heading": "Engaging in Combat",
-  "line": 5141,
-  "endLine": 5150,
+  "line": 5139,
+  "endLine": 5148,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -961,8 +961,8 @@
  {
   "title": "Effects of Being Engaged",
   "heading": "Effects of Being Engaged",
-  "line": 5151,
-  "endLine": 5160,
+  "line": 5149,
+  "endLine": 5158,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -981,8 +981,8 @@
  {
   "title": "Engagement and Defenders",
   "heading": "Engagement and Defenders",
-  "line": 5161,
-  "endLine": 5168,
+  "line": 5159,
+  "endLine": 5166,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -1003,8 +1003,8 @@
  {
   "title": "Option: No Engagement for Missile Combat",
   "heading": "Option: No Engagement for Missile Combat",
-  "line": 5169,
-  "endLine": 5174,
+  "line": 5167,
+  "endLine": 5172,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -1022,8 +1022,8 @@
  {
   "title": "Option: No Missiles While Engaged in Melee",
   "heading": "Option: No Missiles While Engaged in Melee",
-  "line": 5175,
-  "endLine": 5178,
+  "line": 5173,
+  "endLine": 5176,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -1041,8 +1041,8 @@
  {
   "title": "Option: Defenders as Interceptors",
   "heading": "Option: Defenders as Interceptors",
-  "line": 5179,
-  "endLine": 5198,
+  "line": 5177,
+  "endLine": 5196,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -1063,8 +1063,8 @@
  {
   "title": "Attempting to Disengage",
   "heading": "Attempting to Disengage",
-  "line": 5203,
-  "endLine": 5212,
+  "line": 5201,
+  "endLine": 5210,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -1086,8 +1086,8 @@
  {
   "title": "Automatic Disengagement",
   "heading": "Automatic Disengagement",
-  "line": 5213,
-  "endLine": 5222,
+  "line": 5211,
+  "endLine": 5220,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -1106,8 +1106,8 @@
  {
   "title": "Option: Reckless Disengagement",
   "heading": "Option: Reckless Disengagement",
-  "line": 5223,
-  "endLine": 5226,
+  "line": 5221,
+  "endLine": 5224,
   "category": "combat",
   "topic": "Engagement",
   "audience": [
@@ -1126,8 +1126,8 @@
  {
   "title": "Charging on Foot",
   "heading": "Charging on Foot",
-  "line": 5235,
-  "endLine": 5246,
+  "line": 5233,
+  "endLine": 5244,
   "category": "combat",
   "topic": "Charging",
   "audience": [
@@ -1148,8 +1148,8 @@
  {
   "title": "Option: Condensed Notation for Combat Scores",
   "heading": "Option: Condensed Notation for Combat Scores",
-  "line": 5247,
-  "endLine": 5261,
+  "line": 5245,
+  "endLine": 5259,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1169,8 +1169,8 @@
  {
   "title": "Option: Interrupting a Charge",
   "heading": "Option: Interrupting a Charge",
-  "line": 5263,
-  "endLine": 5268,
+  "line": 5261,
+  "endLine": 5266,
   "category": "combat",
   "topic": "Charging",
   "audience": [
@@ -1189,8 +1189,8 @@
  {
   "title": "Option: Ready Missiles",
   "heading": "Option: Ready Missiles",
-  "line": 5269,
-  "endLine": 5276,
+  "line": 5267,
+  "endLine": 5274,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1209,8 +1209,8 @@
  {
   "title": "Option: Constriction Attacks",
   "heading": "Option: Constriction Attacks",
-  "line": 5277,
-  "endLine": 5284,
+  "line": 5275,
+  "endLine": 5282,
   "category": "beings",
   "topic": "Combat options",
   "audience": [
@@ -1231,8 +1231,8 @@
  {
   "title": "Defending",
   "heading": "Defending",
-  "line": 5285,
-  "endLine": 5288,
+  "line": 5283,
+  "endLine": 5286,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1251,8 +1251,8 @@
  {
   "title": "Defense when Unarmed",
   "heading": "Defense when Unarmed",
-  "line": 5289,
-  "endLine": 5292,
+  "line": 5287,
+  "endLine": 5290,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1270,8 +1270,8 @@
  {
   "title": "Helpless Characters",
   "heading": "Helpless Characters",
-  "line": 5293,
-  "endLine": 5296,
+  "line": 5291,
+  "endLine": 5294,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1283,15 +1283,15 @@
   "requires": "",
   "summary": "A totally helpless character gets no Defense roll; his Defense Total is a fixed negative value.",
   "quotes": [
-   "treat his Defense Total as \u201310"
+   "treat his Defense Total as –10"
   ],
   "related": []
  },
  {
   "title": "Option: Diceless Defense",
   "heading": "Option: Diceless Defense",
-  "line": 5297,
-  "endLine": 5304,
+  "line": 5295,
+  "endLine": 5302,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1310,8 +1310,8 @@
  {
   "title": "Option: No Defense for Missile Weapons",
   "heading": "Option: No Defense for Missile Weapons",
-  "line": 5305,
-  "endLine": 5312,
+  "line": 5303,
+  "endLine": 5310,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1330,8 +1330,8 @@
  {
   "title": "Option: Evasion",
   "heading": "Option: Evasion",
-  "line": 5313,
-  "endLine": 5332,
+  "line": 5311,
+  "endLine": 5330,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1343,8 +1343,8 @@
   "requires": "",
   "summary": "Optional rule that splits dodging from blocking: Defense then applies only to melee attacks and Evasion, which depends on Size and Encumbrance, can be used against any attack. Gives separate on-foot and mounted Evasion Totals and can be combined with diceless defense.",
   "quotes": [
-   "Evasion Total on Foot: Quickness + Brawl \u2212 Size \u2212 Encumbrance + Shield Defense Modifier + stress die",
-   "Evasion Total While Mounted: Quickness + Ride \u2212 Size \u2212 Encumbrance + Shield Defense Modifier + stress die"
+   "Evasion Total on Foot: Quickness + Brawl − Size − Encumbrance + Shield Defense Modifier + stress die",
+   "Evasion Total While Mounted: Quickness + Ride − Size − Encumbrance + Shield Defense Modifier + stress die"
   ],
   "related": [
    "ArM5 p.172 Defense"
@@ -1353,8 +1353,8 @@
  {
   "title": "Option: Lasting Consequences of Serious Damage",
   "heading": "Option: Lasting Consequences of Serious Damage",
-  "line": 5333,
-  "endLine": 5342,
+  "line": 5331,
+  "endLine": 5340,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1376,8 +1376,8 @@
  {
   "title": "Option: Mitigating Deadly Wounds",
   "heading": "Option: Mitigating Deadly Wounds",
-  "line": 5343,
-  "endLine": 5376,
+  "line": 5341,
+  "endLine": 5374,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1397,8 +1397,8 @@
  {
   "title": "Mounted Combat",
   "heading": "Mounted Combat",
-  "line": 5377,
-  "endLine": 5389,
+  "line": 5375,
+  "endLine": 5387,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1419,8 +1419,8 @@
  {
   "title": "Suggestions for Combat Botches",
   "heading": "Suggestions for Combat Botches",
-  "line": 5390,
-  "endLine": 5406,
+  "line": 5388,
+  "endLine": 5404,
   "category": "combat",
   "topic": "Combat options",
   "audience": [
@@ -1431,7 +1431,7 @@
   "requires": "",
   "summary": "A list of suggested botch results for combat rolls, ordered roughly from mild to severe, such as stumbling, dropping a weapon, colliding with an ally or a horse falling.",
   "quotes": [
-   "Stumble; \u22123 to Defense rolls until your next turn."
+   "Stumble; −3 to Defense rolls until your next turn."
   ],
   "related": [
    "City & Guild p.77 Damage checks"
@@ -1440,8 +1440,8 @@
  {
   "title": "Untrained Mounts",
   "heading": "Untrained Mounts",
-  "line": 5408,
-  "endLine": 5415,
+  "line": 5406,
+  "endLine": 5413,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1460,8 +1460,8 @@
  {
   "title": "Mounted Movement",
   "heading": "Mounted Movement",
-  "line": 5416,
-  "endLine": 5419,
+  "line": 5414,
+  "endLine": 5417,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1480,8 +1480,8 @@
  {
   "title": "Charging on Horseback",
   "heading": "Charging on Horseback",
-  "line": 5420,
-  "endLine": 5427,
+  "line": 5418,
+  "endLine": 5425,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1500,8 +1500,8 @@
  {
   "title": "Mounted Movement Rates",
   "heading": "Mounted Movement Rates",
-  "line": 5428,
-  "endLine": 5452,
+  "line": 5426,
+  "endLine": 5450,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1520,8 +1520,8 @@
  {
   "title": "Option: Shock of the Charge",
   "heading": "Option: Shock of the Charge",
-  "line": 5454,
-  "endLine": 5469,
+  "line": 5452,
+  "endLine": 5467,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1541,8 +1541,8 @@
  {
   "title": "Shooting Missiles from Horseback",
   "heading": "Shooting Missiles from Horseback",
-  "line": 5470,
-  "endLine": 5477,
+  "line": 5468,
+  "endLine": 5475,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1561,8 +1561,8 @@
  {
   "title": "Actions Taken by Horses",
   "heading": "Actions Taken by Horses",
-  "line": 5478,
-  "endLine": 5488,
+  "line": 5476,
+  "endLine": 5483,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1581,8 +1581,8 @@
  {
   "title": "Wounding Horses",
   "heading": "Wounding Horses",
-  "line": 5495,
-  "endLine": 5506,
+  "line": 5490,
+  "endLine": 5501,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1601,8 +1601,8 @@
  {
   "title": "Controlling a Panicked Horse",
   "heading": "Controlling a Panicked Horse",
-  "line": 5507,
-  "endLine": 5521,
+  "line": 5502,
+  "endLine": 5516,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1614,15 +1614,15 @@
   "requires": "",
   "summary": "Sets when horses panic and the Presence + Ride roll needed to keep or regain control, with a reaction roll first and further attempts as actions; a panicked rider can do little else except complete a charge already begun.",
   "quotes": [
-   "Maintain or Regain Control of Panicked Horse: Presence + Ride vs. Ease Factor 6 \u2013 horse's total Wound Penalties"
+   "Maintain or Regain Control of Panicked Horse: Presence + Ride vs. Ease Factor 6 – horse's total Wound Penalties"
   ],
   "related": []
  },
  {
   "title": "Option: Defensive Bonus for Moving Horses",
   "heading": "Option: Defensive Bonus for Moving Horses",
-  "line": 5523,
-  "endLine": 5526,
+  "line": 5518,
+  "endLine": 5521,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1640,8 +1640,8 @@
  {
   "title": "Mounting and Dismounting",
   "heading": "Mounting and Dismounting",
-  "line": 5527,
-  "endLine": 5530,
+  "line": 5522,
+  "endLine": 5525,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1659,8 +1659,8 @@
  {
   "title": "Leaping from the Saddle",
   "heading": "Leaping from the Saddle",
-  "line": 5531,
-  "endLine": 5541,
+  "line": 5526,
+  "endLine": 5536,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1672,15 +1672,15 @@
   "requires": "",
   "summary": "A reaction roll lets a rider escape a panicking, falling or dying horse by leaping clear; with fast actions it can also be done voluntarily, and failure means falling.",
   "quotes": [
-   "Leap from the Saddle: Dexterity + Athletics \u2013 Encumbrance + stress die vs. Ease Factor 9"
+   "Leap from the Saddle: Dexterity + Athletics – Encumbrance + stress die vs. Ease Factor 9"
   ],
   "related": []
  },
  {
   "title": "Option: Vaulting Into the Saddle",
   "heading": "Option: Vaulting Into the Saddle",
-  "line": 5542,
-  "endLine": 5547,
+  "line": 5537,
+  "endLine": 5542,
   "category": "combat",
   "topic": "Mounted combat",
   "audience": [
@@ -1692,15 +1692,15 @@
   "requires": "",
   "summary": "With the fast actions option, a character can vault into the saddle as a fast action with a Strength + Athletics roll and may then ride in the same round if he did not move first.",
   "quotes": [
-   "Vault Into the Saddle: Strength + Athletics \u2013 Encumbrance + stress die vs. Ease Factor 6"
+   "Vault Into the Saddle: Strength + Athletics – Encumbrance + stress die vs. Ease Factor 6"
   ],
   "related": []
  },
  {
   "title": "Falling from Horseback",
   "heading": "Falling from Horseback",
-  "line": 5548,
-  "endLine": 5553,
+  "line": 5543,
+  "endLine": 5548,
   "category": "hazards",
   "topic": "Mounted combat",
   "audience": [
@@ -1721,8 +1721,8 @@
  {
   "title": "Being Pinned Under a Horse",
   "heading": "Being Pinned Under a Horse",
-  "line": 5554,
-  "endLine": 5559,
+  "line": 5549,
+  "endLine": 5554,
   "category": "hazards",
   "topic": "Mounted combat",
   "audience": [
@@ -1741,8 +1741,8 @@
  {
   "title": "General Situational Modifiers",
   "heading": "General Situational Modifiers",
-  "line": 5566,
-  "endLine": 5573,
+  "line": 5561,
+  "endLine": 5568,
   "category": "combat",
   "topic": "Battlefield situations",
   "audience": [
@@ -1760,8 +1760,8 @@
  {
   "title": "Cover",
   "heading": "Cover",
-  "line": 5578,
-  "endLine": 5592,
+  "line": 5573,
+  "endLine": 5587,
   "category": "combat",
   "topic": "Battlefield situations",
   "audience": [
@@ -1781,8 +1781,8 @@
  {
   "title": "Concealment, Darkness, and Invisibility",
   "heading": "Concealment, Darkness, and Invisibility",
-  "line": 5593,
-  "endLine": 5611,
+  "line": 5588,
+  "endLine": 5606,
   "category": "combat",
   "topic": "Battlefield situations",
   "audience": [
@@ -1803,8 +1803,8 @@
  {
   "title": "Higher Ground",
   "heading": "Higher Ground",
-  "line": 5612,
-  "endLine": 5617,
+  "line": 5607,
+  "endLine": 5612,
   "category": "combat",
   "topic": "Battlefield situations",
   "audience": [
@@ -1825,8 +1825,8 @@
  {
   "title": "Light Sources and Range of Visibility",
   "heading": "Light Sources and Range of Visibility",
-  "line": 5618,
-  "endLine": 5631,
+  "line": 5613,
+  "endLine": 5626,
   "category": "combat",
   "topic": "Battlefield situations",
   "audience": [
@@ -1844,8 +1844,8 @@
  {
   "title": "Fighting Indoors and in Narrow Spaces",
   "heading": "Fighting Indoors and in Narrow Spaces",
-  "line": 5632,
-  "endLine": 5644,
+  "line": 5627,
+  "endLine": 5639,
   "category": "combat",
   "topic": "Battlefield situations",
   "audience": [
@@ -1866,8 +1866,8 @@
  {
   "title": "Option: Non-Lethal Combat",
   "heading": "Option: Non-Lethal Combat",
-  "line": 5645,
-  "endLine": 5652,
+  "line": 5640,
+  "endLine": 5647,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1888,8 +1888,8 @@
  {
   "title": "Non-Lethal Damage: Bruises",
   "heading": "Non-Lethal Damage: Bruises",
-  "line": 5653,
-  "endLine": 5662,
+  "line": 5648,
+  "endLine": 5657,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1910,8 +1910,8 @@
  {
   "title": "Recovering from Bruises",
   "heading": "Recovering from Bruises",
-  "line": 5663,
-  "endLine": 5674,
+  "line": 5658,
+  "endLine": 5669,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1932,8 +1932,8 @@
  {
   "title": "Bruise Table",
   "heading": "Bruise Table",
-  "line": 5675,
-  "endLine": 5683,
+  "line": 5670,
+  "endLine": 5678,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1945,7 +1945,7 @@
   "requires": "",
   "summary": "Table of Bruise levels giving each level's penalty, recovery interval, Improvement Ease Factor and the residual wound it leaves behind.",
   "quotes": [
-   "| Heavy | \u20135 | Two Hours | 15 | Light Wound |"
+   "| Heavy | –5 | Two Hours | 15 | Light Wound |"
   ],
   "related": [
    "ArM5 p.179 Wound recovery"
@@ -1954,8 +1954,8 @@
  {
   "title": "Your Arms are Too Short to Box with that Giant",
   "heading": "Your Arms are Too Short to Box with that Giant",
-  "line": 5685,
-  "endLine": 5691,
+  "line": 5680,
+  "endLine": 5686,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1976,8 +1976,8 @@
  {
   "title": "Weapons and Bruises",
   "heading": "Weapons and Bruises",
-  "line": 5693,
-  "endLine": 5700,
+  "line": 5688,
+  "endLine": 5695,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -1989,15 +1989,15 @@
   "requires": "",
   "summary": "Weapons can be used to inflict Bruises at an Attack penalty; optionally clubs and similar weapons, and practice or tournament weapons, deal Bruises without that penalty.",
   "quotes": [
-   "suffer a \u22123 penalty to their Attack Total when they do so"
+   "suffer a −3 penalty to their Attack Total when they do so"
   ],
   "related": []
  },
  {
   "title": "Special Effects",
   "heading": "Special Effects",
-  "line": 5701,
-  "endLine": 5734,
+  "line": 5696,
+  "endLine": 5729,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -2010,15 +2010,15 @@
   "summary": "Rules for special maneuvers such as trips, grapples, pins, tackles, disarms and unseating riders, resolved by an Attack roll against a reaction with a required Attack Advantage, plus the effects of each maneuver and a table of example maneuvers.",
   "quotes": [
    "Each maneuver requires a certain Attack Advantage in order to succeed.",
-   "The grappled defender suffers a \u20136 penalty on all attacks and most reactions, including Defense and Evasion, and can't perform spellcasting gestures."
+   "The grappled defender suffers a –6 penalty on all attacks and most reactions, including Defense and Evasion, and can't perform spellcasting gestures."
   ],
   "related": []
  },
  {
   "title": "Example Maneuvers Table",
   "heading": "Example Maneuvers Table",
-  "line": 5715,
-  "endLine": 5726,
+  "line": 5710,
+  "endLine": 5721,
   "category": "combat",
   "topic": "Non-lethal combat",
   "audience": [
@@ -2037,8 +2037,8 @@
  {
   "title": "Accelerated Group Training",
   "heading": "Accelerated Group Training",
-  "line": 5740,
-  "endLine": 5761,
+  "line": 5735,
+  "endLine": 5756,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2059,8 +2059,8 @@
  {
   "title": "The Leader's Actions",
   "heading": "The Leader's Actions",
-  "line": 5762,
-  "endLine": 5770,
+  "line": 5757,
+  "endLine": 5765,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2079,8 +2079,8 @@
  {
   "title": "Morale and Discipline",
   "heading": "Morale and Discipline",
-  "line": 5772,
-  "endLine": 5777,
+  "line": 5767,
+  "endLine": 5772,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2098,8 +2098,8 @@
  {
   "title": "Discipline",
   "heading": "Discipline",
-  "line": 5778,
-  "endLine": 5796,
+  "line": 5773,
+  "endLine": 5791,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2118,8 +2118,8 @@
  {
   "title": "Morale",
   "heading": "Morale",
-  "line": 5797,
-  "endLine": 5815,
+  "line": 5792,
+  "endLine": 5810,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2138,8 +2138,8 @@
  {
   "title": "Disordered Groups",
   "heading": "Disordered Groups",
-  "line": 5816,
-  "endLine": 5825,
+  "line": 5811,
+  "endLine": 5820,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2158,8 +2158,8 @@
  {
   "title": "Routed Groups",
   "heading": "Routed Groups",
-  "line": 5826,
-  "endLine": 5831,
+  "line": 5821,
+  "endLine": 5826,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2178,8 +2178,8 @@
  {
   "title": "Rallying a Group",
   "heading": "Rallying a Group",
-  "line": 5832,
-  "endLine": 5848,
+  "line": 5827,
+  "endLine": 5843,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2198,8 +2198,8 @@
  {
   "title": "Groups With No Leader",
   "heading": "Groups With No Leader",
-  "line": 5849,
-  "endLine": 5861,
+  "line": 5844,
+  "endLine": 5856,
   "category": "combat",
   "topic": "Group combat",
   "audience": [
@@ -2221,8 +2221,8 @@
  {
   "title": "Equipment Availability",
   "heading": "Equipment Availability",
-  "line": 5869,
-  "endLine": 5879,
+  "line": 5864,
+  "endLine": 5874,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2240,8 +2240,8 @@
  {
   "title": "Quality of Arms and Armor",
   "heading": "Quality of Arms and Armor",
-  "line": 5881,
-  "endLine": 5890,
+  "line": 5876,
+  "endLine": 5885,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2264,8 +2264,8 @@
  {
   "title": "New Weapon Rules",
   "heading": "New Weapon Rules",
-  "line": 5891,
-  "endLine": 5894,
+  "line": 5886,
+  "endLine": 5889,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2287,8 +2287,8 @@
  {
   "title": "Primitive and Blunted Weapons",
   "heading": "Primitive and Blunted Weapons",
-  "line": 5895,
-  "endLine": 5900,
+  "line": 5890,
+  "endLine": 5895,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2309,8 +2309,8 @@
  {
   "title": "Option: Try Using the Other End",
   "heading": "Option: Try Using the Other End",
-  "line": 5901,
-  "endLine": 5906,
+  "line": 5896,
+  "endLine": 5901,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2322,15 +2322,15 @@
   "requires": "",
   "summary": "Optional rule making the order of damage categories in the weapon table significant: the first is the normal mode and using the second applies an Attack penalty.",
   "quotes": [
-   "Apply a \u20131 Attack penalty if it is used to deal its other damage type, due to awkwardness."
+   "Apply a –1 Attack penalty if it is used to deal its other damage type, due to awkwardness."
   ],
   "related": []
  },
  {
   "title": "Melee Weapon Table",
   "heading": "Melee Weapon Table",
-  "line": 5907,
-  "endLine": 5950,
+  "line": 5902,
+  "endLine": 5945,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2353,8 +2353,8 @@
  {
   "title": "Missile Weapon Table",
   "heading": "Missile Weapon Table",
-  "line": 5952,
-  "endLine": 5968,
+  "line": 5947,
+  "endLine": 5963,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2365,7 +2365,7 @@
   "requires": "",
   "summary": "Consolidated table of thrown and missile weapons, bows and crossbows with Ability, Initiative, Attack, Defense, Damage, Range, Strength, Load, Cost, availability and damage type.",
   "quotes": [
-   "| Arbalest | Crossbow | 5 | 5 | 0 | 10\\* | 30 | \u20131 | 3 | Exp. | High | P | 2 | New |"
+   "| Arbalest | Crossbow | 5 | 5 | 0 | 10\\* | 30 | –1 | 3 | Exp. | High | P | 2 | New |"
   ],
   "related": [
    "Covenants p.18 Crossbows"
@@ -2374,8 +2374,8 @@
  {
   "title": "Option: The Clash of Weapons",
   "heading": "Option: The Clash of Weapons",
-  "line": 5970,
-  "endLine": 5984,
+  "line": 5965,
+  "endLine": 5979,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2397,8 +2397,8 @@
  {
   "title": "Using Crossbows",
   "heading": "Using Crossbows",
-  "line": 5986,
-  "endLine": 5997,
+  "line": 5981,
+  "endLine": 5992,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2420,8 +2420,8 @@
  {
   "title": "Missile Weapon Descriptions",
   "heading": "Missile Weapon Descriptions",
-  "line": 5998,
-  "endLine": 6013,
+  "line": 5993,
+  "endLine": 6008,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2443,8 +2443,8 @@
  {
   "title": "Melee Weapon Descriptions",
   "heading": "Melee Weapon Descriptions",
-  "line": 6014,
-  "endLine": 6029,
+  "line": 6009,
+  "endLine": 6024,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2465,8 +2465,8 @@
  {
   "title": "Expanded Armor Rules",
   "heading": "Expanded Armor Rules",
-  "line": 6030,
-  "endLine": 6033,
+  "line": 6025,
+  "endLine": 6028,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2485,8 +2485,8 @@
  {
   "title": "Armor Materials",
   "heading": "Armor Materials",
-  "line": 6034,
-  "endLine": 6037,
+  "line": 6029,
+  "endLine": 6032,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2507,8 +2507,8 @@
  {
   "title": "Inexpensive Materials",
   "heading": "Inexpensive Materials",
-  "line": 6038,
-  "endLine": 6042,
+  "line": 6033,
+  "endLine": 6037,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2527,8 +2527,8 @@
  {
   "title": "Standard Materials",
   "heading": "Standard Materials",
-  "line": 6043,
-  "endLine": 6049,
+  "line": 6038,
+  "endLine": 6043,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2547,8 +2547,8 @@
  {
   "title": "Weapon Table Key",
   "heading": "Weapon Table Key",
-  "line": 6050,
-  "endLine": 6074,
+  "line": 6044,
+  "endLine": 6068,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2569,8 +2569,8 @@
  {
   "title": "Expensive Materials",
   "heading": "Expensive Materials",
-  "line": 6076,
-  "endLine": 6082,
+  "line": 6070,
+  "endLine": 6076,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2589,8 +2589,8 @@
  {
   "title": "Expanded Armor Table",
   "heading": "Expanded Armor Table",
-  "line": 6083,
-  "endLine": 6122,
+  "line": 6077,
+  "endLine": 6116,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2610,8 +2610,8 @@
  {
   "title": "Armor Outfittings",
   "heading": "Armor Outfittings",
-  "line": 6124,
-  "endLine": 6133,
+  "line": 6118,
+  "endLine": 6127,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2632,8 +2632,8 @@
  {
   "title": "Option: Penalty for Fighting Without a Helmet",
   "heading": "Option: Penalty for Fighting Without a Helmet",
-  "line": 6134,
-  "endLine": 6139,
+  "line": 6128,
+  "endLine": 6133,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2652,8 +2652,8 @@
  {
   "title": "Glossary of Armor Terms",
   "heading": "Glossary of Armor Terms",
-  "line": 6140,
-  "endLine": 6209,
+  "line": 6134,
+  "endLine": 6205,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2672,8 +2672,8 @@
  {
   "title": "Option: Complex Armor Design",
   "heading": "Option: Complex Armor Design",
-  "line": 6210,
-  "endLine": 6229,
+  "line": 6206,
+  "endLine": 6225,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [
@@ -2691,8 +2691,8 @@
  {
   "title": "Complex Armor Design Table",
   "heading": "Complex Armor Design Table",
-  "line": 6216,
-  "endLine": 6227,
+  "line": 6212,
+  "endLine": 6223,
   "category": "combat",
   "topic": "Armor and weapons",
   "audience": [

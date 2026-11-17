@@ -32,18 +32,18 @@ export const LEARNED_ART_IDS = [...LEARNED_TECHNIQUES.map((t) => t.id), ...LEARN
 const LEARNED_ABILITIES: AbilityDef[] = [
   ...LEARNED_TECHNIQUES.map(
     (t): AbilityDef => ({
-      id: t.id, name: t.name, type: 'Supernatural', restricted: true, specialties: ['a Form', 'charms', 'amulets'], source: src(4402),
+      id: t.id, name: t.name, type: 'Supernatural', restricted: true, specialties: ['a Form', 'charms', 'amulets'], source: src(4404),
       text: `Learned Magician Technique (Hedge Magic): a Difficult Art, bought and raised as an Ability. ${t.text} Casting Score: Technique + Form + Communication + aura; Lab Total: Technique + Form + Intelligence + Artes Liberales + aura. Vis: ${t.vis}. Magic Defense: ${t.defense}.`,
     }),
   ),
   ...LEARNED_FORMS.map(
     (f): AbilityDef => ({
-      id: f.id, name: f.name, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'charms', 'amulets'], source: src(4418),
+      id: f.id, name: f.name, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'charms', 'amulets'], source: src(4420),
       text: `Learned Magician Form (Hedge Magic): opens at 0 and rises as an Art. ${f.text} Vis: ${f.vis}. Magic Defense: ${f.defense}.`,
     }),
   ),
   {
-    id: 'mythic-alchemy', name: 'Mythic Alchemy', type: 'Supernatural', restricted: true, specialties: ['metals', 'reagents', 'vis extraction'], source: src(4180),
+    id: 'mythic-alchemy', name: 'Mythic Alchemy', type: 'Supernatural', restricted: true, specialties: ['metals', 'reagents', 'vis extraction'], source: src(4182),
     text: 'Mythic Alchemy (Hedge Magic): truly transmutes matter, always in a season in an alchemical laboratory. Its score adds to the Lab Total (Intelligence + Philosophiae) for alchemical reagents (Art & Academe), and it opens reagents others cannot make. A learned magician with it extracts vis as a magus does, with the Succurro Magicam Lab Total, and Mythic Alchemy in place of Magic Theory for the pawns a season. It can prepare a craftsman’s raw materials, lowering the Ease Factor of superior goods (City & Guild).',
   },
 ];
@@ -112,12 +112,12 @@ export const LEARNED_INITIATIONS: { art: string; ease: number; script: number; t
  * cure, a poison (the poison's own Ease Factor and the wound it deals) or a potion of physical vigor.
  */
 export const HERBALISM_TABLE: { ease: number; healing: string; poison: string; physical: string; source: { book: string; line: number } }[] = [
-  { ease: 3, healing: 'Mythic Herbalism added to the Stamina roll to resist all disease', poison: 'Ease Factor 6, sleep', physical: '+2 to Fatigue rolls', source: src(4219) },
-  { ease: 6, healing: 'None of the patient’s Wounds grows worse for a day', poison: 'Ease Factor 6, a Light Wound', physical: 'Ignore Wound penalties up to Medium Wounds', source: src(4224) },
-  { ease: 9, healing: 'Mythic Herbalism × 2 to a Recovery roll', poison: 'Ease Factor 9, a Medium Wound', physical: '+3 to Soak', source: src(4229) },
-  { ease: 12, healing: 'Mythic Herbalism × 3 to a Recovery roll', poison: 'Ease Factor 9, a Heavy Wound', physical: 'Ignore one level of Fatigue', source: src(4234) },
-  { ease: 15, healing: 'Mythic Herbalism × 4 to a Recovery roll', poison: 'Ease Factor 9, an Incapacitating Wound', physical: '+5 to Soak', source: src(4239) },
-  { ease: 18, healing: 'Heal the lasting aftereffects of a disease, poison or injury', poison: 'Ease Factor 9, death', physical: 'One physical Characteristic from negative to 0', source: src(4244) },
-  { ease: 21, healing: 'Resolve a major aging crisis', poison: 'Antidote: heal a Medium Wound caused by poison', physical: 'One physical Characteristic to +1', source: src(4249) },
-  { ease: 24, healing: 'Resolve one terminal aging crisis', poison: 'Antidote: heal an Incapacitating Wound caused by poison', physical: 'One physical Characteristic to +2', source: src(4254) },
+  { ease: 3, healing: 'Mythic Herbalism added to the Stamina roll to resist all disease', poison: 'Ease Factor 6, sleep', physical: '+2 to Fatigue rolls', source: src(4221) },
+  { ease: 6, healing: 'None of the patient’s Wounds grows worse for a day', poison: 'Ease Factor 6, a Light Wound', physical: 'Ignore Wound penalties up to Medium Wounds', source: src(4226) },
+  { ease: 9, healing: 'Mythic Herbalism × 2 to a Recovery roll', poison: 'Ease Factor 9, a Medium Wound', physical: '+3 to Soak', source: src(4231) },
+  { ease: 12, healing: 'Mythic Herbalism × 3 to a Recovery roll', poison: 'Ease Factor 9, a Heavy Wound', physical: 'Ignore one level of Fatigue', source: src(4236) },
+  { ease: 15, healing: 'Mythic Herbalism × 4 to a Recovery roll', poison: 'Ease Factor 9, an Incapacitating Wound', physical: '+5 to Soak', source: src(4241) },
+  { ease: 18, healing: 'Heal the lasting aftereffects of a disease, poison or injury', poison: 'Ease Factor 9, death', physical: 'One physical Characteristic from negative to 0', source: src(4246) },
+  { ease: 21, healing: 'Resolve a major aging crisis', poison: 'Antidote: heal a Medium Wound caused by poison', physical: 'One physical Characteristic to +1', source: src(4251) },
+  { ease: 24, healing: 'Resolve one terminal aging crisis', poison: 'Antidote: heal an Incapacitating Wound caused by poison', physical: 'One physical Characteristic to +2', source: src(4256) },
 ];

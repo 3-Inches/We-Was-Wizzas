@@ -57,7 +57,7 @@ export function SpellMasteryCard({ ed }: { ed: CharEditor }) {
       fold="spell-mastery"
       summary={waiting ? `${waiting} spell${waiting > 1 ? 's' : ''} with a level of Mastery to choose an ability for.` : `${mastered.length} spell${mastered.length === 1 ? '' : 's'} mastered.`}
     >
-      <RulesNote book="DE" line={9583} endLine={9662}>
+      <RulesNote book="DE" line={9599} endLine={9678}>
         Mastery is an Ability for one spell: its score adds to the Casting Total and takes a botch die off, and each point brings a special ability of the player&apos;s choosing. Raise it by
         practicing the spell for a season (Plan a season above: Practice, the spell&apos;s Mastery), from a teacher or a book, or with adventure experience put on it here.
       </RulesNote>

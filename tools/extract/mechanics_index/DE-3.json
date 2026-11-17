@@ -2,8 +2,8 @@
  {
   "title": "Aegis of the Hearth",
   "heading": "Aegis of the Hearth",
-  "line": 7871,
-  "endLine": 7873,
+  "line": 7887,
+  "endLine": 7889,
   "category": "covenant",
   "topic": "Aegis of the Hearth",
   "audience": [
@@ -25,8 +25,8 @@
  {
   "title": "Covenant Seasons",
   "heading": "Covenant Seasons",
-  "line": 7875,
-  "endLine": 7877,
+  "line": 7891,
+  "endLine": 7893,
   "category": "covenant",
   "topic": "Covenant seasons",
   "audience": [
@@ -45,8 +45,8 @@
  {
   "title": "Spring Covenants",
   "heading": "Spring",
-  "line": 7879,
-  "endLine": 7891,
+  "line": 7895,
+  "endLine": 7907,
   "category": "covenant",
   "topic": "Covenant seasons",
   "audience": [
@@ -65,8 +65,8 @@
  {
   "title": "Summer Covenants",
   "heading": "Summer",
-  "line": 7903,
-  "endLine": 7909,
+  "line": 7919,
+  "endLine": 7925,
   "category": "covenant",
   "topic": "Covenant seasons",
   "audience": [
@@ -85,8 +85,8 @@
  {
   "title": "Autumn Covenants",
   "heading": "Autumn",
-  "line": 7921,
-  "endLine": 7931,
+  "line": 7937,
+  "endLine": 7947,
   "category": "covenant",
   "topic": "Covenant seasons",
   "audience": [
@@ -107,8 +107,8 @@
  {
   "title": "Winter Covenants",
   "heading": "Winter",
-  "line": 7943,
-  "endLine": 7949,
+  "line": 7959,
+  "endLine": 7965,
   "category": "covenant",
   "topic": "Covenant seasons",
   "audience": [
@@ -127,8 +127,8 @@
  {
   "title": "Covenant Situations",
   "heading": "Covenant Situations",
-  "line": 7961,
-  "endLine": 7965,
+  "line": 7977,
+  "endLine": 7981,
   "category": "covenant",
   "topic": "Covenant situations",
   "audience": [
@@ -149,8 +149,8 @@
  {
   "title": "Autumn Power Situation",
   "heading": "Autumn Power",
-  "line": 7967,
-  "endLine": 7973,
+  "line": 7983,
+  "endLine": 7989,
   "category": "covenant",
   "topic": "Covenant situations",
   "audience": [
@@ -169,8 +169,8 @@
  {
   "title": "Mundane Lord Situation",
   "heading": "Mundane Lord",
-  "line": 7975,
-  "endLine": 7981,
+  "line": 7991,
+  "endLine": 7997,
   "category": "covenant",
   "topic": "Covenant situations",
   "audience": [
@@ -189,8 +189,8 @@
  {
   "title": "Powerful Location Situation",
   "heading": "Powerful Location",
-  "line": 7983,
-  "endLine": 7989,
+  "line": 7999,
+  "endLine": 8005,
   "category": "covenant",
   "topic": "Covenant situations",
   "audience": [
@@ -211,8 +211,8 @@
  {
   "title": "Struggling Situation",
   "heading": "Struggling",
-  "line": 7991,
-  "endLine": 7997,
+  "line": 8007,
+  "endLine": 8013,
   "category": "covenant",
   "topic": "Covenant situations",
   "audience": [
@@ -231,8 +231,8 @@
  {
   "title": "Urban Situation",
   "heading": "Urban",
-  "line": 7999,
-  "endLine": 8005,
+  "line": 8015,
+  "endLine": 8021,
   "category": "covenant",
   "topic": "Covenant situations",
   "audience": [
@@ -253,8 +253,8 @@
  {
   "title": "Winter Ruins Situation",
   "heading": "Winter Ruins",
-  "line": 8007,
-  "endLine": 8013,
+  "line": 8023,
+  "endLine": 8029,
   "category": "covenant",
   "topic": "Covenant situations",
   "audience": [
@@ -273,8 +273,8 @@
  {
   "title": "Base Covenant Resources",
   "heading": "Base Covenant Resources",
-  "line": 8015,
-  "endLine": 8059,
+  "line": 8031,
+  "endLine": 8075,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -295,8 +295,8 @@
  {
   "title": "Weak Covenant Resources",
   "heading": "Weak Covenant",
-  "line": 8021,
-  "endLine": 8031,
+  "line": 8037,
+  "endLine": 8047,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -316,8 +316,8 @@
  {
   "title": "Medium Covenant Resources",
   "heading": "Medium Covenant",
-  "line": 8033,
-  "endLine": 8045,
+  "line": 8049,
+  "endLine": 8061,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -337,8 +337,8 @@
  {
   "title": "Powerful Covenant Resources",
   "heading": "Powerful Covenant",
-  "line": 8047,
-  "endLine": 8059,
+  "line": 8063,
+  "endLine": 8075,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -357,8 +357,8 @@
  {
   "title": "Customized Covenant Creation",
   "heading": "Customized Covenant Creation",
-  "line": 8061,
-  "endLine": 8063,
+  "line": 8077,
+  "endLine": 8079,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -377,8 +377,8 @@
  {
   "title": "Covenant Baseline",
   "heading": "Baseline",
-  "line": 8065,
-  "endLine": 8069,
+  "line": 8081,
+  "endLine": 8085,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -398,8 +398,8 @@
  {
   "title": "Accessible Power Level",
   "heading": "Accessible Power Level",
-  "line": 8071,
-  "endLine": 8086,
+  "line": 8087,
+  "endLine": 8102,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -421,8 +421,8 @@
  {
   "title": "Library (Covenant Creation)",
   "heading": "Library",
-  "line": 8092,
-  "endLine": 8116,
+  "line": 8108,
+  "endLine": 8132,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -445,8 +445,8 @@
  {
   "title": "Lab Texts (Covenant Creation)",
   "heading": "Lab Texts",
-  "line": 8118,
-  "endLine": 8124,
+  "line": 8134,
+  "endLine": 8140,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -465,8 +465,8 @@
  {
   "title": "Casting Tablets (Covenant Creation)",
   "heading": "Casting Tablets",
-  "line": 8126,
-  "endLine": 8132,
+  "line": 8142,
+  "endLine": 8148,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -487,8 +487,8 @@
  {
   "title": "Vis (Covenant Creation)",
   "heading": "Vis",
-  "line": 8134,
-  "endLine": 8144,
+  "line": 8150,
+  "endLine": 8160,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -511,8 +511,8 @@
  {
   "title": "Enchanted Items (Covenant Creation)",
   "heading": "Enchanted Items",
-  "line": 8146,
-  "endLine": 8150,
+  "line": 8162,
+  "endLine": 8166,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -533,8 +533,8 @@
  {
   "title": "Specialists (Covenant Creation)",
   "heading": "Specialists",
-  "line": 8152,
-  "endLine": 8166,
+  "line": 8168,
+  "endLine": 8182,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -556,8 +556,8 @@
  {
   "title": "Covenant Hooks",
   "heading": "Hooks",
-  "line": 8168,
-  "endLine": 8172,
+  "line": 8184,
+  "endLine": 8188,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -578,8 +578,8 @@
  {
   "title": "Minor Hooks",
   "heading": "Minor Hooks",
-  "line": 8174,
-  "endLine": 8202,
+  "line": 8190,
+  "endLine": 8218,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -598,8 +598,8 @@
  {
   "title": "Major Hooks",
   "heading": "Major Hooks",
-  "line": 8204,
-  "endLine": 8232,
+  "line": 8220,
+  "endLine": 8248,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -618,8 +618,8 @@
  {
   "title": "Covenant Boons",
   "heading": "Boons",
-  "line": 8234,
-  "endLine": 8236,
+  "line": 8250,
+  "endLine": 8252,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -638,8 +638,8 @@
  {
   "title": "Minor Boons",
   "heading": "Minor Boons",
-  "line": 8238,
-  "endLine": 8270,
+  "line": 8254,
+  "endLine": 8286,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -661,8 +661,8 @@
  {
   "title": "Major Boons",
   "heading": "Major Boons",
-  "line": 8272,
-  "endLine": 8296,
+  "line": 8288,
+  "endLine": 8312,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -683,8 +683,8 @@
  {
   "title": "Covenant Loyalty",
   "heading": "Covenant Loyalty",
-  "line": 8298,
-  "endLine": 8302,
+  "line": 8314,
+  "endLine": 8318,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -705,8 +705,8 @@
  {
   "title": "Sample Prevailing Loyalty Scores",
   "heading": "Sample Prevailing Loyalty Scores",
-  "line": 8304,
-  "endLine": 8314,
+  "line": 8320,
+  "endLine": 8330,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -723,8 +723,8 @@
  {
   "title": "Calculating Prevailing Loyalty",
   "heading": "Calculating Prevailing Loyalty",
-  "line": 8316,
-  "endLine": 8329,
+  "line": 8332,
+  "endLine": 8345,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -745,8 +745,8 @@
  {
   "title": "Modifying Loyalty Due to Covenant Situation",
   "heading": "Modifying Loyalty Due to Covenant Situation",
-  "line": 8330,
-  "endLine": 8333,
+  "line": 8346,
+  "endLine": 8349,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -765,8 +765,8 @@
  {
   "title": "Situational Modifiers to Loyalty",
   "heading": "Situational Modifiers to Loyalty",
-  "line": 8334,
-  "endLine": 8365,
+  "line": 8350,
+  "endLine": 8381,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -786,8 +786,8 @@
  {
   "title": "Familiarity",
   "heading": "Familiarity",
-  "line": 8366,
-  "endLine": 8369,
+  "line": 8382,
+  "endLine": 8385,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -806,8 +806,8 @@
  {
   "title": "Changing Loyalty Due to Actions & Events",
   "heading": "Changing Loyalty Due to Actions & Events",
-  "line": 8370,
-  "endLine": 8379,
+  "line": 8386,
+  "endLine": 8395,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -826,8 +826,8 @@
  {
   "title": "Example Loyalty Point Penalties",
   "heading": "Example Loyalty Point Penalties",
-  "line": 8380,
-  "endLine": 8389,
+  "line": 8396,
+  "endLine": 8405,
   "category": "covenant",
   "topic": "Covenant loyalty",
   "audience": [
@@ -844,8 +844,8 @@
  {
   "title": "Covenant Finances",
   "heading": "Covenant Finances",
-  "line": 8391,
-  "endLine": 8393,
+  "line": 8407,
+  "endLine": 8409,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -867,8 +867,8 @@
  {
   "title": "The Mythic Pound",
   "heading": "The Mythic Pound",
-  "line": 8395,
-  "endLine": 8399,
+  "line": 8411,
+  "endLine": 8415,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -888,8 +888,8 @@
  {
   "title": "Covenant Income",
   "heading": "Income",
-  "line": 8401,
-  "endLine": 8403,
+  "line": 8417,
+  "endLine": 8419,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -908,8 +908,8 @@
  {
   "title": "Source of Income Categories",
   "heading": "Source of Income Categories",
-  "line": 8405,
-  "endLine": 8413,
+  "line": 8421,
+  "endLine": 8429,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -926,8 +926,8 @@
  {
   "title": "Baseline Income",
   "heading": "Baseline",
-  "line": 8415,
-  "endLine": 8419,
+  "line": 8431,
+  "endLine": 8435,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -946,8 +946,8 @@
  {
   "title": "Sources of Income",
   "heading": "Sources of Income",
-  "line": 8421,
-  "endLine": 8451,
+  "line": 8437,
+  "endLine": 8467,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -968,8 +968,8 @@
  {
   "title": "Covenant Expenditure",
   "heading": "Expenditure",
-  "line": 8453,
-  "endLine": 8459,
+  "line": 8469,
+  "endLine": 8475,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -991,8 +991,8 @@
  {
   "title": "Covenfolk Categories",
   "heading": "Covenfolk Categories",
-  "line": 8461,
-  "endLine": 8485,
+  "line": 8477,
+  "endLine": 8501,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1012,8 +1012,8 @@
  {
   "title": "Points for Inhabitants of a Typical Covenant",
   "heading": "Points for Inhabitants of a Typical Covenant",
-  "line": 8487,
-  "endLine": 8497,
+  "line": 8503,
+  "endLine": 8513,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1032,8 +1032,8 @@
  {
   "title": "Points of Laboratories",
   "heading": "Points of Laboratories",
-  "line": 8499,
-  "endLine": 8521,
+  "line": 8515,
+  "endLine": 8537,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1056,8 +1056,8 @@
  {
   "title": "Points of Weapons and Armor",
   "heading": "Points of Weapons and Armor",
-  "line": 8523,
-  "endLine": 8533,
+  "line": 8539,
+  "endLine": 8549,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1076,8 +1076,8 @@
  {
   "title": "Yearly Expenditure Categories",
   "heading": "Yearly Expenditure Categories",
-  "line": 8535,
-  "endLine": 8537,
+  "line": 8551,
+  "endLine": 8553,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1096,8 +1096,8 @@
  {
   "title": "Buildings Expenditure",
   "heading": "Buildings",
-  "line": 8539,
-  "endLine": 8545,
+  "line": 8555,
+  "endLine": 8561,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1116,8 +1116,8 @@
  {
   "title": "Consumables Expenditure",
   "heading": "Consumables",
-  "line": 8547,
-  "endLine": 8551,
+  "line": 8563,
+  "endLine": 8567,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1136,8 +1136,8 @@
  {
   "title": "Inflation",
   "heading": "Inflation",
-  "line": 8553,
-  "endLine": 8557,
+  "line": 8569,
+  "endLine": 8573,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1156,8 +1156,8 @@
  {
   "title": "Laboratories Expenditure",
   "heading": "Laboratories",
-  "line": 8559,
-  "endLine": 8563,
+  "line": 8575,
+  "endLine": 8579,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1178,8 +1178,8 @@
  {
   "title": "Provisions Expenditure",
   "heading": "Provisions",
-  "line": 8565,
-  "endLine": 8569,
+  "line": 8581,
+  "endLine": 8585,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1198,8 +1198,8 @@
  {
   "title": "Tithes",
   "heading": "Tithes",
-  "line": 8571,
-  "endLine": 8573,
+  "line": 8587,
+  "endLine": 8589,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1218,8 +1218,8 @@
  {
   "title": "Wages",
   "heading": "Wages",
-  "line": 8575,
-  "endLine": 8583,
+  "line": 8591,
+  "endLine": 8599,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1238,8 +1238,8 @@
  {
   "title": "Weapons and Armor Expenditure",
   "heading": "Weapons and Armor",
-  "line": 8585,
-  "endLine": 8589,
+  "line": 8601,
+  "endLine": 8605,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1258,8 +1258,8 @@
  {
   "title": "Writing Materials Expenditure",
   "heading": "Writing Materials",
-  "line": 8591,
-  "endLine": 8595,
+  "line": 8607,
+  "endLine": 8611,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1280,8 +1280,8 @@
  {
   "title": "Cost Saving",
   "heading": "Cost Saving",
-  "line": 8597,
-  "endLine": 8599,
+  "line": 8613,
+  "endLine": 8615,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1300,8 +1300,8 @@
  {
   "title": "Cost Saving by Laborers",
   "heading": "Laborers",
-  "line": 8601,
-  "endLine": 8603,
+  "line": 8617,
+  "endLine": 8619,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1320,8 +1320,8 @@
  {
   "title": "Cost Saving by Craftsmen",
   "heading": "Craftsmen",
-  "line": 8605,
-  "endLine": 8607,
+  "line": 8621,
+  "endLine": 8623,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1341,8 +1341,8 @@
  {
   "title": "Cost Saving Limits by Craft",
   "heading": "Cost Saving Limits by Craft",
-  "line": 8609,
-  "endLine": 8618,
+  "line": 8625,
+  "endLine": 8634,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1361,8 +1361,8 @@
  {
   "title": "Cost Saving by Magic",
   "heading": "Magic",
-  "line": 8620,
-  "endLine": 8622,
+  "line": 8636,
+  "endLine": 8638,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1382,8 +1382,8 @@
  {
   "title": "Emergency Savings",
   "heading": "Emergency Savings",
-  "line": 8624,
-  "endLine": 8630,
+  "line": 8640,
+  "endLine": 8646,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1402,8 +1402,8 @@
  {
   "title": "Yearly Expenditure Summary",
   "heading": "Yearly Expenditure Summary",
-  "line": 8632,
-  "endLine": 8648,
+  "line": 8648,
+  "endLine": 8664,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1423,8 +1423,8 @@
  {
   "title": "Cost Saving Summary",
   "heading": "Cost Saving",
-  "line": 8650,
-  "endLine": 8664,
+  "line": 8666,
+  "endLine": 8680,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1443,8 +1443,8 @@
  {
   "title": "Expenditure - A Simple Example",
   "heading": "Expenditure - A Simple Example",
-  "line": 8666,
-  "endLine": 8704,
+  "line": 8682,
+  "endLine": 8720,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [
@@ -1463,8 +1463,8 @@
  {
   "title": "The Organization of Covenfolk",
   "heading": "The Organization of Covenfolk",
-  "line": 8706,
-  "endLine": 8708,
+  "line": 8722,
+  "endLine": 8724,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1485,8 +1485,8 @@
  {
   "title": "Hierarchy",
   "heading": "Hierarchy",
-  "line": 8710,
-  "endLine": 8712,
+  "line": 8726,
+  "endLine": 8728,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1505,8 +1505,8 @@
  {
   "title": "A Noble Household",
   "heading": "A Noble Household",
-  "line": 8714,
-  "endLine": 8726,
+  "line": 8730,
+  "endLine": 8742,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1527,8 +1527,8 @@
  {
   "title": "Military Hierarchy",
   "heading": "Military Hierarchy",
-  "line": 8728,
-  "endLine": 8734,
+  "line": 8744,
+  "endLine": 8750,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1547,8 +1547,8 @@
  {
   "title": "Nations",
   "heading": "Nations",
-  "line": 8736,
-  "endLine": 8746,
+  "line": 8752,
+  "endLine": 8762,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1569,8 +1569,8 @@
  {
   "title": "Guilds",
   "heading": "Guilds",
-  "line": 8748,
-  "endLine": 8754,
+  "line": 8764,
+  "endLine": 8770,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1589,8 +1589,8 @@
  {
   "title": "Professional Guilds",
   "heading": "Professional Guilds",
-  "line": 8756,
-  "endLine": 8762,
+  "line": 8772,
+  "endLine": 8778,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1611,8 +1611,8 @@
  {
   "title": "Monastery",
   "heading": "Monastery",
-  "line": 8764,
-  "endLine": 8768,
+  "line": 8780,
+  "endLine": 8784,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1633,8 +1633,8 @@
  {
   "title": "No Formal Structure",
   "heading": "No Formal Structure",
-  "line": 8770,
-  "endLine": 8774,
+  "line": 8786,
+  "endLine": 8790,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1653,8 +1653,8 @@
  {
   "title": "Rivalries and Tension",
   "heading": "Rivalries and Tension",
-  "line": 8776,
-  "endLine": 8782,
+  "line": 8792,
+  "endLine": 8798,
   "category": "covenant",
   "topic": "Covenfolk organization",
   "audience": [
@@ -1675,8 +1675,8 @@
  {
   "title": "The Covenant in Play",
   "heading": "The Covenant in Play",
-  "line": 8784,
-  "endLine": 8798,
+  "line": 8800,
+  "endLine": 8814,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -1696,8 +1696,8 @@
  {
   "title": "The Gift",
   "heading": "The Gift",
-  "line": 8812,
-  "endLine": 8838,
+  "line": 8828,
+  "endLine": 8854,
   "category": "social",
   "topic": "The Gift",
   "audience": [
@@ -1711,7 +1711,7 @@
   "summary": "Explains the social penalty of The Gift on mundane people and animals, how Gentle and Blatant Gifts differ, how familiarity and Parma Magica change it, and its effect on supernatural creatures.",
   "quotes": [
    "she suffers a -3 penalty to any die rolls she must make",
-   "she suffers a \u20136 penalty to any die rolls she must make",
+   "she suffers a –6 penalty to any die rolls she must make",
    "The Parma Magica blocks these effects of The Gift entirely."
   ],
   "related": [
@@ -1723,8 +1723,8 @@
  {
   "title": "The Gift: First Impressions",
   "heading": "First Impressions",
-  "line": 8840,
-  "endLine": 8876,
+  "line": 8856,
+  "endLine": 8892,
   "category": "social",
   "topic": "The Gift",
   "audience": [
@@ -1742,8 +1742,8 @@
  {
   "title": "The Gift: Established Relationships",
   "heading": "Established Relationships",
-  "line": 8878,
-  "endLine": 8900,
+  "line": 8894,
+  "endLine": 8916,
   "category": "social",
   "topic": "The Gift",
   "audience": [
@@ -1759,8 +1759,8 @@
  {
   "title": "The Hermetic Arts",
   "heading": "The Hermetic Arts",
-  "line": 8902,
-  "endLine": 8912,
+  "line": 8918,
+  "endLine": 8928,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1781,8 +1781,8 @@
  {
   "title": "Creo",
   "heading": "Creo (Cr) \"I Create\"",
-  "line": 8916,
-  "endLine": 8932,
+  "line": 8932,
+  "endLine": 8948,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1802,8 +1802,8 @@
  {
   "title": "Intellego",
   "heading": "Intellego (In) \"I Perceive\"",
-  "line": 8934,
-  "endLine": 8938,
+  "line": 8950,
+  "endLine": 8954,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1821,8 +1821,8 @@
  {
   "title": "Muto",
   "heading": "Muto (Mu) \"I Transform\"",
-  "line": 8940,
-  "endLine": 8948,
+  "line": 8956,
+  "endLine": 8964,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1840,8 +1840,8 @@
  {
   "title": "Perdo",
   "heading": "Perdo (Pe) \"I Destroy\"",
-  "line": 8950,
-  "endLine": 8958,
+  "line": 8966,
+  "endLine": 8974,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1862,8 +1862,8 @@
  {
   "title": "Rego",
   "heading": "Rego (Re) \"I Control\"",
-  "line": 8960,
-  "endLine": 8966,
+  "line": 8976,
+  "endLine": 8982,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1883,8 +1883,8 @@
  {
   "title": "Animal",
   "heading": "Animal (An) \"animal\"",
-  "line": 8970,
-  "endLine": 8976,
+  "line": 8986,
+  "endLine": 8992,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1903,8 +1903,8 @@
  {
   "title": "Aquam",
   "heading": "Aquam (Aq) \"water\"",
-  "line": 8978,
-  "endLine": 8984,
+  "line": 8994,
+  "endLine": 9000,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1922,8 +1922,8 @@
  {
   "title": "Auram",
   "heading": "Auram (Au) \"air\"",
-  "line": 8986,
-  "endLine": 8992,
+  "line": 9002,
+  "endLine": 9008,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1941,8 +1941,8 @@
  {
   "title": "Corpus",
   "heading": "Corpus (Co) \"body\"",
-  "line": 8994,
-  "endLine": 9000,
+  "line": 9010,
+  "endLine": 9016,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1960,8 +1960,8 @@
  {
   "title": "Herbam",
   "heading": "Herbam (He) \"plant\"",
-  "line": 9002,
-  "endLine": 9008,
+  "line": 9018,
+  "endLine": 9024,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1979,8 +1979,8 @@
  {
   "title": "Ignem",
   "heading": "Ignem (Ig) \"fire\"",
-  "line": 9010,
-  "endLine": 9014,
+  "line": 9026,
+  "endLine": 9030,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -1998,8 +1998,8 @@
  {
   "title": "Imaginem",
   "heading": "Imaginem (Im) \"image\"",
-  "line": 9016,
-  "endLine": 9028,
+  "line": 9032,
+  "endLine": 9044,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -2019,8 +2019,8 @@
  {
   "title": "Mentem",
   "heading": "Mentem (Me) \"mind\"",
-  "line": 9030,
-  "endLine": 9036,
+  "line": 9046,
+  "endLine": 9052,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -2038,8 +2038,8 @@
  {
   "title": "Terram",
   "heading": "Terram (Te) \"earth\"",
-  "line": 9038,
-  "endLine": 9044,
+  "line": 9054,
+  "endLine": 9060,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -2057,8 +2057,8 @@
  {
   "title": "Vim",
   "heading": "Vim (Vi) \"power\"",
-  "line": 9046,
-  "endLine": 9052,
+  "line": 9062,
+  "endLine": 9068,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -2078,8 +2078,8 @@
  {
   "title": "The Elemental Forms",
   "heading": "The Elemental Forms",
-  "line": 9054,
-  "endLine": 9058,
+  "line": 9070,
+  "endLine": 9074,
   "category": "magic",
   "topic": "Hermetic Arts",
   "audience": [
@@ -2099,8 +2099,8 @@
  {
   "title": "Limits of Magic",
   "heading": "Limits of Magic",
-  "line": 9060,
-  "endLine": 9064,
+  "line": 9076,
+  "endLine": 9080,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2119,8 +2119,8 @@
  {
   "title": "The Limit of the Divine",
   "heading": "The Limit of the Divine",
-  "line": 9066,
-  "endLine": 9070,
+  "line": 9082,
+  "endLine": 9086,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2139,8 +2139,8 @@
  {
   "title": "The Limit of Essential Nature",
   "heading": "The Limit of Essential Nature",
-  "line": 9072,
-  "endLine": 9076,
+  "line": 9088,
+  "endLine": 9092,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2159,8 +2159,8 @@
  {
   "title": "The Lesser Limits",
   "heading": "The Lesser Limits",
-  "line": 9078,
-  "endLine": 9080,
+  "line": 9094,
+  "endLine": 9096,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2179,8 +2179,8 @@
  {
   "title": "The Limit of Aging",
   "heading": "The Limit of Aging",
-  "line": 9082,
-  "endLine": 9084,
+  "line": 9098,
+  "endLine": 9100,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2199,8 +2199,8 @@
  {
   "title": "The Limit of Arcane Connections",
   "heading": "The Limit of Arcane Connections",
-  "line": 9086,
-  "endLine": 9088,
+  "line": 9102,
+  "endLine": 9104,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2219,8 +2219,8 @@
  {
   "title": "The Limit of Creation",
   "heading": "The Limit of Creation",
-  "line": 9090,
-  "endLine": 9092,
+  "line": 9106,
+  "endLine": 9108,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2239,8 +2239,8 @@
  {
   "title": "The Limit of Energy",
   "heading": "The Limit of Energy",
-  "line": 9094,
-  "endLine": 9096,
+  "line": 9110,
+  "endLine": 9112,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2261,8 +2261,8 @@
  {
   "title": "The Limit of Experience",
   "heading": "The Limit of Experience",
-  "line": 9098,
-  "endLine": 9100,
+  "line": 9114,
+  "endLine": 9116,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2283,8 +2283,8 @@
  {
   "title": "The Limit of the Infernal",
   "heading": "The Limit of the Infernal",
-  "line": 9102,
-  "endLine": 9106,
+  "line": 9118,
+  "endLine": 9122,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2303,8 +2303,8 @@
  {
   "title": "The Limit of the Lunar Sphere",
   "heading": "The Limit of the Lunar Sphere",
-  "line": 9108,
-  "endLine": 9110,
+  "line": 9124,
+  "endLine": 9126,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2323,8 +2323,8 @@
  {
   "title": "The Limit of the Soul",
   "heading": "The Limit of the Soul",
-  "line": 9112,
-  "endLine": 9116,
+  "line": 9128,
+  "endLine": 9132,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2343,8 +2343,8 @@
  {
   "title": "The Limit of Time",
   "heading": "The Limit of Time",
-  "line": 9118,
-  "endLine": 9120,
+  "line": 9134,
+  "endLine": 9136,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2363,8 +2363,8 @@
  {
   "title": "The Limit of True Feeling",
   "heading": "The Limit of True Feeling",
-  "line": 9122,
-  "endLine": 9124,
+  "line": 9138,
+  "endLine": 9140,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2383,8 +2383,8 @@
  {
   "title": "The Limit of Vis",
   "heading": "The Limit of Vis",
-  "line": 9126,
-  "endLine": 9128,
+  "line": 9142,
+  "endLine": 9144,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2403,8 +2403,8 @@
  {
   "title": "The Limit of Warping",
   "heading": "The Limit of Warping",
-  "line": 9130,
-  "endLine": 9136,
+  "line": 9146,
+  "endLine": 9152,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2425,8 +2425,8 @@
  {
   "title": "The Limit of Magic Resistance",
   "heading": "The Limit of Magic Resistance",
-  "line": 9138,
-  "endLine": 9142,
+  "line": 9154,
+  "endLine": 9158,
   "category": "magic",
   "topic": "Limits of Magic",
   "audience": [
@@ -2449,8 +2449,8 @@
  {
   "title": "Raw Vis",
   "heading": "Raw Vis",
-  "line": 9144,
-  "endLine": 9152,
+  "line": 9160,
+  "endLine": 9168,
   "category": "magic",
   "topic": "Vis",
   "audience": [
@@ -2470,8 +2470,8 @@
  {
   "title": "Casting Spells",
   "heading": "Casting Spells",
-  "line": 9154,
-  "endLine": 9162,
+  "line": 9170,
+  "endLine": 9178,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2490,8 +2490,8 @@
  {
   "title": "Spell Basics",
   "heading": "Spell Basics",
-  "line": 9164,
-  "endLine": 9166,
+  "line": 9180,
+  "endLine": 9182,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2511,8 +2511,8 @@
  {
   "title": "Formulaic Magic",
   "heading": "Formulaic Magic",
-  "line": 9168,
-  "endLine": 9184,
+  "line": 9184,
+  "endLine": 9200,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2533,8 +2533,8 @@
  {
   "title": "Ritual Magic",
   "heading": "Ritual Magic",
-  "line": 9186,
-  "endLine": 9206,
+  "line": 9202,
+  "endLine": 9222,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2555,8 +2555,8 @@
  {
   "title": "Spontaneous Magic",
   "heading": "Spontaneous Magic",
-  "line": 9208,
-  "endLine": 9220,
+  "line": 9224,
+  "endLine": 9236,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2575,8 +2575,8 @@
  {
   "title": "Penetration Total",
   "heading": "Penetration Total",
-  "line": 9222,
-  "endLine": 9236,
+  "line": 9238,
+  "endLine": 9252,
   "category": "magic",
   "topic": "Penetration",
   "audience": [
@@ -2598,8 +2598,8 @@
  {
   "title": "Concentration",
   "heading": "Concentration",
-  "line": 9238,
-  "endLine": 9271,
+  "line": 9254,
+  "endLine": 9287,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2618,8 +2618,8 @@
  {
   "title": "Using Raw Vis",
   "heading": "Using Raw Vis",
-  "line": 9281,
-  "endLine": 9297,
+  "line": 9297,
+  "endLine": 9313,
   "category": "magic",
   "topic": "Vis",
   "audience": [
@@ -2639,8 +2639,8 @@
  {
   "title": "Words and Gestures",
   "heading": "Words and Gestures",
-  "line": 9303,
-  "endLine": 9318,
+  "line": 9319,
+  "endLine": 9334,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2651,15 +2651,15 @@
   "requires": "",
   "summary": "Option to cast more subtly or more loudly, trading a penalty or bonus to the Casting Score for voice and gesture levels, which also change the range of Voice-range spells.",
   "quotes": [
-   "using exaggerated gestures but making no noise gives a total penalty of \u20139 to the casting score."
+   "using exaggerated gestures but making no noise gives a total penalty of –9 to the casting score."
   ],
   "related": []
  },
  {
   "title": "Fast Casting",
   "heading": "Fast Casting",
-  "line": 9324,
-  "endLine": 9352,
+  "line": 9340,
+  "endLine": 9368,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2679,8 +2679,8 @@
  {
   "title": "Ceremonial Casting",
   "heading": "Ceremonial Casting",
-  "line": 9354,
-  "endLine": 9382,
+  "line": 9370,
+  "endLine": 9398,
   "category": "magic",
   "topic": "Spellcasting",
   "audience": [
@@ -2699,8 +2699,8 @@
  {
   "title": "Arcane Connections",
   "heading": "Arcane Connections",
-  "line": 9384,
-  "endLine": 9400,
+  "line": 9400,
+  "endLine": 9416,
   "category": "magic",
   "topic": "Arcane Connections",
   "audience": [
@@ -2720,8 +2720,8 @@
  {
   "title": "Penetration",
   "heading": "Penetration",
-  "line": 9402,
-  "endLine": 9417,
+  "line": 9418,
+  "endLine": 9433,
   "category": "magic",
   "topic": "Penetration",
   "audience": [
@@ -2739,8 +2739,8 @@
  {
   "title": "Forceless Casting",
   "heading": "Forceless Casting",
-  "line": 9419,
-  "endLine": 9423,
+  "line": 9435,
+  "endLine": 9439,
   "category": "magic",
   "topic": "Penetration",
   "audience": [
@@ -2758,8 +2758,8 @@
  {
   "title": "Sympathetic Connections",
   "heading": "Sympathetic Connections",
-  "line": 9425,
-  "endLine": 9443,
+  "line": 9441,
+  "endLine": 9459,
   "category": "magic",
   "topic": "Penetration",
   "audience": [
@@ -2778,8 +2778,8 @@
  {
   "title": "Penetration Example",
   "heading": "Penetration Example",
-  "line": 9445,
-  "endLine": 9453,
+  "line": 9461,
+  "endLine": 9469,
   "category": "magic",
   "topic": "Penetration",
   "audience": [
@@ -2797,8 +2797,8 @@
  {
   "title": "Magic Resistance",
   "heading": "Magic Resistance",
-  "line": 9455,
-  "endLine": 9461,
+  "line": 9471,
+  "endLine": 9477,
   "category": "magic",
   "topic": "Magic Resistance",
   "audience": [
@@ -2821,8 +2821,8 @@
  {
   "title": "Parma Magica",
   "heading": "Parma Magica",
-  "line": 9463,
-  "endLine": 9473,
+  "line": 9479,
+  "endLine": 9489,
   "category": "magic",
   "topic": "Magic Resistance",
   "audience": [
@@ -2841,8 +2841,8 @@
  {
   "title": "Awareness of Attack",
   "heading": "Awareness of Attack",
-  "line": 9475,
-  "endLine": 9477,
+  "line": 9491,
+  "endLine": 9493,
   "category": "magic",
   "topic": "Magic Resistance",
   "audience": [
@@ -2861,8 +2861,8 @@
  {
   "title": "The Functioning of Magic Resistance",
   "heading": "The Functioning of Magic Resistance",
-  "line": 9479,
-  "endLine": 9531,
+  "line": 9495,
+  "endLine": 9547,
   "category": "magic",
   "topic": "Magic Resistance",
   "audience": [
@@ -2884,8 +2884,8 @@
  {
   "title": "Aiming",
   "heading": "Aiming",
-  "line": 9533,
-  "endLine": 9543,
+  "line": 9549,
+  "endLine": 9559,
   "category": "magic",
   "topic": "Magic Resistance",
   "audience": [
@@ -2907,8 +2907,8 @@
  {
   "title": "Bypassing Magic Resistance",
   "heading": "Bypassing Magic Resistance",
-  "line": 9545,
-  "endLine": 9553,
+  "line": 9561,
+  "endLine": 9569,
   "category": "magic",
   "topic": "Magic Resistance",
   "audience": [
@@ -2926,8 +2926,8 @@
  {
   "title": "Projectiles and Rego Magic",
   "heading": "Projectiles and Rego Magic",
-  "line": 9555,
-  "endLine": 9565,
+  "line": 9571,
+  "endLine": 9581,
   "category": "magic",
   "topic": "Magic Resistance",
   "audience": [
@@ -2950,8 +2950,8 @@
  {
   "title": "Sigils",
   "heading": "Sigils",
-  "line": 9567,
-  "endLine": 9581,
+  "line": 9583,
+  "endLine": 9597,
   "category": "magic",
   "topic": "Sigils",
   "audience": [
@@ -2969,8 +2969,8 @@
  {
   "title": "Spell Mastery",
   "heading": "Spell Mastery",
-  "line": 9583,
-  "endLine": 9591,
+  "line": 9599,
+  "endLine": 9607,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -2991,8 +2991,8 @@
  {
   "title": "Mastered Spell Special Abilities",
   "heading": "Mastered Spell Special Abilities",
-  "line": 9593,
-  "endLine": 9595,
+  "line": 9609,
+  "endLine": 9611,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3010,8 +3010,8 @@
  {
   "title": "Mastery: Adaptive Casting",
   "heading": "Adaptive Casting",
-  "line": 9597,
-  "endLine": 9599,
+  "line": 9613,
+  "endLine": 9615,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3031,8 +3031,8 @@
  {
   "title": "Mastery: Ceremonial Casting",
   "heading": "Ceremonial Casting",
-  "line": 9601,
-  "endLine": 9605,
+  "line": 9617,
+  "endLine": 9621,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3053,8 +3053,8 @@
  {
   "title": "Mastery: Fast Casting",
   "heading": "Fast Casting",
-  "line": 9607,
-  "endLine": 9609,
+  "line": 9623,
+  "endLine": 9625,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3074,8 +3074,8 @@
  {
   "title": "Mastery: Imperturbable Casting",
   "heading": "Imperturbable Casting",
-  "line": 9611,
-  "endLine": 9613,
+  "line": 9627,
+  "endLine": 9629,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3095,8 +3095,8 @@
  {
   "title": "Mastery: Magic Resistance",
   "heading": "Magic Resistance",
-  "line": 9615,
-  "endLine": 9617,
+  "line": 9631,
+  "endLine": 9633,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3116,8 +3116,8 @@
  {
   "title": "Mastery: Multiple Casting",
   "heading": "Multiple Casting",
-  "line": 9619,
-  "endLine": 9629,
+  "line": 9635,
+  "endLine": 9645,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3136,8 +3136,8 @@
  {
   "title": "Mastery: Obfuscated Casting",
   "heading": "Obfuscated Casting",
-  "line": 9631,
-  "endLine": 9633,
+  "line": 9647,
+  "endLine": 9649,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3157,8 +3157,8 @@
  {
   "title": "Mastery: Penetration",
   "heading": "Penetration",
-  "line": 9635,
-  "endLine": 9637,
+  "line": 9651,
+  "endLine": 9653,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3178,8 +3178,8 @@
  {
   "title": "Mastery: Precise Casting",
   "heading": "Precise Casting",
-  "line": 9639,
-  "endLine": 9641,
+  "line": 9655,
+  "endLine": 9657,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3197,8 +3197,8 @@
  {
   "title": "Mastery: Quick Casting",
   "heading": "Quick Casting",
-  "line": 9643,
-  "endLine": 9645,
+  "line": 9659,
+  "endLine": 9661,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3218,8 +3218,8 @@
  {
   "title": "Mastery: Quiet Casting",
   "heading": "Quiet Casting",
-  "line": 9647,
-  "endLine": 9649,
+  "line": 9663,
+  "endLine": 9665,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3237,8 +3237,8 @@
  {
   "title": "Mastery: Rebuttal",
   "heading": "Rebuttal",
-  "line": 9651,
-  "endLine": 9653,
+  "line": 9667,
+  "endLine": 9669,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3256,8 +3256,8 @@
  {
   "title": "Mastery: Still Casting",
   "heading": "Still Casting",
-  "line": 9655,
-  "endLine": 9657,
+  "line": 9671,
+  "endLine": 9673,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3275,8 +3275,8 @@
  {
   "title": "Mastery: Unravelling",
   "heading": "Unravelling",
-  "line": 9659,
-  "endLine": 9661,
+  "line": 9675,
+  "endLine": 9677,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3294,8 +3294,8 @@
  {
   "title": "Books on Spell Mastery",
   "heading": "Books on Spell Mastery",
-  "line": 9663,
-  "endLine": 9667,
+  "line": 9679,
+  "endLine": 9683,
   "category": "magic",
   "topic": "Spell Mastery",
   "audience": [
@@ -3315,8 +3315,8 @@
  {
   "title": "Botches",
   "heading": "Botches",
-  "line": 9673,
-  "endLine": 9679,
+  "line": 9689,
+  "endLine": 9695,
   "category": "hazards",
   "topic": "Botches",
   "audience": [
@@ -3337,8 +3337,8 @@
  {
   "title": "Sources of Botch Dice",
   "heading": "Sources of Botch Dice",
-  "line": 9681,
-  "endLine": 9697,
+  "line": 9697,
+  "endLine": 9713,
   "category": "hazards",
   "topic": "Botches",
   "audience": [
@@ -3359,8 +3359,8 @@
  {
   "title": "Botch Suggestions",
   "heading": "Botch Suggestions",
-  "line": 9699,
-  "endLine": 9727,
+  "line": 9715,
+  "endLine": 9743,
   "category": "hazards",
   "topic": "Botches",
   "audience": [
@@ -3378,8 +3378,8 @@
  {
   "title": "Warping (Hermetic Dangers)",
   "heading": "Warping",
-  "line": 9729,
-  "endLine": 9731,
+  "line": 9745,
+  "endLine": 9747,
   "category": "hazards",
   "topic": "Warping",
   "audience": [
@@ -3401,8 +3401,8 @@
  {
   "title": "Wizard's Twilight",
   "heading": "Wizard's Twilight",
-  "line": 9733,
-  "endLine": 9735,
+  "line": 9749,
+  "endLine": 9751,
   "category": "hazards",
   "topic": "Twilight",
   "audience": [
@@ -3423,8 +3423,8 @@
  {
   "title": "Entering Twilight",
   "heading": "Entering Twilight",
-  "line": 9737,
-  "endLine": 9745,
+  "line": 9753,
+  "endLine": 9761,
   "category": "hazards",
   "topic": "Twilight",
   "audience": [
@@ -3444,8 +3444,8 @@
  {
   "title": "Comprehending Twilight",
   "heading": "Comprehending Twilight",
-  "line": 9747,
-  "endLine": 9782,
+  "line": 9763,
+  "endLine": 9798,
   "category": "hazards",
   "topic": "Twilight",
   "audience": [
@@ -3466,8 +3466,8 @@
  {
   "title": "During Twilight",
   "heading": "During Twilight",
-  "line": 9784,
-  "endLine": 9792,
+  "line": 9800,
+  "endLine": 9808,
   "category": "hazards",
   "topic": "Twilight",
   "audience": [
@@ -3486,8 +3486,8 @@
  {
   "title": "Effects of Twilight",
   "heading": "Effects of Twilight",
-  "line": 9794,
-  "endLine": 9820,
+  "line": 9810,
+  "endLine": 9836,
   "category": "hazards",
   "topic": "Twilight",
   "audience": [
@@ -3508,8 +3508,8 @@
  {
   "title": "Twilight Example",
   "heading": "Twilight Example",
-  "line": 9822,
-  "endLine": 9840,
+  "line": 9838,
+  "endLine": 9856,
   "category": "hazards",
   "topic": "Twilight",
   "audience": [
@@ -3528,8 +3528,8 @@
  {
   "title": "Certamen",
   "heading": "Certamen",
-  "line": 9842,
-  "endLine": 9901,
+  "line": 9858,
+  "endLine": 9917,
   "category": "order",
   "topic": "Certamen",
   "audience": [
@@ -3551,8 +3551,8 @@
  {
   "title": "Certamen Example",
   "heading": "Certamen Example",
-  "line": 9903,
-  "endLine": 9949,
+  "line": 9919,
+  "endLine": 9965,
   "category": "order",
   "topic": "Certamen",
   "audience": [
@@ -3570,8 +3570,8 @@
  {
   "title": "Mysteries",
   "heading": "Mysteries",
-  "line": 9951,
-  "endLine": 9953,
+  "line": 9967,
+  "endLine": 9969,
   "category": "mysteries",
   "topic": "Mystery initiation",
   "audience": [
@@ -3593,9 +3593,9 @@
  },
  {
   "title": "Bjornaer: The Heartbeast",
-  "heading": "Bjornaer \u2014 The Heartbeast",
-  "line": 9955,
-  "endLine": 9967,
+  "heading": "Bjornaer — The Heartbeast",
+  "line": 9971,
+  "endLine": 9983,
   "category": "houses",
   "topic": "Heartbeast",
   "audience": [
@@ -3617,8 +3617,8 @@
  {
   "title": "Ringing the Changes",
   "heading": "Ringing the Changes",
-  "line": 9969,
-  "endLine": 9977,
+  "line": 9985,
+  "endLine": 9993,
   "category": "magic",
   "topic": "Heartbeast",
   "audience": [
@@ -3637,8 +3637,8 @@
  {
   "title": "Secret Name (Minor House Mystery)",
   "heading": "Secret Name (Minor House Mystery)",
-  "line": 9979,
-  "endLine": 9985,
+  "line": 9995,
+  "endLine": 10001,
   "category": "mysteries",
   "topic": "Heartbeast",
   "audience": [
@@ -3658,8 +3658,8 @@
  {
   "title": "Initiation of Secret Name",
   "heading": "Initiation of Secret Name",
-  "line": 9987,
-  "endLine": 9993,
+  "line": 10003,
+  "endLine": 10009,
   "category": "mysteries",
   "topic": "Heartbeast",
   "audience": [
@@ -3679,9 +3679,9 @@
  },
  {
   "title": "Criamon: The Enigma",
-  "heading": "Criamon \u2014 The Enigma",
-  "line": 9996,
-  "endLine": 10000,
+  "heading": "Criamon — The Enigma",
+  "line": 10012,
+  "endLine": 10016,
   "category": "houses",
   "topic": "Enigma",
   "audience": [
@@ -3701,8 +3701,8 @@
  {
   "title": "Enigmatic Wisdom",
   "heading": "Enigmatic Wisdom",
-  "line": 10002,
-  "endLine": 10006,
+  "line": 10018,
+  "endLine": 10022,
   "category": "mysteries",
   "topic": "Enigma",
   "audience": [
@@ -3722,8 +3722,8 @@
  {
   "title": "The Path of the Body",
   "heading": "The Path of the Body",
-  "line": 10008,
-  "endLine": 10012,
+  "line": 10024,
+  "endLine": 10028,
   "category": "mysteries",
   "topic": "Enigma",
   "audience": [
@@ -3743,8 +3743,8 @@
  {
   "title": "The Avenue of Subduing the Meat and the Station of the Perfect Tool",
   "heading": "The Avenue of Subduing the Meat and the Station of the Perfect Tool",
-  "line": 10014,
-  "endLine": 10020,
+  "line": 10030,
+  "endLine": 10036,
   "category": "mysteries",
   "topic": "Enigma",
   "audience": [
@@ -3762,8 +3762,8 @@
  {
   "title": "Initiation of The Avenue of Subduing the Meat, Which Reaches the Station of the Perfect Tool",
   "heading": "Initiation of The Avenue of Subduing the Meat, Which Reaches the Station of the Perfect Tool",
-  "line": 10022,
-  "endLine": 10028,
+  "line": 10038,
+  "endLine": 10044,
   "category": "mysteries",
   "topic": "Enigma",
   "audience": [
@@ -3783,9 +3783,9 @@
  },
  {
   "title": "Merinita: Faerie Magic",
-  "heading": "Merinita \u2014 Faerie Magic",
-  "line": 10030,
-  "endLine": 10054,
+  "heading": "Merinita — Faerie Magic",
+  "line": 10046,
+  "endLine": 10070,
   "category": "houses",
   "topic": "Faerie Magic",
   "audience": [
@@ -3806,8 +3806,8 @@
  {
   "title": "Faerie Magic Ability",
   "heading": "Faerie Magic",
-  "line": 10056,
-  "endLine": 10072,
+  "line": 10072,
+  "endLine": 10088,
   "category": "houses",
   "topic": "Faerie Magic",
   "audience": [
@@ -3825,8 +3825,8 @@
  {
   "title": "Charms",
   "heading": "Charms",
-  "line": 10074,
-  "endLine": 10082,
+  "line": 10090,
+  "endLine": 10098,
   "category": "houses",
   "topic": "Faerie Magic",
   "audience": [
@@ -3847,8 +3847,8 @@
  {
   "title": "Mystery Cult: The Followers of Pendule",
   "heading": "Mystery Cult: The Followers of Pendule",
-  "line": 10088,
-  "endLine": 10098,
+  "line": 10104,
+  "endLine": 10114,
   "category": "mysteries",
   "topic": "Faerie Magic",
   "audience": [
@@ -3869,8 +3869,8 @@
  {
   "title": "Sample Followers of Pendule Initiation: Spell Timing",
   "heading": "Sample Followers of Pendule Initiation: Spell Timing",
-  "line": 10100,
-  "endLine": 10106,
+  "line": 10116,
+  "endLine": 10122,
   "category": "mysteries",
   "topic": "Faerie Magic",
   "audience": [
@@ -3891,8 +3891,8 @@
  {
   "title": "Spell Timing (Minor Illusion Mystery)",
   "heading": "Spell Timing (Minor Illusion Mystery)",
-  "line": 10108,
-  "endLine": 10130,
+  "line": 10124,
+  "endLine": 10146,
   "category": "mysteries",
   "topic": "Faerie Magic",
   "audience": [
@@ -3913,8 +3913,8 @@
  {
   "title": "Recurring Spells",
   "heading": "Recurring Spells",
-  "line": 10132,
-  "endLine": 10143,
+  "line": 10148,
+  "endLine": 10159,
   "category": "mysteries",
   "topic": "Faerie Magic",
   "audience": [
@@ -3931,9 +3931,9 @@
  },
  {
   "title": "Verditius: Verditius Magic",
-  "heading": "Verditius \u2014 Verditius Magic",
-  "line": 10145,
-  "endLine": 10159,
+  "heading": "Verditius — Verditius Magic",
+  "line": 10161,
+  "endLine": 10175,
   "category": "houses",
   "topic": "Verditius Magic",
   "audience": [
@@ -3954,8 +3954,8 @@
  {
   "title": "Hubris",
   "heading": "Hubris",
-  "line": 10161,
-  "endLine": 10192,
+  "line": 10177,
+  "endLine": 10208,
   "category": "mysteries",
   "topic": "Verditius Magic",
   "audience": [
@@ -3975,9 +3975,9 @@
  },
  {
   "title": "Enchant Casting Tools",
-  "heading": "Enchant Casting Tools \u2014 Minor House Mystery Virtue",
-  "line": 10194,
-  "endLine": 10216,
+  "heading": "Enchant Casting Tools — Minor House Mystery Virtue",
+  "line": 10210,
+  "endLine": 10232,
   "category": "mysteries",
   "topic": "Verditius Magic",
   "audience": [
@@ -3998,8 +3998,8 @@
  {
   "title": "Initiation of Enchant Casting Tools",
   "heading": "Initiation of Enchant Casting Tools",
-  "line": 10218,
-  "endLine": 10224,
+  "line": 10234,
+  "endLine": 10240,
   "category": "mysteries",
   "topic": "Verditius Magic",
   "audience": [
@@ -4020,8 +4020,8 @@
  {
   "title": "Ex Miscellanea Traditions",
   "heading": "Ex Miscellanea Traditions",
-  "line": 10226,
-  "endLine": 10228,
+  "line": 10242,
+  "endLine": 10244,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4042,8 +4042,8 @@
  {
   "title": "Beast Masters",
   "heading": "Beast Masters",
-  "line": 10230,
-  "endLine": 10237,
+  "line": 10246,
+  "endLine": 10253,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4061,8 +4061,8 @@
  {
   "title": "Summon Animals",
   "heading": "Summon Animals",
-  "line": 10239,
-  "endLine": 10253,
+  "line": 10255,
+  "endLine": 10269,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4080,8 +4080,8 @@
  {
   "title": "The Nemthengacha",
   "heading": "The Nemthengacha",
-  "line": 10259,
-  "endLine": 10265,
+  "line": 10275,
+  "endLine": 10281,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4100,8 +4100,8 @@
  {
   "title": "Nemthengacha Powers",
   "heading": "Powers",
-  "line": 10267,
-  "endLine": 10275,
+  "line": 10283,
+  "endLine": 10291,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4121,8 +4121,8 @@
  {
   "title": "Embitterment",
   "heading": "Embitterment",
-  "line": 10277,
-  "endLine": 10299,
+  "line": 10293,
+  "endLine": 10315,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4142,8 +4142,8 @@
  {
   "title": "Tempestaria (Weather Witch)",
   "heading": "Tempestaria (Weather Witch)",
-  "line": 10301,
-  "endLine": 10309,
+  "line": 10317,
+  "endLine": 10325,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4161,8 +4161,8 @@
  {
   "title": "Whistle Up The Wind",
   "heading": "Whistle Up The Wind",
-  "line": 10311,
-  "endLine": 10323,
+  "line": 10327,
+  "endLine": 10339,
   "category": "traditions",
   "topic": "Ex Miscellanea",
   "audience": [
@@ -4182,8 +4182,8 @@
  {
   "title": "Basic Laboratory Activities",
   "heading": "Basic Laboratory Activities",
-  "line": 10341,
-  "endLine": 10347,
+  "line": 10357,
+  "endLine": 10363,
   "category": "lab",
   "topic": "Lab Total",
   "audience": [
@@ -4203,8 +4203,8 @@
  {
   "title": "Creating a Laboratory",
   "heading": "Creating a Laboratory",
-  "line": 10349,
-  "endLine": 10353,
+  "line": 10365,
+  "endLine": 10369,
   "category": "lab",
   "topic": "Laboratory",
   "audience": [
@@ -4224,8 +4224,8 @@
  {
   "title": "Arcane Studies",
   "heading": "Arcane Studies",
-  "line": 10355,
-  "endLine": 10357,
+  "line": 10371,
+  "endLine": 10373,
   "category": "lab",
   "topic": "Study",
   "audience": [
@@ -4245,8 +4245,8 @@
  {
   "title": "Fixing Arcane Connections",
   "heading": "Fixing Arcane Connections",
-  "line": 10359,
-  "endLine": 10361,
+  "line": 10375,
+  "endLine": 10377,
   "category": "lab",
   "topic": "Arcane Connections",
   "audience": [
@@ -4266,8 +4266,8 @@
  {
   "title": "Vis Extraction",
   "heading": "Vis Extraction",
-  "line": 10367,
-  "endLine": 10371,
+  "line": 10383,
+  "endLine": 10387,
   "category": "lab",
   "topic": "Vis",
   "audience": [
@@ -4285,8 +4285,8 @@
  {
   "title": "Vis Transfer",
   "heading": "Vis Transfer",
-  "line": 10373,
-  "endLine": 10381,
+  "line": 10389,
+  "endLine": 10397,
   "category": "lab",
   "topic": "Vis",
   "audience": [
@@ -4307,8 +4307,8 @@
  {
   "title": "Vis Use",
   "heading": "Vis Use",
-  "line": 10383,
-  "endLine": 10387,
+  "line": 10399,
+  "endLine": 10403,
   "category": "lab",
   "topic": "Vis",
   "audience": [
@@ -4326,8 +4326,8 @@
  {
   "title": "Learning Spells from a Teacher",
   "heading": "Learning Spells from a Teacher",
-  "line": 10393,
-  "endLine": 10407,
+  "line": 10409,
+  "endLine": 10423,
   "category": "lab",
   "topic": "Spell learning",
   "audience": [
@@ -4347,8 +4347,8 @@
  {
   "title": "Inventing Spells",
   "heading": "Inventing Spells",
-  "line": 10409,
-  "endLine": 10421,
+  "line": 10425,
+  "endLine": 10437,
   "category": "lab",
   "topic": "Spell invention",
   "audience": [
@@ -4372,8 +4372,8 @@
  {
   "title": "Example: Inventing Spells",
   "heading": "Example: Inventing Spells",
-  "line": 10423,
-  "endLine": 10431,
+  "line": 10439,
+  "endLine": 10447,
   "category": "lab",
   "topic": "Spell invention",
   "audience": [

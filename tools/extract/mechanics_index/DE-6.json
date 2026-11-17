@@ -2,8 +2,8 @@
  {
   "title": "Enchantments: Overview and Limits",
   "heading": "Enchantments",
-  "line": 10433,
-  "endLine": 10441,
+  "line": 10449,
+  "endLine": 10457,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -21,8 +21,8 @@
  {
   "title": "Enchantment Summary",
   "heading": "Enchantment Summary",
-  "line": 10443,
-  "endLine": 10465,
+  "line": 10459,
+  "endLine": 10481,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -41,8 +41,8 @@
  {
   "title": "Invested Items",
   "heading": "Invested Items",
-  "line": 10471,
-  "endLine": 10475,
+  "line": 10487,
+  "endLine": 10491,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -60,8 +60,8 @@
  {
   "title": "Lesser Enchantments",
   "heading": "Lesser Enchantments",
-  "line": 10477,
-  "endLine": 10483,
+  "line": 10493,
+  "endLine": 10499,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -80,8 +80,8 @@
  {
   "title": "Charged Items",
   "heading": "Charged Items",
-  "line": 10485,
-  "endLine": 10495,
+  "line": 10501,
+  "endLine": 10511,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -100,8 +100,8 @@
  {
   "title": "Shape and Material",
   "heading": "Shape and Material",
-  "line": 10509,
-  "endLine": 10515,
+  "line": 10525,
+  "endLine": 10531,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -121,8 +121,8 @@
  {
   "title": "Material and Size Tables",
   "heading": "Material and Size Tables",
-  "line": 10521,
-  "endLine": 10542,
+  "line": 10537,
+  "endLine": 10558,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -138,8 +138,8 @@
  {
   "title": "Preparation for Enchantment",
   "heading": "Preparation for Enchantment",
-  "line": 10544,
-  "endLine": 10558,
+  "line": 10560,
+  "endLine": 10574,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -158,8 +158,8 @@
  {
   "title": "Instilling Effects",
   "heading": "Instilling Effects",
-  "line": 10564,
-  "endLine": 10566,
+  "line": 10580,
+  "endLine": 10582,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -175,8 +175,8 @@
  {
   "title": "Designing the Effect",
   "heading": "Designing the Effect",
-  "line": 10568,
-  "endLine": 10582,
+  "line": 10584,
+  "endLine": 10598,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -194,8 +194,8 @@
  {
   "title": "Effect Frequency Table",
   "heading": "Effect Frequency Table",
-  "line": 10584,
-  "endLine": 10595,
+  "line": 10600,
+  "endLine": 10611,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -213,8 +213,8 @@
  {
   "title": "Effect Modifications",
   "heading": "Effect Modifications",
-  "line": 10597,
-  "endLine": 10629,
+  "line": 10613,
+  "endLine": 10645,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -234,8 +234,8 @@
  {
   "title": "Constant Effect Devices",
   "heading": "Constant Effect Devices",
-  "line": 10631,
-  "endLine": 10633,
+  "line": 10647,
+  "endLine": 10649,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -251,8 +251,8 @@
  {
   "title": "Instilling the Effect",
   "heading": "Instilling the Effect",
-  "line": 10639,
-  "endLine": 10651,
+  "line": 10655,
+  "endLine": 10667,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -271,8 +271,8 @@
  {
   "title": "Using Enchanted Devices",
   "heading": "Using Enchanted Devices",
-  "line": 10659,
-  "endLine": 10670,
+  "line": 10675,
+  "endLine": 10686,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -291,8 +291,8 @@
  {
   "title": "Talisman Attunement",
   "heading": "Talisman Attunement",
-  "line": 10672,
-  "endLine": 10694,
+  "line": 10688,
+  "endLine": 10710,
   "category": "lab",
   "topic": "Talismans",
   "audience": [
@@ -311,8 +311,8 @@
  {
   "title": "Investigating Enchantments",
   "heading": "Investigating Enchantments",
-  "line": 10696,
-  "endLine": 10706,
+  "line": 10712,
+  "endLine": 10722,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -330,8 +330,8 @@
  {
   "title": "Similar Spells",
   "heading": "Similar Spells",
-  "line": 10708,
-  "endLine": 10719,
+  "line": 10724,
+  "endLine": 10735,
   "category": "lab",
   "topic": "Lab Total",
   "audience": [
@@ -349,8 +349,8 @@
  {
   "title": "Longevity Rituals",
   "heading": "Longevity Rituals",
-  "line": 10721,
-  "endLine": 10741,
+  "line": 10737,
+  "endLine": 10757,
   "category": "lab",
   "topic": "Longevity Rituals",
   "audience": [
@@ -372,8 +372,8 @@
  {
   "title": "Laboratory Texts",
   "heading": "Laboratory Texts",
-  "line": 10743,
-  "endLine": 10749,
+  "line": 10759,
+  "endLine": 10765,
   "category": "lab",
   "topic": "Laboratory Texts",
   "audience": [
@@ -389,8 +389,8 @@
  {
   "title": "Using Laboratory Texts",
   "heading": "Using Laboratory Texts",
-  "line": 10751,
-  "endLine": 10771,
+  "line": 10767,
+  "endLine": 10787,
   "category": "lab",
   "topic": "Laboratory Texts",
   "audience": [
@@ -410,8 +410,8 @@
  {
   "title": "Casting Tablets",
   "heading": "Casting Tablets",
-  "line": 10779,
-  "endLine": 10801,
+  "line": 10795,
+  "endLine": 10817,
   "category": "lab",
   "topic": "Laboratory Texts",
   "audience": [
@@ -430,8 +430,8 @@
  {
   "title": "Translating Laboratory Texts",
   "heading": "Translating Laboratory Texts",
-  "line": 10803,
-  "endLine": 10809,
+  "line": 10819,
+  "endLine": 10825,
   "category": "lab",
   "topic": "Laboratory Texts",
   "audience": [
@@ -449,8 +449,8 @@
  {
   "title": "Multiple Laboratory Activities",
   "heading": "Multiple Laboratory Activities",
-  "line": 10811,
-  "endLine": 10817,
+  "line": 10827,
+  "endLine": 10833,
   "category": "lab",
   "topic": "Lab Activities",
   "audience": [
@@ -469,8 +469,8 @@
  {
   "title": "Help in the Laboratory",
   "heading": "Help in the Laboratory",
-  "line": 10819,
-  "endLine": 10829,
+  "line": 10835,
+  "endLine": 10845,
   "category": "lab",
   "topic": "Lab Assistants",
   "audience": [
@@ -489,8 +489,8 @@
  {
   "title": "Distractions from Lab Work",
   "heading": "Distractions from Lab Work",
-  "line": 10831,
-  "endLine": 10833,
+  "line": 10847,
+  "endLine": 10849,
   "category": "lab",
   "topic": "Lab Activities",
   "audience": [
@@ -508,8 +508,8 @@
  {
   "title": "Familiars",
   "heading": "Familiars",
-  "line": 10835,
-  "endLine": 10839,
+  "line": 10851,
+  "endLine": 10855,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -525,8 +525,8 @@
  {
   "title": "Finding and Befriending an Animal",
   "heading": "Finding and Befriending an Animal",
-  "line": 10841,
-  "endLine": 10845,
+  "line": 10857,
+  "endLine": 10861,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -542,8 +542,8 @@
  {
   "title": "Enchanting the Familiar",
   "heading": "Enchanting the Familiar",
-  "line": 10847,
-  "endLine": 10849,
+  "line": 10863,
+  "endLine": 10865,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -559,8 +559,8 @@
  {
   "title": "Suggested Familiars by Art",
   "heading": "Suggested Familiars by Art",
-  "line": 10851,
-  "endLine": 10883,
+  "line": 10867,
+  "endLine": 10899,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -576,8 +576,8 @@
  {
   "title": "The Initial Bond",
   "heading": "The Initial Bond",
-  "line": 10885,
-  "endLine": 10899,
+  "line": 10901,
+  "endLine": 10915,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -597,8 +597,8 @@
  {
   "title": "The Three Cords",
   "heading": "The Three Cords",
-  "line": 10901,
-  "endLine": 10917,
+  "line": 10917,
+  "endLine": 10933,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -617,8 +617,8 @@
  {
   "title": "The Bound Familiar",
   "heading": "The Bound Familiar",
-  "line": 10919,
-  "endLine": 10929,
+  "line": 10935,
+  "endLine": 10945,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -636,8 +636,8 @@
  {
   "title": "Empowering the Bond",
   "heading": "Empowering the Bond",
-  "line": 10931,
-  "endLine": 10953,
+  "line": 10947,
+  "endLine": 10969,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -656,8 +656,8 @@
  {
   "title": "The Familiar in Play",
   "heading": "The Familiar in Play",
-  "line": 10955,
-  "endLine": 10961,
+  "line": 10971,
+  "endLine": 10977,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -675,8 +675,8 @@
  {
   "title": "Example Powers",
   "heading": "Example Powers",
-  "line": 10963,
-  "endLine": 10977,
+  "line": 10979,
+  "endLine": 10993,
   "category": "lab",
   "topic": "Familiars",
   "audience": [
@@ -692,8 +692,8 @@
  {
   "title": "Finding Your Apprentice",
   "heading": "Finding Your Apprentice",
-  "line": 10989,
-  "endLine": 10997,
+  "line": 11005,
+  "endLine": 11013,
   "category": "lab",
   "topic": "Apprentices",
   "audience": [
@@ -711,8 +711,8 @@
  {
   "title": "Training Your Apprentice",
   "heading": "Training Your Apprentice",
-  "line": 10999,
-  "endLine": 11013,
+  "line": 11015,
+  "endLine": 11029,
   "category": "lab",
   "topic": "Apprentices",
   "audience": [
@@ -730,8 +730,8 @@
  {
   "title": "Opening the Arts",
   "heading": "Opening the Arts",
-  "line": 11015,
-  "endLine": 11025,
+  "line": 11031,
+  "endLine": 11041,
   "category": "lab",
   "topic": "Apprentices",
   "audience": [
@@ -750,8 +750,8 @@
  {
   "title": "Opening the Arts in house Ex Miscellanea",
   "heading": "Opening the Arts in house Ex Miscellanea",
-  "line": 11027,
-  "endLine": 11029,
+  "line": 11043,
+  "endLine": 11045,
   "category": "lab",
   "topic": "Apprentices",
   "audience": [
@@ -767,8 +767,8 @@
  {
   "title": "Teaching Hermetic Virtues",
   "heading": "Teaching Hermetic Virtues",
-  "line": 11031,
-  "endLine": 11051,
+  "line": 11047,
+  "endLine": 11067,
   "category": "seasons",
   "topic": "Apprentices",
   "audience": [
@@ -789,8 +789,8 @@
  {
   "title": "Acquiring House Virtues",
   "heading": "Acquiring House Virtues",
-  "line": 11053,
-  "endLine": 11065,
+  "line": 11069,
+  "endLine": 11081,
   "category": "houses",
   "topic": "Apprentices",
   "audience": [
@@ -808,8 +808,8 @@
  {
   "title": "Gaining Hermetic Flaws",
   "heading": "Gaining Hermetic Flaws",
-  "line": 11067,
-  "endLine": 11071,
+  "line": 11083,
+  "endLine": 11087,
   "category": "magic",
   "topic": "Apprentices",
   "audience": [
@@ -825,8 +825,8 @@
  {
   "title": "Fleshing Out Your Apprentice",
   "heading": "Fleshing Out Your Apprentice",
-  "line": 11073,
-  "endLine": 11077,
+  "line": 11089,
+  "endLine": 11093,
   "category": "creation",
   "topic": "Apprentices",
   "audience": [
@@ -842,8 +842,8 @@
  {
   "title": "The End of Apprenticeship",
   "heading": "The End of Apprenticeship",
-  "line": 11085,
-  "endLine": 11089,
+  "line": 11101,
+  "endLine": 11105,
   "category": "order",
   "topic": "Apprentices",
   "audience": [
@@ -861,8 +861,8 @@
  {
   "title": "Arcane Experimentation",
   "heading": "Arcane Experimentation",
-  "line": 11091,
-  "endLine": 11093,
+  "line": 11107,
+  "endLine": 11109,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -878,8 +878,8 @@
  {
   "title": "The Experimental Premise",
   "heading": "The Experimental Premise",
-  "line": 11095,
-  "endLine": 11097,
+  "line": 11111,
+  "endLine": 11113,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -897,8 +897,8 @@
  {
   "title": "Exceptional Risk",
   "heading": "Exceptional Risk",
-  "line": 11099,
-  "endLine": 11101,
+  "line": 11115,
+  "endLine": 11117,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -917,8 +917,8 @@
  {
   "title": "Extraordinary Results",
   "heading": "Extraordinary Results",
-  "line": 11103,
-  "endLine": 11109,
+  "line": 11119,
+  "endLine": 11125,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -938,8 +938,8 @@
  {
   "title": "Inventing a Spell by Experimentation",
   "heading": "Inventing a Spell by Experimentation",
-  "line": 11111,
-  "endLine": 11113,
+  "line": 11127,
+  "endLine": 11129,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -955,8 +955,8 @@
  {
   "title": "Enchanted Items Created by Experimentation",
   "heading": "Enchanted Items Created by Experimentation",
-  "line": 11115,
-  "endLine": 11119,
+  "line": 11131,
+  "endLine": 11135,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -972,8 +972,8 @@
  {
   "title": "Enchanting a Familiar by Experimentation",
   "heading": "Enchanting a Familiar by Experimentation",
-  "line": 11121,
-  "endLine": 11123,
+  "line": 11137,
+  "endLine": 11139,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -989,8 +989,8 @@
  {
   "title": "Experimenting on Longevity Rituals",
   "heading": "Experimenting on Longevity Rituals",
-  "line": 11125,
-  "endLine": 11127,
+  "line": 11141,
+  "endLine": 11143,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -1006,8 +1006,8 @@
  {
   "title": "Investigating an Enchanted Item by Experimentation",
   "heading": "Investigating an Enchanted Item by Experimentation",
-  "line": 11129,
-  "endLine": 11133,
+  "line": 11145,
+  "endLine": 11149,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -1023,8 +1023,8 @@
  {
   "title": "Extraordinary Results Chart",
   "heading": "Extraordinary Results Chart",
-  "line": 11135,
-  "endLine": 11206,
+  "line": 11151,
+  "endLine": 11222,
   "category": "lab",
   "topic": "Arcane Experimentation",
   "audience": [
@@ -1043,8 +1043,8 @@
  {
   "title": "Arcane Discovery",
   "heading": "Arcane Discovery",
-  "line": 11208,
-  "endLine": 11210,
+  "line": 11224,
+  "endLine": 11226,
   "category": "lab",
   "topic": "Arcane Discovery",
   "audience": [
@@ -1060,8 +1060,8 @@
  {
   "title": "The Breakthrough",
   "heading": "The Breakthrough",
-  "line": 11212,
-  "endLine": 11222,
+  "line": 11228,
+  "endLine": 11238,
   "category": "lab",
   "topic": "Arcane Discovery",
   "audience": [
@@ -1081,8 +1081,8 @@
  {
   "title": "Experimentation (Arcane Discovery)",
   "heading": "Experimentation",
-  "line": 11224,
-  "endLine": 11244,
+  "line": 11240,
+  "endLine": 11260,
   "category": "lab",
   "topic": "Arcane Discovery",
   "audience": [
@@ -1101,8 +1101,8 @@
  {
   "title": "Stabilizing the Unknown",
   "heading": "Stabilizing the Unknown",
-  "line": 11246,
-  "endLine": 11260,
+  "line": 11262,
+  "endLine": 11276,
   "category": "lab",
   "topic": "Arcane Discovery",
   "audience": [
@@ -1121,8 +1121,8 @@
  {
   "title": "Integration",
   "heading": "Integration",
-  "line": 11262,
-  "endLine": 11278,
+  "line": 11278,
+  "endLine": 11294,
   "category": "lab",
   "topic": "Arcane Discovery",
   "audience": [
@@ -1140,8 +1140,8 @@
  {
   "title": "Creating the Effect",
   "heading": "Creating the Effect",
-  "line": 11280,
-  "endLine": 11298,
+  "line": 11296,
+  "endLine": 11314,
   "category": "lab",
   "topic": "Arcane Discovery",
   "audience": [
@@ -1159,8 +1159,8 @@
  {
   "title": "After the Breakthrough",
   "heading": "After the Breakthrough",
-  "line": 11300,
-  "endLine": 11308,
+  "line": 11316,
+  "endLine": 11324,
   "category": "lab",
   "topic": "Arcane Discovery",
   "audience": [
@@ -1176,8 +1176,8 @@
  {
   "title": "Shape and Material Bonuses Table",
   "heading": "Shape and Material Bonuses Table",
-  "line": 11313,
-  "endLine": 11557,
+  "line": 11329,
+  "endLine": 11573,
   "category": "lab",
   "topic": "Enchanted Items",
   "audience": [
@@ -1196,8 +1196,8 @@
  {
   "title": "Laboratory Personalization Rules",
   "heading": "Laboratory Personalization Rules",
-  "line": 11559,
-  "endLine": 11565,
+  "line": 11575,
+  "endLine": 11581,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1215,8 +1215,8 @@
  {
   "title": "Laboratory Characteristics",
   "heading": "Laboratory Characteristics",
-  "line": 11567,
-  "endLine": 11581,
+  "line": 11583,
+  "endLine": 11597,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1235,8 +1235,8 @@
  {
   "title": "Lab Size",
   "heading": "Size",
-  "line": 11583,
-  "endLine": 11607,
+  "line": 11599,
+  "endLine": 11623,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1256,8 +1256,8 @@
  {
   "title": "Size and Refinement Summary",
   "heading": "Size and Refinement Summary",
-  "line": 11609,
-  "endLine": 11615,
+  "line": 11625,
+  "endLine": 11631,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1276,8 +1276,8 @@
  {
   "title": "Lab Refinement",
   "heading": "Refinement",
-  "line": 11617,
-  "endLine": 11629,
+  "line": 11633,
+  "endLine": 11645,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1296,8 +1296,8 @@
  {
   "title": "Lab General Quality",
   "heading": "General Quality",
-  "line": 11631,
-  "endLine": 11633,
+  "line": 11647,
+  "endLine": 11649,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1315,8 +1315,8 @@
  {
   "title": "Lab Upkeep",
   "heading": "Upkeep",
-  "line": 11635,
-  "endLine": 11641,
+  "line": 11651,
+  "endLine": 11657,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1336,8 +1336,8 @@
  {
   "title": "Lab Safety",
   "heading": "Safety",
-  "line": 11643,
-  "endLine": 11649,
+  "line": 11659,
+  "endLine": 11665,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1355,8 +1355,8 @@
  {
   "title": "Lab Warping",
   "heading": "Warping",
-  "line": 11651,
-  "endLine": 11655,
+  "line": 11667,
+  "endLine": 11671,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1374,8 +1374,8 @@
  {
   "title": "Lab Health",
   "heading": "Health",
-  "line": 11657,
-  "endLine": 11661,
+  "line": 11673,
+  "endLine": 11677,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1393,8 +1393,8 @@
  {
   "title": "Lab Aesthetics",
   "heading": "Aesthetics",
-  "line": 11663,
-  "endLine": 11667,
+  "line": 11679,
+  "endLine": 11683,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1412,8 +1412,8 @@
  {
   "title": "Laboratory Specializations",
   "heading": "Laboratory Specializations",
-  "line": 11669,
-  "endLine": 11693,
+  "line": 11685,
+  "endLine": 11709,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1431,8 +1431,8 @@
  {
   "title": "Build Point Cost for Starting Laboratories",
   "heading": "Build Point Cost for Starting Laboratories",
-  "line": 11743,
-  "endLine": 11753,
+  "line": 11759,
+  "endLine": 11769,
   "category": "covenant",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1454,8 +1454,8 @@
  {
   "title": "Laboratory Virtues and Flaws",
   "heading": "Laboratory Virtues and Flaws",
-  "line": 11755,
-  "endLine": 11761,
+  "line": 11771,
+  "endLine": 11777,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1473,8 +1473,8 @@
  {
   "title": "Adding and Removing Lab Virtues",
   "heading": "Virtues",
-  "line": 11763,
-  "endLine": 11769,
+  "line": 11779,
+  "endLine": 11785,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1492,8 +1492,8 @@
  {
   "title": "Adding and Removing Lab Flaws",
   "heading": "Flaws",
-  "line": 11771,
-  "endLine": 11775,
+  "line": 11787,
+  "endLine": 11791,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1511,8 +1511,8 @@
  {
   "title": "Structure Virtues and Flaws (Laboratory)",
   "heading": "Structure Virtues and Flaws",
-  "line": 11777,
-  "endLine": 11826,
+  "line": 11793,
+  "endLine": 11842,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1531,8 +1531,8 @@
  {
   "title": "Outfittings Virtues and Flaws (Laboratory)",
   "heading": "Outfittings Virtues and Flaws",
-  "line": 11827,
-  "endLine": 11882,
+  "line": 11843,
+  "endLine": 11898,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1551,8 +1551,8 @@
  {
   "title": "Supernatural Virtues and Flaws (Laboratory)",
   "heading": "Supernatural Virtues and Flaws",
-  "line": 11883,
-  "endLine": 11932,
+  "line": 11899,
+  "endLine": 11948,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1571,8 +1571,8 @@
  {
   "title": "Laboratory Features",
   "heading": "Laboratory Features",
-  "line": 11933,
-  "endLine": 12010,
+  "line": 11949,
+  "endLine": 12026,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [
@@ -1590,8 +1590,8 @@
  {
   "title": "The Sanctum",
   "heading": "The Sanctum",
-  "line": 12011,
-  "endLine": 12013,
+  "line": 12027,
+  "endLine": 12029,
   "category": "order",
   "topic": "Sanctum",
   "audience": [
@@ -1609,8 +1609,8 @@
  {
   "title": "Magic Items for Laboratories",
   "heading": "Magic Items for Laboratories",
-  "line": 12015,
-  "endLine": 12022,
+  "line": 12031,
+  "endLine": 12038,
   "category": "lab",
   "topic": "Laboratory Personalization",
   "audience": [

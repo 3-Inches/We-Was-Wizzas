@@ -83,7 +83,7 @@
   "title": "Children of Odin Mystery Scripts and Ordeals",
   "heading": "Mystery Scripts",
   "line": 4236,
-  "endLine": 4251,
+  "endLine": 4253,
   "category": "mysteries",
   "topic": "Children of Odin",
   "audience": [
@@ -95,7 +95,7 @@
   "summary": "Lists the Hermetic Virtues granted by the cult's Initiation Scripts and the Flaws that may be taken as Ordeals, including the new Minor Hermetic Flaw Blood Haze.",
   "quotes": [
    "The cult currently has Initiation Scripts that grant the following Virtues:",
-   "The maga is crazed by bloodshed, and if she is directly involved in a combat situation she has a \u201310 penalty to Formulaic magic and has a \u20133 penalty to her Concentration Ability Score."
+   "The maga is crazed by bloodshed, and if she is directly involved in a combat situation she has a –10 penalty to Formulaic magic and has a –3 penalty to her Concentration Ability Score."
   ],
   "related": [
    "ArM5 p.44 Life Boost, Life-Linked Spontaneous Magic",
@@ -107,8 +107,8 @@
  {
   "title": "The Ships of Flame (Odin Cult Quest Regiones)",
   "heading": "The Ships of Flame",
-  "line": 4252,
-  "endLine": 4259,
+  "line": 4254,
+  "endLine": 4261,
   "category": "realms",
   "topic": "Children of Odin",
   "audience": [
@@ -128,8 +128,8 @@
  {
   "title": "Simplified Mystery Cult Initiation",
   "heading": "Mystery Cults",
-  "line": 4269,
-  "endLine": 4271,
+  "line": 4271,
+  "endLine": 4273,
   "category": "mysteries",
   "topic": "Mystery Initiation",
   "audience": [
@@ -152,8 +152,8 @@
  {
   "title": "Rune Magic for the Order of Odin",
   "heading": "The Order of Odin",
-  "line": 4285,
-  "endLine": 4288,
+  "line": 4287,
+  "endLine": 4290,
   "category": "mysteries",
   "topic": "Children of Odin",
   "audience": [
@@ -173,8 +173,8 @@
  {
   "title": "Covenants Held Through a Companion Knight",
   "heading": "The Noble Life",
-  "line": 4337,
-  "endLine": 4344,
+  "line": 4339,
+  "endLine": 4346,
   "category": "covenant",
   "topic": "Covenants and mundane lords",
   "audience": [
@@ -196,8 +196,8 @@
  {
   "title": "Duties and Privileges of the Knight",
   "heading": "Duties of the Knight",
-  "line": 4345,
-  "endLine": 4359,
+  "line": 4347,
+  "endLine": 4361,
   "category": "social",
   "topic": "Knights and feudal duties",
   "audience": [
@@ -217,8 +217,8 @@
  {
   "title": "Magi and Mundane Lords: Legal Precedents",
   "heading": "Legal Issues",
-  "line": 4369,
-  "endLine": 4379,
+  "line": 4371,
+  "endLine": 4381,
   "category": "order",
   "topic": "Peripheral Code (Normandy)",
   "audience": [
@@ -241,8 +241,8 @@
  {
   "title": "Castles as Covenant Sites",
   "heading": "Castles",
-  "line": 4399,
-  "endLine": 4404,
+  "line": 4401,
+  "endLine": 4406,
   "category": "covenant",
   "topic": "Covenant hooks",
   "audience": [
@@ -263,8 +263,8 @@
  {
   "title": "Growth of Towns and the Spreading Dominion",
   "heading": "The Growth of Towns",
-  "line": 4425,
-  "endLine": 4428,
+  "line": 4427,
+  "endLine": 4430,
   "category": "realms",
   "topic": "Dominion spread",
   "audience": [
@@ -286,8 +286,8 @@
  {
   "title": "Masks (Disposable Agents)",
   "heading": "Masks",
-  "line": 4476,
-  "endLine": 4478,
+  "line": 4478,
+  "endLine": 4480,
   "category": "order",
   "topic": "Masks (agents)",
   "audience": [
@@ -310,8 +310,8 @@
  {
   "title": "Masks for Parisian Stories",
   "heading": "Masks for Parisian Stories",
-  "line": 4480,
-  "endLine": 4500,
+  "line": 4482,
+  "endLine": 4502,
   "category": "order",
   "topic": "Masks (agents)",
   "audience": [
@@ -330,8 +330,8 @@
  {
   "title": "Masks for Observing and Controlling Nobles",
   "heading": "Masks for Observing and Controlling Nobles",
-  "line": 4502,
-  "endLine": 4520,
+  "line": 4504,
+  "endLine": 4522,
   "category": "social",
   "topic": "Masks (agents)",
   "audience": [
@@ -350,8 +350,8 @@
  {
   "title": "Masks Within the Church",
   "heading": "Masks Within the Church",
-  "line": 4522,
-  "endLine": 4526,
+  "line": 4524,
+  "endLine": 4528,
   "category": "order",
   "topic": "Masks (agents)",
   "audience": [
@@ -368,8 +368,8 @@
  {
   "title": "Vassalage Between Covenants",
   "heading": "Vassalage",
-  "line": 4532,
-  "endLine": 4535,
+  "line": 4534,
+  "endLine": 4537,
   "category": "covenant",
   "topic": "Covenant vassalage",
   "audience": [
@@ -388,8 +388,8 @@
  {
   "title": "Cracking of Old Wards",
   "heading": "Cracking of Old Wards",
-  "line": 4540,
-  "endLine": 4543,
+  "line": 4542,
+  "endLine": 4545,
   "category": "realms",
   "topic": "Dominion spread",
   "audience": [
@@ -408,8 +408,8 @@
  {
   "title": "Tytalus Cabals",
   "heading": "Tytalus Schemes",
-  "line": 4548,
-  "endLine": 4552,
+  "line": 4550,
+  "endLine": 4554,
   "category": "houses",
   "topic": "House Tytalus",
   "audience": [
@@ -430,8 +430,8 @@
  {
   "title": "Tytalus Primus Succession and the Two Primi",
   "heading": "The Primi Tytali",
-  "line": 4590,
-  "endLine": 4606,
+  "line": 4592,
+  "endLine": 4608,
   "category": "houses",
   "topic": "House Tytalus",
   "audience": [
@@ -450,8 +450,8 @@
  {
   "title": "Confluensis Magical Resources and Local Auras",
   "heading": "Magical Resources",
-  "line": 4711,
-  "endLine": 4716,
+  "line": 4713,
+  "endLine": 4718,
   "category": "realms",
   "topic": "Local auras and regiones",
   "audience": [
@@ -470,8 +470,8 @@
  {
   "title": "The Tytalus Traitor",
   "heading": "The Traitor",
-  "line": 4733,
-  "endLine": 4741,
+  "line": 4735,
+  "endLine": 4743,
   "category": "houses",
   "topic": "House Tytalus",
   "audience": [
@@ -490,8 +490,8 @@
  {
   "title": "Sample Oath of Fealty Between Covenants",
   "heading": "Dragon's Rest",
-  "line": 4821,
-  "endLine": 4835,
+  "line": 4823,
+  "endLine": 4837,
   "category": "covenant",
   "topic": "Covenant vassalage",
   "audience": [
@@ -510,8 +510,8 @@
  {
   "title": "Chapter Houses and Cenobites in Normandy",
   "heading": "The Chapter of Cherbourg",
-  "line": 4888,
-  "endLine": 4893,
+  "line": 4890,
+  "endLine": 4895,
   "category": "order",
   "topic": "Peripheral Code (Normandy)",
   "audience": [
@@ -533,8 +533,8 @@
  {
   "title": "Young and In Charge: Player-Driven Covenant Saga",
   "heading": "Young and In Charge",
-  "line": 4894,
-  "endLine": 4898,
+  "line": 4896,
+  "endLine": 4900,
   "category": "setting",
   "topic": "Saga structure",
   "audience": [
@@ -552,8 +552,8 @@
  {
   "title": "Languages of France and Mutual Comprehension",
   "heading": "Languages in France",
-  "line": 5076,
-  "endLine": 5118,
+  "line": 5078,
+  "endLine": 5120,
   "category": "basics",
   "topic": "Languages",
   "audience": [
@@ -564,9 +564,9 @@
   "requires": "",
   "summary": "Lists the Living Languages of France and their dialects (taken as Ability specialties), and gives comprehension penalties when speakers of related languages or dialects talk to each other, with a worked example.",
   "quotes": [
-   "\u20131 penalty to both speakers",
-   "\u20132 penalty to both speakers",
-   "\u20133 penalty (only \u20132 if Frisian dialect) to both speakers"
+   "–1 penalty to both speakers",
+   "–2 penalty to both speakers",
+   "–3 penalty (only –2 if Frisian dialect) to both speakers"
   ],
   "related": [
    "ArM5 p.66 standard specialties"

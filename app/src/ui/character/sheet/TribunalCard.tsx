@@ -278,7 +278,7 @@ function ThebanSection({ ed }: { ed: CharEditor }) {
   const longevity = !!c.longevity;
   return (
     <div>
-      <RulesNote book="SE" line={1210} endLine={1360}>
+      <RulesNote book="SE" line={1215} endLine={1365}>
         <b>Theban citizenship.</b> {t.citizen ? `${t.tokens} token${t.tokens === 1 ? '' : 's'}, ${t.shards} shard${t.shards === 1 ? '' : 's'}.` : 'A metoikos.'}
       </RulesNote>
       <div className="row">

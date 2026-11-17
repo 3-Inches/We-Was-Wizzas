@@ -2,8 +2,8 @@
  {
   "title": "Guernicus Apprenticeship and Gauntlet",
   "heading": "Apprenticeship",
-  "line": 2118,
-  "endLine": 2126,
+  "line": 2119,
+  "endLine": 2127,
   "category": "houses",
   "topic": "House Guernicus",
   "audience": [
@@ -22,8 +22,8 @@
  {
   "title": "Guernicus Politics and Advancement",
   "heading": "Guernicus Politics and Advancement",
-  "line": 2187,
-  "endLine": 2205,
+  "line": 2188,
+  "endLine": 2206,
   "category": "houses",
   "topic": "House Guernicus",
   "audience": [
@@ -42,8 +42,8 @@
  {
   "title": "Letters of Authority and Allies of Quaesitors",
   "heading": "Allies",
-  "line": 2224,
-  "endLine": 2228,
+  "line": 2225,
+  "endLine": 2229,
   "category": "order",
   "topic": "Quaesitorial investigation",
   "audience": [
@@ -64,8 +64,8 @@
  {
   "title": "Sanctum Law (Marked Texts)",
   "heading": "Sanctum Law",
-  "line": 2256,
-  "endLine": 2260,
+  "line": 2257,
+  "endLine": 2261,
   "category": "order",
   "topic": "Sanctum law",
   "audience": [
@@ -86,8 +86,8 @@
  {
   "title": "Acute Sense (Mastery Ability)",
   "heading": "Acute Sense",
-  "line": 2262,
-  "endLine": 2274,
+  "line": 2263,
+  "endLine": 2275,
   "category": "magic",
   "topic": "Mastery abilities",
   "audience": [
@@ -109,8 +109,8 @@
  {
   "title": "Spell Traces and Sigils",
   "heading": "Spell Traces and Sigils",
-  "line": 2276,
-  "endLine": 2286,
+  "line": 2277,
+  "endLine": 2287,
   "category": "magic",
   "topic": "Spell traces and sigils",
   "audience": [
@@ -123,7 +123,7 @@
   "summary": "Rules of thumb for how the magnitude of a spell trace decays over time, how long traces remain detectable, and how a caster's sigil can be revealed and recognized by Intellego Vim investigation.",
   "quotes": [
    "As soon as the magic finishes, the magnitude halves.",
-   "A spell trace is normally detectable until it reaches a magnitude of \u201310, at which point it is completely gone."
+   "A spell trace is normally detectable until it reaches a magnitude of –10, at which point it is completely gone."
   ],
   "related": [
    "Restore the Faded Threads",
@@ -133,8 +133,8 @@
  {
   "title": "Shroud Magic",
   "heading": "Shroud Magic",
-  "line": 2288,
-  "endLine": 2308,
+  "line": 2289,
+  "endLine": 2309,
   "category": "magic",
   "topic": "Spell traces and sigils",
   "audience": [
@@ -157,8 +157,8 @@
  {
   "title": "Forceless Casting",
   "heading": "Forceless Casting",
-  "line": 2310,
-  "endLine": 2316,
+  "line": 2311,
+  "endLine": 2317,
   "category": "magic",
   "topic": "Forceless casting",
   "audience": [
@@ -179,8 +179,8 @@
  {
   "title": "Creo Mentem Guidelines (Restoring Memories)",
   "heading": "Creo Mentem Guidelines",
-  "line": 2348,
-  "endLine": 2354,
+  "line": 2349,
+  "endLine": 2355,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -201,8 +201,8 @@
  {
   "title": "Intellego Terram Guidelines (Commune with Stone and Metal)",
   "heading": "Intellego Terram Guidelines",
-  "line": 2416,
-  "endLine": 2422,
+  "line": 2417,
+  "endLine": 2423,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -223,8 +223,8 @@
  {
   "title": "Creo Vim Guidelines (Refreshing Spell Traces)",
   "heading": "Creo Vim Guidelines",
-  "line": 2458,
-  "endLine": 2460,
+  "line": 2459,
+  "endLine": 2461,
   "category": "magic",
   "topic": "Spell traces and sigils",
   "audience": [
@@ -245,8 +245,8 @@
  {
   "title": "Intellego Vim Guidelines (Detecting Magic Traces)",
   "heading": "Intellego Vim Guidelines",
-  "line": 2474,
-  "endLine": 2480,
+  "line": 2475,
+  "endLine": 2481,
   "category": "magic",
   "topic": "Spell traces and sigils",
   "audience": [
@@ -267,8 +267,8 @@
  {
   "title": "Perdo Vim Guidelines (Aging Traces and Dispelling Enchantments)",
   "heading": "Perdo Vim Guidelines",
-  "line": 2521,
-  "endLine": 2531,
+  "line": 2522,
+  "endLine": 2532,
   "category": "magic",
   "topic": "Spell guidelines",
   "audience": [
@@ -290,8 +290,8 @@
  {
   "title": "Fenicil's Rituals (Guernicus Group Rituals)",
   "heading": "Fenicil's Rituals",
-  "line": 2551,
-  "endLine": 2568,
+  "line": 2552,
+  "endLine": 2569,
   "category": "houses",
   "topic": "Fenicil's Rituals",
   "audience": [
@@ -315,8 +315,8 @@
  {
   "title": "Greater Rituals (Fenicil)",
   "heading": "Greater Rituals",
-  "line": 2570,
-  "endLine": 2577,
+  "line": 2571,
+  "endLine": 2578,
   "category": "houses",
   "topic": "Fenicil's Rituals",
   "audience": [
@@ -337,8 +337,8 @@
  {
   "title": "Greater Ritual Example (Curse of Thoth)",
   "heading": "Greater Ritual Example",
-  "line": 2606,
-  "endLine": 2612,
+  "line": 2607,
+  "endLine": 2613,
   "category": "houses",
   "topic": "Fenicil's Rituals",
   "audience": [
@@ -359,8 +359,8 @@
  {
   "title": "Lesser Rituals (Fenicil)",
   "heading": "Lesser Rituals",
-  "line": 2614,
-  "endLine": 2618,
+  "line": 2615,
+  "endLine": 2619,
   "category": "houses",
   "topic": "Fenicil's Rituals",
   "audience": [
@@ -381,8 +381,8 @@
  {
   "title": "Redcaps: Status and Role in the Order",
   "heading": "Redcaps",
-  "line": 2716,
-  "endLine": 2728,
+  "line": 2717,
+  "endLine": 2729,
   "category": "houses",
   "topic": "Redcaps",
   "audience": [
@@ -404,8 +404,8 @@
  {
   "title": "Messengers and Heralds (Mercer Houses, Registration, Redcap Pay)",
   "heading": "Messengers and Heralds",
-  "line": 2738,
-  "endLine": 2772,
+  "line": 2739,
+  "endLine": 2773,
   "category": "houses",
   "topic": "Redcaps",
   "audience": [
@@ -429,8 +429,8 @@
  {
   "title": "Societas Merceris: Followers of Belin",
   "heading": "Societas Merceris: Followers of Belin",
-  "line": 2774,
-  "endLine": 2784,
+  "line": 2775,
+  "endLine": 2785,
   "category": "houses",
   "topic": "Mercere societies",
   "audience": [
@@ -451,8 +451,8 @@
  {
   "title": "Merchants and Bankers (Vis Exchange, Loans, Liens, Pawning)",
   "heading": "Merchants and Bankers",
-  "line": 2786,
-  "endLine": 2857,
+  "line": 2787,
+  "endLine": 2858,
   "category": "social",
   "topic": "Vis trade and Redcap banking",
   "audience": [
@@ -478,8 +478,8 @@
  {
   "title": "Vis Notation",
   "heading": "Vis Notation",
-  "line": 2790,
-  "endLine": 2792,
+  "line": 2791,
+  "endLine": 2793,
   "category": "covenant",
   "topic": "Vis trade and Redcap banking",
   "audience": [
@@ -500,8 +500,8 @@
  {
   "title": "Usurers (High-Interest Lending)",
   "heading": "Usurers",
-  "line": 2811,
-  "endLine": 2817,
+  "line": 2812,
+  "endLine": 2818,
   "category": "social",
   "topic": "Vis trade and Redcap banking",
   "audience": [
@@ -523,8 +523,8 @@
  {
   "title": "Magical Silver (Tribunal Ruling)",
   "heading": "Magical Silver",
-  "line": 2829,
-  "endLine": 2837,
+  "line": 2830,
+  "endLine": 2838,
   "category": "order",
   "topic": "Peripheral Code",
   "audience": [
@@ -545,8 +545,8 @@
  {
   "title": "Societas Merceris: the Pawnbrokers",
   "heading": "Societas Merceris: the Pawnbrokers",
-  "line": 2859,
-  "endLine": 2871,
+  "line": 2860,
+  "endLine": 2872,
   "category": "houses",
   "topic": "Mercere societies",
   "audience": [
@@ -568,8 +568,8 @@
  {
   "title": "Mercenaries and Guardians (Custodians, Bounties, Portal Guards, Fine Collection)",
   "heading": "Mercenaries and Guardians",
-  "line": 2873,
-  "endLine": 2893,
+  "line": 2874,
+  "endLine": 2894,
   "category": "houses",
   "topic": "Redcaps",
   "audience": [
@@ -593,8 +593,8 @@
  {
   "title": "Societas Merceris: the Bloodcaps",
   "heading": "Societas Merceris: the Bloodcaps",
-  "line": 2917,
-  "endLine": 2927,
+  "line": 2918,
+  "endLine": 2928,
   "category": "houses",
   "topic": "Mercere societies",
   "audience": [
@@ -615,8 +615,8 @@
  {
   "title": "Errant Redcaps (Duty and Sanctions)",
   "heading": "Errant Redcaps",
-  "line": 2947,
-  "endLine": 2955,
+  "line": 2948,
+  "endLine": 2956,
   "category": "houses",
   "topic": "Redcaps",
   "audience": [
@@ -637,8 +637,8 @@
  {
   "title": "Societas Merceris: the Goliards",
   "heading": "Societas Merceris: the Goliards",
-  "line": 2957,
-  "endLine": 2973,
+  "line": 2958,
+  "endLine": 2974,
   "category": "houses",
   "topic": "Mercere societies",
   "audience": [
@@ -659,8 +659,8 @@
  {
   "title": "Magical Merceres (Mercere Magi Privileges and Creation)",
   "heading": "Magical Merceres",
-  "line": 2987,
-  "endLine": 3001,
+  "line": 2988,
+  "endLine": 3002,
   "category": "houses",
   "topic": "House Mercere magi",
   "audience": [
@@ -682,8 +682,8 @@
  {
   "title": "Mercurian Magi (Cult of Mercury Lineage)",
   "heading": "Mercurian Magi",
-  "line": 3003,
-  "endLine": 3015,
+  "line": 3004,
+  "endLine": 3016,
   "category": "houses",
   "topic": "House Mercere magi",
   "audience": [
@@ -705,8 +705,8 @@
  {
   "title": "Societas Merceris: the Cult of Heroes",
   "heading": "Societas Merceris: the Cult of Heroes",
-  "line": 3017,
-  "endLine": 3025,
+  "line": 3018,
+  "endLine": 3026,
   "category": "houses",
   "topic": "Mercere societies",
   "audience": [
@@ -730,8 +730,8 @@
  {
   "title": "Mutantes (Lineage and Magic-Taming)",
   "heading": "Mutantes",
-  "line": 3035,
-  "endLine": 3063,
+  "line": 3036,
+  "endLine": 3064,
   "category": "houses",
   "topic": "Mutantum Magic",
   "audience": [
@@ -755,8 +755,8 @@
  {
   "title": "Societas Merceris: Milvi Antiquiti",
   "heading": "Societas Merceris: Milvi Antiquiti",
-  "line": 3066,
-  "endLine": 3076,
+  "line": 3067,
+  "endLine": 3077,
   "category": "houses",
   "topic": "Mercere societies",
   "audience": [
@@ -779,8 +779,8 @@
  {
   "title": "Mastered Spell Special Abilities (Access Rules)",
   "heading": "Mastered Spell Special Abilities",
-  "line": 3116,
-  "endLine": 3120,
+  "line": 3117,
+  "endLine": 3121,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -800,8 +800,8 @@
  {
   "title": "Adaptive Casting",
   "heading": "Adaptive Casting",
-  "line": 3122,
-  "endLine": 3126,
+  "line": 3123,
+  "endLine": 3127,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -821,8 +821,8 @@
  {
   "title": "Boosted Casting",
   "heading": "Boosted Casting",
-  "line": 3150,
-  "endLine": 3154,
+  "line": 3151,
+  "endLine": 3155,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -843,8 +843,8 @@
  {
   "title": "Ceremonial Casting",
   "heading": "Ceremonial Casting",
-  "line": 3156,
-  "endLine": 3160,
+  "line": 3157,
+  "endLine": 3161,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -864,8 +864,8 @@
  {
   "title": "Disguised Casting",
   "heading": "Disguised Casting",
-  "line": 3162,
-  "endLine": 3166,
+  "line": 3163,
+  "endLine": 3167,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -886,8 +886,8 @@
  {
   "title": "Harnessed Casting",
   "heading": "Harnessed Casting",
-  "line": 3168,
-  "endLine": 3172,
+  "line": 3169,
+  "endLine": 3173,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -908,8 +908,8 @@
  {
   "title": "Lab Mastery",
   "heading": "Lab Mastery",
-  "line": 3174,
-  "endLine": 3178,
+  "line": 3175,
+  "endLine": 3179,
   "category": "lab",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -929,8 +929,8 @@
  {
   "title": "Learn from Mistakes",
   "heading": "Learn from Mistakes",
-  "line": 3180,
-  "endLine": 3184,
+  "line": 3181,
+  "endLine": 3185,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -950,8 +950,8 @@
  {
   "title": "Stalwart Casting",
   "heading": "Stalwart Casting",
-  "line": 3186,
-  "endLine": 3190,
+  "line": 3187,
+  "endLine": 3191,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -971,8 +971,8 @@
  {
   "title": "Tethered Casting",
   "heading": "TETHERED CASTING",
-  "line": 3192,
-  "endLine": 3196,
+  "line": 3193,
+  "endLine": 3197,
   "category": "magic",
   "topic": "Spell mastery abilities",
   "audience": [
@@ -993,8 +993,8 @@
  {
   "title": "Mercere's Portals (Lab Activity)",
   "heading": "Mercere's Portals",
-  "line": 3198,
-  "endLine": 3204,
+  "line": 3199,
+  "endLine": 3205,
   "category": "lab",
   "topic": "Mercere's Portals",
   "audience": [
@@ -1015,8 +1015,8 @@
  {
   "title": "Mutantum Magic (Metamagic)",
   "heading": "Mutantum Magic",
-  "line": 3210,
-  "endLine": 3218,
+  "line": 3211,
+  "endLine": 3219,
   "category": "magic",
   "topic": "Mutantum Magic",
   "audience": [
@@ -1040,8 +1040,8 @@
  {
   "title": "Mutantum Spells (Requirements)",
   "heading": "Mutantum Spells",
-  "line": 3224,
-  "endLine": 3236,
+  "line": 3225,
+  "endLine": 3237,
   "category": "magic",
   "topic": "Mutantum Magic",
   "audience": [
@@ -1062,8 +1062,8 @@
  {
   "title": "Blood of Heroes (Hero Characters)",
   "heading": "Blood of Heroes",
-  "line": 3357,
-  "endLine": 3367,
+  "line": 3358,
+  "endLine": 3368,
   "category": "creation",
   "topic": "Mythic Companions",
   "audience": [
@@ -1086,8 +1086,8 @@
  {
   "title": "Mythic Companions",
   "heading": "Mythic Companions",
-  "line": 3369,
-  "endLine": 3375,
+  "line": 3370,
+  "endLine": 3376,
   "category": "creation",
   "topic": "Mythic Companions",
   "audience": [
@@ -1108,8 +1108,8 @@
  {
   "title": "Heroic (Access to Heroic Virtues and Flaws)",
   "heading": "Heroic",
-  "line": 3377,
-  "endLine": 3379,
+  "line": 3378,
+  "endLine": 3380,
   "category": "creation",
   "topic": "Mythic Companions",
   "audience": [
@@ -1133,8 +1133,8 @@
  {
   "title": "Tremere Block Voting and Tribunal Tactics",
   "heading": "Block Voting",
-  "line": 3871,
-  "endLine": 3879,
+  "line": 3872,
+  "endLine": 3880,
   "category": "order",
   "topic": "House Tremere politics",
   "audience": [
@@ -1156,8 +1156,8 @@
  {
   "title": "House Tremere Structure and Ranks",
   "heading": "Structure",
-  "line": 3907,
-  "endLine": 3913,
+  "line": 3908,
+  "endLine": 3914,
   "category": "houses",
   "topic": "House Tremere organization",
   "audience": [
@@ -1179,8 +1179,8 @@
  {
   "title": "The Role of Young Magi (Tremere Duties and Aid)",
   "heading": "THE ROLE OF YOUNG MAGI",
-  "line": 3915,
-  "endLine": 3951,
+  "line": 3916,
+  "endLine": 3952,
   "category": "houses",
   "topic": "House Tremere aid",
   "audience": [
@@ -1203,8 +1203,8 @@
  {
   "title": "The Role of Skilled Magi (Tremere Duties and Aid)",
   "heading": "The Role of Skilled Magi",
-  "line": 3953,
-  "endLine": 3978,
+  "line": 3954,
+  "endLine": 3979,
   "category": "houses",
   "topic": "House Tremere aid",
   "audience": [
@@ -1226,8 +1226,8 @@
  {
   "title": "The Role of Experienced Magi (Tremere Duties and Aid)",
   "heading": "The Role of Experienced Magi",
-  "line": 3980,
-  "endLine": 4013,
+  "line": 3981,
+  "endLine": 4014,
   "category": "houses",
   "topic": "House Tremere aid",
   "audience": [
@@ -1249,8 +1249,8 @@
  {
   "title": "Material Aid in Your Saga",
   "heading": "Material Aid in Your Saga",
-  "line": 4015,
-  "endLine": 4023,
+  "line": 4016,
+  "endLine": 4024,
   "category": "houses",
   "topic": "House Tremere aid",
   "audience": [
@@ -1270,8 +1270,8 @@
  {
   "title": "The Role of the Exarchs (Tremere Duties and Aid)",
   "heading": "The Role of the Exarchs",
-  "line": 4025,
-  "endLine": 4054,
+  "line": 4026,
+  "endLine": 4055,
   "category": "houses",
   "topic": "House Tremere aid",
   "audience": [
@@ -1293,8 +1293,8 @@
  {
   "title": "Promotion by Force",
   "heading": "Promotion by Force",
-  "line": 4104,
-  "endLine": 4106,
+  "line": 4105,
+  "endLine": 4107,
   "category": "houses",
   "topic": "House Tremere promotion",
   "audience": [
@@ -1315,8 +1315,8 @@
  {
   "title": "Claiming the Name (Gauntlet by Certamen)",
   "heading": "Claiming the Name, to Move to the Role of Magus by Force",
-  "line": 4108,
-  "endLine": 4116,
+  "line": 4109,
+  "endLine": 4117,
   "category": "houses",
   "topic": "House Tremere promotion",
   "audience": [
@@ -1337,8 +1337,8 @@
  {
   "title": "Claiming the Sigil (Experienced Magus by Force)",
   "heading": "Claiming the Sigil, to Move to the Role of Experienced Magus by Force",
-  "line": 4118,
-  "endLine": 4131,
+  "line": 4119,
+  "endLine": 4132,
   "category": "houses",
   "topic": "House Tremere promotion",
   "audience": [
@@ -1350,7 +1350,7 @@
   "requires": "House Tremere",
   "summary": "How a Tremere magus challenges his parens for his own sigil (once at a chosen time, then at each Decennial), and the privileges of a young magus who holds his own sigil, including how aid is treated and trivial votes at Tribunal.",
   "quotes": [
-   "The prot\u00e9g\u00e9 may challenge for their sigil, at a time of their choosing, once.",
+   "The protégé may challenge for their sigil, at a time of their choosing, once.",
    "After this, the magus may challenge at every Decennial meeting of the House."
   ],
   "related": [
@@ -1361,8 +1361,8 @@
  {
   "title": "Claiming the Tribunal's Dragon Banner (Exarch by Force)",
   "heading": "Claiming the Tribunal's Dragon Banner, to Move to the Role of Exarch by Force",
-  "line": 4133,
-  "endLine": 4149,
+  "line": 4134,
+  "endLine": 4150,
   "category": "houses",
   "topic": "House Tremere promotion",
   "audience": [
@@ -1383,8 +1383,8 @@
  {
   "title": "Dissent (House Tremere)",
   "heading": "Dissent",
-  "line": 4151,
-  "endLine": 4159,
+  "line": 4152,
+  "endLine": 4160,
   "category": "houses",
   "topic": "House Tremere promotion",
   "audience": [
@@ -1405,8 +1405,8 @@
  {
   "title": "Claiming the Sigil of Tremere (Primus by Force)",
   "heading": "Claiming the Sigil of Tremere, to Move to the Pole of Primus by Force",
-  "line": 4161,
-  "endLine": 4167,
+  "line": 4162,
+  "endLine": 4168,
   "category": "houses",
   "topic": "House Tremere promotion",
   "audience": [
@@ -1427,8 +1427,8 @@
  {
   "title": "Tremere Arts and Spells (Four-Art Duelists)",
   "heading": "Arts and Spells",
-  "line": 4173,
-  "endLine": 4175,
+  "line": 4174,
+  "endLine": 4176,
   "category": "creation",
   "topic": "Certamen",
   "audience": [
@@ -1449,8 +1449,8 @@
  {
   "title": "Tremere Magical Mounts and Animals (Parma over Mounts)",
   "heading": "Animals",
-  "line": 4391,
-  "endLine": 4397,
+  "line": 4392,
+  "endLine": 4398,
   "category": "houses",
   "topic": "House Tremere animals",
   "audience": [
@@ -1471,8 +1471,8 @@
  {
   "title": "Tremere Virtues and Flaws Guidance",
   "heading": "Virtues and Flaws",
-  "line": 4513,
-  "endLine": 4531,
+  "line": 4514,
+  "endLine": 4532,
   "category": "houses",
   "topic": "House Tremere creation",
   "audience": [
@@ -1493,8 +1493,8 @@
  {
   "title": "Tremere Abilities",
   "heading": "Abilities",
-  "line": 4533,
-  "endLine": 4535,
+  "line": 4534,
+  "endLine": 4536,
   "category": "houses",
   "topic": "House Tremere creation",
   "audience": [
@@ -1512,8 +1512,8 @@
  {
   "title": "Tremere Enchanting Materials (Amber, Rhodocrosite, Opal)",
   "heading": "Materials",
-  "line": 4541,
-  "endLine": 4549,
+  "line": 4542,
+  "endLine": 4550,
   "category": "lab",
   "topic": "Shape and Material",
   "audience": [
@@ -1533,8 +1533,8 @@
  {
   "title": "Tremere Specialist Roles",
   "heading": "Specialist Roles",
-  "line": 4551,
-  "endLine": 4557,
+  "line": 4552,
+  "endLine": 4558,
   "category": "houses",
   "topic": "House Tremere organization",
   "audience": [
@@ -1555,8 +1555,8 @@
  {
   "title": "Certamen Reputations",
   "heading": "Certamen reputations",
-  "line": 4611,
-  "endLine": 4633,
+  "line": 4612,
+  "endLine": 4634,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1579,8 +1579,8 @@
  {
   "title": "Dueling (Certamen Etiquette and Duels for Love)",
   "heading": "Dueling",
-  "line": 4635,
-  "endLine": 4649,
+  "line": 4636,
+  "endLine": 4650,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1602,8 +1602,8 @@
  {
   "title": "Styles of Certamen (Schools)",
   "heading": "Styles of Certamen",
-  "line": 4651,
-  "endLine": 4657,
+  "line": 4652,
+  "endLine": 4658,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1624,8 +1624,8 @@
  {
   "title": "Certamen School: Gladiator (Swordsman)",
   "heading": "Gladiator",
-  "line": 4659,
-  "endLine": 4661,
+  "line": 4660,
+  "endLine": 4662,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1645,8 +1645,8 @@
  {
   "title": "Certamen School: Andabatus (Blind Fighting)",
   "heading": "Andabatus",
-  "line": 4663,
-  "endLine": 4665,
+  "line": 4664,
+  "endLine": 4666,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1666,8 +1666,8 @@
  {
   "title": "Certamen School: Bestiarius (Beasts)",
   "heading": "Bestiarius",
-  "line": 4667,
-  "endLine": 4669,
+  "line": 4668,
+  "endLine": 4670,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1688,8 +1688,8 @@
  {
   "title": "Certamen School: Bone-Biting",
   "heading": "Bone - Biting",
-  "line": 4671,
-  "endLine": 4675,
+  "line": 4672,
+  "endLine": 4676,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1709,8 +1709,8 @@
  {
   "title": "Certamen Trick: Charon",
   "heading": "Charon",
-  "line": 4677,
-  "endLine": 4679,
+  "line": 4678,
+  "endLine": 4680,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1732,8 +1732,8 @@
  {
   "title": "Certamen School: Essedarius (Charioteer)",
   "heading": "Essedarius",
-  "line": 4681,
-  "endLine": 4683,
+  "line": 4682,
+  "endLine": 4684,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1753,8 +1753,8 @@
  {
   "title": "Certamen School: Gladiatrix (Swordswoman)",
   "heading": "Gladiatrix",
-  "line": 4685,
-  "endLine": 4693,
+  "line": 4686,
+  "endLine": 4694,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1775,8 +1775,8 @@
  {
   "title": "Certamen School: Hoplomachus",
   "heading": "Hoplomachus",
-  "line": 4708,
-  "endLine": 4710,
+  "line": 4709,
+  "endLine": 4711,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1796,8 +1796,8 @@
  {
   "title": "Certamen School: Laquerius (Noose)",
   "heading": "Laquerius",
-  "line": 4712,
-  "endLine": 4714,
+  "line": 4713,
+  "endLine": 4715,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1817,8 +1817,8 @@
  {
   "title": "Certamen School: Provocator (Challengers)",
   "heading": "Provocator",
-  "line": 4716,
-  "endLine": 4718,
+  "line": 4717,
+  "endLine": 4719,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1838,8 +1838,8 @@
  {
   "title": "Certamen School: Pumilius (Amusing Dwarfs)",
   "heading": "Pumilius",
-  "line": 4720,
-  "endLine": 4724,
+  "line": 4721,
+  "endLine": 4725,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1859,8 +1859,8 @@
  {
   "title": "Certamen School: Retiarius (Fisherman)",
   "heading": "RETIARIUS",
-  "line": 4726,
-  "endLine": 4728,
+  "line": 4727,
+  "endLine": 4729,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1880,8 +1880,8 @@
  {
   "title": "Certamen School: Saggitarius (Archer)",
   "heading": "Saggitarius",
-  "line": 4730,
-  "endLine": 4732,
+  "line": 4731,
+  "endLine": 4733,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1901,8 +1901,8 @@
  {
   "title": "Certamen School: Scissor (Carvers)",
   "heading": "Scissor",
-  "line": 4734,
-  "endLine": 4740,
+  "line": 4735,
+  "endLine": 4741,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1913,7 +1913,7 @@
   "requires": "Certamen school: Scissor",
   "summary": "A style where the duelist skips an attack in one round and then, on a successful attack, converts the margin into Fatigue levels lost by dividing by a set number.",
   "quotes": [
-   "(Weaking Total \u2013 Resistance Total) / 3 = Number of fatigue levels lost."
+   "(Weaking Total – Resistance Total) / 3 = Number of fatigue levels lost."
   ],
   "related": [
    "Styles of Certamen"
@@ -1922,8 +1922,8 @@
  {
   "title": "Certamen School: Velitus (Spear)",
   "heading": "Velitus",
-  "line": 4742,
-  "endLine": 4744,
+  "line": 4743,
+  "endLine": 4745,
   "category": "magic",
   "topic": "Certamen",
   "audience": [
@@ -1943,8 +1943,8 @@
  {
   "title": "Shape and Material Bonus Table Additions",
   "heading": "Shape and Material Bonus Table Additions",
-  "line": 4782,
-  "endLine": 4794,
+  "line": 4783,
+  "endLine": 4795,
   "category": "lab",
   "topic": "Shape and Material",
   "audience": [
@@ -1964,8 +1964,8 @@
  {
   "title": "Folk Dancer (Communal Dance Magic)",
   "heading": "Folk Dancer",
-  "line": 4944,
-  "endLine": 4952,
+  "line": 4945,
+  "endLine": 4953,
   "category": "traditions",
   "topic": "Folk dancing magic",
   "audience": [
@@ -1987,8 +1987,8 @@
  {
   "title": "Leadworker (Katadesmoi and Penetration Bonuses)",
   "heading": "Leadworker",
-  "line": 4986,
-  "endLine": 5000,
+  "line": 4987,
+  "endLine": 5001,
   "category": "magic",
   "topic": "Penetration",
   "audience": [

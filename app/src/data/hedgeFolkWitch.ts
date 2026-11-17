@@ -79,7 +79,7 @@ export const WITCH_FETISHES: Record<string, { name: string; vis: string }> = {
 
 const FOLK_ABILITIES: AbilityDef[] = [
   {
-    id: 'folk-witch-magic-theory', name: 'Folk Witch Magic Theory', type: 'Arcane', restricted: false, specialties: ['potions', 'fetishes', 'curses', 'vis'], source: src(1880),
+    id: 'folk-witch-magic-theory', name: 'Folk Witch Magic Theory', type: 'Arcane', restricted: false, specialties: ['potions', 'fetishes', 'curses', 'vis'], source: src(1882),
     text: 'The technical lore of folk witch magic (Hedge Magic), used in the kitchen as Magic Theory is in a laboratory: Lab Total = Supernatural Ability + Intelligence + Folk Witch Magic Theory + aura. A brew makes this many doses; a season uses up to twice it in vis (four times with Concentrated Potions). Anyone may be taught it.',
   },
   ...WITCH_POWERS.filter((p) => p.id.startsWith('witch-') || p.id === 'animal-healing').map(

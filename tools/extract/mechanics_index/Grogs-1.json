@@ -558,7 +558,7 @@
   "quotes": [
    "This involves a Stamina + Concentration roll; failure indicates that the character is dozing or asleep.",
    "Stamina + Concentration + simple die",
-   "Characters who are asleep have a \u20139 penalty to any Awareness rolls."
+   "Characters who are asleep have a –9 penalty to any Awareness rolls."
   ],
   "related": []
  },
@@ -659,7 +659,7 @@
   "requires": "",
   "summary": "Better food as a reward, which if kept for a full year improves the grog's Living Conditions Modifier on aging rolls.",
   "quotes": [
-   "A grog spending a year on improved rations receives a \u20131 improvement to his Living Conditions Modifier when making aging rolls."
+   "A grog spending a year on improved rations receives a –1 improvement to his Living Conditions Modifier when making aging rolls."
   ],
   "related": []
  },
@@ -1430,7 +1430,7 @@
   "title": "Translation",
   "heading": "Translation",
   "line": 2027,
-  "endLine": 2043,
+  "endLine": 2046,
   "category": "social",
   "topic": "Languages",
   "audience": [
@@ -1450,8 +1450,8 @@
  {
   "title": "Personality Traits for grogs",
   "heading": "Personality Traits",
-  "line": 2053,
-  "endLine": 2059,
+  "line": 2056,
+  "endLine": 2062,
   "category": "basics",
   "topic": "Personality Traits",
   "audience": [
@@ -1475,8 +1475,8 @@
  {
   "title": "Making Personality Trait Rolls",
   "heading": "Making Personality Trait Rolls",
-  "line": 2061,
-  "endLine": 2067,
+  "line": 2064,
+  "endLine": 2070,
   "category": "basics",
   "topic": "Personality Traits",
   "audience": [
@@ -1497,8 +1497,8 @@
  {
   "title": "Growing Used to The Gifted",
   "heading": "Growing Used to The Gifted",
-  "line": 2069,
-  "endLine": 2073,
+  "line": 2072,
+  "endLine": 2076,
   "category": "social",
   "topic": "The Gift and covenfolk",
   "audience": [
@@ -1520,8 +1520,8 @@
  {
   "title": "Advanced Group Combat",
   "heading": "Advanced Group Combat",
-  "line": 2075,
-  "endLine": 2077,
+  "line": 2078,
+  "endLine": 2080,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1543,8 +1543,8 @@
  {
   "title": "The Leader's Actions",
   "heading": "The Leader's Actions",
-  "line": 2079,
-  "endLine": 2083,
+  "line": 2082,
+  "endLine": 2086,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1563,8 +1563,8 @@
  {
   "title": "Morale and Discipline",
   "heading": "Morale and Discipline",
-  "line": 2085,
-  "endLine": 2089,
+  "line": 2088,
+  "endLine": 2092,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1583,8 +1583,8 @@
  {
   "title": "Discipline",
   "heading": "Discipline",
-  "line": 2091,
-  "endLine": 2109,
+  "line": 2094,
+  "endLine": 2112,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1604,8 +1604,8 @@
  {
   "title": "Morale",
   "heading": "Morale",
-  "line": 2111,
-  "endLine": 2126,
+  "line": 2114,
+  "endLine": 2129,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1625,8 +1625,8 @@
  {
   "title": "Disordered Groups",
   "heading": "Disordered Groups",
-  "line": 2128,
-  "endLine": 2134,
+  "line": 2131,
+  "endLine": 2137,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1645,8 +1645,8 @@
  {
   "title": "Routed Groups",
   "heading": "Routed Groups",
-  "line": 2136,
-  "endLine": 2140,
+  "line": 2139,
+  "endLine": 2143,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1665,8 +1665,8 @@
  {
   "title": "Rallying a Group",
   "heading": "Rallying a Group",
-  "line": 2142,
-  "endLine": 2169,
+  "line": 2145,
+  "endLine": 2172,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1685,8 +1685,8 @@
  {
   "title": "Groups With No Leader",
   "heading": "Groups With No Leader",
-  "line": 2171,
-  "endLine": 2185,
+  "line": 2174,
+  "endLine": 2188,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -1709,8 +1709,8 @@
  {
   "title": "Battlefield Injuries (activity while wounded)",
   "heading": "Battlefield Injuries",
-  "line": 2193,
-  "endLine": 2197,
+  "line": 2196,
+  "endLine": 2200,
   "category": "hazards",
   "topic": "Injury and healing",
   "audience": [
@@ -1722,7 +1722,7 @@
   "requires": "",
   "summary": "Describes how Wound Penalties restrict travel, strenuous activity, sentry duty and double watches, and why a first-aider's Chirurgy matters for the Wound Recovery roll that prevents a wound from worsening.",
   "quotes": [
-   "Even a \u20131 Wound Penalty prohibits strenuous activity without risking the wound."
+   "Even a –1 Wound Penalty prohibits strenuous activity without risking the wound."
   ],
   "related": [
    "ArM5 p.179"
@@ -1731,8 +1731,8 @@
  {
   "title": "First Aid",
   "heading": "First Aid",
-  "line": 2199,
-  "endLine": 2204,
+  "line": 2202,
+  "endLine": 2207,
   "category": "hazards",
   "topic": "Injury and healing",
   "audience": [
@@ -1757,8 +1757,8 @@
  {
   "title": "Magical First Aid",
   "heading": "Magical First Aid",
-  "line": 2206,
-  "endLine": 2210,
+  "line": 2209,
+  "endLine": 2213,
   "category": "hazards",
   "topic": "Injury and healing",
   "audience": [
@@ -1782,8 +1782,8 @@
  {
   "title": "The Death of a Grog",
   "heading": "The Death of a Grog",
-  "line": 2212,
-  "endLine": 2222,
+  "line": 2215,
+  "endLine": 2225,
   "category": "covenant",
   "topic": "Death and burial",
   "audience": [
@@ -1805,8 +1805,8 @@
  {
   "title": "Virtues and Flaws (changing them over time)",
   "heading": "Virtues and Flaws",
-  "line": 2238,
-  "endLine": 2244,
+  "line": 2241,
+  "endLine": 2247,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1825,8 +1825,8 @@
  {
   "title": "Gaining New Flaws",
   "heading": "Gaining New Flaws",
-  "line": 2246,
-  "endLine": 2254,
+  "line": 2249,
+  "endLine": 2257,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1845,8 +1845,8 @@
  {
   "title": "Changes in Social Status",
   "heading": "Changes in Social Status",
-  "line": 2250,
-  "endLine": 2252,
+  "line": 2253,
+  "endLine": 2255,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1865,8 +1865,8 @@
  {
   "title": "Gaining Flaws Through Mishaps",
   "heading": "Gaining Flaws Through Mishaps",
-  "line": 2256,
-  "endLine": 2258,
+  "line": 2259,
+  "endLine": 2261,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1889,8 +1889,8 @@
  {
   "title": "Gaining Flaws Through Actions",
   "heading": "Gaining Flaws Through Actions",
-  "line": 2260,
-  "endLine": 2262,
+  "line": 2263,
+  "endLine": 2265,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1909,8 +1909,8 @@
  {
   "title": "Gaining Flaws Through Magic",
   "heading": "Gaining Flaws Through Magic",
-  "line": 2264,
-  "endLine": 2268,
+  "line": 2267,
+  "endLine": 2271,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1933,8 +1933,8 @@
  {
   "title": "Gaining New Virtues",
   "heading": "Gaining New Virtues",
-  "line": 2270,
-  "endLine": 2274,
+  "line": 2273,
+  "endLine": 2277,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1953,8 +1953,8 @@
  {
   "title": "Gaining Virtues Through Magic",
   "heading": "Gaining Virtues Through Magic",
-  "line": 2276,
-  "endLine": 2282,
+  "line": 2279,
+  "endLine": 2285,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -1978,8 +1978,8 @@
  {
   "title": "Gaining Virtues Through Initiation",
   "heading": "Gaining Virtues Through Initiation",
-  "line": 2284,
-  "endLine": 2288,
+  "line": 2287,
+  "endLine": 2291,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2001,8 +2001,8 @@
  {
   "title": "Gaining Virtues Through Actions",
   "heading": "Gaining Virtues Through Actions",
-  "line": 2290,
-  "endLine": 2292,
+  "line": 2293,
+  "endLine": 2295,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2021,8 +2021,8 @@
  {
   "title": "Losing Flaws",
   "heading": "Losing Flaws",
-  "line": 2294,
-  "endLine": 2296,
+  "line": 2297,
+  "endLine": 2299,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2041,8 +2041,8 @@
  {
   "title": "Character Transformation (grog to companion)",
   "heading": "Character Transformation",
-  "line": 2298,
-  "endLine": 2302,
+  "line": 2301,
+  "endLine": 2305,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2061,8 +2061,8 @@
  {
   "title": "Inauguration",
   "heading": "Inauguration",
-  "line": 2304,
-  "endLine": 2310,
+  "line": 2307,
+  "endLine": 2313,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2081,8 +2081,8 @@
  {
   "title": "Metamorphosis",
   "heading": "Metamorphosis",
-  "line": 2312,
-  "endLine": 2316,
+  "line": 2315,
+  "endLine": 2319,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2101,8 +2101,8 @@
  {
   "title": "Initiation (as transformation)",
   "heading": "Initiation",
-  "line": 2318,
-  "endLine": 2322,
+  "line": 2321,
+  "endLine": 2325,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2121,8 +2121,8 @@
  {
   "title": "Pilgrimage (as transformation)",
   "heading": "Pilgrimage",
-  "line": 2324,
-  "endLine": 2330,
+  "line": 2327,
+  "endLine": 2333,
   "category": "creation",
   "topic": "Grog maintenance",
   "audience": [
@@ -2143,8 +2143,8 @@
  {
   "title": "Starting Characteristics",
   "heading": "Starting Characteristics",
-  "line": 2332,
-  "endLine": 2342,
+  "line": 2335,
+  "endLine": 2345,
   "category": "creation",
   "topic": "Grog creation",
   "audience": [
@@ -2161,8 +2161,8 @@
  {
   "title": "Characteristics (grog creation)",
   "heading": "Characteristics",
-  "line": 2344,
-  "endLine": 2346,
+  "line": 2347,
+  "endLine": 2349,
   "category": "creation",
   "topic": "Grog creation",
   "audience": [
@@ -2183,8 +2183,8 @@
  {
   "title": "Aging, the Easy Way",
   "heading": "Aging, the Easy Way",
-  "line": 2348,
-  "endLine": 2354,
+  "line": 2351,
+  "endLine": 2357,
   "category": "aging",
   "topic": "Grog creation",
   "audience": [
@@ -2196,7 +2196,7 @@
   "requires": "",
   "summary": "A shortcut for aging old or many characters by looking up the Aging Points gained per decade for mild, average or harsh aging at the character's Aging Score, with a simple-die method to find Apparent Age.",
   "quotes": [
-   "age/10 (round up) \u2013 Living Conditions modifier \u2013 Longevity Ritual modifier"
+   "age/10 (round up) – Living Conditions modifier – Longevity Ritual modifier"
   ],
   "related": [
    "ArM5 p.31"
@@ -2205,8 +2205,8 @@
  {
   "title": "Aging Chart",
   "heading": "Aging Chart",
-  "line": 2356,
-  "endLine": 2371,
+  "line": 2359,
+  "endLine": 2374,
   "category": "aging",
   "topic": "Grog creation",
   "audience": [
@@ -2227,8 +2227,8 @@
  {
   "title": "Applying Crises",
   "heading": "Applying Crises",
-  "line": 2373,
-  "endLine": 2379,
+  "line": 2376,
+  "endLine": 2382,
   "category": "aging",
   "topic": "Grog creation",
   "audience": [
@@ -2247,8 +2247,8 @@
  {
   "title": "Effects of Aging on Characteristics",
   "heading": "Effects of Aging on Characteristics",
-  "line": 2381,
-  "endLine": 2383,
+  "line": 2384,
+  "endLine": 2386,
   "category": "aging",
   "topic": "Grog creation",
   "audience": [
@@ -2269,8 +2269,8 @@
  {
   "title": "Childhood Training Packages",
   "heading": "Childhood Training Packages",
-  "line": 2385,
-  "endLine": 2419,
+  "line": 2388,
+  "endLine": 2422,
   "category": "creation",
   "topic": "Grog creation",
   "audience": [
@@ -2291,8 +2291,8 @@
  {
   "title": "Covenant-Bred Childhood",
   "heading": "Covenant-Bred Childhood",
-  "line": 2393,
-  "endLine": 2397,
+  "line": 2396,
+  "endLine": 2400,
   "category": "creation",
   "topic": "Grog creation",
   "audience": [
@@ -2311,8 +2311,8 @@
  {
   "title": "Feral Childhood",
   "heading": "Feral Childhood",
-  "line": 2403,
-  "endLine": 2407,
+  "line": 2406,
+  "endLine": 2410,
   "category": "creation",
   "topic": "Grog creation",
   "audience": [

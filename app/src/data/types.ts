@@ -383,6 +383,7 @@ export interface BookInfo {
   file: string;
   title: string;
   abbr: string;
-  category: 'core' | 'social' | 'covenant' | 'houses' | 'magic' | 'realms' | 'setting' | 'adventure' | 'tribunal';
+  /** 'earlier' (a Third or Fourth Edition book) and 'third-party' are for reading only: no rules are taken from them */
+  category: 'core' | 'social' | 'covenant' | 'houses' | 'magic' | 'realms' | 'setting' | 'adventure' | 'tribunal' | 'earlier' | 'third-party';
   status: 'reviewed' | 'wip';
 }

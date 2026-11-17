@@ -2,8 +2,8 @@
  {
   "title": "Customized Covenant Creation Summary",
   "heading": "Customized Covenant Creation Summary",
-  "line": 155,
-  "endLine": 215,
+  "line": 158,
+  "endLine": 218,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -24,8 +24,8 @@
  {
   "title": "Covenant Baseline",
   "heading": "Baseline",
-  "line": 159,
-  "endLine": 161,
+  "line": 162,
+  "endLine": 164,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -44,8 +44,8 @@
  {
   "title": "Covenant Power Level and Build Points",
   "heading": "Power Level",
-  "line": 163,
-  "endLine": 174,
+  "line": 166,
+  "endLine": 177,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -57,15 +57,15 @@
   "requires": "",
   "summary": "The troupe chooses one of four power levels (low, medium, high, legendary), which sets the Build Points, the maximum level of lab texts and enchanted-device effects, and the minimum age of the covenant.",
   "quotes": [
-   "| Low | 0\u2013300 | 25 | None |"
+   "| Low | 0–300 | 25 | None |"
   ],
   "related": []
  },
  {
   "title": "Covenant Boons and Hooks (Creation Summary)",
   "heading": "Boons and Hooks",
-  "line": 176,
-  "endLine": 178,
+  "line": 179,
+  "endLine": 181,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -84,8 +84,8 @@
  {
   "title": "Covenant Resource Costs in Build Points",
   "heading": "Resources",
-  "line": 180,
-  "endLine": 201,
+  "line": 183,
+  "endLine": 204,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -106,8 +106,8 @@
  {
   "title": "Covenant Build Point Costs: Money, Specialists and Vis",
   "heading": "Money",
-  "line": 203,
-  "endLine": 215,
+  "line": 206,
+  "endLine": 218,
   "category": "covenant",
   "topic": "Covenant creation",
   "audience": [
@@ -127,8 +127,8 @@
  {
   "title": "The Covenant in Play: Gaining and Losing Boons and Hooks",
   "heading": "The Covenant in Play",
-  "line": 217,
-  "endLine": 223,
+  "line": 220,
+  "endLine": 226,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -147,8 +147,8 @@
  {
   "title": "Tips for a Smoothly Run Covenant",
   "heading": "Some Tips for a Smoothly Run Covenant",
-  "line": 139,
-  "endLine": 153,
+  "line": 142,
+  "endLine": 156,
   "category": "covenant",
   "topic": "Covenant bookkeeping",
   "audience": [
@@ -165,8 +165,8 @@
  {
   "title": "Paying for Choices (Boon and Hook Balance, Unknown Hook)",
   "heading": "Paying for Choices",
-  "line": 235,
-  "endLine": 245,
+  "line": 238,
+  "endLine": 248,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -189,8 +189,8 @@
  {
   "title": "Conversion from the Ars Magica Rules",
   "heading": "Conversion from the Ars Magica Rules",
-  "line": 293,
-  "endLine": 297,
+  "line": 296,
+  "endLine": 300,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -208,8 +208,8 @@
  {
   "title": "Major Site Boons",
   "heading": "Major Site Boons",
-  "line": 251,
-  "endLine": 271,
+  "line": 254,
+  "endLine": 274,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -229,8 +229,8 @@
  {
   "title": "Minor Site Boons",
   "heading": "Minor Site Boons",
-  "line": 299,
-  "endLine": 329,
+  "line": 302,
+  "endLine": 332,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -252,8 +252,8 @@
  {
   "title": "Major Site Hooks",
   "heading": "Major Site Hooks",
-  "line": 331,
-  "endLine": 357,
+  "line": 334,
+  "endLine": 360,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -272,8 +272,8 @@
  {
   "title": "Minor Site Hooks",
   "heading": "Minor Site Hooks",
-  "line": 359,
-  "endLine": 421,
+  "line": 362,
+  "endLine": 424,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -286,7 +286,7 @@
   "summary": "The Minor Hooks for the covenant's site, such as corrupt or faerie auras, curses, haunting, a flickering or weak aura, an unhealthy environment that worsens aging rolls, and several regio variants. Several of them may be taken as the Unknown Hook.",
   "quotes": [
    "Subtract one point from the covenant's Magic aura.",
-   "All people regularly exposed to the environmental factor suffer a \u20131 penalty to their Aging rolls."
+   "All people regularly exposed to the environmental factor suffer a –1 penalty to their Aging rolls."
   ],
   "related": [
    "ArM5 p.170 Aging Table"
@@ -295,8 +295,8 @@
  {
   "title": "Fortifications Free Choices (Island, Manor House, Ringwork, Small Tower)",
   "heading": "Free Choices",
-  "line": 427,
-  "endLine": 463,
+  "line": 430,
+  "endLine": 466,
   "category": "covenant",
   "topic": "Fortifications",
   "audience": [
@@ -315,8 +315,8 @@
  {
   "title": "Castle (Major Hook)",
   "heading": "Castle (Major Hook)",
-  "line": 439,
-  "endLine": 449,
+  "line": 442,
+  "endLine": 452,
   "category": "covenant",
   "topic": "Fortifications",
   "audience": [
@@ -335,8 +335,8 @@
  {
   "title": "Major Fortifications Boons",
   "heading": "Major Fortifications Boons",
-  "line": 465,
-  "endLine": 513,
+  "line": 468,
+  "endLine": 516,
   "category": "covenant",
   "topic": "Fortifications",
   "audience": [
@@ -355,8 +355,8 @@
  {
   "title": "Keep Alternatives for Castles with Curtain Walls",
   "heading": "Keep Alternatives for Castles with Curtain Walls",
-  "line": 477,
-  "endLine": 487,
+  "line": 480,
+  "endLine": 490,
   "category": "covenant",
   "topic": "Fortifications",
   "audience": [
@@ -373,8 +373,8 @@
  {
   "title": "Barbicans and Moats",
   "heading": "Barbicans and Moats",
-  "line": 489,
-  "endLine": 495,
+  "line": 492,
+  "endLine": 498,
   "category": "covenant",
   "topic": "Fortifications",
   "audience": [
@@ -393,8 +393,8 @@
  {
   "title": "Minor Fortifications Boons",
   "heading": "Minor Fortifications Boons",
-  "line": 515,
-  "endLine": 551,
+  "line": 518,
+  "endLine": 554,
   "category": "covenant",
   "topic": "Fortifications",
   "audience": [
@@ -415,8 +415,8 @@
  {
   "title": "Minor Fortifications Hooks",
   "heading": "Minor Fortifications Hooks",
-  "line": 553,
-  "endLine": 559,
+  "line": 556,
+  "endLine": 562,
   "category": "covenant",
   "topic": "Fortifications",
   "audience": [
@@ -433,8 +433,8 @@
  {
   "title": "Major Resources Boon (Wealth)",
   "heading": "Major Resources Boon",
-  "line": 567,
-  "endLine": 569,
+  "line": 570,
+  "endLine": 572,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -455,8 +455,8 @@
  {
   "title": "Minor Resources Boons",
   "heading": "Minor Resources Boons",
-  "line": 571,
-  "endLine": 581,
+  "line": 574,
+  "endLine": 584,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -478,8 +478,8 @@
  {
   "title": "Major Resources Hooks",
   "heading": "Major Resources Hooks",
-  "line": 583,
-  "endLine": 591,
+  "line": 586,
+  "endLine": 594,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -498,8 +498,8 @@
  {
   "title": "Minor Resources Hooks",
   "heading": "Minor Resources Hooks",
-  "line": 593,
-  "endLine": 615,
+  "line": 596,
+  "endLine": 618,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -522,8 +522,8 @@
  {
   "title": "Style of Governance (Covenfolk)",
   "heading": "Style of Governance",
-  "line": 617,
-  "endLine": 633,
+  "line": 620,
+  "endLine": 636,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -544,8 +544,8 @@
  {
   "title": "Residents: Paying for Background Characters",
   "heading": "Residents",
-  "line": 635,
-  "endLine": 639,
+  "line": 638,
+  "endLine": 642,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -564,8 +564,8 @@
  {
   "title": "Residents Free Choices",
   "heading": "Residents Free Choices",
-  "line": 641,
-  "endLine": 645,
+  "line": 644,
+  "endLine": 648,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -584,8 +584,8 @@
  {
   "title": "Crossbow Rules and Statistics",
   "heading": "Crossbows",
-  "line": 647,
-  "endLine": 658,
+  "line": 650,
+  "endLine": 661,
   "category": "combat",
   "topic": "Weapons",
   "audience": [
@@ -597,7 +597,7 @@
   "requires": "",
   "summary": "Interim rules for reloading crossbows (time depends on Strength and the winding system), a limit of one bolt per round, and a statistics table for historical and anachronistic crossbows.",
   "quotes": [
-   "A crossbow takes (5 \u2013 Strength) minutes to reload.",
+   "A crossbow takes (5 – Strength) minutes to reload.",
    "No character may discharge a bolt more than once per combat round.",
    "| Historical | +5 | +5 | 0 | +7 | 25 | 1 | 2 | Exp. |"
   ],
@@ -608,8 +608,8 @@
  {
   "title": "Major Residents Boons",
   "heading": "Major Residents Boons",
-  "line": 660,
-  "endLine": 670,
+  "line": 663,
+  "endLine": 673,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -626,8 +626,8 @@
  {
   "title": "Minor Residents Boons",
   "heading": "Minor Residents Boons",
-  "line": 672,
-  "endLine": 698,
+  "line": 675,
+  "endLine": 701,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -650,8 +650,8 @@
  {
   "title": "Major Residents Hooks",
   "heading": "Major Residents Hooks",
-  "line": 700,
-  "endLine": 718,
+  "line": 703,
+  "endLine": 721,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -664,7 +664,7 @@
   "summary": "Major Hooks about residents, including Divided Loyalty (separate Prevailing Loyalty per faction) and Rebellious Covenfolk (very low starting loyalty), plus diabolic corruption, a chapter house, a school and superiors.",
   "quotes": [
    "Actions which benefit the loyalty of one faction over the others will cause a decrease in loyalty of the other factions equal to one half of the loyalty points gained.",
-   "Subtract sufficient loyalty points to obtain a loyalty point total of \u201375 (a Prevailing Loyalty of \u20135)."
+   "Subtract sufficient loyalty points to obtain a loyalty point total of –75 (a Prevailing Loyalty of –5)."
   ],
   "related": [
    "Chapter 3: Governance, Prevailing Loyalty"
@@ -673,8 +673,8 @@
  {
   "title": "Minor Residents Hooks",
   "heading": "Minor Residents Hooks",
-  "line": 720,
-  "endLine": 762,
+  "line": 723,
+  "endLine": 765,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -691,8 +691,8 @@
  {
   "title": "Military Preparedness",
   "heading": "Military Preparedness",
-  "line": 726,
-  "endLine": 728,
+  "line": 729,
+  "endLine": 731,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -711,8 +711,8 @@
  {
   "title": "Major External Relations Boons",
   "heading": "Major External Relations Boons",
-  "line": 774,
-  "endLine": 788,
+  "line": 777,
+  "endLine": 791,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -732,8 +732,8 @@
  {
   "title": "Minor External Relations Boons",
   "heading": "Minor External Relations Boons",
-  "line": 790,
-  "endLine": 806,
+  "line": 793,
+  "endLine": 809,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -752,8 +752,8 @@
  {
   "title": "Major External Relations Hooks",
   "heading": "Major External Relations Hooks",
-  "line": 808,
-  "endLine": 826,
+  "line": 811,
+  "endLine": 829,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -770,8 +770,8 @@
  {
   "title": "Minor External Relations Hooks",
   "heading": "Minor External Relations Hooks",
-  "line": 828,
-  "endLine": 860,
+  "line": 831,
+  "endLine": 863,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -790,8 +790,8 @@
  {
   "title": "Major Surroundings Boons",
   "heading": "Major Surroundings Boons",
-  "line": 866,
-  "endLine": 872,
+  "line": 869,
+  "endLine": 875,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -808,8 +808,8 @@
  {
   "title": "Minor Surroundings Boons",
   "heading": "Minor Surroundings Boons",
-  "line": 874,
-  "endLine": 886,
+  "line": 877,
+  "endLine": 889,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -826,8 +826,8 @@
  {
   "title": "Major Surroundings Hooks",
   "heading": "Major Surroundings Hooks",
-  "line": 888,
-  "endLine": 908,
+  "line": 891,
+  "endLine": 911,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -844,8 +844,8 @@
  {
   "title": "Minor Surroundings Hooks",
   "heading": "Minor Surroundings Hooks",
-  "line": 910,
-  "endLine": 950,
+  "line": 913,
+  "endLine": 953,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -862,8 +862,8 @@
  {
   "title": "Covenant Situations (Prebuilt Boon and Hook Packages)",
   "heading": "Covenant Situations",
-  "line": 952,
-  "endLine": 1124,
+  "line": 955,
+  "endLine": 1127,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -882,8 +882,8 @@
  {
   "title": "Table of Boons and Hooks",
   "heading": "Table of Boons and Hooks",
-  "line": 1126,
-  "endLine": 1552,
+  "line": 1129,
+  "endLine": 1555,
   "category": "covenant",
   "topic": "Boons and Hooks",
   "audience": [
@@ -902,8 +902,8 @@
  {
   "title": "Forms of Governance",
   "heading": "Forms of Governance",
-  "line": 1558,
-  "endLine": 1572,
+  "line": 1561,
+  "endLine": 1575,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -923,8 +923,8 @@
  {
   "title": "Membership of a Covenant",
   "heading": "Membership of a Covenant",
-  "line": 1574,
-  "endLine": 1578,
+  "line": 1577,
+  "endLine": 1581,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -941,8 +941,8 @@
  {
   "title": "Leadership and Offices",
   "heading": "Leadership",
-  "line": 1580,
-  "endLine": 1594,
+  "line": 1583,
+  "endLine": 1597,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -962,8 +962,8 @@
  {
   "title": "Boons, Hooks, and Governance Styles",
   "heading": "Boons, Hooks, and Governance Styles",
-  "line": 1596,
-  "endLine": 1606,
+  "line": 1599,
+  "endLine": 1609,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -984,8 +984,8 @@
  {
   "title": "The Council Meeting",
   "heading": "The Council Meeting",
-  "line": 1608,
-  "endLine": 1616,
+  "line": 1611,
+  "endLine": 1619,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1004,8 +1004,8 @@
  {
   "title": "The Charter of Covenant",
   "heading": "The Charter of Covenant",
-  "line": 1618,
-  "endLine": 1626,
+  "line": 1621,
+  "endLine": 1629,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1025,8 +1025,8 @@
  {
   "title": "Charter Section: Membership",
   "heading": "Membership",
-  "line": 1632,
-  "endLine": 1634,
+  "line": 1635,
+  "endLine": 1637,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1043,8 +1043,8 @@
  {
   "title": "Charter Section: Method of Governance (Voting)",
   "heading": "Method of Governance",
-  "line": 1636,
-  "endLine": 1642,
+  "line": 1639,
+  "endLine": 1645,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1063,8 +1063,8 @@
  {
   "title": "The Charter of Arae Flaviae",
   "heading": "The Charter of Arae Flaviae",
-  "line": 1644,
-  "endLine": 1648,
+  "line": 1647,
+  "endLine": 1651,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1085,8 +1085,8 @@
  {
   "title": "Examples of Vote-Taking",
   "heading": "Examples of Vote-Taking",
-  "line": 1663,
-  "endLine": 1701,
+  "line": 1666,
+  "endLine": 1704,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1105,8 +1105,8 @@
  {
   "title": "Charter Section: Covenant Resources",
   "heading": "Covenant Resources",
-  "line": 1703,
-  "endLine": 1707,
+  "line": 1706,
+  "endLine": 1710,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1123,8 +1123,8 @@
  {
   "title": "Charter Section: Member Rights",
   "heading": "Member Rights",
-  "line": 1709,
-  "endLine": 1725,
+  "line": 1712,
+  "endLine": 1728,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1146,8 +1146,8 @@
  {
   "title": "Charter Section: Member Obligations",
   "heading": "Member Obligations",
-  "line": 1727,
-  "endLine": 1731,
+  "line": 1730,
+  "endLine": 1734,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1164,8 +1164,8 @@
  {
   "title": "Example of a Complex Method of Governance",
   "heading": "Example of a Complex Method of Governance",
-  "line": 1733,
-  "endLine": 1735,
+  "line": 1736,
+  "endLine": 1738,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1184,8 +1184,8 @@
  {
   "title": "The Carrot and the Stick (Standard Shares and Services)",
   "heading": "The Carrot and the Stick",
-  "line": 1737,
-  "endLine": 1741,
+  "line": 1740,
+  "endLine": 1744,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1204,8 +1204,8 @@
  {
   "title": "Obligations and the Code of Hermes",
   "heading": "Obligations and the Code of Hermes",
-  "line": 1743,
-  "endLine": 1745,
+  "line": 1746,
+  "endLine": 1748,
   "category": "order",
   "topic": "Governance",
   "audience": [
@@ -1227,8 +1227,8 @@
  {
   "title": "Censure",
   "heading": "Censure",
-  "line": 1747,
-  "endLine": 1753,
+  "line": 1750,
+  "endLine": 1756,
   "category": "covenant",
   "topic": "Governance",
   "audience": [
@@ -1250,8 +1250,8 @@
  {
   "title": "The Official Seal (Quaesitorial Ratification of a Charter)",
   "heading": "The Official Seal",
-  "line": 1755,
-  "endLine": 1759,
+  "line": 1758,
+  "endLine": 1762,
   "category": "order",
   "topic": "Governance",
   "audience": [
@@ -1271,8 +1271,8 @@
  {
   "title": "Prevailing Loyalty",
   "heading": "Prevailing Loyalty",
-  "line": 1761,
-  "endLine": 1765,
+  "line": 1764,
+  "endLine": 1768,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1293,8 +1293,8 @@
  {
   "title": "Prevailing Loyalty and Individual Loyalty",
   "heading": "Prevailing Loyalty and Individual Loyalty",
-  "line": 1767,
-  "endLine": 1779,
+  "line": 1770,
+  "endLine": 1782,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1308,8 +1308,8 @@
   "summary": "How an individual's Loyal to Covenant Trait relates to the covenant's Prevailing Loyalty, including how far it may deviate, and the table of Gift modifiers to Base Loyalty.",
   "quotes": [
    "can vary by up to three points either way from the average Prevailing Loyalty of the covenant",
-   "| The Gift | \u201330 |",
-   "| The Blatant Gift | \u2013105 |"
+   "| The Gift | –30 |",
+   "| The Blatant Gift | –105 |"
   ],
   "related": [
    "ArM5 Personality Traits"
@@ -1318,8 +1318,8 @@
  {
   "title": "Calculating Prevailing Loyalty (Base Loyalty)",
   "heading": "Calculating Prevailing Loyalty",
-  "line": 1780,
-  "endLine": 1788,
+  "line": 1783,
+  "endLine": 1791,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1341,8 +1341,8 @@
  {
   "title": "Modifying Loyalty Due to Covenant Situation",
   "heading": "Modifying Loyalty Due to Covenant Situation",
-  "line": 1790,
-  "endLine": 1794,
+  "line": 1793,
+  "endLine": 1797,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1366,8 +1366,8 @@
  {
   "title": "Green Covenants (Loyalty)",
   "heading": "Green Covenants",
-  "line": 1796,
-  "endLine": 1798,
+  "line": 1799,
+  "endLine": 1801,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1386,8 +1386,8 @@
  {
   "title": "Established Covenants (Loyalty)",
   "heading": "Established Covenants",
-  "line": 1800,
-  "endLine": 1804,
+  "line": 1803,
+  "endLine": 1807,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1406,8 +1406,8 @@
  {
   "title": "Sample Prevailing Loyalty Scores",
   "heading": "Sample Prevailing Loyalty Scores",
-  "line": 1806,
-  "endLine": 1814,
+  "line": 1809,
+  "endLine": 1817,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1428,8 +1428,8 @@
  {
   "title": "Decreasing Loyalty Due to Actions and Events",
   "heading": "Decreasing Loyalty Due to Actions and Events",
-  "line": 1816,
-  "endLine": 1818,
+  "line": 1819,
+  "endLine": 1821,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1448,8 +1448,8 @@
  {
   "title": "Attitude (Loyalty Penalties)",
   "heading": "Attitude",
-  "line": 1820,
-  "endLine": 1822,
+  "line": 1823,
+  "endLine": 1825,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1470,8 +1470,8 @@
  {
   "title": "Prevailing Loyalty with Non-magus Members",
   "heading": "Prevailing Loyalty with Non-magus Members",
-  "line": 1824,
-  "endLine": 1828,
+  "line": 1827,
+  "endLine": 1831,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1490,8 +1490,8 @@
  {
   "title": "Prevailing Loyalty Example",
   "heading": "Prevailing Loyalty Example",
-  "line": 1831,
-  "endLine": 1839,
+  "line": 1834,
+  "endLine": 1842,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1503,15 +1503,15 @@
   "requires": "",
   "summary": "Worked example calculating Base Loyalty and Prevailing Loyalty for a covenant of six magi with a turb captain and an autocrat.",
   "quotes": [
-   "Thus, the covenant has a Base Loyalty of \u201338 (\u2013225 / 6)."
+   "Thus, the covenant has a Base Loyalty of –38 (–225 / 6)."
   ],
   "related": []
  },
  {
   "title": "Situational Modifiers to Loyalty (Living Conditions, Equipment, Money, Specialists)",
   "heading": "Situational Modifiers to Loyalty",
-  "line": 1842,
-  "endLine": 1880,
+  "line": 1845,
+  "endLine": 1883,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1533,8 +1533,8 @@
  {
   "title": "Example Loyalty Point Penalties",
   "heading": "Example Loyalty Point Penalties",
-  "line": 1882,
-  "endLine": 1893,
+  "line": 1885,
+  "endLine": 1896,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1546,15 +1546,15 @@
   "requires": "",
   "summary": "Table of loyalty point penalties from -1 to -15 for magi's Attitude, Punishment, Wounds dealt to covenfolk and Local Events, with notes on what each Attitude entry means.",
   "quotes": [
-   "| \u20131 | Rudeness | Minor Humiliation | Superficial | Minor Hardship |"
+   "| –1 | Rudeness | Minor Humiliation | Superficial | Minor Hardship |"
   ],
   "related": []
  },
  {
   "title": "Punishment (Loyalty Penalties)",
   "heading": "Punishment",
-  "line": 1895,
-  "endLine": 1899,
+  "line": 1898,
+  "endLine": 1902,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1573,8 +1573,8 @@
  {
   "title": "Wounds (Loyalty Penalties)",
   "heading": "Wounds",
-  "line": 1901,
-  "endLine": 1907,
+  "line": 1904,
+  "endLine": 1910,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1593,8 +1593,8 @@
  {
   "title": "Local Events (Loyalty Penalties)",
   "heading": "Local Events",
-  "line": 1909,
-  "endLine": 1913,
+  "line": 1912,
+  "endLine": 1916,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1611,8 +1611,8 @@
  {
   "title": "Example of the Effects on Loyalty of Changing Membership",
   "heading": "Example of the Effects on Loyalty of Changing Membership",
-  "line": 1915,
-  "endLine": 1921,
+  "line": 1918,
+  "endLine": 1924,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1631,8 +1631,8 @@
  {
   "title": "Reputation (Loyalty Loss)",
   "heading": "Reputation",
-  "line": 1923,
-  "endLine": 1925,
+  "line": 1926,
+  "endLine": 1928,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1651,8 +1651,8 @@
  {
   "title": "Increasing Loyalty Due to Actions and Events",
   "heading": "Increasing Loyalty Due to Actions and Events",
-  "line": 1927,
-  "endLine": 1929,
+  "line": 1930,
+  "endLine": 1932,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1669,8 +1669,8 @@
  {
   "title": "Familiarity (Loyalty Gain)",
   "heading": "Familiarity",
-  "line": 1931,
-  "endLine": 1933,
+  "line": 1934,
+  "endLine": 1936,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1689,8 +1689,8 @@
  {
   "title": "Altruism (Loyalty Gain)",
   "heading": "Altruism",
-  "line": 1935,
-  "endLine": 1937,
+  "line": 1938,
+  "endLine": 1940,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1709,8 +1709,8 @@
  {
   "title": "Rewards (Loyalty Gain)",
   "heading": "Rewards",
-  "line": 1939,
-  "endLine": 1941,
+  "line": 1942,
+  "endLine": 1944,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1731,8 +1731,8 @@
  {
   "title": "Local Events (Loyalty Gain)",
   "heading": "Local Events",
-  "line": 1943,
-  "endLine": 1945,
+  "line": 1946,
+  "endLine": 1948,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1749,8 +1749,8 @@
  {
   "title": "Reputation (Loyalty Gain)",
   "heading": "Reputation",
-  "line": 1947,
-  "endLine": 1949,
+  "line": 1950,
+  "endLine": 1952,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1769,8 +1769,8 @@
  {
   "title": "Loyalty and Mentem Magic",
   "heading": "Loyalty and Mentem Magic",
-  "line": 1951,
-  "endLine": 1955,
+  "line": 1954,
+  "endLine": 1958,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1787,8 +1787,8 @@
  {
   "title": "Loyalty Versus Discipline (Prevailing Discipline)",
   "heading": "Loyalty Versus Discipline",
-  "line": 1957,
-  "endLine": 1961,
+  "line": 1960,
+  "endLine": 1964,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1807,8 +1807,8 @@
  {
   "title": "Stories Caused by Prevailing Loyalty",
   "heading": "Stories Caused by Prevailing Loyalty",
-  "line": 1973,
-  "endLine": 1975,
+  "line": 1976,
+  "endLine": 1978,
   "category": "covenant",
   "topic": "Prevailing Loyalty",
   "audience": [
@@ -1819,15 +1819,15 @@
   "requires": "",
   "summary": "A low Prevailing Loyalty produces periodic crises and acts like a Hook that is resolved by stories adding loyalty points.",
   "quotes": [
-   "A covenant with a Prevailing Loyalty score of \u20133 or less is prone to periodic crises of faithfulness"
+   "A covenant with a Prevailing Loyalty score of –3 or less is prone to periodic crises of faithfulness"
   ],
   "related": []
  },
  {
   "title": "Covenfolk: Characters Versus Purchased Specialists",
   "heading": "Chapter Four: Covenfolk",
-  "line": 1977,
-  "endLine": 1985,
+  "line": 1980,
+  "endLine": 1988,
   "category": "covenant",
   "topic": "Covenfolk",
   "audience": [
@@ -1849,8 +1849,8 @@
  {
   "title": "Troupe Styles and Covenfolk",
   "heading": "Troupe Styles and Covenfolk",
-  "line": 1987,
-  "endLine": 1999,
+  "line": 1990,
+  "endLine": 2002,
   "category": "covenant",
   "topic": "Covenfolk",
   "audience": [
@@ -1870,8 +1870,8 @@
  {
   "title": "The Sample Characters (Grog Template Limits)",
   "heading": "The Sample Characters",
-  "line": 2073,
-  "endLine": 2079,
+  "line": 2088,
+  "endLine": 2094,
   "category": "creation",
   "topic": "Grog creation",
   "audience": [
@@ -1892,8 +1892,8 @@
  {
   "title": "Magical Alternatives to Covenfolk",
   "heading": "Magical Alternatives to Covenfolk",
-  "line": 2679,
-  "endLine": 2695,
+  "line": 2714,
+  "endLine": 2730,
   "category": "covenant",
   "topic": "Covenfolk",
   "audience": [
@@ -1913,8 +1913,8 @@
  {
   "title": "Rego Craft Magic",
   "heading": "Rego Craft Magic",
-  "line": 2697,
-  "endLine": 2719,
+  "line": 2732,
+  "endLine": 2754,
   "category": "magic",
   "topic": "Rego craft magic",
   "audience": [
@@ -1936,8 +1936,8 @@
  {
   "title": "New Craft Guidelines: Creo Animal and Rego Animal",
   "heading": "New Guidelines",
-  "line": 2725,
-  "endLine": 2739,
+  "line": 2760,
+  "endLine": 2774,
   "category": "magic",
   "topic": "Rego craft magic",
   "audience": [
@@ -1956,8 +1956,8 @@
  {
   "title": "Creo Herbam Guidelines (Craft)",
   "heading": "Creo Herbam Guidelines",
-  "line": 2741,
-  "endLine": 2743,
+  "line": 2776,
+  "endLine": 2778,
   "category": "magic",
   "topic": "Rego craft magic",
   "audience": [
@@ -1975,8 +1975,8 @@
  {
   "title": "Rego Herbam Guidelines (Craft)",
   "heading": "Rego Herbam Guidelines",
-  "line": 2745,
-  "endLine": 2753,
+  "line": 2780,
+  "endLine": 2788,
   "category": "magic",
   "topic": "Rego craft magic",
   "audience": [
@@ -1994,8 +1994,8 @@
  {
   "title": "Rego Terram Guidelines (Craft)",
   "heading": "Rego Terram Guidelines",
-  "line": 2755,
-  "endLine": 2759,
+  "line": 2790,
+  "endLine": 2794,
   "category": "magic",
   "topic": "Rego craft magic",
   "audience": [
@@ -2013,8 +2013,8 @@
  {
   "title": "Beasts as Characters",
   "heading": "Beasts as Characters",
-  "line": 3006,
-  "endLine": 3010,
+  "line": 3051,
+  "endLine": 3055,
   "category": "beings",
   "topic": "Beasts as covenfolk",
   "audience": [
@@ -2035,9 +2035,9 @@
  },
  {
   "title": "Wealth and Poverty: Rounding and Starting Money",
-  "heading": "Chapter Five : Wealth & Poverty",
-  "line": 3224,
-  "endLine": 3232,
+  "heading": "Chapter Five: Wealth & Poverty",
+  "line": 3277,
+  "endLine": 3285,
   "category": "covenant",
   "topic": "Covenant finances",
   "audience": [

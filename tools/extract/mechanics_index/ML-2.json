@@ -2,8 +2,8 @@
  {
   "title": "Mendip Battlefield: Aura",
   "heading": "Aura",
-  "line": 3111,
-  "endLine": 3113,
+  "line": 3113,
+  "endLine": 3115,
   "category": "realms",
   "topic": "Local auras",
   "audience": [
@@ -21,8 +21,8 @@
  {
   "title": "The Cave of the Inscription (aura and Watching Wards)",
   "heading": "The Cave of the Inscription",
-  "line": 3115,
-  "endLine": 3123,
+  "line": 3117,
+  "endLine": 3125,
   "category": "realms",
   "topic": "Local auras",
   "audience": [
@@ -41,8 +41,8 @@
  {
   "title": "The Nature and Effects of The Second Working",
   "heading": "The Nature and Effects of The Second Working",
-  "line": 3125,
-  "endLine": 3130,
+  "line": 3127,
+  "endLine": 3132,
   "category": "realms",
   "topic": "Local auras",
   "audience": [
@@ -60,8 +60,8 @@
  {
   "title": "Pseudoelementals",
   "heading": "Arsenical Pseudoelemental",
-  "line": 3166,
-  "endLine": 3168,
+  "line": 3168,
+  "endLine": 3170,
   "category": "beings",
   "topic": "Magical creatures",
   "audience": [
@@ -81,8 +81,8 @@
  {
   "title": "Metallic Arsenic (Material Bonuses)",
   "heading": "METALLIC ARSENIC",
-  "line": 3535,
-  "endLine": 3543,
+  "line": 3537,
+  "endLine": 3545,
   "category": "lab",
   "topic": "Material bonuses",
   "audience": [
@@ -101,8 +101,8 @@
  {
   "title": "Digging for Arsenic Is Dangerous",
   "heading": "Digging For Arsenic Is Dangerous",
-  "line": 3554,
-  "endLine": 3557,
+  "line": 3556,
+  "endLine": 3559,
   "category": "hazards",
   "topic": "Poison",
   "audience": [
@@ -123,8 +123,8 @@
  {
   "title": "The Cave on Saint's Island (Empyreal aura and the gate to Purgatory)",
   "heading": "The Cave on Saint's Island",
-  "line": 3628,
-  "endLine": 3638,
+  "line": 3630,
+  "endLine": 3640,
   "category": "realms",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -146,8 +146,8 @@
  {
   "title": "The Pilgrims' Progress (Torment in Purgatory)",
   "heading": "The Pilgrims' Progress",
-  "line": 3640,
-  "endLine": 3652,
+  "line": 3642,
+  "endLine": 3654,
   "category": "hazards",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -168,8 +168,8 @@
  {
   "title": "Time in Purgatory",
   "heading": "Time in Purgatory",
-  "line": 3654,
-  "endLine": 3659,
+  "line": 3656,
+  "endLine": 3661,
   "category": "realms",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -187,8 +187,8 @@
  {
   "title": "The Vision of Hell (Regio crossing)",
   "heading": "The Vision of Hell",
-  "line": 3661,
-  "endLine": 3677,
+  "line": 3663,
+  "endLine": 3679,
   "category": "realms",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -209,8 +209,8 @@
  {
   "title": "Tartaran Regiones",
   "heading": "Tartaran Regiones",
-  "line": 3772,
-  "endLine": 3781,
+  "line": 3774,
+  "endLine": 3783,
   "category": "realms",
   "topic": "Infernal regiones",
   "audience": [
@@ -231,8 +231,8 @@
  {
   "title": "The Furnace (Insight and transmutation)",
   "heading": "The Furnace",
-  "line": 3799,
-  "endLine": 3800,
+  "line": 3801,
+  "endLine": 3802,
   "category": "realms",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -254,8 +254,8 @@
  {
   "title": "The Mirror of Souls",
   "heading": "The Mirror of Souls",
-  "line": 3808,
-  "endLine": 3811,
+  "line": 3810,
+  "endLine": 3813,
   "category": "realms",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -275,8 +275,8 @@
  {
   "title": "The Bridge to Paradise (crossing rolls)",
   "heading": "The Bridge to Paradise",
-  "line": 3821,
-  "endLine": 3829,
+  "line": 3823,
+  "endLine": 3831,
   "category": "realms",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -297,8 +297,8 @@
  {
   "title": "Celestial Regiones",
   "heading": "Celestial Regiones",
-  "line": 3845,
-  "endLine": 3854,
+  "line": 3847,
+  "endLine": 3856,
   "category": "realms",
   "topic": "Divine regiones",
   "audience": [
@@ -320,8 +320,8 @@
  {
   "title": "The Fountain of Youth",
   "heading": "The Fountain of Youth",
-  "line": 3868,
-  "endLine": 3873,
+  "line": 3870,
+  "endLine": 3875,
   "category": "realms",
   "topic": "Purgatory of Saint Patrick",
   "audience": [
@@ -341,8 +341,8 @@
  {
   "title": "Souls in Purgatory and Paradise",
   "heading": "Souls in Purgatory and Paradise",
-  "line": 4029,
-  "endLine": 4043,
+  "line": 4031,
+  "endLine": 4045,
   "category": "beings",
   "topic": "Souls in Purgatory",
   "audience": [
@@ -362,8 +362,8 @@
  {
   "title": "Options for Characters Retrieved From Purgatory",
   "heading": "Options for Characters Retrieved From Purgatory",
-  "line": 4045,
-  "endLine": 4053,
+  "line": 4047,
+  "endLine": 4055,
   "category": "creation",
   "topic": "Souls in Purgatory",
   "audience": [
@@ -387,8 +387,8 @@
  {
   "title": "A Destination for Pilgrimage",
   "heading": "A Destination for Pilgrimage",
-  "line": 4059,
-  "endLine": 4065,
+  "line": 4061,
+  "endLine": 4067,
   "category": "setting",
   "topic": "Pilgrimage",
   "audience": [
@@ -410,8 +410,8 @@
  {
   "title": "Insight into Original Research (Purgatory)",
   "heading": "INSIGHT INTO ORIGINAL RESEARCH",
-  "line": 4099,
-  "endLine": 4105,
+  "line": 4101,
+  "endLine": 4107,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -434,8 +434,8 @@
  {
   "title": "Jailbreak (Retrieving Souls from Purgatory)",
   "heading": "Jailbreak",
-  "line": 4127,
-  "endLine": 4133,
+  "line": 4129,
+  "endLine": 4135,
   "category": "realms",
   "topic": "Souls in Purgatory",
   "audience": [
@@ -453,8 +453,8 @@
  {
   "title": "The Triumphal Arch (entering the temple regio)",
   "heading": "The Triumphal Arch",
-  "line": 4249,
-  "endLine": 4261,
+  "line": 4251,
+  "endLine": 4263,
   "category": "realms",
   "topic": "Fallen Temple of Mercury",
   "audience": [
@@ -477,8 +477,8 @@
  {
   "title": "The Town Beyond the Arch (regio layout and exits)",
   "heading": "The Town Beyond the Arch",
-  "line": 4263,
-  "endLine": 4271,
+  "line": 4265,
+  "endLine": 4273,
   "category": "realms",
   "topic": "Fallen Temple of Mercury",
   "audience": [
@@ -496,8 +496,8 @@
  {
   "title": "Aqueduct (repair and maintenance)",
   "heading": "Aqueduct",
-  "line": 4378,
-  "endLine": 4386,
+  "line": 4380,
+  "endLine": 4388,
   "category": "setting",
   "topic": "Fallen Temple of Mercury",
   "audience": [
@@ -518,8 +518,8 @@
  {
   "title": "The Mercurian Rituals (overview)",
   "heading": "The Mercurian Rituals",
-  "line": 4470,
-  "endLine": 4472,
+  "line": 4472,
+  "endLine": 4474,
   "category": "traditions",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -535,8 +535,8 @@
  {
   "title": "Reading the Mercurian Rituals",
   "heading": "Reading the Mercurian Rituals",
-  "line": 4474,
-  "endLine": 4478,
+  "line": 4476,
+  "endLine": 4480,
   "category": "lab",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -554,8 +554,8 @@
  {
   "title": "Learning the Mercurian Rituals (translating Lab Texts)",
   "heading": "Learning the Mercurian Rituals",
-  "line": 4486,
-  "endLine": 4496,
+  "line": 4488,
+  "endLine": 4498,
   "category": "lab",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -576,8 +576,8 @@
  {
   "title": "Casting the Mercurian Rituals",
   "heading": "Casting the Mercurian Rituals",
-  "line": 4512,
-  "endLine": 4514,
+  "line": 4514,
+  "endLine": 4516,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -595,8 +595,8 @@
  {
   "title": "Hermetic Versions of the Mercurian Rituals",
   "heading": "Hermetic Versions of the Mercurian Rituals",
-  "line": 4516,
-  "endLine": 4518,
+  "line": 4518,
+  "endLine": 4520,
   "category": "traditions",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -612,8 +612,8 @@
  {
   "title": "Purification (Mercurian ritual)",
   "heading": "Purification",
-  "line": 4520,
-  "endLine": 4534,
+  "line": 4522,
+  "endLine": 4536,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -632,8 +632,8 @@
  {
   "title": "The Scrying Pool (Mercurian ritual)",
   "heading": "The Scrying Pool",
-  "line": 4536,
-  "endLine": 4546,
+  "line": 4538,
+  "endLine": 4548,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -654,8 +654,8 @@
  {
   "title": "Penetrate the Regio Skin (Mercurian ritual)",
   "heading": "PENETRATE THE REGIO SKIN",
-  "line": 4558,
-  "endLine": 4568,
+  "line": 4560,
+  "endLine": 4570,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -673,8 +673,8 @@
  {
   "title": "Blessing of Mercury (Mercurian ritual)",
   "heading": "BLESSING OF MERCURY",
-  "line": 4570,
-  "endLine": 4578,
+  "line": 4572,
+  "endLine": 4580,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -692,8 +692,8 @@
  {
   "title": "Transformation of Flesh to Spirit (Mercurian ritual)",
   "heading": "TRANSFORMATION OF FLESH TO SPIRIT",
-  "line": 4580,
-  "endLine": 4592,
+  "line": 4582,
+  "endLine": 4594,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -713,8 +713,8 @@
  {
   "title": "Wizard's Initiation (Mercurian ritual)",
   "heading": "WIZARD'S INITIATION",
-  "line": 4594,
-  "endLine": 4606,
+  "line": 4596,
+  "endLine": 4608,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -732,8 +732,8 @@
  {
   "title": "Consecration of Mercury's House (Mercurian ritual)",
   "heading": "Consecration of Mercury's House",
-  "line": 4608,
-  "endLine": 4620,
+  "line": 4610,
+  "endLine": 4622,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -751,8 +751,8 @@
  {
   "title": "Integration of the Mercurian Rituals (new ritual guidelines)",
   "heading": "Story Seed: Integration of the Mercurian Rituals",
-  "line": 4644,
-  "endLine": 4656,
+  "line": 4646,
+  "endLine": 4658,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -775,8 +775,8 @@
  {
   "title": "Repairing the Wizard's Initiation Ritual (research project)",
   "heading": "Saga Seed: The Failure of the Wizard's Initiation Ritual",
-  "line": 4658,
-  "endLine": 4672,
+  "line": 4660,
+  "endLine": 4674,
   "category": "magic",
   "topic": "Mercurian Rituals",
   "audience": [
@@ -798,8 +798,8 @@
  {
   "title": "The Necropolis Regio",
   "heading": "Story Seed: The Dead Amongst Us",
-  "line": 4696,
-  "endLine": 4702,
+  "line": 4698,
+  "endLine": 4704,
   "category": "realms",
   "topic": "Fallen Temple of Mercury",
   "audience": [
@@ -819,8 +819,8 @@
  {
   "title": "Rules for Ghosts (necropolis)",
   "heading": "Rules for Ghosts",
-  "line": 4704,
-  "endLine": 4712,
+  "line": 4706,
+  "endLine": 4714,
   "category": "beings",
   "topic": "Ghosts",
   "audience": [
@@ -840,8 +840,8 @@
  {
   "title": "Devil's Lane Faerie Regio (the Streets)",
   "heading": "The Streets",
-  "line": 4769,
-  "endLine": 4773,
+  "line": 4771,
+  "endLine": 4775,
   "category": "realms",
   "topic": "Devil's Lane",
   "audience": [
@@ -859,8 +859,8 @@
  {
   "title": "The Alley Wards",
   "heading": "The Alley Wards",
-  "line": 4807,
-  "endLine": 4811,
+  "line": 4809,
+  "endLine": 4813,
   "category": "realms",
   "topic": "Devil's Lane",
   "audience": [
@@ -880,8 +880,8 @@
  {
   "title": "Market Rules (Devil's Lane guild)",
   "heading": "Market Rules",
-  "line": 4965,
-  "endLine": 4977,
+  "line": 4967,
+  "endLine": 4979,
   "category": "setting",
   "topic": "Devil's Lane",
   "audience": [
@@ -899,8 +899,8 @@
  {
   "title": "Buying Toys (faerie market prices)",
   "heading": "Buying Toys",
-  "line": 5001,
-  "endLine": 5009,
+  "line": 5003,
+  "endLine": 5011,
   "category": "social",
   "topic": "Faerie toys",
   "audience": [
@@ -923,8 +923,8 @@
  {
   "title": "Commissioning Toys",
   "heading": "Commissioning Toys",
-  "line": 5023,
-  "endLine": 5027,
+  "line": 5025,
+  "endLine": 5029,
   "category": "social",
   "topic": "Faerie toys",
   "audience": [
@@ -944,8 +944,8 @@
  {
   "title": "Limited Life-Time of Faerie Toys",
   "heading": "Limited Life-Time",
-  "line": 5029,
-  "endLine": 5031,
+  "line": 5031,
+  "endLine": 5033,
   "category": "magic",
   "topic": "Faerie toys",
   "audience": [
@@ -964,8 +964,8 @@
  {
   "title": "What Can Be Made? (faerie workshop commissions)",
   "heading": "What Can Be Made?",
-  "line": 5366,
-  "endLine": 5372,
+  "line": 5368,
+  "endLine": 5374,
   "category": "lab",
   "topic": "Faerie toys",
   "audience": [
@@ -989,8 +989,8 @@
  {
   "title": "Leaden, Iron, and Tin Cords (faerie familiar cords)",
   "heading": "Leaden, Iron, and Tin Cords",
-  "line": 5654,
-  "endLine": 5661,
+  "line": 5656,
+  "endLine": 5663,
   "category": "magic",
   "topic": "Familiars",
   "audience": [

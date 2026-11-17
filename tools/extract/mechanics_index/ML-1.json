@@ -102,15 +102,15 @@
   "summary": "Bear Island's specific lore rolls: Area Lore (Anatolia or Theban Tribunal) with a bonus for eastern magi, or Artes Liberales with a penalty, followed by what is known at each knowledge level.",
   "quotes": [
    "The legend is more popular in the east than the west, and an eastern magus receives a +3 bonus.",
-   "This roll is penalized by \u20136, because the Legend of the Golden Fleece is not popular or readily accessible."
+   "This roll is penalized by –6, because the Legend of the Golden Fleece is not popular or readily accessible."
   ],
   "related": [
    "Mythic Locations: What the Magi Know"
   ]
  },
  {
-  "title": "Bear Island: Temenos of Dindym\u00e9n\u00e9 (dual Magic and Faerie aura)",
-  "heading": "Mount Dindymon and the Temenos of Dindym\u00e9n\u00e9",
+  "title": "Bear Island: Temenos of Dindyméné (dual Magic and Faerie aura)",
+  "heading": "Mount Dindymon and the Temenos of Dindyméné",
   "line": 1384,
   "endLine": 1390,
   "category": "realms",
@@ -170,7 +170,7 @@
  },
  {
   "title": "Bear Island: Entering the regiones and Regio Sight ease factors",
-  "heading": "Entering the Temenos of Dindym\u00e9n\u00e9's Regiones",
+  "heading": "Entering the Temenos of Dindyméné's Regiones",
   "line": 1406,
   "endLine": 1410,
   "category": "realms",
@@ -184,7 +184,7 @@
   "requires": "Location: Bear Island",
   "summary": "How to enter the Faerie regio by ritual and how to find either regio by spell or Regio Sight roll, with Ease Factors that change depending on which aura currently dominates.",
   "quotes": [
-   "Under the Temenos of Dindym\u00e9n\u00e9's Magic aura, the Ease Factor to see the Magic regio is 11 and to see the Faerie regio is 23.",
+   "Under the Temenos of Dindyméné's Magic aura, the Ease Factor to see the Magic regio is 11 and to see the Faerie regio is 23.",
    "When the temenos has a Faerie aura of 4, the Ease Factor to see the Magic regio is 25 and to see the Faerie regio is 9."
   ],
   "related": [
@@ -192,8 +192,8 @@
   ]
  },
  {
-  "title": "Bear Island: Faerie Regio of Dindym\u00e9n\u00e9",
-  "heading": "THE FAERIE REGIO OF DINDYM\u00c9N\u00c9",
+  "title": "Bear Island: Faerie Regio of Dindyméné",
+  "heading": "THE FAERIE REGIO OF DINDYMÉNÉ",
   "line": 1412,
   "endLine": 1416,
   "category": "realms",
@@ -211,8 +211,8 @@
   "related": []
  },
  {
-  "title": "Bear Island: Magic Regio of Dindym\u00e9n\u00e9",
-  "heading": "THE MAGIC REGIO OF DINDYM\u00c9N\u00c9",
+  "title": "Bear Island: Magic Regio of Dindyméné",
+  "heading": "THE MAGIC REGIO OF DINDYMÉNÉ",
   "line": 1418,
   "endLine": 1422,
   "category": "realms",
@@ -226,14 +226,14 @@
   "requires": "Location: Bear Island",
   "summary": "An enlarged, uninhabited Magic regio whose peace gives visitors a temporary Calm personality trait unless they have Magic-realm supernatural abilities, and which grows Herbam and Terram vis each year.",
   "quotes": [
-   "With a Magic aura of 6, the Magic regio is an enlarged copy of the Temenos of Dindym\u00e9n\u00e9.",
+   "With a Magic aura of 6, the Magic regio is an enlarged copy of the Temenos of Dindyméné.",
    "Entering characters gain a new Personality Trait, Calm +2, unless they have supernatural abilities derived from the Magic realm, which includes the Gift."
   ],
   "related": []
  },
  {
-  "title": "Bear Island: The Xoanon of Dindym\u00e9n\u00e9 (pre-Hermetic artifact)",
-  "heading": "THE XOANON OF DINDYM\u00c9N\u00c9",
+  "title": "Bear Island: The Xoanon of Dindyméné (pre-Hermetic artifact)",
+  "heading": "THE XOANON OF DINDYMÉNÉ",
   "line": 1424,
   "endLine": 1430,
   "category": "magic",
@@ -272,7 +272,7 @@
   "related": []
  },
  {
-  "title": "Bear Island: Waking or sleeping the titaness (Dindym\u00e9n\u00e9 ritual)",
+  "title": "Bear Island: Waking or sleeping the titaness (Dindyméné ritual)",
   "heading": "Waking the Titaness",
   "line": 1470,
   "endLine": 1484,
@@ -289,7 +289,7 @@
   "quotes": [
    "The player whose character is leading the dance must make a Faerie Lore + Communication + stress die against an Ease Factor of 18.",
    "Faerie Lore + Communication + stress die vs. 18",
-   "Use the same formula if characters try to put Dindym\u00e9n\u00e9 to sleep, but increase the Ease Factor to 21."
+   "Use the same formula if characters try to put Dindyméné to sleep, but increase the Ease Factor to 21."
   ],
   "related": [
    "Realms of Power: Magic p.102 Daimons"
@@ -531,7 +531,7 @@
   "requires": "Location: Cursewood",
   "summary": "How hazards are chosen and when the spirit's effects must Penetrate, using Wyzwanie's Penetration with the regio bonus against characters weakened by the Infernal aura.",
   "quotes": [
-   "A hazard caused indirectly by Wyzwanie\u2019s powers, like moving or reshaping terrain features, does not need to penetrate.",
+   "A hazard caused indirectly by Wyzwanie’s powers, like moving or reshaping terrain features, does not need to penetrate.",
    "so gets a +7 bonus to Penetration"
   ],
   "related": []
@@ -821,8 +821,8 @@
  {
   "title": "Destroying an Infernal artifact permanently",
   "heading": "Destroying the Infernal Artifact",
-  "line": 2335,
-  "endLine": 2337,
+  "line": 2337,
+  "endLine": 2339,
   "category": "realms",
   "topic": "Infernal artifacts",
   "audience": [
@@ -841,8 +841,8 @@
  {
   "title": "Farne Islands: What You've Heard (lore rolls)",
   "heading": "What You've Heard",
-  "line": 2383,
-  "endLine": 2411,
+  "line": 2385,
+  "endLine": 2413,
   "category": "setting",
   "topic": "Location lore rolls",
   "audience": [
@@ -863,8 +863,8 @@
  {
   "title": "Farne Islands: Inner Farne (Divine aura and miraculous barley vis)",
   "heading": "Inner Farne",
-  "line": 2421,
-  "endLine": 2429,
+  "line": 2423,
+  "endLine": 2431,
   "category": "realms",
   "topic": "Local auras and regiones",
   "audience": [
@@ -883,8 +883,8 @@
  {
   "title": "Boats and boating (piloting, rowing and boat damage)",
   "heading": "Boats and Boating",
-  "line": 2431,
-  "endLine": 2455,
+  "line": 2433,
+  "endLine": 2457,
   "category": "hazards",
   "topic": "Boats and sailing",
   "audience": [
@@ -909,8 +909,8 @@
  {
   "title": "Farne Islands: The Wideopens (gut hazard and tunnel regio)",
   "heading": "The Wideopens",
-  "line": 2457,
-  "endLine": 2465,
+  "line": 2459,
+  "endLine": 2467,
   "category": "realms",
   "topic": "Local auras and regiones",
   "audience": [
@@ -928,8 +928,8 @@
  {
   "title": "Farne Islands: The Bush (surviving immersion by faith)",
   "heading": "The Bush",
-  "line": 2483,
-  "endLine": 2489,
+  "line": 2485,
+  "endLine": 2491,
   "category": "realms",
   "topic": "Local auras and regiones",
   "audience": [
@@ -950,8 +950,8 @@
  {
   "title": "Farne Islands: Big Harcar (Magic Realm vestige)",
   "heading": "Big and Little Harcar",
-  "line": 2561,
-  "endLine": 2571,
+  "line": 2563,
+  "endLine": 2573,
   "category": "realms",
   "topic": "Magic Realm vestiges",
   "audience": [

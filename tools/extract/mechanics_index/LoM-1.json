@@ -534,7 +534,7 @@
   "requires": "",
   "summary": "Defines agents as directly controlled subordinates, gives the formula for how many a principal may have, and lists who does not count as an agent (magi, colorful characters, indirect subordinates, hirelings and other players' characters). A principal with weak Presence or Leadership can run a network through a single primary agent, called a factor.",
   "quotes": [
-   "2 x (Presence + Intrigue or Leadership \u2013 social penalty for the Gift) or 1, whichever is larger."
+   "2 x (Presence + Intrigue or Leadership – social penalty for the Gift) or 1, whichever is larger."
   ],
   "related": []
  },
@@ -579,7 +579,7 @@
   "summary": "How characters gain agents, either at character creation through certain Virtues or in play by impressing a prospect with a Presence + Leadership roll and then wearing down his resistance with Agency Experience points. Includes the recruitment, task and persuasion tables.",
   "quotes": [
    "Each of these virtues grants 12 points to spend on the accompanying Agent Recruitment Table for thematically appropriate agents.",
-   "a stress die + Presence + Leadership \u2013 social penalty for the Gift against an Ease Factor of 6.",
+   "a stress die + Presence + Leadership – social penalty for the Gift against an Ease Factor of 6.",
    "A character's resistance is reduced by 1 in exchange for a number of Agency experience points equal to their current resistance."
   ],
   "related": [
@@ -652,7 +652,7 @@
   "requires": "",
   "summary": "How a principal sets an agent a task with a persuasion roll against the Tasks for Agents table, how the agent then rolls his own Characteristics and Abilities, and how passive information gathering, active information gathering and requests for assistance are treated.",
   "quotes": [
-   "stress die + Communication + (Charm, Intrigue, or Leadership as situationally appropriate) + Bond Strength \u2013 social penalty of the Gift vs. an Ease factor on the Tasks for Agents table"
+   "stress die + Communication + (Charm, Intrigue, or Leadership as situationally appropriate) + Bond Strength – social penalty of the Gift vs. an Ease factor on the Tasks for Agents table"
   ],
   "related": []
  },
@@ -1043,7 +1043,7 @@
  },
  {
   "title": "Squire",
-  "heading": "Squire (Armiger, \u00c9cuyer)",
+  "heading": "Squire (Armiger, Écuyer)",
   "line": 1408,
   "endLine": 1412,
   "category": "creation",
@@ -1639,7 +1639,7 @@
   "requires": "",
   "summary": "What nobles typically know, believe and misunderstand about the Order of Hermes, from the facts almost all of them know to the extra knowledge of scholarly senior nobles and the misconceptions spread by House Jerbiton. Sidebars cover how nobles lodge pleas, harm to cities and special Magic Resistance for rulers and Church officers.",
   "quotes": [
-   "Educated nobles may have low Order of Hermes Lore scores, and those who have family members \u2014 either current or ancestral \u2014 associated with House Jerbiton may know far more."
+   "Educated nobles may have low Order of Hermes Lore scores, and those who have family members — either current or ancestral — associated with House Jerbiton may know far more."
   ],
   "related": [
    "Order of Hermes Lore"
@@ -1755,8 +1755,8 @@
  {
   "title": "Board Games",
   "heading": "Board Games",
-  "line": 1951,
-  "endLine": 1955,
+  "line": 1957,
+  "endLine": 1961,
   "category": "social",
   "topic": "Leisure",
   "audience": [
@@ -1775,8 +1775,8 @@
  {
   "title": "Gambling",
   "heading": "Gambling",
-  "line": 1961,
-  "endLine": 1967,
+  "line": 1967,
+  "endLine": 1971,
   "category": "social",
   "topic": "Leisure",
   "audience": [
@@ -1798,8 +1798,8 @@
  {
   "title": "A Game of Chance?",
   "heading": "A Game of Chance?",
-  "line": 1969,
-  "endLine": 1971,
+  "line": 1973,
+  "endLine": 1975,
   "category": "social",
   "topic": "Leisure",
   "audience": [
@@ -1822,8 +1822,8 @@
  {
   "title": "Good Drink, Song, and Dance",
   "heading": "Good Drink, Song, and Dance",
-  "line": 1973,
-  "endLine": 1977,
+  "line": 1977,
+  "endLine": 1981,
   "category": "social",
   "topic": "Leisure",
   "audience": [
@@ -1845,8 +1845,8 @@
  {
   "title": "The Feast",
   "heading": "The Feast",
-  "line": 1983,
-  "endLine": 1987,
+  "line": 1987,
+  "endLine": 1991,
   "category": "social",
   "topic": "Feasts and hospitality",
   "audience": [
@@ -1865,8 +1865,8 @@
  {
   "title": "Seating the Guests, and Good Manners",
   "heading": "Seating the Guests, and Good Manners",
-  "line": 2013,
-  "endLine": 2019,
+  "line": 2017,
+  "endLine": 2023,
   "category": "social",
   "topic": "Feasts and hospitality",
   "audience": [
@@ -1885,8 +1885,8 @@
  {
   "title": "The Host",
   "heading": "The Host",
-  "line": 2029,
-  "endLine": 2035,
+  "line": 2033,
+  "endLine": 2039,
   "category": "social",
   "topic": "Feasts and hospitality",
   "audience": [
@@ -1907,8 +1907,8 @@
  {
   "title": "The Hunt",
   "heading": "The Hunt",
-  "line": 2037,
-  "endLine": 2047,
+  "line": 2041,
+  "endLine": 2051,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -1930,8 +1930,8 @@
  {
   "title": "Varieties of Hunting Hounds",
   "heading": "Varieties of Hunting Hounds",
-  "line": 2049,
-  "endLine": 2057,
+  "line": 2053,
+  "endLine": 2061,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -1950,8 +1950,8 @@
  {
   "title": "Hunting Dogs",
   "heading": "Hunting Dogs",
-  "line": 2059,
-  "endLine": 2199,
+  "line": 2063,
+  "endLine": 2207,
   "category": "beings",
   "topic": "Hunting",
   "audience": [
@@ -1972,8 +1972,8 @@
  {
   "title": "Hounds and Aging",
   "heading": "Hounds and Aging",
-  "line": 2202,
-  "endLine": 2206,
+  "line": 2210,
+  "endLine": 2214,
   "category": "aging",
   "topic": "Hunting",
   "audience": [
@@ -1993,8 +1993,8 @@
  {
   "title": "Taming Creatures",
   "heading": "Taming Creatures",
-  "line": 2208,
-  "endLine": 2222,
+  "line": 2216,
+  "endLine": 2230,
   "category": "seasons",
   "topic": "Taming animals",
   "audience": [
@@ -2019,8 +2019,8 @@
  {
   "title": "Hunting with Hounds",
   "heading": "Hunting with Hounds",
-  "line": 2224,
-  "endLine": 2226,
+  "line": 2232,
+  "endLine": 2234,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2039,8 +2039,8 @@
  {
   "title": "The Quest",
   "heading": "The Quest",
-  "line": 2228,
-  "endLine": 2230,
+  "line": 2236,
+  "endLine": 2238,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2060,8 +2060,8 @@
  {
   "title": "The Assembly",
   "heading": "The Assembly",
-  "line": 2236,
-  "endLine": 2238,
+  "line": 2244,
+  "endLine": 2246,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2081,8 +2081,8 @@
  {
   "title": "The Relay",
   "heading": "The Relay",
-  "line": 2240,
-  "endLine": 2242,
+  "line": 2248,
+  "endLine": 2250,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2104,8 +2104,8 @@
  {
   "title": "The Chase",
   "heading": "The Chase",
-  "line": 2248,
-  "endLine": 2260,
+  "line": 2256,
+  "endLine": 2268,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2119,8 +2119,8 @@
   "summary": "The core hunt resolution: each hourly round hunters roll to keep up, hounds and prey lose fatigue unless they pass Stamina rolls, and the hounds' Pursuit Total is compared to the prey's Evasion Total to decide who wins each round until one side has won enough rounds.",
   "quotes": [
    "Each round of the chase represents one hour of pursuit, and requires a Dexterity + Ride stress roll against Ease Factor 6 to keep in sight of the hounds.",
-   "Pursuit Total: Hound's Perception + hound's Hunt + stress die \u2013 lowest Fatigue penalty among the hounds vs.",
-   "Evasion Total: Prey's Dexterity + Athletics + Terrain Bonus (starts at 6) + stress die \u2013 Fatigue penalty"
+   "Pursuit Total: Hound's Perception + hound's Hunt + stress die – lowest Fatigue penalty among the hounds vs.",
+   "Evasion Total: Prey's Dexterity + Athletics + Terrain Bonus (starts at 6) + stress die – Fatigue penalty"
   ],
   "related": [
    "The Terrain Bonus"
@@ -2129,8 +2129,8 @@
  {
   "title": "The Kill",
   "heading": "The Kill",
-  "line": 2262,
-  "endLine": 2264,
+  "line": 2270,
+  "endLine": 2272,
   "category": "combat",
   "topic": "Hunting",
   "audience": [
@@ -2149,8 +2149,8 @@
  {
   "title": "The Unmaking and Curee",
   "heading": "The Unmaking and Curee",
-  "line": 2266,
-  "endLine": 2270,
+  "line": 2274,
+  "endLine": 2278,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2169,8 +2169,8 @@
  {
   "title": "Bow and Stable Hunting",
   "heading": "Bow and Stable Hunting",
-  "line": 2272,
-  "endLine": 2278,
+  "line": 2280,
+  "endLine": 2286,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2189,8 +2189,8 @@
  {
   "title": "The Terrain Bonus",
   "heading": "The Terrain Bonus",
-  "line": 2280,
-  "endLine": 2292,
+  "line": 2288,
+  "endLine": 2300,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2212,8 +2212,8 @@
  {
   "title": "The Prey",
   "heading": "The Prey",
-  "line": 2306,
-  "endLine": 2322,
+  "line": 2314,
+  "endLine": 2330,
   "category": "social",
   "topic": "Hunting",
   "audience": [
@@ -2234,8 +2234,8 @@
  {
   "title": "Horses",
   "heading": "Horses",
-  "line": 2324,
-  "endLine": 2330,
+  "line": 2332,
+  "endLine": 2338,
   "category": "setting",
   "topic": "Horses",
   "audience": [
@@ -2255,8 +2255,8 @@
  {
   "title": "The Types of Horses",
   "heading": "The Types of Horses",
-  "line": 2332,
-  "endLine": 2464,
+  "line": 2340,
+  "endLine": 2474,
   "category": "beings",
   "topic": "Horses",
   "audience": [
@@ -2281,8 +2281,8 @@
  {
   "title": "Horses and Aging",
   "heading": "Horses and Aging",
-  "line": 2471,
-  "endLine": 2479,
+  "line": 2481,
+  "endLine": 2489,
   "category": "aging",
   "topic": "Horses",
   "audience": [
@@ -2303,8 +2303,8 @@
  {
   "title": "A Note on Size and Capacity",
   "heading": "A Note on Size and Capacity",
-  "line": 2475,
-  "endLine": 2477,
+  "line": 2485,
+  "endLine": 2487,
   "category": "setting",
   "topic": "Horses",
   "audience": [

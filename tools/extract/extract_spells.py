@@ -270,6 +270,11 @@ def extract_supplement(book_id):
                 if hh:
                     break
                 if parse_arts_line(re.sub(r"<br\s*/?>", "", strip_quote(t).strip())) and k + 2 < n:
+                    # the next spell's name, in bold on the line above its Arts, is not this spell's text
+                    while len(body) > 1 and not strip_quote(body[-1]).strip():
+                        body.pop()
+                    if len(body) > 1 and re.match(r"^\*\*[^*]{2,80}?(<br\s*/?>)?\*\*\s*(<br\s*/?>)?$", strip_quote(body[-1]).strip()):
+                        body.pop()
                     break
             body.append(t)
             if k > i and re.match(r"^\s*(>\s*)?\((Base|base)\b", t):
@@ -290,14 +295,15 @@ def main():
     for book in BOOKS:
         if not book[5] or book[0] == "DE":
             continue
-        found = extract_supplement(book[0])
         if book[0] == "HP":
-            # Hermetic Projects sets its spells out differently (see extract_hp.py)
+            # Hermetic Projects sets a device out like a spell, with a "Pen:" line added: the
+            # general pass would take every device for a spell (see extract_hp.py)
             from extract_hp import extract as extract_hp
-            hp_spells, hp_items = extract_hp()
-            found = found + hp_spells
+            found, hp_items = extract_hp()
             write_json("enchantments.json", hp_items)
             print(f"HP      enchantments {len(hp_items)}")
+        else:
+            found = extract_supplement(book[0])
         added = 0
         for sp in found:
             key = (sp["name"].lower(), sp["technique"], sp["form"])

@@ -26,6 +26,8 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 3 "no target" steps (steps that explain without pointing at a control). |
 | Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. |
 | Regenerate data from the books | `cd .. && python3 -I tools/extract/run_all.py` |
+| Rebuild the Game Mechanics index | `cd .. && python3 -I tools/extract/build_mechanics.py --report` |
+| Open every book in the reader | `node scripts/qa/books.cjs 1280`, then `390` |
 | Compare our books with upstream | `cd .. && python3 -I tools/books/compare.py` (see `tools/books/README.md`) |
 
 Always run Python with `-I`.
@@ -42,7 +44,7 @@ Stop at the first step that fails. Each step costs more than the one before.
 ## Rules that are not negotiable
 
 - **The books are the authority.** Every rule in the engine cites its book and line. Check a formula against the book's own formula line and its worked example, and build the test on that example.
-- **Fifth Edition only.** Books of the Third and Fourth Editions are in the repository as setting reference. Take no rules from them.
+- **Fifth Edition only.** Books of the Third and Fourth Editions, and third-party books, are in the reader on shelves of their own. Take no rules from them.
 - **Play happens at the Game Table.** A character sheet is built, then is for reference. Season-long work is reached from the Seasons page.
 - **Text for players is plain and gender-neutral.** Use "they". Use American spelling, as the books do. Follow the writing rules in the design principles.
 - **The repository is public.** Never commit a user's saga or character files. Fixtures in `scripts/qa/fixtures/` are generated practice sagas.

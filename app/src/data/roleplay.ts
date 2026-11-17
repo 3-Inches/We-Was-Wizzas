@@ -98,7 +98,7 @@ export const PLAYER_GUIDE: RpGuide = {
         },
         { p: 'The core book’s own last word on all of this: if you have fun with it, you are doing it right.' },
       ],
-      sources: [DE(438, 'Basic Ideas'), DE(22331, 'Troupe-Style Roleplaying')],
+      sources: [DE(454, 'Basic Ideas'), DE(22361, 'Troupe-Style Roleplaying')],
     },
     {
       id: 'three',
@@ -116,7 +116,7 @@ export const PLAYER_GUIDE: RpGuide = {
         { p: 'A grog needs only one strong note: always hungry, in love with the miller’s daughter, terrified of fire. Play it every time, and the next player to pick that grog up will know who they are.' },
         { tryThis: 'Before the first session, answer three questions for your magus and for your companion. What do they want this year? What do they want before they die? Whom at the covenant do they trust least?' },
       ],
-      sources: [DE(1041, 'Character Types'), { book: 'Grogs', line: 654, label: 'What is a Grog?' }, { book: 'Cov', line: 2565, label: 'Making Covenfolk Interesting' }],
+      sources: [DE(1057, 'Character Types'), { book: 'Grogs', line: 654, label: 'What is a Grog?' }, { book: 'Cov', line: 2600, label: 'Making Covenfolk Interesting' }],
     },
     {
       id: 'life',
@@ -136,7 +136,7 @@ export const PLAYER_GUIDE: RpGuide = {
         },
         { inApp: 'A Personality Trait can be rolled on **Game Table › Dice › Roll** in place of a Characteristic and Ability. The storyguide gives Confidence Points after a session, on the Game Table’s **Overview**, for goals met and for play that entertained the table.' },
       ],
-      sources: [DE(1139, 'Personality Traits'), DE(1195, 'Getting New Confidence Points'), DE(9567, 'Sigils'), DE(22051, 'Story Types'), { book: 'AA', line: 1427, label: 'Complexion' }],
+      sources: [DE(1155, 'Personality Traits'), DE(1211, 'Getting New Confidence Points'), DE(9583, 'Sigils'), DE(22081, 'Story Types'), { book: 'AA', line: 1427, label: 'Complexion' }],
       links: [{ label: '11 ways to be a better roleplayer', url: 'https://lookrobot.co.uk/2013/06/20/11-ways-to-be-a-better-roleplayer/', note: 'by Grant Howitt: “do stuff”, say yes, make failure interesting.' }],
     },
     {
@@ -184,8 +184,8 @@ export const PLAYER_GUIDE: RpGuide = {
         { p: 'Germs. Gunpowder. The printing press. America. What the Mongols will do in twenty years. Leave these at the door, or enjoy the irony quietly. When you are unsure what your character would know, ask the storyguide. An Area Lore or Organization Lore roll can answer it.' },
       ],
       sources: [
-        DE(21528, 'Medieval Physics'), DE(21544, 'The Church'), DE(21723, 'Miracles'), DE(21753, 'Feudalism'), DE(21843, 'Markets and Fairs'), DE(21895, 'Peasants'),
-        DE(21905, 'Public Power for Women'), DE(17420, 'Travel'), { book: 'CG', line: 3951, label: 'Medieval Money' }, { book: 'AA', line: 980, label: 'Natural Philosophy' },
+        DE(21558, 'Medieval Physics'), DE(21574, 'The Church'), DE(21753, 'Miracles'), DE(21783, 'Feudalism'), DE(21873, 'Markets and Fairs'), DE(21925, 'Peasants'),
+        DE(21935, 'Public Power for Women'), DE(17436, 'Travel'), { book: 'CG', line: 3945, label: 'Medieval Money' }, { book: 'AA', line: 980, label: 'Natural Philosophy' },
       ],
     },
     {
@@ -238,7 +238,7 @@ export const PLAYER_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(857, 'The Code of Hermes'), DE(963, 'Tribunals'), DE(703, 'The Houses of Hermes'), DE(468, 'Glossary'), DE(9842, 'Certamen'), DE(10721, 'Longevity Rituals'), { book: 'Grogs', line: 654, label: 'What is a Grog?' }],
+      sources: [DE(873, 'The Code of Hermes'), DE(979, 'Tribunals'), DE(719, 'The Houses of Hermes'), DE(484, 'Glossary'), DE(9858, 'Certamen'), DE(10737, 'Longevity Rituals'), { book: 'Grogs', line: 654, label: 'What is a Grog?' }],
     },
     {
       id: 'gift',
@@ -258,7 +258,7 @@ export const PLAYER_GUIDE: RpGuide = {
         },
         { tryThis: 'Play it from both sides. As the magus, notice the innkeeper’s chill, and decide whether it still stings after thirty years. As a grog, remember that you have learned to trust this one wizard, and that all the others still make your skin crawl.' },
       ],
-      sources: [DE(8812, 'The Gift'), DE(8840, 'First Impressions')],
+      sources: [DE(8828, 'The Gift'), DE(8856, 'First Impressions')],
     },
     {
       id: 'outside',
@@ -288,7 +288,7 @@ export const PLAYER_GUIDE: RpGuide = {
         },
         { p: 'Many of these are spread on purpose by House Jerbiton, who find them useful. A grog fresh from the village may believe every one. Decide what yours believed on the day they arrived, and what a year at the covenant has taught them since.' },
       ],
-      sources: [{ book: 'LoM', line: 1732, label: 'How Much Do Nobles Know?' }, DE(983, 'The Order and Society')],
+      sources: [{ book: 'LoM', line: 1732, label: 'How Much Do Nobles Know?' }, DE(999, 'The Order and Society')],
     },
     {
       id: 'year',
@@ -299,7 +299,7 @@ export const PLAYER_GUIDE: RpGuide = {
         YEAR_1220,
         { p: 'You do not need any of this to play. The core book says so itself: if historical accuracy is spoiling the fun, you need less of it.' },
       ],
-      sources: [DE(21474, 'Mythic Europe'), { book: 'Church', line: 643, label: 'The Church in 1220 AD' }],
+      sources: [DE(21504, 'Mythic Europe'), { book: 'Church', line: 651, label: 'The Church in 1220 AD' }],
     },
     {
       id: 'together',
@@ -317,7 +317,7 @@ export const PLAYER_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(21510, 'Un-Fun History'), DE(22467, 'Saga Priorities'), { book: 'Cov', line: 1608, label: 'The Council Meeting' }],
+      sources: [DE(21540, 'Un-Fun History'), DE(22497, 'Saga Priorities'), { book: 'Cov', line: 1611, label: 'The Council Meeting' }],
       links: SAFETY_LINKS,
     },
     {
@@ -335,7 +335,7 @@ export const PLAYER_GUIDE: RpGuide = {
         },
         { inApp: '**Game Table › Seasons** plans and resolves each season for everyone. The **Chronicle** tells the saga back to you, season by season.' },
       ],
-      sources: [DE(22295, 'Saga Speed'), DE(438, 'Basic Ideas')],
+      sources: [DE(22325, 'Saga Speed'), DE(454, 'Basic Ideas')],
     },
     {
       id: 'more',
@@ -352,7 +352,7 @@ export const PLAYER_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(21474, 'Mythic Europe'), DE(619, 'The Order of Hermes')],
+      sources: [DE(21504, 'Mythic Europe'), DE(635, 'The Order of Hermes')],
       links: [
         { label: 'Project: Redcap, “Learning to Play”', url: 'https://redcap.org/page/Learning_to_Play', note: 'the community wiki’s advice for people new to the game.' },
         { label: 'Project: Redcap, “Primer for New Players”', url: 'https://redcap.org/page/Primer_for_New_Players' },
@@ -383,7 +383,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         { p: 'Read the players’ page too. Everything there about what characters know is yours to bring to life.' },
       ],
-      sources: [DE(22011, 'Player Character Centrality'), DE(21474, 'Mythic Europe'), DE(22467, 'Saga Priorities')],
+      sources: [DE(22041, 'Player Character Centrality'), DE(21504, 'Mythic Europe'), DE(22497, 'Saga Priorities')],
     },
     {
       id: 'zero',
@@ -417,7 +417,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         { inApp: 'The **Saga Overview** holds these choices: the books in use, the optional rules, and a **Journal** for what you agreed. Its troupe card records who plays whom.' },
       ],
-      sources: [DE(22201, 'Background Questions'), DE(21552, 'Magic and Sin'), DE(22275, 'Resources'), DE(22295, 'Saga Speed'), DE(22435, 'Saga Styles')],
+      sources: [DE(22231, 'Background Questions'), DE(21582, 'Magic and Sin'), DE(22305, 'Resources'), DE(22325, 'Saga Speed'), DE(22465, 'Saga Styles')],
       links: SAFETY_LINKS,
     },
     {
@@ -444,7 +444,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(22331, 'Troupe-Style Roleplaying')],
+      sources: [DE(22361, 'Troupe-Style Roleplaying')],
       links: [{ label: 'Project: Redcap, “Troupe style”', url: 'https://redcap.org/page/Troupe_style' }],
     },
     {
@@ -479,7 +479,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         { p: 'For a first story, exploration is the safe choice. Everyone wants to know what lies around the covenant, and every place they find can hold a later story.' },
         { inApp: 'The covenant’s **Hooks & Boons** tab holds the stories the players asked for. The Game Table’s **Overview** shows what needs attention and what the calendar holds. **The Tribunal** brings news from the other covenants as the seasons pass.' },
       ],
-      sources: [DE(22051, 'Story Types'), DE(22085, 'Story Ideas'), DE(8784, 'The Covenant in Play')],
+      sources: [DE(22081, 'Story Types'), DE(22115, 'Story Ideas'), DE(8800, 'The Covenant in Play')],
     },
     {
       id: 'situations',
@@ -506,7 +506,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(22017, 'Plots'), DE(22025, 'Variable Outcomes'), DE(22033, 'Hooks')],
+      sources: [DE(22047, 'Plots'), DE(22055, 'Variable Outcomes'), DE(22063, 'Hooks')],
       links: [{ label: 'Don’t Prep Plots', url: 'https://thealexandrian.net/wordpress/4147/roleplaying-games/dont-prep-plots', note: 'by Justin Alexander. The same advice at more length, and the source of the “three clues” rule of thumb in step 5.' }],
     },
     {
@@ -527,7 +527,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(22051, 'Story Types'), DE(857, 'The Code of Hermes'), DE(8812, 'The Gift'), { book: 'LoM', line: 1809, label: 'Why Don' }, { book: 'LoM', line: 1732, label: 'How Much Do Nobles Know?' }],
+      sources: [DE(22081, 'Story Types'), DE(873, 'The Code of Hermes'), DE(8828, 'The Gift'), { book: 'LoM', line: 1809, label: 'Why Don' }, { book: 'LoM', line: 1732, label: 'How Much Do Nobles Know?' }],
     },
     {
       id: 'medieval',
@@ -560,7 +560,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(21482, 'Making It Historical'), DE(21544, 'The Church'), DE(21723, 'Miracles'), DE(21989, 'Errors and Anachronisms'), DE(22399, 'Researching a Setting')],
+      sources: [DE(21512, 'Making It Historical'), DE(21574, 'The Church'), DE(21753, 'Miracles'), DE(22019, 'Errors and Anachronisms'), DE(22429, 'Researching a Setting')],
     },
     {
       id: 'people',
@@ -590,7 +590,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         { p: 'Where the magus is known and has always behaved well, the welcome is warmer. People still prefer to talk to the companions.' },
       ],
-      sources: [DE(8840, 'First Impressions'), DE(983, 'The Order and Society'), DE(21895, 'Peasants'), DE(17448, 'The Nature of the Realms'), { book: 'LoM', line: 1732, label: 'How Much Do Nobles Know?' }],
+      sources: [DE(8856, 'First Impressions'), DE(999, 'The Order and Society'), DE(21925, 'Peasants'), DE(17464, 'The Nature of the Realms'), { book: 'LoM', line: 1732, label: 'How Much Do Nobles Know?' }],
     },
     {
       id: 'pace',
@@ -609,7 +609,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         { inApp: '**Game Table › Seasons** runs the round for everyone. On the Game Table’s **Overview**, *After a story* gives the experience and *Confidence & Faith* the Confidence Points. The **Chronicle** writes up each season as it ends.' },
       ],
-      sources: [DE(16102, 'Adventure'), DE(1195, 'Getting New Confidence Points'), DE(22275, 'Resources'), DE(22295, 'Saga Speed'), { book: 'Cov', line: 1608, label: 'The Council Meeting' }],
+      sources: [DE(16118, 'Adventure'), DE(1211, 'Getting New Confidence Points'), DE(22305, 'Resources'), DE(22325, 'Saga Speed'), { book: 'Cov', line: 1611, label: 'The Council Meeting' }],
     },
     {
       id: 'table',
@@ -647,7 +647,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         { inApp: '**Dice › Roll** shows the chance of success before anyone rolls. **Dice › Spellcasting** offers a suggestion when a spell botches. **Stream mode**, under Display in the sidebar, enlarges the text for a shared screen.' },
       ],
-      sources: [DE(597, 'Ease Factor'), DE(9699, 'Botch Suggestions'), DE(22467, 'Saga Priorities')],
+      sources: [DE(613, 'Ease Factor'), DE(9715, 'Botch Suggestions'), DE(22497, 'Saga Priorities')],
       links: SAFETY_LINKS,
     },
     {
@@ -683,7 +683,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
         },
         { p: 'The dates above are real history, from outside the game’s books.' },
       ],
-      sources: [DE(22201, 'Background Questions'), DE(963, 'Tribunals'), DE(21989, 'Errors and Anachronisms')],
+      sources: [DE(22231, 'Background Questions'), DE(979, 'Tribunals'), DE(22019, 'Errors and Anachronisms')],
     },
     {
       id: 'more',
@@ -699,7 +699,7 @@ export const STORYGUIDE_GUIDE: RpGuide = {
           ],
         },
       ],
-      sources: [DE(22001, 'Stories'), DE(22197, 'Sagas')],
+      sources: [DE(22031, 'Stories'), DE(22227, 'Sagas')],
       links: [
         { label: 'Project: Redcap, “Storyguiding Advice”', url: 'https://redcap.org/page/Storyguiding_Advice', note: 'the community wiki’s collection of advice and links.' },
         { label: 'Nigrasaxa', url: 'https://www.atlas-games.com/pdf_storage/nigrasaxa.pdf', note: 'a free introductory saga from Atlas Games, with notes for first-time storyguides. Written for the Fourth Edition; the advice carries over.' },

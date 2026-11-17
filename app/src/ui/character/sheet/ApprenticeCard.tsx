@@ -36,7 +36,7 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
   if (!ap)
     return (
       <Card title="Apprentice" tour="apprentice">
-        <RulesNote book="DE" line={10985} endLine={11015}>
+        <RulesNote book="DE" line={11001} endLine={11031}>
           An apprentice from seven years old, fifteen years of training, a season a year taught by the master; they help in the laboratory (Intelligence + Magic Theory).
         </RulesNote>
         <div className="row tight">

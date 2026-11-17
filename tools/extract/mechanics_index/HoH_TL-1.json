@@ -2,8 +2,8 @@
  {
   "title": "Ranks of Magi Bonisagi",
   "heading": "The Ranks of Magi Bonisagi",
-  "line": 370,
-  "endLine": 374,
+  "line": 371,
+  "endLine": 375,
   "category": "houses",
   "topic": "House Bonisagus acclaim",
   "audience": [
@@ -23,8 +23,8 @@
  {
   "title": "Colentes Arcanorum",
   "heading": "Colentes Arcanorum",
-  "line": 380,
-  "endLine": 390,
+  "line": 381,
+  "endLine": 391,
   "category": "houses",
   "topic": "House Bonisagus organization",
   "audience": [
@@ -46,8 +46,8 @@
  {
   "title": "Submitted Texts (Colentes)",
   "heading": "Submitted Texts",
-  "line": 399,
-  "endLine": 403,
+  "line": 400,
+  "endLine": 404,
   "category": "houses",
   "topic": "House Bonisagus organization",
   "audience": [
@@ -68,8 +68,8 @@
  {
   "title": "Tenentes Occultorum",
   "heading": "Tenentes Occultorum",
-  "line": 405,
-  "endLine": 427,
+  "line": 406,
+  "endLine": 428,
   "category": "houses",
   "topic": "House Bonisagus organization",
   "audience": [
@@ -88,8 +88,8 @@
  {
   "title": "Colloquium Delectorum",
   "heading": "Colloquium Delectorum",
-  "line": 435,
-  "endLine": 441,
+  "line": 436,
+  "endLine": 442,
   "category": "houses",
   "topic": "House Bonisagus organization",
   "audience": [
@@ -108,8 +108,8 @@
  {
   "title": "The Primus of House Bonisagus",
   "heading": "The Primus",
-  "line": 443,
-  "endLine": 451,
+  "line": 444,
+  "endLine": 452,
   "category": "houses",
   "topic": "House Bonisagus organization",
   "audience": [
@@ -126,8 +126,8 @@
  {
   "title": "Taking Another Magus's Apprentice",
   "heading": "Another Magus's Apprentice",
-  "line": 597,
-  "endLine": 612,
+  "line": 598,
+  "endLine": 613,
   "category": "houses",
   "topic": "House Bonisagus apprentices",
   "audience": [
@@ -148,8 +148,8 @@
  {
   "title": "Multiple Apprentices",
   "heading": "Multiple Apprentices",
-  "line": 614,
-  "endLine": 618,
+  "line": 615,
+  "endLine": 619,
   "category": "lab",
   "topic": "Apprentices and lab assistants",
   "audience": [
@@ -169,8 +169,8 @@
  {
   "title": "Fostering Apprentices",
   "heading": "Fostering",
-  "line": 620,
-  "endLine": 628,
+  "line": 621,
+  "endLine": 629,
   "category": "houses",
   "topic": "House Bonisagus apprentices",
   "audience": [
@@ -192,8 +192,8 @@
  {
   "title": "Optional Rule: Continuous Research",
   "heading": "Optional Rule: Continuous Research",
-  "line": 630,
-  "endLine": 636,
+  "line": 631,
+  "endLine": 637,
   "category": "lab",
   "topic": "Lab Total",
   "audience": [
@@ -215,8 +215,8 @@
  {
   "title": "Magic Theory Specializations of Magi Bonisagi",
   "heading": "Types of Magi Bonisagi",
-  "line": 646,
-  "endLine": 650,
+  "line": 647,
+  "endLine": 651,
   "category": "creation",
   "topic": "Magic Theory specializations",
   "audience": [
@@ -237,8 +237,8 @@
  {
   "title": "Working Together (Bonisagus lab assistants)",
   "heading": "Working Together",
-  "line": 656,
-  "endLine": 662,
+  "line": 657,
+  "endLine": 663,
   "category": "lab",
   "topic": "Apprentices and lab assistants",
   "audience": [
@@ -258,8 +258,8 @@
  {
   "title": "The Cipher of Trianoma",
   "heading": "The Cipher of Trianoma",
-  "line": 688,
-  "endLine": 698,
+  "line": 689,
+  "endLine": 699,
   "category": "houses",
   "topic": "House Bonisagus ciphers",
   "audience": [
@@ -281,8 +281,8 @@
  {
   "title": "House Acclaim: Status in House Bonisagus",
   "heading": "House Acclaim: Status in House Bonisagus",
-  "line": 702,
-  "endLine": 708,
+  "line": 703,
+  "endLine": 709,
   "category": "houses",
   "topic": "House Bonisagus acclaim",
   "audience": [
@@ -303,8 +303,8 @@
  {
   "title": "Research and Acclaim Points",
   "heading": "Research and Acclaim Points",
-  "line": 710,
-  "endLine": 728,
+  "line": 711,
+  "endLine": 729,
   "category": "houses",
   "topic": "House Bonisagus acclaim",
   "audience": [
@@ -325,8 +325,8 @@
  {
   "title": "House Acclaim Points and Score",
   "heading": "House Acclaim Points and Score",
-  "line": 730,
-  "endLine": 744,
+  "line": 731,
+  "endLine": 745,
   "category": "houses",
   "topic": "House Bonisagus acclaim",
   "audience": [
@@ -347,8 +347,8 @@
  {
   "title": "Folios",
   "heading": "Folios",
-  "line": 746,
-  "endLine": 751,
+  "line": 747,
+  "endLine": 752,
   "category": "houses",
   "topic": "Folios",
   "audience": [
@@ -370,8 +370,8 @@
  {
   "title": "Writing Folios",
   "heading": "Writing Folios",
-  "line": 752,
-  "endLine": 764,
+  "line": 753,
+  "endLine": 765,
   "category": "lab",
   "topic": "Folios",
   "audience": [
@@ -393,8 +393,8 @@
  {
   "title": "Reading Folios",
   "heading": "Reading Folios",
-  "line": 766,
-  "endLine": 771,
+  "line": 767,
+  "endLine": 772,
   "category": "lab",
   "topic": "Folios",
   "audience": [
@@ -413,8 +413,8 @@
  {
   "title": "Editorial Disagreements",
   "heading": "Editorial Disagreements",
-  "line": 772,
-  "endLine": 776,
+  "line": 773,
+  "endLine": 777,
   "category": "houses",
   "topic": "Folios",
   "audience": [
@@ -436,8 +436,8 @@
  {
   "title": "Copying Folios",
   "heading": "Copying Folios",
-  "line": 778,
-  "endLine": 780,
+  "line": 779,
+  "endLine": 781,
   "category": "lab",
   "topic": "Folios",
   "audience": [
@@ -458,8 +458,8 @@
  {
   "title": "Intrigue Rolls (Magi Trianomae)",
   "heading": "Copying Folios",
-  "line": 778,
-  "endLine": 809,
+  "line": 779,
+  "endLine": 810,
   "category": "social",
   "topic": "Intrigue",
   "audience": [
@@ -482,8 +482,8 @@
  {
   "title": "Folk Ken and Guile",
   "heading": "Folk Ken and Guile",
-  "line": 811,
-  "endLine": 817,
+  "line": 812,
+  "endLine": 818,
   "category": "social",
   "topic": "Intrigue",
   "audience": [
@@ -506,8 +506,8 @@
  {
   "title": "Original Research",
   "heading": "Original Research",
-  "line": 849,
-  "endLine": 856,
+  "line": 850,
+  "endLine": 857,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -525,8 +525,8 @@
  {
   "title": "Breakthroughs",
   "heading": "Breakthroughs",
-  "line": 857,
-  "endLine": 868,
+  "line": 858,
+  "endLine": 869,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -545,8 +545,8 @@
  {
   "title": "Seeking the Unknown",
   "heading": "Seeking the Unknown",
-  "line": 869,
-  "endLine": 889,
+  "line": 870,
+  "endLine": 890,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -569,8 +569,8 @@
  {
   "title": "Stabilizing the Unknown",
   "heading": "Stabilizing the Unknown",
-  "line": 890,
-  "endLine": 901,
+  "line": 891,
+  "endLine": 902,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -591,8 +591,8 @@
  {
   "title": "Warping Points from Stabilizing a Discovery",
   "heading": "Warping Points gained: the Magnitude of the Stabilized Discovery minus a simple die",
-  "line": 902,
-  "endLine": 904,
+  "line": 903,
+  "endLine": 905,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -611,8 +611,8 @@
  {
   "title": "Surpassing the Limits",
   "heading": "Surpassing the Limits",
-  "line": 906,
-  "endLine": 915,
+  "line": 907,
+  "endLine": 916,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -631,8 +631,8 @@
  {
   "title": "Multiple Laboratory Texts (Collaborative Research)",
   "heading": "Multiple Laboratory Texts",
-  "line": 916,
-  "endLine": 925,
+  "line": 917,
+  "endLine": 926,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -653,8 +653,8 @@
  {
   "title": "Breakthroughs in Play",
   "heading": "Breakthroughs in Play",
-  "line": 926,
-  "endLine": 935,
+  "line": 927,
+  "endLine": 936,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -675,8 +675,8 @@
  {
   "title": "Hermetic Integration",
   "heading": "Hermetic Integration",
-  "line": 936,
-  "endLine": 943,
+  "line": 937,
+  "endLine": 944,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -693,8 +693,8 @@
  {
   "title": "Exempli Gratia: Original Research",
   "heading": "Exempli Gratia: Original Research",
-  "line": 944,
-  "endLine": 954,
+  "line": 945,
+  "endLine": 955,
   "category": "lab",
   "topic": "Original research",
   "audience": [
@@ -711,8 +711,8 @@
  {
   "title": "Arma Magica (Parma Folds)",
   "heading": "Arma Magica",
-  "line": 960,
-  "endLine": 964,
+  "line": 961,
+  "endLine": 965,
   "category": "magic",
   "topic": "Parma Magica folds",
   "audience": [
@@ -733,8 +733,8 @@
  {
   "title": "Parma Magica Folds",
   "heading": "Parma Magica Folds",
-  "line": 966,
-  "endLine": 982,
+  "line": 967,
+  "endLine": 983,
   "category": "magic",
   "topic": "Parma Magica folds",
   "audience": [
@@ -757,8 +757,8 @@
  {
   "title": "Parmulae",
   "heading": "Parmulae",
-  "line": 984,
-  "endLine": 994,
+  "line": 985,
+  "endLine": 995,
   "category": "magic",
   "topic": "Parmulae",
   "audience": [
@@ -780,8 +780,8 @@
  {
   "title": "Figurine Magic",
   "heading": "Figurine Magic",
-  "line": 996,
-  "endLine": 1031,
+  "line": 997,
+  "endLine": 1032,
   "category": "magic",
   "topic": "Figurine Magic",
   "audience": [
@@ -804,8 +804,8 @@
  {
   "title": "Realm-Aligned Spells",
   "heading": "Realm-Aligned Spells",
-  "line": 1033,
-  "endLine": 1045,
+  "line": 1034,
+  "endLine": 1046,
   "category": "magic",
   "topic": "Realm-aligned spells",
   "audience": [
@@ -827,8 +827,8 @@
  {
   "title": "Realm-Aligned Spell Interaction Table",
   "heading": "Realm-Aligned Spell Interaction Table",
-  "line": 1047,
-  "endLine": 1056,
+  "line": 1048,
+  "endLine": 1057,
   "category": "magic",
   "topic": "Realm-aligned spells",
   "audience": [
@@ -847,8 +847,8 @@
  {
   "title": "Becoming a Quaesitor",
   "heading": "Becoming a Quaesitor",
-  "line": 1201,
-  "endLine": 1213,
+  "line": 1202,
+  "endLine": 1214,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -867,8 +867,8 @@
  {
   "title": "Tribunals and the First Tribunal",
   "heading": "Tribunals",
-  "line": 1273,
-  "endLine": 1277,
+  "line": 1274,
+  "endLine": 1278,
   "category": "order",
   "topic": "Tribunal law",
   "audience": [
@@ -887,8 +887,8 @@
  {
   "title": "Magvillus Council",
   "heading": "The Magvillus Council",
-  "line": 1365,
-  "endLine": 1373,
+  "line": 1366,
+  "endLine": 1374,
   "category": "order",
   "topic": "House Guernicus organization",
   "audience": [
@@ -907,8 +907,8 @@
  {
   "title": "The Law in Your Saga",
   "heading": "The Law in Your Saga",
-  "line": 1391,
-  "endLine": 1397,
+  "line": 1392,
+  "endLine": 1398,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -924,8 +924,8 @@
  {
   "title": "Forfeit Immunity",
   "heading": "Forfeit Immunity",
-  "line": 1399,
-  "endLine": 1407,
+  "line": 1400,
+  "endLine": 1408,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -948,8 +948,8 @@
  {
   "title": "The Hermetic Oath (Interpretation)",
   "heading": "The Hermetic Oath",
-  "line": 1409,
-  "endLine": 1415,
+  "line": 1410,
+  "endLine": 1416,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -968,8 +968,8 @@
  {
   "title": "High and Low Crimes",
   "heading": "High and Low Crimes",
-  "line": 1417,
-  "endLine": 1440,
+  "line": 1418,
+  "endLine": 1441,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -990,8 +990,8 @@
  {
   "title": "Deprivation of Magical Power",
   "heading": "Deprivation of Magical Power",
-  "line": 1442,
-  "endLine": 1450,
+  "line": 1443,
+  "endLine": 1451,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1008,8 +1008,8 @@
  {
   "title": "Slaying a Magus",
   "heading": "Slaying",
-  "line": 1452,
-  "endLine": 1474,
+  "line": 1453,
+  "endLine": 1475,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1030,8 +1030,8 @@
  {
   "title": "Amici",
   "heading": "Amici",
-  "line": 1476,
-  "endLine": 1482,
+  "line": 1477,
+  "endLine": 1483,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1050,8 +1050,8 @@
  {
   "title": "Wizard War",
   "heading": "Wizard War",
-  "line": 1485,
-  "endLine": 1507,
+  "line": 1486,
+  "endLine": 1508,
   "category": "order",
   "topic": "Wizard War",
   "audience": [
@@ -1073,8 +1073,8 @@
  {
   "title": "Abide by Tribunal Decisions",
   "heading": "Abide by Tribunal Decisions",
-  "line": 1509,
-  "endLine": 1521,
+  "line": 1510,
+  "endLine": 1522,
   "category": "order",
   "topic": "Tribunal law",
   "audience": [
@@ -1095,8 +1095,8 @@
  {
   "title": "Proxy Voting",
   "heading": "Proxy Voting",
-  "line": 1523,
-  "endLine": 1539,
+  "line": 1524,
+  "endLine": 1540,
   "category": "order",
   "topic": "Tribunal voting",
   "audience": [
@@ -1118,8 +1118,8 @@
  {
   "title": "Voting Rights and Residency",
   "heading": "Voting Rights",
-  "line": 1541,
-  "endLine": 1563,
+  "line": 1542,
+  "endLine": 1564,
   "category": "order",
   "topic": "Tribunal voting",
   "audience": [
@@ -1142,8 +1142,8 @@
  {
   "title": "Vagrancy",
   "heading": "Vagrancy",
-  "line": 1565,
-  "endLine": 1575,
+  "line": 1566,
+  "endLine": 1576,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1164,8 +1164,8 @@
  {
   "title": "Endangerment",
   "heading": "Endangerment",
-  "line": 1591,
-  "endLine": 1599,
+  "line": 1592,
+  "endLine": 1600,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1184,8 +1184,8 @@
  {
   "title": "Mundane Interference",
   "heading": "Mundane Interference",
-  "line": 1601,
-  "endLine": 1613,
+  "line": 1602,
+  "endLine": 1614,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1202,8 +1202,8 @@
  {
   "title": "Deals with Devils",
   "heading": "Deals with Devils",
-  "line": 1615,
-  "endLine": 1633,
+  "line": 1616,
+  "endLine": 1634,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1222,8 +1222,8 @@
  {
   "title": "Molesting the Fay",
   "heading": "Molesting the Fay",
-  "line": 1635,
-  "endLine": 1645,
+  "line": 1636,
+  "endLine": 1646,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1242,8 +1242,8 @@
  {
   "title": "Scrying on Members of the Order",
   "heading": "Scrying",
-  "line": 1647,
-  "endLine": 1657,
+  "line": 1648,
+  "endLine": 1658,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1264,8 +1264,8 @@
  {
   "title": "Apprentices under the Code",
   "heading": "Apprentices",
-  "line": 1659,
-  "endLine": 1673,
+  "line": 1660,
+  "endLine": 1674,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1286,8 +1286,8 @@
  {
   "title": "Duty of the Parens",
   "heading": "Duty of the Parens",
-  "line": 1687,
-  "endLine": 1693,
+  "line": 1688,
+  "endLine": 1694,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1306,8 +1306,8 @@
  {
   "title": "Bonisagus Rights and Duties",
   "heading": "Bonisagus Rights and Duties",
-  "line": 1695,
-  "endLine": 1713,
+  "line": 1696,
+  "endLine": 1714,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1326,8 +1326,8 @@
  {
   "title": "Casting Out",
   "heading": "Casting Out",
-  "line": 1715,
-  "endLine": 1719,
+  "line": 1716,
+  "endLine": 1720,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1348,8 +1348,8 @@
  {
   "title": "Enemies and Allies of the Order",
   "heading": "Enemies and Allies",
-  "line": 1721,
-  "endLine": 1727,
+  "line": 1722,
+  "endLine": 1728,
   "category": "order",
   "topic": "Code of Hermes",
   "audience": [
@@ -1368,8 +1368,8 @@
  {
   "title": "The Peripheral Code and Case Rulings",
   "heading": "The Peripheral Code",
-  "line": 1729,
-  "endLine": 1739,
+  "line": 1730,
+  "endLine": 1740,
   "category": "order",
   "topic": "Peripheral Code",
   "audience": [
@@ -1388,8 +1388,8 @@
  {
   "title": "The Legality of Certamen",
   "heading": "The Legality of Certamen",
-  "line": 1741,
-  "endLine": 1757,
+  "line": 1742,
+  "endLine": 1758,
   "category": "order",
   "topic": "Certamen",
   "audience": [
@@ -1411,8 +1411,8 @@
  {
   "title": "Proposal Rulings",
   "heading": "Proposal Rulings",
-  "line": 1759,
-  "endLine": 1767,
+  "line": 1760,
+  "endLine": 1768,
   "category": "order",
   "topic": "Peripheral Code",
   "audience": [
@@ -1431,8 +1431,8 @@
  {
   "title": "The Detail of the Peripheral Code",
   "heading": "The Detail",
-  "line": 1769,
-  "endLine": 1775,
+  "line": 1770,
+  "endLine": 1776,
   "category": "order",
   "topic": "Peripheral Code",
   "audience": [
@@ -1448,8 +1448,8 @@
  {
   "title": "Determining the Principals",
   "heading": "Determining the Principals",
-  "line": 1783,
-  "endLine": 1791,
+  "line": 1784,
+  "endLine": 1792,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1468,8 +1468,8 @@
  {
   "title": "Determining the Tribunal",
   "heading": "Determining the Tribunal",
-  "line": 1793,
-  "endLine": 1798,
+  "line": 1794,
+  "endLine": 1799,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1488,8 +1488,8 @@
  {
   "title": "Apprentices of House Bonisagus",
   "heading": "Apprentices",
-  "line": 585,
-  "endLine": 595,
+  "line": 586,
+  "endLine": 596,
   "category": "houses",
   "topic": "House Bonisagus apprentices",
   "audience": [
@@ -1508,8 +1508,8 @@
  {
   "title": "Publishing a Case",
   "heading": "Publishing a Case",
-  "line": 1799,
-  "endLine": 1805,
+  "line": 1800,
+  "endLine": 1806,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1528,8 +1528,8 @@
  {
   "title": "Lawful Tyranny",
   "heading": "Lawful Tyranny",
-  "line": 1811,
-  "endLine": 1817,
+  "line": 1812,
+  "endLine": 1818,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1551,8 +1551,8 @@
  {
   "title": "Transferring a Case",
   "heading": "Transferring a Case",
-  "line": 1819,
-  "endLine": 1823,
+  "line": 1820,
+  "endLine": 1824,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1571,8 +1571,8 @@
  {
   "title": "Private Hearing",
   "heading": "Private Hearing",
-  "line": 1827,
-  "endLine": 1835,
+  "line": 1828,
+  "endLine": 1836,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1591,8 +1591,8 @@
  {
   "title": "Public Hearing",
   "heading": "Public Hearing",
-  "line": 1837,
-  "endLine": 1853,
+  "line": 1838,
+  "endLine": 1854,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1613,8 +1613,8 @@
  {
   "title": "Acquittal",
   "heading": "Acquittal",
-  "line": 1855,
-  "endLine": 1859,
+  "line": 1856,
+  "endLine": 1860,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1635,8 +1635,8 @@
  {
   "title": "Conviction",
   "heading": "Conviction",
-  "line": 1861,
-  "endLine": 1865,
+  "line": 1862,
+  "endLine": 1866,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1657,8 +1657,8 @@
  {
   "title": "Testimony",
   "heading": "Testimony",
-  "line": 1867,
-  "endLine": 1881,
+  "line": 1868,
+  "endLine": 1882,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1679,8 +1679,8 @@
  {
   "title": "Counter-Case Example",
   "heading": "Counter-Case Example",
-  "line": 1883,
-  "endLine": 1885,
+  "line": 1884,
+  "endLine": 1886,
   "category": "order",
   "topic": "Tribunal procedure",
   "audience": [
@@ -1698,8 +1698,8 @@
  {
   "title": "Damages",
   "heading": "Damages",
-  "line": 1893,
-  "endLine": 1895,
+  "line": 1894,
+  "endLine": 1896,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1718,8 +1718,8 @@
  {
   "title": "Fines",
   "heading": "Fines",
-  "line": 1897,
-  "endLine": 1899,
+  "line": 1898,
+  "endLine": 1900,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1738,8 +1738,8 @@
  {
   "title": "Determining Penalties",
   "heading": "Determining Penalties",
-  "line": 1905,
-  "endLine": 1917,
+  "line": 1906,
+  "endLine": 1918,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1761,8 +1761,8 @@
  {
   "title": "Wizard's March",
   "heading": "Wizard's March",
-  "line": 1919,
-  "endLine": 1931,
+  "line": 1920,
+  "endLine": 1932,
   "category": "order",
   "topic": "Wizard's March",
   "audience": [
@@ -1784,8 +1784,8 @@
  {
   "title": "Punishments (Hierarchy)",
   "heading": "Punishments",
-  "line": 1933,
-  "endLine": 1936,
+  "line": 1934,
+  "endLine": 1937,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1804,8 +1804,8 @@
  {
   "title": "Seasons of Service",
   "heading": "Seasons of Service",
-  "line": 1938,
-  "endLine": 1943,
+  "line": 1939,
+  "endLine": 1944,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1824,8 +1824,8 @@
  {
   "title": "Investing Items (Punishment)",
   "heading": "Investing Items",
-  "line": 1944,
-  "endLine": 1947,
+  "line": 1945,
+  "endLine": 1948,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1842,8 +1842,8 @@
  {
   "title": "Loss of an Apprentice",
   "heading": "Loss of an Apprentice",
-  "line": 1948,
-  "endLine": 1953,
+  "line": 1949,
+  "endLine": 1954,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1864,8 +1864,8 @@
  {
   "title": "Banishment from Tribunal",
   "heading": "Banishment from Tribunal",
-  "line": 1954,
-  "endLine": 1957,
+  "line": 1955,
+  "endLine": 1958,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1884,8 +1884,8 @@
  {
   "title": "Loss of Familiar",
   "heading": "Loss of Familiar",
-  "line": 1958,
-  "endLine": 1967,
+  "line": 1959,
+  "endLine": 1968,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1906,8 +1906,8 @@
  {
   "title": "Death of Familiar",
   "heading": "Death of Familiar",
-  "line": 1968,
-  "endLine": 1971,
+  "line": 1969,
+  "endLine": 1972,
   "category": "order",
   "topic": "Penalties",
   "audience": [
@@ -1928,8 +1928,8 @@
  {
   "title": "Quaesitor in Good Standing",
   "heading": "Quaesitor in Good Standing",
-  "line": 1978,
-  "endLine": 1980,
+  "line": 1979,
+  "endLine": 1981,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -1948,8 +1948,8 @@
  {
   "title": "Investigation Duties",
   "heading": "Investigation Duties",
-  "line": 1982,
-  "endLine": 1986,
+  "line": 1983,
+  "endLine": 1987,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -1968,8 +1968,8 @@
  {
   "title": "Cooperation with Investigations",
   "heading": "Cooperation",
-  "line": 1988,
-  "endLine": 1992,
+  "line": 1989,
+  "endLine": 1993,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -1988,8 +1988,8 @@
  {
   "title": "Investigation Immunity",
   "heading": "Investigation Immunity",
-  "line": 1994,
-  "endLine": 2006,
+  "line": 1995,
+  "endLine": 2007,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -2010,8 +2010,8 @@
  {
   "title": "Sanctum Invasions",
   "heading": "Sanctum Invasions",
-  "line": 2008,
-  "endLine": 2012,
+  "line": 2009,
+  "endLine": 2013,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -2032,8 +2032,8 @@
  {
   "title": "Compensation for Quaesitors",
   "heading": "Compensation",
-  "line": 2014,
-  "endLine": 2026,
+  "line": 2015,
+  "endLine": 2027,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -2052,8 +2052,8 @@
  {
   "title": "Calling a Wizard's March",
   "heading": "Calling a Wizard's March",
-  "line": 2028,
-  "endLine": 2034,
+  "line": 2029,
+  "endLine": 2035,
   "category": "order",
   "topic": "Wizard's March",
   "audience": [
@@ -2074,8 +2074,8 @@
  {
   "title": "Consultation and Arbitration",
   "heading": "Consultation and Arbitration",
-  "line": 2036,
-  "endLine": 2044,
+  "line": 2037,
+  "endLine": 2045,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -2094,8 +2094,8 @@
  {
   "title": "The Presiding Quaesitor",
   "heading": "The Presiding Quaesitor",
-  "line": 2058,
-  "endLine": 2078,
+  "line": 2059,
+  "endLine": 2079,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -2116,8 +2116,8 @@
  {
   "title": "Endorsing Testimony",
   "heading": "Endorsing Testimony",
-  "line": 2080,
-  "endLine": 2092,
+  "line": 2081,
+  "endLine": 2093,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [
@@ -2138,8 +2138,8 @@
  {
   "title": "The Veto",
   "heading": "The Veto",
-  "line": 2094,
-  "endLine": 2112,
+  "line": 2095,
+  "endLine": 2113,
   "category": "order",
   "topic": "Quaesitores",
   "audience": [

@@ -2,8 +2,8 @@
  {
   "title": "Vantage Point of Xerxes (bound druj site)",
   "heading": "The Vantage Point of Xerxes",
-  "line": 3690,
-  "endLine": 3694,
+  "line": 3700,
+  "endLine": 3704,
   "category": "setting",
   "topic": "Magical sites of Thebes",
   "audience": [
@@ -23,8 +23,8 @@
  {
   "title": "The Great Altar of Pergamos (free ritual spells)",
   "heading": "The Great Altar",
-  "line": 3704,
-  "endLine": 3710,
+  "line": 3714,
+  "endLine": 3720,
   "category": "setting",
   "topic": "Magical sites of Thebes",
   "audience": [
@@ -44,8 +44,8 @@
  {
   "title": "The Prison of Klymene (altar bond strength)",
   "heading": "The Prison of Klymene",
-  "line": 3712,
-  "endLine": 3718,
+  "line": 3722,
+  "endLine": 3728,
   "category": "setting",
   "topic": "Magical sites of Thebes",
   "audience": [
@@ -66,8 +66,8 @@
  {
   "title": "The Cave of the Seven Sleepers (dilated-time regio)",
   "heading": "The Cave of the Seven Sleepers",
-  "line": 3766,
-  "endLine": 3770,
+  "line": 3776,
+  "endLine": 3780,
   "category": "realms",
   "topic": "Regiones",
   "audience": [
@@ -87,8 +87,8 @@
  {
   "title": "Anima damage levels and repair (glass submarine)",
   "heading": "Anima: The Glass Submarine",
-  "line": 3936,
-  "endLine": 3974,
+  "line": 3946,
+  "endLine": 3984,
   "category": "beings",
   "topic": "Animae and mechanica",
   "audience": [
@@ -109,9 +109,9 @@
  },
  {
   "title": "Mythic Blood: Gigantes (Greek giants)",
-  "heading": "Mythic Blood \u2013 Gigantes",
-  "line": 4101,
-  "endLine": 4115,
+  "heading": "Mythic Blood – Gigantes",
+  "line": 4111,
+  "endLine": 4125,
   "category": "creation",
   "topic": "Mythic Blood lineages",
   "audience": [
@@ -130,8 +130,8 @@
  {
   "title": "The Sibyllides (children of sibyls)",
   "heading": "The Sibyllides",
-  "line": 4143,
-  "endLine": 4145,
+  "line": 4153,
+  "endLine": 4155,
   "category": "beings",
   "topic": "Magic kin",
   "audience": [
@@ -154,8 +154,8 @@
  {
   "title": "Character Guide: A Sibyl (magic character template)",
   "heading": "Character Guide: A Sibyl",
-  "line": 4151,
-  "endLine": 4189,
+  "line": 4161,
+  "endLine": 4199,
   "category": "beings",
   "topic": "Magic characters",
   "audience": [
@@ -176,8 +176,8 @@
  {
   "title": "Diabolai (slander rites)",
   "heading": "Diabolai",
-  "line": 4209,
-  "endLine": 4219,
+  "line": 4219,
+  "endLine": 4229,
   "category": "traditions",
   "topic": "Diabolai",
   "audience": [
@@ -199,8 +199,8 @@
  {
   "title": "Modifiers to Diabolai",
   "heading": "Modifiers to Diabolai",
-  "line": 4221,
-  "endLine": 4223,
+  "line": 4231,
+  "endLine": 4233,
   "category": "traditions",
   "topic": "Diabolai",
   "audience": [
@@ -212,7 +212,7 @@
   "requires": "",
   "summary": "Sidebar listing the situational modifiers to a diabolai roll, including bonuses for public performance, synthemata and a known True Name and penalties for recent repeats or unfamiliar targets.",
   "quotes": [
-   "Performed a diabolai in the last month: \u20139 Threatening an unfamiliar being: \u20136"
+   "Performed a diabolai in the last month: –9 Threatening an unfamiliar being: –6"
   ],
   "related": [
    "The Mysteries Revised Edition, pages 86-88 (Synthemata)",
@@ -222,8 +222,8 @@
  {
   "title": "Katadesmos Magic (Greek Defixio tradition)",
   "heading": "Katadesmos Magic",
-  "line": 4239,
-  "endLine": 4243,
+  "line": 4249,
+  "endLine": 4253,
   "category": "traditions",
   "topic": "Defixio / Katadesmos Magic",
   "audience": [
@@ -245,8 +245,8 @@
  {
   "title": "Gruagachan variant for Greece",
   "heading": "Gruagachan",
-  "line": 4261,
-  "endLine": 4263,
+  "line": 4271,
+  "endLine": 4273,
   "category": "traditions",
   "topic": "Hedge traditions in Thebes",
   "audience": [
@@ -267,8 +267,8 @@
  {
   "title": "The Makhai (Greek Muspelli variant)",
   "heading": "The Makhai",
-  "line": 4273,
-  "endLine": 4275,
+  "line": 4283,
+  "endLine": 4285,
   "category": "traditions",
   "topic": "Hedge traditions in Thebes",
   "audience": [
@@ -288,8 +288,8 @@
  {
   "title": "Folk Magic (peasant ceremonial magic)",
   "heading": "New Virtue: Folk Magic",
-  "line": 4281,
-  "endLine": 4295,
+  "line": 4291,
+  "endLine": 4305,
   "category": "traditions",
   "topic": "Folk Magic",
   "audience": [
@@ -309,8 +309,8 @@
  {
   "title": "Heroic descent: Virtues and Flaws of Greek heroes",
   "heading": "Heroes",
-  "line": 4319,
-  "endLine": 4337,
+  "line": 4329,
+  "endLine": 4347,
   "category": "creation",
   "topic": "Mythic Blood lineages",
   "audience": [
@@ -332,8 +332,8 @@
  {
   "title": "The Children of Olympos (league and its Mysteries)",
   "heading": "The Children of Olympos",
-  "line": 4353,
-  "endLine": 4359,
+  "line": 4363,
+  "endLine": 4369,
   "category": "mysteries",
   "topic": "Elysian Ecstasy and Olympian Pact",
   "audience": [
@@ -354,8 +354,8 @@
  {
   "title": "Channeling a Greek god (Elysian Ecstasy and Olympian Pact)",
   "heading": "New Minor Supernatural Virtue: Elysian Ecstasy and Olympian Pact",
-  "line": 4361,
-  "endLine": 4386,
+  "line": 4371,
+  "endLine": 4396,
   "category": "mysteries",
   "topic": "Elysian Ecstasy and Olympian Pact",
   "audience": [
@@ -378,8 +378,8 @@
  {
   "title": "Initiation of Elysian Ecstasy",
   "heading": "Initiation of Elysian Ecstasy",
-  "line": 4388,
-  "endLine": 4396,
+  "line": 4398,
+  "endLine": 4406,
   "category": "mysteries",
   "topic": "Elysian Ecstasy and Olympian Pact",
   "audience": [
@@ -397,8 +397,8 @@
  {
   "title": "Sympathy Traits of the Olympians",
   "heading": "Sympathy Traits of the Olympians",
-  "line": 4436,
-  "endLine": 4508,
+  "line": 4446,
+  "endLine": 4518,
   "category": "creation",
   "topic": "Faerie Blood",
   "audience": [
@@ -419,8 +419,8 @@
  {
   "title": "Stoicheia (place-guardian faeries)",
   "heading": "Stoicheia",
-  "line": 4526,
-  "endLine": 4536,
+  "line": 4536,
+  "endLine": 4546,
   "category": "beings",
   "topic": "Stoicheia",
   "audience": [
@@ -441,8 +441,8 @@
  {
   "title": "Character Guide: Stoicheion (faerie guardian template)",
   "heading": "Character Guide: Stoicheion",
-  "line": 4538,
-  "endLine": 4563,
+  "line": 4548,
+  "endLine": 4573,
   "category": "beings",
   "topic": "Stoicheia",
   "audience": [
@@ -464,8 +464,8 @@
  {
   "title": "Magic and the Church in Byzantine cities",
   "heading": "Magic & The Church",
-  "line": 4635,
-  "endLine": 4639,
+  "line": 4645,
+  "endLine": 4649,
   "category": "setting",
   "topic": "Magic and mundane reaction",
   "audience": [
@@ -486,8 +486,8 @@
  {
   "title": "Creating and venerating divine icons (eikons)",
   "heading": "Creating and Venerating Divine Icons",
-  "line": 4641,
-  "endLine": 4661,
+  "line": 4651,
+  "endLine": 4671,
   "category": "realms",
   "topic": "Icons",
   "audience": [
@@ -511,8 +511,8 @@
  {
   "title": "Holy Tradition: Hesychasts",
   "heading": "Holy Tradition: Hesychasts",
-  "line": 4667,
-  "endLine": 4674,
+  "line": 4677,
+  "endLine": 4684,
   "category": "traditions",
   "topic": "Holy traditions",
   "audience": [
@@ -534,8 +534,8 @@
  {
   "title": "Society of Cyprian and Justina",
   "heading": "Society of Cyprian and Justina",
-  "line": 4680,
-  "endLine": 4686,
+  "line": 4690,
+  "endLine": 4696,
   "category": "traditions",
   "topic": "Holy traditions",
   "audience": [
@@ -556,8 +556,8 @@
  {
   "title": "The Relics of Constantinople (Faith Scores)",
   "heading": "The Relics of Constantinople",
-  "line": 4688,
-  "endLine": 4716,
+  "line": 4698,
+  "endLine": 4726,
   "category": "realms",
   "topic": "Relics",
   "audience": [
@@ -578,8 +578,8 @@
  {
   "title": "Non-Divine icons and veneration versus worship",
   "heading": "Non-Divine Icons",
-  "line": 4718,
-  "endLine": 4722,
+  "line": 4728,
+  "endLine": 4732,
   "category": "realms",
   "topic": "Icons",
   "audience": [
@@ -597,8 +597,8 @@
  {
   "title": "Three Symbols of Divine Authority (imperial regalia)",
   "heading": "Three Symbols of Divine Authority",
-  "line": 4724,
-  "endLine": 4744,
+  "line": 4734,
+  "endLine": 4754,
   "category": "realms",
   "topic": "Imperial regalia",
   "audience": [
@@ -619,8 +619,8 @@
  {
   "title": "Byzantine Saints: invoking a saint and common powers",
   "heading": "Byzantine Saints",
-  "line": 4746,
-  "endLine": 4775,
+  "line": 4756,
+  "endLine": 4785,
   "category": "realms",
   "topic": "Saints",
   "audience": [
@@ -642,8 +642,8 @@
  {
   "title": "A Mother's Curse",
   "heading": "A Mother's Curse",
-  "line": 4777,
-  "endLine": 4783,
+  "line": 4787,
+  "endLine": 4793,
   "category": "social",
   "topic": "Curses",
   "audience": [
@@ -655,7 +655,7 @@
   "requires": "Setting: Mediterranean cultures",
   "summary": "A storyguide tool letting a mother curse her child with an effect like the Lesser Malediction Flaw until he completes a task or receives divine intervention.",
   "quotes": [
-   "he suffers a \u20133 penalty to all rolls involving that activity"
+   "he suffers a –3 penalty to all rolls involving that activity"
   ],
   "related": [
    "Lesser Malediction (Minor Supernatural Flaw)"
@@ -664,8 +664,8 @@
  {
   "title": "The Sibyls (magic humans bound to their auras)",
   "heading": "The Sibyls",
-  "line": 4117,
-  "endLine": 4121,
+  "line": 4127,
+  "endLine": 4131,
   "category": "beings",
   "topic": "Magic characters",
   "audience": [
@@ -685,8 +685,8 @@
  {
   "title": "Greek Saints (saint categories and Divine Might)",
   "heading": "Greek Saints",
-  "line": 4803,
-  "endLine": 4827,
+  "line": 4813,
+  "endLine": 4837,
   "category": "realms",
   "topic": "Saints",
   "audience": [
@@ -706,8 +706,8 @@
  {
   "title": "Infernal Tradition: Stringla",
   "heading": "Infernal Tradition: Stringla",
-  "line": 4961,
-  "endLine": 4979,
+  "line": 4971,
+  "endLine": 4989,
   "category": "traditions",
   "topic": "Infernal traditions",
   "audience": [
@@ -729,8 +729,8 @@
  {
   "title": "Infernal Tradition: The Paulicians",
   "heading": "Infernal Tradition: The Paulicians",
-  "line": 4980,
-  "endLine": 4986,
+  "line": 4990,
+  "endLine": 4996,
   "category": "traditions",
   "topic": "Infernal traditions",
   "audience": [

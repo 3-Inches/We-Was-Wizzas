@@ -28,23 +28,38 @@ Do this on its own branch, as its own pull request, on a clean working tree.
    `python3 -I tools/books/relocate.py --write`
    - **reworded** entries: the tool found the nearest match. Open each and check it is the right text.
    - **LOST** entries were left alone. Find the new line by hand.
-   - **Bare line numbers with no book**: add the file to `FILE_BOOKS` in `relocate.py` and run again.
-4. **Regenerate the data, and compare it with what was there.**
+   - **Bare line numbers with no book**: add the file to `FILE_BOOKS` in `relocate.py` and run the report again, before you write.
+
+   Commit the books and the moved pointers before going on. `relocate.py` compares the working tree with the last commit, so it must run once only: a second run would move the pointers again.
+4. **Regenerate the data and the Game Mechanics index.**
    `python3 -I tools/extract/run_all.py`
-   `python3 -I tools/books/datadiff.py`
-   `datadiff.py` lists, for each generated file, the entries that disappeared, appeared or changed. Every disappearance needs a reason: either the book dropped it, or an extractor no longer recognizes its layout and must be fixed. Entries that appear need a look too: a new creature may be a real one the cleaner text now reveals, or a table read as a stat block.
-5. **Rebuild the Game Mechanics index and run the checks** in `CLAUDE.md`, in order. `build_mechanics.py` checks that every quote in the index still appears in its book, word for word. A quote that fails is usually a corrected typo: copy the new wording.
-6. **New books** need an entry in `tools/extract/books.py` before the reader shows them. Books of the Third and Fourth Editions are setting reference only.
-7. **A book that moved from `wip/` to `reviewed/`:** `relocate.py` updates its path in `books.py`. Check whether anything else names the old path (`grep -rn "wip/" app/src tools`).
+   `python3 -I tools/extract/extract_templates.py "reviewed/Ars Magica - Definitive Edition (Core Rules).md" > app/src/data/templates.ts`
+   `python3 -I tools/extract/build_mechanics.py --report`
+   `build_mechanics.py` checks every entry of the index against its book. It should end with nothing dropped and no quote missing but the one known (the rain cloud, in *Dies Irae*).
+   - **A quote not found** is usually a corrected typo: copy the new wording into `mechanics_index/`.
+   - **A heading not found** was renamed upstream: copy the new heading.
+   - **A quote that is in the book but outside its section:** upstream split one long line into several. Move the entry's `endLine` to where the section now ends.
+5. **Compare the data with what was there.**
+   `python3 -I tools/books/datadiff.py` (add `--from` and the commit before the update, once you have committed)
+   It lists, for each generated file, the entries that disappeared, appeared or changed.
+   - **Every disappearance needs a reason:** either the book dropped it, or an extractor no longer recognizes its layout and must be fixed.
+   - **Entries that appear need a look too:** a new creature may be a real one the cleaner text now reveals, or a table read as a stat block.
+   - **Mechanics "filed elsewhere":** the topic rules in `mechanics_curation.py` match chapter and section headings. Change the rule to match the renamed heading.
+   - **A changed id** (a spell's id carries its level) breaks nothing: a character keeps their own copy of a spell. Check that no fixture or data file names the old id.
+6. **Run the checks** in `CLAUDE.md`, in order. `src/data/books.test.ts` fails when a book file is new, moved or renamed and the lists do not say so. `node scripts/qa/books.cjs` opens every book in the reader.
+7. **New books** go in two lists that must agree: `tools/extract/books.py` and `app/src/data/constants.ts`. A Fifth Edition book goes in `BOOKS`. A book of the Third or Fourth Edition, or a third-party book, goes in `REFERENCE_BOOKS`: the reader shows it, and nothing is taken from it. A translation of a book already listed goes in `NOT_REGISTERED`.
+8. **A book that moved from `wip/` to `reviewed/`:** `relocate.py` updates its path in `books.py`. Set its `status` to `'reviewed'` in `constants.ts`.
 
 ## What to expect
 
-A trial run against upstream of 16 November 2026 (26 books changed, four moved, six new) gave:
+The first update, to upstream of 16 November 2026 (26 books changed, four moved, six new), gave:
 
-- **Pointers:** 5,029 into changed books. 1,964 did not move, 3,060 moved with their words unchanged, 5 were reworded, none were lost.
-- **Extracted data:** *Hermetic Projects* was reorganized upstream, and its 80 enchanted devices were no longer recognized as devices (they were read as spells). The bestiary gained 63 creatures, most from books whose stat blocks are now cleaner. Four spells and one creature disappeared. About 180 entries changed their text.
+- **Pointers:** 5,037 into changed books. 1,964 did not move, 3,068 moved with their words unchanged, 5 were reworded, none were lost.
+- **Extracted data:** *Hermetic Projects* was reorganized upstream, and its devices were read as spells until `extract_hp.py` learned the new layout. The bestiary gained 63 creatures, all real, from books whose stat blocks are now cleaner. Eight spells and one creature left under their old ids, each for a reason. About 180 entries changed their text, nearly all corrected typos.
+- **The Game Mechanics index:** eleven quotes and three headings had corrected wording, two sections ended early, and two topic rules pointed at renamed headings.
+- **One old fault found:** the reader could not open a book with a comma in its file name.
 
-So the pointers are the easy part. The extractors are where the work is.
+So the pointers are the easy part. The extractors and the index are where the work is. Upstream now prints an **errata list at the head of a book** it has reviewed ("Issues from Original"). Read it first: it says which rules changed.
 
 ## The files
 
@@ -53,5 +68,5 @@ So the pointers are the easy part. The extractors are where the work is.
 | `compare.py` | Lists the differences between our books and upstream. Changes nothing. |
 | `sync.py` | Copies upstream's books over ours and records the commit. |
 | `relocate.py` | Moves line pointers in `tools/extract/` and `app/src/` to follow the text. |
-| `datadiff.py` | Compares the generated data with the last commit's, entry by entry. |
+| `datadiff.py` | Compares the generated data with the last commit's, entry by entry, and where each mechanic is filed. |
 | `UPSTREAM` | The upstream commit our books match. |

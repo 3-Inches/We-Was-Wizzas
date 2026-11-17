@@ -7,6 +7,10 @@ work-in-progress extraction ("wip").
 
 The Definitive Edition supersedes the original ArM5 core book, so the older
 core book is registered for the reference reader only (extract=False).
+
+REFERENCE_BOOKS, below, holds the books of other editions and the third-party books: the reader
+shows them and nothing is extracted from them. The app's own lists (app/src/data/constants.ts)
+are checked against this file by app/src/data/books.test.ts.
 """
 import os
 
@@ -29,9 +33,9 @@ BOOKS = [
     ("AM", "reviewed/Ars Magica 5e - Magic - Ancient Magic.md", "Ancient Magic", "AM", "magic", True),
     ("HMRE", "reviewed/Ars Magica 5e - Magic - Hedge Magic (Revised).md", "Hedge Magic (Revised Edition)", "HMRE", "magic", True),
     ("App", "reviewed/Ars Magica 5e - Magic - Apprentices.md", "Apprentices", "App", "magic", True),
-    ("RM", "wip/Ars Magica 5e - Magic - Rival Magic.md", "Rival Magic", "RM", "magic", True),
+    ("RM", "reviewed/Ars Magica 5e - Magic - Rival Magic.md", "Rival Magic", "RM", "magic", True),
     ("CC", "wip/Ars Magica 5e - Magic - The Cradle & the Crescent.md", "The Cradle & the Crescent", "C&C", "magic", True),
-    ("HP", "wip/Ars Magica 5e - Magic - Hermetic Projects.md", "Hermetic Projects", "HP", "magic", True),
+    ("HP", "reviewed/Ars Magica 5e - Magic - Hermetic Projects.md", "Hermetic Projects", "HP", "magic", True),
     ("MoH", "wip/Ars Magica 5e - Magi of Hermes.md", "Magi of Hermes", "MoH", "magic", True),
     ("LoH", "reviewed/Ars Magica 5e - Legends of Hermes.md", "Legends of Hermes", "LoH", "magic", True),
     ("RoP_M", "reviewed/Ars Magica 5e - Realms of Power - Magic.md", "Realms of Power: Magic", "RoP:M", "realms", True),
@@ -56,10 +60,36 @@ BOOKS = [
     ("LaL", "reviewed/Ars Magica 5e - The Lion and the Lily - The Normandy Tribunal.md", "The Lion and the Lily (Normandy Tribunal)", "L&L", "tribunal", True),
     ("SE", "reviewed/Ars Magica 5e - The Sundered Eagle - The Theban Tribunal.md", "The Sundered Eagle (Theban Tribunal)", "SE", "tribunal", True),
     ("LotN", "reviewed/Ars Magica 5e - Lands of the Nile - Egypt, Ethiopia & Nubia.md", "Lands of the Nile", "LotN", "tribunal", True),
-    ("FF", "wip/Ars Magica 5e - Faith & Flame - The Provencal Tribunal.md", "Faith & Flame (Provençal Tribunal)", "F&F", "tribunal", True),
-    ("CI", "wip/Ars Magica 5e - The Contested Isle - The Hibernian Tribunal.md", "The Contested Isle (Hibernian Tribunal)", "CI", "tribunal", True),
+    ("FF", "reviewed/Ars Magica 5e - Faith & Flame - The Provencal Tribunal.md", "Faith & Flame (Provençal Tribunal)", "F&F", "tribunal", True),
+    ("CI", "reviewed/Ars Magica 5e - The Contested Isle - The Hibernian Tribunal.md", "The Contested Isle (Hibernian Tribunal)", "CI", "tribunal", True),
     ("BSS", "wip/Ars Magica 5e - Between Sand & Sea - Mythic Africa.md", "Between Sand & Sea (Mythic Africa)", "BS&S", "tribunal", True),
 ]
+
+# Books the reader shows and nothing else reads: the Third and Fourth Edition books (setting
+# reference) and the third-party books. No rule, character or covenant is taken from them, and no
+# extractor walks this list. A translation of a book already here is left out.
+REFERENCE_BOOKS = [
+    # id, file (relative to repo root), title, abbreviation, category
+    ("E3_Lion", "reviewed/Ars Magica 3e - Lion of the North - The Loch Leglean Tribunal.md", "Lion of the North (Loch Leglean Tribunal)", "ArM3", "earlier"),
+    ("E3_Rome", "reviewed/Ars Magica 3e - Tribunals of Hermes - Rome.md", "Tribunals of Hermes: Rome", "ArM3", "earlier"),
+    ("E3_Iberia", "wip/Ars Magica 3e - Tribunals of Hermes - Iberia.md", "Tribunals of Hermes: Iberia", "ArM3", "earlier"),
+    ("E4_Merlin", "reviewed/Ars Magica 4e - Heirs to Merlin - Stonehenge Tribunal.md", "Heirs to Merlin (Stonehenge Tribunal)", "ArM4", "earlier"),
+    ("E4_Alps", "reviewed/Ars Magica 4e - Sanctuary of Ice - The Greater Alps Tribunal.md", "Sanctuary of Ice (Greater Alps Tribunal)", "ArM4", "earlier"),
+    ("E4_Levant", "wip/Ars Magica 4e - Blood_and_Sand_-_The_Levant_Tribunal.md", "Blood and Sand (Levant Tribunal)", "ArM4", "earlier"),
+    ("E4_Novgorod", "wip/Ars Magica 4e - The Dragon and the Bear - The Novgorod Tribunal.md", "The Dragon and the Bear (Novgorod Tribunal)", "ArM4", "earlier"),
+    ("E4_Iceland", "wip/Ars Magica 4e - Land of Fire & Ice, Mythic Iceland.md", "Land of Fire and Ice (Mythic Iceland)", "ArM4", "earlier"),
+    ("E4_IceWars", "reviewed/Ars Magica 4e - Icelandic Wars - Land of Fire and Ice.md", "Icelandic Wars", "ArM4", "earlier"),
+    ("E4_Thule", "wip/Ars Magica 4e - Ultima Thule - Mythic Scandinavia.md", "Ultima Thule (Mythic Scandinavia)", "ArM4", "earlier"),
+    ("E4_Nigrasaxa", "reviewed/Ars Magica 4e - Nigrasaxa.md", "Nigrasaxa", "ArM4", "earlier"),
+    ("E4_Sand", "reviewed/Ars Magica 4e - Secrets in Sand.md", "Secrets in Sand", "ArM4", "earlier"),
+    ("X_Forgotten", "3rd-party/Ars Magica 5e - Forgotten Magic of Hermes.md", "Forgotten Magic of Hermes", "FMoH", "third-party"),
+    ("X_Iberia", "3rd-party/Finis Terrae - The Tribunal of Iberia (EN).md", "Finis Terrae (Tribunal of Iberia)", "FT", "third-party"),
+    ("X_Primer", "3rd-party/Praecepta Hermetica - Ars Magica Primer v3.21 - English version.md", "Praecepta Hermetica (a primer)", "PH", "third-party"),
+    ("X_Chronology", "3rd-party/Ars Magica Chronology - by OriginalMadman.md", "Ars Magica Chronology", "Chron", "third-party"),
+    ("X_Solitaria", "3rd-party/Ars Magica Solitaria - Solo Roleplaying Rules by OriginalMadman.md", "Ars Magica Solitaria (solo play)", "Sol", "third-party"),
+]
+# In the three folders, and deliberately in neither list.
+NOT_REGISTERED = ["3rd-party/Finis Terrae - El Tribunal de Iberia (ES).md"]
 
 BOOK_BY_ID = {b[0]: b for b in BOOKS}
 

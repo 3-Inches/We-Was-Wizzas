@@ -2,8 +2,8 @@
  {
   "title": "Playing Loki",
   "heading": "Playing Loki",
-  "line": 5059,
-  "endLine": 5063,
+  "line": 5134,
+  "endLine": 5138,
   "category": "beings",
   "topic": "Daimon Aspects",
   "audience": [
@@ -20,8 +20,8 @@
  {
   "title": "Aspects of Loki",
   "heading": "Aspects of Loki",
-  "line": 5065,
-  "endLine": 5075,
+  "line": 5140,
+  "endLine": 5150,
   "category": "beings",
   "topic": "Daimon Aspects",
   "audience": [
@@ -43,8 +43,8 @@
  {
   "title": "Gifts of the Gods",
   "heading": "Gifts of the Gods",
-  "line": 5275,
-  "endLine": 5281,
+  "line": 5350,
+  "endLine": 5356,
   "category": "beings",
   "topic": "Daimon Aspects",
   "audience": [
@@ -61,8 +61,8 @@
  {
   "title": "Prophecies of the End Times",
   "heading": "Prophecies of the End Times",
-  "line": 5469,
-  "endLine": 5473,
+  "line": 5544,
+  "endLine": 5548,
   "category": "basics",
   "topic": "Research from books",
   "audience": [
@@ -81,8 +81,8 @@
  {
   "title": "Letting the World Burn",
   "heading": "Letting the World Burn",
-  "line": 5535,
-  "endLine": 5545,
+  "line": 5610,
+  "endLine": 5620,
   "category": "setting",
   "topic": "Saga structure",
   "audience": [
@@ -99,8 +99,8 @@
  {
   "title": "Five Acts to Destroy the World",
   "heading": "Five Acts to Destroy the World",
-  "line": 5547,
-  "endLine": 5553,
+  "line": 5622,
+  "endLine": 5628,
   "category": "setting",
   "topic": "Saga structure",
   "audience": [
@@ -118,8 +118,8 @@
  {
   "title": "The Magogoli",
   "heading": "The Magogoli",
-  "line": 5617,
-  "endLine": 5653,
+  "line": 5692,
+  "endLine": 5728,
   "category": "beings",
   "topic": "Magic Humans and Magic Kin",
   "audience": [
@@ -144,8 +144,8 @@
  {
   "title": "The Eastern Bastion",
   "heading": "The Eastern Bastion",
-  "line": 5665,
-  "endLine": 5671,
+  "line": 5740,
+  "endLine": 5746,
   "category": "combat",
   "topic": "Mass combat",
   "audience": [
@@ -162,8 +162,8 @@
  {
   "title": "The Monsters in the Ironwood",
   "heading": "The Monsters in the Ironwood",
-  "line": 5681,
-  "endLine": 5687,
+  "line": 5756,
+  "endLine": 5762,
   "category": "realms",
   "topic": "Local auras and regiones",
   "audience": [
@@ -184,8 +184,8 @@
  {
   "title": "The Snatcher of the Moon",
   "heading": "The Snatcher of the Moon",
-  "line": 5897,
-  "endLine": 5905,
+  "line": 5972,
+  "endLine": 5980,
   "category": "traditions",
   "topic": "Muspelli utiseta",
   "audience": [
@@ -207,8 +207,8 @@
  {
   "title": "Lunar Eclipses",
   "heading": "Lunar Eclipses",
-  "line": 5911,
-  "endLine": 5913,
+  "line": 5986,
+  "endLine": 5988,
   "category": "setting",
   "topic": "Calendar and astronomy",
   "audience": [
@@ -225,8 +225,8 @@
  {
   "title": "The Army of the Faerie Gods",
   "heading": "The Army of the Faerie Gods",
-  "line": 5997,
-  "endLine": 6001,
+  "line": 6072,
+  "endLine": 6076,
   "category": "traditions",
   "topic": "Muspelli",
   "audience": [
@@ -248,8 +248,8 @@
  {
   "title": "Loki Succeeds",
   "heading": "Loki Succeeds",
-  "line": 6094,
-  "endLine": 6098,
+  "line": 6169,
+  "endLine": 6173,
   "category": "realms",
   "topic": "Post-Ragnarok world",
   "audience": [
@@ -267,8 +267,8 @@
  {
   "title": "Wild Magic",
   "heading": "Wild Magic",
-  "line": 6108,
-  "endLine": 6120,
+  "line": 6183,
+  "endLine": 6195,
   "category": "realms",
   "topic": "Post-Ragnarok world",
   "audience": [
@@ -291,8 +291,8 @@
  {
   "title": "The Golden Chain",
   "heading": "The Golden Chain",
-  "line": 6122,
-  "endLine": 6132,
+  "line": 6197,
+  "endLine": 6207,
   "category": "magic",
   "topic": "Golden Chain",
   "audience": [
@@ -318,8 +318,8 @@
  {
   "title": "New Virtue: Folk Magic",
   "heading": "New Virtue: Folk Magic",
-  "line": 6134,
-  "endLine": 6150,
+  "line": 6209,
+  "endLine": 6225,
   "category": "traditions",
   "topic": "Folk Magic",
   "audience": [
@@ -340,8 +340,8 @@
  {
   "title": "All Bonds Break",
   "heading": "All Bonds Break",
-  "line": 6152,
-  "endLine": 6158,
+  "line": 6227,
+  "endLine": 6233,
   "category": "magic",
   "topic": "Golden Chain",
   "audience": [
@@ -359,8 +359,8 @@
  {
   "title": "Impacts on Non-Hermetic Magicians",
   "heading": "Impacts on Non-Hermetic Magicians",
-  "line": 6164,
-  "endLine": 6170,
+  "line": 6239,
+  "endLine": 6245,
   "category": "traditions",
   "topic": "Golden Chain",
   "audience": [
@@ -381,8 +381,8 @@
  {
   "title": "Deicide",
   "heading": "Deicide",
-  "line": 6188,
-  "endLine": 6192,
+  "line": 6263,
+  "endLine": 6267,
   "category": "realms",
   "topic": "Post-Ragnarok world",
   "audience": [
@@ -403,8 +403,8 @@
  {
   "title": "No Faerie Auras",
   "heading": "No Faerie Auras",
-  "line": 6194,
-  "endLine": 6200,
+  "line": 6269,
+  "endLine": 6275,
   "category": "realms",
   "topic": "Post-Ragnarok world",
   "audience": [
@@ -422,8 +422,8 @@
  {
   "title": "Vitality Is No Longer Enough",
   "heading": "Vitality Is No Longer Enough",
-  "line": 6202,
-  "endLine": 6206,
+  "line": 6277,
+  "endLine": 6281,
   "category": "beings",
   "topic": "Faerie characters",
   "audience": [
@@ -440,8 +440,8 @@
  {
   "title": "Realm Interaction Table",
   "heading": "Realm Interaction Table",
-  "line": 6208,
-  "endLine": 6216,
+  "line": 6283,
+  "endLine": 6291,
   "category": "realms",
   "topic": "Realm interaction",
   "audience": [

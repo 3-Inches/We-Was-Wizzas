@@ -83,8 +83,8 @@ export function ItemCheck({ x }: { x: { chars: Character[]; data: GameData; rule
     <Card title="Damaged goods: will it survive? (City & Guild)" tour="item-check" fold="cg-damaged" summary="An item at risk: its damage levels, the check against 15, repair.">
       <RulesNote
         book="CG"
-        line={2140}
-        endLine={2225}
+        line={2134}
+        endLine={2219}
         detail={
           <>
             When a botch or an unnatural use (chopping wood with a sword, hanging from a balcony by an enchanted cloak) puts a valued item at risk: a stress die + modifiers against 15. A failure

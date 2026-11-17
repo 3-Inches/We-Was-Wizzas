@@ -138,8 +138,8 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
         <summary className="small">A journey: days, cost, cargo, finding things on the way</summary>
         <RulesNote
           book="CG"
-          line={2225}
-          endLine={2392}
+          line={2219}
+          endLine={2386}
           detail={
             <>
               Sea is cheapest and fastest over distance; river travel costs twice as much, road eight to twenty times. A couple of magi and half a dozen grogs travel with a merchant for a pound a
@@ -247,8 +247,8 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
         <summary className="small">Bribes, hired criminals and sabotage</summary>
         <RulesNote
           book="CG"
-          line={3375}
-          endLine={3428}
+          line={3369}
+          endLine={3422}
           detail={
             <>
               Criminals are hired with Intrigue; for a crime not played out, the hirer&apos;s Communication + Intrigue + stress die stands in for theirs. Bribes run from a week&apos;s wages for an easy
@@ -320,8 +320,8 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
         <summary className="small">Intrigue against the powerful</summary>
         <RulesNote
           book="CG"
-          line={3457}
-          endLine={3489}
+          line={3451}
+          endLine={3483}
           detail={
             <>
               Intelligence + Intrigue to learn about a noble, or harm them through gossip, forgeries and their enemies. Above Ease 6 it takes three times the Ease Factor in days and at least a third of
@@ -356,8 +356,8 @@ export function TravelTradeCard({ people, derived, home, year, season }: { peopl
         <summary className="small">A house&apos;s Reputation, largesse and warehouses</summary>
         <RulesNote
           book="CG"
-          line={3361}
-          endLine={3440}
+          line={3355}
+          endLine={3434}
           detail={
             <>
               A house&apos;s servants carry its Reputation and add to it. Advocates cost 5% of their usual wage and shift a Reputation by 1 among those they meet (three at most for anyone). A festival

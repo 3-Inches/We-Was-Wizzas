@@ -30,13 +30,13 @@ export const GRUAGACH_ART_IDS = [...GRUAGACH_TECHNIQUES.map((t) => t.id), ...GRU
 const GRUAGACH_ABILITIES: AbilityDef[] = [
   ...GRUAGACH_TECHNIQUES.map(
     (t): AbilityDef => ({
-      id: t.id, name: `${t.name} (Gruagach)`, type: 'Supernatural', restricted: true, specialties: ['a Form', 'spontaneous spells', 'tattoos'], source: src(2860),
+      id: t.id, name: `${t.name} (Gruagach)`, type: 'Supernatural', restricted: true, specialties: ['a Form', 'spontaneous spells', 'tattoos'], source: src(2862),
       text: `Gruagach Technique (Hedge Magic): a Difficult Art, raised as an Ability. ${t.text} Casting Score: Technique + Form + Stamina + aura; Lab Total: Technique + Form + Intelligence + Pictish + aura. Arts are held by Pictish: 5 at Pictish 1, 15 at 2, 30 at 3.`,
     }),
   ),
   ...GRUAGACH_FORMS.map(
     (f): AbilityDef => ({
-      id: f.id, name: `${f.name} (Gruagach)`, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'spontaneous spells', 'tattoos'], source: src(2870),
+      id: f.id, name: `${f.name} (Gruagach)`, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'spontaneous spells', 'tattoos'], source: src(2872),
       text: `Gruagach Form (Hedge Magic): opens at 0 and rises as an Art. ${f.text}`,
     }),
   ),

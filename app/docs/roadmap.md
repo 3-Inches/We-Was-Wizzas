@@ -13,7 +13,7 @@ The toolkit is finished when all of these are true.
 
 The owner may call it finished sooner. These are deliberately out of scope:
 
-- **Third and Fourth Edition books.** They stay in the reader as setting reference. No rules, characters or covenants are taken from them, even where they are the only source for a Tribunal.
+- **Third and Fourth Edition books, and third-party books.** They are in the reader on shelves of their own, as setting reference. No rules, characters or covenants are taken from them, even where they are the only source for a Tribunal.
 - **Setting, history and story seeds.** They are read in the reader.
 - **Adventures** (*Dies Irae*, *Tales of Power* and the like).
 - **Books in `wip/`** are optional. Their text is rougher, so anything taken from them needs more checking. Do them last, and only the ready-made characters and covenants.
@@ -34,7 +34,7 @@ The owner may call it finished sooner. These are deliberately out of scope:
 Every item refers to `audit-2026-11.md` by its number. That file has the detail: file, line, the book's text, and the fix.
 
 - [x] **1.1 Rules fixes.** *Mechanical.* A1 to A7, all of B, all of F. Each fix gets a test built on the book's own example. One pull request.
-- [ ] **1.2 Small fixes to how cards behave.** *Mechanical.* C3 (pickers that need a second button), C4 (creation settings at the table), C5 (cards that open on a warning), C7 (numbers the player must already know), C9 (one wording for one act: use the vocabulary table). Then E2: an "In the app" pointer for every topic the new pages cover. `topicsWithoutPointer` in `quality.test.ts` must go down.
+- [x] **1.2 Small fixes to how cards behave.** *Mechanical.* C3 (pickers that need a second button), C4 (creation settings at the table), C5 (cards that open on a warning), C7 (numbers the player must already know), C9 (one wording for one act: use the vocabulary table). Then E2: an "In the app" pointer for every topic the new pages cover. `topicsWithoutPointer` in `quality.test.ts` must go down.
 - [ ] **1.3 Season work is reachable from the Seasons page, and spends from the stores.** *Judgment.* C1 and C2. Every card that takes a season (hedge magic, Faerie, the Mysteries, Great projects) is offered among the season's activities and is checked by `seasonBusy`. Vis and silver come out of the covenant's stores or the character's own, and the result says so.
 - [ ] **1.4 Fewer cards, better placed.** *Judgment.* C6 (Faith & miracles shows nine cards to everyone), C8 (what the toolkit could prompt for), C10 (where Great projects lives).
 - [ ] **1.5 The Guide, rewritten as steps.** *Judgment.* D2. Model: `src/data/roleplay.ts`. Each system gets "make one, use it, spend a season, what to watch for". Move the Guide's text into data, as the roleplay pages are, so the same tests can check it. Targets: under 6,000 words, no sentence over 40 words, no block over 85.
@@ -45,16 +45,10 @@ When stage 1 is done, lower every limit in `quality.test.ts` to what was reached
 
 ## Stage 2. Bring the books in step with upstream
 
-- [ ] **2.1 The update.** *Judgment.* Follow `tools/books/README.md`, which has the procedure and the results of a trial run. The pointers move by tool. The work is in the extractors. Known from the trial:
-  - `extract_hp.py` no longer recognizes *Hermetic Projects*' 80 enchanted devices: upstream reorganized the book and changed its heading levels. `bookEnchantments.test.ts` fails until it does.
-  - Four spells and one creature (`gotf-ghostly-gladiators`) disappear. Find out why for each.
-  - The bestiary gains 63 creatures, from *The Contested Isle*, *Faith & Flame*, *Rival Magic* and others. Check a sample of each book's are real stat blocks.
-  - About 180 entries change their text (mostly corrected typos). Skim them with `datadiff.py --all`.
-  - `mechanics.test.ts` fails on quotes whose wording upstream corrected. Copy the new wording into `tools/extract/mechanics_index/`.
-  - *Hermetic Projects* has errata upstream. Recheck `src/engine/projects.ts` and `src/data/hermeticProjects.ts` against the new text: every formula and every worked example.
-  - Four books moved from `wip/` to `reviewed/`. Set their "reviewed" mark in `books.py`.
-  - New upstream: one Fifth Edition third-party book and two Fourth Edition books. Register them for the reader only.
-- [ ] **2.2 After each later upstream change,** the weekly check opens an issue. Repeat 2.1. It will be far smaller.
+- [x] **2.1 The update.** *Judgment.* Done against upstream of 16 November 2026. `tools/books/README.md` has the procedure, and what that run found.
+- [ ] **2.2 After each later upstream change,** the weekly check opens an issue. Follow `tools/books/README.md`. It will be far smaller. This item is never ticked.
+
+- [ ] **2.3 Item effects in the spell catalog.** *Mechanical.* Found during 2.1, older than it. About 140 entries of `spells.json` are enchanted-item effects that the general pass of `extract_spells.py` read as spells, mostly from *Magi of Hermes*, *Legends of Hermes* and *Through the Aegis*. A player can pick them as formulaic spells. The signs: a level above 5 that is not a multiple of 5, a duration of "Constant" or "always on", a "Pen" line beside R/D/T, and names such as "Pen +30, 6/day". Teach the general pass to tell them apart, as `extract_hp.py` does for *Hermetic Projects*. Send those with a design line to `enchantments.json`, and give each one that leaves its reason in the pull request.
 
 Do stage 2 before stage 3: building more on text that is about to shift doubles the work.
 
@@ -74,7 +68,7 @@ Already built: *Hedge Magic*, *Realms of Power: Faerie*, *The Mysteries*, *The C
   - Point at the book: the rest, until a saga wants them.
 - [ ] **3.4 *Realms of Power: The Infernal*.** *Judgment.* L. The Maleficia, the three Goetic Arts not yet built, infernal characters. Copy the shape of the Holy page.
 - [ ] **3.5 *The Cradle & the Crescent*** (wip). *Judgment.* L. Sahir summoning and binding of jinn, jinn as characters.
-- [ ] **3.6 *Rival Magic*** (in `reviewed/` after stage 2). *Judgment.* L or more. One tradition to a pull request. Start with the one the owner's saga would meet.
+- [ ] **3.6 *Rival Magic*** (now in `reviewed/`). *Judgment.* L or more. One tradition to a pull request. Start with the one the owner's saga would meet.
 - [ ] **3.7 *Art & Academe*.** *Judgment.* M. Medicine beyond disease, mundane astrology, universities, works of art.
   - Build: medicine on the Recovery cards; university study as season activities.
 - [ ] **3.8 *Antagonists*** (wip). *Mechanical.* M. About ten opponents as non-player characters, read by the stat-block reader that built the Rhine magi (`src/engine/character/statBlock.ts`).
@@ -102,4 +96,6 @@ Not items to schedule. Do them when a change touches the place.
 
 - 2026-11: the foundations for working this list (`CLAUDE.md`, design principles, this roadmap, `quality.test.ts`, the QA tools and practice sagas in `scripts/qa/`, the book tools in `tools/books/`, the weekly upstream check).
 - 2026-11: the Guide's pages **Playing the game** and **Running the game**.
+- 2026-11: stage 1's rules fixes (1.1) and small card fixes (1.2).
+- 2026-11: the books brought in step with upstream (2.1). *Hermetic Projects*' errata are in, four books moved to `reviewed/`, and the reader gained shelves for earlier editions and third-party books.
 - Earlier work is in the merged pull requests and the README.

@@ -69,7 +69,7 @@ function PetitionTool({ ed }: { ed: CharEditor }) {
       <summary>
         <b>Petition the Church</b> <span className="small muted">· Petition Total {p.total} vs {ease}: {ok ? 'granted' : 'refused'}</span>
       </summary>
-      <RulesNote book="Church" line={1987} endLine={2106}>
+      <RulesNote book="Church" line={1991} endLine={2110}>
         {audience ? 'Pre' : 'Com'} {audience ? d.characteristics.Pre.value : d.characteristics.Com.value} + Church Lore {p.lore}{p.gift ? ` ${p.gift} (the Gift)` : ''} + support {support}. No die; one petition a season. A bishop decides up to 15, a priest up to 6.
       </RulesNote>
       <div className="row">
@@ -137,7 +137,7 @@ function CourtTool({ ed }: { ed: CharEditor }) {
   return (
     <details>
       <summary><b>A quick trial</b></summary>
-      <RulesNote book="CG" line={903} endLine={920}>
+      <RulesNote book="CG" line={897} endLine={914}>
         For the defendant or a proxy: Com + Civil and Canon Law (Common Law in England) + stress die against 6; the Gift’s penalty applies.
       </RulesNote>
       <div className="row">

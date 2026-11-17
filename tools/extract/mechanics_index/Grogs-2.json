@@ -2,8 +2,8 @@
  {
   "title": "Grog Yearly Experience",
   "heading": "Abilities",
-  "line": 2421,
-  "endLine": 2425,
+  "line": 2424,
+  "endLine": 2428,
   "category": "seasons",
   "topic": "Non-magus advancement",
   "audience": [
@@ -23,8 +23,8 @@
  {
   "title": "Updating Grogs",
   "heading": "Updating Grogs",
-  "line": 2427,
-  "endLine": 2433,
+  "line": 2430,
+  "endLine": 2436,
   "category": "seasons",
   "topic": "Non-magus advancement",
   "audience": [
@@ -45,8 +45,8 @@
  {
   "title": "Training Packages",
   "heading": "Training Packages",
-  "line": 2435,
-  "endLine": 2449,
+  "line": 2438,
+  "endLine": 2452,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -68,8 +68,8 @@
  {
   "title": "Wealthy and Poor Characters (Training Packages)",
   "heading": "Wealthy and Poor Characters",
-  "line": 2441,
-  "endLine": 2445,
+  "line": 2444,
+  "endLine": 2448,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -89,8 +89,8 @@
  {
   "title": "Grog Backgrounds",
   "heading": "Grog Backgrounds",
-  "line": 2451,
-  "endLine": 2453,
+  "line": 2454,
+  "endLine": 2456,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -107,8 +107,8 @@
  {
   "title": "Career Training Packages",
   "heading": "Career Training Packages",
-  "line": 2455,
-  "endLine": 2743,
+  "line": 2458,
+  "endLine": 2746,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -131,8 +131,8 @@
  {
   "title": "Craftsman Training Package",
   "heading": "Craftsman",
-  "line": 2507,
-  "endLine": 2513,
+  "line": 2510,
+  "endLine": 2516,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -153,8 +153,8 @@
  {
   "title": "Failed Apprentice Training Package",
   "heading": "Failed Apprentice",
-  "line": 2535,
-  "endLine": 2541,
+  "line": 2538,
+  "endLine": 2544,
   "category": "creation",
   "topic": "Failed apprentices",
   "audience": [
@@ -173,8 +173,8 @@
  {
   "title": "Magician Training Package",
   "heading": "Magician (Arcane)",
-  "line": 2597,
-  "endLine": 2603,
+  "line": 2600,
+  "endLine": 2606,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -195,8 +195,8 @@
  {
   "title": "Natural Philosopher Training Package",
   "heading": "Natural Philosopher (Academic)",
-  "line": 2619,
-  "endLine": 2625,
+  "line": 2622,
+  "endLine": 2628,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -217,8 +217,8 @@
  {
   "title": "Student Training Package",
   "heading": "Student (Academic)",
-  "line": 2693,
-  "endLine": 2703,
+  "line": 2696,
+  "endLine": 2706,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -239,7 +239,7 @@
  {
   "title": "Combat Statistics (Grogs)",
   "heading": "Combat Statistics",
-  "line": 2745,
+  "line": 2748,
   "category": "combat",
   "topic": "Combat statistics",
   "audience": [
@@ -258,8 +258,8 @@
  {
   "title": "Non-Career Training Packages",
   "heading": "Non-Career Training Packages",
-  "line": 2766,
-  "endLine": 2822,
+  "line": 2769,
+  "endLine": 2825,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -280,8 +280,8 @@
  {
   "title": "Covenfolk Training Package",
   "heading": "Covenfolk",
-  "line": 2784,
-  "endLine": 2788,
+  "line": 2787,
+  "endLine": 2791,
   "category": "covenant",
   "topic": "Training packages",
   "audience": [
@@ -300,8 +300,8 @@
  {
   "title": "The System in Action (Training Packages)",
   "heading": "The System in Action",
-  "line": 2824,
-  "endLine": 2848,
+  "line": 2827,
+  "endLine": 2851,
   "category": "creation",
   "topic": "Training packages",
   "audience": [
@@ -320,8 +320,8 @@
  {
   "title": "Advisor Grog Template",
   "heading": "The Advisor",
-  "line": 3438,
-  "endLine": 3507,
+  "line": 3441,
+  "endLine": 3510,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -334,7 +334,7 @@
   "requires": "",
   "summary": "A character-creation template for a knowledge-specialist covenant retainer, with role notes, suggested Characteristics, Virtues and Flaws, Abilities, training packages and sample Ability scores at three ages.",
   "quotes": [
-   "By assigning \u20131 to each of the four physical Characteristics, scores of +3, +2, +1, and +1 are available to assign to the mental Characteristics."
+   "By assigning –1 to each of the four physical Characteristics, scores of +3, +2, +1, and +1 are available to assign to the mental Characteristics."
   ],
   "related": [
    "TMRE p.25 Art of Memory"
@@ -343,8 +343,8 @@
  {
   "title": "Almogavar Grog Template",
   "heading": "The Almogavars",
-  "line": 3542,
-  "endLine": 3617,
+  "line": 3545,
+  "endLine": 3620,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -364,8 +364,8 @@
  {
   "title": "Animal Trainer Grog Template",
   "heading": "Animal Trainer",
-  "line": 3625,
-  "endLine": 3697,
+  "line": 3628,
+  "endLine": 3700,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -383,8 +383,8 @@
  {
   "title": "Training Animals (Training Points)",
   "heading": "General Background",
-  "line": 3629,
-  "endLine": 3651,
+  "line": 3632,
+  "endLine": 3654,
   "category": "basics",
   "topic": "Animal training",
   "audience": [
@@ -397,7 +397,7 @@
   "requires": "",
   "summary": "Seasonal procedure for taming a mundane animal: a trainer accumulates training points each season until they equal the animal's Might, with a penalty for The Gift; also notes how Might is derived for mundane animals and that training is individual-specific.",
   "quotes": [
-   "**Intelligence + Animal Handling + Animal Ken \u2013 Creature's Might \u2013 Gift Penalty**",
+   "**Intelligence + Animal Handling + Animal Ken – Creature's Might – Gift Penalty**",
    "**Mundane Animal Might = 1 + (2 x Confidence Score)**"
   ],
   "related": [
@@ -407,8 +407,8 @@
  {
   "title": "Bodyguard Maidservant Grog Template",
   "heading": "The Bodyguard Maidservant",
-  "line": 3723,
-  "endLine": 3781,
+  "line": 3726,
+  "endLine": 3784,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -426,8 +426,8 @@
  {
   "title": "The Bull Grog Template",
   "heading": "The Bull",
-  "line": 3797,
-  "endLine": 3866,
+  "line": 3800,
+  "endLine": 3869,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -445,8 +445,8 @@
  {
   "title": "Confessor Grog Template",
   "heading": "The Confessor",
-  "line": 3880,
-  "endLine": 3978,
+  "line": 3883,
+  "endLine": 3981,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -467,8 +467,8 @@
  {
   "title": "The Practice of Confession",
   "heading": "The Practice of Confession",
-  "line": 3904,
-  "endLine": 3916,
+  "line": 3907,
+  "endLine": 3919,
   "category": "realms",
   "topic": "Confession and penance",
   "audience": [
@@ -490,8 +490,8 @@
  {
   "title": "Corpse-Thief Grog Template",
   "heading": "The Corpse-Thief",
-  "line": 3980,
-  "endLine": 4067,
+  "line": 3983,
+  "endLine": 4070,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -512,8 +512,8 @@
  {
   "title": "New Arcane Ability: Craft Poppets",
   "heading": "New Arcane Ability: Craft Poppets",
-  "line": 3988,
-  "endLine": 3990,
+  "line": 3991,
+  "endLine": 3993,
   "category": "basics",
   "topic": "Poppets and arcane connections",
   "audience": [
@@ -533,8 +533,8 @@
  {
   "title": "Preserving Arcane Connections",
   "heading": "Preserving Arcane Connections",
-  "line": 3992,
-  "endLine": 4003,
+  "line": 3995,
+  "endLine": 4006,
   "category": "magic",
   "topic": "Poppets and arcane connections",
   "audience": [
@@ -556,8 +556,8 @@
  {
   "title": "The Viaticarus",
   "heading": "The Viaticarus",
-  "line": 4017,
-  "endLine": 4023,
+  "line": 4020,
+  "endLine": 4026,
   "category": "setting",
   "topic": "Viaticarus",
   "audience": [
@@ -575,8 +575,8 @@
  {
   "title": "Craftsman Grog Template",
   "heading": "The Craftsman",
-  "line": 4075,
-  "endLine": 4174,
+  "line": 4078,
+  "endLine": 4177,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -597,8 +597,8 @@
  {
   "title": "The Workshop (Craftsman Grog)",
   "heading": "The Workshop",
-  "line": 4137,
-  "endLine": 4143,
+  "line": 4140,
+  "endLine": 4146,
   "category": "seasons",
   "topic": "Craft workshops",
   "audience": [
@@ -621,8 +621,8 @@
  {
   "title": "Craftswomen and Default Workshop Statistics",
   "heading": "Craftswomen",
-  "line": 4145,
-  "endLine": 4160,
+  "line": 4148,
+  "endLine": 4163,
   "category": "seasons",
   "topic": "Craft workshops",
   "audience": [
@@ -643,8 +643,8 @@
  {
   "title": "Craftsman Assistants",
   "heading": "Assistants",
-  "line": 4164,
-  "endLine": 4168,
+  "line": 4167,
+  "endLine": 4171,
   "category": "seasons",
   "topic": "Craft workshops",
   "audience": [
@@ -664,8 +664,8 @@
  {
   "title": "The Supernatural Craftsman",
   "heading": "The Supernatural Craftsman",
-  "line": 4208,
-  "endLine": 4210,
+  "line": 4211,
+  "endLine": 4213,
   "category": "magic",
   "topic": "Wondrous Items",
   "audience": [
@@ -685,8 +685,8 @@
  {
   "title": "Ex-Prostitute Grog Template",
   "heading": "Ex-Prostitutes",
-  "line": 4222,
-  "endLine": 4290,
+  "line": 4225,
+  "endLine": 4293,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -704,8 +704,8 @@
  {
   "title": "Failed Apprentice Grog Template",
   "heading": "The Failed Apprentice",
-  "line": 4308,
-  "endLine": 4383,
+  "line": 4311,
+  "endLine": 4386,
   "category": "creation",
   "topic": "Failed apprentices",
   "audience": [
@@ -726,8 +726,8 @@
  {
   "title": "Farrier Grog Template",
   "heading": "The Farrier",
-  "line": 4393,
-  "endLine": 4443,
+  "line": 4396,
+  "endLine": 4446,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -747,8 +747,8 @@
  {
   "title": "New Ability: Craft: Farrier (General)",
   "heading": "New Ability: Craft: Farrier (General)",
-  "line": 4423,
-  "endLine": 4427,
+  "line": 4426,
+  "endLine": 4430,
   "category": "basics",
   "topic": "Craft Abilities",
   "audience": [
@@ -771,8 +771,8 @@
  {
   "title": "Jack-of-All-Trades Grog Template",
   "heading": "The Jack-of-All-Trades",
-  "line": 4465,
-  "endLine": 4517,
+  "line": 4468,
+  "endLine": 4520,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -790,8 +790,8 @@
  {
   "title": "Misguided Mystic Grog Template",
   "heading": "Misguided Mystic",
-  "line": 4525,
-  "endLine": 4565,
+  "line": 4528,
+  "endLine": 4568,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -812,8 +812,8 @@
  {
   "title": "Murderer Grog Template",
   "heading": "The Murderer",
-  "line": 4586,
-  "endLine": 4664,
+  "line": 4589,
+  "endLine": 4667,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -833,8 +833,8 @@
  {
   "title": "Parent of a Gifted Child Grog Template",
   "heading": "The Parent of a Gifted Child",
-  "line": 4670,
-  "endLine": 4716,
+  "line": 4673,
+  "endLine": 4719,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -851,8 +851,8 @@
  {
   "title": "Refugee Librarian Grog Template",
   "heading": "The Refugee Librarian",
-  "line": 4718,
-  "endLine": 4782,
+  "line": 4721,
+  "endLine": 4785,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -871,8 +871,8 @@
  {
   "title": "Accepting Refugees: Loyalty Penalty",
   "heading": "General Background",
-  "line": 4736,
-  "endLine": 4742,
+  "line": 4739,
+  "endLine": 4745,
   "category": "covenant",
   "topic": "Covenfolk loyalty",
   "audience": [
@@ -884,7 +884,7 @@
   "requires": "",
   "summary": "When a covenant takes in refugees from another covenant, its covenfolk suffer a loyalty penalty that is gradually reduced by stories that bring the two communities together.",
   "quotes": [
-   "the covenant suffers a Loyalty penalty of \u20133, as though suffering a Severe Hardship"
+   "the covenant suffers a Loyalty penalty of –3, as though suffering a Severe Hardship"
   ],
   "related": [
    "Covenants Chapter 3",
@@ -894,8 +894,8 @@
  {
   "title": "Role-Bound Ferryman Grog Template",
   "heading": "The Role-Bound Ferryman",
-  "line": 4818,
-  "endLine": 4888,
+  "line": 4821,
+  "endLine": 4891,
   "category": "creation",
   "topic": "Role-bound grogs",
   "audience": [
@@ -917,8 +917,8 @@
  {
   "title": "Street Thug Grog Template",
   "heading": "The Street Thug",
-  "line": 4906,
-  "endLine": 4988,
+  "line": 4909,
+  "endLine": 4991,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
@@ -931,7 +931,7 @@
   "requires": "",
   "summary": "A template for a city gang member who serves as the covenant's contact with the underworld, including how a harsh urban life affects aging, suggested Virtues, Flaws, Abilities, packages and sample Ability scores at three ages.",
   "quotes": [
-   "the Street Thug can expect to have a Decrepitude Score of 2 and Characteristics totaling \u20135, rather than the starting 7, by the age of 50"
+   "the Street Thug can expect to have a Decrepitude Score of 2 and Characteristics totaling –5, rather than the starting 7, by the age of 50"
   ],
   "related": [
    "ArM5 p.170",
@@ -941,8 +941,8 @@
  {
   "title": "Time-Lost Witness Grog Template",
   "heading": "Time-Lost Witnesses",
-  "line": 5002,
-  "endLine": 5078,
+  "line": 5005,
+  "endLine": 5081,
   "category": "creation",
   "topic": "Time-lost characters",
   "audience": [
@@ -962,8 +962,8 @@
  {
   "title": "Animal Grogs",
   "heading": "Horses & Hounds",
-  "line": 5084,
-  "endLine": 5090,
+  "line": 5087,
+  "endLine": 5093,
   "category": "beings",
   "topic": "Animal grogs",
   "audience": [
@@ -975,7 +975,7 @@
   "requires": "Playing an animal character",
   "summary": "Introduces animals as grog characters, with guidance on which Sizes and kinds of animal make the best player characters.",
   "quotes": [
-   "creatures between the Sizes of \u20133 and +2"
+   "creatures between the Sizes of –3 and +2"
   ],
   "related": [
    "LoM Chapter 5",
@@ -985,8 +985,8 @@
  {
   "title": "Animal Physical Form",
   "heading": "Physical Form",
-  "line": 5096,
-  "endLine": 5100,
+  "line": 5099,
+  "endLine": 5103,
   "category": "beings",
   "topic": "Animal grogs",
   "audience": [
@@ -1007,8 +1007,8 @@
  {
   "title": "Animal Cunning Instead of Intelligence",
   "heading": "Cunning Rather than Intelligence",
-  "line": 5114,
-  "endLine": 5118,
+  "line": 5117,
+  "endLine": 5121,
   "category": "beings",
   "topic": "Animal grogs",
   "audience": [
@@ -1029,8 +1029,8 @@
  {
   "title": "Animal Language Abilities",
   "heading": "Lack of Language Abilities",
-  "line": 5120,
-  "endLine": 5124,
+  "line": 5123,
+  "endLine": 5127,
   "category": "beings",
   "topic": "Animal grogs",
   "audience": [
@@ -1051,8 +1051,8 @@
  {
   "title": "Animal Aging Table",
   "heading": "Animal Aging",
-  "line": 5126,
-  "endLine": 5134,
+  "line": 5129,
+  "endLine": 5137,
   "category": "aging",
   "topic": "Animal grogs",
   "audience": [
@@ -1071,8 +1071,8 @@
  {
   "title": "Animal Aging Rate",
   "heading": "Aging Rate",
-  "line": 5136,
-  "endLine": 5142,
+  "line": 5139,
+  "endLine": 5145,
   "category": "aging",
   "topic": "Animal grogs",
   "audience": [
@@ -1091,8 +1091,8 @@
  {
   "title": "Animal Grog Characteristics and Size",
   "heading": "Characteristics and Size",
-  "line": 5154,
-  "endLine": 5167,
+  "line": 5157,
+  "endLine": 5170,
   "category": "beings",
   "topic": "Animal grogs",
   "audience": [
@@ -1111,8 +1111,8 @@
  {
   "title": "Animal Grog Virtues and Flaws",
   "heading": "Suggested Virtues and Flaws",
-  "line": 5169,
-  "endLine": 5181,
+  "line": 5172,
+  "endLine": 5184,
   "category": "beings",
   "topic": "Animal grogs",
   "audience": [
@@ -1131,8 +1131,8 @@
  {
   "title": "Animal Grog Abilities and Experience",
   "heading": "Suggested Abilities",
-  "line": 5183,
-  "endLine": 5189,
+  "line": 5186,
+  "endLine": 5192,
   "category": "beings",
   "topic": "Animal grogs",
   "audience": [
@@ -1153,8 +1153,8 @@
  {
   "title": "Brief Grog Concepts",
   "heading": "Brief Grog Concepts",
-  "line": 5211,
-  "endLine": 5345,
+  "line": 5214,
+  "endLine": 5348,
   "category": "creation",
   "topic": "Grog templates",
   "audience": [
