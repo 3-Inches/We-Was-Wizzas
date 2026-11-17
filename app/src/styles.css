@@ -390,6 +390,8 @@ button.big { font-size: 1.1em; padding: 10px 22px; }
 /* ---- book reader ---- */
 .reader-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 16px; align-items: start; }
 .reader-toc { position: sticky; top: 10px; max-height: calc(100vh - 20px); display: flex; flex-direction: column; gap: 4px; }
+/* a book's marks stay small beside its title */
+.reader .topbar h1 .badge { font-size: 0.42em; vertical-align: middle; font-family: var(--font-body); font-weight: 400; letter-spacing: 0; }
 .reader-results { max-height: 35vh; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
 .toc-list { position: relative; overflow-y: auto; flex: 1; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 4px 0; }
 .toc-item { padding: 3px 10px; cursor: pointer; font-size: 0.86em; line-height: 1.3; }

@@ -162,7 +162,46 @@ export const BOOKS: BookInfo[] = [
   { id: 'BSS', file: 'Ars Magica 5e - Between Sand & Sea - Mythic Africa.md', title: 'Between Sand & Sea (Mythic Africa)', abbr: 'BS&S', category: 'tribunal', status: 'wip' },
 ];
 
-export const BOOK_BY_ID: Record<string, BookInfo> = Object.fromEntries(BOOKS.map((b) => [b.id, b]));
+/**
+ * Books the reader shows and nothing else uses: the Third and Fourth Edition books, for their
+ * setting, and the third-party books. The toolkit takes no rules from them, and a saga's Books
+ * setting does not list them. Kept in step with tools/extract/books.py (see books.test.ts).
+ */
+export const REFERENCE_BOOKS: BookInfo[] = [
+  { id: 'E3_Lion', file: 'Ars Magica 3e - Lion of the North - The Loch Leglean Tribunal.md', title: 'Lion of the North (Loch Leglean Tribunal)', abbr: 'ArM3', category: 'earlier', status: 'reviewed' },
+  { id: 'E3_Rome', file: 'Ars Magica 3e - Tribunals of Hermes - Rome.md', title: 'Tribunals of Hermes: Rome', abbr: 'ArM3', category: 'earlier', status: 'reviewed' },
+  { id: 'E3_Iberia', file: 'Ars Magica 3e - Tribunals of Hermes - Iberia.md', title: 'Tribunals of Hermes: Iberia', abbr: 'ArM3', category: 'earlier', status: 'wip' },
+  { id: 'E4_Merlin', file: 'Ars Magica 4e - Heirs to Merlin - Stonehenge Tribunal.md', title: 'Heirs to Merlin (Stonehenge Tribunal)', abbr: 'ArM4', category: 'earlier', status: 'reviewed' },
+  { id: 'E4_Alps', file: 'Ars Magica 4e - Sanctuary of Ice - The Greater Alps Tribunal.md', title: 'Sanctuary of Ice (Greater Alps Tribunal)', abbr: 'ArM4', category: 'earlier', status: 'reviewed' },
+  { id: 'E4_Levant', file: 'Ars Magica 4e - Blood_and_Sand_-_The_Levant_Tribunal.md', title: 'Blood and Sand (Levant Tribunal)', abbr: 'ArM4', category: 'earlier', status: 'wip' },
+  { id: 'E4_Novgorod', file: 'Ars Magica 4e - The Dragon and the Bear - The Novgorod Tribunal.md', title: 'The Dragon and the Bear (Novgorod Tribunal)', abbr: 'ArM4', category: 'earlier', status: 'wip' },
+  { id: 'E4_Iceland', file: 'Ars Magica 4e - Land of Fire & Ice, Mythic Iceland.md', title: 'Land of Fire and Ice (Mythic Iceland)', abbr: 'ArM4', category: 'earlier', status: 'wip' },
+  { id: 'E4_IceWars', file: 'Ars Magica 4e - Icelandic Wars - Land of Fire and Ice.md', title: 'Icelandic Wars', abbr: 'ArM4', category: 'earlier', status: 'reviewed' },
+  { id: 'E4_Thule', file: 'Ars Magica 4e - Ultima Thule - Mythic Scandinavia.md', title: 'Ultima Thule (Mythic Scandinavia)', abbr: 'ArM4', category: 'earlier', status: 'wip' },
+  { id: 'E4_Nigrasaxa', file: 'Ars Magica 4e - Nigrasaxa.md', title: 'Nigrasaxa', abbr: 'ArM4', category: 'earlier', status: 'reviewed' },
+  { id: 'E4_Sand', file: 'Ars Magica 4e - Secrets in Sand.md', title: 'Secrets in Sand', abbr: 'ArM4', category: 'earlier', status: 'reviewed' },
+  { id: 'X_Forgotten', file: 'Ars Magica 5e - Forgotten Magic of Hermes.md', title: 'Forgotten Magic of Hermes', abbr: 'FMoH', category: 'third-party', status: 'reviewed' },
+  { id: 'X_Iberia', file: 'Finis Terrae - The Tribunal of Iberia (EN).md', title: 'Finis Terrae (Tribunal of Iberia)', abbr: 'FT', category: 'third-party', status: 'reviewed' },
+  { id: 'X_Primer', file: 'Praecepta Hermetica - Ars Magica Primer v3.21 - English version.md', title: 'Praecepta Hermetica (a primer)', abbr: 'PH', category: 'third-party', status: 'reviewed' },
+  { id: 'X_Chronology', file: 'Ars Magica Chronology - by OriginalMadman.md', title: 'Ars Magica Chronology', abbr: 'Chron', category: 'third-party', status: 'reviewed' },
+  { id: 'X_Solitaria', file: 'Ars Magica Solitaria - Solo Roleplaying Rules by OriginalMadman.md', title: 'Ars Magica Solitaria (solo play)', abbr: 'Sol', category: 'third-party', status: 'reviewed' },
+];
+
+/** The reader's shelves: the books the toolkit is built from, then the ones that are only read. */
+export const BOOK_SHELVES: { label: string; note?: string; books: BookInfo[] }[] = [
+  { label: 'Fifth Edition', books: BOOKS },
+  { label: 'Earlier editions', note: 'Third and Fourth Edition books, for their setting. The toolkit takes no rules from them.', books: REFERENCE_BOOKS.filter((b) => b.category === 'earlier') },
+  { label: 'Third-party', note: 'Written by players under the open license. They are not official, and the toolkit takes no rules from them.', books: REFERENCE_BOOKS.filter((b) => b.category === 'third-party') },
+];
+
+/** What a book that is only read is, in a few words: shown beside its title. */
+export function readOnlyMark(b: BookInfo): string {
+  if (b.category === 'third-party') return 'third-party';
+  if (b.category === 'earlier') return b.abbr === 'ArM3' ? 'Third Edition: setting only' : 'Fourth Edition: setting only';
+  return '';
+}
+
+export const BOOK_BY_ID: Record<string, BookInfo> = Object.fromEntries([...BOOKS, ...REFERENCE_BOOKS].map((b) => [b.id, b]));
 
 export const SEASONS = ['Spring', 'Summer', 'Autumn', 'Winter'] as const;
 export type Season = (typeof SEASONS)[number];

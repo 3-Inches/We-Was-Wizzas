@@ -172,6 +172,14 @@ def extract():
             bm = re.match(r"^Base\s+(\d+)", design or "")
             rec.update({"id": slug(f"{name}-{rec['technique']}{rec['form']}-{rec['level'] if rec['level'] is not None else 'gen'}"), "base": int(bm.group(1)) if bm else None})
             spells.append(rec)
+    # the book gives two devices the same name in two chapters: the later one's id says so
+    ids = set()
+    for rec in items:
+        base, k = rec["id"], 2
+        while rec["id"] in ids:
+            rec["id"] = f"{base}-{k}"
+            k += 1
+        ids.add(rec["id"])
     return spells, items
 
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
-import { BOOKS, BOOK_BY_ID } from '../../data';
+import { BOOK_BY_ID, BOOK_SHELVES, readOnlyMark } from '../../data';
 import { Card, Empty, SearchInput } from '../kit';
 import { bookCache, loadBookLines } from '../bookText';
 import { dropEmptyHeads, tidyTables } from '../tables';
@@ -150,7 +150,7 @@ export default function BookReader() {
   if (!book) {
     return (
       <Card title="Books">
-        {BOOKS.map((b) => (
+        {BOOK_SHELVES.flatMap((s) => s.books).map((b) => (
           <div key={b.id}>
             <Link to={`/reference/book/${b.id}`}>{b.title}</Link>
           </div>
@@ -174,14 +174,18 @@ export default function BookReader() {
     <div className="reader">
       <div className="topbar">
         <h1>
-          {book.title} {book.status === 'wip' && <span className="badge warn">transcription in progress</span>}
+          {book.title} {readOnlyMark(book) && <span className="badge">{readOnlyMark(book)}</span>} {book.status === 'wip' && <span className="badge warn">transcription in progress</span>}
         </h1>
         <div className="row">
           <select value={book.id} onChange={(e) => nav(`/reference/book/${e.target.value}`)}>
-            {BOOKS.map((b) => (
-              <option key={b.id} value={b.id}>
-                {b.title}
-              </option>
+            {BOOK_SHELVES.map((s) => (
+              <optgroup key={s.label} label={s.label}>
+                {s.books.map((b) => (
+                  <option key={b.id} value={b.id}>
+                    {b.title}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
         </div>
@@ -191,7 +195,10 @@ export default function BookReader() {
       {parsed && target && (
         <div className="reader-layout">
           <aside className="reader-toc no-print">
-            <SearchInput value={q} onChange={setQ} placeholder="Search this book" />
+            {/* in a row of its own: in the column it would take its 200px as height on a phone */}
+            <div className="row">
+              <SearchInput value={q} onChange={setQ} placeholder="Search this book" />
+            </div>
             {results.length > 0 && (
               <div className="reader-results">
                 {results.map((r) => (

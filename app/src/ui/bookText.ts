@@ -9,8 +9,11 @@ import { BOOK_BY_ID } from '../data';
 export const bookCache = new Map<string, string[]>();
 const pending = new Map<string, Promise<string[]>>();
 
-/** A book file's address. "&" is left as it is: some static servers do not decode "%26" in a path. */
-export const bookUrl = (file: string) => `books/${encodeURIComponent(file).replace(/%26/g, '&')}`;
+/**
+ * A book file's address. "&" and "," are left as they are: some static servers (Vite's among them)
+ * decode a path as a whole address, which leaves "%26" and "%2C" alone, and then do not find the file.
+ */
+export const bookUrl = (file: string) => `books/${encodeURIComponent(file).replace(/%26/g, '&').replace(/%2C/g, ',')}`;
 
 export function loadBookLines(file: string): Promise<string[]> {
   const hit = bookCache.get(file);

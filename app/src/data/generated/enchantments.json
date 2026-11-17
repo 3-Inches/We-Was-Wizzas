@@ -1452,7 +1452,7 @@
    "line": 3605,
    "anchor": "clarion-call"
   },
-  "id": "clarion-call-rete-item",
+  "id": "clarion-call-rete-item-2",
   "penetration": 0,
   "uses": "unlimited",
   "itemNotes": "0, unlimited uses"
@@ -1874,7 +1874,7 @@
    "line": 4677,
    "anchor": "perceive-the-presence-of-magic"
   },
-  "id": "perceive-the-presence-of-magic-invi-item",
+  "id": "perceive-the-presence-of-magic-invi-item-2",
   "penetration": 0,
   "uses": "constant",
   "itemNotes": "0, Constant effect"
