@@ -20,6 +20,9 @@ export interface SeasonWorkResult {
   refused?: string;
   /** what the season made that stays on the sheet (a potion, a tattoo): the season can then not be unlogged */
   made?: string;
+  /** experience the season gives besides its Exposure (`ability:<uid>` → points), and how to say it */
+  gains?: Record<string, number>;
+  gainText?: string;
 }
 
 /** A season's work for the character being edited: this season, whether it is spent, their covenant, and the work itself. */
@@ -45,6 +48,7 @@ export function useSeasonWork(ed: CharEditor) {
     const r = fn(x, k, e.uid);
     if (r.refused) return [r.refused];
     const lines = r.lines.filter(Boolean);
+    if (r.gains) for (const [k, v] of Object.entries(r.gains)) e.gains[k] = (e.gains[k] ?? 0) + v;
     e.notes = lines.join(' ');
     const u = { ...visUndo(c, x, cov, k), ...(r.made ? { final: `This season made ${r.made}, which is on the sheet, so the season stays logged (remove what it made by hand if it must go).` } : {}) };
     if (Object.keys(u).length) e.undo = u;
@@ -52,7 +56,8 @@ export function useSeasonWork(ed: CharEditor) {
     x.seasonLog.push(e);
     putSagaState({ saga, characters: [x], covenants: k ? [k] : [] });
     const abName = ab ? d?.abilities.find((a) => a.uid === ab.uid)?.name : undefined;
-    return [...lines, `${season} ${year} logged${abName ? `, +2 experience in ${abName}` : ''}.`];
+    const said = [abName ? `+2 experience in ${abName}` : '', r.gainText ?? ''].filter(Boolean).join(', ');
+    return [...lines, `${season} ${year} logged${said ? `, ${said}` : ''}.`];
   };
   return { year, season, busy, cov, work };
 }

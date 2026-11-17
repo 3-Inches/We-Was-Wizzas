@@ -780,7 +780,7 @@ export const TOURS: Tour[] = [
       },
       {
         title: 'Faith & miracles',
-        body: 'On **Dice › Faith & miracles** (Realms of Power: The Divine), pick anyone: holy powers called with a Method and a Power (a tragedy of hubris when they fall short), a prayer for a miracle, God’s aid for a scene, a saint or holy forbear invoked (or threatened), holy influence and tempers in the Dominion, the Divine Ascent, the Rings of Solomon, and a kabbalist’s amulets, golems and True Names. Set the aura here first: a Divine aura adds to all of it.',
+        body: 'On **Dice › Faith & miracles** (Realms of Power: The Divine), pick anyone: holy powers called with a Method and a Power (a tragedy of hubris when they fall short), a prayer for a miracle, God’s aid for a scene, a saint or holy forbear invoked (or threatened), holy influence and tempers in the Dominion, the Divine Ascent, and the Rings of Solomon. Set the aura here first: a Divine aura adds to all of it.',
         at: dice('holy'), needs: 'saga', target: ['holy-here', 'tab-dice'],
       },
       {
@@ -1031,8 +1031,8 @@ export const TOURS: Tour[] = [
         at: dice('holy'), needs: 'character', target: 'holy-ascent',
       },
       {
-        title: 'Rites and works of a season',
-        body: '**Rites and holy places** holds what takes a ceremony or a season: a **Dominion rite** to consecrate a place, a celestial regio entered, the search for the *Ars Notoria*. Characters with the right Abilities see more cards: the **Rings of Solomon** (the Ars Notoria’s orations, each lasting for seasons), and a kabbalist’s **Minor amulets**. The **Major amulets, golems, True Names and Shinnui Shem** are worked a season at a time, on the Seasons page.',
+        title: 'Rites, and works of a season',
+        body: '**Rites and holy places** holds what takes a ceremony: a **Dominion rite** to consecrate a place, a celestial regio entered, a kabbalist’s **Minor amulet**. A card the character cannot use is not shown; the foot of the page says why. A season’s work is on the **Seasons** page: a season of devotion, a ring of Solomon first recited, the search for the *Ars Notoria*, and Major amulets, golems and True Names.',
         at: dice('holy'), needs: 'character', target: 'holy-rites',
       },
       {

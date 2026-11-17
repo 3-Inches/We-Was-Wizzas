@@ -23,6 +23,7 @@ import AdvancementTab from '../character/sheet/AdvancementTab';
 import { LabProjects } from '../character/sheet/LabProjects';
 import { HolyWorksCard } from './HolyPart';
 import { HedgeSeasonCards } from './HedgePart';
+import { DevotionSeasonsCard } from './DevotionSeasonsCard';
 import { holyWorksOpen } from '../../engine/holy';
 import { LongevityCard } from '../character/sheet/LabItemsTab';
 import { OriginalResearch } from '../character/sheet/OriginalResearch';
@@ -281,8 +282,8 @@ export default function SeasonsPage() {
 
 /**
  * One character's season in full, as the sheet once had it: a book, a teacher, training, vis, a lab
- * project, a hedge tradition's season (a brew, a refining, a tattoo, rune scripts, an amulet, charms) or a
- * season of holy work, writing or copying, an Initiation, their standing activity and priorities, and
+ * project, a hedge tradition's season (a brew, a refining, a tattoo, rune scripts, an amulet, charms), a
+ * season of holy work or of devotion, writing or copying, an Initiation, their standing activity and priorities, and
  * aging out of turn. What is planned is logged in their season log; the season ends for everyone above.
  */
 function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: string; chars: Character[]; covs: Covenant[]; who: string; onPick: (id: string) => void; season: string }) {
@@ -324,6 +325,7 @@ function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
       {ed.d.isMagus && <OriginalResearch ed={ed} magicTheory={mt} />}
       <HedgeSeasonCards ed={ed} aura={ed.ctx.aura} />
       {holyWorksOpen(ed.d).length > 0 && <HolyWorksCard ed={ed} aura={ed.ctx.aura} />}
+      <DevotionSeasonsCard ed={ed} />
       <LongevityCard ed={ed} />
       <ApprenticeCard ed={ed} />
       <WorkshopCard ed={ed} where="seasons" />

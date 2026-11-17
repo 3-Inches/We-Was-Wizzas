@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom';
 import type { GameData } from '../../data';
 import { addVirtue } from '../../engine/character/factory';
 import { describeStress, stressDie } from '../../engine/dice';
-import { rollWovenCurse } from '../../engine/folkWitch';
+import { dropSeasonRoll, isSeasonRoll, rollSeasonRoll, seasonRollBotchDice, seasonRollText } from '../../engine/seasonRolls';
+import { covenantOf } from '../../engine/context';
+import { uid } from '../../util/id';
 import { owedInOrder, playersInOrder, settle, type PlanNote } from '../../engine/seasonPlan';
 import type { Character, Owed, Saga } from '../../engine/types';
 import { useStore } from '../../store/store';
@@ -92,19 +94,35 @@ export function PlayerOrder({ saga, chars }: { saga: Saga; chars: Character[] })
 function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Character; o: Owed }) {
   const updateCharacter = useStore((s) => s.updateCharacter);
   const setNotice = useStore((s) => s.setNotice);
+  const covenants = useStore((s) => s.covenants);
+  const updateCovenant = useStore((s) => s.updateCovenant);
   const [pick, setPick] = useState('');
   const done = (fn?: (x: Character) => void) => updateCharacter(c.id, (x) => void (fn?.(x), settle(x, o.uid)));
-  // a woven curse: rolled here as its season ends, the result kept in the season log beside the weaving
-  const rollCurse = () => {
-    const r = stressDie(1 + (c.folkWitch?.curse?.auraBotch ?? 0));
+  // a roll a season's work left (a curse woven, a ring first recited, a search): made here as its season
+  // ends, the result kept in the season log beside the season's work
+  const rollIt = () => {
+    if (!isSeasonRoll(o.kind)) return;
+    const kind = o.kind;
+    const r = stressDie(seasonRollBotchDice(c, kind));
     let out: string[] = [];
+    let found = false;
     done((x) => {
-      const entryUid = x.folkWitch?.curse?.entryUid;
-      out = rollWovenCurse(x, { value: r.value, zero: r.zero, botches: r.botches, text: describeStress(r) });
+      const entryUid = (kind === 'curse' ? x.folkWitch?.curse : kind === 'ring' ? x.holy?.recitation : x.holy?.search)?.entryUid;
+      const res = rollSeasonRoll(x, kind, { value: r.value, zero: r.zero, botches: r.botches, text: describeStress(r) });
+      out = res.lines;
+      found = !!res.found;
       const e = x.seasonLog.find((y) => y.uid === entryUid);
       if (e) e.notes = [e.notes, ...out].filter(Boolean).join(' ');
     });
-    setNotice(`${c.name || 'The witch'}: ${out.join(' ')}`);
+    // a copy of the Book of Solomon found: kept in the covenant's library, as the finder's
+    const cov = found ? covenantOf(c, Object.values(covenants)) : undefined;
+    if (cov) {
+      updateCovenant(cov.id, (x) =>
+        void x.library.push({ uid: uid(), title: 'The Book of Solomon (Ars Notoria)', kind: 'tractatus', subjectType: 'ability', subject: 'dominion-lore', level: 0, quality: 20, language: 'Latin, Greek, Hebrew and Chaldean', ownerId: c.id, notes: 'Found by a season’s search. Its subject is Divine Lore to the unGifted; a Gifted reader may learn Ars Notoria from it (RoP: The Divine).' }),
+      );
+      out.push(`It is in ${cov.name || 'the covenant'}’s library, as ${c.name || 'the finder'}’s.`);
+    }
+    setNotice(`${c.name || 'Unnamed'}: ${out.join(' ')}`);
   };
   const want = o.want;
   const options = want
@@ -121,7 +139,7 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
       <Link to={R.character(saga.id, c)} style={{ minWidth: 110 }}>
         <b>{c.name || 'Unnamed'}</b>
       </Link>
-      <span className={`badge ${o.kind === 'dying' ? 'bad' : 'warn'}`}>{o.kind === 'warping' ? 'Warping' : o.kind === 'twilight' ? 'Twilight' : o.kind === 'curse' ? 'a curse' : 'dying'}</span>
+      <span className={`badge ${o.kind === 'dying' ? 'bad' : 'warn'}`}>{o.kind === 'warping' ? 'Warping' : o.kind === 'twilight' ? 'Twilight' : o.kind === 'curse' ? 'a curse' : o.kind === 'ring' ? 'Ars Notoria' : o.kind === 'search' ? 'a search' : 'dying'}</span>
       <span style={{ flex: '1 1 220px' }}>
         {o.text} <span className="muted">({o.season} {o.year})</span>
       </span>
@@ -149,9 +167,9 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
         </span>
       )}
       {o.kind === 'twilight' && <Link to={R.dice(saga.id, 'magic', c.id)}>Roll it (Warping &amp; Twilight) →</Link>}
-      {o.kind === 'curse' && (
-        <button className="small primary" onClick={rollCurse} disabled={!c.folkWitch?.curse} title={`Casting Score ${c.folkWitch?.curse?.score ?? 0} + a stress die against ${c.folkWitch?.curse?.ease ?? 0}`}>
-          Roll the curse
+      {isSeasonRoll(o.kind) && (
+        <button className="small primary" onClick={rollIt} disabled={!seasonRollText(c, o.kind)} title={seasonRollText(c, o.kind)}>
+          {o.kind === 'curse' ? 'Roll the curse' : o.kind === 'ring' ? 'Roll the recitation' : 'Roll the search'}
         </button>
       )}
       {o.kind === 'dying' && (
@@ -167,8 +185,8 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
       {o.kind !== 'dying' && (
         <button
           className="small ghost"
-          title={o.kind === 'warping' ? 'Chosen and added on the sheet by hand' : o.kind === 'curse' ? 'Rolled by hand, or set aside: the curse is dropped' : 'Rolled and settled'}
-          onClick={() => done(o.kind === 'curse' ? (x) => void (x.folkWitch = { ...(x.folkWitch ?? {}), curse: undefined }) : undefined)}
+          title={o.kind === 'warping' ? 'Chosen and added on the sheet by hand' : isSeasonRoll(o.kind) ? 'Rolled by hand, or set aside: it is dropped' : 'Rolled and settled'}
+          onClick={() => done(isSeasonRoll(o.kind) ? (x) => dropSeasonRoll(x, o.kind as Parameters<typeof dropSeasonRoll>[1]) : undefined)}
         >
           Done
         </button>
