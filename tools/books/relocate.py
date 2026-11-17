@@ -46,6 +46,9 @@ FILE_BOOKS = {
     'app/src/data/livingCovenants/rhine.ts': 'GotF',
     'app/src/data/livingCovenants/rhineExtras.ts': 'GotF',
     'app/src/data/livingCovenants/rhineForest.ts': 'GotF',
+    'app/src/data/livingCovenants/rhineLore.ts': 'GotF',
+    'app/src/data/faeriePowers.ts': 'RoP_F',
+    'app/src/data/templates.ts': 'DE',
     'app/src/data/beasts.ts': 'DE',
     'app/src/data/commonPowers.ts': 'RoP_M',
     'app/src/engine/covenfolk.ts': 'DE',
@@ -127,6 +130,18 @@ class LineMap:
             return best, 'reworded'
         return None, 'LOST'
 
+    def block_end(self, line: int) -> int | None:
+        """the last line with text in the new block that replaced the block holding this old line,
+        when the old line was the last with text in its own block"""
+        for a, b, c, d in self.hunks:
+            if b and d and a <= line < a + b:
+                if any(self.old[i - 1].strip() for i in range(line + 1, a + b)):
+                    return None
+                for n in range(c + d - 1, c - 1, -1):
+                    if self.new[n - 1].strip():
+                        return n
+        return None
+
     @staticmethod
     def _nearest(candidates: list[int], expected: int) -> int:
         return min(candidates, key=lambda n: abs(n - expected))
@@ -195,6 +210,12 @@ class Run:
         if not m:
             return end
         new, how = m.lookup(end)
+        if how != 'same':
+            # the section's last line was rewritten. When upstream split one long line into
+            # several, the section now ends where that rewritten block ends.
+            last = m.block_end(end)
+            if last is not None and last >= new_line:
+                return last
         if new is None or new < new_line:
             return new_line + (end - line)
         return new
@@ -231,8 +252,9 @@ def split_args(s: str, start: int) -> list[tuple[int, int]]:
     return spans
 
 
-BOOK_NEAR = re.compile(r'''\b(?:book|bookId)\s*[:=]\s*['"]([A-Za-z0-9_&]+)['"]''')
-LINE_TOKEN = re.compile(r'\b(line|endLine)(\s*[:=]\s*\{?\s*)(\d+)')
+# keys may be quoted, as in data written out as JSON: "book": "DE", "line": 1279
+BOOK_NEAR = re.compile(r'''\b(?:book|bookId)"?\s*[:=]\s*['"]([A-Za-z0-9_&]+)['"]''')
+LINE_TOKEN = re.compile(r'\b(line|endLine)("?\s*[:=]\s*\{?\s*)(\d+)')
 HELPER_DEF = re.compile(r'''const\s+(\w+)\s*=\s*\(\s*line:\s*number[^)]*\)[^=]*=>\s*\(\{\s*book:\s*['"]([A-Za-z0-9_&]+)['"]''')
 
 

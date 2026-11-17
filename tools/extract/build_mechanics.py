@@ -12,7 +12,7 @@ topic, ordered from the most used mechanics to the most specialised, with the me
 need a Virtue, House, initiation or tradition kept apart. Character-creation rules are also
 listed under the kind of character they are for.
 
-Usage: python3 build_mechanics.py [--report]
+Usage: python3 -I tools/extract/build_mechanics.py [--report]
 """
 import glob
 import json
@@ -20,6 +20,8 @@ import os
 import re
 import sys
 from collections import Counter, defaultdict
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # so that it also runs with -I
 
 from books import BOOK_BY_ID, ROOT, book_path
 from mechanics_topics import broad_topic

@@ -1,33 +1,29 @@
 """Hermetic Projects: spells and enchantments.
 
-The book puts a spell's description between its Arts line and its R/D/T line, and an
-enchantment's "Pen:" line before R/D/T, so the general supplement pass finds almost none.
-This pass reads each "#### Name" block: the Arts line, then R/D/T, Pen and the design
-anywhere in the block. Spells join the spell catalog; enchantments go to enchantments.json.
+The book sets both out the same way, and tells a device from a spell only by its "Pen:" line:
+
+    ##### Cutting the Waves
+    ReAq 19<br>
+    Pen: +0, Constant Effect<br>
+    R: Touch, D: Sun, T: Individual<br>
+    description...
+    (Base 4, +1 Touch, +2 Sun; +1 for 2/day, +3 triggered at sunrise/set)
+    Required Lab Total: 1 season (38), ...
+
+The general supplement pass would read every device as a spell, so this pass reads the whole
+book instead. It takes each name (a heading or a bold line) that stands over an Arts line, then
+finds R/D/T, Pen and the design anywhere in the block. Spells join the spell catalog;
+enchantments go to enchantments.json. It also reads the older layout (bold Arts, "Pen:" and
+R/D/T on one line), which the book had before upstream reviewed it.
 """
 import re
 from books import read_book
 from common import clean_inline, strip_quote, github_anchor, slug
-from extract_spells import parse_arts_line, RDT_RE, norm, RANGE_NORM, DUR_NORM, TGT_NORM, ARTS_LINE
+from extract_spells import RDT_RE, norm, RANGE_NORM, DUR_NORM, TGT_NORM
 
 BOOK = "HP"
-ITEM_ARTS = re.compile(r"^\*\*(?P<arts>(Cr|In|Mu|Pe|Re)(An|Aq|Au|Co|He|Ig|Im|Me|Te|Vi)(\([A-Za-z, ]+\))*)\*\*\s*(?P<level>\d+|Gen(eral)?)\s*$")
 USES = [(r"unlimited", "unlimited"), (r"\b50\b", "50"), (r"\b24\b", "24"), (r"\b12\b", "12"), (r"\bsix\b|\b6\b", "6"),
         (r"\bthree\b|\b3\b", "3"), (r"\btwo\b|\b2\b", "2"), (r"\bonce\b|\bone\b|\b1\b", "1")]
-
-
-def arts_of(s):
-    a = parse_arts_line(s)
-    if a:
-        return a
-    m = ITEM_ARTS.match(s.strip())
-    if not m:
-        return None
-    reqs = re.findall(r"\(([A-Za-z, ]+)\)", m.group("arts"))
-    reqs = [r.strip() for g in reqs for r in g.split(",") if r.strip()]
-    lvl = m.group("level")
-    return {"technique": m.group("arts")[:2], "form": m.group("arts")[2:4], "requisites": reqs,
-            "level": None if lvl.lower().startswith("gen") else int(lvl), "general": lvl.lower().startswith("gen")}
 
 
 def text_of(lines):
@@ -44,19 +40,27 @@ def text_of(lines):
         para.append(s)
     if para:
         out.append(" ".join(para))
-    return "\n\n".join(out)
+    # a table keeps its rows, as in the general pass
+    return re.sub(r"\| (?=\|)", "|\n", "\n\n".join(out))
 
 
-ARTS_START = re.compile(r"^\*\*(?P<arts>(Cr|In|Mu|Pe|Re)(An|Aq|Au|Co|He|Ig|Im|Me|Te|Vi)(\s*\([A-Za-z, ]+\))*)\*\*\s*(?P<level>\d+|Gen(eral)?)\b\s*(?P<rest>.*)$")
-NAME_LINE = re.compile(r"^(#{2,5}\s+(?P<h>.+)|\*\*(?P<b>[^*]+?)\*\*\s*(<br\s*/?>)?)\s*$")
+# "ReAq 19", "**CrTe** 55", and with requisites after either Art: "Mu(Re)Co(Ig)(Te) 70"
+ARTS_START = re.compile(r"^(\*\*)?(?P<arts>(?P<t>Cr|In|Mu|Pe|Re)(\([A-Za-z, ]+\))*(?P<f>An|Aq|Au|Co|He|Ig|Im|Me|Te|Vi)(\s*\([A-Za-z, ]+\))*)(\*\*)?\s*(?P<level>\d+|Gen(eral)?)\b\s*(?P<rest>.*)$")
+NAME_LINE = re.compile(r"^(#{2,6}\s+(?P<h>.+)|\*\*(?P<b>[^*]+?)\*\*\s*(<br\s*/?>)?)\s*$")
+PAGE_MARK = re.compile(r"^<!--.*-->$")
+
+
+def bare(line):
+    """A line without its quote mark and its closing line break."""
+    return re.sub(r"\s*<br\s*/?>\s*$", "", strip_quote(line).strip())
 
 
 def name_before(lines, i):
     """The heading or bold name just above an Arts line (at most two lines up, ignoring blanks)."""
     j, seen = i - 1, 0
     while j >= 0 and seen < 2:
-        t = lines[j].strip()
-        if t:
+        t = strip_quote(lines[j]).strip()
+        if t and not PAGE_MARK.match(t):
             seen += 1
             m = NAME_LINE.match(t)
             if m:
@@ -71,24 +75,30 @@ def name_before(lines, i):
 def extract():
     lines = read_book(BOOK).split("\n")
     n = len(lines)
-    starts = [i for i, l in enumerate(lines) if ARTS_START.match(l.strip())]
+    starts = [i for i, l in enumerate(lines) if ARTS_START.match(bare(l))]
     spells, items = [], []
     for si, i in enumerate(starts):
-        m = ARTS_START.match(lines[i].strip())
+        m = ARTS_START.match(bare(lines[i]))
         name = name_before(lines, i)
         if not name:
             continue
         a = m.group("arts")
         reqs = [r.strip() for g in re.findall(r"\(([A-Za-z, ]+)\)", a) for r in g.split(",") if r.strip()]
         lvl = m.group("level")
-        arts = {"technique": a[:2], "form": a[2:4], "requisites": reqs, "level": None if lvl.lower().startswith("gen") else int(lvl), "general": lvl.lower().startswith("gen")}
+        arts = {"technique": m.group("t"), "form": m.group("f"), "requisites": reqs, "level": None if lvl.lower().startswith("gen") else int(lvl), "general": lvl.lower().startswith("gen")}
         stop = starts[si + 1] if si + 1 < len(starts) else n
         block = [m.group("rest")] if m.group("rest").strip() else []
         k = i + 1
+        boxed = lines[i].lstrip().startswith(">")
         while k < stop:
-            if re.match(r"^#{1,5}\s", lines[k]):
+            if PAGE_MARK.match(strip_quote(lines[k]).strip()):
+                k += 1
+                continue
+            if boxed and lines[k].strip() and not lines[k].lstrip().startswith(">"):
+                break  # the box this entry is printed in has closed
+            if re.match(r"^#{1,6}\s", strip_quote(lines[k])):
                 # the book's running page header is not a new section
-                if not re.match(r"^#{1,5}\s+(Hermetic Projects|Chapter \w+)\s*$", lines[k], re.I):
+                if not re.match(r"^#{1,6}\s+(Hermetic Projects|Chapter \w+)\s*$", strip_quote(lines[k]), re.I):
                     break
             else:
                 block.append(lines[k])
@@ -102,7 +112,11 @@ def extract():
         for l in block:
             s = clean_inline(l).strip()
             # Pen and R/D/T can share a line, in either order, with text after
-            pm = re.search(r"\bPen\s*:\s*(.*?)(?=\bR\s*:|$)", s)
+            pm = re.search(r"\bPen\s*:\s*(.*?)(?=\bR\s*:|$)", s) or re.match(r"^(\+?\d+) Pen\b,?\s*(.*)$", s)
+            if pm and pen is None and pm.re.pattern.startswith("^"):
+                # "0 Pen, constant effect": the book's other way of writing the same line
+                pen = f"{pm.group(1)}, {pm.group(2)}".strip().rstrip(".,")
+                continue
             if pm and pen is None:
                 pen = pm.group(1).strip().rstrip(".,")
                 s = (s[: pm.start()] + s[pm.end():]).strip()
@@ -119,6 +133,7 @@ def extract():
             if not s:
                 desc.append("")
                 continue
+            s = re.sub(r"^\(Effect:\s*(?=[Bb]ase\b)", "(", s)  # "(Effect: Base 1, +1 Touch, ...)"
             if re.match(r"^\((Base|base)\b", s) and design is None:
                 # the design may hold parentheses of its own: take it to its matching close
                 depth, end = 0, len(s)

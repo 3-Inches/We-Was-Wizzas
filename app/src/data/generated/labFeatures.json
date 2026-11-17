@@ -9,7 +9,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11939,
+   "line": 11955,
    "anchor": "altar"
   }
  },
@@ -23,7 +23,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11941,
+   "line": 11957,
    "anchor": "animal-pen"
   }
  },
@@ -38,7 +38,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11943,
+   "line": 11959,
    "anchor": "antechamber"
   }
  },
@@ -52,7 +52,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11945,
+   "line": 11961,
    "anchor": "astronomical-device"
   }
  },
@@ -67,7 +67,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11947,
+   "line": 11963,
    "anchor": "balance"
   }
  },
@@ -81,7 +81,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11949,
+   "line": 11965,
    "anchor": "balcony"
   }
  },
@@ -97,7 +97,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11951,
+   "line": 11967,
    "anchor": "cage"
   }
  },
@@ -116,7 +116,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11953,
+   "line": 11969,
    "anchor": "cauldron"
   }
  },
@@ -130,7 +130,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11955,
+   "line": 11971,
    "anchor": "desk"
   }
  },
@@ -145,7 +145,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11957,
+   "line": 11973,
    "anchor": "fireplace"
   }
  },
@@ -160,7 +160,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11959,
+   "line": 11975,
    "anchor": "forge"
   }
  },
@@ -174,7 +174,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11961,
+   "line": 11977,
    "anchor": "grave"
   }
  },
@@ -187,7 +187,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11963,
+   "line": 11979,
    "anchor": "lofty-ceiling"
   }
  },
@@ -201,7 +201,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11965,
+   "line": 11981,
    "anchor": "loom"
   }
  },
@@ -215,7 +215,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11967,
+   "line": 11983,
    "anchor": "map"
   }
  },
@@ -229,7 +229,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11969,
+   "line": 11985,
    "anchor": "mechanism"
   }
  },
@@ -244,7 +244,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11971,
+   "line": 11987,
    "anchor": "mirror"
   }
  },
@@ -258,7 +258,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11973,
+   "line": 11989,
    "anchor": "monolith"
   }
  },
@@ -274,7 +274,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11975,
+   "line": 11991,
    "anchor": "orb"
   }
  },
@@ -289,7 +289,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11977,
+   "line": 11993,
    "anchor": "pallet"
   }
  },
@@ -303,7 +303,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11979,
+   "line": 11995,
    "anchor": "pit"
   }
  },
@@ -317,7 +317,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11981,
+   "line": 11997,
    "anchor": "pool"
   }
  },
@@ -331,7 +331,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11983,
+   "line": 11999,
    "anchor": "portal"
   }
  },
@@ -346,7 +346,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11985,
+   "line": 12001,
    "anchor": "rack"
   }
  },
@@ -360,7 +360,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11987,
+   "line": 12003,
    "anchor": "running-water"
   }
  },
@@ -378,7 +378,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11989,
+   "line": 12005,
    "anchor": "summoning-circle"
   }
  },
@@ -394,7 +394,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11991,
+   "line": 12007,
    "anchor": "statue"
   }
  },
@@ -410,7 +410,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11993,
+   "line": 12009,
    "anchor": "still"
   }
  },
@@ -425,7 +425,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11995,
+   "line": 12011,
    "anchor": "tablet"
   }
  },
@@ -440,7 +440,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11997,
+   "line": 12013,
    "anchor": "tank"
   }
  },
@@ -455,7 +455,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 11999,
+   "line": 12015,
    "anchor": "throne"
   }
  },
@@ -469,7 +469,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 12001,
+   "line": 12017,
    "anchor": "tree"
   }
  },
@@ -484,7 +484,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 12003,
+   "line": 12019,
    "anchor": "void"
   }
  },
@@ -498,7 +498,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 12005,
+   "line": 12021,
    "anchor": "wall"
   }
  },
@@ -512,7 +512,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 12007,
+   "line": 12023,
    "anchor": "wheel"
   }
  },
@@ -527,7 +527,7 @@
   ],
   "source": {
    "book": "DE",
-   "line": 12009,
+   "line": 12025,
    "anchor": "window"
   }
  }

@@ -284,7 +284,7 @@
   "summary": "Table of level modifiers for how quickly a miracle manifests after the prayer, from immediate to a generation.",
   "quotes": [
    "**Immediate** (instantly to a few hours): +10 <br>",
-   "**Generation** (not longer than fifteen years): \u201320 <br>"
+   "**Generation** (not longer than fifteen years): –20 <br>"
   ],
   "related": []
  },
@@ -303,7 +303,7 @@
   "requires": "Faith Points",
   "summary": "Level modifiers reflecting how desperate, deserving or righteous the prayer is, from calamitous need to impious requests.",
   "quotes": [
-   "**Calamitous** (supplicant or the subjects of the prayer are in desperate personal need, such assault from supernatural forces): \u201315",
+   "**Calamitous** (supplicant or the subjects of the prayer are in desperate personal need, such assault from supernatural forces): –15",
    "**Impious** (supplicant is a pagan, infidel, or unbeliever, or the request is motivated by sin, such as pride or greed): +20"
   ],
   "related": []
@@ -783,7 +783,7 @@
   "requires": "Virtue: Holy Magic",
   "summary": "Holy magi must relearn spells via the Holy Magic Ability, halve lab totals from Hermetic sources, forgo Hermetic words and gestures (offset by prayer), cannot use magic to sin, and draw Infernal and Faerie attention.",
   "quotes": [
-   "This is usually a \u201315 penalty",
+   "This is usually a –15 penalty",
    "This requires that they roll a simple die + Presence + Theology of 15+",
    "their lab totals must always be halved when learning magic from a Hermetic source"
   ],
@@ -1019,7 +1019,7 @@
   "requires": "",
   "summary": "Table of situational modifiers to the roll to invoke a saint, such as being at the tomb, the feast day, donations, True Faith, recent miracles and invoking a non-patron saint.",
   "quotes": [
-   "| Invoking a saint other than a patron saint   |    \u201315             |"
+   "| Invoking a saint other than a patron saint   |    –15             |"
   ],
   "related": []
  },
@@ -1096,7 +1096,7 @@
   "requires": "",
   "summary": "List of miracle powers saints can use, each with a Might point cost, initiative modifier and Form, from Acknowledgment of Evil to Tomorrow's Bounty.",
   "quotes": [
-   "The Penetration of this miracle (Divine Might \u2013 (5 x Might Point cost of power))"
+   "The Penetration of this miracle (Divine Might – (5 x Might Point cost of power))"
   ],
   "related": []
  },
@@ -1154,7 +1154,7 @@
   "requires": "",
   "summary": "Basic statistics template for a saint as a bodiless Divine creature, to which Divine Might and powers are added.",
   "quotes": [
-   "**Characteristics:** Int +5, Per +5, Pre +5, Com +5, Str n/a, Stm n/a, Dex n/a, Qik n/a"
+   "**Characteristics:** Int +5, Per +5, Pre +5, Com +5, Str n/a, Sta n/a, Dex n/a, Qik n/a"
   ],
   "related": []
  },
@@ -1357,7 +1357,7 @@
   "summary": "Table of modifiers to the recitation score for behavior such as fasting, chastity, personality Flaws, sins and conflicting Supernatural Abilities, with explanations including the fasting roll.",
   "quotes": [
    "Characters wishing to fast for a season must make a Stamina + stress die roll against an Ease Factor of 6 to succeed.",
-   "| Performing a Mortal Sin| \u20139 |"
+   "| Performing a Mortal Sin| –9 |"
   ],
   "related": []
  },

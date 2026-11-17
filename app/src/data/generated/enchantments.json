@@ -13,11 +13,11 @@
   "duration": "Concentration",
   "target": "Vision",
   "ritual": false,
-  "text": "It takes 1 Diameter to draw what can be seen from a tree-top or church tower, and it takes 3 Diameters to draw what can be seen from a mountaintop, or by a flying character. If what is being mapped includes something complicated (like the streets of a city) it takes an additional 3 Diameters to draw the map.\n\nThe map produced with the aid of the quill can be used in conjunction with spells such as Trail of Ember and The Inexorable Search (ArM5, page 131). Having the map also gives a character a +3 bonus to Area Lore rolls made to navigate the terrain depicted.\n\nThe character needs to provide parchment and ink (or similar materials), and he must be literate if he wishes to annotate the map. If the map is not annotated it can only be used by a character who successfully makes an (appropriate) Area Lore roll against an Ease Factor of 12. If the map is annotated, it can be used by any character literate in the language of annotation. The character who created the map can always use it, even if it is not annotated.\n\nThe requisites are required so that rivers and forests can be mapped too.",
+  "text": "This enchanted quill helps a character to rapidly draw an accurate map of what he can see. The item grants the user special magical senses that allow him to precisely estimate the distance, shape, and relationships among geographical features, and figure out how best to represent this information on a page. This is information that anyone with sufficient skill could determine by merely looking. The quill does not draw the map by itself. The character draws the map. The quill only ensures that the subsequent map is accurate and that it can also be very speedily drawn, by providing the character with enhanced information about what he can see.\n\nIt takes 1 Diameter to draw what can be seen from a tree-top or church tower, and it takes 3 Diameters to draw what can be seen from a mountaintop, or by a flying character. If what is being mapped includes something complicated (like the streets of a city) it takes an additional 3 Diameters to draw the map.\n\nThe map produced with the aid of the quill can be used in conjunction with spells such as Trail of Ember and The Inexorable Search (ArM5, page 131). Having the map also gives a character a +3 bonus to Area Lore rolls made to navigate the terrain depicted.\n\nThe character needs to provide parchment and ink (or similar materials), and he must be literate if he wishes to annotate the map. If the map is not annotated it can only be used by a character who successfully makes an (appropriate) Area Lore roll against an Ease Factor of 12. If the map is annotated, it can be used by any character literate in the language of annotation. The character who created the map can always use it, even if it is not annotated.\n\nThe requisites are required so that rivers and forests can be mapped too.",
   "design": "Base 2, +1 Touch, +1 Concentration, +4 Vision, free requisites; + 5 item maintains Concentration",
   "source": {
    "book": "HP",
-   "line": 642,
+   "line": 416,
    "anchor": "scribe-of-all-that-i-can-see"
   },
   "id": "scribe-of-all-that-i-can-see-inte-item",
@@ -26,7 +26,7 @@
   "itemNotes": "0, 1 use per day, item maintains Concentration"
  },
  {
-  "name": "Vulcan's Glass",
+  "name": "Vulcan’s Glass",
   "technique": "In",
   "form": "Te",
   "requisites": [],
@@ -40,7 +40,7 @@
   "design": "Base 2, +1 Touch, +1 Concentration, +4 Vision",
   "source": {
    "book": "HP",
-   "line": 678,
+   "line": 449,
    "anchor": "vulcans-glass"
   },
   "id": "vulcans-glass-inte-item",
@@ -61,17 +61,65 @@
   "duration": "Moon",
   "target": "Part",
   "ritual": false,
-  "text": "This enchanted item is a brush that is used to paint a dark tar infused with volcanic ash onto the hull of a boat. The brush causes the tar to magically seal, and until the effect expires the boat can be rowed or sailed on lava without damage.\n\nOther items, such as oars or even a person, can also be painted in the pitch. Each charge is enough to paint the hull of a small boat or a single person. However, as the effect has a Part target, larger items can be fully protected by painting it with several charges' worth of the pitch. If only the hull of the boat is painted, then other parts of the boat will not be protected if they come in contact with the lava. This might happen if the boat capsizes, for example.\n\nThis spell is based on the Rego Aquam guideline to ward against a mundane liquid, and the Ignem requisite prevents the heat damage (with an additional two magnitudes due to the intensity of the heat).",
+  "text": "This enchanted item is a brush that is used to paint a dark tar infused with volcanic ash onto the hull of a boat. The brush causes the tar to magically seal, and until the effect expires the boat can be rowed or sailed on lava without damage.\n\nOther items, such as oars or even a person, can also be painted in the pitch. Each charge is enough to paint the hull of a small boat or a single person. However, as the effect has a Part target, larger items can be fully protected by painting it with several charges’ worth of the pitch. If only the hull of the boat is painted, then other parts of the boat will not be protected if they come in contact with the lava. This might happen if the boat capsizes, for example.\n\nThis spell is based on the Rego Aquam guideline to ward against a mundane liquid, and the Ignem requisite prevents the heat damage (with an additional two magnitudes due to the intensity of the heat).",
   "design": "Base 5, +1 Touch, +3 Moon, +1 Part, +1 Ignem requisite, +2 intense heat; +3 six uses per day",
   "source": {
    "book": "HP",
-   "line": 772,
+   "line": 534,
    "anchor": "pitch-brush"
   },
   "id": "pitch-brush-reaq-item",
   "penetration": 0,
   "uses": "6",
   "itemNotes": "+0, 6 uses per day"
+ },
+ {
+  "name": "Cloven Hoofed Boots",
+  "technique": "Mu",
+  "form": "Aq",
+  "requisites": [
+   "Te"
+  ],
+  "level": 24,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Part",
+  "ritual": false,
+  "text": "These boots turn the lava directly beneath them into a solid. Although the boots are constantly active, the effect only solidifies the lava that the boots are touching. This means that the character wearing the boots can either walk across or stand still on top of an expanse of lava. However, once the character moves, the solid lava that was beneath him melts back into the bulk of the lava field. Another character may be able to quickly follow behind, but this would require a lot of agility.\n\nThe Terram requisite is free because it is part of the guideline. Note that this effect does not change the temperature of the lava, so a character using these boots will likely need protection from heat.",
+  "design": "Base 4, +1 Touch, +2 Sun, +1 Part, free Terram requisite; +4 constant effect",
+  "source": {
+   "book": "HP",
+   "line": 550,
+   "anchor": "cloven-hoofed-boots"
+  },
+  "id": "cloven-hoofed-boots-muaq-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, constant effect"
+ },
+ {
+  "name": "Fumarole Mask",
+  "technique": "Pe",
+  "form": "Au",
+  "requisites": [],
+  "level": 34,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This mask is made from porous volcanic rock and it destroys the toxic properties of any air that passes through it. This allows the wearer of the mask to breathe without trouble in the heart of a volcanic crater, or on a river of lava. The air affected by the mask tastes slightly unpleasant, but this does not cause any damage to the wearer.\n\nAlthough the mask is constantly active, once the toxicity of the air has been removed, the air itself is no longer the subject of a magical effect. This means that the air is not resisted by characters with Magic Resistance, so magi can breathe using the mask without lowering their Parma Magica.\n\nNote that Muto effects which change the air to be non-toxic are of little value to magi, as the effect only lasts as long as the spell duration. This means that when the magus tries to breathe the magically changed air, his Magic Resistance will resist the air as it is the subject of a magical effect. So the magus must either asphyxiate or lower his Parma Magica — both options are hazardous.\n\nThis spell is based on the Perdo Aquam guideline to destroy a property of a liquid, and applied by analogy to the Auram Form.",
+  "design": "Base 15, +1 Touch, +2 Sun; +4 constant effect",
+  "source": {
+   "book": "HP",
+   "line": 599,
+   "anchor": "fumarole-mask"
+  },
+  "id": "fumarole-mask-peau-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, constant effect"
  },
  {
   "name": "The Vibration of Anticipation",
@@ -88,7 +136,7 @@
   "design": "Base 4, +2 Sun, +1 Touch, requisite free; +4 levels Constant effect",
   "source": {
    "book": "HP",
-   "line": 930,
+   "line": 668,
    "anchor": "the-vibration-of-anticipation"
   },
   "id": "the-vibration-of-anticipation-inau-item",
@@ -111,13 +159,36 @@
   "design": "Base 2, +2 effect metal; +10 unlimited uses, +3 linked trigger",
   "source": {
    "book": "HP",
-   "line": 942,
+   "line": 678,
    "anchor": "clarion-call"
   },
   "id": "clarion-call-rete-item",
   "penetration": 0,
   "uses": "unlimited",
   "itemNotes": "0, unlimited uses"
+ },
+ {
+  "name": "Cold Marble Slab",
+  "technique": "Pe",
+  "form": "Ig",
+  "requisites": [],
+  "level": 34,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Structure",
+  "ritual": false,
+  "text": "This marble slab, about a pace across, is activated when it is hung above the entrance of a building, and it chills the building. Normally, this would make continued occupation of the building intolerable; however, if the building is in a very hot location (such as a volcanic crater), then the cooling provided by the marble slab cancels out the ambient heat and makes the building habitable. This effect targets a base-sized Structure and is thus sufficient to affect a structure similar in size to a Mystic Tower (see ArM5, pages 113 and 153). Larger structures will require a larger Cold Marble Slab effect.\n\nThe chilling effect is not sufficient to cool anything very hot, such as lava, that happens to be in the building. However, it is sufficient to cool the air that is heated by the lava.",
+  "design": "Base 4, +1 Touch, +2 Sun +3 Structure; +4 constant effect",
+  "source": {
+   "book": "HP",
+   "line": 700,
+   "anchor": "cold-marble-slab"
+  },
+  "id": "cold-marble-slab-peig-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, constant effect"
  },
  {
   "name": "Fumarole Vent",
@@ -130,11 +201,11 @@
   "duration": "Sun",
   "target": "Room",
   "ritual": false,
-  "text": "This enchanted item is a vent that is placed over a window in a room. The fumarole vent destroys the toxic properties of the air passing into the room, in the same way that a Fumarole Mask does (see earlier). This allows people to freely breathe in a room that is in a building constructed in (or very near) a volcanic crater, or on a river of lava.\n\nAs the effect uses the Hermetic target Room, to target the air passing into the room, only one vent is required even if the room has multiple openings. However, if a building has multiple rooms it requires a vent in each room. A version of the vent\n\nwith a target of Structure could be invented to protect the entire building.",
+  "text": "This enchanted item is a vent that is placed over a window in a room. The fumarole vent destroys the toxic properties of the air passing into the room, in the same way that a Fumarole Mask does (see earlier). This allows people to freely breathe in a room that is in a building constructed in (or very near) a volcanic crater, or on a river of lava.\n\nAs the effect uses the Hermetic target Room, to target the air passing into the room, only one vent is required even if the room has multiple openings. However, if a building has multiple rooms it requires a vent in each room. A version of the vent with a target of Structure could be invented to protect the entire building.",
   "design": "Base 15, +1 Touch, +2 Sun, +2 Room; +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 983,
+   "line": 712,
    "anchor": "fumarole-vent"
   },
   "id": "fumarole-vent-peau-item",
@@ -157,7 +228,7 @@
   "design": "Base 3, +1 Touch, +2 Sun, +3 Structure, +1 effect stone; +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 1002,
+   "line": 726,
    "anchor": "repulsion-of-earth"
   },
   "id": "repulsion-of-earth-rete-item",
@@ -183,7 +254,7 @@
   "design": "Base 4, +1 Touch, +2 Sun, +1 Part, +6 Size, +1 Ignem requisite, free Terram requisite ; +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 1019,
+   "line": 740,
    "anchor": "seed-of-earth"
   },
   "id": "seed-of-earth-muaq-item",
@@ -206,7 +277,7 @@
   "design": "Base 3, +3 Sight, +1 Diameter, +1 Part, +2 effect metal; +10 unlimited uses, +3 linked trigger (*Stone Wealth*)",
   "source": {
    "book": "HP",
-   "line": 1107,
+   "line": 813,
    "anchor": "harvest-stone"
   },
   "id": "harvest-stone-rete-item",
@@ -225,11 +296,11 @@
   "duration": "Sun",
   "target": "Smell",
   "ritual": false,
-  "text": "This effect grants the Stone Harvester the sense to smell whether a particular sort of stone, metal, or mineral is nearby (within about 5 paces). The Stone Harvester contains a small compartment and it targets materials that match the material in the compartment. If there is no material in the compartment the Stone Harvester continues to move about the crater rim, but will obviously not find any matching material. The Stone Harvester only identifies Terram based objects, but of course additional effects could be invented to allow the Stone Harvester to identify and manipulate Animal, Aquam, Corpus, or Herbam objects.\n\nThis sense allows the harvester to smell",
-  "design": null,
+  "text": "This effect grants the Stone Harvester the sense to smell whether a particular sort of stone, metal, or mineral is nearby (within about 5 paces). The Stone Harvester contains a small compartment and it targets materials that match the material in the compartment. If there is no material in the compartment the Stone Harvester continues to move about the crater rim, but will obviously not find any matching material. The Stone Harvester only identifies Terram based objects, but of course additional effects could be invented to allow the Stone Harvester to identify and manipulate Animal, Aquam, Corpus, or Herbam objects.\n\nThis sense allows the harvester to smell things buried to a depth of about 1 pace.",
+  "design": "Base 2, +2 Sun, +2 Smell, +1 smell through intervening material; +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 1123,
+   "line": 825,
    "anchor": "stone-wealth"
   },
   "id": "stone-wealth-inte-item",
@@ -252,7 +323,7 @@
   "design": "Base 3, +2 Sun, +1 affect stone; +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 1180,
+   "line": 905,
    "anchor": "stone-crawler-effect"
   },
   "id": "stone-crawler-effect-rete-item",
@@ -275,7 +346,7 @@
   "design": "Base 3, +3 Sight, +1 Part, +1 affect stone; +10 unlimited uses, +3 linked trigger (*Stone Wealth*)",
   "source": {
    "book": "HP",
-   "line": 1228,
+   "line": 917,
    "anchor": "stone-hammer-effect"
   },
   "id": "stone-hammer-effect-pete-item",
@@ -284,7 +355,7 @@
   "itemNotes": "+0, unlimited uses"
  },
  {
-  "name": "Test the Water's Effect",
+  "name": "Test the Water’s Effect",
   "technique": "In",
   "form": "Ig",
   "requisites": [],
@@ -298,7 +369,7 @@
   "design": "Base 2, +1 Touch, +2 Sun; +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 1248,
+   "line": 933,
    "anchor": "test-the-waters-effect"
   },
   "id": "test-the-waters-effect-inig-item",
@@ -317,11 +388,11 @@
   "duration": "Diameter",
   "target": "Individual",
   "ritual": false,
-  "text": "This effect causes the water in the bath to move through the air, pass over a volcanically heated region, and then back in a circle into the bath. The water travels in its circuit as a gentle stream suspended in the air at about waist height. The water returns to the bath warmed and dissolved in the water are a number of beneficial mineral salts.\n\nIf the bath is being controlled to a comfortable bathing temperature, then any characters who bathe once a day for most of the year receives a +1 Living Condition modifier to their Aging Rolls for that year, and a +1 Modifier to any Recovery Rolls they make during the year (see ArM5, pages 168 and 179). This modifier cannot be increased by more frequent bathing. These beneficial effects come from the mineral salts that are entrained in the water. The beneficial effects are not magical in origin, and a character who constantly uses the bath in this way does not gain Warping Points. The bath does not need to be able to detect the mineral salts as they are naturally present in the volcano. If for some reason, the mineral salts are lacking from the volcano (which would be highly unusual) then the bath has no beneficial effects on the bather — apart from cleanliness, of course!\n\nIf the bath is being controlled to a scalding temperature, then any character immersed in the bath takes +12 damage each round due to the elevated temperature.",
+  "text": "This effect causes the water in the bath to move through the air, pass over a volcanically heated region, and then back in a circle into the bath. The water travels in its circuit as a gentle stream suspended in the air at about waist height. The water returns to the bath warmed and dissolved in the water are a number of beneficial mineral salts.\n\nIf the bath is being controlled to a comfortable bathing temperature, then any characters who bathe once a day for most of the year receives a +1 Living Condition modifier to their Aging Rolls for that year, and a +1 Modifier to any Recovery Rolls they make during the year (see ArM5, pages 168 and 179). This modifier cannot be increased by more frequent bathing. These beneficial effects come from the mineral salts that are entrained in the water. The beneficial effects are not magical in origin, and a character who constantly uses the bath in this way does not gain Warping Points. The bath does not need to be able to detect the mineral salts as they are naturally present in the volcano. If for some reason, the mineral salts are lacking from the volcano (which would be highly unusual) then the bath has no beneficial effects on the bather — apart from cleanliness, of course!\n\nIf the bath is being controlled to a scalding temperature, then any character immersed in the bath takes +12 damage each round due to the elevated temperature.\n\nThe effect requires both the presence of water in the bath and a volcanic region to heat the water within Sight range. If either of these elements are missing the effect does not activate.",
   "design": "Base 1, +3 Sight, +1 Diameter, +2 very unnatural effect; +10 unlimited uses per day, +3 linked trigger (*Test the Waters*)",
   "source": {
    "book": "HP",
-   "line": 1262,
+   "line": 943,
    "anchor": "fill-the-bath-effect"
   },
   "id": "fill-the-bath-effect-reaq-item",
@@ -334,17 +405,17 @@
   "technique": "Re",
   "form": "Aq",
   "requisites": [],
-  "level": 54,
+  "level": 44,
   "general": false,
   "range": "Arcane Connection",
   "duration": "Momentary",
   "target": "Individual",
   "ritual": false,
-  "text": "This effect is triggered every sunrise and sunset. It instantaneously fills the well with water from the sea (which must be within seven leagues).\n\nThe effect requires an Arcane Connection to the sea. Any water which remains from the previous triggering of the effect is sufficient for this. However, if the well is ever completely drained of water, it must be primed with a cup of water from the sea. If the well ceases to work (for some reason) for more than a few months, then the well must also be refilled with a cup of water from the sea, as the Arcane Connection to the sea will have expired.\n\nThe volume of water that is transported daily into the well is sufficient to supply the water needs of a covenant of several",
-  "design": null,
+  "text": "This effect is triggered every sunrise and sunset. It instantaneously fills the well with water from the sea (which must be within seven leagues).\n\nThe effect requires an Arcane Connection to the sea. Any water which remains from the previous triggering of the effect is sufficient for this. However, if the well is ever completely drained of water, it must be primed with a cup of water from the sea. If the well ceases to work (for some reason) for more than a few months, then the well must also be refilled with a cup of water from the sea, as the Arcane Connection to the sea will have expired.\n\nThe volume of water that is transported daily into the well is sufficient to supply the water needs of a covenant of several hundred people.\n\nNote that the water is only transported a distance of seven leagues, so for this to be effective the well must be located with seven leagues of the water source. A version of this effect, using the guideline one magnitude higher, would enable the water to be transported any distance.",
+  "design": "Base 20, +4 Arcane; +3 environmental trigger, +1 2 uses per day",
   "source": {
    "book": "HP",
-   "line": 1288,
+   "line": 967,
    "anchor": "fill-the-well"
   },
   "id": "fill-the-well-reaq-item",
@@ -353,7 +424,7 @@
   "itemNotes": "+0, 2 uses per day"
  },
  {
-  "name": "Cleanse the Undine's Tears",
+  "name": "Cleanse the Undine’s Tears",
   "technique": "Pe",
   "form": "Aq",
   "requisites": [],
@@ -367,7 +438,7 @@
   "design": "Base 15, +1 Touch; +3 linked trigger, +1 2 uses per day",
   "source": {
    "book": "HP",
-   "line": 1330,
+   "line": 1004,
    "anchor": "cleanse-the-undines-tears"
   },
   "id": "cleanse-the-undines-tears-peaq-item",
@@ -384,13 +455,13 @@
   "general": false,
   "range": "Touch",
   "duration": "Constant",
-  "target": "Individual This ring",
+  "target": "Individual",
   "ritual": false,
-  "text": ", with an inset ruby, wards the wearer against creatures with an Ignem Form who have a Magic Might of no more than 20.",
+  "text": "This ring, with an inset ruby, wards the wearer against creatures with an Ignem Form who have a Magic Might of no more than 20.",
   "design": "Base Effect at level 20, using Sun Duration instead of Ring and Individual Target instead of Circle; +11 penetration bonus of 22, +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 1405,
+   "line": 1092,
    "anchor": "ring-of-protection-against-magical-creatures-of-fire"
   },
   "id": "ring-of-protection-against-magical-creatures-of-fire-reig-item",
@@ -413,7 +484,7 @@
   "design": "Base Effect at level 20, using Sun Duration, +2 Room; +11 penetration bonus of 22, +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 1476,
+   "line": 1130,
    "anchor": "the-entrapped-flame"
   },
   "id": "the-entrapped-flame-reig-item",
@@ -432,11 +503,11 @@
   "duration": "Concentration",
   "target": "Group",
   "ritual": false,
-  "text": "This large crane is used by mundane craftsmen to raise blocks of stone from hundreds of feet below them to where they need it, solving two problems from which its mundane counterparts suffer. First, it can move the stone from any point that the operator can see to any other such place under the operator's guidance. Second, the crane can effortlessly lift huge weights in a controlled manner where others strain and buckle.\n\nThe Arms of Hercules is a huge wooden structure, requiring 10 pawns of vis to prepare it for enchantment. As a crane, it provides a shape bonus of +5 to effects that lift things. This effect only uses four of the available 10 pawns of space in the device.\n\nUse of the Arms of Hercules crane adds +1 to the Mason's Craft: Mason ability for the purposes of determining how long the structure takes to build (City & Guild, page 68).\n\nThe crane's shape bonus provides +5 to the Lab Total.",
+  "text": "This large crane is used by mundane craftsmen to raise blocks of stone from hundreds of feet below them to where they need it, solving two problems from which its mundane counterparts suffer. First, it can move the stone from any point that the operator can see to any other such place under the operator’s guidance. Second, the crane can effortlessly lift huge weights in a controlled manner where others strain and buckle.\n\nThe Arms of Hercules is a huge wooden structure, requiring 10 pawns of vis to prepare it for enchantment. As a crane, it provides a shape bonus of +5 to effects that lift things. This effect only uses four of the available 10 pawns of space in the device.\n\nThe Group target, combined with an additional magnitude for size, allows the crane to lift 100 cubic paces of stone blocks with each use.\n\nUse of the Arms of Hercules crane adds +1 to the Mason’s Craft: Mason ability for the purposes of determining how long the structure takes to build (City & Guild, page 68).\n\nThe crane’s shape bonus provides +5 to the Lab Total.",
   "design": "Base 4, +3 Sight, +1 Concentration, +1 Group, +1 Size; +10 Unlimited Use",
   "source": {
    "book": "HP",
-   "line": 2050,
+   "line": 1685,
    "anchor": "the-arms-of-hercules"
   },
   "id": "the-arms-of-hercules-rehe-item",
@@ -455,11 +526,11 @@
   "duration": "Momentary",
   "target": "Group",
   "ritual": false,
-  "text": "A character using this enchanted leather glove is able to build a discrete section of falsework, scaffolding, shoring, or centering in a moment by touching the glove to a pile of wood and rope. Wooden dowels are formed to pin the joints together, which are strengthened with the rope to provide a stable structure. The falsework can be of any design.\n\nThe standard Rego craft magic Perception + Finesse stress roll is required against a variable Ease Factor:\n\n| ase Factor | |----------------| | 9              | | 12             | | 15             | |                |\n\nParticularly elaborate falsework may have higher Ease Factors.\n\nHaving one or more characters use the glove for a year adds +1 to the mason's Craft: Mason score for the purposes of determining how much is achieved during that year.\n\nThe Lab Total benefits from a +4 bo-\n\nnus for affecting things by touch, due to its Shape and Material bonus as the effect is enchanted into a glove.",
+  "text": "A character using this enchanted leather glove is able to build a discrete section of falsework, scaffolding, shoring, or centering in a moment by touching the glove to a pile of wood and rope. Wooden dowels are formed to pin the joints together, which are strengthened with the rope to provide a stable structure. The falsework can be of any design.\n\nThe standard Rego craft magic Perception + Finesse stress roll is required against a variable Ease Factor:\n\n| Falsework | Ease Factor |\n| --- | --- |\n| Scaffolding | 9 |\n| Shoring | 12 |\n| Centering | 15 |\n\nParticularly elaborate falsework may have higher Ease Factors.\n\nHaving one or more characters use the glove for a year adds +1 to the mason’s Craft: Mason score for the purposes of determining how much is achieved during that year.\n\nThe Lab Total benefits from a +4 bonus for affecting things by touch, due to its Shape and Material bonus as the effect is enchanted into a glove.",
   "design": "Base 5, +1 Touch, +2 Group, +1 flexibility; +5 24/day",
   "source": {
    "book": "HP",
-   "line": 2071,
+   "line": 1704,
    "anchor": "true-falsework"
   },
   "id": "true-falsework-rehe-item",
@@ -468,7 +539,32 @@
   "itemNotes": "+0, 24/day"
  },
  {
-  "name": "The Laborer's Rest",
+  "name": "The Stonemason’s Art",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [
+   "Pe"
+  ],
+  "level": 15,
+  "general": false,
+  "range": "Touch",
+  "duration": "Momentary",
+  "target": "Individual",
+  "ritual": false,
+  "text": "Given a single block of stone, this chisel enchanted with a Rego craft magic effect chips away at the stone under the control of its wielder to create the correctly formed shape, be it part of a column, a ceiling rose, or a fully-formed statue.\n\nA Per + Finesse stress roll is required to control this spell against an Ease Factor that increases with the complexity of the piece.\n\n| Item | Ease Factor |\n| --- | --- |\n| An even stone block | 9 |\n| A column drum | 12 |\n| A ceiling vault rib | 15 |\n\nUse of this device adds +1 to the mason’s Craft: Mason when determining how long construction takes.\n\nThe Perdo requisite is required as the spell does not simply process or rearrange components but diminishes the stone, by destroying parts of the block, in order to do its work.\n\nThis device is best designed as a lesser enchantment, as even a small iron tool takes 10 pawns of vis to prepare for enchantment. The shape of the chisel provides a bonus of +4 to shape or destroy stone, which means that the magus only needs a Lab Total of 26 to enchant this effect in a single season. Experimentation may help to reach this, in which case the chisel may produce particularly attractive or unsightly work, or may introduce flaws to the stones that may only be noticed when it is too late.",
+  "design": "Base 2, +1 Touch, +1 stone, +1 flexibility; +10 for unlimited use",
+  "source": {
+   "book": "HP",
+   "line": 1730,
+   "anchor": "the-stonemasons-art"
+  },
+  "id": "the-stonemasons-art-rete-item",
+  "penetration": 0,
+  "uses": "unlimited",
+  "itemNotes": "+0, Unlimited use"
+ },
+ {
+  "name": "The Laborer’s Rest",
   "technique": "Re",
   "form": "Te",
   "requisites": [],
@@ -478,11 +574,11 @@
   "duration": "Concentration",
   "target": "Individual",
   "ritual": false,
-  "text": "This small wooden wand allows the wielder to move blocks of stone with the power of his voice. The blocks are hefted into the air by magical forces, following their master's commands.\n\nUse of this device adds +1 to the mason's Craft: Mason when determining how long construction takes.\n\nThe wand provides a +4 bonus to control things at a distance. Experimentation may distort the effect, so that any one stone block can only be targeted once, or the effect might be restricted to certain types of stone.",
+  "text": "This small wooden wand allows the wielder to move blocks of stone with the power of his voice. The blocks are hefted into the air by magical forces, following their master’s commands.\n\nUse of this device adds +1 to the mason’s Craft: Mason when determining how long construction takes.\n\nThe wand provides a +4 bonus to control things at a distance. Experimentation may distort the effect, so that any one stone block can only be targeted once, or the effect might be restricted to certain types of stone.",
   "design": "Base 3, +2 Voice, +1 Concentration, +1 stone; +10 for unlimited use",
   "source": {
    "book": "HP",
-   "line": 2132,
+   "line": 1754,
    "anchor": "the-laborers-rest"
   },
   "id": "the-laborers-rest-rete-item",
@@ -501,11 +597,11 @@
   "duration": "Sun",
   "target": "Group",
   "ritual": false,
-  "text": "This water wheel is seeded with arcane connections to other water wheels located elsewhere in the tower. As another water wheel is made, one of the slats of the wheel is processed to make a fixed arcane connection. This arcane connection is then fitted into the central wheel, allowing the device to act over the remote wheel.\n\nAs the main water wheel turns, each other wheel to which it has an arcane connection turns at the same pace, as though it was pushed by the same force of water.\n\nBy tying the action of the targets to the action of this wheel, the base effect is reduced, from moving the target in an unnatural fashion to a natural fashion, because of the action of the water. In this way, the central water wheel powers grain mills, forges, cranes, and other devices.\n\nEach craftsman that can make use of a wheel gains a +1 Innovation bonus to his Workshop Total. This cannot take the workshop's total innovation bonus beyond +3.\n\nThe shape of the wheel provides a +2 bonus to constant effects.",
+  "text": "This water wheel is seeded with arcane connections to other water wheels located elsewhere in the tower. As another water wheel is made, one of the slats of the wheel is processed to make a fixed arcane connection. This arcane connection is then fitted into the central wheel, allowing the device to act over the remote wheel.\n\nAs the main water wheel turns, each other wheel to which it has an arcane connection turns at the same pace, as though it was pushed by the same force of water.\n\nBy tying the action of the targets to the action of this wheel, the base effect is reduced, from moving the target in an unnatural fashion to a natural fashion, because of the action of the water. In this way, the central water wheel powers grain mills, forges, cranes, and other devices.\n\nEach craftsman that can make use of a wheel gains a +1 Innovation bonus to his Workshop Total. This cannot take the workshop’s total innovation bonus beyond +3.\n\nThe shape of the wheel provides a +2 bonus to constant effects.",
   "design": "Base 3, +4 Arcane Connection, +2 Sun, +2 Group, +1 size; +1 for 2/day, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 2150,
+   "line": 1768,
    "anchor": "the-water-wheel"
   },
   "id": "the-water-wheel-rehe-item",
@@ -524,11 +620,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "One distinctive feature of cathedrals across Mythic Europe is the set of external supports, or buttresses, that help strengthen and support the structure's walls. These work by distributing the weight, load, and lateral forces placed on the structure by its own mass and, in particular, the roof.\n\nButtresses in mundane buildings need to be anchored firmly into the ground to disperse the forces, but this is impossible with the Great Tower. In this case, the buttresses must support themselves through Rego magic.\n\nThese devices take the form of small pillars external to the Great Tower. They are connected through stonework built out from the tower to the buttress, usually in a sweeping arch, but a straight bridge of stone may be used. Each buttress is enchanted such that the pillar floats in mid-air and resists all attempts to move it from its position. This provides a +1 modifier to stress checks against events that threaten to damage the tower. The Great Tower can benefit from a number of these devices equal to the master mason's Craft: Mason score.\n\nThe buttress may be used for other purposes, such as a supporting a watchtower, though building any more than a simple room on top of the pillar detracts from its primary purpose and negates the +1 bonus.\n\nThe additional magnitudes for size in\n\nthe effect design ensure that the buttress resists the weight of the tower bearing down on it.\n\nThe relatively low lab totals required for this device means that it could be enchanted as a lesser device in a single season. The resulting lab text makes subsequent copies easier still.",
+  "text": "One distinctive feature of cathedrals across Mythic Europe is the set of external supports, or buttresses, that help strengthen and support the structure’s walls. These work by distributing the weight, load, and lateral forces placed on the structure by its own mass and, in particular, the roof.\n\nButtresses in mundane buildings need to be anchored firmly into the ground to disperse the forces, but this is impossible with the Great Tower. In this case, the buttresses must support themselves through Rego magic.\n\nThese devices take the form of small pillars external to the Great Tower. They are connected through stonework built out from the tower to the buttress, usually in a sweeping arch, but a straight bridge of stone may be used. Each buttress is enchanted such that the pillar floats in mid-air and resists all attempts to move it from its position. This provides a +1 modifier to stress checks against events that threaten to damage the tower. The Great Tower can benefit from a number of these devices equal to the master mason’s Craft: Mason score.\n\nThe buttress may be used for other purposes, such as a supporting a watchtower, though building any more than a simple room on top of the pillar detracts from its primary purpose and negates the +1 bonus.\n\nThe additional magnitudes for size in the effect design ensure that the buttress resists the weight of the tower bearing down on it.\n\nThe relatively low lab totals required for this device means that it could be enchanted as a lesser device in a single season. The resulting lab text makes subsequent copies easier still.",
   "design": "Base 3, +2 Sun, +1 stone, 3 size; +1 for 2/day, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 2172,
+   "line": 1786,
    "anchor": "the-flying-buttress"
   },
   "id": "the-flying-buttress-rete-item",
@@ -537,7 +633,7 @@
   "itemNotes": "+0, Constant Effect"
  },
  {
-  "name": "The Spider's Gift",
+  "name": "The Spider’s Gift",
   "technique": "Re",
   "form": "Te",
   "requisites": [],
@@ -551,10 +647,35 @@
   "design": "Base 3, +1 Touch, +2 Sun, +2 Metal, +2 Size; +1 for 2/day, +3 triggered at sunrise and sunset",
   "source": {
    "book": "HP",
-   "line": 2233,
+   "line": 1840,
    "anchor": "the-spiders-gift"
   },
   "id": "the-spiders-gift-rete-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, Constant Effect"
+ },
+ {
+  "name": "Convening the Council",
+  "technique": "Cr",
+  "form": "Im",
+  "requisites": [
+   "In"
+  ],
+  "level": 59,
+  "general": false,
+  "range": "Arcane Connection",
+  "duration": "Sun",
+  "target": "Circle",
+  "ritual": false,
+  "text": "Projects the image, affecting of all the senses, of everything in this circle into another circle to which it has an arcane connection. The Intellego requisite also shows the contents of the remote circle, linked through the arcane connection present in the device, including all magically created species. It operates over all five senses, so that the magus in his own circle can see, hear, touch, smell, and taste everything that is projected into the distant council chamber.\n\nNote, the species given off by the magus in the circle are not encumbered or inhibited by his Parma Magica and can therefore be sent from the local circle to the remote target. This is essentially an application of the common Haunt of the Living Ghost spell (ArM5, page 144) in device form.\n\nThe Lab Total benefits from a +2 bonus to constant effects granted by the device’s shape, a ring, and a further +4 if the Traveling Laboratory is used to enchant the device in situ.",
+  "design": "Base 5, +4 Arcane Connection, +2 Sun, +2 for moving images, +1 intricacy, +1 Intellego requisite; +1 for 2/day, +3 triggered at sunrise and sunset",
+  "source": {
+   "book": "HP",
+   "line": 1886,
+   "anchor": "convening-the-council"
+  },
+  "id": "convening-the-council-crim-item",
   "penetration": 0,
   "uses": "constant",
   "itemNotes": "+0, Constant Effect"
@@ -570,11 +691,11 @@
   "duration": "Sun",
   "target": "Vision",
   "ritual": false,
-  "text": "This effect gives an enchanted device the power of sight. The grotesque is carved such that it has discernible eyes and this effect gives it a field of vision",
+  "text": "This effect gives an enchanted device the power of sight. The grotesque is carved such that it has discernible eyes and this effect gives it a field of vision similar to that possessed by a human. As this is magical vision, the effect does need to penetrate the Magic Resistance of anything within the item’s field of vision (ArM5, page 114). Entities that resist this effect are not “seen” and do not trigger any effects linked to this. Giving the effect a higher Penetration increases the effect’s overall level.",
   "design": "Base 1, +2 Sun, +4 Vision; +1 for 2/day, +3 triggered at sunrise and sunset, +21 Penetration of 42",
   "source": {
    "book": "HP",
-   "line": 2312,
+   "line": 1910,
    "anchor": "the-stone-watchman"
   },
   "id": "the-stone-watchman-inim-item",
@@ -583,7 +704,7 @@
   "itemNotes": "+42, Constant Effect"
  },
  {
-  "name": "Projecting the Watchman's Gaze",
+  "name": "Projecting the Watchman’s Gaze",
   "technique": "Cr",
   "form": "Im",
   "requisites": [],
@@ -593,14 +714,39 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "The images detected through the power of sight granted by the previous effect are projected onto the mirror associated with the bronze shard held by the grotesque. The mirror shows exactly what the grotesque \"sees\" at that moment and the image fills the mirror's surface. There is no restriction on the size of the mirror, and the larger it is, the more detail it displays.\n\nGiven the weakness of the stone watchman's vision, potential threats with strong magical resistance will not be relayed to the mirror. But the nature of the magical vision means that a silhouette within the image will be apparent, allowing an astute observer to make assumptions about what happens to be there.\n\nThe lab total receives a bonus of +1 thanks to the prior Imaginem effect.",
+  "text": "The images detected through the power of sight granted by the previous effect are projected onto the mirror associated with the bronze shard held by the grotesque. The mirror shows exactly what the grotesque “sees” at that moment and the image fills the mirror’s surface. There is no restriction on the size of the mirror, and the larger it is, the more detail it displays.\n\nGiven the weakness of the stone watchman’s vision, potential threats with strong magical resistance will not be relayed to the mirror. But the nature of the magical vision means that a silhouette within the image will be apparent, allowing an astute observer to make assumptions about what happens to be there.\n\nThe lab total receives a bonus of +1 thanks to the prior Imaginem effect.",
   "design": "Base 1, +4 Arcane Connection, +2 Sun; +1 for 2/day, +3 triggered by sunrise/set",
   "source": {
    "book": "HP",
-   "line": 2325,
+   "line": 1920,
    "anchor": "projecting-the-watchmans-gaze"
   },
   "id": "projecting-the-watchmans-gaze-crim-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, Constant Effect"
+ },
+ {
+  "name": "The Restless Watchman",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [
+   "Mu"
+  ],
+  "level": 24,
+  "general": false,
+  "range": "Personal",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "Grotesques are designed to scare away evil spirits and often take the form of winged demonic beasts themselves. This enchantment increases the fearsome effect by giving the stone figure constant motion. The grotesque shifts on its perch, flexes its wings, peers around with its beady eyes, and snatches at imaginary insects with its stone claws.\n\nThis has two side effects. The first is that it increases the grotesque’s field of vision, increasing the area of sky it observes. The second is that regardless of whether any evil spirits are fooled by the statue, mundane birds will rarely roost anywhere near the constantly moving stone beast.\n\nThis effect could easily be enchanted into a separate stone grotesque as a Lesser Enchanted Item.",
+  "design": "Base 3, +2 Sun, +1 Muto requisite, +1 affect stone, +1 precise control; +1 for 2/day, +3 triggered by sunrise/set",
+  "source": {
+   "book": "HP",
+   "line": 1934,
+   "anchor": "the-restless-watchman"
+  },
+  "id": "the-restless-watchman-rete-item",
   "penetration": 0,
   "uses": "constant",
   "itemNotes": "+0, Constant Effect"
@@ -620,7 +766,7 @@
   "design": "Base 5, +1 Touch, +2 Sun, +2 Group; +1 for 2/day, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 2362,
+   "line": 1950,
    "anchor": "capture-the-wind"
   },
   "id": "capture-the-wind-reau-item",
@@ -637,13 +783,13 @@
   "general": false,
   "range": "Arcane Connection",
   "duration": "Sun",
-  "target": "Part Deep underground",
+  "target": "Part",
   "ritual": false,
-  "text": ", amid the foundations of the tower, several great cisterns collect and store the water that runs in from a nearby stream. This device, in the form of constantly turning waterwheel, magically draws water through a channel up into the tower and over the wheel, where it then cascades back down again.\n\nWater can be collected and channeled from both the ascending stream and the waterfall. The constant flow of water helps to freshen the environment, and chambers can be built within the tower to collect the water, allowing small ponds and streams to form.\n\nThe wheel's rotation can be stopped, which suspends the effect. This is done so that the wheel can be raised to a new higher position within the tower. This is likely to become an event of some significance, representing as it does not just the passing of time, but also the growth of the tower.\n\nThe wheel provides +2 bonus for a constant effect.",
+  "text": "Deep underground, amid the foundations of the tower, several great cisterns collect and store the water that runs in from a nearby stream. This device, in the form of constantly turning waterwheel, magically draws water through a channel up into the tower and over the wheel, where it then cascades back down again.\n\nWater can be collected and channeled from both the ascending stream and the waterfall. The constant flow of water helps to freshen the environment, and chambers can be built within the tower to collect the water, allowing small ponds and streams to form.\n\nThe wheel’s rotation can be stopped, which suspends the effect. This is done so that the wheel can be raised to a new higher position within the tower. This is likely to become an event of some significance, representing as it does not just the passing of time, but also the growth of the tower.\n\nThe wheel provides +2 bonus for a constant effect.",
   "design": "Base 10, +4 Arcane Connection, +2 Sun, +1 Part, +2 size; +1 for 2/day, +3 triggered by sunrise/set",
   "source": {
    "book": "HP",
-   "line": 2380,
+   "line": 1966,
    "anchor": "the-waterfall"
   },
   "id": "the-waterfall-reaq-item",
@@ -656,17 +802,17 @@
   "technique": "Re",
   "form": "Aq",
   "requisites": [],
-  "level": 65,
+  "level": 50,
   "general": false,
   "range": "Arcane Connection",
   "duration": "Momentary",
   "target": "Individual",
   "ritual": false,
-  "text": "This enchanted bucket draws water from a remote well, by instantly transporting it into the bucket as it is tipped up. Given the height of the tower, it may not be feasible for covenfolk to fetch and carry water between levels, so these buckets replace the need for wells. Such a device may also be useful aboard a ship, where it can reduce the need to carry fresh water, or to those crossing the desert.\n\nThis device is first prepared by having an arcane connection to a spring, well, or other body of water fixed into a bucket. A season is spent preparing the bucket in water collected from the well and a pawn of Vim vis. The magus must attend to the activity throughout the season, at the end of which the bucket has become a permanent connection to the well.\n\nIt is then opened for enchantment with 10 pawns of vis (base 5 for iron, x2 for medium size) during a second season, and the effect can be enchanted from the third season. Although primarily of wood, the bucket is strengthened with iron straps. It is opened as a compound device, with the iron straps the most expensive part to open.\n\nA base effect level of 40 has been used for this device. The starting point for this is the base effect for \"Control liquid in an extremely violent way,\" as per ArM5, page 124, which is then modified based on the difficulty of transporting a Corpus target over a range of distances. Applying one magnitude for transport over five paces, two magnitudes for transport over 50 paces, etc. By following the progression under the Rego Corpus guidelines, we arrive at a base effect level of 40 allowing the effect to transport water to a location defined by an arcane connection.\n\nAs a bucket, the device provides a +5 bonus to transporting water.\n\nOf course, there are alternatives to enchanted buckets or unnatural waterfalls.\n\nDevices could be enchanted that transported water less frequently but in greater quantity, in order to refresh cisterns built at intervals as the tower rises.",
-  "design": "Base 40, +4 Arcane Connection; +5 for 24/day",
+  "text": "This enchanted bucket draws water from a remote well, by instantly transporting it into the bucket as it is tipped up. Given the height of the tower, it may not be feasible for covenfolk to fetch and carry water between levels, so these buckets replace the need for wells. Such a device may also be useful aboard a ship, where it can reduce the need to carry fresh water, or to those crossing the desert.\n\nThis device is first prepared by having an arcane connection to a spring, well, or other body of water fixed into a bucket. A season is spent preparing the bucket in water collected from the well and a pawn of Vim vis. The magus must attend to the activity throughout the season, at the end of which the bucket has become a permanent connection to the well.\n\nIt is then opened for enchantment with 10 pawns of vis (base 5 for iron, x2 for medium size) during a second season, and the effect can be enchanted from the third season. Although primarily of wood, the bucket is strengthened with iron straps. It is opened as a compound device, with the iron straps the most expensive part to open.\n\nAs a bucket, the device provides a +5 bonus to transporting water.\n\nOf course, there are alternatives to enchanted buckets or unnatural waterfalls. Devices could be enchanted that transported water less frequently but in greater quantity, in order to refresh cisterns built at intervals as the tower rises.",
+  "design": "Base 25, +4 Arcane Connection; +5 for 24/day",
   "source": {
    "book": "HP",
-   "line": 2398,
+   "line": 1982,
    "anchor": "the-endless-well"
   },
   "id": "the-endless-well-reaq-item",
@@ -685,11 +831,11 @@
   "duration": "Sun",
   "target": "Room",
   "ritual": false,
-  "text": "A number of large halls within the tower serve as gardens, fields, and orchards. This effect, enchanted using the Traveling Laboratory described earlier, ensures that the plants grow well throughout the year. The plants still need soil, sunlight, and rain, and this spell has little effect if the plants do not have at least these essentials. But gargoyles can collect rain as it falls and route it to these indoor gardens, and simple magic or large open arcades can provide all the sunlight that the growing plants need.\n\nAs the gardens and orchards are sub-\n\nject to constant magical effects, warping will accumulate at the rate of one Warping Point per year. This means that trees and other plants that remain within the orchards will eventually show signs of warping. This may manifest either as flawed crops, reduced yield, or even a slowlygrowing sentience.\n\nThe Traveling Laboratory provides +4 to the lab total.",
+  "text": "A number of large halls within the tower serve as gardens, fields, and orchards. This effect, enchanted using the Traveling Laboratory described earlier, ensures that the plants grow well throughout the year. The plants still need soil, sunlight, and rain, and this spell has little effect if the plants do not have at least these essentials. But gargoyles can collect rain as it falls and route it to these indoor gardens, and simple magic or large open arcades can provide all the sunlight that the growing plants need.\n\nAs the gardens and orchards are subject to constant magical effects, warping will accumulate at the rate of one Warping Point per year. This means that trees and other plants that remain within the orchards will eventually show signs of warping. This may manifest either as flawed crops, reduced yield, or even a slowly-growing sentience.\n\nThe Traveling Laboratory provides +4 to the lab total.",
   "design": "Base 1, +1 Touch, +2 Sun, +2 Room, +1 size; +1 for 2/day, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 2426,
+   "line": 2002,
    "anchor": "gardens-and-orchards"
   },
   "id": "gardens-and-orchards-crhe-item",
@@ -706,13 +852,13 @@
   "general": false,
   "range": "Arcane Connection",
   "duration": "Sun",
-  "target": "Special This effect uses all senses at Arcane Connection range",
+  "target": "Special",
   "ritual": false,
-  "text": ", whether that connection is to a person or a place. All of these senses are gathered from the target area of approximately the same size as the room in which the device is housed. This is accommodated by the Special target, based on Room +1 magnitude. The effect has no particular point of view or field of vision, and species for all senses are gathered equally.\n\nIf the target is mobile, then the effect follows the target and the scope of the collected images change as the target moves.\n\nThe information gathered is directly accessible to the device's user, but the additional effect described next ensures that all present in the room can also see the remote images.\n\nExperimenting on this effect could reduce the senses that are collected, could distort the images, or the effect could become tied to a single Arcane Connection, unable to change.\n\nAs this effect is enchanted into a ring, the Lab Total has a bonus of +2, and a further +4 if the Traveling Laboratory is used.",
+  "text": "This effect uses all senses at Arcane Connection range, whether that connection is to a person or a place. All of these senses are gathered from the target area of approximately the same size as the room in which the device is housed. This is accommodated by the Special target, based on Room +1 magnitude. The effect has no particular point of view or field of vision, and species for all senses are gathered equally.\n\nIf the target is mobile, then the effect follows the target and the scope of the collected images change as the target moves.\n\nThe information gathered is directly accessible to the device’s user, but the additional effect described next ensures that all present in the room can also see the remote images.\n\nExperimenting on this effect could reduce the senses that are collected, could distort the images, or the effect could become tied to a single Arcane Connection, unable to change.\n\nAs this effect is enchanted into a ring, the Lab Total has a bonus of +2, and a further +4 if the Traveling Laboratory is used.",
   "design": "Base 5, +4 Arcane Connection, +2 Sun, +3 Special based on Room + 1 magnitude; +1 for 2/day, +3 triggered at sunrise and sunset",
   "source": {
    "book": "HP",
-   "line": 2462,
+   "line": 2034,
    "anchor": "summoning-the-distant-senses"
   },
   "id": "summoning-the-distant-senses-inim-item",
@@ -732,10 +878,10 @@
   "target": "Room",
   "ritual": false,
   "text": "This effect displays the images gained by the initial Intellego Imaginem effect. The illusion fills the room connected to the window. All of the information gathered by the first effect is reproduced and the user is able to move through the image by walking and turning within the room.\n\nThe purpose of this effect is to display the Imaginem information gathered by the first effect. Without this second effect, the images (and sounds, tastes, smells, sensations) are accessible only to the device user, identified as the person who triggered the device by inserting the arcane connection into the receptacle. A variant device could be created that omitted this effect, which would limit the experience to a single user at a time.\n\nAs with the first effect, experimentation may result in distorted or deceitful images.\n\nThe Lab Total benefits from the +2 ring bonus and +1 for the prior Imaginem effect, and a further +4 if the Traveling Laboratory is used.",
-  "design": "Base 5, +1 Touch, +2 Sun, +2 Room, +2 moving and complex images; +1 for 2/ day, +3 triggered at sunrise and sunset",
+  "design": "Base 5, +1 Touch, +2 Sun, +2 Room, +2 moving and complex images; +1 for 2/day, +3 triggered at sunrise and sunset",
   "source": {
    "book": "HP",
-   "line": 2483,
+   "line": 2054,
    "anchor": "sight-of-distant-places"
   },
   "id": "sight-of-distant-places-crim-item",
@@ -744,7 +890,7 @@
   "itemNotes": "+0, Constant Effect"
  },
  {
-  "name": "The Wizard's Touch",
+  "name": "The Wizard’s Touch",
   "technique": "Re",
   "form": "Te",
   "requisites": [
@@ -756,17 +902,42 @@
   "duration": "Concentration",
   "target": "Special",
   "ritual": false,
-  "text": "Through this effect, the magus may manipulate any chosen item within the room or space to which the device has an active arcane connection. In fact, it is more proper to say that the magus may manipulate the room and its contents, but the illusory view of the place allows the magus a degree of control fine enough to identify and affect individual items.\n\nThe prior effects enchanted into this device give him the sensory information he needs to be able to lift, turn, inspect, and move objects of size, up to the standard individual of its type. Typically this effect is activated by the magus physically interacting with the illusion of the objects cast around him in his own room. But there are limits to what the magus can do. As the spell has no Perdo requisite, the magus cannot destroy items (for instance, by crushing the illusions in his hands), but he could lift the item into the air and drop it, or throw it against a wall, perhaps causing it to smash.\n\nThe effect design has a base Rego Terram level of 3 to control or move dirt in a very unnatural fashion, which allows for fine manual control by the device's user. It also has two additional magnitudes allowing stone, glass, metal, and gemstones to be affected. The requisites listed are free, and simply allow the device to affect nonliving objects made of materials covered by those requisites.\n\nNote an Arcane Connection range, not Sight, is required in order to allow the user to manipulate these remote objects. As discussed in Magi of Hermes, the species displayed by the device are not sufficient to form a sight-based link between the magus and his target (page 101).\n\nThe high level of this device effect may have magi seeking for assistance, preparing to invest more time, experimenting, or reducing the scope of the effect.\n\nExperimentation may introduce a Perdo distortion to the effect such that anything \"touched\" by the magus is somehow diminished. Or the effect may be limited in what it can pick up, perhaps by form, size, or weight. But given the investment in both time and vis, the risks inherent in experimentation may not be attractive. The most productive option is for the covenant to view this device as an investment and cooperate on the project, producing a Laboratory Text that can be used to create similar devices in the future.\n\nOther than this, the standard +4 rooms bonus is gained if the Traveling Laboratory is used, and a further +1 for any experimentation during the creation of this effect.",
+  "text": "Through this effect, the magus may manipulate any chosen item within the room or space to which the device has an active arcane connection. In fact, it is more proper to say that the magus may manipulate the room and its contents, but the illusory view of the place allows the magus a degree of control fine enough to identify and affect individual items.\n\nThe prior effects enchanted into this device give him the sensory information he needs to be able to lift, turn, inspect, and move objects of size, up to the standard individual of its type. Typically this effect is activated by the magus physically interacting with the illusion of the objects cast around him in his own room. But there are limits to what the magus can do. As the spell has no Perdo requisite, the magus cannot destroy items (for instance, by crushing the illusions in his hands), but he could lift the item into the air and drop it, or throw it against a wall, perhaps causing it to smash.\n\nThe effect design has a base Rego Terram level of 3 to control or move dirt in a very unnatural fashion, which allows for fine manual control by the device’s user. It also has two additional magnitudes allowing stone, glass, metal, and gemstones to be affected. The requisites listed are free, and simply allow the device to affect nonliving objects made of materials covered by those requisites.\n\nNote an Arcane Connection range, not Sight, is required in order to allow the user to manipulate these remote objects. As discussed in Magi of Hermes, the species displayed by the device are not sufficient to form a sight-based link between the magus and his target (page 101).\n\nThe high level of this device effect may have magi seeking for assistance, preparing to invest more time, experimenting, or reducing the scope of the effect.\n\nExperimentation may introduce a Perdo distortion to the effect such that anything “touched” by the magus is somehow diminished. Or the effect may be limited in what it can pick up, perhaps by form, size, or weight. But given the investment in both time and vis, the risks inherent in experimentation may not be attractive. The most productive option is for the covenant to view this device as an investment and cooperate on the project, producing a Laboratory Text that can be used to create similar devices in the future.\n\nOther than this, the standard +4 rooms bonus is gained if the Traveling Laboratory is used, and a further +1 for any experimentation during the creation of this effect.",
   "design": "Base 3, +4 Arcane Connection, +1 Concentration, +3 Special based on Room +1, +2 affect metal and gemstones; +10 Unlimited Use",
   "source": {
    "book": "HP",
-   "line": 2501,
+   "line": 2070,
    "anchor": "the-wizards-touch"
   },
   "id": "the-wizards-touch-rete-item",
   "penetration": 0,
   "uses": "unlimited",
   "itemNotes": "+0, Unlimited Use"
+ },
+ {
+  "name": "Sight of the Distant Slipway",
+  "technique": "In",
+  "form": "Im",
+  "requisites": [
+   "Cr"
+  ],
+  "level": 35,
+  "general": false,
+  "range": "Arcane Connection",
+  "duration": "Concentration",
+  "target": "Special",
+  "ritual": false,
+  "text": "This effect collects sight and sound from the target arcane connection and projects these senses around the lower end of the slipway, making it appear that the slipway extends out into the remote location. Once activated, the illusion is maintained by the device until canceled.\n\nThis effect is similar to the commonly known spell Summoning the Distant Image, with an additional Creo requisite to create the appropriate species around the device.\n\nThis device effect is required to survey the site before launching the ship to the remote location. This helps to avoid the catastrophic accidents that could occur when blindly pushing several tons of ship into the remote sea.",
+  "design": "Base 2, +4 Arcane Connection, +1 Concentration, +2 Special based on Room, +1 Creo requisite; +5 device maintains concentration",
+  "source": {
+   "book": "HP",
+   "line": 2457,
+   "anchor": "sight-of-the-distant-slipway"
+  },
+  "id": "sight-of-the-distant-slipway-inim-item",
+  "penetration": 0,
+  "uses": "1",
+  "itemNotes": "+0, 1/day"
  },
  {
   "name": "Launch the Distant Vessel",
@@ -781,11 +952,11 @@
   "duration": "Momentary",
   "target": "Structure",
   "ritual": false,
-  "text": "This effect transports the target vessel, launched down the slipway, to the distant waterway associated with the arcane connection bound into this device.\n\nAlthough the intent of the effect is to transport the ship, the effect design is based on the Rego Corpus guideline to transport an individual to a location identified through an Arcane Connection. This base effect is used by analogy to affect the target ship, represented by the Structure target.\n\nAny crew present on board are simply taken with the ship when it is transported thanks to the free requisites. This particular device effect does not have Penetration built in, though others might to allow\n\nships containing bound spirits or other resident supernatural entities to be transported. Vessels larger than a medium-sized cog will also need a different launch with an additional +1 magnitude to account for the ship's size.",
+  "text": "This effect transports the target vessel, launched down the slipway, to the distant waterway associated with the arcane connection bound into this device.\n\nAlthough the intent of the effect is to transport the ship, the effect design is based on the Rego Corpus guideline to transport an individual to a location identified through an Arcane Connection. This base effect is used by analogy to affect the target ship, represented by the Structure target.\n\nAny crew present on board are simply taken with the ship when it is transported thanks to the free requisites. This particular device effect does not have Penetration built in, though others might to allow ships containing bound spirits or other resident supernatural entities to be transported. Vessels larger than a medium-sized cog will also need a different launch with an additional +1 magnitude to account for the ship’s size.",
   "design": "Base 35, +1 Touch, +3 Structure",
   "source": {
    "book": "HP",
-   "line": 2938,
+   "line": 2471,
    "anchor": "launch-the-distant-vessel"
   },
   "id": "launch-the-distant-vessel-rehe-item",
@@ -804,11 +975,11 @@
   "duration": "Sun",
   "target": "Structure",
   "ritual": false,
-  "text": "This wooden sewer grate about the size of a large shield is installed in the deepest point of the boat shed. It draws all uncontained water currently within the structure to it, where it falls through the grate and into the sewer to be flushed away. The effect is subtle, so as not to unnerve the craftsmen and laborers who work in the boathouse. The effect is also restricted to the inside of the boat shed so that rainfall is not unnaturally affected.\n\nThe device needs three pawns of Rego or Aquam vis and a laboratory total of 48 to complete in a single season as a lesser enchanted device, otherwise the device needs to be opened for enchantment with eight pawns of vis.\n\nThe laboratory at this point provides a +1 bonus to Aquam effects, which benefits this device. Experimentation may provide a bonus given that the side effects are likely to be inconvenient rather than dangerous.\n\nAt the end of this period, the cost of upkeep has been reduced to 15 pounds\n\nper year and the laboratory has the following statistics.\n\nVirtues and Flaws: Greater Expansion, Spacious; Exposed, Missing Sanctum Marker\n\nEnchantments: The Soak (+1 Health)\n\nCharacteristics: Size +7 (+4), Refinement 0, General Quality +2, Upkeep +5, Safety –3, Warping 0, Health –3, Aesthetics –2\n\nSpecializations: +2 Ships, +1 Aquam, +1 Auram",
+  "text": "This wooden sewer grate about the size of a large shield is installed in the deepest point of the boat shed. It draws all uncontained water currently within the structure to it, where it falls through the grate and into the sewer to be flushed away. The effect is subtle, so as not to unnerve the craftsmen and laborers who work in the boathouse. The effect is also restricted to the inside of the boat shed so that rainfall is not unnaturally affected.\n\nThe device needs three pawns of Rego or Aquam vis and a laboratory total of 48 to complete in a single season as a lesser enchanted device, otherwise the device needs to be opened for enchantment with eight pawns of vis.\n\nThe laboratory at this point provides a +1 bonus to Aquam effects, which benefits this device. Experimentation may provide a bonus given that the side effects are likely to be inconvenient rather than dangerous.\n\nAt the end of this period, the cost of upkeep has been reduced to 15 pounds per year and the laboratory has the following statistics.\n\nVirtues and Flaws: Greater Expansion, Spacious; Exposed, Missing Sanctum Marker\n\nEnchantments: The Soak (+1 Health)\n\nCharacteristics: Size +7 (+4), Refinement 0, General Quality +2, Upkeep +5, Safety –3, Warping 0, Health –3, Aesthetics –2\n\nSpecializations: +2 Ships, +1 Aquam, +1 Auram",
   "design": "Base 1, +1 Touch, +2 Sun, +3 Structure, +1 subtle effect; +1 for two uses, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 3047,
+   "line": 2566,
    "anchor": "the-soak"
   },
   "id": "the-soak-reaq-item",
@@ -827,11 +998,11 @@
   "duration": "Concentration",
   "target": "Individual",
   "ritual": false,
-  "text": "This is a horse-driven wheel connected to a number of chains, ropes, and pulleys that feed into the main boat shed. These ropes can be connected to the vari-\n\nous cranes and winches that are used to lift and move the great wooden beams from which the ship is formed.\n\nThe wheel provides motive power, which allows fewer craftsmen than normal to construct the ship, which in turn adds +1 to the ships specialization, and adds +1 to a Rego specialization. The horse is entirely incidental; it is there simply because mundane visitors would expect it.\n\nThree pawns of Rego or Herbam vis and a laboratory total of 60 is required in order to create this as a lesser enchanted device. The alternative is to open the device for enchantment with eight pawns of vis.\n\nAcquiring the equipment, tools, and installing the wheel device increases the laboratory's Upkeep and costs 24 pounds of silver initially and 45 pounds of silver each year.\n\nThe Wheel is installed as a Minor Feature, which gives the laboratory the following statistics:\n\nVirtues and Flaws: Greater Expansion, Greater Feature: boat shed, Lesser Feature: Wheel, Spacious, Superior Equipment, Superior Tools; Greater Focus: ships, Exposed, Missing Sanctum Marker\n\nEnchantments: The Soak (+1 Health), The Wheel (+1 ships, +1 Rego)\n\nCharacteristics: Size +6 (+5), Refinement 0, General Quality +1, Upkeep +9, Safety –2, Warping 0, Health –3, Aesthetics 0\n\nSpecializations: +10 Ships, +1 Enchanting Items, +1 Rego, +1 Aquam, +1 Auram",
+  "text": "This is a horse-driven wheel connected to a number of chains, ropes, and pulleys that feed into the main boat shed. These ropes can be connected to the various cranes and winches that are used to lift and move the great wooden beams from which the ship is formed.\n\nThe wheel provides motive power, which allows fewer craftsmen than normal to construct the ship, which in turn adds +1 to the ships specialization, and adds +1 to a Rego specialization. The horse is entirely incidental; it is there simply because mundane visitors would expect it.\n\nThree pawns of Rego or Herbam vis and a laboratory total of 60 is required in order to create this as a lesser enchanted device. The alternative is to open the device for enchantment with eight pawns of vis.\n\nAcquiring the equipment, tools, and installing the wheel device increases the laboratory’s Upkeep and costs 24 pounds of silver initially and 45 pounds of silver each year.\n\nThe Wheel is installed as a Minor Feature, which gives the laboratory the following statistics:\n\nVirtues and Flaws: Greater Expansion, Greater Feature: boat shed, Lesser Feature: Wheel, Spacious, Superior Equipment, Superior Tools; Greater Focus: ships, Exposed, Missing Sanctum Marker\n\nEnchantments: The Soak (+1 Health), The Wheel (+1 ships, +1 Rego)\n\nCharacteristics: Size +6 (+5), Refinement 0, General Quality +1, Upkeep +9, Safety –2, Warping 0, Health –3, Aesthetics 0\n\nSpecializations: +10 Ships, +1 Enchanting Items, +1 Rego, +1 Aquam, +1 Auram",
   "design": "Base 3, +1 Touch, +1 Concentration, +2 size; +5 device maintains concentration, +10 unlimited use",
   "source": {
    "book": "HP",
-   "line": 3109,
+   "line": 2622,
    "anchor": "the-wheel"
   },
   "id": "the-wheel-rehe-item",
@@ -850,17 +1021,66 @@
   "duration": "Momentary",
   "target": "Group",
   "ritual": false,
-  "text": "One advantage of Rego craft magic is that Finesse can be taught to anyone, Gifted or not. This means an enchanted device in the hands of a Finesse-trained mundane craftsman can be put to work as effectively as a magus casting the spell himself.\n\nWhen touched to pile of wood, this wand cleans, cuts, and shapes the wood into the strakes that make up a ship's hull. The wand is limited to creating strakes and cannot be used to work other parts of the ship.\n\nUse of this wand throughout the building of a ship adds +1 to the shipwrights Profession: Shipwright ability for the purposes of deciding how long the ship takes to complete (City & Guild, page 68).\n\nAppropriate laboratory bonuses apply to this effect (+1 Rego) as does a further +4 bonus as the wand is made of wood.",
+  "text": "One advantage of Rego craft magic is that Finesse can be taught to anyone, Gifted or not. This means an enchanted device in the hands of a Finesse-trained mundane craftsman can be put to work as effectively as a magus casting the spell himself.\n\nWhen touched to pile of wood, this wand cleans, cuts, and shapes the wood into the strakes that make up a ship’s hull. The wand is limited to creating strakes and cannot be used to work other parts of the ship.\n\nUse of this wand throughout the building of a ship adds +1 to the shipwrights Profession: Shipwright ability for the purposes of deciding how long the ship takes to complete (City & Guild, page 68).\n\nAppropriate laboratory bonuses apply to this effect (+1 Rego) as does a further +4 bonus as the wand is made of wood.",
   "design": "Base 5, +1 Touch, +2 Group; +10 unlimited use",
   "source": {
    "book": "HP",
-   "line": 3233,
+   "line": 2749,
    "anchor": "the-conscientious-carpenter"
   },
   "id": "the-conscientious-carpenter-rehe-item",
   "penetration": 0,
   "uses": "unlimited",
   "itemNotes": "+0, Unlimited Use"
+ },
+ {
+  "name": "Shape of the Coastal Buss",
+  "technique": "Re",
+  "form": "He",
+  "requisites": [
+   "Mu",
+   "Te"
+  ],
+  "level": 43,
+  "general": false,
+  "range": "Personal",
+  "duration": "Concentration",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This effect allows The Hermes to change shape; its keel, deck, and strakes can transform from one design to another, in this case to a coastal buss able to navigate shallower waters and travel further upriver than a cog.\n\nTriggered by the captain or a crewman holding firm to the ship and calling for it to change, the ship reshapes itself, strakes pulling themselves free, decks folding themselves, planks stretching and contracting, and nails loosening themselves before finding new homes. At the end of the transformation the original cog is replaced by a smaller coastal buss. The effect is total, such that, where required, the construction of the ship can also change, from clinker-built to carvel, or vice versa. The ship’s rigging is also affected by these shape-changing spells, changing the sails in size and shape where needed.\n\nWhile the Rego technique governs the movement and control of the component parts, the Muto requisite changes them in size and shape, so that no new material is required and none is lost through the transformation. The Hermes itself maintains concentration on the transformation and the effect is ended either by command or by the vessel taking on another shape.\n\nThe transformation is likely to be unnerving to first-timers, but the center of the top deck near to the mast is quite safe. Those at the side of the ship must take their chances.\n\nA distinct effect using the same level is required for each shape that the vessel can take, which means the same laboratory text cannot be used for subsequent shapes.\n\nThe laboratory bonus of +10 for ships applies to this effect, as does the +4 bonus to affect dead wood. While the aim of the effect may be to make the ship easier to sail in certain circumstances, the +5 bonus to sailing does not apply. Magi who experiment in creating this effect may see the effect warped, for instance through the new shape being obviously mystical (perhaps expressing magical symbols in its hull) or they may find the ship’s new shape capable of traveling further and faster than anticipated.",
+  "design": "Base 5, +1 Concentration, +3 size, +1 Muto requisite, +1 intricacy; +3 for 6 uses per day, +5 device maintains concentration",
+  "source": {
+   "book": "HP",
+   "line": 2938,
+   "anchor": "shape-of-the-coastal-buss"
+  },
+  "id": "shape-of-the-coastal-buss-rehe-item",
+  "penetration": 0,
+  "uses": "6",
+  "itemNotes": "+0, 6/day"
+ },
+ {
+  "name": "Magical Ballast",
+  "technique": "Re",
+  "form": "He",
+  "requisites": [],
+  "level": 24,
+  "general": false,
+  "range": "Personal",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "Weight and its distribution through the ship is vital to its handling. This effect ensures that The Hermes always comes to rest true and level in the water. The Hermes is treated as carrying a constant load, evenly distributed across the ship, no matter what cargo it is loaded with. This ensures that the crew can handle the ship as easily fully loaded as they can with an empty hold.\n\nExceeding the ship’s tonnage causes the effect to fail and the ship’s handling to degrade, though it reasserts itself when the load has been reduced.\n\nThe +10 bonus for ships and the +1 bonus for Rego from the laboratory both apply. The +5 shape bonus to sailing also applies as does +1 for prior Rego and/or Herbam effects. If the magus experiments while instilling this effect, it could fail when the ship sails under certain conditions, when cargo is loaded into certain areas, or could increase or decrease the ship’s base tonnage.",
+  "design": "Base 3, +2 Sun, +3 size; +1 2/day, +3 triggered at sunrise/set",
+  "source": {
+   "book": "HP",
+   "line": 2961,
+   "anchor": "magical-ballast"
+  },
+  "id": "magical-ballast-rehe-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, Constant Effect"
  },
  {
   "name": "The Unerring Navigator",
@@ -873,11 +1093,11 @@
   "duration": "Concentration",
   "target": "Individual",
   "ritual": false,
-  "text": "This effect is activated by the ma-",
-  "design": null,
+  "text": "This effect is activated by the magus or crewman calling for The Hermes to find a place represented by an arcane connection. The effect allows The Hermes to recognize the direction in which the target can be found. The arcane connection must remain in contact with the ship through the effect’s duration.\n\nWhile this effect, on its own, does not provide any bonus toward navigating the ship, later effects invested into The Hermes can use the knowledge that this effect provides.\n\nBonuses of +16 apply to this laboratory project: +10 as the ship is enchanted in the shipyard, +5 as it is a sailing effect, and +1 for prior Terram effects.",
+  "design": "Base 4, +4 Arcane Connection, +1 Concentration; +5 maintain concentration, +10 for unlimited use",
   "source": {
    "book": "HP",
-   "line": 3535,
+   "line": 2991,
    "anchor": "the-unerring-navigator"
   },
   "id": "the-unerring-navigator-inte-item",
@@ -896,11 +1116,11 @@
   "duration": "Concentration",
   "target": "Vision",
   "ritual": false,
-  "text": "Activated by a crewman with clear sight of the coast, The Hermes can be commanded to follow the indicated coastline at a given distance. The coast must be sighted initially for targeting purposes, but does not thereafter need to be kept in sight by the crewman, as the enchantment grants this limited sensory ability to the vessel itself.\n\nThe effect ends either by command by any of the crew or when the ship sails out of sight of the targeted coastline.\n\nThe effect works by determining the direction and distance to the coast throughout the effect's duration, which The Hermes itself maintains. As a navigational effect, it provides no bonuses or benefit to the crew unless used together with the Tillerman enchantment.\n\nEnchanted in the Hermetic Shipyard, this effect benefits from the usual +10 for ships, and the effect is so closely linked to sailing that the shape bonus of +5 to sailing also applies here. In addition, there are prior effects that include Intellego and/ or Terram effects, so the laboratory total gains an additional +2 bonus.\n\nPotential side effects from experimentation might see the effect misjudging the distance to the coast or recognizing only certain types of coastline, such as beaches, harbors, or cliffs.",
+  "text": "Activated by a crewman with clear sight of the coast, The Hermes can be commanded to follow the indicated coastline at a given distance. The coast must be sighted initially for targeting purposes, but does not thereafter need to be kept in sight by the crewman, as the enchantment grants this limited sensory ability to the vessel itself.\n\nThe effect ends either by command by any of the crew or when the ship sails out of sight of the targeted coastline.\n\nThe effect works by determining the direction and distance to the coast throughout the effect’s duration, which The Hermes itself maintains. As a navigational effect, it provides no bonuses or benefit to the crew unless used together with the Tillerman enchantment.\n\nEnchanted in the Hermetic Shipyard, this effect benefits from the usual +10 for ships, and the effect is so closely linked to sailing that the shape bonus of +5 to sailing also applies here. In addition, there are prior effects that include Intellego and/or Terram effects, so the laboratory total gains an additional +2 bonus.\n\nPotential side effects from experimentation might see the effect misjudging the distance to the coast or recognizing only certain types of coastline, such as beaches, harbors, or cliffs.",
   "design": "Base 2, +1 Concentration, +4 Vision; +10 unlimited use, +5 maintain concentration",
   "source": {
    "book": "HP",
-   "line": 3561,
+   "line": 3005,
    "anchor": "follow-the-coast"
   },
   "id": "follow-the-coast-inte-item",
@@ -919,11 +1139,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "The Hermes is fitted with a large rudder controlled by a sturdy tiller under the rear castle. Ordinarily, the tiller is manned with the tillerman taking commands from the captain or mate forward of the mast. But this effect allows the ship to take control of the rudder.\n\nBy default, this effect keeps the tiller in the last position it was manually moved to. But this effect is unusual in that it is linked to and controlled by two other enchantments. The tiller is controlled according to the headings determined by both the Unerring Navigator and the Follow the Coast effects, shifting the rudder to keep The Hermes on course to its destination. While the tiller is being controlled by these effects the ship's crew gain +3 to navigation and/or sailing rolls to reach the specified location, and +1 to navigate in relation to it.\n\nIt has been enchanted as a constant effect but the additional control mechanisms have also been accounted for in the effect design.\n\nThis effect allows The Hermes to sail with a smaller crew than normal without penalty to the ship's handling.\n\nThis effect has been enchanted into The Hermes as the rudder is often vulnerable and prone to damage in difficult waters. This allows the rudder to be replaced without losing the magic.\n\nBonuses of +10 (ships), +5 (sailing), and +1 (Rego) apply to this enchantment, as does a bonus of +2 for prior Rego and/ or Herbam effects.",
+  "text": "The Hermes is fitted with a large rudder controlled by a sturdy tiller under the rear castle. Ordinarily, the tiller is manned with the tillerman taking commands from the captain or mate forward of the mast. But this effect allows the ship to take control of the rudder.\n\nBy default, this effect keeps the tiller in the last position it was manually moved to. But this effect is unusual in that it is linked to and controlled by two other enchantments. The tiller is controlled according to the headings determined by both the Unerring Navigator and the Follow the Coast effects, shifting the rudder to keep The Hermes on course to its destination. While the tiller is being controlled by these effects the ship’s crew gain +3 to navigation and/or sailing rolls to reach the specified location, and +1 to navigate in relation to it.\n\nIt has been enchanted as a constant effect but the additional control mechanisms have also been accounted for in the effect design.\n\nThis effect allows The Hermes to sail with a smaller crew than normal without penalty to the ship’s handling.\n\nThis effect has been enchanted into The Hermes as the rudder is often vulnerable and prone to damage in difficult waters. This allows the rudder to be replaced without losing the magic.\n\nBonuses of +10 (ships), +5 (sailing), and +1 (Rego) apply to this enchantment, as does a bonus of +2 for prior Rego and/or Herbam effects.",
   "design": "Base 3, +1 Touch, +2 Sun, +1 size; +1 for 2/day, +3 triggered at sunrise/set, +3 triggered by the Unerring Navigator, +3 triggered by Follow the Coast",
   "source": {
    "book": "HP",
-   "line": 3592,
+   "line": 3033,
    "anchor": "the-tillerman"
   },
   "id": "the-tillerman-rehe-item",
@@ -946,7 +1166,7 @@
   "design": "Base 3, +1 Touch, +2 Group; +10 for unlimited use, +3 triggered by the Unerring Navigator, +3 triggered by Follow the Coast",
   "source": {
    "book": "HP",
-   "line": 3616,
+   "line": 3053,
    "anchor": "man-the-sails"
   },
   "id": "man-the-sails-rehe-item",
@@ -966,10 +1186,10 @@
   "target": "Individual",
   "ritual": false,
   "text": "This enchanted sail amplifies the force of any wind that touches it, collecting more of the wind than would normally pass across the sail.\n\nAn unfamiliar sailor or captain suffers a –1 penalty to any ship handling rolls for the first season working with the device, but once familiarized, he gains a +2 bonus to any sailing rolls and totals for speed. Vessels normally rigged with multiple sails need to be fully rigged with these devices in order to gain the benefit. If they are not, the –1 handling penalty applies.\n\nIf using City & Guild, these enchanted sails need to be of at least Superior construction to withstand the greater forces to which they are subject. As this effect is third magnitude, it does provide a +3 bonus to all stress checks against storm damage.\n\nThe sail provides a +4 bonus to effects dealing with wind while the shipyard laboratory adds +1 for each of Rego and Auram.",
-  "design": "Base 3, +1 Touch, +2 Sun; +1 for 2/ day, +3 triggered at sunrise/set",
+  "design": "Base 3, +1 Touch, +2 Sun; +1 for 2/day, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 3640,
+   "line": 3073,
    "anchor": "gather-the-wind"
   },
   "id": "gather-the-wind-reau-item",
@@ -988,14 +1208,39 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "This device is a shaped wooden plank, attached to the stem, or leading edge, of the ship. The Rego Aquam enchantment breaks the waves ahead of the vessel, which eases the path of the ship through the water. Each wave is treated as an individual, rather than a part of a larger whole. This is by analogy with Rego Auram, which treats distinct winds as individuals.\n\nThe effect, once the captain and crew are familiar with the ship's handling, is to improve its speed through the water. An unfamiliar crew or captain suffers a –1 penalty to any ship handling rolls for the first season working with the device, but once familiarized, they gain a +2 bonus to any sailing rolls and totals for speed.\n\nThe Hermetic Shipyard provides a +1 bonus to the lab total for each of Rego and Aquam.",
-  "design": "Base 4, +1 Touch, +2 Sun; +1 for 2/ day, +3 triggered at sunrise/set",
+  "text": "This device is a shaped wooden plank, attached to the stem, or leading edge, of the ship. The Rego Aquam enchantment breaks the waves ahead of the vessel, which eases the path of the ship through the water. Each wave is treated as an individual, rather than a part of a larger whole. This is by analogy with Rego Auram, which treats distinct winds as individuals.\n\nThe effect, once the captain and crew are familiar with the ship’s handling, is to improve its speed through the water. An unfamiliar crew or captain suffers a –1 penalty to any ship handling rolls for the first season working with the device, but once familiarized, they gain a +2 bonus to any sailing rolls and totals for speed.\n\nThe Hermetic Shipyard provides a +1 bonus to the lab total for each of Rego and Aquam.",
+  "design": "Base 4, +1 Touch, +2 Sun; +1 for 2/day, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 3660,
+   "line": 3091,
    "anchor": "cutting-the-waves"
   },
   "id": "cutting-the-waves-reaq-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, Constant Effect"
+ },
+ {
+  "name": "The Ship’s Hearth",
+  "technique": "Cr",
+  "form": "Ig",
+  "requisites": [
+   "Re"
+  ],
+  "level": 24,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Circle",
+  "ritual": false,
+  "text": "All ships have at least one hearth of some kind, and these are usually built into the vessel as it is constructed. Ships need fire for cooking, light, and warmth, but a fire that escapes can ravage and sink a ship if not contained quickly. This circular hearth, made of fired brick and mortar, creates its own magical fire of +5 intensity. The Rego requisite ensures that no flame or ember can leave the hearth.\n\nThis device does not benefit from the laboratory bonus to ships, as it is separate from the hull and does not affect the ship itself. But as a hearth, it does gain a +7 to create fire and heat.",
+  "design": "Base 4, +1 Touch, +2 Sun, +1 Rego requisite, +1 2/day, +3 triggered at sunrise/set",
+  "source": {
+   "book": "HP",
+   "line": 3105,
+   "anchor": "the-ships-hearth"
+  },
+  "id": "the-ships-hearth-crig-item",
   "penetration": 0,
   "uses": "constant",
   "itemNotes": "+0, Constant Effect"
@@ -1015,7 +1260,7 @@
   "design": "Base 3, +2 Sun; +1 for 2/day, +3 triggered by sunrise/set",
   "source": {
    "book": "HP",
-   "line": 3690,
+   "line": 3117,
    "anchor": "false-fire"
   },
   "id": "false-fire-crig-item",
@@ -1024,7 +1269,7 @@
   "itemNotes": "+0, Constant Effect"
  },
  {
-  "name": "Poseidon's Chariot",
+  "name": "Poseidon’s Chariot",
   "technique": "Re",
   "form": "He",
   "requisites": [],
@@ -1032,13 +1277,13 @@
   "general": false,
   "range": "Personal",
   "duration": "Concentration",
-  "target": "Structure This effect allows the ship to be commanded to sink into the sea",
+  "target": "Individual",
   "ritual": false,
-  "text": ", overcoming its natural buoyancy. The enchanted ship maintains concentration on the effect and keeps the ship at the depth specified by the crew. The effect can be canceled and the ship commanded to rise back to the surface.\n\nIf enchanted in the Hermetic Shipyard, the usual bonuses apply (+10 ships, +1 Rego), as do +5 sailing and +4 to affect dead wood, which both come from the ship itself.\n\nExperimentation may influence the way in which the ship plunges into or rises from the sea, perhaps violently or even dangerously.",
-  "design": "Base 3, +1 Concentration, +3 Structure; +5 maintain concentration, +10 Unlimited Use",
+  "text": "This effect allows the ship to be commanded to sink into the sea, overcoming its natural buoyancy. The enchanted ship maintains concentration on the effect and keeps the ship at the depth specified by the crew. The effect can be canceled and the ship commanded to rise back to the surface.\n\nIf enchanted in the Hermetic Shipyard, the usual bonuses apply (+10 ships, +1 Rego), as do +5 sailing and +4 to affect dead wood, which both come from the ship itself.\n\nExperimentation may influence the way in which the ship plunges into or rises from the sea, perhaps violently or even dangerously.",
+  "design": "Base 3, +1 Concentration, +3 size; +5 maintain concentration, +10 Unlimited Use",
   "source": {
    "book": "HP",
-   "line": 3724,
+   "line": 3147,
    "anchor": "poseidons-chariot"
   },
   "id": "poseidons-chariot-rehe-item",
@@ -1047,21 +1292,21 @@
   "itemNotes": "+0, Unlimited Use"
  },
  {
-  "name": "The Mermaid's Kiss",
+  "name": "The Mermaid’s Kiss",
   "technique": "Re",
   "form": "Aq",
   "requisites": [],
-  "level": 43,
+  "level": 48,
   "general": false,
-  "range": "Personal",
+  "range": "Touch",
   "duration": "Concentration",
   "target": "Structure",
   "ritual": false,
-  "text": "Triggered by the Poseidon's Chariot effect, this effect wards the ship against the inrushing ocean. The effect protects all below-decks areas and any enclosed parts of the vessel's structure above deck, such as a castle. All doors and hatches are warded, as are any damaged sites that would normally let in water. The open deck, and in particular the mast and the rigging, is not protected by the ward, as this is considered to be on the outside of the structure.\n\nCrew members needing to go up on deck must protect themselves from the ocean and its currents, and submarine ships should be designed and outfitted with this in mind.\n\nThe effect is named after the story that a drowning sailor, kissed by a mermaid, gains the ability to breathe water as though it were air.\n\nThe Hermetic Shipyard provides bonuses of +10 for ships and +1 each for Rego, Aquam, and Auram. As the ship already has one Rego effect invested, a further +1 is gained.\n\nA submarine vessel is likely to have other devices enchanted with similar effects, such as boats that can be launched from the ship while protecting their crew, and helmets with variations of Lungs of the Fish (ArM5, page 122).",
-  "design": "Base 5, +1 Concentration, +3 Structure; +10 Unlimited Use, +5 maintain concentration, +3 triggered by Poseidon's Chariot",
+  "text": "Triggered by the Poseidon’s Chariot effect, this effect wards the ship against the inrushing ocean. The effect protects all below-decks areas and any enclosed parts of the vessel’s structure above deck, such as a castle. All doors and hatches are warded, as are any damaged sites that would normally let in water. The open deck, and in particular the mast and the rigging, is not protected by the ward, as this is considered to be on the outside of the structure.\n\nCrew members needing to go up on deck must protect themselves from the ocean and its currents, and submarine ships should be designed and outfitted with this in mind.\n\nThe effect is named after the story that a drowning sailor, kissed by a mermaid, gains the ability to breathe water as though it were air.\n\nThe Hermetic Shipyard provides bonuses of +10 for ships and +1 each for Rego, Aquam, and Auram. As the ship already has one Rego effect invested, a further +1 is gained.\n\nA submarine vessel is likely to have other devices enchanted with similar effects, such as boats that can be launched from the ship while protecting their crew, and helmets with variations of Lungs of the Fish (ArM5, page 122).",
+  "design": "Base 5, +1 Touch, +1 Concentration, +3 Structure; +10 Unlimited Use, +5 maintain concentration, +3 triggered by Poseidon’s Chariot",
   "source": {
    "book": "HP",
-   "line": 3740,
+   "line": 3161,
    "anchor": "the-mermaids-kiss"
   },
   "id": "the-mermaids-kiss-reaq-item",
@@ -1078,13 +1323,13 @@
   "general": false,
   "range": "Personal",
   "duration": "Concentration",
-  "target": "Structure This effect propels the ship through",
+  "target": "Individual",
   "ritual": false,
-  "text": "the water, riding the undersea currents as though the sails had caught a wind. The movement of the ship is controlled by both the rudder and the sails, allowing the crew to sail the ship under water just as they would on it.\n\nAs with the previous effect, this effect is activated when the vessel plunges into the sea under the power of Poseidon's Chariot.\n\nThe Hermetic Shipyard provides bonuses of +10 for ships and +1 for Rego. The ship itself provides bonuses of +4 to affect dead wood and +5 for sailing. And as the ship has been enchanted with two prior Rego effects, a further +2 is gained.",
-  "design": "Base 3, +1 Concentration, +3 Structure; +10 unlimited use, +5 maintain concentration, +3 triggered by Poseidon's Chariot",
+  "text": "This effect propels the ship through the water, riding the undersea currents as though the sails had caught a wind. The movement of the ship is controlled by both the rudder and the sails, allowing the crew to sail the ship under water just as they would on it.\n\nAs with the previous effect, this effect is activated when the vessel plunges into the sea under the power of Poseidon’s Chariot.\n\nThe Hermetic Shipyard provides bonuses of +10 for ships and +1 for Rego. The ship itself provides bonuses of +4 to affect dead wood and +5 for sailing. And as the ship has been enchanted with two prior Rego effects, a further +2 is gained.",
+  "design": "Base 3, +1 Concentration, +3 size; +10 unlimited use, +5 maintain concentration, +3 triggered by Poseidon’s Chariot",
   "source": {
    "book": "HP",
-   "line": 3762,
+   "line": 3179,
    "anchor": "catching-the-tidal-winds"
   },
   "id": "catching-the-tidal-winds-rehe-item",
@@ -1093,7 +1338,7 @@
   "itemNotes": "+0, Unlimited Use"
  },
  {
-  "name": "The Sky is My Ocean",
+  "name": "The Sky Is My Ocean",
   "technique": "Re",
   "form": "He",
   "requisites": [],
@@ -1101,16 +1346,67 @@
   "general": false,
   "range": "Personal",
   "duration": "Sun",
-  "target": "Structure",
+  "target": "Individual",
   "ritual": false,
-  "text": "As a constant effect, the ship is lifted into the air. The effect is controlled by a modified tiller and rudder mechanism that both controls how the ship rises and falls and how it is propelled forwards. A vessel enchanted with this effect has no need of sails or oarsmen, but without additional means of propulsion, the movement of this vessel is leisurely, as though from a calm and steady breeze.\n\nThe high base magnitude allows the ship to remain on a chosen course, with adjustments and corrections being made by the crew.\n\nThe effect can be suspended by landing the vessel on the ground, and the ship-",
-  "design": null,
+  "text": "As a constant effect, the ship is lifted into the air. The effect is controlled by a modified tiller and rudder mechanism that both controls how the ship rises and falls and how it is propelled forwards. A vessel enchanted with this effect has no need of sails or oarsmen, but without additional means of propulsion, the movement of this vessel is leisurely, as though from a calm and steady breeze.\n\nThe high base magnitude allows the ship to remain on a chosen course, with adjustments and corrections being made by the crew.\n\nThe effect can be suspended by landing the vessel on the ground, and the shipwright would do well to design the ship with legs that can be set down for just this purpose.\n\nIf enchanted in the Hermetic Shipyard, the usual bonuses apply (+10 ships, +1 Rego), as do +5 sailing and +4 to affect dead wood, which both come from the ship itself.",
+  "design": "Base 10, +2 Sun, +3 size; +1 for 2/day, +3 triggered at sunrise/set",
   "source": {
    "book": "HP",
-   "line": 3787,
+   "line": 3201,
    "anchor": "the-sky-is-my-ocean"
   },
   "id": "the-sky-is-my-ocean-rehe-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, Constant Effect"
+ },
+ {
+  "name": "The Houseboat",
+  "technique": "Mu",
+  "form": "Te",
+  "requisites": [
+   "He",
+   "Re"
+  ],
+  "level": 44,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Structure",
+  "ritual": false,
+  "text": "When hammered into the floor of a freestanding structure, this large iron nail reforms the building into a boat of approximately the same size as the structure, changing the nature of the materials such that stone becomes buoyant. The Rego requisite reshapes the building into a seaworthy vessel. The specifics of the design can be amended with each casting, but the origins of the boat are clear, with the roof turned into a hull, or a chimney stack turned into a mast.\n\nThe caster must make a Perception + Finesse roll against an Ease Factor of 9 to produce a seaworthy vessel and the effect is canceled by removing the nail, at which point the structure returns to its natural state, wherever it is.\n\nIf designed in the Hermetic Shipyard, this spell benefits from a +1 bonus to the laboratory total for the use of Rego, and a further +10 as the spell directly concerns ships.",
+  "design": "Base 4, +1 Touch, +2 Sun, +3 Structure, +1 Herbam requisite, +1 stone; +1 for 2/day, +3 triggered at sunrise/set",
+  "source": {
+   "book": "HP",
+   "line": 3297,
+   "anchor": "the-houseboat"
+  },
+  "id": "the-houseboat-mute-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "+0, Constant Effect"
+ },
+ {
+  "name": "The Sandship",
+  "technique": "Mu",
+  "form": "Te",
+  "requisites": [
+   "Re"
+  ],
+  "level": 49,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Part",
+  "ritual": false,
+  "text": "This staff, when struck into the sands of a shoreline, draws up the sand, shapes it, and transforms it into a ship of magical enchanted sand, the mast forming around the staff. The effect draws the sand together, forming a channel from the beach to the sea that this vessel can float down.\n\nThe ship’s hull, deck, mast, and all other parts of it are made from sand, including the rigging and the sails. The ship maintains the appearance of wet sand throughout, but it is never truly waterlogged. The Art of Muto makes the sand light enough that it can float, ensures that it is non-porous so that water doesn’t seep through the hull, and strengthens the structure to allow a crew to sail the ship.\n\nHowever, being made from sand, the ship is weak and cannot stand up to damage. If using the damaged goods rules from City & Guild, page 77, the ship has three damage levels but has a –5 penalty to any stress check made when the ship is put at risk of damage.\n\nA Perception + Finesse roll against an Ease Factor of 9 is required to make a seaworthy vessel.\n\nThe effect is ended by drawing the staff from the ship’s mast.\n\nIf designed in the Hermetic Shipyard, this spell benefits from a +10 ships bonus to the laboratory total.",
+  "design": "Base 4, +1 Touch, +2 Sun, +1 Part, +3 size, +2 intricacy; +1 for 2/day, +3 triggered at sunrise/set",
+  "source": {
+   "book": "HP",
+   "line": 3314,
+   "anchor": "the-sandship"
+  },
+  "id": "the-sandship-mute-item",
   "penetration": 0,
   "uses": "constant",
   "itemNotes": "+0, Constant Effect"
@@ -1130,7 +1426,7 @@
   "design": "Base 5, +2 Sun, +3 Hearing, +3 detailed information; +4 constant effect",
   "source": {
    "book": "HP",
-   "line": 4217,
+   "line": 3591,
    "anchor": "hearing-the-tearing"
   },
   "id": "hearing-the-tearing-invi-item",
@@ -1147,13 +1443,13 @@
   "general": false,
   "range": "Personal",
   "duration": "Momentary",
-  "target": "Individual This effect rings the bell continuously",
+  "target": "Individual",
   "ritual": false,
-  "text": ", if the Hearing the Tearing effect detects an Intangible Tunnel.",
+  "text": "This effect rings the bell continuously, if the Hearing the Tearing effect detects an Intangible Tunnel.",
   "design": "Base 2, +2 effect metal; +10 unlimited uses, +3 linked trigger",
   "source": {
    "book": "HP",
-   "line": 4235,
+   "line": 3605,
    "anchor": "clarion-call"
   },
   "id": "clarion-call-rete-item",
@@ -1166,20 +1462,66 @@
   "technique": "Mu",
   "form": "Te",
   "requisites": [],
-  "level": 50,
+  "level": 40,
   "general": false,
   "range": "Touch",
   "duration": "Sun",
   "target": "Group",
   "ritual": false,
-  "text": "This spell reduces 100 cubic paces of glass into a small volume, about 1 cubic foot. The shrunken glass can be more easily transported.\n\nWhen the spell ends, the glass bursts back into full size. Anybody within 9 paces of the shrunken glass takes +10 damage from flying shards of glass. Bursting back in this manner breaks any complex glass objects.\n\nThe spell is based on the Muto Terram guideline that increases the volume of an object by 8, but instead is used to decreases its volume by a factor of 8.",
-  "design": "Base 4, +1 Touch, +2 Sun, +2 Group, +1 Size, +1 affect glass, +3 increased shrinking effect",
+  "text": "This spell reduces 100 cubic paces of glass into a small volume, about 1 cubic foot. The shrunken glass can be more easily transported.\n\nWhen the spell ends, the glass bursts back into full size. Anybody within 9 paces of the shrunken glass takes +10 damage from flying shards of glass. Bursting back in this manner breaks any complex glass objects.",
+  "design": "Base 4, +1 Touch, +2 Sun, +2 Group, +1 Size, +1 affect glass, +1 increased shrinking effect",
   "source": {
    "book": "HP",
-   "line": 4747,
+   "line": 4047,
    "anchor": "miniaturist-of-venice"
   },
   "id": "miniaturist-of-venice-mute-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "0, constant effect"
+ },
+ {
+  "name": "Sense the Heavens",
+  "technique": "In",
+  "form": "Im",
+  "requisites": [],
+  "level": 24,
+  "general": false,
+  "range": "Personal",
+  "duration": "Sun",
+  "target": "Hearing",
+  "ritual": false,
+  "text": "This effect gives the device the sense to listen to the barely-perceptible sounds of the celestial bodies in motion (see Art and Academe, page 16).",
+  "design": "Base 3, +2 Sun, +3 Hearing; +4 constant effect",
+  "source": {
+   "book": "HP",
+   "line": 4213,
+   "anchor": "sense-the-heavens"
+  },
+  "id": "sense-the-heavens-inim-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "0, constant effect"
+ },
+ {
+  "name": "Move the Wheels",
+  "technique": "Re",
+  "form": "Te",
+  "requisites": [],
+  "level": 37,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Group",
+  "ritual": false,
+  "text": "This effect is triggered by the Sense the Heavens effect, and constantly moves the wheels in a way that represents the movement of the celestial bodies. This allows a character with an Artes Liberales Score of at least 1 to read the astrolabe.",
+  "design": "Base 3, +1 Touch +2 Sun, +2 Group +2 affect metal; +4 constant effect +3 linked trigger",
+  "source": {
+   "book": "HP",
+   "line": 4223,
+   "anchor": "move-the-wheels"
+  },
+  "id": "move-the-wheels-rete-item",
   "penetration": 0,
   "uses": "constant",
   "itemNotes": "0, constant effect"
@@ -1195,11 +1537,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "This enchanted item is a mirror. When the device is activated, the image reflected on the mirror surface is frozen until the effect duration ends. This frozen image can be used as symbolic representation of anyone or anything depicted for a +2 Sympathetic Connection.\n\nAs the reflected image of a character is a species, this spell does not need to Penetrate the Magic Resistance of the depicted characters.\n\nNote that strictly the mirror actually creates an image that depicts what it \"saw,\" rather than truly freezing an image.",
+  "text": "This enchanted item is a mirror. When the device is activated, the image reflected on the mirror surface is frozen until the effect duration ends. This frozen image can be used as symbolic representation of anyone or anything depicted for a +2 Sympathetic Connection.\n\nAs the reflected image of a character is a species, this spell does not need to Penetrate the Magic Resistance of the depicted characters.\n\nNote that strictly the mirror actually creates an image that depicts what it “saw,” rather than truly freezing an image.",
   "design": "Base 1, +2 Sun; +5 24 uses",
   "source": {
    "book": "HP",
-   "line": 5010,
+   "line": 4276,
    "anchor": "mirror-of-the-frozen-scene"
   },
   "id": "mirror-of-the-frozen-scene-crim-item",
@@ -1222,7 +1564,7 @@
   "design": "Base 5, +1 Touch, +2 Sun, +2 Room; +1 frequency, +3 environmental trigger, +10 penetration.",
   "source": {
    "book": "HP",
-   "line": 5261,
+   "line": 4490,
    "anchor": "a-denarius-to-hold-the-recalled-centurion"
   },
   "id": "a-denarius-to-hold-the-recalled-centurion-reme-item",
@@ -1243,11 +1585,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "This iron leg armor is instilled with the spell Animate the Slumbering Corpse, which will animate the non-magical corpse wearing it. The command, \"Stand at attention,\" is issued as soon as the magic activates.",
+  "text": "This iron leg armor is instilled with the spell Animate the Slumbering Corpse, which will animate the non-magical corpse wearing it. The command, “Stand at attention,” is issued as soon as the magic activates.\n\nThis effect costs 4 pawns of vis.",
   "design": "Base 10, +1 Touch, +2 Sun, +1 Mentem requisite; +1 frequency, +3 environmental trigger",
   "source": {
    "book": "HP",
-   "line": 5277,
+   "line": 4502,
    "anchor": "the-greave-of-reveille"
   },
   "id": "the-greave-of-reveille-reco-item",
@@ -1270,7 +1612,7 @@
   "design": "Base 5, +2 Voice, +3 Moon; +6 penetration.",
   "source": {
    "book": "HP",
-   "line": 5301,
+   "line": 4522,
    "anchor": "the-blade-of-lead"
   },
   "id": "the-blade-of-lead-reme-item",
@@ -1295,7 +1637,7 @@
   "design": "Base 10, +2 Voice, +3 Moon, +1 Mentem requisite",
   "source": {
    "book": "HP",
-   "line": 5315,
+   "line": 4532,
    "anchor": "the-blade-of-amber"
   },
   "id": "the-blade-of-amber-reco-item",
@@ -1318,7 +1660,7 @@
   "design": "Base 5, +1 Touch, +2 Sun, +2 Room; +1 frequency, +3 environmental trigger, +3 linked trigger, +15 penetration",
   "source": {
    "book": "HP",
-   "line": 5335,
+   "line": 4548,
    "anchor": "an-orb-for-the-spectral-sovereign"
   },
   "id": "an-orb-for-the-spectral-sovereign-reme-item",
@@ -1337,11 +1679,11 @@
   "duration": "Sun",
   "target": "Room",
   "ritual": false,
-  "text": "This effect detects the presence of a specific ghost, which is determined during the creation of the invested device. Every sunrise and sunset this power activates, constantly scanning the room the invested device is touching for a specific ghost. If the spell-like effect detects the ghost and penetrates its Magic Resistance, this effect activates the device's primary power and binds the ghost within the gold globe.\n\nThis effect costs 5 pawns of vis. Combined with its primary power, these effects costs 11 pawns of vis. A hand-sized gold orb can hold a maximum allotment of 20 pawns of vis (gold material 10 x 2 Size small).",
+  "text": "This effect detects the presence of a specific ghost, which is determined during the creation of the invested device. Every sunrise and sunset this power activates, constantly scanning the room the invested device is touching for a specific ghost. If the spell-like effect detects the ghost and penetrates its Magic Resistance, this effect activates the device’s primary power and binds the ghost within the gold globe.\n\nThis effect costs 5 pawns of vis. Combined with its primary power, these effects costs 11 pawns of vis. A hand-sized gold orb can hold a maximum allotment of 20 pawns of vis (gold material 10 x 2 Size small).",
   "design": "Base 5, +1 Touch, +2 Sun, +2 Room; +1 2 uses per day, +3 environmental trigger, +15 penetration",
   "source": {
    "book": "HP",
-   "line": 5349,
+   "line": 4560,
    "anchor": "detect-the-presence-of-the-spectral-sovereign"
   },
   "id": "detect-the-presence-of-the-spectral-sovereign-invi-item",
@@ -1362,11 +1704,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "When activated, this spell-like effect causes the corpse to stand, using the spell Animate the Slumbering Corpse. The effect's default command is, \"Stand up.\"\n\nThis effect costs 4 pawns of vis.",
+  "text": "When activated, this spell-like effect causes the corpse to stand, using the spell Animate the Slumbering Corpse. The effect’s default command is, “Stand up.”\n\nThis effect costs 4 pawns of vis.",
   "design": "Base 10, +1 Touch, +2 Day, +1 Mentem requisite; +1 frequency, +3 environmental trigger, +3 linking trigger",
   "source": {
    "book": "HP",
-   "line": 5367,
+   "line": 4575,
    "anchor": "the-rising-of-the-king"
   },
   "id": "the-rising-of-the-king-reco-item",
@@ -1379,23 +1721,23 @@
   "technique": "Mu",
   "form": "Vi",
   "requisites": [],
-  "level": 48,
+  "level": 49,
   "general": false,
   "range": "Touch",
   "duration": "Momentary",
   "target": "Individual",
   "ritual": false,
-  "text": "This effect casts Passing the Reigns of Corpus, which allows the ghost to control the animated corpse.\n\nThis effect costs 5 pawns of vis.",
-  "design": "Base effect 25 (to affect a level 30 Corpus effect), +1 Touch; +3 linked trigger, +15 Penetration 30",
+  "text": "This effect casts Passing the Reins of Corpus, which allows the ghost to control the animated corpse.\n\nThis effect costs 5 pawns of vis.",
+  "design": "Base effect 25 (to affect a level 30 Corpus effect), +1 Touch; +1 2 uses/day, +3 linked trigger, +15 Penetration 30",
   "source": {
    "book": "HP",
-   "line": 5383,
+   "line": 4587,
    "anchor": "the-anointing-of-the-king"
   },
   "id": "the-anointing-of-the-king-muvi-item",
   "penetration": 30,
-  "uses": "1",
-  "itemNotes": "+30, 1/day"
+  "uses": "2",
+  "itemNotes": "+30, 2/day"
  },
  {
   "name": "Perceive the Presence of Magic",
@@ -1412,7 +1754,7 @@
   "design": "Base 3, +1 Touch, +2 Sun, +2 Room; +1 frequency, +3 environmental trigger",
   "source": {
    "book": "HP",
-   "line": 5399,
+   "line": 4601,
    "anchor": "perceive-the-presence-of-magic"
   },
   "id": "perceive-the-presence-of-magic-invi-item",
@@ -1435,7 +1777,7 @@
   "design": "Base 5, +1 Touch, +2 Sun, +2 Room; +1 frequency, +3 environmental trigger, +3 linked trigger, +26 penetration",
   "source": {
    "book": "HP",
-   "line": 5429,
+   "line": 4627,
    "anchor": "the-turquoise-stone-soul"
   },
   "id": "the-turquoise-stone-soul-reme-item",
@@ -1458,13 +1800,38 @@
   "design": "Base 5, +1 Touch, +2 Sun, +2 Room; +3 environmental trigger, +26 penetration",
   "source": {
    "book": "HP",
-   "line": 5445,
+   "line": 4639,
    "anchor": "detect-the-presence-of-the-specter"
   },
   "id": "detect-the-presence-of-the-specter-invi-item",
   "penetration": 52,
   "uses": "2",
   "itemNotes": "52, 2 uses per day"
+ },
+ {
+  "name": "Rousing the Receiving Fleshy Host",
+  "technique": "Re",
+  "form": "Co",
+  "requisites": [
+   "Me"
+  ],
+  "level": 42,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This instilled effect casts Animate the Slumbering Corpse. The book must be touching the corpse. The effect needs Penetration because the target is not a regular corpse, but a revenant with a Magic Might of 9 (see “A Necromantic Miscellany,” later). Although the revenant is already animated, moving under the control of its own animating spirit, this effect will override the revenant’s animating spirit and place the bound ghost in charge. The effect’s default command is, “Stand up.”\n\nThis effect costs 5 pawns of vis.",
+  "design": "Base 10, +1 Touch, +2 Sun, +1 Mentem requisite; +1 frequency, +3 environmental trigger, +3 linking trigger, +5 penetration",
+  "source": {
+   "book": "HP",
+   "line": 4651,
+   "anchor": "rousing-the-receiving-fleshy-host"
+  },
+  "id": "rousing-the-receiving-fleshy-host-reco-item",
+  "penetration": 10,
+  "uses": "constant",
+  "itemNotes": "10, Constant effect"
  },
  {
   "name": "Grant Control to the Ghost",
@@ -1477,11 +1844,11 @@
   "duration": "Momentary",
   "target": "Individual",
   "ritual": false,
-  "text": "The spell-like effect, Passing the Reigns of Corpus, is instilled to allow the ghost to control the Rousing the Receiving Fleshy Host spell-like effect.",
-  "design": "Base effect 25 (to affect a level 30 Corpus effect), +1 Touch, +3 linked trigger, +26 Penetration 52",
+  "text": "The spell-like effect, Passing the Reins of Corpus, is instilled to allow the ghost to control the Rousing the Receiving Fleshy Host spell-like effect.\n\nThis effect costs 6 pawns of vis.",
+  "design": "Base effect 25 (to affect a level 30 Corpus effect), +1 Touch; +3 linked trigger, +26 Penetration 52",
   "source": {
    "book": "HP",
-   "line": 5475,
+   "line": 4665,
    "anchor": "grant-control-to-the-ghost"
   },
   "id": "grant-control-to-the-ghost-muvi-item",
@@ -1500,11 +1867,11 @@
   "duration": "Sun",
   "target": "Room",
   "ritual": false,
-  "text": "This is the same linked trigger described previously. The power The Turquoise Stone-Soul will activate this effect, which will in turn activate both Rousing the Receiving Fleshy Host and Grant Control to the Ghost.\n\nThis effect costs 3 pawns to instill. The total cost of all five spell-like effects is 27 pawns of vis.\n\nAfter the book is enchanted, the necromancer creates a revenant using a ritual spell. He ties the book to the revenant and commands it to lie on the floor facedown, so that the book touches both it and the floor. He then summons a specific ghost. As soon as the ghost enters the chamber, the linking trigger Detect the Presence of the Specter detects the ghost and activates The Turquoise Soul-Stone, which imprisons the ghost in the turquoise gem. Perceive the Presence of Magic detects the activation of the effect The Turquoise Soul-Stone, and activates Rousing the Receiving Fleshy Host and Grant Control to the Ghost.\n\nOnce completed, the living corpse is a combination of the summoned ghost and the revenant. The living corpse's Magic Resistance is the ghost's. Both ghost and revenant have Magic Resistance prior to combining the two into a living corpse, but after the living corpse is created, the ghost's Magic Resistance supersedes the revenant's Magic Resistance. The ghost is bound in the Grimoire, so its Magic Resistance protects the book, just like a magus' Parma Magica protects his clothes and worn personal items. Because the revenant is wearing the book, it too is covered by the ghost's Magic Resistance. If the living corpse detaches the book, the revenant is",
+  "text": "This is the same linked trigger described previously. The power The Turquoise Stone-Soul will activate this effect, which will in turn activate both Rousing the Receiving Fleshy Host and Grant Control to the Ghost.\n\nThis effect costs 3 pawns to instill. The total cost of all five spell-like effects is 27 pawns of vis.\n\nAfter the book is enchanted, the necromancer creates a revenant using a ritual spell. He ties the book to the revenant and commands it to lie on the floor facedown, so that the book touches both it and the floor. He then summons a specific ghost. As soon as the ghost enters the chamber, the linking trigger Detect the Presence of the Specter detects the ghost and activates The Turquoise Soul-Stone, which imprisons the ghost in the turquoise gem. Perceive the Presence of Magic detects the activation of the effect The Turquoise Soul-Stone, and activates Rousing the Receiving Fleshy Host and Grant Control to the Ghost.\n\nOnce completed, the living corpse is a combination of the summoned ghost and the revenant. The living corpse’s Magic Resistance is the ghost’s. Both ghost and revenant have Magic Resistance prior to combining the two into a living corpse, but after the living corpse is created, the ghost’s Magic Resistance supersedes the revenant’s Magic Resistance. The ghost is bound in the Grimoire, so its Magic Resistance protects the book, just like a magus’ Parma Magica protects his clothes and worn personal items. Because the revenant is wearing the book, it too is covered by the ghost’s Magic Resistance. If the living corpse detaches the book, the revenant is no longer protected by the ghost’s Magic Resistance. Note that once the living corpse is created, the book does not have to touch the revenant to allow the ghost to control it.",
   "design": "Base 3, +1 Touch, +2 Sun, +2 Room; +1 frequency, +3 environmental trigger",
   "source": {
    "book": "HP",
-   "line": 5489,
+   "line": 4677,
    "anchor": "perceive-the-presence-of-magic"
   },
   "id": "perceive-the-presence-of-magic-invi-item",
@@ -1513,7 +1880,30 @@
   "itemNotes": "0, Constant effect"
  },
  {
-  "name": "The Wand of Commanding Charon's Pack",
+  "name": "The Collar of Charon",
+  "technique": "Re",
+  "form": "An",
+  "requisites": [],
+  "level": 29,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Individual",
+  "ritual": false,
+  "text": "This effect animates a dead animal. The animal can be Size +1 or smaller.\n\nBase Level Interpretation: Rego Corpus base level 10 animates a corpse.",
+  "design": "Base 10, +1 Touch, +2 Sun; +1 frequency, +3 environmental trigger",
+  "source": {
+   "book": "HP",
+   "line": 5295,
+   "anchor": "the-collar-of-charon"
+  },
+  "id": "the-collar-of-charon-rean-item",
+  "penetration": 0,
+  "uses": "constant",
+  "itemNotes": "0, Constant Effect"
+ },
+ {
+  "name": "The Wand of Commanding Charon’s Pack",
   "technique": "Re",
   "form": "An",
   "requisites": [],
@@ -1527,13 +1917,36 @@
   "design": "Base 15, +2 Voice, +2 Sun; +4 frequency",
   "source": {
    "book": "HP",
-   "line": 6157,
+   "line": 5307,
    "anchor": "the-wand-of-commanding-charons-pack"
   },
   "id": "the-wand-of-commanding-charons-pack-rean-item",
   "penetration": 0,
   "uses": "12",
   "itemNotes": "0, 12 uses per day"
+ },
+ {
+  "name": "Surveying the Lands for Magic",
+  "technique": "In",
+  "form": "Vi",
+  "requisites": [],
+  "level": 20,
+  "general": false,
+  "range": "Touch",
+  "duration": "Sun",
+  "target": "Vision",
+  "ritual": false,
+  "text": "Instilled in a small rock crystal (+5 shape and material bonus to Lab Total), this effect grants the holder the ability to detect magical auras through his vision. Similar devices must be constructed to detect other types of auras (i.e., Divine, Infernal, and Faerie). Any seen location with a magic aura will appear as if covered by a shimmering violet veil.",
+  "design": "Base 1, + 1 Touch, +2 Sun, +4 Vision",
+  "source": {
+   "book": "HP",
+   "line": 5343,
+   "anchor": "surveying-the-lands-for-magic"
+  },
+  "id": "surveying-the-lands-for-magic-invi-item",
+  "penetration": 0,
+  "uses": "1",
+  "itemNotes": "0, 1/day"
  },
  {
   "name": "The Wand to Produce a Forest Overnight",
@@ -1546,11 +1959,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "Instilled in an oak wand, this effect matures a plant in about two hours. Typically, a person carries the wand and a sack of live acorns. Pushing the acorn into the ground, he then touches it with the wand, speaks the command word, and gets out of the way. This enchanted device is not limited to oaks and acorns,",
-  "design": null,
+  "text": "Instilled in an oak wand, this effect matures a plant in about two hours. Typically, a person carries the wand and a sack of live acorns. Pushing the acorn into the ground, he then touches it with the wand, speaks the command word, and gets out of the way. This enchanted device is not limited to oaks and acorns, however, and will mature any plant from a seed to full growth.",
+  "design": "Base 20, +1 Touch, +2 Sun; +10 unlimited uses",
   "source": {
    "book": "HP",
-   "line": 6261,
+   "line": 5397,
    "anchor": "the-wand-to-produce-a-forest-overnight"
   },
   "id": "the-wand-to-produce-a-forest-overnight-crhe-item",
@@ -1569,11 +1982,11 @@
   "duration": "Concentration",
   "target": "Individual",
   "ritual": false,
-  "text": "This effect, instilled in any small device, produces terrified rabbit shrieks upon com-\n\nmand. Such noise is very effective in drawing curious predators, especially those that eat rabbits. Because the device maintains concentration on the spell it can be commanded to stop, which lets it be set and used in two different locations in a day. The created species of sound need not penetrate a magical creature's Magic Resistance to be heard.",
+  "text": "This effect, instilled in any small device, produces terrified rabbit shrieks upon command. Such noise is very effective in drawing curious predators, especially those that eat rabbits. Because the device maintains concentration on the spell it can be commanded to stop, which lets it be set and used in two different locations in a day. The created species of sound need not penetrate a magical creature’s Magic Resistance to be heard.",
   "design": "Base 1, +1 Concentration +1 clear sounds; +1 frequency, +5 maintains concentration",
   "source": {
    "book": "HP",
-   "line": 6429,
+   "line": 5532,
    "anchor": "the-chorus-of-the-distressed-hare"
   },
   "id": "the-chorus-of-the-distressed-hare-crim-item",
@@ -1592,11 +2005,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "This lesser enchanted device is a ring (+2 shape and material Lab Total bonus) that destroys the wearer's scent, allowing easier access when sneaking up on animals.",
+  "text": "This lesser enchanted device is a ring (+2 shape and material Lab Total bonus) that destroys the wearer’s scent, allowing easier access when sneaking up on animals.",
   "design": "Base 3, + 1 Touch, +2 Sun; +1 frequency, +3 environmental trigger",
   "source": {
    "book": "HP",
-   "line": 6518,
+   "line": 5610,
    "anchor": "a-ring-to-approach-animals-undetected"
   },
   "id": "a-ring-to-approach-animals-undetected-peim-item",
@@ -1619,13 +2032,36 @@
   "design": "Base 5, + 1 Touch, +2 Sun; +1 frequency, +3 environmental trigger, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 6530,
+   "line": 5620,
    "anchor": "a-net-of-immobilization"
   },
   "id": "a-net-of-immobilization-rean-item",
   "penetration": 30,
   "uses": "constant",
   "itemNotes": "30, Constant effect"
+ },
+ {
+  "name": "Trap of the Humane Hunter",
+  "technique": "Re",
+  "form": "An",
+  "requisites": [],
+  "level": 57,
+  "general": false,
+  "range": "Sight",
+  "duration": "Sun",
+  "target": "Ind (up to Size +3)",
+  "ritual": false,
+  "text": "Instilled in a wand or a staff tipped with a topaz (+5 Shape and Material Bonus to Lab Total), this effect paralyzes an animal when the command word is spoken. The effect must Penetrate the target’s magic resistance to work. Care must be taken when used on birds and fish, because sudden paralysis will affect their means of locomotion and could cause injury. This effect will not prevent a magical animal from using its powers, which it can invoke without any necessary physical activity.",
+  "design": "Base 5, +3 Sight, +2 Sun, +2 Size; +2 frequency, +15 Penetration",
+  "source": {
+   "book": "HP",
+   "line": 5630,
+   "anchor": "trap-of-the-humane-hunter"
+  },
+  "id": "trap-of-the-humane-hunter-rean-item",
+  "penetration": 30,
+  "uses": "3",
+  "itemNotes": "30, 3/day"
  },
  {
   "name": "The Saddle of Settling the Wild Stallion",
@@ -1638,11 +2074,11 @@
   "duration": "Sun",
   "target": "Ind (up to Size +3)",
   "ritual": false,
-  "text": "When placed on an animal's back, this saddle calms the beast, allowing it to be easily handled and even ridden.",
+  "text": "When placed on an animal’s back, this saddle calms the beast, allowing it to be easily handled and even ridden.",
   "design": "Base 4, +1 Touch, +2 Sun, +2 Size increase; +1 frequency, +3 environmental trigger, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 6573,
+   "line": 5656,
    "anchor": "the-saddle-of-settling-the-wild-stallion"
   },
   "id": "the-saddle-of-settling-the-wild-stallion-rean-item",
@@ -1661,11 +2097,11 @@
   "duration": "Momentary",
   "target": "Individual",
   "ritual": false,
-  "text": "Instilled in a shepherd's crook, this device instantly transports an animal to anywhere that the wielder has an arcane connection to, typically a predetermined pen or cage. The wielder holds the arcane connection against the crook's shaft and touches the animal. Once the command phrase is spoken, the animal is transported away.\n\nBase Level Interpretation: Rego Corpus base level 35 instantly transports the target to a place that the caster has an arcane connection to, and the Rego Animal guidelines explicitly state that the Rego Corpus guidelines can be used for animals.",
+  "text": "Instilled in a shepherd’s crook, this device instantly transports an animal to anywhere that the wielder has an arcane connection to, typically a predetermined pen or cage. The wielder holds the arcane connection against the crook’s shaft and touches the animal. Once the command phrase is spoken, the animal is transported away.\n\nBase Level Interpretation: Rego Corpus base level 35 instantly transports the target to a place that the caster has an arcane connection to, and the Rego Animal guidelines explicitly state that the Rego Corpus guidelines can be used for animals.",
   "design": "Base 35, + 1 Touch; +5 frequency, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 6587,
+   "line": 5666,
    "anchor": "instantaneous-transportation-of-the-captured-beast"
   },
   "id": "instantaneous-transportation-of-the-captured-beast-rean-item",
@@ -1688,7 +2124,7 @@
   "design": "Base 4, +1 Touch, +3 Moon, +2 additional Size reduction, +2 Target Size adjustment; +5 frequency, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 6607,
+   "line": 5682,
    "anchor": "shrinking-to-the-convenient-size"
   },
   "id": "shrinking-to-the-convenient-size-muan-item",
@@ -1713,7 +2149,7 @@
   "design": "Base 15, +1 Touch, +3 Moon; +5 frequency, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 6621,
+   "line": 5692,
    "anchor": "changing-to-the-convenient-shape"
   },
   "id": "changing-to-the-convenient-shape-muan-item",
@@ -1732,11 +2168,11 @@
   "duration": "Diameter",
   "target": "Individual",
   "ritual": false,
-  "text": "This brand creates an illusory image of the beast's owner, sitting atop or standing next to the creature. The illusion looks like the owner and announces his name repeatedly until the effect ends. It is activated whenever anyone touches the beast. The owner should be aware that\n\nthis brand is a blatant display of magical power, and might not work in areas where subtlety is preferred.",
+  "text": "This brand creates an illusory image of the beast’s owner, sitting atop or standing next to the creature. The illusion looks like the owner and announces his name repeatedly until the effect ends. It is activated whenever anyone touches the beast. The owner should be aware that\n\nthis brand is a blatant display of magical power, and might not work in areas where subtlety is preferred.",
   "design": "Base 2 (create an image that affects two senses), +1 Touch, +1 Diameter, +1 for clear words; +10 frequency, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 6703,
+   "line": 5773,
    "anchor": "the-brand-of-ownership"
   },
   "id": "the-brand-of-ownership-crim-item",
@@ -1755,11 +2191,11 @@
   "duration": "Sun",
   "target": "Ind (up to Size +2)",
   "ritual": false,
-  "text": "This brand arouses the creature as a prelude to mating, usually used on the lead stud of the herd, or a male with highly desired physical characteristics. It works on the animal's emotions and is much more helpful for males than females, whose bodies might not be in season despite the sudden mental urge to procreate. The brand is triggered by a command word spoken by a trainer or groom. Once activated, the animal becomes increasingly aggressive and might prove dangerous to its handlers.",
+  "text": "This brand arouses the creature as a prelude to mating, usually used on the lead stud of the herd, or a male with highly desired physical characteristics. It works on the animal’s emotions and is much more helpful for males than females, whose bodies might not be in season despite the sudden mental urge to procreate. The brand is triggered by a command word spoken by a trainer or groom. Once activated, the animal becomes increasingly aggressive and might prove dangerous to its handlers.",
   "design": "Base 5, +1 Touch, +2 Sun, +1 Size modifier; +10 Penetration",
   "source": {
    "book": "HP",
-   "line": 6721,
+   "line": 5787,
    "anchor": "the-brand-of-the-aroused-stallion"
   },
   "id": "the-brand-of-the-aroused-stallion-rean-item",
@@ -1778,11 +2214,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "The brand protects a beast from a mundane thief. When a human hand touches the beast, the brand creates an overpowering fear of the beast in the person's mind, hopefully causing him to flee. The effect has no penetration, so that the maga can easily handle the animal herself when necessary.",
+  "text": "The brand protects a beast from a mundane thief. When a human hand touches the beast, the brand creates an overpowering fear of the beast in the person’s mind, hopefully causing him to flee. The effect has no penetration, so that the maga can easily handle the animal herself when necessary.",
   "design": "Base 4, +1 Touch, +2 Sun; +10 frequency",
   "source": {
    "book": "HP",
-   "line": 6735,
+   "line": 5797,
    "anchor": "the-brand-to-ward-off-rustlers"
   },
   "id": "the-brand-to-ward-off-rustlers-crme-item",
@@ -1805,7 +2241,7 @@
   "design": "Base 4, +1 Touch; +5 frequency, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 6819,
+   "line": 5867,
    "anchor": "horn-of-hearing-the-cow-laden-with-child"
   },
   "id": "horn-of-hearing-the-cow-laden-with-child-inan-item",
@@ -1828,7 +2264,7 @@
   "design": "Base 4, + 1 Touch, +2 Sun, +2 Room; +1 frequency (2 uses per day), +3 environmental trigger, +10 Penetration",
   "source": {
    "book": "HP",
-   "line": 6839,
+   "line": 5893,
    "anchor": "ease-of-birthing"
   },
   "id": "ease-of-birthing-cran-item",
@@ -1847,11 +2283,11 @@
   "duration": "Sun",
   "target": "Individual",
   "ritual": false,
-  "text": "Instilled in a clear glass lens (+5 Shape & Material Bonus), this effect lets a viewer see through an egg's shell and view its interior. Using the same principle as the spell Prying Eyes, the lens allows the viewer to inspect the developing chick inside the egg. The lens must touch both the egg and the viewer at the same time.\n\n(Effect: Base 1, +1 Touch, +2 Sun; +1 frequency, +3 environmental trigger, +15 Penetration)\n\nsubstances to influence the outcome of breeding. Use the rules for ligatures found in Art & Academe (page 68). If the breeder is breeding supernatural animals, the player may substitute an appropriate Lore Ability for the Academic Ability. A successful ligature must be applied to the creature for the entire period of gestation to affect the creature's offspring.\n\nThe stress die roll to determine the offspring is modified by the following conditions, which usually pertain to the mother during gestation.\n\n| Condition                  | Modifier     | |----------------------------|--------------| | Adequate diet              | +1           | | Agreeable environment      | +1           | | Appropriate Hermetic spell | +1/magnitude | | Inadequate diet            | –2           | | Ligature                   | +1 to +3     | | Unsatisfactory environment | –2           |\n\nIf breeding for the beast, in hopes of creating a new line, roll a stress die on the following chart, applying the same conditional modifiers to the die as when breeding for the best. The possibility of two different kinds of animals breeding is up to the troupe and, ultimately, the storyguide. No die roll will force the storyguide to decide that one kind of animal can successfully breed with another kind.\n\n| Roll BBotch | reeding for Beast ResultOffspring dies days after birth | |-----------------|-------------------------------------------------------------| | 0               | Offspring is weaker than male                               | |                 | parent (reduce Stamina or                                   | |                 | increase the cost of one power)                             | | 1-12            | Offspring resembles male parent                             | | 13              | Offspring resembles female                                  | |                 | parent (if female, this beast will                          | |                 | provide a +3 bonus to future                                | |                 | crossbreeding rolls)                                        |\n\n- 14 Offspring resembles male parent and has one Minor Virtue or Quality of the female parent - 15+ Offspring resembles male parent and has one Major Virtue or Quality of the female parent\n\nTry our best-selling card games today!\n\n... and our newest releases\n\nOnce Upon a Time: AG1001 • ISBN 1-887801-00-6 • MSRP \\$20.95 US\n\nLet's Kill: AG1270 • ISBN 1-58978-082-5 • MSRP \\$19.95 US\n\nLunch Money: AG1100 • ISBN 1-887801-47-2 • MSRP \\$19.95 US\n\nGloom: AG1250 • ISBN1-58978-068-X • MSRP \\$24.95 US\n\nDungeoneer: AG1240 • ISBN 1-58978-018-3 • MSRP \\$19.95 US\n\nRen Faire: AG1320 • ISBN 1-58978-109-0 • MSRP \\$24.95 US\n\nMad Scientist University: AG1310 • ISBN 1-58978-099-X • MSRP \\$24.95 US\n\nATIAS GAMES www.atlas-games.com\n\nYou and your friends are newbies at the Renaissance faire. But in a crowd of buccaneer hats and faerie wings, you're the only ones in shorts and t-shirts. You have one afternoon to assemble the ultimate Renaissance costume, but you're low on cash and the only way to earn more is to perform for the crowd!\n\nIn the Ren Faire card game, your goal is to outfit your Character card with Costumes whose icons fill the slots on it. To do this, you play\n\nPerformance cards that award you coins for doing silly stunts, then buy the transparent Costume cards that stack above your Character card.\n\nRen Faire features an innovative transparent card design, and Performance cards that are sure to keep everyone enjoying the game!\n\nWWW.ATLAS-GAMES.COM/RENFAIRE\n\n©2009 Trident, Inc. d/b/a Atlas Games. All rights reserved.",
-  "design": null,
+  "text": "Instilled in a clear glass lens (+5 Shape & Material Bonus), this effect lets a viewer see through an egg’s shell and view its interior. Using the same principle as the spell Prying Eyes, the lens allows the viewer to inspect the developing chick inside the egg. The lens must touch both the egg and the viewer at the same time.",
+  "design": "Base 1, +1 Touch, +2 Sun; +1 frequency, +3 environmental trigger, +15 Penetration",
   "source": {
    "book": "HP",
-   "line": 7104,
+   "line": 6135,
    "anchor": "the-lens-of-avian-inspection"
   },
   "id": "the-lens-of-avian-inspection-inim-item",

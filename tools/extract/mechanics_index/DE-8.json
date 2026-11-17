@@ -83,7 +83,7 @@
   "requires": "Knowledge of a being's True Name or synthemata (theurgy)",
   "summary": "Explains True Names, which act as indefinite-duration Arcane Connections to spirits and are learned as spell-like abilities with experience points, and synthemata, the signs and passwords that every being with Might has and that theurgic magic uses to command it.",
   "quotes": [
-   "Each True Name is a spelllike ability recorded as \"True Name of (Being)\" on the character sheet, and costs 5 experience points to learn.",
+   "Each True Name is a spell-like ability recorded as \"True Name of (Being)\" on the character sheet, and costs 5 experience points to learn.",
    "Knowing the True Name of a creature adds 5 to all lab totals to research synthemata for that same being.",
    "A True Name is an Arcane Connection of indefinite duration"
   ],
@@ -272,7 +272,7 @@
  },
  {
   "title": "Water Elemental Sample Powers",
-  "heading": "Water Clemental Sample Powers",
+  "heading": "Water Elemental Sample Powers",
   "line": 19251,
   "endLine": 19270,
   "category": "beings",
@@ -938,7 +938,7 @@
   "requires": "",
   "summary": "Introduces how women gain public power in Mythic Europe, framed as material for storytelling rather than prohibition, and points to the Paid Rights Virtue for exceptional women characters.",
   "quotes": [
-   "The Paid Rights Virtue (page 100) is a gamemechanical way to acknowledge that an exceptional woman is just that: exceptional."
+   "The Paid Rights Virtue (page 100) is a game-mechanical way to acknowledge that an exceptional woman is just that: exceptional."
   ],
   "related": [
    "Virtue: Paid Rights"

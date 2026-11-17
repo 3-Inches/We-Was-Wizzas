@@ -11,7 +11,7 @@
   "text": "Care and use of animals, including raising, tending, grooming, and healing them.",
   "source": {
    "book": "DE",
-   "line": 7342,
+   "line": 7358,
    "anchor": "animal-handling"
   },
   "alsoIn": [
@@ -34,7 +34,7 @@
   "text": "You can communicate with animals as if they were human beings. Treat your score in Animal Ken as your score in a language that the animal speaks fluently in order to determine how well you can communicate, and you can use Animal Handling as a substitute for any social abilities affecting humans. Beyond this, this Ability has no effect on the attitude of animals to you, or you to animals. Other people cannot understand your communication with the animals.",
   "source": {
    "book": "DE",
-   "line": 7346,
+   "line": 7362,
    "anchor": "animal-ken"
   }
  },
@@ -53,7 +53,7 @@
   "text": "Knowledge of one particular region, covenant, or even a village. It includes knowing where things are in the immediate area, local history and legends, and the centers of power in the region. The smaller the region, the more detailed your knowledge.",
   "source": {
    "book": "DE",
-   "line": 7350,
+   "line": 7366,
    "anchor": "area-lore"
   }
  },
@@ -68,7 +68,7 @@
   "text": "The Art of Memory deals with the creation of memory palaces, a form of mnemonic, in which one visualizes a number of loci (singular locus), where the scholar commits to memory a symbolic representation of a fact to be remembered. The character has a number of loci equal to five times their score in Art of Memory.\n\nTo memorize a complex scene, image, or piece of writing (such as a long letter, but not as long as an entire text), the character must succeed in a roll of:\n\n**COMPLEX MEMORIZATION ROLL:** Stress Die + Intelligence + Art of Memory vs. Ease Factor of 9 (or higher)\n\nThe Ease Factor may be higher depending on the length or complexity of the item to be memorized. If the character succeeds, they remember the item in exact detail, and may recall it at will although it may take time to explore a locus.\n\nCharacters without the Art of Memory may memorize similar items with a Stress Die + Intelligence roll (with 3 extra botch dice) against the same Ease Factors, but must also repeat the roll to recall the memory perfectly. Each roll failed introduces errors in the memory which are repeated each time it is recalled. Those without the Art of Memory also lack the well-defined location system of loci.",
   "source": {
    "book": "DE",
-   "line": 7354,
+   "line": 7370,
    "anchor": "art-of-memory"
   }
  },
@@ -91,7 +91,7 @@
   "text": "The seven artes liberales, or liberal arts, are the basis of medieval higher education. Everyone learns them at the universities before passing on to study other subjects. It would be very rare for a character to have a score in any other Academic Knowledge without a score of at least one in this one.\n\nThe artes liberales are divided into two groups: the Trivium (grammar, logic, and rhetoric) and the Quadrivium (arithmetic, geometry, astronomy, and music). The emphasis at this period is on the Trivium, but both are taught. (Note that Artes Liberales as a whole is one Skill, not seven separate ones.)\n\nGrammar concerns theoretical questions of the structure of languages, rather than the ability to use a specific language (that is covered by Speak skills). The auctores are Priscian and Donatus. Logic is the study of the syllogism, and other forms of reasoning discussed by Aristotle. It is the most important of the arts at this period. Aristotle is the auctor, in his *logica vetus* and *logica nova*. Rhetoric is the study of the theory of rhetorical forms: knowledge of the sort of tricks that an orator can use, rather than the ability to use them. The auctor is Cicero, especially his *De Inventione*.\n\nArithmetic is the ability to add and subtract, multiply and divide. The auctor is Boethius, *De arithmetica*. Geometry is concerned with study of plane and solid figures, and the auctor is Euclid, in his *Elementa*. It also deals with the study of light, and Euclid's *Optica* is the authority here. Astronomy is concerned with predicting the positions of the stars and planets, and the auctor is Ptolemy, in the *Libri Almagesti*. Music is purely theoretical, the study of proportions and musical theory, not the ability to sing or play an instrument. The authority is Boethius, in *De Musica*.\n\nArtes Liberales also covers the ability to read and write. For every point in the Ability, the character can read and write one writing system, providing that he knows a language which normally uses that system: the Latin alphabet, the Greek alphabet, the Arabic alphabet, and so on.\n\nA character who does not speak the normal languages of scholarship may learn Artes Liberales to be literate in other languages. It is rare for such a character to have a score over 1, and they must still be able to learn Academic Abilities to do so at character creation.",
   "source": {
    "book": "DE",
-   "line": 7376,
+   "line": 7392,
    "anchor": "artes-liberales"
   }
  },
@@ -107,10 +107,10 @@
    "jumping",
    "running"
   ],
-  "text": "General physical prowess. It includes moving smoothly, confidently, and with grace. Use of Athletics improves most largemuscle coordination.",
+  "text": "General physical prowess. It includes moving smoothly, confidently, and with grace. Use of Athletics improves most large-muscle coordination.",
   "source": {
    "book": "DE",
-   "line": 7390,
+   "line": 7406,
    "anchor": "athletics"
   }
  },
@@ -128,7 +128,7 @@
   "text": "Noticing things, be they things you are looking for or things that you are not expecting. It is also used to see how alert you are in circumstances that require watchfulness.",
   "source": {
    "book": "DE",
-   "line": 7394,
+   "line": 7410,
    "anchor": "awareness"
   }
  },
@@ -144,7 +144,7 @@
   "text": "The know-how to get the greatest return for a service or product, while paying the least. It involves reading the person with whom you haggle, a general knowledge of the value of goods, and presenting yourself in certain ways. A good haggler can easily overcome resistance in an inexperienced customer and see through attempts to over-value most merchandise.",
   "source": {
    "book": "DE",
-   "line": 7398,
+   "line": 7414,
    "anchor": "bargain"
   }
  },
@@ -159,7 +159,7 @@
   "text": "Using bows and arrows.",
   "source": {
    "book": "DE",
-   "line": 7402,
+   "line": 7418,
    "anchor": "bows"
   }
  },
@@ -177,7 +177,7 @@
   "text": "Fighting hand-to-hand without weapons, or with the sorts of improvised weapons you just pick up, including knives. Brawl is also the Ability used to dodge attacks if you have no Martial Abilities.",
   "source": {
    "book": "DE",
-   "line": 7406,
+   "line": 7422,
    "anchor": "brawl"
   }
  },
@@ -195,7 +195,7 @@
   "text": "The ability to enjoy oneself without suffering adverse effects. A person with this skill can, for example, consume prodigious amounts of alcohol without passing out. The skill also covers a familiarity with acceptable behavior, balancing enjoyment and moderation. With this Ability, a person is able to have fun and gain friends among the lower classes nearly anywhere, even among those of a different culture.",
   "source": {
    "book": "DE",
-   "line": 7410,
+   "line": 7426,
    "anchor": "carouse"
   }
  },
@@ -212,7 +212,7 @@
   "text": "Enticing, fascinating, and endearing others to you, but only on a personal basis. It can be used to win someone over emotionally, especially romantically.",
   "source": {
    "book": "DE",
-   "line": 7414,
+   "line": 7430,
    "anchor": "charm"
   }
  },
@@ -230,7 +230,7 @@
   "text": "This is Middle Ages-style surgery, used to help others recover from physical damage. It encompasses tending and binding wounds of all varieties, and the necessary but brutal skill of cauterization. See page 405 for rules.",
   "source": {
    "book": "DE",
-   "line": 7418,
+   "line": 7434,
    "anchor": "chirurgy"
   }
  },
@@ -246,7 +246,7 @@
   "text": "Civil Law is the law of the Roman Empire. Most local legal systems are based upon it (England being the notable exception), and when a law is needed to govern international relations, Civil Law is appealed to. The authority is Justinian's Digest. Canon Law is the law of the Church. It is important to Mythic Europe as it applies in all nations, governing the working of the church and some other areas, such as marriage. It is important to note that members of the clergy are only subject to Canon Law, not customary or Civil Law. Most high churchmen are skilled canonists, not theologians. Canon Law is made by Papal bulls (pronouncements), but the auctor is Gratian, in his Decretum. This skill covers the knowledge of both types of law. Other religions, particularly Judaism and Islam, have their own versions of this Ability, which must be learned separately.",
   "source": {
    "book": "DE",
-   "line": 7422,
+   "line": 7438,
    "anchor": "civil-and-canon-law"
   }
  },
@@ -265,7 +265,7 @@
   "text": "Judging events according to the Code of Hermes and the Peripheral Code. In addition to memorizing important precedents, this knowledge includes the practical side of enforcing Hermetic law — for example, knowing when to push for a vote or how to present an argument.",
   "source": {
    "book": "DE",
-   "line": 7426,
+   "line": 7442,
    "anchor": "code-of-hermes"
   }
  },
@@ -281,7 +281,7 @@
   "text": "Knowledge of the laws of England. There is no authority for this Ability, and it is only taught in England.",
   "source": {
    "book": "DE",
-   "line": 7430,
+   "line": 7446,
    "anchor": "common-law"
   }
  },
@@ -298,7 +298,7 @@
   "text": "Focusing your mental faculties on one task, particularly for extended periods of time. If you are attempting a feat that demands your extra attention, or if you have just failed an action and are trying again, the storyguide can call for a Concentration roll before you can make the attempt. This Ability is especially important for magi because it helps them maintain concentration on spells despite distractions.",
   "source": {
    "book": "DE",
-   "line": 7434,
+   "line": 7450,
    "anchor": "concentration"
   }
  },
@@ -311,7 +311,7 @@
   "text": "The character can use Corpse Magic to temporarily revive a corpse. The target of this Supernatural Ability cannot have received any burial rites from a Divinely-sanctioned religion, and the corpse must be relatively intact, having as a minimum a spine, a skull, and more than half of its long bones. There need not be any flesh remaining. It takes fifteen minutes to chant the spells sufficiently to awaken the dead.\n\n**CASTING TOTAL:** Communication + Corpse Magic + Aura modifier + stress die\n\n**COMMANDING ROLL:** Communication + Leadership + stress die; Leadership may be limited by Language Ability\n\nCompare the result to the Ease Factors at right to determine success.\n*Specialities:* kings, soldiers, compelling truth, animating the dead. (Supernatural)\n\n#### Corpse Magic Ease Factor Outcome\n\n|     |            |\n| --- | ---------- |\n| 9   | **Speak to the dead.** The corpse is not compelled to answer truthfully or directly, although it may do so anyway. |\n| 12  | **Speak to the dead and compel it to speak truly. Protect a corpse from being affected by further Corpse Magic.** Any attempt to do so has the Ease Factor increased by the Corpse Magic score of the character. |\n| 15  | **Animate a corpse.** Orders are followed to the best of the corpse's abilities, but the character must remain in sight of the corpse else it will cease all movement until he returns. **Take control of an animated corpse.** The Commanding roll must be greater than the original animator's (if any), else the corpse continues to follow its previous orders. |\n| 18  | **Animate a corpse and place it under the direct mental control of the character; if he can see the corpse he can issue it orders. He can leave the presence of the corpse and it will continue to obey its orders, but once they are complete it remains motionless until given another order by its creator.** The corpse animates and sits up, allowing the character converses with it directly. A character who is particularly skilled can cause the corpse to rise out of the grave and walk abroad. The character asks questions or issues commands by making a Communication + Leadership roll; the corpse does nothing unless commanded to do so using a roll of this type. Single word commands have an Ease Factor of 6, simple questions or commands require a 9, and more complex instructions or questions need a 12 or more. The character must know the language that the corpse spoke in life to ask it questions or issue commands. If the character is not fluent in this language (that is, a score of 5 or higher), then the character's Leadership is limited by his Language Ability. Once the character has failed three commanding rolls, the corpse sinks back into its grave or ceases movement, and cannot be subject to Corpse Magic again until the moon has risen. All corpses are also laid to rest if their heads are removed from their body. Walking corpses typically have a Magic Might of 9 (see *Realms of Power: Magic,* Chapter 6 for more details). The Penetration Total of the Corpse Magic must exceed this Might to cause it to leave its grave, otherwise it is confined to the earth. |",
   "source": {
    "book": "DE",
-   "line": 7438,
+   "line": 7454,
    "anchor": "corpse-magic"
   }
  },
@@ -326,7 +326,7 @@
   "text": "A general term for countless Abilities, all dealing with handiwork of some type. In general, Craft Abilities are distinguished by the material they work with, although you may also take a Craft Ability that allows the character to work with several materials in one specific way. You may purchase Craft more than once, choosing a different one each time. Skill in one Craft does not imply skill in any others. City and Guild contains more detailed information about Craft Abilities and their use, in Chapter 4.",
   "source": {
    "book": "DE",
-   "line": 7457,
+   "line": 7473,
    "anchor": "craft-type"
   }
  },
@@ -341,7 +341,7 @@
   "text": "When using this Ability, each wound can only be treated once, regardless of its severity. Make a Presence + Crafter's Healing + stress die roll against an Ease Factor equal to the Improvement Ease Factor determined by the Wound Recovery Table (page 405). Healing a wound costs a Long-Term Fatigue level. If successful, the wound is healed one level: heavy wounds become medium, medium wounds light, and light wounds heal totally. If the roll fails, nothing happens besides fatigue loss. If the roll botches, the healer suffers a similar wound immediately. The wounded recipient gains a Warping Point each time this Ability is used on her, regardless of its success.",
   "source": {
    "book": "DE",
-   "line": 7461,
+   "line": 7477,
    "anchor": "crafters-healing"
   }
  },
@@ -358,7 +358,7 @@
   "text": "This Supernatural Ability is usually aligned to the Faerie Realm, but could be aligned to any supernatural realm. It enables the character to heal diseases, remove curses, and dispel detrimental magical effects, but only by transferring (or 'throwing') their effects to another person. Curse-Throwing cannot affect Flaws; specifically, someone with the Lesser or Greater Malediction Flaw is beyond the power of Curse-Throwing, unless it is a Flaw imposed by a faerie or magician with a limited duration. However, any other curse laid by a supernatural power is potentially within the remit of this Ability; note that curses laid directly by God (such as leprosy) are normally represented by permanent Flaws, and thus exempt. Only harmful effects can be transferred with this Ability, and the storyguide is the arbiter in cases where spells are not directly detrimental. Barrenness is a common affliction treated by this power, if transferred to a man or male animal then impotence is inflicted instead. Other curses transferred to inappropriate targets are changed in a similar manner.\n\nTo throw a curse, the afflicted person must be physically present, and the recipient of the curse must be represented either in person or by an Arcane Connection. Afflictions can be passed from humans to animals or vice versa, but this is harder than transferring within the same species. Curse-Throwers sometimes transfer the curse to themselves, but such altruism is rare. To throw a curse, the character must perform an elaborate ritual which involves the crafting of a charm which transfers the curse. This charm is a combination of a physical object and a chant. The object is repeatedly touched to the target and the recipient (or the Arcane Connection), whilst the chant is repeated over and over. The ritual typically takes an hour for every 5 points (or fraction) of the Ease Factor (see below). At the end of this time, the character generates a Casting Total, which must equal or exceed the Ease Factor listed below. If either the sufferer or the intended recipient of the curse has Magic Resistance, the Penetration Total must exceed it, else the curse stays where it is. A botched Curse-Throwing roll swaps the recipient of the curse to the caster.\n\n**CURSE-THROWING CASTING TOTAL: Presence + Curse-Throwing + Aura + stress die**\n\n**PENETRATION TOTAL: Casting Total – Ease Factor + Penetration Bonus**\n\n| Curse                           | Ease Factor             |\n| ------------------------------- | ----------------------- |\n| Minor Disease<br>or Affliction* | 9                       |\n| Serious Disease or Affliction*  | 12                      |\n| Major Disease or Affliction*    | 15                      |\n| Critical Disease *              | 18                      |\n| Spell                           | 12 + magnitude of spell |\n| Supernatural Ability            | 12 + Ability score      |\n| Power                           | 12 + Might points spent |\n\n\\*A Minor disease inflicts a Light wound, a Serious disease inflicts a Medium wound, a Major disease inflicts a Heavy wound, and a Critical disease inflicts an Incapacitating wound. See *Art & Academe*, Chapter 4:Medicine for more details. Minor Afflictions include boils and warts. Serious Afflictions are equivalent to a Minor Flaw in magnitude, whereas Major Afflictions are as severe as a Major Flaw.\n\n| Situation                                                                | Modifier to<br>Casting Total |\n| ------------------------------------------------------------------------ | ---------------------------- |\n| Recipient present in person                                              | 0                            |\n| Recipient represented by<br>Arcane Connection lasting<br>decades or more | -1                           |\n| Recipient represented by<br>Arcane Connection lasting<br>months or years | -3                           |\n| Recipient represented by<br>Arcane Connection lasting<br>weeks or less   | -6                           |\n| Recipient is different species to target                                 | -3                           |",
   "source": {
    "book": "DE",
-   "line": 7465,
+   "line": 7481,
    "anchor": "curse-throwing"
   }
  },
@@ -375,7 +375,7 @@
   "text": "This skill is similar to all other (Language) Abilities, but it is only available to educated characters. It grants the ability to speak a language which is no longer used as a native language in the areas the character has lived in. The most important example is Latin, the language of formal education in the West. It is also the common language of the Church and Order of Hermes. In other areas of the world, Arabic, Greek and Hebrew fill similar functions, although of these only Hebrew is a dead language.",
   "source": {
    "book": "DE",
-   "line": 7500,
+   "line": 7516,
    "anchor": "dead-language"
   }
  },
@@ -389,10 +389,10 @@
    "saints",
    "Divine creatures"
   ],
-  "text": "Knowledge of the manifestations of the power of the Divine. Different from Church Lore (a kind of (Organization) Lore)) because it covers miracles rather than politics, and different from Theology because it is concerned with power rather than doctrine.",
+  "text": "Knowledge of the manifestations of the power of the Divine. Different from Church Lore (a kind of (Organization) Lore) because it covers miracles rather than politics, and different from Theology because it is concerned with power rather than doctrine.",
   "source": {
    "book": "DE",
-   "line": 7504,
+   "line": 7520,
    "anchor": "dominion-lore"
   }
  },
@@ -410,7 +410,7 @@
   "text": "You have the ability to find things nearby through the use of a dowsing rod (usually a forked stick) and your own intuitive sense. You concentrate on the thing to be found, hold your dowsing rod out in front of you, and follow its subtle motions to the target. If you're looking for something specific, you must have an appropriate sympathetic connection to the thing sought (such as bottled water from a stream when searching for running water). Before you roll, designate the area in which you are searching — if the item sought is not present in that area, you automatically fail. The time required to search depends on the size of the area, and must be invested whether you succeed or not. It takes about one Diameter (two minutes, or twenty combat rounds) to search for something within 25 paces, and doubling the distance quadruples the time. To find something common, like water, within 25 paces requires a Perception + Dowsing of 9+. Increased distances or dowsing for less common things increases the target number, so that, for example, finding gold within 100 paces would have an Ease Factor of 15.",
   "source": {
    "book": "DE",
-   "line": 7508,
+   "line": 7524,
    "anchor": "dowsing"
   }
  },
@@ -423,7 +423,7 @@
   "text": "You can cause one person to hate another. This Ability is described in the Hermetic Magic chapter, page [245](#embitterment-2).",
   "source": {
    "book": "DE",
-   "line": 7512,
+   "line": 7528,
    "anchor": "embitterment"
   }
  },
@@ -439,7 +439,7 @@
   "text": "When you set your mind to it, you can influence others with a particular performance ability. For a specific effect, you must use words that people can understand. You can calm the grieving with tunes alone, but you need lyrics to convince peasants to rise up against the local lord. General effects work on animals, but specific effects only work on creatures that can understand words. When you use Enchanting Ability, roll a die (stress or simple, depending on the situation) and add Communication and Enchanting Ability. An Ease Factor of 9 will calm the upset, 12 will win someone's love, 15 will incite a riot, and a 24 might win back a soul from the Prince of Darkness. If you botch, you inspire an unwanted emotion.\n\nIf the target has Magic Resistance, you must penetrate their resistance; see page [412](#magic-resistance-and-penetration) for rules.\n\nYou should also roll for the quality of the performance, but the magical effect is independent of this, unless you botch. If you do botch the Ability roll, you have failed to produce any performance for some reason, and so the Supernatural Ability automatically fails.",
   "source": {
    "book": "DE",
-   "line": 7515,
+   "line": 7531,
    "anchor": "enchanting-ability"
   }
  },
@@ -452,7 +452,7 @@
   "text": "The understanding that Criamon magi have of the Enigma. It is described in the Hermetic Magic chapter, on page [236](#enigmatic-wisdom-1). (Arcane)",
   "source": {
    "book": "DE",
-   "line": 7523,
+   "line": 7539,
    "anchor": "enigmatic-wisdom"
   }
  },
@@ -468,7 +468,7 @@
   "text": "You have the power to control another's will. By staring deeply into someone's eyes for several seconds — generally impossible in combat — you can verbally command the person to perform a certain task. Roll Presence + Entrancement against the target's Stamina roll. The person being controlled may get a bonus to resist at the option of the storyguide, according to the table below. Hermetic magi get their normal Mentem Magic Resistance, and get the normal Stamina roll if the effect penetrates Calculate Penetration using an Ease Factor of 6 + the victim's bonus. The blind, and people with their eyes closed, are immune; see page 303 for more guidelines on making eye contact. However, it is not possible to look away while being Entranced unless you win the opposed roll.\n\n| Command      | Example                | Victim's Bonus |\n| ------------ | ---------------------- | -------------- |\n| Innocuous    | Talk to me             | +3             |\n| Questionable | Meet me alone at night | +6             |\n| Dangerous    | Put your weapons away  | +9             |\n| Heinous      | Kill your fellows      | +12            |\n| Suicidal     | Jump off a cliff       | +15            |",
   "source": {
    "book": "DE",
-   "line": 7526,
+   "line": 7542,
    "anchor": "entrancement"
   }
  },
@@ -487,7 +487,7 @@
   "text": "You know the social graces and how to behave in different situations. Etiquette differs from Charm in that Etiquette covers proper behavior, rather than charming behavior. You cannot seduce someone with Etiquette, but neither can you get through an audience with the bishop on Charm alone.",
   "source": {
    "book": "DE",
-   "line": 7539,
+   "line": 7555,
    "anchor": "etiquette"
   }
  },
@@ -504,7 +504,7 @@
   "text": "Familiarity with faerie powers, weaknesses, motivations, and areas.",
   "source": {
    "book": "DE",
-   "line": 7543,
+   "line": 7559,
    "anchor": "faerie-lore"
   }
  },
@@ -517,7 +517,7 @@
   "text": "The connection to the power of the Faerie realm possessed by Merinita magi. It cannot be learned by other characters, even if they have access to Arcane Abilities. It is described in the Hermetic Magic chapter, on page [236](#merinita--faerie-magic). (Arcane)",
   "source": {
    "book": "DE",
-   "line": 7547,
+   "line": 7563,
    "anchor": "faerie-magic"
   }
  },
@@ -534,7 +534,7 @@
   "text": "Manipulating your spells and performing special feats with them. You would use this Ability to position objects delicately or to target spells.",
   "source": {
    "book": "DE",
-   "line": 7550,
+   "line": 7566,
    "anchor": "finesse"
   }
  },
@@ -554,7 +554,7 @@
   "text": "Understanding the background, personality, and motives of another person. Often the storyguide secretly rolls a die when this Ability is used. Thus, you do not know if your character guessed correctly, or even botched.",
   "source": {
    "book": "DE",
-   "line": 7554,
+   "line": 7570,
    "anchor": "folk-ken"
   }
  },
@@ -569,7 +569,7 @@
   "text": "By succeeding in an Ability check (Intelligence + Font of Knowledge + stress die) against an Ease Factor of (6 plus (3 times number of uses of Font of Knowledge that day)) a creature with this Ability may attempt a task with any untrained ability as if they possessed a score of 2. Failed attempts count towards the number of uses in a given day.",
   "source": {
    "book": "DE",
-   "line": 7558,
+   "line": 7574,
    "anchor": "font-of-knowledge"
   }
  },
@@ -584,7 +584,7 @@
   "text": "Fighting with a weapon which requires two hands to use.",
   "source": {
    "book": "DE",
-   "line": 7562,
+   "line": 7578,
    "anchor": "great-weapon"
   }
  },
@@ -602,7 +602,7 @@
   "text": "Telling convincing lies, as well as feigning emotion, belief, or frame of mind. If you understand the person you are attempting to deceive (roll 9+ on Perception + Folk Ken), you gain a bonus of +1 to your Guile roll. This Ability also covers disguising yourself, and pretending to be something you are not. It is often an opposed roll, against the victim's Perception + Folk Ken or, for disguise, Perception + Awareness.",
   "source": {
    "book": "DE",
-   "line": 7566,
+   "line": 7582,
    "anchor": "guile"
   }
  },
@@ -615,7 +615,7 @@
   "text": "The ability shared by all Bjornaer magi to take the form of their heartbeast. It is described in the Hermetic Magic chapter, on page [233](#bjornaer--the-heartbeast). This Ability cannot be learned by non-Bjornaer characters, even if they have access to Arcane Abilities. (Arcane)",
   "source": {
    "book": "DE",
-   "line": 7570,
+   "line": 7586,
    "anchor": "heartbeast"
   }
  },
@@ -628,13 +628,13 @@
   "text": "The character has the power to bring about injury or ruin upon her enemies. There are three ways for her to activate this power: by making eye contact with her victim and proclaiming her purpose loud enough for him to hear, by tracing temporary occult signs and symbols on her target that indicate the dark fate she intends, or by acquiring an Arcane Connection to her target and fashioning a recognizable representation that can channel the effect through sympathetic magic.\n\nTo hex a target, the character must make clear her will for it: she must declare her wishes to the victim aloud, or indicate the specifics of the hex in writing on or very near the target, or do something to the representation that is similar to what she intends to happen to the target. There is always a physical component to the hex (common practices include tying knots in a line, spitting, or giving the target the \"evil eye\").\n\nYou must also state a time frame for the hex, anywhere from an effect that occurs immediately to a hex that will affect the third generation of the victim's descendants. Generally speaking, the sooner the effect manifests, the less potent it will be; and the longer the hex delays, the more powerful it will eventually become. For this reason you must always apply the delay modifier (see the sidebar) to the Hex total.\n\n#### Hex Delay Modifiers\n| Delay      | Modifier |\n| ---------- | -------- |\n| moment     | -12      |\n| hour       | _9       |\n| day        | -6       |\n| week       | -3       |\n| month      | 0        |\n| season     | +3       |\n| year       | +6       |\n| generation | +9       |\n| lifetime   | +12      |\n\nWhen you have framed the hex appropriately, roll Intelligence + Hex + aura bonus + the delay modifier and compare this to the Ease Factor on the Hex Effects chart. The severity of these effects is comparable to the effects of botching a roll with a specific number of 0's on the botch dice. If you should botch the Hex roll, the hex may still happen, but with unpredictable and unintended results, possibly affecting the character or someone close to her instead. Or, she may suffer Warping Points, fatigue loss, or other unfortunate effects.\n\n**HEX: Stress Die + Intelligence + Hex + Aura Bonus + Modifiers**\n\nA potential victim can avoid the effects of a hex by seeking out supernatural protection of some sort, usually from the Divine. If a character receives absolution in a religious ceremony, all hexes that have targeted him are permanently undone. Characters can also remove hexes with other supernatural effects, such as a Perdo Vim spell, a faerie blessing, or a holy miracle. Treat the hex as having a spell level equal to the number of botch dice it approximates, multiplied by 10, so that a Serious hex is a level 20 effect, and a Critical hex is level 40.\n\nHex is often a false power (as the False Power Flaw) associated with the Magical or Faerie realms. That is, it often uses the Magical or Faerie column of the realm interaction chart, but appears as an unholy power when subjected to divine or infernal powers of investigation. Purely Infernal versions of the power also exist, as do Magical or Faerie versions that are not touched by the Infernal. Such \"pure\" versions of Hex are rare, however, as demons love to taint this power. Specialties: A specific duration, one method of hexing, a particular effect. (Supernatural)\n\n#### Hex Effects\n| Ease Factor | Severity             | Example                                |\n| ----------- | -------------------- | -------------------------------------- |\n| 6+          | Minor (1 botch)      | Automatic failure at an important task |\n| 12+         | Serious (2 botches)  | Struck blind                           |\n| 18+         | Major (3 botches)    | Debilitating illness                   |\n| 24+         | Critical (4 botches) | All                                    |\n| 30+         | Terminal (5 botches) | Sudden Death                           |",
   "source": {
    "book": "DE",
-   "line": 7573,
+   "line": 7589,
    "anchor": "hex"
   },
   "alsoIn": [
    {
     "book": "RM",
-    "line": 4776,
+    "line": 4714,
     "anchor": "hex"
    }
   ]
@@ -652,7 +652,7 @@
   "text": "Setting snares, choosing appropriate hunting spots, and following and identifying the spoor of creatures of all varieties. This Ability also lets you cover your tracks or not leave any in the first place.",
   "source": {
    "book": "DE",
-   "line": 7612,
+   "line": 7628,
    "anchor": "hunt"
   }
  },
@@ -667,7 +667,7 @@
   "text": "This is the supernatural ability to create illusions in a person's mind. Only the target can see those illusions. Each attempt at induction requires the inducer to talk with the victim for at least one minute. Characters who cannot hear the inducer are immune to his powers.\n\nAttempts at induction require a die roll of Communication + Induction. Induction is not made more difficult by the complexity of the illusion: it is made more difficult as the risk the victim takes by believing the illusion increases. On some level the victim is aware of the real world, and can snap out of the induced state if threatened.\n\nThe Ease Factors for Induction are:\n\n|  |  |\n| ------------------------------- | --- |\n| Innocuous                       | 3  |\n| Potentially Shaming             | 6  |\n| Potentially Dangerous to Others | 9  |\n| Potentially Dangerous to Self   | 12 |\n| Potentially Suicidal            | 15 |\n\nPick only one of the Roll Modifiers for Induction given below:\n\n- Victim is drunk, drugged, exhausted, or critically ill +3\n- Victim knows and trusts the inducer +3\n- Site of induction has been carefully prepared with expensive props, in advance +3.\n\nIf an Inducer has successfully snared a victim, the Inducer may roll again to try and bump the effect up to the next level of risk. This requires at least fifteen minutes, and on the second roll, the Ease Factor is reduced by 3. An inducer can take a great deal of time, and several rolls, to work a victim up through the levels of danger to potentially suicidal.\n\nA victim of induction realizes afterwards that they have been affected by magic if the roll above does not exceed the Ease Factor by (6-1 per factor from the list below).\n\nThis value can be reduced by 1 by each of the following factors: choose no more than 3.\n\n- Careful use of props (clothes stained, souvenirs provided)\n- Illusion includes brush off (character in illusion returns character home, character falls asleep inside illusion and wakes up in bed)\n- No lost time (character in illusion explains it is all happening in one night, no servants notice the character gone)\n- Real world effects (character's actions in illusion seem to have altered the real world in verifiable ways)\n- Follow up (the character has been convinced previous illusions were real, and this one is part of that larger story).",
   "source": {
    "book": "DE",
-   "line": 7616,
+   "line": 7632,
    "anchor": "induction"
   }
  },
@@ -684,7 +684,7 @@
   "text": "An understanding and familiarity with the Infernal and its agents. Includes knowledge of demons and their habits and weaknesses, undead and their habits and weaknesses, and the power of curses.",
   "source": {
    "book": "DE",
-   "line": 7655,
+   "line": 7671,
    "anchor": "infernal-lore"
   }
  },
@@ -702,7 +702,7 @@
   "text": "Dealing and plotting, including subtle use of power in non-confrontational ways to achieve your own ends. Intrigue need not be underhanded or manipulative — it also covers negotiations and knowledge of formal and informal rules of conduct and politeness. In addition, Intrigue also allows a character to pick up important information about those in power, separating fact from useless gossip. Intrigue is a vital talent for those who frequent court or a Hermetic Tribunal.",
   "source": {
    "book": "DE",
-   "line": 7659,
+   "line": 7675,
    "anchor": "intrigue"
   }
  },
@@ -719,7 +719,7 @@
   "text": "This is the Muslim version of Civil & Canon Law. The major sources of Islamic Law are the Qur'an and the Sunna.",
   "source": {
    "book": "DE",
-   "line": 7663,
+   "line": 7679,
    "anchor": "islamic-law"
   }
  },
@@ -737,7 +737,7 @@
   "text": "Judaic Lore is the knowledge of Jewish cultural practice as opposed to strictly religious details. This includes poetry, folklore, songs, and so on. All Jewish characters are versed in Judaic Lore to some degree and experience points in this Ability at character creation can be part of their childhood abilities.",
   "source": {
    "book": "DE",
-   "line": 7667,
+   "line": 7683,
    "anchor": "judaic-lore"
   }
  },
@@ -754,7 +754,7 @@
   "text": "Getting people to obey your orders and to follow you. Can also be used to inspire fear in others, cowing them into submission.",
   "source": {
    "book": "DE",
-   "line": 7671,
+   "line": 7687,
    "anchor": "leadership"
   }
  },
@@ -771,7 +771,7 @@
   "text": "Sleight of hand and knowledge of confidence games requiring sleight of hand. It requires a delicate touch and great hand-eye coordination. Legerdemain includes filching things from market stalls, cutting purses, and picking such locks as there are, as well as the \"magical\" trickery often used to raise money from credulous folk. The target of an attempt rolls Perception + Awareness to detect your actions. If the perceiver has Legerdemain skill, he may substitute that for Awareness if he wishes. On particularly delicate moves such as picking pockets, someone trying to spot the character using Legerdemain receives a +3 bonus.",
   "source": {
    "book": "DE",
-   "line": 7675,
+   "line": 7691,
    "anchor": "legerdemain"
   }
  },
@@ -792,7 +792,7 @@
   "text": "Fluency in a particular living language. Rather than a die roll modifier, your score in this Knowledge measures your ability to communicate.\n\nWhen two people speak to each other, the lower Ability score determines how well they communicate. Characters who speak related languages can communicate at a penalty to their scores (assigned by the storyguide) depending on how closely related the two languages are. Two dialects of the same language generally have a –1 penalty. If your character is not specialized in a dialect, you should specify a dialect without specializing in it, and take the penalty when conversing with people who speak a different dialect. If you speak a \"standard\" version of the language, that is a dialect that differs from all other dialects.\n\nNote that Latin and Hebrew are not living languages in most of Mythic Europe. However, characters who live in places where they are (such as some covenants) may learn this Ability without any special Virtues. The same is true of all languages that are learned as dead languages in one area, but still living languages in another.\n\nCharacters with this Ability are illiterate unless they also have a score in Artes Liberales (page 160).\n\nThis Ability also covers artistic compositions in the language, and telling existing tales with verve and passion. Knowledge of stories is covered by the appropriate Lore Abilities.",
   "source": {
    "book": "DE",
-   "line": 7679,
+   "line": 7695,
    "anchor": "living-language"
   }
  },
@@ -809,7 +809,7 @@
   "text": "Knowledge of magical creatures, areas, and traditions.",
   "source": {
    "book": "DE",
-   "line": 7700,
+   "line": 7716,
    "anchor": "magic-lore"
   }
  },
@@ -827,7 +827,7 @@
   "text": "You are often able to identify a place or object as magical. However, your sensitivity makes you more susceptible to magical effects: subtract your Magic Sensitivity score from your Magic Resistance. When attempting to sense the magic nature of a place or object, the storyguide will assign an Ease Factor—simply roll a simple die + Perception + Magic Sensitivity.\n\nDetecting a Magic aura would normally have an Ease Factor equal to 12 – aura level, so 9 for a level 3 aura and 6 for a level 6 aura.\n\nFor spells and enchanted items, an Ease Factor equal to 21 – magnitude of effect is a good guide. For enchanted items, use the magnitude of the most powerful effect in the item.\n\nFor magical creatures, 15 – one fifth of the creature's Magic Might is appropriate, so for a creature with a Magic Might of 25, the Ease Factor would be 10.",
   "source": {
    "book": "DE",
-   "line": 7704,
+   "line": 7720,
    "anchor": "magic-sensitivity"
   }
  },
@@ -844,7 +844,7 @@
   "text": "Knowledge of what magic is and how it works, used primarily in the laboratory. Magic Theory deals with the technical details of Hermetic magic, Magic Lore covers knowledge of magical things in general. Anyone can learn Magic Theory, if they have access to a teacher or book (normally represented by a Virtue), but it is little use to those without The Gift.",
   "source": {
    "book": "DE",
-   "line": 7715,
+   "line": 7731,
    "anchor": "magic-theory"
   }
  },
@@ -861,7 +861,7 @@
   "text": "Medicine is the formal study of the body and its diseases. Medical practice is based on the theory of the four humors: blood, phlegm, yellow bile, and black bile. Diseases are often caused by imbalances among them, hence such practices as bloodletting, to restore the balance. Medicine also deals with treating poisons and the results of starvation and the like, but not with treating wounds (see Chirurgy, above). The auctores are Galen and Hippocrates, in many works. It is important to note that medieval medical theory is basically true in Mythic Europe.",
   "source": {
    "book": "DE",
-   "line": 7719,
+   "line": 7735,
    "anchor": "medicine"
   }
  },
@@ -878,7 +878,7 @@
   "text": "The ability to sing, play musical instruments, and compose new music.",
   "source": {
    "book": "DE",
-   "line": 7723,
+   "line": 7739,
    "anchor": "music"
   }
  },
@@ -894,7 +894,7 @@
   "text": "This is the (Organization) Lore of a particular cult. It provides knowledge of the legends, history, structure, operation and goals of the Mystery Cult in question.\n\nIt includes knowledge of the magics, rites and secret passwords and symbolism of the cult, how to covertly signal membership, and how to assess another magus's membership or non-membership in your cult. Two magi with a score in this ability for the same Mystery Cult may well be able to hold a seemingly innocuous conversation without outsiders understanding the true significance or meaning of their words. Many Mystery Cult",
   "source": {
    "book": "DE",
-   "line": 7727,
+   "line": 7743,
    "anchor": "mystery-cult-lore"
   }
  },
@@ -911,7 +911,7 @@
   "text": "Knowledge of the legends, history, structure, operation, and goals of the specified organization. Organizations can be as large as the Church, or as small as a local craft guild. The smaller the organization, the more detailed your knowledge. Order of Hermes Lore is particularly important to most magi.",
   "source": {
    "book": "DE",
-   "line": 7742,
+   "line": 7758,
    "anchor": "organization-lore"
   }
  },
@@ -926,7 +926,7 @@
   "text": "Protection from magic. This is a special ritual (not a Ritual spell) that takes about two minutes to perform. It lets you add 5 times your Parma Magica score to your Magic Resistance until the next sunrise or sunset, whichever comes first. You may suppress your Parma Magica temporarily by concentrating, this is equivalent to sustaining a Concentration duration spell. (See page 215). Parma Magica does not require concentration while it is active.\n\nYou may also protect one other person for each point in Parma Magica, with their consent. You must touch each person to start the protection, and it lasts as long as at least one character can see the other. The magus may cancel the protection at will, at any distance. While a magus is protecting others, his effective Parma Magica score is reduced by 3 points, both for himself and for the other people he is protecting. If the magus has a Parma Magica score of 3 or lower, his Parma Magica provides each character, including himself, with a Magic Resistance of 0. In the magus's case, this is added to his Form resistance, and a magus protected by another magus's Parma Magica may also add his Form resistance.\n\nAny character protected by a Parma Magica, whether their own or someone else's, is unaffected by the social penalties of other people's Gifts. If a protected character is Gifted, their Gift still imposes social penalties on others, unless those others are also protected by a Parma Magica, or are unaffected by The Gift for some other reason.\n\nParma Magica can only be learned by Gifted characters, although they learn it as a normal Arcane Ability, not a Supernatural Ability. It is only known by Hermetic magi, as the Order enforces the 'Join or Die' choice rigorously on anyone who knows it, as well as declaring a Wizard's March on the magus who taught it. Parma Magica is the last thing an apprentice learns, being taught the final key to the Ability after he swears the Oath.",
   "source": {
    "book": "DE",
-   "line": 7746,
+   "line": 7762,
    "anchor": "parma-magica"
   }
  },
@@ -941,7 +941,7 @@
   "text": "Getting your spell through the target's Magic Resistance. See page [215](#penetration-total) for full Penetration rules.",
   "source": {
    "book": "DE",
-   "line": 7757,
+   "line": 7773,
    "anchor": "penetration"
   }
  },
@@ -958,7 +958,7 @@
   "text": "The character with this Ability can alter his appearance to adopt a different identity. He can alter any aspect of his appearance: hair and eve color, complexion, shape of nose, build and height (within the limits of his Size), apparent age, and even gender. These changes are total, proof even to the most intimate mundane scrutiny, but do not change the character's essential nature. Consequently, all Characteristic scores remain unchanged, Virtues and Flaws are transferred to all new forms, and a character who does not normally have a womb cannot become pregnant when adopting the persona of someone Adopting a different identity requires one round of concentration and a roll of Stamina + Persona against an Ease Factor of 9. Changing back to the character's natural form requires the same concentration and the same roll. Each identity has its own Personality Traits and behavioral quirks, and no Disguise roll is necessary to convince others of the role; this is not a disguise but a whole different person. The character gains one identity for every point he has in the Persona Ability. Every time the Ability increases by one point, the character must design a new identity.",
   "source": {
    "book": "DE",
-   "line": 7761,
+   "line": 7777,
    "anchor": "persona"
   }
  },
@@ -977,7 +977,7 @@
   "text": "There are three philosophies natural philosophy, moral philosophy, and metaphysics. Aristotle is the auctor for all of them, in different books. Most scholars study the philosophies after the Arts but before going on to Law, Theology or Medicine. Natural philosophy is the study of the sub-lunar world. It roughly corresponds to today's science. The main texts are the Physica, De Meteorologia, and De historia animalium. Moral philosophy is the study of the proper way of human life. It covers ethics, politics, and economics - the texts are the Ethica, Politica, and Economica. Metaphysics is the philosophy of the fundamental nature of the world. The main text is Aristotle's Metaphysica. The theories of the Philosophiae are all basically correct in Mythic Europe.",
   "source": {
    "book": "DE",
-   "line": 7765,
+   "line": 7781,
    "anchor": "philosophiae"
   }
  },
@@ -993,7 +993,7 @@
   "text": "You intuitively sense whenever something is wrong, or is likely to go wrong soon. This Ability can be called upon by you or the storyguide, as appropriate, whenever there is a chance to avoid danger. Roll Perception + Premonitions against an Ease Factor depending on the situation. The Ease Factor starts at 3 for imminent, mortal peril, and increases as the distance in time increases and the level of danger decreases. Mortal peril a week in the future would have an Ease Factor of 9, while an imminent minor inconvenience would have an Ease Factor of about 15. If you beat the Ease Factor by 3 or more, you also get some sense of the nature of the danger, with more detail if you roll more highly.",
   "source": {
    "book": "DE",
-   "line": 7769,
+   "line": 7785,
    "anchor": "premonitions"
   }
  },
@@ -1008,7 +1008,7 @@
   "text": "The ability to do a job which does not involve making something. Examples include jongleur, marshal, reeve, sailor, steward, teamster, and washerwoman.",
   "source": {
    "book": "DE",
-   "line": 7773,
+   "line": 7789,
    "anchor": "profession-type"
   }
  },
@@ -1026,7 +1026,7 @@
   "text": "This is the Jewish version of Civil & Canon Law. The major sources of Rabbinic Law are the Talmud, the Oral Torah, and the Responsa of the Geonim.",
   "source": {
    "book": "DE",
-   "line": 7777,
+   "line": 7793,
    "anchor": "rabbinic-law"
   }
  },
@@ -1043,7 +1043,7 @@
   "text": "Riding and controlling a riding animal, especially under stress.",
   "source": {
    "book": "DE",
-   "line": 7781,
+   "line": 7797,
    "anchor": "ride"
   }
  },
@@ -1062,7 +1062,7 @@
   "text": "You are able to see through illusionary concealment and disguise, including invisibility, and can also see naturally invisible things such as spirits and the boundaries between regio levels (see page 420). The Ease Factor to see through illusionary concealment is normally equal to 6 + the magnitude of the might of the creature responsible for the effect, or 6 + the magnitude of a Hermetic spell. In general, this Virtue allows you to see through Hermetic concealment effected with Imaginem, but not other Forms. The Magic Resistance, if any, of the concealed creature does not interfere with your Second Sight. If something is actually transformed, for example by a MuCo spell, you cannot determine the genuine form. The Ease Factor to see a naturally invisible thing is normally 9, and the Ease Factor for seeing regio levels is specified on page 421. All Second Sight rolls are Perception + Second Sight, and they are almost always simple rolls.",
   "source": {
    "book": "DE",
-   "line": 7785,
+   "line": 7801,
    "anchor": "second-sight"
   }
  },
@@ -1077,7 +1077,7 @@
   "text": "You are able to feel the presence of good and evil. A Perception + Sense Holiness and Unholiness roll against an Ease Factor of 9 lets you sense holiness or unholiness in a general area; against an Ease Factor of 15, in a person or object. The Ease Factor to detect a demon is 0, but the character must still Penetrate its Magic Resistance. If an angel is hiding its divine nature, which is unusual, the Ease Factor is 15, and the character must Penetrate. If the angel is not hiding its divine nature, the roll automatically succeeds. In auras of particularly strong divine or infernal influence, your sensitivity may overwhelm you. This Ability is granted by the Divine realm, not the Magic or Faerie realms, and thus uses the Divine column of the realm interaction chart (page 410).",
   "source": {
    "book": "DE",
-   "line": 7789,
+   "line": 7805,
    "anchor": "sense-holiness-and-unholiness"
   }
  },
@@ -1095,7 +1095,7 @@
   "text": "The character can sense the personality and desires of an intelligent being by recognizing and identifying the different shades of tarnish on its soul. A Perception + Sense Passions roll against an Ease Factor of 9 lets her sense the most powerful emotion currently being experienced by the person, and a roll against an Ease Factor of 15 allows her to identify the character's most dominant Personality Trait. The effect must penetrate the target's Magic Resistance if it has any kind of supernatural protection, and since this is a Supernatural Ability, it is affected by auras.\n\n**SENSE PASSIONS: Stress Die + Perception + Sense Passions + Aura**\n\nThrough careful examination, the character can also recognize passions in people within the general area, allowing her to hone in on the most powerful source of emotion within sight, usually the character with the highest (or lowest) Personality Trait. This requires a 12 or better on the Sense Passions roll.\n\nThe character can also tell when an aura has a tarnish (see *Realms of Power: The Infernal*, page 13) or temper (see *Realms of Power: The Divine Revised Edition*, page 38) and its type or types by overcoming an Ease Factor of 6.\n\nBy sensing passions, the character can often recognize incorporeal spirits. You may treat Sense Passions as Second Sight when attempting to recognize the presence of invisible or bodiless beings. However, this does not allow her to see through illusions, even illusions of strong emotions, and she cannot actually see the spirits, merely sense their proximity.\n\nIn addition, this Ability allows the character to Sense Holiness and Unholiness in a limited fashion, much like the Sense Holiness and Unholiness Ability. She can tell that something is either holy or unholy, but she cannot distinguish between the two. She feels the emotional presence associated with the Divine or the Infernal, but cannot pinpoint its supernatural origin. Thus, she might mistake a demon with a fair shape for an angel, or a fearsome-looking angel for a demon. By identifying the target's primary emotions or desires, however, you can usually get a good idea of which realm the target is associated with, assuming the character can penetrate its Magic Resistance.\n\nSense Passions is either a false power (see the False Power Flaw), or is associated with the Infernal. This means that it always appears infernal to divine or infernal detection. The presence of Infernal taint allows the Sense Holiness and Unholiness aspect to work. If the troupe allows Divine powers to be false, this may be the false version of Sense Holiness and Unholiness.",
   "source": {
    "book": "DE",
-   "line": 7793,
+   "line": 7809,
    "anchor": "sense-passions"
   },
   "alsoIn": [
@@ -1118,7 +1118,7 @@
   "text": "You may change your shape into that of a mundane animal from the size of a robin (-10) to that of a bear (+2). This requires a few seconds' (one round's) concentration, and a roll of Stamina + Shapeshifter against an Ease Factor of 9. Changing back to human form requires the same concentration, and the same roll. You have a limited repertoire of shapes, one for every point you have in the Shapeshift ability. Every time you raise the Ability by one point, you may choose a new shape.",
   "source": {
    "book": "DE",
-   "line": 7809,
+   "line": 7825,
    "anchor": "shapeshifter"
   }
  },
@@ -1135,7 +1135,7 @@
   "text": "Fighting with a weapon used in one hand, possibly using a shield with the other. This includes lances used as intended from horseback.",
   "source": {
    "book": "DE",
-   "line": 7813,
+   "line": 7829,
    "anchor": "single-weapon"
   }
  },
@@ -1154,7 +1154,7 @@
   "text": "Sneaking about without being seen or heard, also hiding in one place. This includes following people without their noticing, which is rolled against the other person's Perception.",
   "source": {
    "book": "DE",
-   "line": 7817,
+   "line": 7833,
    "anchor": "stealth"
   }
  },
@@ -1167,13 +1167,18 @@
   "text": "You can summon animals. This Ability is described in the Hermetic Magic chapter, on page [243](#summon-animals-2).",
   "source": {
    "book": "DE",
-   "line": 7821,
+   "line": 7837,
    "anchor": "summon-animals"
   },
   "alsoIn": [
    {
     "book": "HoH_S",
     "line": 4348,
+    "anchor": "summon-animals"
+   },
+   {
+    "book": "RM",
+    "line": 5012,
     "anchor": "summon-animals"
    }
   ]
@@ -1189,7 +1194,7 @@
   "text": "Finding food, water, shelter, a direct route, and relative safety in the wilderness (a very dangerous place in Mythic Europe). This Ability covers such mundane tasks as building a fire and cooking food without implements.",
   "source": {
    "book": "DE",
-   "line": 7824,
+   "line": 7840,
    "anchor": "survival"
   }
  },
@@ -1206,7 +1211,7 @@
   "text": "The ability to propel yourself through water quickly and efficiently.",
   "source": {
    "book": "DE",
-   "line": 7828,
+   "line": 7844,
    "anchor": "swim"
   }
  },
@@ -1222,7 +1227,7 @@
   "text": "The ability to teach an Ability to someone else.",
   "source": {
    "book": "DE",
-   "line": 7832,
+   "line": 7848,
    "anchor": "teaching"
   }
  },
@@ -1239,7 +1244,7 @@
   "text": "Theology is the study of God and his work in the world. The auctores are the Bible and Peter the Lombard's *Sententiae*, the Bible having theoretical primacy, being infallible, and the Sentences being most studied. The speculations of theology are very abstruse, and many theologians are accused of heresy. Sometimes those accused recant, and sometimes they convince the Church that they were right after all.",
   "source": {
    "book": "DE",
-   "line": 7836,
+   "line": 7852,
    "anchor": "theology-christian"
   }
  },
@@ -1257,7 +1262,7 @@
   "text": "This is the Islamic equivalent of Theology: Christian. The major sources for Islamic theology are the Qur'an and the Sunna.",
   "source": {
    "book": "DE",
-   "line": 7840,
+   "line": 7856,
    "anchor": "theology-islam"
   }
  },
@@ -1275,7 +1280,7 @@
   "text": "This is the Jewish equivalent of Theology: Christian. The major sources for Jewish theology are the Torah, the Nevi'im, and the Kutuvim.",
   "source": {
    "book": "DE",
-   "line": 7844,
+   "line": 7860,
    "anchor": "theology-judaism"
   },
   "alsoIn": [
@@ -1297,7 +1302,7 @@
   "text": "Fighting at range using weapons which are thrown.",
   "source": {
    "book": "DE",
-   "line": 7848,
+   "line": 7864,
    "anchor": "thrown-weapon"
   }
  },
@@ -1310,7 +1315,7 @@
   "text": "You can create wind by whistling. This Ability is described in the Hermetic Magic chapter, on page 246.",
   "source": {
    "book": "DE",
-   "line": 7852,
+   "line": 7868,
    "anchor": "whistle-up-the-wind"
   },
   "alsoIn": [
@@ -1335,7 +1340,7 @@
   "text": "You are mystically attuned to the ways of the wilderness. A Perception + Wilderness Sense roll against an Ease Factor of 9 lets you determine the direction of north, the upcoming weather, or the presence of natural hazards or resources. One roll will only reveal one piece of information.",
   "source": {
    "book": "DE",
-   "line": 7855,
+   "line": 7871,
    "anchor": "wilderness-sense"
   }
  },
@@ -1379,7 +1384,7 @@
   "text": "This Ability reflects knowledge and experience of the rule and regulations of the Poor Knights of the Temple of Solomon, familiarity with important members of the order, information about its provinces, military strategy, and current activities, and insight into the ongoing goals and concerns of the Templars. This Ability also gives the character knowledge of the Templar sign language, allowing him to communicate simple messages in silence to other Templars. Finally, this Lore grants knowledge of the Templar's encryption ciphers. This Ability is normally available only to characters possessing a Virtue that grants membership of the Templars, although outsiders may possess it with the troupe's permission. *",
   "source": {
    "book": "Church",
-   "line": 4640,
+   "line": 4647,
    "anchor": "organization-lore-knights-templar"
   }
  },
@@ -1483,7 +1488,7 @@
   "text": "Defixio Lore is a Major, Supernatural Virtue and corresponding Ability that allow a character to perform the rituals necessary to create a defixio. They are presented for illustrative purposes only. Magi are generally incapable of acquiring the Virtue or learning the Ability; the only practical way for a magus to utilize the secrets of defixio magic is to integrate its effects into Hermetic theory.\n\nDefixiones allow their creator to use a Supernatural Ability or spell against a target that is not sensed and for which the creator has no Arcane Connection. A defixio itself does not possess any power other than the ability to provide a conduit to the target. Defixiones are not Arcane Connections. Although they allow their creator to cast spells or use Supernatural Abilities without regard for the distance to the target, they can never be used to improve a magus's Penetration multiplier.\n\nFor every level in the Defixio Lore Ability, the character may select one cult from the list below. The cult limits the type of magic that may be used in conjunction with the defixio. The character may not utilize any spell or Supernatural Ability that has a Technique and Form combination or requires a requisite that falls outside of those listed for the cult",
   "source": {
    "book": "AM",
-   "line": 1535,
+   "line": 1536,
    "anchor": "defixio-lore"
   }
  },
@@ -1500,7 +1505,7 @@
   "text": "Knowledge of what mechanica are, how to construct them, and how to use them. Primarily used in the laboratory to construct mechanica (see above).\n\n*",
   "source": {
    "book": "AM",
-   "line": 2630,
+   "line": 2631,
    "anchor": "mechanica-of-heron"
   }
  },
@@ -1517,7 +1522,7 @@
   "text": "Your character knows a sacred name of Apollo Phoebus, and has memorized the complex and intricate prayers, formulas, and vowel strings needed to perform a recitation. There is a different, unique Ability for each Hyperborean hymn. The hymns are recited in the Hyperborean language; however, your character does not need to know the language to recite a hymn, as the necessary words are learned by rote.\n\nFor each level of a Hymn Ability, your character gains 15 levels of powers (see below for details).\n\nThe hymns represent not only knowledge of the sacred names; if performed correctly, they also fundamentally characterize how your character expresses magic. Because of this, your character's score in a hymn adds to her Soak score against damage caused by principles of that hymn. This bonus does not stack with other bonuses from Arts or other hymns — only the highest bonus applies.\n\nHymns may be also used in the laboratory, by adding the Ability to your character's Lab Total if the hymn involves either the effect or item being enchanted.\n\n*",
   "source": {
    "book": "AM",
-   "line": 3606,
+   "line": 3609,
    "anchor": "hyperborean-hymn"
   }
  },
@@ -1535,7 +1540,7 @@
   "text": "This Ability lets your character speak the native tongue of Hyperborea, a deeply mystical language understood by spirits. To the untrained ear, Hyperborean sounds similar to Ancient (Attic) Greek, and a character versed in Ancient Greek may even be able to understand the gist of what is being said, as if their score in Hyperborean was four points lower than their score in Ancient Greek (if this would reduce the score to zero or less, then the character cannot understand what is being said). Your character can also speak with many spirits and other ethereal magical creatures, and likewise is able to understand them. Knowing Hyperborean aids in the recitation of the sacred Hyperborean consecrations, but is not required. Note also that the alphabet used for Hyperborean resembles the Ancient Greek alphabet, but requires a separate level in Artes Liberales to know.\n\n*",
   "source": {
    "book": "AM",
-   "line": 3618,
+   "line": 3621,
    "anchor": "dead-language-hyperborean"
   }
  },
@@ -1552,7 +1557,7 @@
   "text": "Ceremony is an Ability used in conjunction with another Ability, generally a Supernatural Ability, and with other > participants, to produce a greater effect. To use Ceremony, your character must gather together a group and agree on a > common effect to produce; at least one of the participants (generally the **focus character**) must possess the Ability > or Power being used.\n\nAll participants add their totals of the appropriate Characteristic + Ability to the focus character's total. If a > participant doesn't have the relevant Ability, then only his Characteristic is added.\n\n**Ceremony Bonus: Characteristic + Ability total of each participant**\n\nAfter this bonus is determined, the focus character rolls as normal, adding the Ceremony Bonus to his total.\n\nThe group may appoint a leader (who must be the focus character), who then uses her Ceremony score to determine how > many other characters may contribute to the effort; others may still take part, but their assistance gives no > additional benefit. Alternatively, the group may choose to participate without a leader, but doing so results in a > penalty to the Ceremony Bonus equal to the number of participants.\n\nCeremony may also be used for seasonal activities, adding the Ceremony Bonus to the seasonal total. Seasonal ceremonial > work, however, must be done with a leader. Assistants gain Exposure XP during that season, typically in the Ceremony > Ability or the relevant seasonal Ability (if they possess it).\n\n*",
   "source": {
    "book": "AM",
-   "line": 4226,
+   "line": 4247,
    "anchor": "ceremony"
   },
   "alsoIn": [
@@ -1581,13 +1586,13 @@
   "text": "This is the rune wizards' version of Magic Theory. It is knowledge of what the magic of the runes is and how it works, dealing with the symbolism of each rune, how they may be used, how to formulate a rune-script, and how to encrypt the runes so that they are harder for others to recognize. Without The Gift it has few practical applications, though like Magic Theory, a basic understanding is essential for accurately copying books on Rune Magic. *",
   "source": {
    "book": "AM",
-   "line": 5160,
+   "line": 5181,
    "anchor": "rune-magic"
   },
   "alsoIn": [
    {
     "book": "HMRE",
-    "line": 6334,
+    "line": 6336,
     "anchor": "rune-magic"
    }
   ]

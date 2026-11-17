@@ -18,13 +18,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11783,
+   "line": 11799,
    "anchor": "greater-feature"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5874,
+    "line": 5928,
     "anchor": "greater-feature"
    }
   ]
@@ -48,13 +48,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11785,
+   "line": 11801,
    "anchor": "natural-environment"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5876,
+    "line": 5930,
     "anchor": "natural-environment"
    }
   ]
@@ -78,13 +78,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11789,
+   "line": 11805,
    "anchor": "extensive-stores"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5882,
+    "line": 5936,
     "anchor": "extensive-stores"
    }
   ]
@@ -111,13 +111,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11791,
+   "line": 11807,
    "anchor": "gallery"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5884,
+    "line": 5938,
     "anchor": "gallery"
    }
   ]
@@ -141,13 +141,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11793,
+   "line": 11809,
    "anchor": "lesser-feature"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5886,
+    "line": 5940,
     "anchor": "lesser-feature"
    }
   ]
@@ -174,13 +174,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11797,
+   "line": 11813,
    "anchor": "dedicated-building"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5906,
+    "line": 5960,
     "anchor": "dedicated-building"
    }
   ]
@@ -204,13 +204,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11799,
+   "line": 11815,
    "anchor": "mobile"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5916,
+    "line": 5970,
     "anchor": "mobile"
    }
   ]
@@ -235,13 +235,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11801,
+   "line": 11817,
    "anchor": "superior-construction"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5920,
+    "line": 5974,
     "anchor": "superior-construction"
    }
   ]
@@ -266,13 +266,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11805,
+   "line": 11821,
    "anchor": "deformed"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5926,
+    "line": 5980,
     "anchor": "deformed"
    }
   ]
@@ -298,13 +298,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11807,
+   "line": 11823,
    "anchor": "empty"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5930,
+    "line": 5984,
     "anchor": "empty"
    }
   ]
@@ -330,13 +330,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11809,
+   "line": 11825,
    "anchor": "low-ceiling"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5932,
+    "line": 5986,
     "anchor": "low-ceiling"
    }
   ]
@@ -364,13 +364,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11811,
+   "line": 11827,
    "anchor": "subterranean"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5934,
+    "line": 5988,
     "anchor": "subterranean"
    }
   ]
@@ -395,13 +395,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11813,
+   "line": 11829,
    "anchor": "unstable"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5940,
+    "line": 5994,
     "anchor": "unstable"
    }
   ]
@@ -428,13 +428,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11817,
+   "line": 11833,
    "anchor": "cramped"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5950,
+    "line": 6004,
     "anchor": "cramped"
    }
   ]
@@ -458,13 +458,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11819,
+   "line": 11835,
    "anchor": "lesser-focus"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5956,
+    "line": 6010,
     "anchor": "lesser-focus"
    }
   ]
@@ -488,13 +488,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11821,
+   "line": 11837,
    "anchor": "no-stores"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5958,
+    "line": 6012,
     "anchor": "no-stores"
    }
   ]
@@ -518,13 +518,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11825,
+   "line": 11841,
    "anchor": "greater-focus"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5964,
+    "line": 6018,
     "anchor": "greater-focus"
    }
   ]
@@ -550,13 +550,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11833,
+   "line": 11849,
    "anchor": "greater-expansion"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5974,
+    "line": 6028,
     "anchor": "greater-expansion"
    }
   ]
@@ -581,13 +581,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11837,
+   "line": 11853,
    "anchor": "lesser-expansion"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5984,
+    "line": 6038,
     "anchor": "lesser-expansion"
    }
   ]
@@ -614,13 +614,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11839,
+   "line": 11855,
    "anchor": "living-quarters"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5986,
+    "line": 6040,
     "anchor": "living-quarters"
    }
   ]
@@ -645,13 +645,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11841,
+   "line": 11857,
    "anchor": "specimens"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 5996,
+    "line": 6050,
     "anchor": "specimens"
    }
   ]
@@ -673,13 +673,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11845,
+   "line": 11861,
    "anchor": "assistant"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6006,
+    "line": 6060,
     "anchor": "assistant"
    }
   ]
@@ -703,13 +703,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11847,
+   "line": 11863,
    "anchor": "guard"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6008,
+    "line": 6062,
     "anchor": "guard"
    }
   ]
@@ -733,13 +733,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11849,
+   "line": 11865,
    "anchor": "highly-organized"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6010,
+    "line": 6064,
     "anchor": "highly-organized"
    }
   ]
@@ -763,13 +763,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11851,
+   "line": 11867,
    "anchor": "person"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6012,
+    "line": 6066,
     "anchor": "person"
    }
   ]
@@ -795,13 +795,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11853,
+   "line": 11869,
    "anchor": "servant"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6018,
+    "line": 6072,
     "anchor": "servant"
    }
   ]
@@ -828,13 +828,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11855,
+   "line": 11871,
    "anchor": "spotless"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6020,
+    "line": 6074,
     "anchor": "spotless"
    }
   ]
@@ -858,13 +858,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11859,
+   "line": 11875,
    "anchor": "basic"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6028,
+    "line": 6082,
     "anchor": "basic"
    }
   ]
@@ -890,13 +890,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11861,
+   "line": 11877,
    "anchor": "damaged"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6030,
+    "line": 6084,
     "anchor": "damaged"
    }
   ]
@@ -921,13 +921,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11863,
+   "line": 11879,
    "anchor": "disorganized"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6038,
+    "line": 6092,
     "anchor": "disorganized"
    }
   ]
@@ -951,13 +951,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11865,
+   "line": 11881,
    "anchor": "hidden-defect"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6042,
+    "line": 6096,
     "anchor": "hidden-defect"
    }
   ]
@@ -981,13 +981,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11867,
+   "line": 11883,
    "anchor": "missing-ingredients"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6052,
+    "line": 6106,
     "anchor": "missing-ingredients"
    }
   ]
@@ -1011,13 +1011,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11869,
+   "line": 11885,
    "anchor": "missing-sanctum-marker"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6054,
+    "line": 6108,
     "anchor": "missing-sanctum-marker"
    }
   ]
@@ -1043,13 +1043,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11871,
+   "line": 11887,
    "anchor": "wrecked"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6056,
+    "line": 6110,
     "anchor": "wrecked"
    }
   ]
@@ -1073,13 +1073,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11875,
+   "line": 11891,
    "anchor": "missing-equipment"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6064,
+    "line": 6118,
     "anchor": "missing-equipment"
    }
   ]
@@ -1104,13 +1104,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11877,
+   "line": 11893,
    "anchor": "undecorated"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6066,
+    "line": 6120,
     "anchor": "undecorated"
    }
   ]
@@ -1135,13 +1135,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11881,
+   "line": 11897,
    "anchor": "elementary"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6070,
+    "line": 6124,
     "anchor": "elementary"
    }
   ]
@@ -1166,13 +1166,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11889,
+   "line": 11905,
    "anchor": "greater-guardian"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6084,
+    "line": 6138,
     "anchor": "greater-guardian"
    }
   ]
@@ -1194,13 +1194,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11893,
+   "line": 11909,
    "anchor": "familiar"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6090,
+    "line": 6144,
     "anchor": "familiar"
    }
   ]
@@ -1224,13 +1224,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11895,
+   "line": 11911,
    "anchor": "lesser-guardian"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6094,
+    "line": 6148,
     "anchor": "lesser-guardian"
    }
   ]
@@ -1255,13 +1255,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11897,
+   "line": 11913,
    "anchor": "vis-source"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6098,
+    "line": 6152,
     "anchor": "vis-source"
    }
   ]
@@ -1283,13 +1283,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11901,
+   "line": 11917,
    "anchor": "enchantment"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6106,
+    "line": 6160,
     "anchor": "enchantment"
    }
   ]
@@ -1314,13 +1314,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11903,
+   "line": 11919,
    "anchor": "inexhaustible-supplies"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6116,
+    "line": 6170,
     "anchor": "inexhaustible-supplies"
    }
   ]
@@ -1342,13 +1342,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11905,
+   "line": 11921,
    "anchor": "magic-item"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6120,
+    "line": 6174,
     "anchor": "magic-item"
    }
   ]
@@ -1373,13 +1373,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11907,
+   "line": 11923,
    "anchor": "regio"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6128,
+    "line": 6182,
     "anchor": "regio"
    }
   ]
@@ -1405,13 +1405,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11911,
+   "line": 11927,
    "anchor": "abyss"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6140,
+    "line": 6194,
     "anchor": "abyss"
    }
   ]
@@ -1438,13 +1438,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11913,
+   "line": 11929,
    "anchor": "haunted"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6152,
+    "line": 6206,
     "anchor": "haunted"
    }
   ]
@@ -1468,13 +1468,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11915,
+   "line": 11931,
    "anchor": "impregnable"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6154,
+    "line": 6208,
     "anchor": "impregnable"
    }
   ]
@@ -1499,13 +1499,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11917,
+   "line": 11933,
    "anchor": "inhabitants"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6156,
+    "line": 6210,
     "anchor": "inhabitants"
    }
   ]
@@ -1532,13 +1532,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11919,
+   "line": 11935,
    "anchor": "predecessor"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6164,
+    "line": 6218,
     "anchor": "predecessor"
    }
   ]
@@ -1563,13 +1563,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11921,
+   "line": 11937,
    "anchor": "restriction"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6166,
+    "line": 6220,
     "anchor": "restriction"
    }
   ]
@@ -1596,13 +1596,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11925,
+   "line": 11941,
    "anchor": "lesser-illusion"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6180,
+    "line": 6234,
     "anchor": "lesser-illusion"
    }
   ]
@@ -1627,13 +1627,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11927,
+   "line": 11943,
    "anchor": "lightless"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6182,
+    "line": 6236,
     "anchor": "lightless"
    }
   ]
@@ -1660,13 +1660,13 @@
   },
   "source": {
    "book": "DE",
-   "line": 11931,
+   "line": 11947,
    "anchor": "greater-illusion"
   },
   "alsoIn": [
    {
     "book": "Cov",
-    "line": 6188,
+    "line": 6242,
     "anchor": "greater-illusion"
    }
   ]
@@ -1692,7 +1692,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5880,
+   "line": 5934,
    "anchor": "auspicious-shape"
   }
  },
@@ -1716,7 +1716,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5888,
+   "line": 5942,
    "anchor": "spacious"
   }
  },
@@ -1740,7 +1740,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5890,
+   "line": 5944,
    "anchor": "well-insulated"
   }
  },
@@ -1763,7 +1763,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5908,
+   "line": 5962,
    "anchor": "defenses"
   }
  },
@@ -1788,7 +1788,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5910,
+   "line": 5964,
    "anchor": "elevated"
   }
  },
@@ -1811,7 +1811,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5912,
+   "line": 5966,
    "anchor": "grand-entrance"
   }
  },
@@ -1835,7 +1835,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5914,
+   "line": 5968,
    "anchor": "idyllic-surroundings"
   }
  },
@@ -1862,7 +1862,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5918,
+   "line": 5972,
    "anchor": "mountaintop"
   }
  },
@@ -1885,7 +1885,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5922,
+   "line": 5976,
    "anchor": "studio"
   }
  },
@@ -1908,7 +1908,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5928,
+   "line": 5982,
    "anchor": "disguised"
   }
  },
@@ -1936,7 +1936,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5936,
+   "line": 5990,
    "anchor": "exposed"
   }
  },
@@ -1961,7 +1961,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5938,
+   "line": 5992,
    "anchor": "uneven-floor"
   }
  },
@@ -1985,7 +1985,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5942,
+   "line": 5996,
    "anchor": "vile-surroundings"
   }
  },
@@ -2008,7 +2008,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5944,
+   "line": 5998,
    "anchor": "vulnerable"
   }
  },
@@ -2032,7 +2032,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5948,
+   "line": 6002,
    "anchor": "awkward-shape"
   }
  },
@@ -2058,7 +2058,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5952,
+   "line": 6006,
    "anchor": "diminutive"
   }
  },
@@ -2084,7 +2084,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5954,
+   "line": 6008,
    "anchor": "heinous-architecture"
   }
  },
@@ -2108,7 +2108,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5960,
+   "line": 6014,
    "anchor": "poorly-insulated"
   }
  },
@@ -2135,7 +2135,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5966,
+   "line": 6020,
    "anchor": "outdoors"
   }
  },
@@ -2163,7 +2163,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5976,
+   "line": 6030,
    "anchor": "palatial"
   }
  },
@@ -2189,7 +2189,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5980,
+   "line": 6034,
    "anchor": "excessive-heating"
   }
  },
@@ -2214,7 +2214,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5982,
+   "line": 6036,
    "anchor": "excessive-lighting"
   }
  },
@@ -2241,7 +2241,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5988,
+   "line": 6042,
    "anchor": "menagerie"
   }
  },
@@ -2268,7 +2268,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5990,
+   "line": 6044,
    "anchor": "opulent"
   }
  },
@@ -2294,7 +2294,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5992,
+   "line": 6046,
    "anchor": "pot-plants"
   }
  },
@@ -2319,7 +2319,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5994,
+   "line": 6048,
    "anchor": "slaves"
   }
  },
@@ -2345,7 +2345,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 5998,
+   "line": 6052,
    "anchor": "superior-decoration"
   }
  },
@@ -2372,7 +2372,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6000,
+   "line": 6054,
    "anchor": "superior-heating"
   }
  },
@@ -2399,7 +2399,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6002,
+   "line": 6056,
    "anchor": "superior-lighting"
   }
  },
@@ -2425,7 +2425,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6014,
+   "line": 6068,
    "anchor": "precious-ingredients"
   }
  },
@@ -2451,7 +2451,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6016,
+   "line": 6070,
    "anchor": "priceless-ingredients"
   }
  },
@@ -2478,7 +2478,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6022,
+   "line": 6076,
    "anchor": "superior-equipment"
   }
  },
@@ -2504,7 +2504,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6024,
+   "line": 6078,
    "anchor": "superior-tools"
   }
  },
@@ -2531,7 +2531,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6032,
+   "line": 6086,
    "anchor": "damp"
   }
  },
@@ -2559,7 +2559,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6034,
+   "line": 6088,
    "anchor": "decaying"
   }
  },
@@ -2585,7 +2585,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6036,
+   "line": 6090,
    "anchor": "dirty"
   }
  },
@@ -2611,7 +2611,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6040,
+   "line": 6094,
    "anchor": "gaudy"
   }
  },
@@ -2635,7 +2635,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6044,
+   "line": 6098,
    "anchor": "inferior-equipment"
   }
  },
@@ -2659,7 +2659,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6046,
+   "line": 6100,
    "anchor": "inferior-tools"
   }
  },
@@ -2683,7 +2683,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6048,
+   "line": 6102,
    "anchor": "infested"
   }
  },
@@ -2707,7 +2707,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6050,
+   "line": 6104,
    "anchor": "lousy-ingredients"
   }
  },
@@ -2733,7 +2733,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6060,
+   "line": 6114,
    "anchor": "defective-heating"
   }
  },
@@ -2759,7 +2759,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6062,
+   "line": 6116,
    "anchor": "defective-lighting"
   }
  },
@@ -2786,7 +2786,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6072,
+   "line": 6126,
    "anchor": "hovel"
   }
  },
@@ -2811,7 +2811,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6086,
+   "line": 6140,
    "anchor": "greater-horde"
   }
  },
@@ -2835,7 +2835,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6092,
+   "line": 6146,
    "anchor": "gateway"
   }
  },
@@ -2861,7 +2861,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6096,
+   "line": 6150,
    "anchor": "lesser-horde"
   }
  },
@@ -2891,7 +2891,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6102,
+   "line": 6156,
    "anchor": "airborne"
   }
  },
@@ -2914,7 +2914,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6104,
+   "line": 6158,
    "anchor": "boundless"
   }
  },
@@ -2941,7 +2941,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6108,
+   "line": 6162,
    "anchor": "faerie-ingredients"
   }
  },
@@ -2967,7 +2967,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6110,
+   "line": 6164,
    "anchor": "flawless-equipment"
   }
  },
@@ -2992,7 +2992,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6112,
+   "line": 6166,
    "anchor": "flawless-tools"
   }
  },
@@ -3018,7 +3018,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6114,
+   "line": 6168,
    "anchor": "ice-cavern"
   }
  },
@@ -3030,7 +3030,7 @@
   "group": "Supernatural",
   "repeatable": false,
   "text": "The interior of the lab, and its outfittings, are invisible. Naturally, this requires the owner of the lab to have some magical means of seeing them, otherwise he is not going to get very far with his lab work.",
-  "modText": "+1 Warping, halve the Aesthetics score after all other modifications ; +2 Im.",
+  "modText": "+1 Warping, halve the Aesthetics score after all other modifications; +2 Im.",
   "mods": {
    "characteristics": {
     "Warping": 1
@@ -3043,7 +3043,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6118,
+   "line": 6172,
    "anchor": "invisible"
   }
  },
@@ -3064,7 +3064,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6122,
+   "line": 6176,
    "anchor": "magical-heating"
   }
  },
@@ -3085,7 +3085,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6124,
+   "line": 6178,
    "anchor": "magical-lighting"
   }
  },
@@ -3113,7 +3113,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6126,
+   "line": 6180,
    "anchor": "preserved"
   }
  },
@@ -3138,7 +3138,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6130,
+   "line": 6184,
    "anchor": "relocation"
   }
  },
@@ -3164,7 +3164,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6132,
+   "line": 6186,
    "anchor": "sentient"
   }
  },
@@ -3187,7 +3187,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6134,
+   "line": 6188,
    "anchor": "shrouded"
   }
  },
@@ -3208,7 +3208,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6136,
+   "line": 6190,
    "anchor": "site-of-legend"
   }
  },
@@ -3237,7 +3237,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6142,
+   "line": 6196,
    "anchor": "afire"
   }
  },
@@ -3263,7 +3263,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6144,
+   "line": 6198,
    "anchor": "chaotic"
   }
  },
@@ -3284,7 +3284,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6146,
+   "line": 6200,
    "anchor": "cursed"
   }
  },
@@ -3313,7 +3313,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6148,
+   "line": 6202,
    "anchor": "degenerative"
   }
  },
@@ -3340,7 +3340,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6150,
+   "line": 6204,
    "anchor": "gremlins"
   }
  },
@@ -3365,7 +3365,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6158,
+   "line": 6212,
    "anchor": "labyrinth"
   }
  },
@@ -3389,18 +3389,18 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6160,
+   "line": 6214,
    "anchor": "lair"
   }
  },
  {
   "id": "precarious-flaw",
-  "name": "Precarious\\",
+  "name": "Precarious",
   "kind": "flaw",
   "size": "Free",
   "group": "Supernatural",
-  "repeatable": false,
-  "text": "*: The lab is located in a supernaturally dangerous place, such as inside a volcano. This Virtue may be taken more than once, for greater degrees of danger.",
+  "repeatable": true,
+  "text": "The lab is located in a supernaturally dangerous place, such as inside a volcano. This Virtue may be taken more than once, for greater degrees of danger.",
   "modText": "–1 Safety; 1 point on an appropriate Art Specialization.",
   "mods": {
    "characteristics": {
@@ -3412,7 +3412,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6162,
+   "line": 6216,
    "anchor": "precarious"
   }
  },
@@ -3439,7 +3439,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6168,
+   "line": 6222,
    "anchor": "sacrifices"
   }
  },
@@ -3462,7 +3462,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6170,
+   "line": 6224,
    "anchor": "thoroughfare"
   }
  },
@@ -3490,7 +3490,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6172,
+   "line": 6226,
    "anchor": "underwater"
   }
  },
@@ -3514,7 +3514,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6184,
+   "line": 6238,
    "anchor": "living"
   }
  },
@@ -3541,7 +3541,7 @@
   },
   "source": {
    "book": "Cov",
-   "line": 6190,
+   "line": 6244,
    "anchor": "mental-construct"
   }
  }

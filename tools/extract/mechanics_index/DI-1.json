@@ -225,7 +225,7 @@
   "summary": "Gives the two Aether effects needed for the ending ritual: a sight effect to perceive aether and a unique ritual to stop its motion, with level builds and the Required Lab Total for different numbers of seasons.",
   "quotes": [
    "(Base 5, +3 Sight, +5 density, +20 size)",
-   "Required Lab Total**: 4 seasons (182), 8 seasons (164), 12 seasons (158), 16 seasons (153), 20 seasons (152)"
+   "Required Lab Total:** 4 seasons (182), 8 seasons (164), 12 seasons (158), 16 seasons (153), 20 seasons (152)"
   ],
   "related": []
  },
@@ -699,8 +699,8 @@
   "requires": "Initiation: Aetheric Magic",
   "summary": "The initiation script for learning Aetheric Magic from House Criamon: a journey to Megiddo, paid tuition, a Criamon stigma that gives the Disfigured Flaw, and a vow to spread the knowledge.",
   "quotes": [
-   "**Target Level**: 21",
-   "**Script Bonus**: +13"
+   "**Target Level:** 21",
+   "**Script Bonus:** +13"
   ],
   "related": [
    "Houses of Hermes: Mystery Cults (initiation scripts)",
@@ -897,7 +897,7 @@
   "requires": "Virtue: Aetheric Magic",
   "summary": "Describes the new Form of Aether: the base Individual by density of aether, the east-to-west motion and speed of aether at each density, the associated Magic Realm Province, and the Form bonus for soaking aether damage and resisting its influence on the humors.",
   "quotes": [
-   "**Form Bonus**: Soak against damage inflicted by aether, rolls to resist the influence of aether on the humors.",
+   "**Form Bonus:** Soak against damage inflicted by aether, rolls to resist the influence of aether on the humors.",
    "one pace per round for a density of metal, ten paces per round for stone, 100 paces for earth, 1,000 for water, 10,000 for fire, 100,000 for air, and 1,000,000 for intangible aether"
   ],
   "related": [

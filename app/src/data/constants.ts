@@ -131,9 +131,9 @@ export const BOOKS: BookInfo[] = [
   { id: 'AM', file: 'Ars Magica 5e - Magic - Ancient Magic.md', title: 'Ancient Magic', abbr: 'AM', category: 'magic', status: 'reviewed' },
   { id: 'HMRE', file: 'Ars Magica 5e - Magic - Hedge Magic (Revised).md', title: 'Hedge Magic (Revised Edition)', abbr: 'HMRE', category: 'magic', status: 'reviewed' },
   { id: 'App', file: 'Ars Magica 5e - Magic - Apprentices.md', title: 'Apprentices', abbr: 'App', category: 'magic', status: 'reviewed' },
-  { id: 'RM', file: 'Ars Magica 5e - Magic - Rival Magic.md', title: 'Rival Magic', abbr: 'RM', category: 'magic', status: 'wip' },
+  { id: 'RM', file: 'Ars Magica 5e - Magic - Rival Magic.md', title: 'Rival Magic', abbr: 'RM', category: 'magic', status: 'reviewed' },
   { id: 'CC', file: 'Ars Magica 5e - Magic - The Cradle & the Crescent.md', title: 'The Cradle & the Crescent', abbr: 'C&C', category: 'magic', status: 'wip' },
-  { id: 'HP', file: 'Ars Magica 5e - Magic - Hermetic Projects.md', title: 'Hermetic Projects', abbr: 'HP', category: 'magic', status: 'wip' },
+  { id: 'HP', file: 'Ars Magica 5e - Magic - Hermetic Projects.md', title: 'Hermetic Projects', abbr: 'HP', category: 'magic', status: 'reviewed' },
   { id: 'MoH', file: 'Ars Magica 5e - Magi of Hermes.md', title: 'Magi of Hermes', abbr: 'MoH', category: 'magic', status: 'wip' },
   { id: 'LoH', file: 'Ars Magica 5e - Legends of Hermes.md', title: 'Legends of Hermes', abbr: 'LoH', category: 'magic', status: 'reviewed' },
   { id: 'RoP_M', file: 'Ars Magica 5e - Realms of Power - Magic.md', title: 'Realms of Power: Magic', abbr: 'RoP:M', category: 'realms', status: 'reviewed' },
@@ -157,8 +157,8 @@ export const BOOKS: BookInfo[] = [
   { id: 'LaL', file: 'Ars Magica 5e - The Lion and the Lily - The Normandy Tribunal.md', title: 'The Lion and the Lily (Normandy)', abbr: 'L&L', category: 'tribunal', status: 'reviewed' },
   { id: 'SE', file: 'Ars Magica 5e - The Sundered Eagle - The Theban Tribunal.md', title: 'The Sundered Eagle (Thebes)', abbr: 'SE', category: 'tribunal', status: 'reviewed' },
   { id: 'LotN', file: 'Ars Magica 5e - Lands of the Nile - Egypt, Ethiopia & Nubia.md', title: 'Lands of the Nile', abbr: 'LotN', category: 'tribunal', status: 'reviewed' },
-  { id: 'FF', file: 'Ars Magica 5e - Faith & Flame - The Provencal Tribunal.md', title: 'Faith & Flame (Provençal)', abbr: 'F&F', category: 'tribunal', status: 'wip' },
-  { id: 'CI', file: 'Ars Magica 5e - The Contested Isle - The Hibernian Tribunal.md', title: 'The Contested Isle (Hibernia)', abbr: 'CI', category: 'tribunal', status: 'wip' },
+  { id: 'FF', file: 'Ars Magica 5e - Faith & Flame - The Provencal Tribunal.md', title: 'Faith & Flame (Provençal)', abbr: 'F&F', category: 'tribunal', status: 'reviewed' },
+  { id: 'CI', file: 'Ars Magica 5e - The Contested Isle - The Hibernian Tribunal.md', title: 'The Contested Isle (Hibernia)', abbr: 'CI', category: 'tribunal', status: 'reviewed' },
   { id: 'BSS', file: 'Ars Magica 5e - Between Sand & Sea - Mythic Africa.md', title: 'Between Sand & Sea (Mythic Africa)', abbr: 'BS&S', category: 'tribunal', status: 'wip' },
 ];
 

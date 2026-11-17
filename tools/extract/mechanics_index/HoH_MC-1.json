@@ -494,7 +494,7 @@
   "requires": "Virtue: Heartbeast",
   "summary": "Sorts heartbeasts into four temperaments, pure or aspected by another, and lists which creatures cannot be heartbeasts (domesticated animals, creatures with Might, those outside the Size limits). Includes the Size option for very small heartbeasts.",
   "quotes": [
-   "Creatures Smaller than a Weasel** (Size \u20137)",
+   "Creatures Smaller than a Weasel** (Size –7)",
    "Creatures Larger than an Aurochs** (Size +3)"
   ],
   "related": []
@@ -901,7 +901,7 @@
   "summary": "Perfects the heartbeast into a Beast of Virtue with a boosted Characteristic, a Mythic Feat usable at a Confidence cost, and immunity to shape-affecting Physical Flaws.",
   "quotes": [
    "One Characteristic of the inner heartbeast (other than Intelligence) receives a permanent +3 bonus to the value of the base animal",
-   "at a cost of 1 confidence Point"
+   "at a cost of 1 Confidence Point"
   ],
   "related": []
  },
@@ -1357,7 +1357,7 @@
   "summary": "Animals use Cunning instead of Intelligence and spend points on the four physical Characteristics only, with limits on negative values and a minimum tied to Size.",
   "quotes": [
    "Like human characters, each has up to seven points to spend on increasing these Characteristics.",
-   "the minimum value is equal to (Size \u2013 5)"
+   "the minimum value is equal to (Size – 5)"
   ],
   "related": [
    "ArM5 p.191"
@@ -1455,7 +1455,7 @@
   "requires": "Beasts only (Minor Virtue)",
   "summary": "A beast-only Minor Virtue giving confidence points that can be used only in situations that trigger the animal's natural ferocity.",
   "quotes": [
-   "take 3 confidence Points and a confidence Score of 1"
+   "take 3 Confidence Points and a Confidence Score of 1"
   ],
   "related": []
  },
