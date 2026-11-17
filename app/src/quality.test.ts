@@ -36,9 +36,9 @@ const LIMITS = {
   /** the longest tutorial step, in words */
   tutorialLongestStep: 185,
   /** the README, in characters (rounded up a little, so a line of news can be swapped in) */
-  readmeChars: 123800,
+  readmeChars: 14200,
   /** the README's longest line, in characters */
-  readmeLongestLine: 11467,
+  readmeLongestLine: 431,
   /** Game Mechanics topics with no "In the app" pointer */
   topicsWithoutPointer: 56,
 };
