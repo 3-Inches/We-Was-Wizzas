@@ -74,7 +74,7 @@ The toolkit keeps the sheets, the covenant's stores and the calendar. Use them.
 - Say what the toolkit does, not what it "allows" or "supports".
 - Numbers come with their unit and their source: "9 pawns of vis (the age ÷ 5)".
 
-The Guide's pages **Playing the game** and **Running the game** (`src/data/roleplay.ts`) are written to these rules and are tested against them (`roleplay.test.ts`). Use them as the model. The rest of the Guide and the README are older and do not yet meet them: see the audit, section D, and the limits in `src/quality.test.ts`.
+The Guide's three pages are written to these rules and are tested against them: **Using the toolkit** (`src/data/toolkitGuide.ts`, `toolkitGuide.test.ts`), **Playing the game** and **Running the game** (`src/data/roleplay.ts`, `roleplay.test.ts`). Use them as the model. A new system's Guide entry is a card in `toolkitGuide.ts`, its steps a numbered list. The README is older and does not yet meet them: see the audit, section D, and the limits in `src/quality.test.ts`.
 
 **Check:** read it aloud. Then ask of every sentence: would a new player miss it if it were gone?
 

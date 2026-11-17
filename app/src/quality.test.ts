@@ -7,35 +7,30 @@ import { describe, expect, it } from 'vitest';
 import { APP_PLACES } from './data/appPlaces';
 import index from './data/generated/mechanics/index.json';
 import { TOURS } from './ui/tour/tours';
+import { TOOLKIT_GUIDE } from './data/toolkitGuide';
+import { guideTexts, sentences as guideSentences, words as guideWords } from './data/guideText';
 
 const raw = (glob: Record<string, unknown>) => Object.entries(glob as Record<string, string>);
-const guide = raw(import.meta.glob('./ui/pages/HelpPage.tsx', { query: '?raw', import: 'default', eager: true }))[0][1];
 const readme = raw(import.meta.glob('../README.md', { query: '?raw', import: 'default', eager: true }))[0][1];
 const sources = raw(import.meta.glob(['./**/*.ts', './**/*.tsx', '!./**/*.test.ts', '!./data/generated/**'], { query: '?raw', import: 'default', eager: true }));
 
 const words = (s: string) => s.split(/\s+/).filter(Boolean).length;
-const sentences = (s: string) => s.split(/(?<=[.?!]) (?=[A-Z])/);
 
-/** The Guide's paragraphs and list items as plain text. */
+/** The Guide's paragraphs and list items as plain text (src/data/toolkitGuide.ts). */
 function guideBlocks(): string[] {
-  const out: string[] = [];
-  for (const m of guide.matchAll(/<(li|p)[ >]([\s\S]*?)<\/\1>/g)) {
-    const t = m[2].replace(/\{[^{}]*\}/g, ' ').replace(/<[^>]+>/g, '').replace(/&apos;/g, "'").replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
-    if (t.length >= 40) out.push(t);
-  }
-  return out;
+  return guideTexts(TOOLKIT_GUIDE).map((x) => x.text);
 }
 
 // ------------------------------------------------------------------------------------------------
 // The limits. Lower them as the text improves.
 
 const LIMITS = {
-  /** the Guide's "Using the toolkit" page, in words (the audit asks for about half of this) */
-  guideWords: 9510,
+  /** the Guide's "Using the toolkit" page, in words (roadmap 1.5 asked for under 6,000) */
+  guideWords: 3529,
   /** its longest sentence, in words (the principle is 40) */
-  guideLongestSentence: 247,
-  /** its paragraphs over 150 words */
-  guideLongBlocks: 13,
+  guideLongestSentence: 34,
+  /** its paragraphs over 85 words (the principle) */
+  guideLongBlocks: 0,
   /** tutorial steps over 70 words (they fill a phone's screen) */
   tutorialLongSteps: 56,
   /** the longest tutorial step, in words */
@@ -62,7 +57,6 @@ const BIG_FILES: string[] = [
   'src/ui/character/sheet/MagicTab.tsx',
   'src/ui/covenant/CovenfolkCards.tsx',
   'src/ui/covenant/FinancesTab.tsx',
-  'src/ui/pages/HelpPage.tsx',
   'src/ui/pages/HolyPart.tsx',
   'src/ui/pages/MarketPage.tsx',
   'src/ui/pages/QuickBuildPage.tsx',
@@ -83,9 +77,9 @@ describe('limits that may only go down', () => {
   };
   walk(index);
   const measured = {
-    guideWords: blocks.reduce((t, b) => t + words(b), 0),
-    guideLongestSentence: Math.max(...blocks.flatMap((b) => sentences(b).map(words))),
-    guideLongBlocks: blocks.filter((b) => words(b) > 150).length,
+    guideWords: blocks.reduce((t, b) => t + guideWords(b), 0),
+    guideLongestSentence: Math.max(...blocks.flatMap((b) => guideSentences(b).map(guideWords))),
+    guideLongBlocks: blocks.filter((b) => guideWords(b) > 85).length,
     tutorialLongSteps: steps.filter((n) => n > 70).length,
     tutorialLongestStep: Math.max(...steps),
     readmeChars: readme.length,

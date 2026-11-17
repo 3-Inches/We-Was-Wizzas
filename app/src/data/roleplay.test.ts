@@ -5,7 +5,8 @@
 import { describe, expect, it } from 'vitest';
 import { BOOK_BY_ID } from './constants';
 import { headingOf } from '../ui/bookText';
-import { PLAYER_GUIDE, ROLEPLAY_GUIDES, STORYGUIDE_GUIDE, type RpBlock } from './roleplay';
+import { PLAYER_GUIDE, ROLEPLAY_GUIDES, STORYGUIDE_GUIDE } from './roleplay';
+import { blockTexts as texts, sentences, words } from './guideText';
 
 const bookFiles = import.meta.glob<string>(['../../../reviewed/*.md', '../../../wip/*.md'], { query: '?raw', import: 'default', eager: true });
 const cache = new Map<string, string[]>();
@@ -17,20 +18,6 @@ function bookLines(id: string): string[] {
   }
   return cache.get(id)!;
 }
-
-/** Every run of prose in a block, for the readability checks. */
-function texts(b: RpBlock): string[] {
-  if ('p' in b) return [b.p];
-  if ('heading' in b) return [];
-  if ('points' in b) return b.points.map(([lead, text]) => `${lead} ${text}`);
-  if ('list' in b) return b.list;
-  if ('table' in b) return b.table.rows.flat();
-  if ('tryThis' in b) return [b.tryThis];
-  return [b.inApp];
-}
-const plain = (s: string) => s.replace(/\*+/g, '');
-const words = (s: string) => plain(s).split(/\s+/).filter(Boolean).length;
-const sentences = (s: string) => plain(s).split(/(?<=[.?!])\s+(?=[A-Z“])/);
 
 describe('the roleplay pages of the Guide', () => {
   const sections = ROLEPLAY_GUIDES.flatMap((g) => g.sections.map((s) => ({ g, s })));

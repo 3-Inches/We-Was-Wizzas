@@ -1,79 +1,15 @@
-import type { ReactNode } from 'react';
 import { R } from '../routes';
 import { Link, useSearchParams } from 'react-router-dom';
 import { BOOK_BY_ID } from '../../data';
 import { OPTIONAL_RULES, OPTION_GROUPS, optionOn, tribunalMatches, tribunalName } from '../../engine/optional';
-import { Card, Tabs } from '../kit';
+import { Tabs } from '../kit';
 import { PLAYER_GUIDE, STORYGUIDE_GUIDE } from '../../data/roleplay';
+import { TOOLKIT_GUIDE } from '../../data/toolkitGuide';
 import { RoleplayGuide } from './RoleplayGuide';
 import { useGameData } from '../../store/hooks';
 import { MAGIC_QUALITIES } from '../../engine/character/magicCharacter';
 import { useStore } from '../../store/store';
 import { COURSE, TOURS, startTour, type TourGroup } from '../tour/tours';
-
-// The sections of this page, for the contents list at the top. The app routes by the URL's hash,
-// so the links scroll instead of changing it.
-const SECTIONS: [string, string][] = [
-  ['tutorials', 'Tutorials'],
-  ['start', 'Quick start'],
-  ['learn', 'Learning the rules'],
-  ['covenant', 'The covenant'],
-  ['characters', 'Characters'],
-  ['play', 'In play'],
-  ['tribunal', 'The Tribunal'],
-  ['optional', 'Optional rules'],
-  ['questions', 'Common questions'],
-  ['discord', 'Playing over Discord'],
-  ['house', 'House rules'],
-  ['data', 'About the rules data'],
-  ['credits', 'License & credits'],
-];
-
-function Jump({ to, children }: { to: string; children: ReactNode }) {
-  return (
-    <a
-      href={`#${to}`}
-      onClick={(e) => {
-        e.preventDefault();
-        document.getElementById(to)?.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      }}
-    >
-      {children}
-    </a>
-  );
-}
-
-function Step({ n, title, children, to, action }: { n: number; title: string; children: ReactNode; to?: string; action?: string }) {
-  return (
-    <div className="list-row" style={{ alignItems: 'flex-start', gap: 12 }}>
-      <span className="badge accent" style={{ minWidth: 26, justifyContent: 'center' }}>
-        {n}
-      </span>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <b>{title}</b>
-        <div className="small">{children}</div>
-      </div>
-      {to && action && (
-        <Link to={to} className="small">
-          {action} →
-        </Link>
-      )}
-    </div>
-  );
-}
-
-function Question({ q, children }: { q: string; children: ReactNode }) {
-  return (
-    <details className="list-row" style={{ display: 'block' }}>
-      <summary style={{ cursor: 'pointer' }}>
-        <b>{q}</b>
-      </summary>
-      <div className="small" style={{ marginTop: 4 }}>
-        {children}
-      </div>
-    </details>
-  );
-}
 
 const LEARN: { to: string; title: string; text: string }[] = [
   { to: '/mechanics/basics', title: 'The basics', text: 'How a roll works, Characteristics and Abilities, Personality Traits, Reputations and Confidence.' },
@@ -92,6 +28,20 @@ const LEARN: { to: string; title: string; text: string }[] = [
   { to: '/mechanics/setting', title: 'Sagas & setting', text: 'Troupe play, saga styles, and rules tied to the Tribunals and other places.' },
 ];
 
+/** The subjects of Game Mechanics, each a link. */
+function Learn() {
+  return (
+    <div className="grid grid-2" style={{ gap: 8, margin: '8px 0' }}>
+      {LEARN.map((l) => (
+        <Link key={l.to} to={l.to} className="card clickable" style={{ margin: 0, textDecoration: 'none', color: 'inherit', padding: '8px 12px' }}>
+          <b>{l.title}</b>
+          <div className="small muted">{l.text}</div>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 const GROUPS: TourGroup[] = ['Start here', 'The saga and covenant', 'Characters', 'Magic', 'In play', 'Storyguide'];
 
 /** The guided tutorials, and the hints setting for those who want less help or more. */
@@ -101,19 +51,13 @@ function Tutorials() {
   const resetHints = useStore((s) => s.resetHints);
   const running = ui.tour ? TOURS.find((t) => t.id === ui.tour!.id) : undefined;
   return (
-    <Card title="Tutorials" id="tutorials" tour="tutorials" className="accent">
-      <p className="small" style={{ marginTop: 0 }}>
-        A tutorial walks you through the real app one step at a time: a small panel explains each step and points at the control, and <b>Next</b> takes you to the right
-        page. You do the clicking, so you learn where things are; a step that asks for a button goes on by itself once you press it. Any tutorial can use a practice saga, leaving your
-        own sagas alone, and one about a character or covenant lets you choose which, or makes a practice one to work on.
-      </p>
+    <div>
       <p className="row small" style={{ alignItems: 'baseline' }}>
         <button className="primary" onClick={() => startTour(COURSE[0], { course: true })}>
           Take every tutorial in turn
         </button>
         <span className="muted">
-          All {COURSE.length}, one after another in one saga, each building on the last: the saga, its covenant and characters, magic, play, then the storyguide&apos;s tools.
-          Skip any you know; one that needs a character or covenant you have not made offers a practice one. Every tutorial ends with a button to the next.
+          All {COURSE.length}, one after another in one saga, each building on the last. Skip any you know.
         </span>
       </p>
       {running && (
@@ -154,14 +98,14 @@ function Tutorials() {
           </button>
         )}
       </div>
-    </Card>
+    </div>
   );
 }
 
 /** The Guide's three pages: using the toolkit, playing the game, and running it. */
 const GUIDE_TABS = ['toolkit', 'players', 'storyguides'] as const;
 type GuideTab = (typeof GUIDE_TABS)[number];
-const GUIDE_TAB_LABELS: Record<GuideTab, string> = { toolkit: 'Using the toolkit', players: PLAYER_GUIDE.tab, storyguides: STORYGUIDE_GUIDE.tab };
+const GUIDE_TAB_LABELS: Record<GuideTab, string> = { toolkit: TOOLKIT_GUIDE.tab, players: PLAYER_GUIDE.tab, storyguides: STORYGUIDE_GUIDE.tab };
 
 export default function HelpPage() {
   const [params, setParams] = useSearchParams();
@@ -204,777 +148,35 @@ export default function HelpPage() {
   );
 }
 
-/** Using the toolkit: tutorials, where things are, and how each part works. */
-function ToolkitGuide() {
-  // the rules data the toolkit holds, with every book (the counts in "About the rules data")
+/** The rules data the toolkit holds, counted from every book. */
+function RulesDataCounts() {
   const data = useGameData();
   const n = (xs: readonly unknown[]) => xs.length.toLocaleString('en');
   return (
-    <>
-      <div>
-        <p className="muted" style={{ marginTop: 0 }}>
-          A saga toolkit for <i>Ars Magica</i> Fifth Edition (Definitive Edition rules) that runs entirely in your browser. It builds characters and covenants step by step with the
-          rules checked as you go, then keeps doing the arithmetic in play: Casting Totals, Lab Totals, Penetration, Magic Resistance, wounds, study, aging and Twilight.
-        </p>
-        <nav className="small" aria-label="On this page">
-          {SECTIONS.map(([id, title], i) => (
-            <span key={id}>
-              {i > 0 && ' · '}
-              <Jump to={id}>{title}</Jump>
-            </span>
-          ))}
-        </nav>
-      </div>
-
-      <Tutorials />
-
-      <Card title="Quick start" id="start">
-        <Step n={1} title="Create a saga" to="/" action="Sagas">
-          Everything lives in a saga: its characters, its covenant and the troupe&apos;s house rules.
-        </Step>
-        <Step n={2} title="Choose your books, optional rules and house rules">
-          On the <b>Saga Overview</b>, its <b>Books</b> tab picks the supplements your troupe uses (only their content appears in the pickers), <b>Optional rules</b> turns the{' '}
-          <Jump to="optional">optional rules</Jump> on or off, and <b>Creation rules &amp; rulings</b> changes any creation numbers.
-        </Step>
-        <Step n={3} title="Found the covenant">
-          <b>Found a covenant</b> on the <b>Covenants</b> page: its aura and Build Points, Hooks and Boons, library, laboratories and covenfolk.
-        </Step>
-        <Step n={4} title="Make the characters">
-          Pick grog, companion, Mythic Companion or magus. The wizard walks through every step, shows each budget and checks the rules with page references. Not sure what to
-          play? <b>Guided build</b> on the Concept step suggests Virtues and Abilities from what you want, or builds a whole draft; short of time,{' '}
-          <b>Build the whole character for me</b> beside it makes one in a single press, from the concept themes, to change as you like. For grogs and NPCs in a hurry,{' '}
-          <b>Quick build</b> (under Tools) makes whole characters, fills out the covenant&apos;s people and rolls creatures from the bestiaries.
-        </Step>
-        <Step n={5} title="Play">
-          Finish creation and the sheet keeps the score: wounds, Fatigue, the season log, aging, Warping. Play happens at the <b>Game Table</b>: the rolls on its Dice page (any
-          roll, combat, spellcasting, society), recovery on its Overview, a season planned in full on its Seasons page; what they change lands on the sheets. Click any underlined
-          number to see how it was worked out.
-        </Step>
-        <p className="small muted" style={{ marginBottom: 0 }}>
-          Nothing is sent to a server. Your data lives in this browser. Use <b>Export saga</b> on the Saga Overview to keep a copy or move it to another device, <b>Share / Export</b> on
-          a character or covenant to send one sheet, and <Link to="/import">Import</Link> to load any of them. Playing with others? See <a href="#discord">Playing with a troupe</a>.
-        </p>
-      </Card>
-
-      <Card title="Learning the rules" id="learn">
-        <p className="small" style={{ marginTop: 0 }}>
-          Three references sit in the sidebar. <Link to="/mechanics">Game mechanics</Link> is the place to start: every rule players and storyguides use, from the core book and every
-          reviewed supplement, grouped by subject and ordered from the rules every session uses to the ones only a Virtue, House or initiation opens. Big topics are split into sections: Abilities by type, each House Mystery, each Path of Criamon. Each has a short summary, the
-          key rules quoted, and the book&apos;s own text a click away. Filter it for magi, companions, grogs or the storyguide.
-        </p>
-        <div className="grid grid-2" style={{ gap: 8 }}>
-          {LEARN.map((l) => (
-            <Link key={l.to} to={l.to} className="card clickable" style={{ margin: 0, textDecoration: 'none', color: 'inherit', padding: '8px 12px' }}>
-              <b>{l.title}</b>
-              <div className="small muted">{l.text}</div>
-            </Link>
-          ))}
-        </div>
-        <p className="small" style={{ marginBottom: 0 }}>
-          The <Link to="/reference">Rules reference</Link> lists the pieces you choose from: Virtues and Flaws, Abilities, Houses, laboratory Virtues, Hooks and Boons, weapons and
-          books, each with its rules text. The <Link to="/reference/book/DE">book reader</Link> has the full text of every book, searchable, with a contents list.
-        </p>
-        <p className="small" style={{ marginBottom: 0 }}>
-          The game is more than its rules. <Link to="/help?tab=players">Playing the game</Link> is about playing a person of Mythic Europe, and what that person knows that you do
-          not. <Link to="/help?tab=storyguides">Running the game</Link> is for storyguides: agreeing a saga, finding stories and challenging wizards.
-        </p>
-      </Card>
-
-      <Card title="The covenant" id="covenant">
-        <ul className="small">
-          <li>
-            Choose the covenant&apos;s season, aura and power level: its Build Points and its limits, the highest lab text and device effect (25 for Low, 40 for Medium) and the
-            age it should have. Tick <b>keep the limits whatever the Build Points</b> for a young covenant with things lent or given to it: a Low covenant with 800 Build
-            Points keeps level 25.
-          </li>
-          <li>
-            Take Hooks to pay for Boons; each Minor Aura Boon raises the aura by 1, Weak Aura lowers it, and the Overview&apos;s Aura card shows it as it stands and keeps its changes. There
-            a Magic aura can be aligned (with an Art it counts double for, or Healing, Luck…), and a Dominion follow its congregation&apos;s years of worship. Click a Hook or Boon to read it. Resources Boons and Hooks (Wealth, Secondary Income, Poverty,
-            Indebted…) take an income source; Hidden Resources pays for 250 Build Points of resources on top of the covenant&apos;s own; a Flawed or Illusory Resource adds none,
-            and marks 250 of the covenant&apos;s own Build Points of resources as likely to be lost or not really there; Exceptional Book adds its summa free.
-          </li>
-          <li>
-            Boons and Hooks that change the covenant&apos;s people take effect. Choose what Inhuman Residents or Inhuman Covenfolk are (faeries, beings of Magic, spirits,
-            awakened animals), their share and their Might (the Boon taken again brings another kind beside the first): they do not age, so never retire by age, are immune to
-            Warping, most need no sleep, and those that eat nothing are left out of the Provisions; they learn from their seasons less their Might Score each season (RoP: Magic),
-            so with none, as most mere covenfolk have, they learn as people do. Literate
-            Covenfolk read (Artes Liberales 1), the Local Language is spoken, a Useful Curse makes the cursed better at an Ability, and Incompetent and Distorted Covenfolk
-            show on those made there. The Covenfolk tab says what they make of its people and gives it to those already there; Quick build gives it to those it makes.
-          </li>
-          <li>
-            An Immunity covers a hazard, a disease, an influence or a Flaw within the aura (a Minor Boon a Minor Flaw; a Flaw with a choice in it, such as Hunger for (Form)
-            Magic or Weak Characteristic, is held off whatever the choice, and each one made there takes one at random): a disease cannot be caught there and a plague passes it by, Warping
-            does not build up. A Flaw it covers is given, paired with it, to the grogs, companions and magi the toolkit makes for the covenant (at the share you set),
-            who spend the Virtue points it gives; a paired Flaw is held off in the aura and is back when they leave (the Combat &amp; Health tab has the box), and pairing
-            one makes the Boon a Major Hook. A Regio Hook of another realm is one more Minor Hook. Loyal and Rebellious Covenfolk, the Healthy Feature, Unhealthy
-            Environment and Vivid Environment change Prevailing Loyalty, and the Healthy Feature and Unhealthy Environment the Aging rolls too. Prestige and Infamous give the covenant its Reputations. An Edifice may be a Great Work, a summa or tractatus built as a structure, free; or
-            buy one as a book.
-          </li>
-          <li>Buy the library, lab texts, vis sources, enchanted items and specialists; the toolkit prices everything and enforces the creation limits.</li>
-          <li>
-            Build one laboratory per magus (Size, Virtues and Flaws, Specializations). Labs feed straight into each magus&apos;s Lab Totals. Click a lab Characteristic to see how
-            it is worked out, and a lab Virtue to read it; enter the numbers some need (a Guardian&apos;s Intelligence, an Assistant&apos;s Magic Theory). In play, a magus
-            improves their own lab as a lab project (raising the Refinement, installing a Virtue, putting a Flaw right), and the rise in Upkeep is paid from the treasury.
-          </li>
-          <li>
-            Set covenfolk, income and spending to see the yearly balance and Loyalty. Use <b>Quick add</b> for specialists, teachers, sergeants, an autocrat, personal servants,
-            agents and craftsmen within the starting limits, pick each craftsman&apos;s craft, and press <b>optimal</b> for the number of laborers or craftsmen that keeps spending
-            lowest. List the soldiers a Boon brings on the <b>Soldiers</b> card, the Redcap visits and feast days on <b>Each year</b>, and work the weapons and armor points out
-            from the turb. <b>How the covenfolk live</b> sets their organization, the magi&apos;s standard of living and who pays their own way, and holds the <b>Guild</b>{' '}
-            Hook&apos;s demands and strike. <b>Craft magic</b> reckons a Rego craft spell&apos;s Finesse roll, its chance and what it saves. <b>The turb&apos;s day</b> shares the
-            grogs between the watches and shows who is on duty at any hour, rolls for sentries and double duty, drills a group faster, and marks rewards and punishments on a
-            grog&apos;s sheet. Crafts the other books name (bakers, butchers, tailors…) are offered beside <i>Covenants</i>&apos; examples. Tick <b>tithed</b> and{' '}
-            <b>Tithing Miracle</b> per source. On the Library tab, the <b>Scriptorium</b> queues copies for the covenant&apos;s scribes.
-          </li>
-          <li>
-            Or let <b>Quick build → Fill out the covenant</b> do it: choose the covenant, tick what to fill, and see each purchase with its Build Points, what Hidden Resources
-            pays for and each Flawed or Illusory Resource marks, and where the Build Points left go, before adding any of it.
-          </li>
-          <li>
-            At the end of each year press <b>Close the year</b> on the Money part of Covenfolk &amp; Finances: it shows the treasury after the year&apos;s balance, the vis gathered
-            and the year of familiarity, then applies them (with Undo). Inflation is an <Jump to="optional">optional rule</Jump>, off unless ticked; with it on, the year&apos;s end
-            also says in about how many years spending will overtake income. A cycle of four or more feast days adds a Loyalty point, and specialists and craftsmen gain the year&apos;s
-            experience (Exposure at work, Practice in their free seasons; craftsmen earn Labor Points). Roll the <b>Income Modification</b> with 🎲, record <b>Loyalty events</b> as
-            they happen, and use the one-off spending presets for sundry costs.
-          </li>
-          <li>
-            <b>Hard times:</b> when the money runs short, the <b>Hard times</b> card (Money) lists the book&apos;s Emergency Savings, each with what it saves and what it costs in
-            Loyalty: the magi giving up their privileges, lower wages, letting covenfolk go, leaving the buildings, arms, laboratories or provisions unpaid. Money can be borrowed
-            (a tenth a year in interest) and vis sold. A year that ends below nothing leaves bills owed and wages late; what is left unpaid brings its trouble every year.
-          </li>
-          <li>
-            <b>Troubles:</b> the <b>Troubles</b> card (Overview, and each covenant on the Tribunal page) strikes a covenant with plague, fire, a monster, faeries, the Church,
-            politics and more, by nature or by someone&apos;s hand. It lands at once and weighs on the covenant for a few years; one magus a season can deal with it. A
-            Natural Disaster and a Flawed Resource take a date on the Hooks tab and come due on it; the Flawed Resource&apos;s story is rolled there.
-          </li>
-        </ul>
-      </Card>
-
-      <Card title="Characters" id="characters">
-        <ul className="small">
-          <li>The wizard never throws away a choice, and you can jump between steps. Every step shows its budget (Virtue points, Characteristic points, xp, spell levels).</li>
-          <li>
-            <b>Click an issue</b> in the rules check to fix it: it adds or removes the Virtue, sets the value, moves the xp, shows the dropdown for a choice, or opens the step where
-            you decide. <b>Resolve all</b> previews every automatic fix first, and <b>Undo</b> in the notice at the top reverses any fix.
-          </li>
-          <li>
-            The Virtue list hides what the character may not take (House-only Flaws, Virtues for faerie beings, missing prerequisites…). Untick <b>Only what this character can
-            take</b> to see them with the reason; <b>allow anyway</b> takes one as a troupe ruling. Click a tag on a Virtue (House, character type, The Gift, what it adds) to
-            filter the list by it.
-          </li>
-          <li>
-            A Virtue that gives another (Strong Faerie Blood → Second Sight, Magical Blood by the kind of magic being) adds it free. Open any Virtue or Flaw to see <b>Rules it
-            refers to</b>: the Virtues, Flaws and book sections its text points to, quoted in place.
-          </li>
-          <li>
-            <b>A magus&apos;s House</b> gives its Virtue as you choose it. A Jerbiton picks the free Virtue from a list (one tied to an Ability takes an Ability of scholarship, art
-            or dealing with people); a Bjornaer names the heartbeast; Ex Miscellanea lists the traditions of the saga&apos;s books and applies the one you pick whole, with
-            whatever else it requires. The House&apos;s own rules are used where they come up: the heartbeast and certamen at <b>Dice › Spellcasting</b>, Enigmatic Wisdom in
-            Twilight, Faerie Magic&apos;s ranges and durations in spell design, a Verditius&apos;s casting tools and craft in the lab.
-          </li>
-          <li>
-            <b>A holy character</b> (<i>Realms of Power: The Divine</i>): answer the guided build&apos;s question about working wonders through prayer and it takes a Holy Method
-            and a Holy Power that go together; or choose a Mythic Companion of the Divine (Kabbalist, Perfectus, Zahid, Nephilim). The tutorial <b>Faith, miracles and holy
-            powers</b> plays one at the Game Table.
-          </li>
-          <li>
-            Powers from Greater, Lesser, Personal or Ritual Power and Heroes&apos; Birthright are designed on the Virtues step: pick a spell within the level budget (click its name
-            to read what it does) or describe your own.
-          </li>
-          <li>
-            A companion Flaw (Magical Animal, Realm Spirit, Animal Companion) can create the companion&apos;s own sheet. A magical companion is built as a <i>Realms of Power:
-            Magic</i> magic character: experience from its Season, Might from the saga&apos;s power level, Magic Qualities bought with Might, and the Magical Friend status. Its
-            Creature card lists the creation steps in the book&apos;s order. The Powers card&apos;s list starts with the book&apos;s sixteen <b>Common Magic Powers</b>, each with
-            its level and Quality; the Qualities menu also offers the realm&apos;s own Virtues and Flaws. <b>Variable Power</b> and <b>Deteriorating Power</b> are set on the
-            power they change, with what they go by (age, Might, Warping or an Ability), and the card shows the effect level that gives.
-          </li>
-          <li>
-            <b>Essential Traits:</b> a being of Magic Might has one for its true form, typically +3 (Raven*, Person*, Tree*), and every Personality Trait it has is Essential too;
-            Essential Virtue and Essential Flaw add more, for anyone. The <b>Essential Traits</b> card (Personality &amp; Gear step, and the Overview) lists them, adds the true form
-            with one button, and shows what a trait naming a Characteristic makes of it.
-          </li>
-          <li>Tribunal, homeland, Characteristic descriptions and Ability types are dropdowns; choose <b>Other (type your own)</b> for anything not listed.</li>
-          <li>A character older than 35 rolls aging before play on the Concept step. A year that would kill the character is not applied, so you can roll it again.</li>
-          <li>
-            <b>Guided build</b> (Concept step): rate statements 0–10 about what you want to play and get recommendations with the reason and the page, or a whole draft that
-            passes the rules check. <b>Build the whole character for me</b> beside it skips the questions: a whole draft from the concept themes (a Mythic Companion&apos;s
-            type from what the concept names), each choice with its reason, opened at Review. The storyguide sets the saga&apos;s realms, speed and politics once on the{' '}
-            <b>Saga Overview</b> (Guided build).
-          </li>
-        </ul>
-      </Card>
-
-      <Card title="In play" id="play">
-        <ul className="small">
-          <li>
-            <b>The Game Table</b> (in the saga&apos;s menu, under the Saga Overview) is the place to run a session from. Its pages: <b>Overview</b> (what needs attention: money,
-            Loyalty, wounds, a strike, rules problems, idle characters; <b>Health &amp; recovery</b> for everyone, and for one character damage, Fatigue, a disease and the
-            spells on them; <b>Confidence &amp; Faith</b>, given, and a new session for All According to Plan; the covenants at a glance; quick changes such as a Loyalty event,
-            the treasury or vis found; experience and Labor Points after a story, for however many took part; and a list of what comes up in play with a link to where it is
-            done), <b>Seasons</b> (in three steps: <b>Plan</b> the season from the covenant down (its year&apos;s end, the Hooks&apos; stories, its people coming and going: a child
-            turning five or coming of age, a retirement, a newcomer, a noble&apos;s relative left in its care by the Dumping Ground Hook), then each player in turn with their magi
-            before their companions, and the grogs last;
-            <b>End</b> it after reading what to expect; <b>Resolve</b> what it leaves, kept at the top until settled; and <b>Turn back</b> a season or a year), the <b>Chronicle</b> (each
-            season told as a story, its record folded beneath), <b>Dice</b> (Roll, Combat &amp; perils, Spellcasting, Faith &amp; miracles), <b>Society &amp; the Tribunal</b> (the Tribunal&apos;s news,
-            what the agents heard and the motions; the agents themselves; debates, petitions, courts and customs), <b>Possessions</b> (what each character owns: things, armor and weapons, enchanted items and the
-            talisman, a familiar, a Redcap&apos;s devices), <b>Market &amp; Treasury</b> and <b>City &amp; Guild</b>. Once a character is finished their sheet is for reference:
-            it shows where they stand, and each card says where at the Game Table it changes. One mechanic, one place. <b>Coming up</b> keeps the dates (gatherings, Hooks come round, the Aegis, a magus turning 35, an apprentice&apos;s Gauntlet, your own
-            dates), and <b>Stories waiting</b> lists the characters&apos; Story and Personality Flaws and the covenant&apos;s Hooks, the longest untold first, so the toolkit keeps
-            the mechanics and the table can play the story. When unsure what to do next, go back to it.
-          </li>
-          <li>
-            <b>The Tribunal</b> (⚜ in the saga&apos;s menu): the other covenants of the saga&apos;s Tribunal, built from its book as living covenants that carry on by themselves.
-            What they bring to your covenant shows on the Game Table&apos;s Overview. See <Jump to="tribunal">The Tribunal</Jump> below.
-          </li>
-          <li>
-            <b>Magic:</b> the sheet&apos;s Magic tab keeps every Casting Score and Lab Total for the current aura, Magic Resistance per Form and Penetration with Arcane
-            Connections. Spells are cast at the Game Table&apos;s <b>Dice › Spellcasting</b>: pick the caster, then a spell with the right die, botch dice, fatigue and ritual
-            costs, or spontaneous magic. Tick what applies right now (Magical Focus, Special Circumstances, Life Boost, a similar spell, raw vis, days away from the lab, any
-            other modifier) and it is added to the totals; fast-casting (−10, with its Speed roll), Flexible Formulaic Magic&apos;s step up or down and a Mythic Characteristic&apos;s
-            specialty are chosen there too. A spell that works can be put on whoever it works on: it is kept on them (Health &amp; recovery) for its Duration, a powerful one with its
-            Warping. A botch adds its Warping Points. Twilight, or what a tradition suffers in its place, waits in Seasons › Resolve. Casting Virtues and Flaws
-            (Diedne Magic, Vulnerable Casting…) apply when you cast; the card lists which. Certamen is fought there too, against anyone of the
-            saga or the Tribunal, their Fatigue going on their sheet.
-          </li>
-          <li>
-            <b>Faith &amp; miracles</b> (Realms of Power: The Divine): the Game Table&apos;s <b>Dice › Faith &amp; miracles</b>, for anyone. Set the aura first; a Divine
-            one adds to all of it. <b>Holy powers</b>: a Method (Invocation, Meditation, Purity, or Holy Music, Gematria, Kabbalah, Merkavah, Dream Interpretation working as
-            one) with a Power that goes with it, and an effect from the book&apos;s guidelines and examples, or designed with Range, Duration and Target (what would need a
-            Ritual adds four magnitudes). The Method&apos;s activity is paid (a Confidence Point, an hour of Stamina rolls, a long-term Fatigue level or a Light Wound), and a
-            total short of the level brings a tragedy of hubris, judged on Faith × 10 when that is higher; a botch adds its Warping. <b>Pray for a miracle</b> with a Faith
-            Point, how soon and how great the need setting the level. <b>God&apos;s aid</b> for a scene shows on the Roll card until a roll fails. The <b>saints and holy
-            forbears</b> are invoked against an unseen die, and a Christian saint who refuses may be threatened. <b>Holy influence</b> gives followers a trait; a
-            <b> temper</b> in the Dominion is offered on every roll. The <b>Divine Ascent</b> is checked when two or more Warping Points come at once, and its form (Gloom,
-            Form, Unity) is kept for life: the Divine Form gives Magic Resistance and Soak. The <b>Rings of Solomon</b> add their experience and
-            Characteristics while they last. On <b>Seasons</b>: a ring first recited, the search for the Book of Solomon, a kabbalist&apos;s amulets, golems, True
-            Names and Shinnui Shem.
-            <b> Holy Magic</b> casts at Dice › Spellcasting: a prayer (Presence + Theology 15+) or a Method&apos;s activity in place of words and gestures, the Dominion
-            counted as a Magic aura, a Method and a Power in Rituals, long-term Fatigue in place of Ritual vis; the spell designer offers its own Ranges, Durations and
-            Targets, and a Hermetic Laboratory Text is halved (as a holy magus&apos;s is for Hermetic magi).
-          </li>
-          <li>
-            <b>Faerie</b> (<i>Realms of Power: Faerie</i>): a <b>faerie character</b> is made from the People page (a companion, or in place of a magus): Might 5 and its
-            Virtues, Pretenses bought from one pool with no Virtue needed, and a form, a cognizance, a social Virtue or Flaw and a taboo, which the rules check asks for.
-            A faerie wizard&apos;s <b>Sympathy Traits</b> and Faerie Rank are kept on the sheet. On <b>Dice › Faerie</b>: a <b>faerie rite</b> (a Method and a Power, its level
-            held to five times the Sympathy Traits that apply), the Ars Fabulosa&apos;s <b>bargaining</b> Arts against a faerie&apos;s Might, <b>Faerie Calling</b>, and a
-            faerie&apos;s change of role through a creative human. On <b>Dice › Roll</b>: a tick for each Sympathy Trait that fits.
-          </li>
-          <li>
-            <b>Nightwalkers</b> (<i>Hedge Magic, Revised Edition</i>): on <b>Dice › Hedge magic</b>, spirit travel by how well the place is known, leading others
-            astray, the night&apos;s other rolls, and a fertility battle&apos;s outcome set as the year&apos;s harvest on the covenant&apos;s land.
-          </li>
-          <li>
-            <b>The Church</b>: on <b>Dice › Faith &amp; miracles</b>, Devotions to the saints in Devotion Points (they add to invoking the saint, with a relic&apos;s Faith Points × 2), a
-            pilgrimage&apos;s Oppositional Elements against its Target Level, a contemplative&apos;s Spiritual Path, and a monistic mystic&apos;s Revelation after Divine Ascent.
-            On <b>Seasons</b>: a season at a shrine, a hagiography, the path&apos;s seasons.
-          </li>
-          <li>
-            <b>Hermetic Projects</b>: its spells are in the spell list (each row shows the Lab Total to invent it in one to four seasons), and its enchantments can be added to an item
-            with <b>+ From the books…</b>. Its ships can be kept as possessions. A covenant&apos;s Overview keeps its <b>Great buildings</b>, with their stress check, and
-            <b>A menagerie</b>&apos;s rolls. A mason raises or repairs a building with <b>Build (a season)</b> on <b>Seasons</b>.
-          </li>
-          <li>
-            <b>Vitkir</b> (<i>Hedge Magic, Revised Edition</i>): the 24 runes, raised as Arts; the sheet keeps the apprenticeship (240 experience points and 120 levels of scripts)
-            and the scripts known (the book&apos;s or designed from a rune&apos;s guideline). On <b>Dice › Hedge magic</b>: a script cast with its name and description written,
-            hidden or left off, vis and a rune focus; <b>Nátt-thel</b>, the loss of The Gift. On <b>Seasons</b>: scripts invented or taught.
-          </li>
-          <li>
-            <b>Gruagachan</b> (<i>Hedge Magic, Revised Edition</i>): Give and Take with Blessing, Curse, Shape and Vision; the sheet keeps the apprenticeship and the spells
-            known (from the book or designed with the Geas and Limit Durations). On <b>Dice › Hedge magic</b>: a Formulaic spell varied within its magnitudes, or a
-            spontaneous one; transformation after a double botch. On <b>Seasons</b>: a <b>tattoo</b>, a spell invented or vis drawn.
-          </li>
-          <li>
-            <b>Folk witches</b> (<i>Hedge Magic, Revised Edition</i>): the Folk Witch Social Status, the tradition&apos;s Virtues and Flaws, and Folk Witch Magic Theory; a
-            Gifted witch has the seven favored powers, and the sheet keeps their apprenticeship (200 experience points). On <b>Dice › Hedge magic</b>: a power used by
-            incantation or fetish against its Ease Factor, potions drunk, and the <b>Witch Moon</b>. On <b>Seasons</b>: a season in the
-            <b>kitchen</b> (potions, fetishes, a curse rolled in Resolve, vis, a longevity ritual, a familiar).
-          </li>
-          <li>
-            <b>Elementalists</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the four Techniques (each for a type of target: Medicinal, Philosophical or
-            Theurgical) and the four Elementalist Forms open them at 0. The sheet shows the <b>Elemental Traits</b> that Warping and the Forms bring. On <b>Dice › Hedge
-            magic</b>: Summoning, Controlling and Divining rolled with the elements and vis chosen, and what the total reaches. On <b>Seasons</b>: <b>Refining</b> (a
-            longevity potion, vis from an aura, vis moved, a being&apos;s Might).
-          </li>
-          <li>
-            <b>Learned magicians</b> (<i>Hedge Magic, Revised Edition</i>): the Virtues of the six Arts open them at 0 (a Gifted Mathematicus of Bologna has all six); the
-            sheet&apos;s <b>Learned magic</b> card keeps the years under a master (30 experience points each) and the charms known. On <b>Dice › Hedge magic</b>: a{' '}
-            <b>charm</b> cast from memory or read from a formulary, with Entreat the Powers against a hostile aura, Fatigue when it falls short, and Warping and
-            intervention after a botch; a <b>charta</b> written in hours. On <b>Seasons</b>: an <b>amulet</b>, put on the sheet with its charges, and charms invented or
-            taught.
-          </li>
-          <li>
-            <b>The Mysteries</b> (<i>The Mysteries, Revised Edition</i>): on a lab project, a magus with Planetary Magic (for enchanting) or Celestial Magic (for any lab work)
-            chooses a <b>Laboratory Horoscope</b> of +1 to +5, rolled as the season begins against three times the bonus; a botch wastes the season. A charged item can be
-            made <b>as a periapt</b>. <b>Extract vis</b> takes a vessel&apos;s Shape and Material bonus with Hermetic Alchemy, Form vis at a pawn per 20 points, and with
-            Philosophic Alchemy can be left to digest beside other lab work, or make ready-opened spaces in an item. <b>Devise the Lesser Elixir</b> adds an ingredient a
-            season, its Elixir Level adding to the Longevity Ritual. The rolls made in play (a favorable hour, Astrological Durations, divination and dreams, the Great
-            Elixir&apos;s test, an invoked daimon, Empowerment, rotes and synthemata) are on <b>Dice › Mysteries</b>, which shows only for those who hold one.
-          </li>
-          <li>
-            <b>Combat &amp; Health:</b> the sheet shows the wounds, Fatigue, illness and the combat totals for each weapon. Damage is applied against Soak, Fatigue lost and
-            regained and a disease caught under Health &amp; recovery, choosing who. At the Game
-            Table, <b>Dice › Combat &amp; perils</b> rolls a character&apos;s Initiative, Attack and Defense (mounted, exerted or scuffling), <b>Fighting as a group</b> beside
-            their own side, a blow from Attack to wound, and the perils. <b>Health &amp; recovery</b> on the Overview lists everyone wounded, tired or ill, the soonest recovery
-            first, with their penalty and how near Unconscious or death they are; choose who tends them (as many patients as their Chirurgy, five times that if they give the
-            season to it, Art &amp; Academe), add magical aid, and pass time to the next recovery or by a set span: every roll is made, a stable wound keeps its +3, the aura and
-            the lab&apos;s Health count, and the sheets change.
-          </li>
-          <li>
-            <b>Seasons:</b> on the Game Table&apos;s Seasons page, <b>Plan in full</b> opens one character&apos;s season (books, teachers, training, practice, vis, adventure, a lab
-            project, Spell Mastery, writing, an Initiation, original research, a Longevity Ritual, the apprentice) and logs it on their sheet, whose Seasons &amp; Aging tab
-            keeps the log; experience is added with Affinities, gain limits and Virtues. A season logged by mistake is <b>Unlogged</b> there, and all it did comes off: experience,
-            Warping, Labor Points and the workshop&apos;s count, vis and pounds spent, a project&apos;s progress, a Virtue from an Initiation. A season that finished something (a spell, an
-            item) stays logged. A craftsman&apos;s season at the bench is spent here too, as every season is.
-            Anyone a Mystagogue will take may be Initiated, not only the Mystery Houses. <b>Spell Mastery</b> puts experience on a spell and asks, at each new level, for
-            the special ability the player chooses (DE). Lab work on an item or a familiar can also be planned from Possessions, which opens the Lab projects card here.
-            Aging out of turn and crises are rolled there; Wizard&apos;s Twilight with Spellcasting. Choose a teacher from the saga and the subjects are what they can teach this character (2 in an Ability or 5 in an Art,
-            more than the student, a language in common, Arts only to a magus, an Ability the student may learn); logging the lesson logs the teacher&apos;s season too (Exposure
-            in Teaching). On <b>This season</b> a teacher may teach anyone in play, several at once (five students for each point of Teaching, one with none; an Art one-on-one);
-            the students named spend their season being taught, and one can leave the lesson. <b>Writing and copying</b> begins a summa, tractatus,
-            commentary, copy, lab texts or florilegium and works it a season at a time (or in free seasons), with the covenant&apos;s scribe, binder and illuminator and resonant
-            materials under <i>Covenants</i>&apos; rules; the finished work goes to the covenant library. A summa, copy or lab text finished with points to spare leaves the rest of
-            the season for the next one begun (a tractatus takes its season), and the season gives the writer 2 xp of Exposure, once. Glossing and clarifying a book are there too. With <i>City &amp; Guild</i>{' '}
-            enabled, a craftsman or laborer can track a <b>livelihood</b>: Labor Points, the Workshop Total, the quality each season makes, and the Labor Points stories and
-            investments bring.
-          </li>
-          <li>
-            <b>Lab &amp; Items:</b> the sheet shows the lab, the enchanted items, the Longevity Ritual and the familiar. Items, the talisman and the familiar are kept on the
-            Game Table&apos;s Possessions. Everything that takes a season is a <b>Lab project</b>, planned on the Lab projects card of the character&apos;s season in full (Game
-            Table › Seasons) and worked as a season&apos;s activity: inventing a spell (or learning one from a Laboratory Text, picked from the covenant&apos;s library), preparing and attuning a talisman, instilling effects (with the
-            item&apos;s Shape &amp; Material bonuses that suit the effect, and a talisman&apos;s attunements, held to Magic Theory),
-            charged items, extracting vis, taming, a Longevity Ritual (for the magus or someone else), binding a familiar, strengthening and empowering the bond, and improving the
-            lab itself: its Refinement, a Virtue installed, a Flaw put right. Spells of the same Technique and Form can be invented alongside each other. Each has its
-            Lab Total with all the lab gives, its vis, a box to experiment, and the lab&apos;s own rolls for Safety and Warping; what the lab&apos;s Flaws rule out is shown in
-            red and cannot be worked. A familiar&apos;s cords are applied where they belong (golden to botch dice, bronze to Soak, recovery and aging). <b>Helpers this season</b>{' '}
-            adds a covenant-mate&apos;s Intelligence + Magic Theory to the Lab Total: one with The Gift and Magic Theory 1, or the magus&apos;s bound familiar, as many as the
-            magus&apos;s Leadership (a familiar and one more); they gain Exposure in Magic Theory. The Familiar card links the familiar&apos;s own sheet: bound, it learns as a human
-            does, its Might not taken off (<i>Realms of Power: Magic</i>).
-          </li>
-          <li>
-            <b>Spells on a character:</b> the sheet&apos;s Overview lists effects working on the character (a raised Characteristic, a granted Virtue) with when they end; one
-            is recorded, ended or undone at the Game Table (Overview › Health &amp; recovery, choosing who), or cast from the covenant (below). The <b>purse</b> line shows the character&apos;s own pounds and vis.
-          </li>
-          <li>
-            <b>Time:</b> the Game Table&apos;s <b>Seasons</b> page moves the whole saga on: one season, to next Spring, or several years. Each character does what was logged on
-            their sheet, or their standing activity (set on the Seasons page or the sheet) in their free seasons: a working character has two (Wealthy three, Poor one) and works
-            the rest, a magus has four, a Regular gives one to Worship, and one who needs no sleep has two more for study (set on the Seasons page). A standing activity can be to{' '}
-            <b>teach covenant-mates</b> (the lesson that teaches the most in all to the students chosen and those who asked: one student adds 6, two add 3), to be{' '}
-            <b>taught by a covenant-mate</b>, or to <b>help in a covenant-mate&apos;s lab</b>; the season of each side is logged. Left to the clock, a character studies the
-            covenant&apos;s best book or teacher when it teaches more than practice; a magus works its own projects and extracts vis only when told to. A magic character&apos;s
-            extra seasons are not spent on practice its Might cancels. A magus whose lab project is done moves on to the next one the lab allows. The year&apos;s end closes the covenants&apos; books, pays allowances, rolls aging and adds Warping, and moves a Dominion with its
-            congregation (and, with aura variation on, may move a Magic aura); wards like the Aegis of the Hearth are recast from the covenant&apos;s vis. Undo is always one
-            click away.
-          </li>
-          <li>
-            <b>Auras:</b> the covenant&apos;s <b>Aura</b> card (Overview) shows the aura as it stands and keeps its changes with their reasons. A Magic aura can be aligned: with an
-            Art it counts double for, or with Healing, Luck, Distracting or an emotion. A Dominion can follow the congregation that keeps it, growing with its years of worship and
-            fading when worship stops. On the Magic tab, the aura&apos;s realm, a regio and the hour (a Dominion is weaker at night, an Infernal aura stronger) change every total.
-          </li>
-          <li>
-            <b>Optional systems:</b> illness on Combat &amp; Health, agents and the Society tools on the Game Table&apos;s Society &amp; the Tribunal page, Mysteries and guilds on Seasons, lab routines and
-            original research in the lab, aura variation on the covenant: each shows only while its <Jump to="optional">optional rule</Jump> is on. Lab projects also include
-            taming a creature.
-          </li>
-          <li>
-            <b>Mysteries &amp; Initiation</b> (Seasons &amp; Aging, for Bjornaer, Criamon, Merinita and Verditius magi or anyone with a cult Lore): choose a Mystery and a
-            Mystagogue from the saga, pick the book&apos;s Script or build one, add an Ordeal, and the card shows the Initiation Total against the target. <b>Initiate</b> adds the
-            Virtue, the Ordeal&apos;s Flaw and the season; later targets drop by the Ordeal. Criamon magi choose their Path and prepare its next station.
-          </li>
-          <li>
-            <b>Society:</b> the Overview&apos;s <b>Society</b> card holds a debate (against a saga character or a storyguide opponent, with the votes it sways) and a petition to the
-            Church. Craftsmen in a guild get a <b>Guild</b> card beside the workshop: apprentice piece, journeyman contract, promotion, dues.
-          </li>
-          <li>
-            <b>Tribunal customs:</b> a saga set in the Rhine, Normandy, Thebes or Transylvania is offered that Tribunal&apos;s own rules on the Saga Overview&apos;s Optional rules tab (off until ticked): the
-            Rhine&apos;s ranks, gilds and forest pacts, Theban tokens and shards and covenant patrons, the Perthean Compact and the Hermetic Tourney, Transylvanian privileges.
-          </li>
-          <li>
-            <b>Undo:</b> every change can be undone with <b>↶ Undo</b> in the sidebar (on a phone, in the bar at the top) or Ctrl+Z, and redone with <b>↷ Redo</b> or Ctrl+Y (the last
-            sixty steps, fewer when big: only the last few seasons passed with a whole Tribunal). A
-            ritual cast for the whole covenant is listed under <b>Recent casts</b> in <b>Magic on the covenant</b> (the covenant&apos;s Overview, or the Game Table&apos;s Seasons page), where <b>Undo and give back</b> takes it off everyone and
-            returns the vis, Might, Confidence and Fatigue it cost.
-          </li>
-          <li>
-            <b>Money:</b> the Game Table&apos;s <b>Market &amp; Treasury</b> page buys goods, services, labs, vis and Hermetic books at the book prices, brings in covenfolk and outside teachers,
-            and moves pounds and vis between the treasury and the members&apos; purses; a grog sent to haggle for goods, and bribes, are on <b>City &amp; Guild</b>. The covenant&apos;s yearly allowance to its
-            members is set on its Finances tab.
-          </li>
-          <li>
-            <b>Magic on the whole covenant:</b> on the covenant&apos;s Overview (or the Game Table&apos;s Seasons page), <b>Cast a spell, ritual or power on the covenant</b> raises the
-            Characteristics of every member, teacher, specialist and craftsman at once, or grants a Virtue, and pays for it in vis, Might or Confidence.
-          </li>
-          <li>
-            The Game Table&apos;s <b>Dice</b> page rolls simple, stress and botch dice for anyone at the table, the Tribunal&apos;s people too, with their wounds, Fatigue and
-            disease taken off (and Encumbrance for a physical task); an opposed roll between two of them, penalties counted; a blow in combat from Attack to wound, put on the
-            defender&apos;s sheet; and the perils of falls, fire, poison, disease and going without. Under every roll a character makes, <b>After the roll</b> spends Confidence
-            (+3 a point, up to the Confidence Score on one roll, never on a botch) or Faith Points (up to the True Faith Score, one at a time without one), and offers All According
-            to Plan&apos;s reroll of a botch die once a session; the total, and whether it now succeeds, follows.
-          </li>
-        </ul>
-      </Card>
-
-      <OptionalRules />
-
-      <Card title="City & Guild: craftsmen, merchants and guilds" id="city-guild">
-        <p className="small" style={{ marginTop: 0 }}>
-          <b>In short:</b> <i>City &amp; Guild</i> is for characters who work for a living (a smith, a weaver, a merchant). Each season they work earns Labor Points; each
-          year the business takes 36 of them to keep going; what is left is saved, and buys a better workshop (better goods) or a richer life (from Poor to average to Wealthy,
-          then a higher Social Status). An average craftsman with Dexterity +2 and Craft 5 earns 21 a season: two seasons&apos; work pays the 36 and saves 6. If nobody in
-          the troupe plays a craftsman or merchant, none of this is needed. The details:
-        </p>
-        <p className="small">
-          <i>City &amp; Guild</i> keeps a craftsman&apos;s or merchant&apos;s business in <b>Labor Points</b> rather than pennies. Each season tending the business earns
-          (Characteristic + Craft, or Communication + Profession) × 2, 3 or 6 for a Poor, average or Wealthy character; keeping the business going costs 36 a year (and 5
-          more for each point of Raw Materials). What is left over is saved and spent to grow the business. Labor Points are time and effort, not money: pounds can be put
-          into a business, but Labor Points do not turn back into pounds.
-        </p>
-        <ul className="small">
-          <li>
-            <b>A character&apos;s livelihood</b> (Game Table → City &amp; Guild, for anyone with a Craft or Profession; the sheet&apos;s Seasons &amp; Aging tab shows a line with a link): a season&apos;s work and the goods
-            it makes (Workshop Total against the Craft Level: shoddy, standard, superior at +6, excellent at +9), exertion, selling, wondrous items, assistants and a manual;
-            Innovation and Raw Materials bought with Labor Points (a season each); rising in wealth and Social Status; and, folded under <b>Stories and investments</b>,
-            Labor Points from stories (half a season&apos;s worth to two and a half), charity, lawsuits, introductions, marriages, a fine thing, money put into the business
-            by income band, speculation, the boom roll, smuggling, and a Wealthy merchant living poorer. Work in the workshop can be the standing activity, so the clock
-            does it.
-          </li>
-          <li>
-            <b>Wondrous items</b> (the workshop card): a craftsman with Touched by (Realm) makes an item with a power like a Hermetic effect. The Craft Level is 12 + its
-            magnitude + its uses a day; one helper at most; each season adds what the Workshop Total beats the Craft Level by, until the points reach the Craft Level. It
-            works only for the customer it was made for (an Arcane Connection to them) and goes among their Possessions, and stops working once damaged.
-          </li>
-          <li>
-            <b>Guilds</b> (the Guild card under it): rank, the Guild Lore each rank needs, the apprentice piece, a journeyman&apos;s contract, a master&apos;s fee and vote,
-            dues and the dean&apos;s stipend.
-          </li>
-          <li>
-            <b>When the work happens</b>: an average craftsman works two seasons a year (Poor three, Wealthy one). Left to the clock, the free seasons come first, so Spring
-            and Summer are their own and Autumn and Winter go to the workshop; plan a season to change that. A season&apos;s Labor Points are banked the season they are
-            earned and can be spent at once; the year&apos;s upkeep comes off when the year closes, after Winter. The covenant&apos;s craftsmen bank their year&apos;s points then.
-          </li>
-          <li>
-            <b>Virtues and Flaws at the craft</b>: craftsmen are people, some lucky and some not. Each one&apos;s Virtues and Flaws that matter at the work show green and red, with
-            what they do: Puissant (Craft) +2, Palsied Hands −2 and Clumsy or Arthritis −3 always count (in the Workshop Total, Labor Points and savings); Keen Vision or Poor
-            Eyesight on fine work and Free Expression on a new work of art count when the season&apos;s work is that kind; others away from the bench (Leprosy and a Craft
-            Reputation, The Gift at a sale, Affinity with (Craft) learning faster). Quick build gives random craftsmen such Virtues and Flaws as anyone may have, and says what
-            they do at the craft; a covenant&apos;s Quick build meets its craftsmen as people too.
-          </li>
-          <li>
-            <b>The covenant&apos;s craftsmen</b>: counted for each craft&apos;s savings on the covenant&apos;s Covenfolk → People tab, where a Virtue or Flaw can be added; at work on
-            City &amp; Guild, each craftsman&apos;s Labor Points (a season&apos;s, the year&apos;s after the 36 upkeep, and those banked) with buttons to spend them on Innovation and
-            Raw Materials, guild ranks under the guild rule, the Guild Hook or professional guilds, and a strike. A craftsman bought with Build Points costs, saves and earns
-            by the score they work at, so a covenant pays for the craftsman it gets. <b>+ Cost-saving craftsmen</b> says what it added, or why it added none.
-          </li>
-          <li>
-            <b>Hiring and letting go</b> (City &amp; Guild): the crafts where one more craftsman would save money, three people who would come for any craft (lucky or not,
-            with what each would save), hiring one in play (no Build Points, only an inhabitant&apos;s upkeep) and letting one go. The Tribunal&apos;s covenants hire at each year&apos;s
-            end, and their craftsmen retire from 60; yours are reminded at 60. A companion or grog can make the covenant&apos;s wares too (People tab, How the covenfolk live).
-          </li>
-          <li>
-            <b>At the table</b> (City &amp; Guild): sending someone to market: who goes (with their appraise and bargain totals), appraising the goods, bargaining against a
-            kind of seller, paying, and bribes for a word from the locals or a bed; each result under the roll that made it. Damaged goods: one of a character&apos;s things
-            or a kind of thing, its damage levels, the check&apos;s modifiers and chance (the user&apos;s Ability from a list; a repaired item&apos;s −1 counts once), repair while
-            damaged, and another item once one breaks. The damage stays on the item, among its owner&apos;s things on the Game Table&apos;s <b>Possessions</b>, where things
-            can be added, given to someone else with their damage, or thrown away once broken. A quick court decision on a character&apos;s
-            Overview (optional rule). Each roll says whose it is, what it adds and the chance.
-          </li>
-          <li>
-            <b>Merchants</b> (in the workshop card&apos;s Stories and investments): the book&apos;s story seeds with their Labor Points, by the kind of merchant (local
-            carrier, merchant adventurer, factor, capo), and investments of time: leading a convoy, finding a sponsor, running a blockade, a customs office, a change of
-            government, young talent, repossession, and a capo&apos;s lavish entertainment for Favors.
-          </li>
-          <li>
-            <b>Travel, trade and intrigue</b> (City &amp; Guild): a journey&apos;s days and cost by road, river or sea, cargo and its carriers, Area Lore to find things, ships
-            chasing, boarding and ramming; bribes, hired criminals and sabotage; intrigue against the powerful; a house&apos;s Reputation, largesse and warehouses; a
-            dowry. Choose who acts at the top; each roll shows what it adds and the chance, and its result appears in that part. Costs can be paid from a purse or the treasury,
-            if it has the money.
-          </li>
-          <li>
-            <b>Disease in a town</b> (Combat &amp; Health → Illness): the ague, the bloody flux, worms, St. Anthony&apos;s fire, tarantism and childbed fever on a Stamina
-            roll, with the wound marked; and on Seasons &amp; Aging, a bad-air trade, a mine or a leper colony worsening the aging roll. A leper takes a Heavy Wound in
-            every aging crisis.
-          </li>
-          <li>
-            <b>Reference only</b> (Game mechanics has the rules): fairs and markets, towns and charters, citizenship, trading companies&apos; organization, the sea trade
-            tables, and novelties.
-          </li>
-        </ul>
-      </Card>
-
-      <Card title="The Tribunal: living covenants" id="tribunal">
-        <p className="small" style={{ marginTop: 0 }}>
-          The <b>Tribunal</b> page builds the other covenants of the saga&apos;s Tribunal into the saga from their book, so that the players&apos; covenant has neighbors who live
-          their own lives. For now the toolkit has the <b>Rhine</b> (<i>Guardians of the Forests</i>): Durenmar, Fengheld, Crintera, Irencillia, Oculus Septentrionalis, Dankmar,
-          Waddenzee, Roznov, Triamore and Heorot. Set the saga&apos;s Tribunal to Rhine on the Saga Overview, then press <b>Add</b> for one covenant or <b>Add all</b>.
-          <b>Remove all</b> takes every one of them out again with its people (your own covenant stays; Undo puts them back), to build them afresh.
-        </p>
-        <ul className="small">
-          <li>
-            <b>What is built:</b> each magus the book names, as a full character from a statistics block (the book&apos;s own where it prints one, else one written to what it
-            says of them, balanced to the creation rules), with the book&apos;s House, age, rank, gild, title and Personality Traits, and its own words in their description after
-            the toolkit&apos;s summary; the magi it only counts, generated to its numbers; a laboratory each; the covenant&apos;s season, aura, Boons and Hooks (read from what the
-            book says), covenfolk (as numbers, with its steward, chamberlain, turb captain and craftsmen), library, vis sources and accounts that hold. Oculus Septentrionalis, in
-            Lübeck&apos;s Divine aura, has the magestones of Verditius: three Magic auras of 3 its magi take into their laboratories two seasons a year each. Ages are the book&apos;s
-            for 1220, moved on to the saga&apos;s year. Where the book is silent (an age, a season, an aura), the toolkit makes a likely guess and says so in the notes.
-          </li>
-          <li>
-            <b>Built by your rules:</b> each is bought with Build Points as your covenant is. Its power level comes from what the book says it holds, its number of magi and
-            its age, and is no higher than its age allows (Low until 10 years, Medium until 50, High until 100). Its library is bought for its magi and for the apprentices and
-            young magi still to come, with a collection of its own Laboratory Texts. Its vis comes to a share for each magus, by how rich the book says it is: 5 pawns a year
-            if scarce, about 10 for most, 14 if rich and 20 if very rich (the core rules&apos; low, moderate and high vis), never below 5 or above 20. It has enchanted devices of its own (<i>Covenants</i>: the
-            Magical Oven, the Motivated Plow and the like doing its covenfolk&apos;s work, saving servants or a pound a magnitude; items for its laboratories that give them a
-            Virtue; a weapon for its turb), none above its power level&apos;s limit. Its staff, craftsmen and treasury are bought too. Each varies with the covenant. The
-            Great Library is costed book by book, which makes Durenmar Legendary. Its page has the rules check yours has; what it gains in play costs nothing. There are no
-            stipends: the covenant pays the bills, and its magi take vis from their own purse or from its stores (a Longevity Ritual, or study when it has twice what the
-            season needs).
-          </li>
-          <li>
-            <b>What they carry:</b> the items and familiars the book gives (Philippus Niger&apos;s Knife of Human Bone, Wizard&apos;s Bridle and Subtle Chain, and Sordus the
-            basilisk; Falke&apos;s anklet-ring), a talisman for every archmage, most masters and some long-standing journeymen, attuned to their best Arts, and a heartbeast for
-            every Bjornaer. A Redcap carries the Mercer House&apos;s devices for the road (fifty levels at the Gauntlet and two more a year, renewed each year, with a Longevity
-            Ritual from 35); a Redcap the players make takes the same on the Lab &amp; items tab. With <i>Mystery Initiation</i> on, the senior Merinita, Bjornaer and Verditius are initiated into a fitting Mystery of their House, marked as not
-            in the book.
-          </li>
-          <li>
-            <b>Kept apart:</b> their covenants and people stay off the players&apos; lists (People, Covenants and the Game Table&apos;s pages). They are on the
-            Tribunal page and their own pages, and their lines in a season&apos;s report are folded under <b>The Tribunal</b>.
-          </li>
-          <li>
-            <b>Season priorities:</b> each of their magi follows a priority list (Game Table › Seasons, a season in full → Season priorities): service to the covenant (vis extracted when the covenant lacks
-            what its Aegis and Longevity Rituals need), politics, travel, writing for the library, the best book or covenant teacher, study from vis, inventing a spell, enchanting an item (a lesser device of one of their spells, or charms), improving the lab, and a
-            season a year for an apprentice, and House duties (a Quaesitor&apos;s investigations a season a year, a Gifted Mercere&apos;s season on the road one year in seven).
-            Each entry is a season a year, and the first that can be done is taken. A
-            Longevity Ritual is made whenever a magus of 35 or more has none, and lab work fills any season the list leaves. Any character can follow a list: choose{' '}
-            <b>Follow the priority list</b> as the standing activity.
-          </li>
-          <li>
-            <b>The years:</b> every seven years the Tribunal meets at Durenmar (from 1221, opening on Walpurgis Night: the Spring season; in 1227, a year early for the Grand
-            Tribunal of 1228), and every living magus spends that season there. The Bjornaer spend a Summer at Crintera every twelve years, for their Gathering of Twelve Years. At each year&apos;s end a living covenant closes its books like yours and keeps its own means, with nothing from nowhere: it keeps an Aegis and holds back the vis it and its magi&apos;s Longevity Rituals need; short of money it sells spare vis and land, cuts its spending and sets its magi to raising its income by magic; with money back it pays its debts and undoes its cuts; and covenants buy vis from one another. It may take in a new journeyman when its numbers fall,
-            and may come to your covenant with one of the book&apos;s offers, requests or troubles (Boris of Novgorod with vis to sell, Heorot seeking support, Waddenzee&apos;s pirates).
-          </li>
-          <li>
-            <b>At a gathering:</b> new masters (with the marks of three masters of other covenants, Houses and gilds) and, rarely, archmagi are made; then the motions the book has
-            coming are voted on (<b>Motions and votes</b> on the Tribunal page: each gild&apos;s and covenant&apos;s stand, how the sigils would fall, and your magi&apos;s votes,
-            which you set there). A master holds a retired magus&apos;s sigil by proxy, an archmage two; House Tremere&apos;s exarchs, Stentorius and Severicus, cast the sigils of the
-            rest of their House; Heorot has no sigils until it is admitted. Magi of covenants the book sets against each other may settle a quarrel by certamen, played out from
-            their totals; a covenant that dislikes yours may challenge one of your magi.
-          </li>
-          <li>
-            <b>Apprentices:</b> a living master now and then takes an apprentice, teaches them a season a year, and after fifteen years brings them to the Gauntlet: a new
-            journeyman who joins the covenant, one short of magi, or the road. Any magus&apos;s sheet has an <b>Apprentice</b> card (Overview) to keep yours.
-          </li>
-          <li>
-            <b>Wanderers:</b> Tabanus the Quaesitor, a peregrinator who stays about three years at each covenant (young ones first), comes with Triamore; Felicia, who winters at
-            Fengheld and summers on the road, with Fengheld. Each covenant also brings peregrinatores staying as its guests, about one for every five members, as the book has
-            around a sixth of the Rhine&apos;s magi living under its guest-laws, and more come from other Tribunals while fewer do; they move on after three to seven years. They are guests, not members, with a laboratory of their
-            own, and pay the guest&apos;s fee. When one asks to stay with
-            you, <b>Take them in</b> (on the request, or the Tribunal page&apos;s <b>Wanderers</b> card).
-          </li>
-          <li>
-            <b>The Rhine&apos;s customs</b> follow its optional rule <i>Ranks, gilds and voting sigils</i> (Saga Overview → Optional rules): with it off, every magus has one sigil and votes their
-            covenant&apos;s way or their own, nobody is promoted, any magus fifteen years from the Gauntlet may take an apprentice, and guests pay no fee.
-          </li>
-          <li>
-            <b>Answering them:</b> what they bring shows under <b>Needs attention</b> and <b>From the Tribunal</b> on the Game Table&apos;s Overview, with a link to where it is dealt with. Press
-            <b>Dealt with</b> once it is played; one left unanswered for two years lapses (the covenant may come again with it). On the Tribunal page, <b>Deal with</b> a covenant to trade vis or silver, or buy a copy of one of its books, and set its
-            <b> attitude</b> to your covenant as play makes it: troubles come more often from those who dislike you, offers and invitations from those who like you.
-          </li>
-          <li>
-            <b>The Great Library:</b> Durenmar&apos;s library is stocked to the book&apos;s outline, the greatest of the Order: six summae on each Art (an outstanding one of Level 18
-            to 20), three copies of Principia Magica, summae and tractatus on the Arcane Abilities, Lab Texts for the standard spells, the Tribunal&apos;s records and an ancient
-            mundane collection. The Tribunal page has the book&apos;s rolls for what a visiting magus finds there (a summa of the Level wanted, a tractatus&apos;s Quality, a
-            spell&apos;s or an enchantment&apos;s Lab Text) and the seasons of study earned by contributing to it.
-          </li>
-          <li>
-            <b>The rest of the book</b> is on the Tribunal page&apos;s other tabs. <b>Forests &amp; Courts:</b> the Courts of the Seasons with each court&apos;s Might Pool and
-            aura for the saga&apos;s months, which of Bright Winter and Dark Summer holds the Rhine Gorge now, what becomes of forest spirits and what they can do, and the
-            trees of Germany with their Shape and Material bonuses. <b>Places &amp; seeds:</b> the book&apos;s regions and places, searchable, with their auras, what it says of
-            vis and its asides, and its story seeds. <b>Timeline:</b> what the book has coming from the saga&apos;s year on (the toolkit does not make it happen) and its history.
-            <b>Sagas &amp; founding:</b> its saga ideas, and your bid for a new covenant.
-          </li>
-          <li>
-            <b>Founding a covenant:</b> the Rhine recognizes a new covenant only with a sponsor from every other covenant (one magus suffices, never a founder, and none of a
-            gild the founders angered). Track each covenant&apos;s sponsor, its likely terms from how it stands with you, what you promised and its gift. The next gathering
-            recognizes the covenant once every covenant has promised; a bid that still lacks one is refused until the next.
-          </li>
-          <li>
-            <b>Pause or remove:</b> a paused covenant still ages and closes its books but makes no approaches; removing one takes its people with it (undo is at the top of the
-            menu).
-          </li>
-        </ul>
-      </Card>
-
-      <Card title="Common questions" id="questions">
-        <Question q="Where do I find a rule I only half remember?">
-          Search <Link to="/mechanics">Game mechanics</Link>: it covers the core book and every reviewed supplement, and each result opens the book&apos;s own text.
-        </Question>
-        <Question q="The troupe allows something the rules forbid. How do I keep it?">
-          Press <b>Allow</b> on the warning to record it as a ruling for that character, or <b>allow anyway</b> in the Virtue list. Most numbers on the sheet can also be
-          overridden.
-        </Question>
-        <Question q="How do I get a Virtue or an Ability later in play?">
-          Open the Virtue or Ability: those that can be gained or improved after creation say how (teaching, initiation, a Breakthrough…). Then add it from the sheet&apos;s
-          advancement.
-        </Question>
-        <Question q="My magical companion's Powers need more Penetration.">
-          Spend Improved Powers&apos; mastery points on each power under <b>Supernatural powers</b>, or turn them into Penetration experience there.
-        </Question>
-        <Question q="Can a magic character pay for a Ritual Power with vis instead of Might Score?">
-          Only with the <b>Vis Mastery</b> Quality (<i>Realms of Power: Magic</i>): then vis replaces the Confidence Points, no more pawns at once than the Confidence Score.
-          Without it, a Ritual Power costs Might Score or Confidence Points. Eating vis of the Might&apos;s Form refills the Might pool either way.
-        </Question>
-        <Question q="A card or rule I read about is not on my sheet.">
-          It may be an <Jump to="optional">optional rule</Jump> the saga has turned off, or one whose book the saga does not use: see <b>Saga Overview → Optional
-          rules</b>. A Tribunal&apos;s customs appear only while the saga is set in that Tribunal. In <Link to="/mechanics">Game mechanics</Link>, a topic an optional rule
-          governs says whether the saga you last opened uses it.
-        </Question>
-        <Question q="How do I improve a laboratory once play has begun?">
-          As a lab project, in the magus&apos;s season in full on the Game Table&apos;s Seasons page: <b>Raise the lab&apos;s Refinement</b> (a season, and Magic Theory of at least the
-          new Refinement + 3), <b>Install a lab Virtue</b> or <b>Put a lab Flaw right</b> (a season, two for a Major one). The work is the magus&apos;s season in the lab, so it is
-          their lab work that season. In play nothing is bought with Build Points: if the Upkeep rises, the difference in build cost is paid, a pound for every two points
-          (Covenants), from the treasury or the purse, with no refund if it falls. A Free Virtue is simply added on the covenant&apos;s Laboratories tab.
-        </Question>
-        <Question q="Do magic items for a lab, or for the covenant, add up?">
-          In a lab, no: an item&apos;s effect must be new to the lab (Covenants, Magic Items for Laboratories), so a second item giving a Virtue the lab already has gives nothing,
-          and the lab says so. An item that is not a lab Virtue gives a Specialization point per 10 levels of its effects, or a Characteristic point per 20; the lab&apos;s row shows
-          what it has left. For the covenant, yes: each device doing the covenant&apos;s work saves a pound a magnitude (or stands in for a servant), two devices doing two
-          devices&apos; work, though never more than the spending left to save.
-        </Question>
-        <Question q="How many Confidence Points can a character hold?">
-          As many as they earn: &quot;There is no limit to the number of Confidence Points that a character can have&quot; (DE). The Confidence Score limits how many go on one roll.
-          They are spent after the dice show, +3 each, never on a botch (a zero that is not a botch is fine), and never on a roll for a whole season&apos;s work. Faith Points
-          work the same way while acting in God&apos;s will, up to the True Faith Score on a roll (one at a time with no Score), and come back at dawn up to that Score;
-          with a True Faith Score of 3 each adds +6. A True Faith Score comes only with the True Faith Virtue, one point each time it is taken.
-        </Question>
-        <Question q="Can I undo a season or a year?">
-          Yes. A single character&apos;s season is <b>Unlogged</b> on the Seasons page, and everything it did comes off. The whole saga is turned back with <b>Turn back</b> at
-          the top of the Seasons page, to before any of the last eight seasons passed (two years); what was done since, by the clock and by hand, is taken back.
-        </Question>
-        <Question q="How does the covenant's aura change?">
-          Record a change on the covenant&apos;s <b>Aura</b> card with its reason (a creature settling, a battle, a church nearby). A Dominion kept by a congregation grows and
-          fades by itself at the year&apos;s end. With the optional <b>Aura variation</b> rule, a Magic aura also drifts from year to year with the covenant&apos;s magic, its vis
-          and its neighbours.
-        </Question>
-        <Question q="A book my troupe uses is missing from the pickers.">
-          Enable it on the <b>Saga Overview</b>&apos;s Books tab. Books marked WIP are still being transcribed. Anything else can be added as custom content per saga.
-        </Question>
-        <Question q="How do I move a saga to another computer?">
-          <b>Export saga</b> (Saga Overview) and <Link to="/import">Import</Link> the file on the other computer. <b>Share / Export</b> on a character or covenant does the same for
-          one sheet.
-        </Question>
-        <Question q="How do my players build their characters on their own and send them to me?">
-          On the Saga Overview press <b>Invite players</b> and send each player the file or link: it carries the saga&apos;s books, rules and custom content, and none of its
-          characters or covenants. They build in their own browser and send the character back with <b>Share / Export</b> on its sheet. Importing shows you the character first
-          (finished or not, what the rules check says under your saga, what it would replace) and can put it straight into the covenant. See{' '}
-          <a href="#discord">Playing with a troupe</a>.
-        </Question>
-        <Question q="A player sent a newer version of a character I already imported.">
-          Import it again: it takes the place of the one in the saga and keeps its place in the covenant. The Import page says so first, and what you changed on your copy since
-          is lost, so agree who keeps the sheet once play begins (usually the storyguide&apos;s saga). Tick <b>Keep what is here</b> to bring it in as a second copy instead.
-        </Question>
-      </Card>
-
-      <div className="grid grid-2">
-        <Card title="Playing with a troupe (and over Discord)" id="discord">
-          <ol className="small steps">
-            <li>
-              <b>The storyguide</b> creates the saga, sets its books and rules, and presses <b>Invite players</b> on the Saga Overview. The file (or link) holds the saga&apos;s rules
-              only.
-            </li>
-            <li>
-              <b>Each player</b> opens it, which adds the saga to their own browser, creates a character on its People page, and sends it back with <b>Share / Export</b> on the
-              character sheet.
-            </li>
-            <li>
-              <b>The storyguide</b> opens what was sent, or uses <b>Import character / covenant…</b> on the Saga Overview. The Import page shows each character before it joins
-              and can place it in the covenant. A character sent again shows <b>What changed</b> against the copy already there before it replaces it.
-            </li>
-            <li>
-              <b>After a session</b>, the Saga Overview&apos;s <b>Troupe</b> card saves each player&apos;s characters as a file named for them (<b>Save their sheets</b>), to send
-              back so their copies stay current. The card also shows how far along each character is.
-            </li>
-            <li>A player who would rather not: build the character for them with Quick build or the guided build, set their name as the player, and Share it to them to look over.</li>
-          </ol>
-          <p className="small">
-            New players can take the tutorial <b>For players: make your character and send it to the storyguide</b> (under Start here), which walks from the invitation to sending the file.
-          </p>
-          <ul className="small">
-            <li>
-              <b>Send files, not links,</b> for anything but the smallest sheet: a finished magus makes a link several times longer than a Discord message allows, and it arrives
-              cut off. The Share card says which will work.
-            </li>
-            <li>
-              Turn on <b>Stream mode</b> (sidebar) for larger text when screen-sharing. A storyguide can run everything from one browser at the Game Table while the players keep
-              their own copies to read from.
-            </li>
-          </ul>
-        </Card>
-        <Card title="Overrides and house rules" id="house">
-          <ul className="small">
-            <li>Most numbers can be overridden on the sheet (Ability scores, Soak…) for on-the-fly corrections.</li>
-            <li>
-              <b>Saga Overview → Virtue/Flaw mechanics</b> lets you change what any Virtue or Flaw does for your saga.
-            </li>
-            <li>Custom Virtues, Flaws, Abilities, weapons and spells can be added per saga.</li>
-            <li>
-              <b>Saga Overview → Optional rules</b> turns each supplement subsystem on or off: see <Jump to="optional">Optional rules</Jump> above.
-            </li>
-          </ul>
-        </Card>
-      </div>
-
-      <Card title="About the rules data" id="data">
-        <p className="small">
-          The rules come from the markdown books in this repository: {n(data.virtuesFlaws)} Virtues and Flaws, {n(MAGIC_QUALITIES)} Magic Qualities and Inferiorities,{' '}
-          {n(data.abilities)} Abilities, {n(data.spells)} spells, {n(data.guidelines)} guideline entries, {n(data.labVirtuesFlaws)} laboratory Virtues and Flaws, {n(data.hooksBoons)} Hooks
-          and Boons and {n(data.shapeMaterial)} Shape &amp; Material entries, extracted automatically (a few more, such as the aligned-aura Boons of <i>Realms of Power: Magic</i> and
-          the Rhine&apos;s Tribunal Virtues, are added by hand), with hand-written mechanics for the Virtues and Flaws that change numbers. The Game mechanics reference was made by reading every reviewed book section by section; each entry is checked against the
-          book, and its quotes are the book&apos;s exact words. Books marked WIP are still being transcribed and may have errors. If something looks wrong, use an override and
-          check the source text in the reader.
-        </p>
-      </Card>
-      <Card title="License & credits" id="credits">
-        <p className="small">
-          <i>
-            Based on the material for Ars Magica, ©1993–2024, licensed by Trident, Inc. d/b/a Atlas Games®, under{' '}
-            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
-              Creative Commons Attribution-ShareAlike 4.0 International
-            </a>{' '}
-            (&quot;CC BY-SA 4.0&quot;).
-          </i>{' '}
-          Ars Magica and Mythic Europe are trademarks of Trident, Inc. Order of Hermes, Tremere, Doissetep and Grimgroth are trademarks of Paradox Interactive AB.
-        </p>
-        <p className="small">
-          The book text comes from the Open License markdown edition by OriginalMadman (
-          <a href="https://github.com/OriginalMadman/Ars-Magica-Open-License" target="_blank" rel="noreferrer">
-            github.com/OriginalMadman/Ars-Magica-Open-License
-          </a>
-          ). This toolkit is an unofficial fan project, not affiliated with or endorsed by Atlas Games or Paradox Interactive. As the license requires, its rules data and text are
-          shared under the same CC BY-SA 4.0 license. More about the Open License:{' '}
-          <a href="https://www.atlas-games.com/arsmagica/openars" target="_blank" rel="noreferrer">
-            atlas-games.com/arsmagica/openars
-          </a>
-          . The published books, with their art and layout, are available from Atlas Games.
-        </p>
-      </Card>
-    </>
+    <p className="small muted">
+      It holds {n(data.virtuesFlaws)} Virtues and Flaws, {n(MAGIC_QUALITIES)} Magic Qualities and Inferiorities, {n(data.abilities)} Abilities, {n(data.spells)} spells,{' '}
+      {n(data.guidelines)} guideline entries, {n(data.labVirtuesFlaws)} laboratory Virtues and Flaws, {n(data.hooksBoons)} Hooks and Boons and {n(data.shapeMaterial)} Shape &amp;
+      Material entries.
+    </p>
   );
+}
+
+/** Using the toolkit: its text is data (src/data/toolkitGuide.ts); the tutorials, the rules to learn from, the optional rules and the counts are drawn here. */
+function ToolkitGuide() {
+  return <RoleplayGuide guide={TOOLKIT_GUIDE} live={{ tutorials: <Tutorials />, learn: <Learn />, optional: <OptionalRules />, data: <RulesDataCounts /> }} />;
 }
 
 /** Every optional rule, from the rules list itself: what it adds, its book, where it shows, and whether it starts on. */
 function OptionalRules() {
   const saga = useStore((s) => (s.activeSagaId ? s.sagas[s.activeSagaId] : undefined));
   return (
-    <Card title="Optional rules" id="optional">
-      <p className="small" style={{ marginTop: 0 }}>
-        The supplements add systems a troupe may not want. Each is turned on or off for the saga under <b>Saga Overview → Optional rules</b>
+    <div>
+      <p className="small">
         {saga && (
           <>
-            {' '}
-            (<Link to={R.saga(saga.id, 'optional')}>for {saga.name}</Link>)
+            <Link to={R.saga(saga.id, 'optional')}>Optional rules for {saga.name}</Link> ·{' '}
           </>
         )}
-        . One that is off leaves the sheets and pages, though anything a character already has recorded stays in sight, and nothing is deleted. A rule whose book the saga does
-        not use starts off; a Tribunal&apos;s own rules are offered only in a saga set there, off until ticked.{' '}
         <button className="small" onClick={() => startTour('optional')}>
           Show me where each one appears
         </button>
@@ -993,6 +195,6 @@ function OptionalRules() {
           ))}
         </div>
       ))}
-    </Card>
+    </div>
   );
 }
