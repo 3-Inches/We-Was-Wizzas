@@ -18,7 +18,7 @@ import { callingApplies } from './faerieWizardry';
 import { isFolkWitch, witchWarping } from './folkWitch';
 import { isGruagach } from './gruagach';
 import { isLearnedMagician } from './learnedMagic';
-import type { Character, Owed, Season } from './types';
+import type { Character, Owed, Season, SeasonLogEntry } from './types';
 import { isVitki, nattThelFollows } from './vitkir';
 import { warpingScoreFromPoints } from './xp';
 
@@ -54,6 +54,10 @@ export interface WarpingGain {
   prolonged?: boolean;
   /** the reaction is rolled where the points came, so it is not owed again */
   handled?: boolean;
+  /** the points are on the sheet already, through a season log entry that Unlog takes off: only what follows is owed */
+  counted?: boolean;
+  /** the season's work that brought them: the reaction owed is kept on its `undo`, so Unlog takes it back too */
+  entry?: SeasonLogEntry;
 }
 
 /** Whether a gain of Warping Points brings on the reaction. `before` is the Warping Points before the gain. */
@@ -77,18 +81,40 @@ function owedText(reaction: WarpingReaction, g: WarpingGain): string {
 }
 
 /**
- * Add Warping Points to a character and owe what follows on the Resolve list. Changes `c`. Returns a line
- * to add to the result that brought the points, when something follows.
+ * Add Warping Points to a character and owe what follows on the Resolve list. Changes `c` (and `g.entry`).
+ * Returns a line to add to the result that brought the points, when something follows.
  */
 export function gainWarping(c: Character, d: DerivedCharacter, g: WarpingGain): string | undefined {
   if (g.points <= 0) return undefined;
+  const had = new Set((c.owed ?? []).map((o) => o.uid));
+  const line = addWarping(c, d, g);
+  const raised = (c.owed ?? []).filter((o) => !had.has(o.uid)).map((o) => o.uid);
+  if (g.entry && raised.length) {
+    const u = (g.entry.undo ??= {});
+    u.owed = [...(u.owed ?? []), ...raised];
+  }
+  return line;
+}
+
+function addWarping(c: Character, d: DerivedCharacter, g: WarpingGain): string | undefined {
   if (!g.handled && warpingReaction(c, d) === 'witch-moon') return witchWarping(c, g.points, g);
-  const before = c.warpingPoints;
-  c.warpingPoints += g.points;
+  const before = g.counted ? Math.max(0, c.warpingPoints - g.points) : c.warpingPoints;
+  if (!g.counted) c.warpingPoints += g.points;
   const reaction = warpingReaction(c, d);
   if (!reaction || g.handled || !reactionFollows(c, d, reaction, g, before)) return undefined;
   (c.owed ??= []).push({ uid: uid(), year: g.year, season: g.season, kind: reaction, text: owedText(reaction, g), points: g.points });
   return `${REACTION_NAMES[reaction][0].toUpperCase()}${REACTION_NAMES[reaction].slice(1)} follows: it waits on Game Table › Seasons, under Resolve.`;
+}
+
+/**
+ * A season logged with Warping Points on its entry, from a botch (studying raw vis): owe what follows, once
+ * the entry is applied. A double botch "may enter Wizard's Twilight" (DE, Studying from Vis, line 16215);
+ * Twilight Prone rolls on a single magical botch (line 6965). Nothing is owed for a living covenant's
+ * people. Unlog takes off the points (through the entry) and the reaction (through its `undo`).
+ */
+export function seasonWarping(c: Character, d: DerivedCharacter, e: SeasonLogEntry, why: string, living?: boolean): string | undefined {
+  if (!e.warpingPoints || living) return undefined;
+  return gainWarping(c, d, { points: e.warpingPoints, why, year: e.year, season: e.season, botch: true, counted: true, entry: e });
 }
 
 /** The oldest of a reaction still owed, if any. */

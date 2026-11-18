@@ -77,15 +77,19 @@ Do stage 2 before stage 3: building more on text that is about to shift doubles 
 
 Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 and how they were done. Every item refers to it by its number. Most of its findings are at the joins between systems, so each item here also passes the integration checklist.
 
-- [ ] **5.1 Warping and what follows it.** *Mechanical.* A1 (a double botch studying vis owes no Twilight) and B1 (Unlog leaves the reaction owed). One pull request, with the guard in `quality.test.ts` widened.
+- [x] **5.1 Warping and what follows it.** *Mechanical.* A1 (a double botch studying vis owes no Twilight) and B1 (Unlog leaves the reaction owed). One pull request, with the guard in `quality.test.ts` widened.
+  - Done as: `gainWarping` takes `counted` (the points are on the sheet already, through a season entry) and `entry` (the season whose work brought them: the reaction's uid goes on its `undo.owed`). `seasonWarping` (`src/engine/warping.ts`) owes what follows a season entry's botch, and both a planned season's vis study (`time.ts`) and one logged by hand (`AdvancementTab.tsx`) call it after `applySeason`. Unlog takes off what `undo.owed` names. A lab season (`labUndo`), original research and every `useSeasonWork` card record any reaction their work raised. A living covenant's magus owes nothing, as for the aura's Warping. The guard now catches any change to `warpingPoints`, a season entry's included, outside the listed files. Tests: `src/engine/warpingSeason.test.ts`.
 - [ ] **5.2 Offer only what can apply, and open on what can be done.** *Mechanical.* A2 (the Hermetic Arts offered to any Gifted character) and B4 (season cards that open on a disabled button).
 - [ ] **5.3 The Chronicle tells each kind of season.** *Mechanical.* B2.
+  - Found during 5.1: a botched study from vis is told as a successful one ("the pawns glowing faintly as their power was drawn into understanding", `src/engine/chronicle.ts:101`), since a botch is logged as `study-vis` with no xp. And the record's fold says "(1 lines)" (`src/ui/pages/ChroniclePage.tsx:63`).
 - [ ] **5.4 A season in full, ordered by the character.** *Judgment.* B3. After 5.2. Write the order into the pull request first; the owner may want a say.
 - [ ] **5.5 Sympathy Traits in one place; the troupe's list of changes.** *Mechanical.* B5 and B6.
 - [ ] **5.6 Smaller.** *Mechanical.* C1 (split `HolyPart.tsx` by card) and C2 (the 56 Game Mechanics topics with no "In the app" pointer).
 - [ ] **5.7 Quick build for the hedge traditions, faerie wizards and the Mysteries.** *Judgment.* B7. The largest. One tradition at a time if it grows.
 - [ ] **5.8 Great projects' rolls at the Game Table.** *Mechanical.* B8.
   - Decided by the owner (18 November 2026): rolls happen at the Game Table. The building's stress check and the menagerie's rolls move to **Game Table › Dice**, with the same choice of covenant, mason and handler. The covenant's Overview keeps the record (height, quality, damage) and links to the rolls. Move the tutorial steps and pointers that led to the old place (`tutorials/lab.ts`).
+- [ ] **5.9 Living covenants' magi and Twilight.** *Judgment.* Found during 5.1. A living covenant's magus gains Warping Points from a botch studying vis and from the aura (`src/engine/time.ts`, `seasonWarping` and `auraYearEnd`), and nothing follows: no player resolves it. But a lab accident's Warping goes through `gainWarping` whoever the magus is (`src/engine/projects.ts:622`), so a living magus can owe a Twilight nobody rolls. Owner point 5 asks that they play by the players' rules. Fix: one rule for all three. Roll Twilight avoidance for a living magus when the season ends (DE line 9755), and tell the Twilight in the Tribunal's news.
+- [ ] **5.10 Unlog after a season's roll is made.** *Judgment.* Found during 5.1. Unlogging the season of a woven curse or a ring's first recitation drops the roll while it waits in Resolve (`seasonEndRolls`). Once the roll is made, Unlog no longer touches what it did. A botched curse's Warping and the Witch Moon it brings stay (`rollWovenCurse`, `src/engine/folkWitch.ts:198`), and so does a ring learned. Decide whether Unlog should take those back too, or say on the Unlog button that a roll already made stands.
 
 When stage 5 is done, mark audit 3 closed. The next audit is due after stage 3's first five or six systems.
 
@@ -144,4 +148,5 @@ Not items to schedule. Do them when a change touches the place.
 - 2026-11: tutorials for hedge magic, Faerie and the Mysteries; steps for The Church and *Hermetic Projects* (1.7b).
 - 2026-11: audit 3 of stages 1 and 2, and of how they were done. The owner's expectations written down (`owner.md`); an integration checklist; the sweep's saga set up as the owner plays (`QA_LIVING=all QA_OPTIONAL=all`); audits kept in `audits/`.
 - 2026-11: the books brought in step with upstream (2.1). *Hermetic Projects*' errata are in, four books moved to `reviewed/`, and the reader gained shelves for earlier editions and third-party books.
+- 2026-11: what follows a season's Warping waits in Resolve, a double botch studying vis among it, and Unlog takes it back with the points (5.1).
 - Earlier work is in the merged pull requests.
