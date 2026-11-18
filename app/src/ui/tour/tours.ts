@@ -5,6 +5,7 @@
 // whole draft, apply a package), or to step into another tutorial and come back.
 
 import type { CharType } from '../../data';
+import type { Character } from '../../engine/types';
 import { useStore } from '../../store/store';
 
 export interface TourCtx {
@@ -31,7 +32,29 @@ export interface TourStep {
   detour?: { tour: string; label: string };
   /** the step goes on by itself when the button it asks for is pressed: a button in the target (one whose label matches) */
   advance?: { press?: RegExp };
+  /** the step as it reads for one kind of character: the first that fits gives its title, text and target */
+  variants?: StepVariant[];
 }
+
+/** A step's text and target for the characters `when` fits (a hedge tradition's own card). */
+export interface StepVariant {
+  when: (c: Character) => boolean;
+  title?: string;
+  body: string;
+  target?: string | string[];
+}
+
+/** Which of the step's variants fits this character (-1: none, the step as written). */
+export const variantIndex = (s: TourStep, c: Character | undefined) => (c && s.variants ? s.variants.findIndex((x) => x.when(c)) : -1);
+
+/** The step with one of its variants (by index) in place of its own text and target. */
+export function withVariant(s: TourStep, i: number): TourStep {
+  const v = s.variants?.[i];
+  return v ? { ...s, title: v.title ?? s.title, body: v.body, target: v.target ?? s.target } : s;
+}
+
+/** The step as it reads for this character: its first variant that fits, else as written. */
+export const stepFor = (s: TourStep, c: Character | undefined) => withVariant(s, variantIndex(s, c));
 
 export type TourActionId = 'buildDraft' | 'basePackage' | 'standardLabs';
 
@@ -52,10 +75,8 @@ export interface Tour {
   prefers?: CharType;
   /** follows a character still in creation (the newest draft when none is open) */
   wantsDraft?: boolean;
-  /** when none is open, follows a character with a Craft or Profession (a livelihood to show) */
-  prefersTrade?: boolean;
-  /** when none is open, follows a character who works holy powers (a Holy Method and a Power) */
-  prefersHoly?: boolean;
+  /** follows only a character this suits (a workshop set up, holy powers, a hedge tradition), and offers a practice one otherwise */
+  suits?: (c: Character) => boolean;
   /** the practice character the tutorial can make to work on, when the saga has none that suits */
   practice?: PracticeSpec;
   steps: TourStep[];
@@ -74,6 +95,10 @@ export interface PracticeSpec {
   answers?: Record<string, number>;
   /** Virtues the practice character has whatever the build chose, given free if it did not take them */
   ensure?: string[];
+  /** experience points in Abilities, given free (at least this many) */
+  abilities?: Record<string, number>;
+  /** Sympathy Traits the practice character has (Realms of Power: Faerie) */
+  sympathy?: { trait: string; score: number }[];
   label: string;
 }
 
@@ -95,8 +120,11 @@ import { cityGuildTour } from './tutorials/cityGuild';
 import { divineTour } from './tutorials/divine';
 import { tribunalTour } from './tutorials/tribunal';
 import { seasonTour } from './tutorials/season';
+import { hedgeTour } from './tutorials/hedge';
+import { faerieTour } from './tutorials/faerie';
+import { mysteriesTour } from './tutorials/mysteries';
 
-export const TOURS: Tour[] = [toolkitTour, playerTour, sagaTour, covenantTour, optionalTour, magusTour, companionTour, grogTour, guidedTour, spellTour, powerTour, labTour, quickTour, tableTour, cityGuildTour, divineTour, tribunalTour, seasonTour];
+export const TOURS: Tour[] = [toolkitTour, playerTour, sagaTour, covenantTour, optionalTour, magusTour, companionTour, grogTour, guidedTour, spellTour, powerTour, labTour, quickTour, tableTour, cityGuildTour, divineTour, hedgeTour, faerieTour, mysteriesTour, tribunalTour, seasonTour];
 
 export const TOUR_BY_ID = new Map(TOURS.map((t) => [t.id, t]));
 
@@ -105,7 +133,7 @@ export const TOUR_BY_ID = new Map(TOURS.map((t) => [t.id, t]));
  * and its characters, then magic, play between stories and at the table, and the storyguide's
  * tools. Each can be skipped; one that needs something not yet made offers a practice one.
  */
-export const COURSE = ['toolkit', 'saga', 'covenant', 'magus', 'companion', 'grog', 'guided', 'player', 'optional', 'spell', 'power', 'lab', 'season', 'table', 'city-guild', 'divine', 'quick', 'tribunal'];
+export const COURSE = ['toolkit', 'saga', 'covenant', 'magus', 'companion', 'grog', 'guided', 'player', 'optional', 'spell', 'power', 'lab', 'season', 'table', 'city-guild', 'divine', 'hedge', 'faerie', 'mysteries', 'quick', 'tribunal'];
 
 /** The tutorial after this one in the run. */
 export function nextTour(id: string): Tour | undefined {

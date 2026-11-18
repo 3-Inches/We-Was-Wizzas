@@ -4,7 +4,8 @@
 // spell or drawing vis, on the Seasons page, its vis from the purse or the covenant's stores.
 
 import { useEffect, useState } from 'react';
-import { GRUAGACH_FORMS, GRUAGACH_PARAMS, GRUAGACH_SHAPES, POETIC_JUSTICE, GRUAGACH_TECHNIQUES, TATTOO_SIZES, gruagachArtName, type GruagachArts, type Prohibition } from '../../data/hedgeGruagach';
+import { hasGruagach } from '../../engine/hedgeTraditions';
+import { GRUAGACH_PARAMS, GRUAGACH_SHAPES, POETIC_JUSTICE, TATTOO_SIZES, gruagachArtName, type GruagachArts, type Prohibition } from '../../data/hedgeGruagach';
 import { GRUAGACH_GUIDELINES, GRUAGACH_SPELLS } from '../../data/gruagachSpells';
 import { GRUAGACH_APPRENTICESHIP } from '../../engine/character/derive';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
@@ -36,8 +37,7 @@ function Lines({ lines }: { lines: string[] }) {
   );
 }
 
-const IDS = ['gruagach', ...GRUAGACH_TECHNIQUES.flatMap((t) => [t.id, t.virtue]), ...GRUAGACH_FORMS.flatMap((f) => [f.id, f.virtue])];
-export const hasGruagach = (c: Character) => c.virtues.some((v) => IDS.includes(v.defId)) || c.abilities.some((a) => IDS.includes(a.abilityId));
+export { hasGruagach };
 
 export function gruagachPairs(c: Character, d: NonNullable<CharEditor['d']>): GruagachArts[] {
   const a = gruagachArts(c, d);
@@ -219,7 +219,11 @@ export function GruagachSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: b
           {s.text && <div className="soft" style={{ flexBasis: '100%' }}>{s.text}</div>}
         </div>
       ))}
+      {gruagachPairs(c, d).length === 0 ? (
+        <p className="small warn-text">No Technique and Form of the gruagachan yet: take Give or Take, and a Form, on the sheet to design spells.</p>
+      ) : (
       <SpellDesigner pairs={gruagachPairs(c, d)} label={atTable ? 'Add one learned in play' : 'Add a spell known'} onAdd={(s) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: [...(x.gruagach?.spells ?? []), { ...s, source: atTable || x.creation.finalized ? 'play' : 'training' }] }))} />
+      )}
     </Card>
   );
 }

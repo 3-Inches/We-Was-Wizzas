@@ -225,3 +225,12 @@ export const CREATIVITY_TABLE = [
 
 /** The vitality a change costs: the table's cost + the faerie's Might, less a pawn of encased vis each. */
 export const creativityCost = (row: number, might: number, vis = 0) => Math.max(0, CREATIVITY_TABLE[row].cost + might - vis);
+
+// ------------------------------------------------------------------------------------------------
+// Who the Game Table's Faerie page is for
+
+const WIZARDRY = ['evocation', 'enchantment', 'empathy', 'beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe', 'faerie-summoning', 'bonding', 'captivating', 'dismissing'];
+
+/** Someone this page is for: Sympathy Traits, faerie wizardry, or a faerie. */
+export const hasFaerieTable = (c: Character) =>
+  !!c.sympathy?.length || c.creature?.realm === 'Faerie' || c.abilities.some((a) => WIZARDRY.includes(a.abilityId)) || c.virtues.some((v) => ['faerie-sympathy', 'faerie-antipathy-flaw', 'faerie-background', ...WIZARDRY, 'summoning'].includes(v.defId));

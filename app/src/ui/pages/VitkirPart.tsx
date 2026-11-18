@@ -4,6 +4,7 @@
 // from a teacher, on the Seasons page.
 
 import { useState } from 'react';
+import { hasVitki } from '../../engine/hedgeTraditions';
 import { RUNES, RUNE_METHODS, VITKAR_FOCI, type Inscription } from '../../data/hedgeVitkir';
 import { RUNE_GUIDELINES, RUNE_SCRIPTS, RUNE_TEXTS } from '../../data/vitkirRunes';
 import { VITKI_APPRENTICESHIP } from '../../engine/character/derive';
@@ -32,8 +33,7 @@ function Lines({ lines }: { lines: string[] }) {
   );
 }
 
-const IDS = ['vitki', ...RUNES.map((r) => r.id)];
-export const hasVitki = (c: Character) => c.virtues.some((v) => IDS.includes(v.defId)) || c.abilities.some((a) => IDS.includes(a.abilityId));
+export { hasVitki };
 
 /** The book writes the vitki's name as “(the runemaster)”. */
 export const withName = (text: string, name: string) => text.replace(/\(the runemaster\)/gi, name || 'the runemaster');

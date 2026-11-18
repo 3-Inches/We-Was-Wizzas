@@ -1,5 +1,9 @@
-// Usage: node scripts/qa/tutorials.cjs [width]   (the built app must be served: npx vite preview --port 4173 --strictPort)
-// Writes scripts/qa/out/tutorials-<width>.txt. A clean run ends with "errors: none", and two steps
+// Usage: node scripts/qa/tutorials.cjs [width] [--fixtures]   (the built app must be served: npx vite preview --port 4173 --strictPort)
+// Writes scripts/qa/out/tutorials-<width>.txt.
+// With --fixtures: each practice saga of scripts/qa/fixtures whose page is hedge magic, Faerie or the
+// Mysteries is imported, and that page's tutorial is taken alone on each of its characters, so a step
+// that differs by tradition is seen as each tradition reads it. Writes tutorials-fixtures-<width>.txt;
+// clean is "errors: none" and no "no target" step. A clean run ends with "errors: none", and two steps
 // report "no target": the toolkit's Welcome, and the power tutorial's "Design the power" (its card shows only once the
 // character has a power, and the practice draft has none). A tutorial it skips is not looked at.
 // Take every tutorial in turn from a fresh browser, as a player would: press what the steps ask,
@@ -14,6 +18,7 @@ const width = Number(process.argv[2] || 390);
 const skip = (process.env.SKIP || 'Make a magus,Make a grog').split(',');
 const report = [];
 const say = (...a) => report.push(a.join(' '));
+if (process.argv.includes('--fixtures')) return void fixtures().catch((e) => { report.push('FAILED ' + e.message); fs.writeFileSync(require('path').join(OUT, `tutorials-fixtures-${width}.txt`), report.join('\n')); process.exit(1); });
 (async () => {
   const b = await chromium.launch();
   const page = await b.newPage({ viewport: { width, height: 844 } });
@@ -123,3 +128,79 @@ const say = (...a) => report.push(a.join(' '));
   fs.writeFileSync(require('path').join(OUT, `tutorials-${width}.txt`), report.join('\n'));
   await b.close();
 })().catch((e) => { report.push('FAILED ' + e.message); fs.writeFileSync(require('path').join(OUT, `tutorials-${width}.txt`), report.join('\n')); process.exit(1); });
+
+// ------------------------------------------------------------------------------------------------
+// --fixtures: each special character's own tutorial, on its practice saga
+
+async function fixtures() {
+  const path = require('path');
+  const read = require('./idb.cjs');
+  const FIX = path.join(__dirname, 'fixtures');
+  const index = JSON.parse(fs.readFileSync(path.join(FIX, 'index.json'), 'utf8'));
+  const TUTORIAL = { hedge: 'Hedge magic', faerie: 'Faerie at the table', mysteries: 'The Mysteries at the table' };
+  const B = 'http://localhost:4173/';
+  const b = await chromium.launch();
+  const errors = [];
+  let missing = 0;
+  for (const [name, fx] of Object.entries(index)) {
+    if (!TUTORIAL[fx.dice]) continue;
+    const ctx = await b.newContext({ viewport: { width, height: 844 } });
+    const page = await ctx.newPage();
+    page.setDefaultTimeout(8000);
+    page.on('pageerror', (e) => errors.push(`${name}: PAGEERROR ${e.message.slice(0, 160)}`));
+    page.on('console', (m) => m.type() === 'error' && errors.push(`${name}: CONSOLE ${m.text().slice(0, 160)}`));
+    page.on('dialog', (d) => d.accept());
+    await page.goto(B);
+    const [fc] = await Promise.all([page.waitForEvent('filechooser'), page.getByRole('button', { name: 'Import file…' }).click()]);
+    await fc.setFiles(path.join(FIX, `${name}.saga.json`));
+    await page.waitForTimeout(1500);
+    await page.locator('[data-tour="import-go"]').click();
+    await page.waitForTimeout(1500);
+    const st = await read(page);
+    for (const [k, id] of Object.entries(fx.who)) {
+      const who = st.characters[id]?.name;
+      say(`${name} ${k} (${who}), ${TUTORIAL[fx.dice]}:`);
+      // a tutorial follows finished characters; one still in creation is left for the wizard
+      if (!st.characters[id]?.creation?.finalized) { say('  (in creation: not followed by a tutorial)'); continue; }
+      await page.goto(`${B}#/help`);
+      await page.waitForTimeout(800);
+      const row = page.locator('.list-row', { hasText: TUTORIAL[fx.dice] }).first();
+      await row.getByRole('button', { name: /^(Start|Restart)$/ }).click();
+      const panel = page.locator('.tour-panel');
+      await page.waitForTimeout(1200);
+      const sel = panel.getByLabel('The character this tutorial works on');
+      if (await sel.count()) {
+        const opts = await sel.locator('option').allInnerTexts();
+        const label = opts.find((o) => o.trim() === who);
+        if (label) await sel.selectOption({ label });
+        else say(`  NOT OFFERED: ${who} (offered: ${opts.join(', ')})`);
+        await page.waitForTimeout(1200);
+      }
+      for (let n = 0; n < 30; n++) {
+        await page.waitForTimeout(1400);
+        const count = (await panel.locator('.tour-count').innerText()).replace(/^.*· /, '').trim();
+        const title = (await panel.locator('h4').innerText()).trim();
+        const info = await page.evaluate(() => {
+          const el = document.querySelector('[data-tour-on]');
+          if (!el) return { on: '' };
+          const r = el.getBoundingClientRect();
+          const top = document.querySelector('.tour-panel')?.getBoundingClientRect().top ?? innerHeight;
+          return { on: el.getAttribute('data-tour'), inView: r.bottom > 0 && r.top < top };
+        });
+        if (!info.on) missing++;
+        say(`  ${count} ${title}: ${info.on ? `→ ${info.on}${info.inView ? '' : ' (OUT OF VIEW)'}` : 'no target'}`);
+        const next = panel.getByRole('button', { name: /^Next ›$/ });
+        if (await next.count()) await next.click();
+        else {
+          await panel.getByRole('button', { name: /Finish/ }).click();
+          break;
+        }
+      }
+    }
+    await ctx.close();
+  }
+  say(`\nno target: ${missing}`);
+  say('errors:', errors.join(' ; ') || 'none');
+  fs.writeFileSync(require('path').join(OUT, `tutorials-fixtures-${width}.txt`), report.join('\n'));
+  await b.close();
+}

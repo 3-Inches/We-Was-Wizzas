@@ -4,7 +4,8 @@
 // are on the Game Table, Dice › Hedge magic.
 
 import { useEffect, useState } from 'react';
-import { CHARM_PARAMS, DEVICE_PARAMS, LEARNED_FORMS, LEARNED_TECHNIQUES, learnedArtName, type LearnedArts } from '../../data/hedgeLearned';
+import { hasLearnedMagic } from '../../engine/hedgeTraditions';
+import { CHARM_PARAMS, DEVICE_PARAMS, learnedArtName, type LearnedArts } from '../../data/hedgeLearned';
 import { LEARNED_CHARMS, LEARNED_GUIDELINES } from '../../data/learnedCharms';
 import { LEARNED_TRAINING } from '../../engine/character/derive';
 import { barredPair, charmXp, learnedArts, learnedLevel } from '../../engine/learnedMagic';
@@ -13,11 +14,9 @@ import { uid } from '../../util/id';
 import { Card, Field, Stepper } from '../kit';
 import type { CharEditor } from './useChar';
 
-const LM_IDS = ['mathematicus-of-bologna', ...LEARNED_TECHNIQUES.map((t) => t.id), ...LEARNED_FORMS.map((f) => f.id)];
 
 /** Someone the learned magicians' rules are for: a mathematicus, an Art of the tradition, or charms known. */
-export const hasLearnedMagic = (c: Character) =>
-  !!c.learned?.charms?.length || !!c.learned?.trainingYears || c.virtues.some((v) => LM_IDS.includes(v.defId)) || c.abilities.some((a) => LM_IDS.includes(a.abilityId));
+export { hasLearnedMagic };
 
 /** The Technique and Form pairs this magician can use: not the one barred by Incompatible Hedge Arts. */
 export function artPairs(c: Character, d: NonNullable<CharEditor['d']>): LearnedArts[] {

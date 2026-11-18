@@ -5,13 +5,11 @@
 import { useState } from 'react';
 import { describeStress, stressDie } from '../../engine/dice';
 import { BATTLE_OUTCOMES, HARVEST_INCOME, NIGHTWALKER_ROLLS, STRAY_DESTINATIONS, leadEase, leadTotal, strayEase, strayTotal } from '../../engine/nightwalker';
-import type { Character } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { Card, Field, Stepper } from '../kit';
 import type { CharEditor } from '../character/useChar';
 
-const IDS = ['nightwalker', 'versatile-phantasticum', 'half-taltos', 'hamr', 'sleepwalker'];
-export const hasNightwalker = (c: Character) => c.virtues.some((v) => IDS.includes(v.defId));
+export { hasNightwalker } from '../../engine/hedgeTraditions';
 
 export function NightwalkerCard({ ed }: { ed: CharEditor }) {
   const { c, d, update } = ed;

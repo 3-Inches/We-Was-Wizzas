@@ -1,5 +1,12 @@
 import { sagaPage, dice } from '../places';
 import type { Tour } from '../tours';
+import type { Character } from '../../../engine/types';
+import { HOLY_METHODS, HOLY_POWERS } from '../../../data/divine';
+
+/** One who works holy powers: a Holy Method and a Holy Power (the Virtues; whether they go together the page says). */
+const HOLY_METHOD_IDS = new Set(HOLY_METHODS.map((m) => m.id));
+const HOLY_POWER_IDS = new Set(HOLY_POWERS.map((p) => (p.id === 'blessing' ? 'blessing-power' : p.id)));
+const hasHoly = (c: Character) => c.virtues.some((v) => HOLY_METHOD_IDS.has(v.defId)) && c.virtues.some((v) => HOLY_POWER_IDS.has(v.defId));
 
 export const divineTour: Tour = {
   id: 'divine',
@@ -8,7 +15,7 @@ export const divineTour: Tour = {
   group: 'In play',
   inSaga: true,
   prefers: 'companion',
-  prefersHoly: true,
+  suits: hasHoly,
   practice: {
     type: 'companion', role: 'holy-worker', label: 'a practice holy wonder-worker',
     answers: { 'f-divine-powers': 10, 'vf:invocation': 10, 'vf:blessing-power': 10, 'vf:true-faith': 10 }, ensure: ['true-faith'],
@@ -123,6 +130,11 @@ export const divineTour: Tour = {
       title: 'Rites, and works of a season',
       body: '**Rites and holy places** holds what takes a ceremony: a **Dominion rite** to consecrate a place, a celestial regio entered, a kabbalist’s **Minor amulet**. A card the character cannot use is not shown, and the foot of the page says why. A season’s work, such as a season of devotion, is on **Game Table › Seasons**.',
       at: dice('holy'), needs: 'character', target: 'holy-rites',
+    },
+    {
+      title: 'The Church',
+      body: '*The Church* adds three cards here. **A pilgrimage** tracks a journey’s progress toward its Target Level. For a pious character, **Devotion to the saints** adds to invoking a saint, and **The mystic’s path** keeps a contemplative’s Spiritual Path. Their seasons are in **Seasons of devotion**, on Game Table › Seasons.',
+      at: dice('holy'), needs: 'character', target: ['church-pilgrimage', 'church-devotion', 'church-mystic'],
     },
     {
       title: 'Holy Magic, for magi',

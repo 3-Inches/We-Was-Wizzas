@@ -19,7 +19,8 @@ export const table = (tab: TableTab) => (c: TourCtx) => (c.sagaId ? `${R.table(c
 export const plan = (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=seasons${c.charId ? `&who=${c.charId}` : ''}` : undefined);
 /** A part of the Game Table's Dice page, for the tour's character. */
 export const society = (sub: 'news' | 'agents' | 'society') => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=society${sub !== 'news' ? `&sub=${sub}` : ''}${c.charId ? `&who=${c.charId}` : ''}` : undefined);
-export const dice = (sub: DiceSub) => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=dice${sub !== 'roll' ? `&sub=${sub}` : ''}${c.charId ? `&who=${c.charId}` : ''}` : undefined);
+// (the part named always, Roll too, so a step on Roll is not taken to be on another part of the page)
+export const dice = (sub: DiceSub) => (c: TourCtx) => (c.sagaId ? `${R.table(c.sagaId)}?tab=dice&sub=${sub}${c.charId ? `&who=${c.charId}` : ''}` : undefined);
 export const guided = (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided` : undefined);
 export const guidedTab = (tab: string) => (c: TourCtx) => (c.sagaId && c.charId ? `/saga/${c.sagaId}/character/${c.charId}/guided?tab=${tab}` : undefined);
 
