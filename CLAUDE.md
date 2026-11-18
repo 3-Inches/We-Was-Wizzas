@@ -56,11 +56,12 @@ Stop at the first step that fails. Each step costs more than the one before.
 
 ## Git
 
-- The session's instructions name the branch. Pull requests are drafts. Never merge, never amend, never force-push.
+- The session's instructions name the branch. Pull requests are drafts. Never amend, never force-push.
+- **A session that builds an item never merges it.** The owner has handed merging to one **lead session**. The lead writes each item's brief and starts a fresh session to build it. It then reviews the pull request against `app/docs/owner.md`, the integration checklist and the checks' results. It fixes small faults itself, sends large ones back, and merges when the review passes and every check is green. Then it tells the owner what changed. A pull request that changes something the owner would have an opinion on (layout, what a card shows, a *Judgment* item) waits for the owner.
 - No model names in commit messages, pull request titles or bodies, or code, other than the attribution lines the session's instructions give.
 - One roadmap item to a pull request. When a pull request merges, bring the branch up to date with `origin/main` before starting the next.
 - **Tick the roadmap item in its own pull request,** with a "Done as" note. Do not leave it for the next session.
-- **Open the pull request when every check has finished,** with their results in it. The owner merges soon after a pull request opens.
+- **Open the pull request when every check has finished,** with their results in it. The lead session reviews it soon after it opens.
 - **A finding the item does not fix goes into the roadmap,** in the same pull request. A finding written only in a pull request's text is lost.
 - **"Intermittent" is not a cause.** A fault seen twice is traced, or written into the roadmap as a finding. Say what you saw, not that it is not this pull request's.
 
@@ -88,7 +89,7 @@ Patterns to copy, not reinvent:
 ## Working efficiently
 
 - **Reading a book:** list its headings first (`grep -n '^#' file`), then its formula lines (`grep -n 'TOTAL\|Total:'`), then read only the ranges you need with `sed -n 'A,Bp'`. Whole chapters are rarely needed.
-- **Start a fresh session for each roadmap item.** These documents carry the memory, and a short conversation is cheaper and sharper than a long one that has been summarized many times. What a session learns that the next one needs goes into these documents, `app/docs/owner.md` for what the owner says.
+- **Each roadmap item is built in a fresh session,** started by the lead session with a brief, at High effort unless the lead says otherwise. These documents carry the memory, and a short conversation is cheaper and sharper than a long one that has been summarized many times. What a session learns that the next one needs goes into these documents, `app/docs/owner.md` for what the owner says.
 - **Before calling an item finished, look at the joins.** Go down the integration checklist in the design principles. The last audit found most of its faults there, not in the item's own cards.
 - **Write the plan into the pull request or the roadmap, not only into the conversation.**
 - **Before adding a card, a page, a tab or a paragraph, check the design principles' budgets.** The toolkit is large. Adding is easy; finding things afterwards is the cost.
