@@ -7,12 +7,12 @@ import { useState } from 'react';
 import { BARGAIN_ARTS, FAERIE_DURATIONS, FAERIE_RANGES, FAERIE_TARGETS, FAERIE_GUIDELINES, FAERIE_METHODS, FAERIE_POWERS, type BargainArtId, type FaerieMethodId, type FaeriePowerId } from '../../data/faerie';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
-  CREATIVITY_TABLE, bargainPenetration, bargainTotal, callingActEase, callingApplies, callingResolveEase, creativityCost, enchantmentEase, evocationVisLimit, faerieArts,
+  CREATIVITY_TABLE, bargainPenetration, bargainTotal, callingActEase, callingApplies, callingResolveEase, creativityCost, enchantmentEase, evocationVisLimit, faerieArts, hasFaerieTable,
   faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyBotchDice, sympathySum, sympathyXp,
 } from '../../engine/faerieWizardry';
 import { auraModifier } from '../../engine/magic';
 import { DURATIONS, RANGES, TARGETS } from '../../engine/spellDesign';
-import type { Character, SympathyTrait } from '../../engine/types';
+import type { SympathyTrait } from '../../engine/types';
 import { Card, Field, Stepper, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
 import { SympathyCard } from '../character/SympathyCard';
@@ -23,11 +23,7 @@ import { gainWarping, nowOf, owedReaction } from '../../engine/warping';
 // the Ranges, Durations and Targets faerie rites add to the Hermetic ones, listed apart in the rite card
 const FAERIE_ONLY = new Set([...FAERIE_RANGES, ...FAERIE_DURATIONS, ...FAERIE_TARGETS].map((o) => o.name).filter((n) => ![...RANGES, ...DURATIONS, ...TARGETS].some((h) => h.name.toLowerCase() === n.toLowerCase())));
 
-const WIZARDRY = ['evocation', 'enchantment', 'empathy', 'beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe', 'faerie-summoning', 'bonding', 'captivating', 'dismissing'];
-
-/** Someone this page is for: Sympathy Traits, faerie wizardry, or a faerie. */
-export const hasFaerieTable = (c: Character) =>
-  !!c.sympathy?.length || c.creature?.realm === 'Faerie' || c.abilities.some((a) => WIZARDRY.includes(a.abilityId)) || c.virtues.some((v) => ['faerie-sympathy', 'faerie-antipathy-flaw', 'faerie-background', ...WIZARDRY, 'summoning'].includes(v.defId));
+export { hasFaerieTable };
 
 function Lines({ lines }: { lines: string[] }) {
   if (!lines.length) return null;

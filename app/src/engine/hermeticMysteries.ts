@@ -238,3 +238,9 @@ export function roteTotals(d: DerivedCharacter, technique: number, form: number,
   const lab = technique + form + d.characteristics.Int.value + theory + labArith + book + aura;
   return { arith, labArith, casting, total: Math.ceil(casting / 2), labTotal: lab, maxLevel: Math.ceil(lab / 5) };
 }
+
+/** The Mysteries whose rolls the Game Table's Mysteries page makes. */
+const ROLLED = ['celestial-magic', 'divination-and-augury', 'hermetic-dream-interpreter', 'the-great-elixir', 'hermetic-theurgy', 'hermetic-empowerment', 'hermetic-numerology', 'hermetic-synthemata'];
+
+/** Someone with a Mystery of The Mysteries that is rolled at the table. */
+export const hasTableMystery = (c: Pick<Character, 'virtues'>) => ROLLED.some((id) => holds(c, id));

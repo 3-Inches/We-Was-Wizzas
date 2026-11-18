@@ -9,7 +9,7 @@ import { ART_NAMES, FORMS, TECHNIQUES, type Form, type Technique } from '../../d
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
   ASTRO_UNITS, AUGURY_METHODS, NUMEROLOGY_BOOKS, astroDurationEase, divinationPenetration, divinationScore, divines, dreamReading, empowerment, grantMight,
-  greatElixirTest, holds, invokedSpirit, liberalArt, nameHiding, pactPoints, roteTotals, scoreFor,
+  greatElixirTest, hasTableMystery, holds, invokedSpirit, liberalArt, nameHiding, pactPoints, roteTotals, scoreFor,
 } from '../../engine/hermeticMysteries';
 import { auraModifier } from '../../engine/magic';
 import type { DerivedCharacter } from '../../engine/character/derive';
@@ -17,11 +17,7 @@ import type { Character } from '../../engine/types';
 import { Card, Field, Stepper, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
 
-/** The Virtues whose rolls this page makes. */
-const ROLLED = ['celestial-magic', 'divination-and-augury', 'hermetic-dream-interpreter', 'the-great-elixir', 'hermetic-theurgy', 'hermetic-empowerment', 'hermetic-numerology', 'hermetic-synthemata'];
-
-/** Someone with a Mystery of The Mysteries that is rolled at the table. */
-export const hasTableMystery = (c: Character) => ROLLED.some((id) => holds(c, id));
+export { hasTableMystery };
 
 function Lines({ lines }: { lines: string[] }) {
   if (!lines.length) return null;

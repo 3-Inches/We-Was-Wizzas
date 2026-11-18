@@ -10,7 +10,7 @@ import { Card, Field, Stepper } from '../kit';
 import type { CharEditor } from '../character/useChar';
 
 /** Someone who brews: the Mythic Herbalism Virtue or Ability. */
-export const hasHerbalism = (c: NonNullable<CharEditor['c']>) => c.virtues.some((v) => v.defId === 'mythic-herbalism') || c.abilities.some((a) => a.abilityId === 'mythic-herbalism');
+export { hasHerbalism } from '../../engine/hedgeTraditions';
 
 type Kind = 'healing' | 'poison' | 'physical';
 const KINDS: { v: Kind; label: string }[] = [

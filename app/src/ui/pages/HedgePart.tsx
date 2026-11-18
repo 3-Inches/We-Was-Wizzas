@@ -23,7 +23,6 @@ import type { CharEditor } from '../character/useChar';
 import { useSeasonWork } from '../seasonWork';
 import { R } from '../routes';
 import { CharmDesigner, LearnedCard, artPairs, hasLearnedMagic } from '../character/LearnedCard';
-import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
 import { elementalArts } from '../../engine/elementalMagic';
 import { ElementalTraitsCard } from '../character/ElementalTraitsCard';
 import { ElementalCard, RefiningCard } from './ElementalPart';
@@ -34,9 +33,8 @@ import { NightwalkerCard, hasNightwalker } from './NightwalkerPart';
 import { NattThelCard, VitkiCastCard, VitkiSeasonCard, VitkiSheetCard, hasVitki } from './VitkirPart';
 import { gainWarping, nowOf } from '../../engine/warping';
 
-const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining'];
 /** Someone this page is for: a learned magician or an elementalist. */
-export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || hasHerbalism(c) || isFolkWitch(c) || hasGruagach(c) || hasNightwalker(c) || hasVitki(c) || c.virtues.some((v) => ELEMENTAL_IDS.includes(v.defId)) || c.abilities.some((a) => ELEMENTAL_IDS.includes(a.abilityId));
+export { hasHedgeMagic } from '../../engine/hedgeTraditions';
 
 type CalledRealm = Exclude<Realm, 'None'>;
 const REALMS: Realm[] = ['None', 'Magic', 'Faerie', 'Divine', 'Infernal'];
@@ -109,7 +107,7 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
         </p>
       )}
       {usesAura && (
-        <div className="row">
+        <div className="row" data-tour="hedge-aura">
           <Field label="Aura">
             <select value={aura.realm} onChange={(e) => setAura({ ...aura, realm: e.target.value as Realm })}>
               {REALMS.map((r) => (
