@@ -44,19 +44,21 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
     const lines = [...res.lines];
     let follows: string | undefined;
     update((x) => {
-      // two or more points from the experiment: roll to avoid Twilight (DE, Original Research), owed on the Resolve list
-      follows = d ? gainWarping(x, d, { points: res.warpingPoints, why: 'from stabilizing a Discovery', ...nowOf(saga) }) : ((x.warpingPoints += res.warpingPoints), undefined);
       const found = res.stable ? uid() : undefined;
       if (found) {
         x.research ??= { goal: '', kind: 'minor', discoveries: [] };
         x.research.discoveries.push({ uid: found, name: name || 'A stabilized Discovery', magnitude, ...when });
       }
       // the season's lab work, logged with its Exposure in Magic Theory
-      if (saga) {
-        const theory = d?.abilities.find((a) => a.abilityId === d.theoryAbility);
-        const e = newSeasonEntry(saga.currentYear, saga.currentSeason, 'other', `Lab: ${res.stable ? 'stabilized' : 'tried to stabilize'} ${name || 'a Discovery'} (original research)`, theory ? { [`ability:${theory.uid}`]: 2 } : {});
+      const theory = d?.abilities.find((a) => a.abilityId === d.theoryAbility);
+      const e = saga ? newSeasonEntry(saga.currentYear, saga.currentSeason, 'other', `Lab: ${res.stable ? 'stabilized' : 'tried to stabilize'} ${name || 'a Discovery'} (original research)`, theory ? { [`ability:${theory.uid}`]: 2 } : {}) : undefined;
+      if (e) {
         e.notes = lines.join(' ');
         e.undo = { warping: res.warpingPoints || undefined, discoveryUid: found };
+      }
+      // two or more points from the experiment: roll to avoid Twilight (DE, Original Research), owed on the Resolve list and kept on the season, for Unlog
+      follows = d ? gainWarping(x, d, { points: res.warpingPoints, why: 'from stabilizing a Discovery', ...nowOf(saga), entry: e }) : ((x.warpingPoints += res.warpingPoints), undefined);
+      if (e) {
         applySeason(x, e, 1);
         x.seasonLog.push(e);
       }

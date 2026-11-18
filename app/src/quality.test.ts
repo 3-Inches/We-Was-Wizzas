@@ -109,16 +109,28 @@ describe('limits that may only go down', () => {
 
 // ------------------------------------------------------------------------------------------------
 // What follows Warping (Twilight, the Witch Moon, Nátt-thel, Faerie Calling) is owed on the Resolve list by
-// gainWarping (engine/warping.ts). These files add Warping Points directly, each for its reason.
+// gainWarping (engine/warping.ts). These files change Warping Points (a character's, a season entry's, a
+// covenfolk's) another way, each for its reason.
 const RAW_WARPING: Record<string, string> = {
   'src/engine/warping.ts': 'gainWarping itself',
   'src/engine/folkWitch.ts': 'witchWarping, which gainWarping calls for a folk witch',
-  'src/engine/time.ts': 'a living covenant’s people, for whom nothing is owed',
+  'src/engine/longterm.ts': 'applySeason: a season entry’s points, on and off; seasonWarping owes what follows',
+  'src/engine/unlog.ts': 'Unlog takes a season’s points off',
+  'src/engine/time.ts': 'a living covenant’s people, for whom nothing is owed; a season entry’s points, with seasonWarping',
+  'src/ui/character/sheet/AdvancementTab.tsx': 'a season logged by hand: its points on the entry, with seasonWarping',
   'src/engine/projects.ts': 'a project worked with no season given',
   'src/engine/experiment.ts': 'it counts the points; its caller adds them',
   'src/engine/labRoutines.ts': 'a point a few seasons: prolonged, and only magi keep lab routines',
-  'src/engine/effects.ts': 'a powerful effect’s point: prolonged',
+  'src/engine/effects.ts': 'a powerful effect’s point: prolonged; and taken off when it ends',
+  'src/engine/rituals.ts': 'covenfolk with no sheet; and a cast taken back',
+  'src/engine/covenantBoons.ts': 'Distorted Covenfolk, as they are made',
   'src/engine/generate/character.ts': 'a generated character’s past',
+  'src/engine/character/factory.ts': 'a new magus’s House point',
+  'src/engine/character/fixes.ts': 'a fix to a character being made',
+  'src/engine/character/statBlock.ts': 'a character read from a stat block',
+  'src/ui/character/steps/DetailsStep.tsx': 'a character being made',
+  'src/ui/character/steps/ReviewStep.tsx': 'a character being finished: its Virtues’ points',
+  'src/ui/AfterRoll.tsx': 'a botch die rerolled: its points taken off',
   'src/ui/covenant/CovenantEffects.tsx': 'a caster with no sheet to derive',
   'src/ui/character/sheet/OriginalResearch.tsx': 'a magus with no sheet to derive',
   'src/ui/character/sheet/Twilight.tsx': 'Twilight’s own card',
@@ -127,10 +139,20 @@ const RAW_WARPING: Record<string, string> = {
   'src/ui/pages/HolyPart.tsx': 'the Divine Ascent, rolled on its own card',
 };
 
+// any change to Warping Points: `x.warpingPoints += n`, `= n`, `-= n`, `++`, and a season entry's `e.warpingPoints = n`
+const CHANGES_WARPING = /(?<!(?:let|const|var)\s+)\bwarpingPoints\s*(?:[-+*/]?=(?!=)|\+\+|--)|(?:\+\+|--)\s*[\w.?!]*\bwarpingPoints\b/;
+
 describe('Warping', () => {
-  it('is added through gainWarping, so what follows it is not forgotten', () => {
-    const raw = sources.filter(([, text]) => /warpingPoints \+=/.test(text)).map(([path]) => path.replace(/^\.\//, 'src/'));
+  it('is changed through gainWarping, so what follows it is not forgotten', () => {
+    const raw = sources.filter(([, text]) => CHANGES_WARPING.test(text)).map(([path]) => path.replace(/^\.\//, 'src/'));
     expect(raw.filter((p) => !RAW_WARPING[p]), 'add Warping Points with gainWarping (engine/warping.ts), or give the reason here').toEqual([]);
-    expect(Object.keys(RAW_WARPING).filter((p) => !raw.includes(p)), 'these no longer add Warping Points directly: take them off RAW_WARPING').toEqual([]);
+    expect(Object.keys(RAW_WARPING).filter((p) => !raw.includes(p)), 'these no longer change Warping Points directly: take them off RAW_WARPING').toEqual([]);
+  });
+
+  it('catches each way of changing the points', () => {
+    for (const t of ['c.warpingPoints += 2', 'x.warpingPoints = v', 'c.warpingPoints -= 1', 'c.warpingPoints++', '++c.warpingPoints', 'e.warpingPoints = warping', 'entry.warpingPoints=visBotch'])
+      expect(CHANGES_WARPING.test(t), t).toBe(true);
+    for (const t of ['const warpingPoints = 0', 'let warpingPoints = 0', 'c.warpingPoints === 2', 'c.warpingPoints >= 5', '{ warpingPoints: 5 }'])
+      expect(CHANGES_WARPING.test(t), t).toBe(false);
   });
 });

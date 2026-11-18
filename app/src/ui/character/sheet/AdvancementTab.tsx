@@ -31,6 +31,7 @@ import { teaches } from '../../../engine/covenfolk';
 import { HAZARDS, hazardPenalty } from '../../../engine/disease';
 import { RollAtTable, useAtTable } from '../../play';
 import { Unlog } from '../Unlog';
+import { seasonWarping } from '../../../engine/warping';
 import { longevityModifier } from '../../../engine/hermeticMysteries';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
@@ -82,6 +83,8 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const [teacherLab, setTeacherLab] = useState<{ name: string; teaching: number } | null>(null);
   const [visDie, setVisDie] = useState<number | null>(null);
   const [visBotch, setVisBotch] = useState(0);
+  // what follows the last vis study logged here (Twilight, owed in Resolve)
+  const [visFollows, setVisFollows] = useState<string>();
   const [summary, setSummary] = useState('');
   const [monthsLost, setMonthsLost] = useState(0);
   const [eat, setEat] = useState(0);
@@ -258,6 +261,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
     const fromPurse = eaten > 0 && purseVis >= eaten;
     if (kind === 'vis' && visBotch) entry.warpingPoints = visBotch;
     if (bookUid) entry.bookId = bookUid;
+    let follows: string | undefined;
     update((x) => {
       if (fromPurse) takeVis(purseOf(x).vis, [...ARTS], eaten);
       if (kind === 'vis' && art && visFrom === 'purse') takeVis(purseOf(x).vis, [art], visPawns);
@@ -275,8 +279,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
       }
       if (insight) for (const a of insightPicked) entry.gains[`art:${a}`] = (entry.gains[`art:${a}`] ?? 0) + 1;
       applySeason(x, entry, 1);
+      // a double botch studying vis: Twilight, owed in Resolve; Unlog takes it back with the points
+      follows = seasonWarping(x, d, entry, 'from studying vis', !!cov?.living);
       x.seasonLog.push(entry);
     });
+    setVisFollows(follows);
     // the teacher's season: Exposure in Teaching, in their own season or an extra one
     if (mate && mateD && logTeacher && teacherSlot) {
       updateCharacter(mate.id, (t) => {
@@ -593,6 +600,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                   const r = stressDie(Math.max(1, visPawns));
                   setVisDie(r.botches ? 0 : r.value);
                   setVisBotch(r.botches ? r.botches : 0);
+                  setVisFollows(undefined);
                   setSummary(`Studied ${art ? ART_NAMES[art] : ''} vis: ${describeStress(r)}`);
                 }}
               >
@@ -602,6 +610,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 <Stepper value={visDie ?? 0} min={0} width={40} onChange={setVisDie} />
               </Field>
               {visBotch > 0 && <span className="badge bad">Botch: {visBotch} Warping point(s), no xp</span>}
+              {visFollows && <span className="small warn-text">{visFollows}</span>}
             </>
           )}
         </div>

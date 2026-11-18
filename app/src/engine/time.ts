@@ -42,7 +42,7 @@ import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
 import { abilityXpForScore, warpingScoreFromPoints } from './xp';
 import { divineAuraWarps, holySeason, isHolyMagus } from './holy';
 import { seasonEndRolls } from './seasonRolls';
-import { gainWarping, warpingReaction } from './warping';
+import { gainWarping, seasonWarping, warpingReaction } from './warping';
 import { uid } from '../util/id';
 import { environmentAging, flawHeld, immuneToWarping } from './covenantBoons';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
@@ -251,6 +251,7 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
     if (undo) e.undo = undo;
     applySeason(c, e, 1);
     c.seasonLog.push(e);
+    return e;
   };
   const target = (t?: string) => {
     if (!t) return null;
@@ -343,8 +344,10 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
       const spent = { vis: { from: fromCov ? ('covenant' as const) : ('purse' as const), covenantId: fromCov ? cov!.id : undefined, taken: paid.taken } };
       if (r.botches) {
-        log('study-vis', `Studied ${ART_NAMES[art]} vis: ${describeStress(r)}: botch`, {}, r.botches, spent);
-        return [`Studied ${ART_NAMES[art]} vis (${pawns} pawns): BOTCH, ${r.botches} Warping Point${r.botches > 1 ? 's' : ''}.${r.botches >= 2 ? " A double botch: roll for Wizard's Twilight." : ''}`];
+        const e = log('study-vis', `Studied ${ART_NAMES[art]} vis: ${describeStress(r)}: botch`, {}, r.botches, spent);
+        // a double botch: Twilight, owed in Resolve (warping.ts)
+        const follows = seasonWarping(c, d, e, 'from studying vis', !!cov?.living);
+        return [`Studied ${ART_NAMES[art]} vis (${pawns} pawns): BOTCH, ${r.botches} Warping Point${r.botches > 1 ? 's' : ''}.${follows ? ` ${follows}` : ''}`];
       }
       const res = computeStudy(d, { kind: 'vis', art, dieRoll: r.value, aura }, { art });
       const e = newSeasonEntry(year, season, 'study-vis', `Studied ${ART_NAMES[art]} vis: ${describeStress(r)} (+${res.xp} xp)`, { [`art:${art}`]: res.xp });

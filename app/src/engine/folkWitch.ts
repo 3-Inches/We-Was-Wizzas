@@ -169,9 +169,10 @@ export function witchMoonOutcome(months: number, warpingScore: number, pointsGai
  * (HMRE, The Witch Moon, line 2069). It begins at once and is owed on the Seasons page's Resolve list until
  * it passes. Changes `x`; returns the line that says so.
  */
-export function witchWarping(x: Character, points: number, when: { year: number; season: Season; why?: string }): string | undefined {
-  const before = warpingScoreFromPoints(x.warpingPoints);
-  x.warpingPoints += points;
+export function witchWarping(x: Character, points: number, when: { year: number; season: Season; why?: string; counted?: boolean }): string | undefined {
+  // counted: the points are on the sheet already (a season log entry's)
+  const before = warpingScoreFromPoints(Math.max(0, x.warpingPoints - (when.counted ? points : 0)));
+  if (!when.counted) x.warpingPoints += points;
   const after = warpingScoreFromPoints(x.warpingPoints);
   if (after <= before || x.folkWitch?.witchMoon) return undefined;
   x.folkWitch = { ...(x.folkWitch ?? {}), witchMoon: { months: 0, warpingScore: after, pointsGained: 0 } };

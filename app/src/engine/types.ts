@@ -985,6 +985,8 @@ export interface SeasonUndo {
   pounds?: number;
   /** Warping Points the season's work added outside its gains */
   warping?: number;
+  /** what its work left owed on the Resolve list (a Warping reaction), by uid: taken off again */
+  owed?: string[];
   /** Virtues the season gave (an Initiation) */
   virtueUids?: string[];
   /** the Initiation it recorded */

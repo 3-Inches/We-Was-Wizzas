@@ -1,9 +1,10 @@
 // Unlogging a season: a season logged by mistake taken back, whole. Its experience and Warping come
-// off (applySeason), and whatever else it recorded in its `undo`: the Labor Points it earned and the
-// workshop's counts, a lab project's progress and the vis the work spent, the purse's pounds, a Virtue
-// an Initiation gave, a Discovery, a season taught to the apprentice, a great building's progress. A season whose work finished
-// something (a spell learned, an item made, a familiar bound) is final: what it made is on the sheet,
-// so it is not unlogged (Undo at the top takes back the last change instead).
+// off (applySeason), and whatever else it recorded in its `undo`: what it left owed on the Resolve list
+// (Twilight from a botch), the Labor Points it earned and the workshop's counts, a lab project's
+// progress and the vis the work spent, the purse's pounds, a Virtue an Initiation gave, a Discovery, a
+// season taught to the apprentice, a great building's progress. A season whose work finished something
+// (a spell learned, an item made, a familiar bound) is final: what it made is on the sheet, so it is not
+// unlogged (Undo at the top takes back the last change instead).
 
 import { applySeason } from './longterm';
 import { PROJECT_KINDS } from './projects';
@@ -47,6 +48,13 @@ export function visUndo(before: Character, after: Character, covBefore?: Covenan
   return u;
 }
 
+/** What a season's work left owed on the Resolve list (a Warping reaction), from the character before and after. */
+export function owedUndo(before: Character, after: Character): Pick<SeasonUndo, 'owed'> {
+  const had = new Set((before.owed ?? []).map((o) => o.uid));
+  const raised = (after.owed ?? []).filter((o) => !had.has(o.uid)).map((o) => o.uid);
+  return raised.length ? { owed: raised } : {};
+}
+
 /**
  * What a season's work on a lab project changed, worked out from the character (and its covenant)
  * before and after: the project as it was, the vis it spent, the Warping it brought. A project the
@@ -61,6 +69,7 @@ export function labUndo(before: Character, after: Character, projectUid: string,
   if (vis) u.vis = vis;
   const wp = after.warpingPoints - before.warpingPoints;
   if (wp > 0) u.warping = wp;
+  Object.assign(u, owedUndo(before, after));
   if (now?.done && !was?.done) {
     const what = PROJECT_KINDS.find((k) => k.id === now.kind)?.label.toLowerCase() ?? 'the work';
     u.final = `This season finished ${now.name || what}: what it made is on the sheet, so the season stays logged (remove what it made by hand if it must go).`;
@@ -132,6 +141,11 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
       p.pounds = Math.round((p.pounds + u.pounds) * 1000) / 1000;
     }
     if (u.warping) c.warpingPoints = Math.max(0, c.warpingPoints - u.warping);
+    // the reaction its Warping brought, if not yet settled
+    if (u.owed?.length && c.owed) {
+      c.owed = c.owed.filter((o) => !u.owed!.includes(o.uid));
+      if (!c.owed.length) delete c.owed;
+    }
     if (u.virtueUids?.length) c.virtues = c.virtues.filter((v) => !u.virtueUids!.includes(v.uid));
     if (u.initiationUid) c.initiations = (c.initiations ?? []).filter((i) => i.uid !== u.initiationUid);
     if (u.discoveryUid && c.research) c.research.discoveries = c.research.discoveries.filter((d) => d.uid !== u.discoveryUid);
