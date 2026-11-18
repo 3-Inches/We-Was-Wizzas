@@ -260,20 +260,22 @@ function GreatElixirCard({ ed }: { ed: CharEditor }) {
     setLines(out);
   };
   return (
-    <Card title="The Great Elixir" tour="mystery-elixir" fold="mystery-elixir" summary={immortal ? `Immortal, Magic Might ${g.might}` : `${g.attempts ?? 0} earlier attempt${g.attempts === 1 ? '' : 's'}`}>
+    <Card title="The Great Elixir" tour="mystery-elixir" fold="mystery-elixir" summary={immortal ? `Immortal, Magic Might ${g.might}` : !elixir ? 'Not yet: it needs a Lesser Elixir' : `${g.attempts ?? 0} earlier attempt${g.attempts === 1 ? '' : 's'}`}>
       <p className="small muted" style={{ marginTop: 0 }}>
         Make the potion first as an invested device: the Lesser Elixir (taking spaces of the Longevity Ritual’s level / 10), Become a Being of Magic (MuCo(Vi) 50) and Grant Might. Then drink it and test.
         {immortal && ' A new potion can raise the Might; the Ease Factor stays at the age when the magus changed.'}
       </p>
-      <div className="row">
-        <Field label="Grant Might level" hint={`Might = half (level − 20): ${grantMight(level)}`}>
-          <Stepper value={level} min={25} max={200} step={5} width={40} onChange={setLevel} />
-        </Field>
-        <button onClick={test} disabled={!elixir} title={elixir ? undefined : 'Devise the Lesser Elixir first (a Lab project)'}>
-          Drink and test the Elixir
-        </button>
-        {!elixir && <span className="small warn-text">It needs a Lesser Elixir: devise one on a Lab project first.</span>}
-      </div>
+      {/* the test is offered once there is an Elixir to drink; until then, one line says what comes first */}
+      {elixir ? (
+        <div className="row">
+          <Field label="Grant Might level" hint={`Might = half (level − 20): ${grantMight(level)}`}>
+            <Stepper value={level} min={25} max={200} step={5} width={40} onChange={setLevel} />
+          </Field>
+          <button onClick={test}>Drink and test the Elixir</button>
+        </div>
+      ) : (
+        <p className="small">Not yet: it needs a Lesser Elixir. Devise one in the laboratory first, as a Lab project on the Seasons page.</p>
+      )}
       <Lines lines={lines} />
     </Card>
   );

@@ -33,6 +33,7 @@ import { RollAtTable, useAtTable } from '../../play';
 import { Unlog } from '../Unlog';
 import { seasonWarping } from '../../../engine/warping';
 import { longevityModifier } from '../../../engine/hermeticMysteries';
+import { bestAbility, learnsArts } from '../../../engine/firstChoice';
 
 type Kind = 'summa' | 'tractatus' | 'teacher' | 'training' | 'practice' | 'exposure' | 'adventure' | 'vis' | 'worship' | 'lab' | 'other';
 
@@ -102,10 +103,11 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
   const team = useMemo(() => (c && rules ? teamOf(c, sagaChars.filter((x) => !x.wanderer), sagaCovs, data, (x) => deriveCharacter(x, data, rules)) : undefined), [c, sagaChars, sagaCovs, data, rules]);
   if (!c || !d || !saga) return null;
 
-  // raw vis teaches a Hermetic Art, and only to those who can learn Arts (DE, Studying from Vis)
-  const canStudyArts = d.isMagus || d.hasGift;
-  // without Arts, the subject is an Ability: the first in the list, until one is chosen
-  const firstAbility = d.abilities.slice().sort((a, b) => a.name.localeCompare(b.name))[0];
+  // the Arts, and raw vis, which teaches only an Art (DE, Studying from Vis), are for a magus alone: a
+  // Gifted hedge wizard's Gift is not opened to them (Hedge Magic, line 433)
+  const canStudyArts = learnsArts(d);
+  // without Arts, the subject is an Ability: their own best, until one is chosen
+  const firstAbility = bestAbility(d.abilities);
   // Worship teaches Church Lore, Concentration or Music (The Church): one the character knows, or Church Lore begun
   const worshipAbilities = d.abilities.filter((a) => (a.abilityId === 'organization-lore' && /church/i.test(a.name)) || a.abilityId === 'concentration' || a.abilityId === 'music');
   const newChurchLore = !worshipAbilities.some((a) => a.abilityId === 'organization-lore');
@@ -398,7 +400,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                 if (k === 'worship') setQuality(4);
               }}
             >
-              {(Object.keys(KIND_LABEL) as Kind[]).filter((k) => (k !== 'vis' || canStudyArts || kind === 'vis') && (k !== 'lab' || d.isMagus)).map((k) => (
+              {(Object.keys(KIND_LABEL) as Kind[]).filter((k) => (k !== 'vis' || canStudyArts) && (k !== 'lab' || d.isMagus)).map((k) => (
                 <option key={k} value={k}>
                   {KIND_LABEL[k]}
                 </option>
@@ -447,7 +449,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
                     {newChurchLore && <option value="new:church-lore">Church Lore (new)</option>}
                   </>
                 ) : null}
-                {kind !== 'worship' && (d.isMagus || d.hasGift) && (
+                {kind !== 'worship' && canStudyArts && (
                   <optgroup label="Arts">
                     {ARTS.map((a) => (
                       <option key={a} value={`art:${a}`}>
@@ -486,7 +488,7 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               <select value={bookUid} onChange={(e) => pickBook(e.target.value)}>
                 <option value="">— enter manually —</option>
                 {library
-                  .filter((b) => b.kind === 'summa' || b.kind === 'tractatus')
+                  .filter((b) => (b.kind === 'summa' || b.kind === 'tractatus') && (b.subjectType === 'art' ? canStudyArts : c.abilities.some((a) => a.abilityId === b.subject)))
                   .map((b) => (
                     <option key={b.uid} value={b.uid}>
                       {b.title} ({b.kind} {b.subject} {b.kind === 'summa' ? `L${b.level} ` : ''}Q{b.quality})
@@ -807,11 +809,14 @@ export default function AdvancementTab({ ed }: { ed: CharEditor }) {
               ))}
             </div>
             {d.magicChar && <p className="small muted">A magic character does not age (RoP: Magic), so it makes no aging rolls.</p>}
-            {atTable ? (
-              <button onClick={rollAging} disabled={!!d.magicChar || (c.age < 35 && !c.longevity) || agedThisYear} title="Aging is rolled for everyone when the saga's year ends; roll here only out of turn">
-                {agedThisYear ? `Aged for ${year}` : 'Roll aging now'}
+            {/* the roll is offered only to one who ages, and not twice in a year; the lines around say why when it is not */}
+            {atTable && agedThisYear ? (
+              <span className="small muted">Aged for {year}.</span>
+            ) : atTable && !d.magicChar && (c.age >= 35 || c.longevity) ? (
+              <button onClick={rollAging} title="Aging is rolled for everyone when the saga's year ends; roll here only out of turn">
+                Roll aging now
               </button>
-            ) : (
+            ) : atTable ? null : (
               <span className="small muted">{agedThisYear ? `Aged for ${year}.` : 'Aging is rolled for everyone when the year ends.'}</span>
             )}
           </div>

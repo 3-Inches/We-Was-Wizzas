@@ -48,6 +48,7 @@ import { environmentAging, flawHeld, immuneToWarping } from './covenantBoons';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
 import { longevityModifier } from './hermeticMysteries';
+import { learnsArts } from './firstChoice';
 
 export interface SagaState {
   saga: Saga;
@@ -271,6 +272,12 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
     c.standing = was;
     return out.length ? [`${why} Instead: ${out[0]}`, ...out.slice(1)] : [why];
   };
+  // only a magus learns the Hermetic Arts (Hedge Magic, line 433): a study of an Art set for anyone else
+  // (by an older version, or a magus who is one no longer) goes to what they would do unplanned
+  const studied = s.target;
+  if (studied?.startsWith('art:') && !learnsArts(d) && ['exposure', 'read', 'vis', 'taught', 'practice'].includes(s.kind)) {
+    return instead(`${c.name || 'They'} cannot study ${ART_NAMES[studied.slice(4) as Art] ?? 'an Art'}: only a magus learns the Hermetic Arts.`);
+  }
   switch (s.kind) {
     case 'none':
       return [];

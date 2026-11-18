@@ -126,8 +126,9 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
         {d.twilightProne && <span className="badge bad">Twilight Prone: checks on a single Warping Point</span>}
         {d.twilightMastery && <span className="badge good">Twilight Mastery: you choose the effects</span>}
       </div>
-      {(d.isMagus || d.hasGift) && !atTable && <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what="Wizard’s Twilight, avoided or comprehended, is rolled" />}
-      {(d.isMagus || d.hasGift) && atTable && (
+      {/* Wizard's Twilight is the Order's: "no hedge tradition has this particular response" (Hedge Magic, line 634) */}
+      {d.isMagus && !atTable && <RollAtTable sagaId={c.sagaId} who={c.id} where="magic" what="Wizard’s Twilight, avoided or comprehended, is rolled" />}
+      {d.isMagus && atTable && (
         <>
           <div className="row" style={{ marginTop: 8 }}>
             <Field label="Warping Points from this event">

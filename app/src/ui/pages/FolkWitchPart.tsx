@@ -7,10 +7,11 @@ import { useState } from 'react';
 import { WITCH_CURSES, WITCH_FETISHES, WITCH_HEALING, WITCH_POWERS } from '../../data/hedgeFolkWitch';
 import { describeStress, stressDie } from '../../engine/dice';
 import {
-  WITCH_LONGEVITY_ARTS, brew, familiarBinding, fetishVisArt, healingCost, kitchenLabTotal, kitchenVisLimit, potionAbility, potionVisArts, witchCastingScore, witchLongevityVis, witchMoonEnds,
-  witchMoonOutcome, witchMoonWound, witchPenetration, witchPowers, witchVisExtraction, witchWarping,
+  familiarBinding, firstKitchenWork, healingCost, kitchenAbility, kitchenPowers, kitchenSeason, kitchenVisArts, kitchenWorks, potionAbility, witchCastingScore, witchMoonEnds,
+  witchMoonOutcome, witchMoonWound, witchPenetration, witchPowers, witchWarping, type KitchenWork,
 } from '../../engine/folkWitch';
-import { artsText, putInto, spendFrom } from '../../engine/vis';
+import { artsText, putInto, spendFrom, visInPlaces } from '../../engine/vis';
+import { bestFirst } from '../../engine/firstChoice';
 import type { Art } from '../../data';
 import type { AuraState } from '../../engine/magic';
 import type { WitchThing } from '../../engine/types';
@@ -63,14 +64,15 @@ function effectsOf(power: string): { label: string; ease: number; vis: number }[
 export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const { c, d, update } = ed;
   const powers = c && d ? witchPowers(c, d).filter((p) => p.methods.some((m) => m !== 'potion')) : [];
-  const [power, setPower] = useState(powers[0]?.id ?? '');
+  // it opens on her best power (the card checklist)
+  const [power, setPower] = useState(bestFirst(powers, (p) => p.score)[0]?.id ?? '');
   const [ei, setEi] = useState(0);
   const [ease, setEase] = useState(9);
   const [vis, setVis] = useState(0);
   const [fatigue, setFatigue] = useState(0);
   const [lines, setLines] = useState<string[]>([]);
   if (!c || !d || !powers.length) return null;
-  const p = powers.find((x) => x.id === power) ?? powers[0];
+  const p = powers.find((x) => x.id === power) ?? bestFirst(powers, (x) => x.score)[0];
   const def = WITCH_POWERS.find((x) => x.id === p.id)!;
   const effects = effectsOf(p.id);
   // the last choice of the list is a free Ease Factor
@@ -148,17 +150,19 @@ export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }
   );
 }
 
-type KitchenWork = 'brew' | 'fetish' | 'curse' | 'vis' | 'longevity' | 'familiar';
-
 const KITCHEN_TITLES: Record<KitchenWork, string> = { brew: 'a brew of potions', fetish: 'a fetish', curse: 'a curse woven', vis: 'vis from the aura', longevity: 'a longevity ritual', familiar: 'a familiar bound' };
 const KITCHEN_BUTTONS: Record<KitchenWork, string> = { brew: 'Brew', fetish: 'Make the fetish', curse: 'Weave the curse', vis: 'Draw vis', longevity: 'Make the ritual', familiar: 'Bind the familiar' };
+const KITCHEN_LABELS: Record<KitchenWork, string> = { brew: 'brew potions', fetish: 'make a fetish', curse: 'weave a curse', vis: 'draw vis from the aura', longevity: 'a longevity ritual', familiar: 'bind a familiar' };
 
 /** A season in the kitchen, on the Seasons page: its vis from the purse or the covenant's stores, vis drawn put there. */
 export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const { c, d } = ed;
+  const sw = useSeasonWork(ed);
   const powers = c && d ? witchPowers(c, d) : [];
-  const [work, setWork] = useState<KitchenWork>('brew');
-  const [power, setPower] = useState(powers[0]?.id ?? '');
+  // it opens on the first work she can do with the vis to hand, with her best power for it (the card checklist)
+  const [first] = useState(() => (c && d ? firstKitchenWork(c, d, aura, (arts) => Math.max(...Object.values(visInPlaces(c, sw.cov, arts))), (id) => effectsOf(id)[0]?.vis ?? 0) : undefined));
+  const [work, setWork] = useState<KitchenWork>(first?.work ?? 'brew');
+  const [power, setPower] = useState(first?.power ?? '');
   const [ei, setEi] = useState(0);
   const [what, setWhat] = useState('');
   const [labText, setLabText] = useState(0);
@@ -168,37 +172,21 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const [curse, setCurse] = useState(0);
   const [target, setTarget] = useState('');
   const [lines, setLines] = useState<string[]>([]);
-  const sw = useSeasonWork(ed);
-  const brewable = powers.filter((p) => p.methods.includes('potion'));
-  const fetishable = powers.filter((p) => WITCH_FETISHES[p.id]);
-  const works: [KitchenWork, string][] = [
-    ...(brewable.length && !c?.virtues.some((v) => v.defId === 'primitive-tradition-flaw') ? ([['brew', 'brew potions']] as [KitchenWork, string][]) : []),
-    ...(fetishable.length ? ([['fetish', 'make a fetish']] as [KitchenWork, string][]) : []),
-    ...(powers.some((x) => x.id === 'witch-cursing') ? ([['curse', 'weave a curse']] as [KitchenWork, string][]) : []),
-    ['vis', 'draw vis from the aura'],
-    ...(powers.some((x) => x.id === 'witch-healing') ? ([['longevity', 'a longevity ritual']] as [KitchenWork, string][]) : []),
-    ...(powers.some((x) => x.id === 'animal-ken') ? ([['familiar', 'bind a familiar']] as [KitchenWork, string][]) : []),
-  ];
-  const w = works.some(([k]) => k === work) ? work : works[0][0];
-  const pickFrom = w === 'brew' ? brewable : w === 'fetish' ? fetishable : powers;
-  const p = pickFrom.find((x) => x.id === power) ?? pickFrom[0];
-  // the vis this work takes (a brew's Form, a fetish's pawn, a longevity ritual's), or none
-  const fetishArt = p ? fetishVisArt(p.id) : undefined;
-  const visArts: Art[] = w === 'brew' && p ? potionVisArts(p.id) : w === 'fetish' && fetishArt ? [fetishArt] : w === 'longevity' ? WITCH_LONGEVITY_ARTS : [];
+  const works = c ? kitchenWorks(c, powers) : [];
+  const w = works.includes(work) ? work : works[0];
+  const pickFrom = w ? kitchenPowers(w, powers) : [];
+  // the power chosen if it serves this work, else her best that does
+  const p = pickFrom.find((x) => x.id === power) ?? bestFirst(pickFrom, (x) => x.score)[0];
+  const visArts: Art[] = w ? kitchenVisArts(w, p?.id) : [];
   const src = useVisSource(c, sw.cov, visArts);
   const dest = useVisSource(c, sw.cov, ['Vi']);
-  if (!c || !d || !powers.length) return null;
+  if (!c || !d || !powers.length || !w) return null;
   const fwmt = score(d, 'folk-witch-magic-theory');
   const effects = p ? effectsOf(p.id) : [];
   const eff = effects[Math.min(ei, effects.length - 1)];
   const k = WITCH_CURSES[curse];
-  const abilityFor: Record<KitchenWork, string | undefined> = { brew: p?.id, fetish: undefined, curse: 'witch-cursing', vis: undefined, longevity: 'witch-healing', familiar: 'animal-ken' };
-  const lt = kitchenLabTotal(c, d, abilityFor[w], aura, { potion: w === 'brew', familiar });
-  const seasonLimit = kitchenVisLimit(c, fwmt, w === 'brew');
-  // the vis on hand is what the place chosen holds of the brew's Form (the book's 4 pawns make one dose)
-  const b = brew(fwmt, eff?.vis ?? 0, Math.min(seasonLimit, src.have), { labText });
-  const need = w === 'brew' ? b.vis : w === 'fetish' ? 1 : w === 'longevity' ? witchLongevityVis(c.age) : 0;
-  const drawn = w === 'vis' ? witchVisExtraction(lt.total) : 0;
+  const ks = kitchenSeason(c, d, aura, w, p?.id, { have: src.have, effectVis: eff?.vis ?? 0, labText, familiar });
+  const { lt, seasonLimit, brew: b, need, drawn } = ks;
   const curseScore = witchCastingScore(c, d, 'witch-cursing', aura);
   const plan = (): string => {
     switch (w) {
@@ -219,13 +207,13 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   // why the season cannot be worked as set, said beside the button
   const why =
     sw.busy ? `${sw.season} ${sw.year} is already spent.`
-    : w === 'brew' && !b.doses ? (src.have ? `Too little vis for a dose and the effect (${(eff?.vis ?? 0) + 1} pawns).` : `No ${artsText(visArts)} vis in ${src.place === 'purse' ? 'the purse' : 'the covenant’s stores'}.`)
-    : w === 'longevity' && need > seasonLimit ? `It needs ${need} pawns, more than the ${seasonLimit} a season in the kitchen allows (twice Folk Witch Magic Theory).`
+    : ks.blocked === 'no-dose' ? (src.have ? `Too little vis for a dose and the effect (${(eff?.vis ?? 0) + 1} pawns).` : `No ${artsText(visArts)} vis in ${src.place === 'purse' ? 'the purse' : 'the covenant’s stores'}.`)
+    : ks.blocked === 'over-limit' ? `It needs ${need} pawns, more than the ${seasonLimit} a season in the kitchen allows (twice Folk Witch Magic Theory).`
     : w === 'curse' && !target.trim() ? 'Name the target, to whom she holds an Arcane Connection.'
     : need ? src.short(need) : undefined;
   const doSeason = () =>
     setLines(
-      sw.work(`Witch's kitchen: ${KITCHEN_TITLES[w]}`, abilityFor[w] ?? 'folk-witch-magic-theory', (x, cov, entryUid) => {
+      sw.work(`Witch's kitchen: ${KITCHEN_TITLES[w]}`, kitchenAbility(w, p?.id) ?? 'folk-witch-magic-theory', (x, cov, entryUid) => {
         const out = [`${plan()} Lab Total ${lt.total}.`];
         if (need) {
           const r = spendFrom(x, cov, src.place, src.arts, need);
@@ -262,8 +250,8 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
       <div className="row">
         <Field label="Work">
           <select value={w} onChange={(e) => ((setWork(e.target.value as KitchenWork)), setEi(0))}>
-            {works.map(([key, l]) => (
-              <option key={key} value={key}>{l}</option>
+            {works.map((key) => (
+              <option key={key} value={key}>{KITCHEN_LABELS[key]}</option>
             ))}
           </select>
         </Field>

@@ -11,6 +11,10 @@ import { auraModifier, type AuraState, type Part } from './magic';
 import { addMagnitudes } from './spellDesign';
 import type { Art } from '../data/types';
 import type { Character, LearnedCharm } from './types';
+import { GRUAGACH_SHAPES, TATTOO_SIZES } from '../data/hedgeGruagach';
+import { GRUAGACH_SPELLS } from '../data/gruagachSpells';
+import { FREQUENCY } from './enchant';
+import { bestFirst, firstDoable } from './firstChoice';
 
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
 const has = (c: Pick<Character, 'virtues'>, id: string) => c.virtues.some((v) => v.defId === id);
@@ -230,3 +234,75 @@ export const understandingTransformation = (d: DerivedCharacter) => d.characteri
 
 export const TRANSFORMATION_GOOD = 'Good: a gruagach Art or a magic Virtue (Major or Minor Magical Focus, Secondary Insight, Affinity, Puissant Art…), a troll’s Virtue (Large, Sharp Ears, Giant Blood, Tough, Reserves of Strength), or experience in an Art (Warping Score + simple die).';
 export const TRANSFORMATION_BAD = 'Bad: a magic Flaw (Blatant Gift, Deficient Technique, Necessary Condition…), a troll’s Flaw (Disfigured, Magical Air, Nocturnal, Greedy, Wrathful, Offensive to Animals, Repellent), or experience lost in an Art (Warping Score + simple die).';
+
+// ------------------------------------------------------------------------------------------------
+// A gruagach's season, as the Seasons page sets it
+
+/** A season's work: a tattoo enchanted, a spell invented, vis drawn from the aura (HMRE, Gruagach Lab Activities). */
+export type GruagachWork = 'tattoo' | 'invent' | 'vis';
+
+/** The Technique and Form pairs a gruagach can work with: each Technique with each Form they have. */
+export function gruagachPairs(c: Character, d: DerivedCharacter): GruagachArts[] {
+  const a = gruagachArts(c, d);
+  return a.techniques.flatMap((t) => a.forms.map((f) => `${t.abbr}${f.abbr}` as GruagachArts));
+}
+
+/** The works this gruagach can take up: a tattoo unless No Tattoo Magic, a spell, vis only with Take Vision. */
+export function gruagachWorks(c: Character, pairs: GruagachArts[]): GruagachWork[] {
+  return [...(has(c, 'no-tattoo-magic-flaw') ? [] : (['tattoo'] as const)), 'invent' as const, ...(pairs.includes('TaVs') ? (['vis'] as const) : [])];
+}
+
+/** The book's spells in this gruagach's Arts, which the card offers first. */
+export const gruagachBookSpells = (pairs: GruagachArts[]) => GRUAGACH_SPELLS.filter((x) => pairs.includes(x.tf) && !x.general);
+
+/** How a tattoo is set on the card: its shape, size and uses a day, and a similar spell's magnitude. The card opens on these. */
+export interface GruagachSeasonSet { shape: number; size: number; uses: string; similar: number }
+export const GRUAGACH_SEASON_SET: GruagachSeasonSet = { shape: 0, size: 1, uses: '1', similar: 0 };
+
+export interface GruagachSeason {
+  tf: GruagachArts;
+  lt: GruagachTotal;
+  usesMod: number;
+  tat?: ReturnType<typeof tattoo>;
+  /** pawns the tattoo takes; pawns of Vim drawn; points of a spell invented this season */
+  need: number;
+  drawn: number;
+  gain: number;
+  /** why it cannot be done: no effect designed, a tattoo beyond the Lab Total, no progress on the spell, too little vis to hand */
+  blocked?: 'design' | 'tattoo' | 'no-gain' | 'short';
+}
+
+/**
+ * A gruagach's season, as set, with `have` pawns of the tattoo's vis to hand: the Lab Total, the tattoo,
+ * the vis it takes or draws, a spell's progress, and why it cannot be done. The season itself is the card's to check.
+ */
+export function gruagachSeason(c: Character, d: DerivedCharacter, aura: AuraState | undefined, work: GruagachWork, spell: Pick<LearnedCharm, 'tf' | 'level'> | undefined, set: GruagachSeasonSet & { have: number }, pairs = gruagachPairs(c, d)): GruagachSeason {
+  const tf = (work === 'vis' ? 'TaVs' : (spell?.tf ?? pairs[0])) as GruagachArts;
+  const shape = GRUAGACH_SHAPES[set.shape] ? Number((GRUAGACH_SHAPES[set.shape].bonuses.match(/\+(\d+)/) ?? ['', '0'])[1]) : 0;
+  const lt = gruagachLabTotal(c, d, tf, aura, { tattoo: work === 'tattoo', shape, similar: set.similar });
+  const usesMod = FREQUENCY.find((f) => f.value === set.uses)?.mod ?? 0;
+  const tat = work === 'tattoo' && spell ? tattoo(lt.total, spell.level, pictish(c, d), has(c, 'tattoo-mastery'), { usesMod, sizeMult: TATTOO_SIZES[set.size]?.mult }) : undefined;
+  const need = tat?.ok ? tat.vis : 0;
+  const drawn = work === 'vis' ? gruagachExtraction(lt.total) : 0;
+  const gain = work === 'invent' && spell ? Math.max(0, lt.total - spell.level) : 0;
+  const blocked = work !== 'vis' && !spell ? 'design' : work === 'tattoo' && !tat?.ok ? 'tattoo' : work === 'invent' && !gain ? 'no-gain' : need > set.have ? 'short' : undefined;
+  return { tf, lt, usesMod, tat, need, drawn, gain, blocked };
+}
+
+/**
+ * The work and book spell a gruagach's season opens on: a tattoo of the highest spell of the book they
+ * can enchant with the vis to hand (`have`, the fuller of the purse and the covenant's stores), else a
+ * spell they can make progress on, else vis drawn; the first of all when none can be done.
+ */
+export function firstGruagachWork(c: Character, d: DerivedCharacter, aura: AuraState | undefined, have: (arts: Art[]) => number): { work: GruagachWork; spell?: string } | undefined {
+  const pairs = gruagachPairs(c, d);
+  if (!pairs.length) return undefined;
+  const spells = bestFirst(gruagachBookSpells(pairs), (s) => s.level);
+  const options = gruagachWorks(c, pairs).flatMap((work): { work: GruagachWork; spell?: string }[] => (work === 'vis' ? [{ work }] : spells.map((s) => ({ work, spell: s.name }))));
+  const pick = firstDoable(options, (o) => {
+    const s = spells.find((x) => x.name === o.spell);
+    return gruagachSeason(c, d, aura, o.work, s, { ...GRUAGACH_SEASON_SET, have: s ? have(tattooVisArts(s.tf)) : 0 }, pairs).blocked;
+  });
+  return pick ?? { work: gruagachWorks(c, pairs)[0] };
+}
+
