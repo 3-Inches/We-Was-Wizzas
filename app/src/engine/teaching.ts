@@ -10,6 +10,7 @@ import { ensureAbility } from './character/factory';
 import { applySeason, computeStudy, newSeasonEntry, type StudyResult } from './longterm';
 import type { Character, CharSpell, Season, SeasonLogEntry } from './types';
 import { abilityScoreFromXp } from './xp';
+import { learnsArts } from './firstChoice';
 
 export interface Learner {
   c: Character;
@@ -92,7 +93,8 @@ export function teachableSubjects(t: Learner, s: Learner, data: GameData): { sub
   if (!language) return { subjects: [], blocked: [], why: `${t.c.name || 'The teacher'} and ${who} have no language in common` };
   const subjects: Teachable[] = [];
   const blocked: { label: string; why: string }[] = [];
-  if (s.d.isMagus)
+  // only a magus learns the Arts (Hedge Magic, line 433)
+  if (learnsArts(s.d))
     for (const a of ARTS) {
       const ts = t.d.arts[a].score;
       const ss = s.d.arts[a].score;

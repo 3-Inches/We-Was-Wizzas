@@ -11,6 +11,7 @@ import { auraModifier, type AuraState, type Part } from './magic';
 import type { Character, Season } from './types';
 import { uid } from '../util/id';
 import { warpingScoreFromPoints } from './xp';
+import { bestFirst, firstDoable } from './firstChoice';
 
 const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.abilityId === id).reduce((m, a) => Math.max(m, a.total), 0);
 const has = (c: Pick<Character, 'virtues'>, id: string) => c.virtues.some((v) => v.defId === id);
@@ -202,3 +203,77 @@ export function rollWovenCurse(x: Character, die: { value: number; zero: boolean
   x.folkWitch = { ...(x.folkWitch ?? {}), curse: undefined };
   return out;
 }
+
+/** The works of a season in the kitchen (HMRE, The Witch's Kitchen). */
+export type KitchenWork = 'brew' | 'fetish' | 'curse' | 'vis' | 'longevity' | 'familiar';
+
+type Power = ReturnType<typeof witchPowers>[number];
+
+/** The works this witch can take up in the kitchen, in the book's order: each needs its power, a brew no Primitive Tradition. */
+export function kitchenWorks(c: Pick<Character, 'virtues'>, powers: Power[]): KitchenWork[] {
+  return [
+    ...(powers.some((p) => p.methods.includes('potion')) && !has(c, 'primitive-tradition-flaw') ? (['brew'] as const) : []),
+    ...(powers.some((p) => WITCH_FETISHES[p.id]) ? (['fetish'] as const) : []),
+    ...(powers.some((p) => p.id === 'witch-cursing') ? (['curse'] as const) : []),
+    'vis' as const,
+    ...(powers.some((p) => p.id === 'witch-healing') ? (['longevity'] as const) : []),
+    ...(powers.some((p) => p.id === 'animal-ken') ? (['familiar'] as const) : []),
+  ];
+}
+
+/** The powers a work can be done with: a potion's, a fetish's, or any. */
+export function kitchenPowers(w: KitchenWork, powers: Power[]): Power[] {
+  return w === 'brew' ? powers.filter((p) => p.methods.includes('potion')) : w === 'fetish' ? powers.filter((p) => WITCH_FETISHES[p.id]) : powers;
+}
+
+/** The vis a work takes: a brew's Form, a fetish's pawn, a longevity ritual's; none for the rest. */
+export function kitchenVisArts(w: KitchenWork, power: string | undefined): Art[] {
+  const fetish = power ? fetishVisArt(power) : undefined;
+  return w === 'brew' && power ? potionVisArts(power) : w === 'fetish' && fetish ? [fetish] : w === 'longevity' ? WITCH_LONGEVITY_ARTS : [];
+}
+
+/** The Ability whose score the work's Lab Total adds (the brew's power, Cursing, Healing, Animal Ken), and that gains the season's Exposure. */
+export function kitchenAbility(w: KitchenWork, power: string | undefined): string | undefined {
+  return { brew: power, fetish: undefined, curse: 'witch-cursing', vis: undefined, longevity: 'witch-healing', familiar: 'animal-ken' }[w];
+}
+
+export interface KitchenSeason {
+  lt: WitchTotal;
+  /** the vis a season may use: twice Folk Witch Magic Theory (four times for potions with Concentrated Potions) */
+  seasonLimit: number;
+  brew: ReturnType<typeof brew>;
+  /** pawns the work takes, and pawns of Vim it draws from the aura */
+  need: number;
+  drawn: number;
+  /** why it cannot be done with the vis to hand: no dose can be brewed, more vis than a season allows, or too little */
+  blocked?: 'no-dose' | 'over-limit' | 'short';
+}
+
+/**
+ * A season's work in the kitchen, as set, with `have` pawns of its vis to hand: its Lab Total, the brew,
+ * the vis it takes and draws, and why it cannot be done. The season itself, and a curse's target, are
+ * for the card to check.
+ */
+export function kitchenSeason(c: Character, d: DerivedCharacter, aura: AuraState | undefined, w: KitchenWork, power: string | undefined, o: { have: number; effectVis?: number; labText?: number; familiar?: number }): KitchenSeason {
+  const fwmt = score(d, 'folk-witch-magic-theory');
+  const lt = kitchenLabTotal(c, d, kitchenAbility(w, power), aura, { potion: w === 'brew', familiar: o.familiar });
+  const seasonLimit = kitchenVisLimit(c, fwmt, w === 'brew');
+  const b = brew(fwmt, o.effectVis ?? 0, Math.min(seasonLimit, o.have), { labText: o.labText });
+  const need = w === 'brew' ? b.vis : w === 'fetish' ? 1 : w === 'longevity' ? witchLongevityVis(c.age) : 0;
+  const drawn = w === 'vis' ? witchVisExtraction(lt.total) : 0;
+  const blocked = w === 'brew' && !b.doses ? 'no-dose' : w === 'longevity' && need > seasonLimit ? 'over-limit' : need > o.have ? 'short' : undefined;
+  return { lt, seasonLimit, brew: b, need, drawn, blocked };
+}
+
+/**
+ * The work a season in the kitchen opens on: the first in the book's order this witch can do with the
+ * vis to hand (`have`, the fuller of the purse and the covenant's stores), with her best power for it.
+ * A curse is never first: it waits on a target the player names. Drawing vis from the aura needs nothing.
+ */
+export function firstKitchenWork(c: Character, d: DerivedCharacter, aura: AuraState | undefined, have: (arts: Art[]) => number, effectVis: (power: string) => number = () => 0): { work: KitchenWork; power?: string } | undefined {
+  const powers = witchPowers(c, d);
+  if (!powers.length) return undefined;
+  const options = kitchenWorks(c, powers).flatMap((work) => bestFirst(kitchenPowers(work, powers), (p) => p.score).slice(0, work === 'brew' || work === 'fetish' ? undefined : 1).map((p) => ({ work, power: p.id })));
+  return firstDoable(options, (x) => x.work === 'curse' || kitchenSeason(c, d, aura, x.work, x.power, { have: have(kitchenVisArts(x.work, x.power)), effectVis: x.work === 'brew' ? effectVis(x.power) : 0 }).blocked);
+}
+

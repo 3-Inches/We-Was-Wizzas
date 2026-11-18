@@ -10,6 +10,7 @@ import type { Character, Season } from '../../engine/types';
 import { STORY_AWARDS, seasonWorth } from '../../engine/workshop';
 import { useStore } from '../../store/store';
 import { Card, Field, Stepper } from '../kit';
+import { bestAbility, learnsArts } from '../../engine/firstChoice';
 
 export function AfterStoryCard({ people, derived, year, season }: { people: Character[]; derived: Map<string, DerivedCharacter>; year: number; season: Season }) {
   const [msg, setMsg] = useState<string[]>([]);
@@ -96,7 +97,9 @@ function StoryRow({ c, d, year, season, say }: { c: Character; d: DerivedCharact
     const [k, id] = t.split(':');
     return k === 'art' ? ART_NAMES[id as Art] : d.abilityByUid.get(id)?.name ?? 'an Ability';
   };
-  const key = target || (d.isMagus ? 'art:Cr' : d.abilities[0] ? `ability:${d.abilities[0].uid}` : '');
+  // experience from a story goes to an Art only for a magus (Hedge Magic, line 433); for others, their best Ability until one is chosen
+  const best = bestAbility(d.abilities);
+  const key = target || (learnsArts(d) ? 'art:Cr' : best ? `ability:${best.uid}` : '');
   const award = () => {
     if (!key) return;
     const [k, id] = key.split(':');
@@ -117,7 +120,7 @@ function StoryRow({ c, d, year, season, say }: { c: Character; d: DerivedCharact
   return (
     <>
       <select value={key} onChange={(e) => setTarget(e.target.value)} aria-label="Where the experience goes" style={{ maxWidth: 200 }}>
-        {d.isMagus && (
+        {learnsArts(d) && (
           <optgroup label="Arts">
             {ARTS.map((a) => (
               <option key={a} value={`art:${a}`}>

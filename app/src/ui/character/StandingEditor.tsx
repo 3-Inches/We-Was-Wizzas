@@ -8,6 +8,7 @@ import type { Character, Covenant, LibraryBook, Specialist, StandingActivity } f
 import { teacherQuality } from '../../engine/covenantRules';
 import { bestLesson, lessonStudy, maxStudents, teachableSubjects, type Learner } from '../../engine/teaching';
 import { cannotHelp, helpValue } from '../../engine/labHelp';
+import { learnsArts } from '../../engine/firstChoice';
 
 const KINDS: { id: StandingActivity['kind']; label: string }[] = [
   { id: 'auto', label: 'Automatic' },
@@ -56,13 +57,13 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
   const reach = [...mates, ...others];
   const me: Learner = { c, d };
   // books the character can read: summae and tractatus on an Art (a magus) or an Ability they have
-  const readable = library.filter((b) => (b.kind === 'summa' || b.kind === 'tractatus') && !b.corrupt && (b.subjectType === 'art' ? d.isMagus : b.subjectType === 'ability' && c.abilities.some((a) => a.abilityId === b.subject)));
+  const readable = library.filter((b) => (b.kind === 'summa' || b.kind === 'tractatus') && !b.corrupt && (b.subjectType === 'art' ? learnsArts(d) : b.subjectType === 'ability' && c.abilities.some((a) => a.abilityId === b.subject)));
   const readTarget = (b: LibraryBook) => (b.subjectType === 'art' ? `art:${b.subject}` : `ability:${c.abilities.find((a) => a.abilityId === b.subject && (!b.param || a.param === b.param))?.uid ?? ''}`);
   const shown = KINDS.filter(
     (k) =>
       (k.id !== 'work' || (c.workshop && !extra)) &&
       (k.id !== 'lab' || (d.isMagus && !extra)) &&
-      (k.id !== 'vis' || d.isMagus) &&
+      (k.id !== 'vis' || learnsArts(d)) &&
       (k.id !== 'taught' || teachers.length > 0 || reach.length > 0 || s.kind === 'taught') &&
       (k.id !== 'teach' || reach.length > 0 || s.kind === k.id) &&
       (k.id !== 'assist' || mates.length > 0 || s.kind === k.id) &&
@@ -83,7 +84,7 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
       {needsTarget && (
         <select value={s.target ?? ''} onChange={(e) => onChange({ ...s, target: e.target.value || undefined })} aria-label="Subject">
           <option value="">— subject —</option>
-          {s.kind !== 'practice' && s.kind !== 'taught' && (
+          {s.kind !== 'practice' && s.kind !== 'taught' && learnsArts(d) && (
             <optgroup label="Arts">
               {ARTS.map((a) => (
                 <option key={a} value={`art:${a}`}>

@@ -40,12 +40,12 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
           An apprentice from seven years old, fifteen years of training, a season a year taught by the master; they help in the laboratory (Intelligence + Magic Theory).
         </RulesNote>
         <div className="row tight">
-          <input value={name} onChange={(e) => setName(e.target.value)} placeholder="the apprentice’s name" aria-label="Apprentice’s name" style={{ width: 180 }} />
+          <input value={name} onChange={(e) => setName(e.target.value)} placeholder="name (optional)" aria-label="Apprentice’s name" style={{ width: 180 }} />
           <select value={gender} onChange={(e) => setGender(e.target.value as 'Male' | 'Female')} aria-label="Apprentice’s gender">
             <option value="Female">Female</option>
             <option value="Male">Male</option>
           </select>
-          <button className="small" disabled={!name.trim()} onClick={() => update((x) => void (x.apprentice = { name: name.trim(), gender, since: year, age: 8, seasons: 0 }))}>
+          <button className="small" onClick={() => update((x) => void (x.apprentice = { name: name.trim(), gender, since: year, age: 8, seasons: 0 }))}>
             Take an apprentice
           </button>
         </div>

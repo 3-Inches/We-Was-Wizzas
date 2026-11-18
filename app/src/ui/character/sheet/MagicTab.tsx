@@ -21,6 +21,7 @@ import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { AfterRoll } from '../../AfterRoll';
 import { MythicToggle, mythicBonus } from '../../MythicToggle';
 import { deriveCharacter } from '../../../engine/character/derive';
+import { learnsArts } from '../../../engine/firstChoice';
 
 const REALMS: Realm[] = ['Magic', 'Faerie', 'Divine', 'Infernal', 'None'];
 
@@ -572,7 +573,8 @@ export default function MagicTab({ ed }: { ed: CharEditor }) {
         </p>
       </Card>
 
-      {!atTable && <Card title="Arts">
+      {/* the Arts are a magus's (Hedge Magic, line 433); anyone else sees them only to take off experience put there by mistake */}
+      {!atTable && (learnsArts(d) || ARTS.some((x) => d.arts[x].effectiveXp > 0)) && <Card title="Arts">
         <div className="table-wrap">
           <table className="compact">
             <thead>

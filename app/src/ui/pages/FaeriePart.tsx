@@ -272,7 +272,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
       </p>
       {traits.length > 0 && lv.level > max && <p className="small warn-text">Its level is above what the chosen traits allow: tick more traits, or a lower level.</p>}
       <div className="row">
-        <button onClick={cast} disabled={!traits.length || lv.level > max || (method === 'enchantment' && performance < enchEase)}>
+        <button onClick={cast} disabled={!traits.length || lv.level > max || (method === 'enchantment' && performance < enchEase)} title={traits.length ? undefined : 'Tick the Sympathy Traits that fit first: only the player can say which do'}>
           Perform the rite
         </button>
         {!traits.length && (c.sympathy?.length ?? 0) > 0 && <span className="small muted">Tick the Sympathy Traits that fit this effect.</span>}
@@ -355,7 +355,7 @@ function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: nu
       </p>
       {traits.length > 0 && might > max && <p className="small warn-text">This faerie’s Might is above what the traits ticked allow: tick more traits.</p>}
       <div className="row">
-        <button onClick={roll} disabled={!traits.length || might > max}>
+        <button onClick={roll} disabled={!traits.length || might > max} title={traits.length ? undefined : 'Tick the Sympathy Traits that fit first: only the player can say which do'}>
           Roll {a.name}
         </button>
         {!traits.length && (c.sympathy?.length ?? 0) > 0 && <span className="small muted">Tick the Sympathy Traits that fit this faerie.</span>}

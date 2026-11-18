@@ -26,6 +26,7 @@ import { teaches } from './covenfolk';
 import { CALAMITY_BY_ID, worstTrouble } from './calamity';
 import type { Character, Covenant, EnchantedItem, LabProject, PriorityKind, Season, SeasonPriority, StandingActivity, WritingProject } from './types';
 import { uid } from '../util/id';
+import { learnsArts } from './firstChoice';
 
 export const PRIORITY_KINDS: { id: PriorityKind; label: string; yearly: boolean; text: string }[] = [
   { id: 'longevity', label: 'Longevity Ritual', yearly: false, text: 'Whenever it is needed: from 35, or when an aging crisis ends one, a season in the lab to make a Longevity Ritual with the covenant’s vis.' },
@@ -320,7 +321,7 @@ const TRY: Record<PriorityKind, Try> = {
   },
   vis: (x, p) => {
     const { c, d, cov } = x;
-    if (!d.isMagus) return 'only a magus studies from vis';
+    if (!learnsArts(d)) return 'only a magus studies from vis';
     for (const art of focusArts(d, p)) {
       const pawns = visForStudy(d.arts[art].score);
       if (visAvailable(purseOf(c).vis, [art]) >= pawns) return { standing: { kind: 'vis', target: `art:${art}` }, what: `studying ${ART_NAMES[art]} vis` };
@@ -447,7 +448,7 @@ export function bestStudy(c: Character, d: DerivedCharacter, cov: Covenant | und
       ? { kind: 'summa' as const, quality: b.quality, level: b.level, isArt: b.subjectType === 'art', subject: b.title }
       : { kind: 'tractatus' as const, quality: b.quality, isArt: b.subjectType === 'art', subject: b.title };
     if (b.subjectType === 'art') {
-      if (!d.isMagus || !(ARTS as readonly string[]).includes(b.subject)) continue;
+      if (!learnsArts(d) || !(ARTS as readonly string[]).includes(b.subject)) continue;
       const art = b.subject as Art;
       const xp = computeStudy(d, src, { art }).xp;
       consider({ kind: 'read', bookUid: b.uid, target: `art:${art}` }, `reading ${b.title}`, xp, weigh(xp, true, art));
