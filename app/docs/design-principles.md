@@ -144,13 +144,28 @@ Use these words for these things, everywhere.
 - [ ] Each card passes the card checklist below.
 - [ ] It has a Guide entry written as steps, an "In the app" pointer, and tutorial coverage if it adds a page.
 - [ ] The README has a row for it, and lists what was left out under "Not yet automated".
+- [ ] It passes the integration checklist below.
 - [ ] The four checks in `CLAUDE.md` pass, ending with the tutorials and the sweeps at both widths.
-- [ ] The roadmap is ticked.
+- [ ] The roadmap is ticked, in the same pull request.
+
+### A change works with the rest when
+
+The toolkit's systems read each other's records. A change that is right on its own card can still be wrong two pages away. For each line, say in the pull request what you checked, or why it does not apply.
+
+- [ ] **The season planner.** A season it spends is checked by `seasonBusy`, and the character's standing activity does not run on top of it.
+- [ ] **End and Resolve.** What follows it at the season's end waits in Resolve. Warping goes through `gainWarping`, never straight onto the sheet or a season entry.
+- [ ] **Unlog and Turn back.** Unlogging the season takes back everything it did: vis, silver, Labor Points, Warping, and anything it left waiting in Resolve.
+- [ ] **The Chronicle.** The season is told in a sentence of its own, not as "the season's ordinary work".
+- [ ] **The living covenants.** Their people run the same rule in their own seasons, or the pull request says why not.
+- [ ] **Quick build, the generator and the practice characters.** They can make a character who uses it, and what they make passes the rules check.
+- [ ] **The troupe's export and import.** A character sent to a player and back keeps it, and the list of what changed names it.
+- [ ] **One character, the whole page.** Open each page it touches as one character of each kind it is for, folded, at 390 wide. Is that character's own work near the top? Is anything offered that cannot apply to them?
+- [ ] **Old saves.** A saga saved before the change loads, and the new fields are optional.
 
 ### A card is finished when
 
 - [ ] It has one job, a title that names it, and a `fold` with a `summary` if the page has more than three cards.
-- [ ] It does not open on a warning or a disabled button without a reason beside it.
+- [ ] It does not open on a warning or a disabled button. Its first choice is one this character can make: their best power, a design within their Lab Total.
 - [ ] Every number the player must enter is one the toolkit cannot know. Everything else is read from the sheet or the stores.
 - [ ] Every rules term on it is glossed or obvious.
 - [ ] Changing any control updates the line that says what will happen.

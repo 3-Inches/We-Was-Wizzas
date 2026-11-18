@@ -21,6 +21,7 @@ import { newProject } from '../projects';
 import { advanceSeasons, DEFAULT_ADVANCE, type SagaState } from '../time';
 import { tribunalBook } from '../../data/livingCovenants';
 import { buildLivingCovenant } from '../living';
+import { OPTIONAL_RULES } from '../optional';
 import { DEFAULT_HOUSE_RULES, type Character, type Covenant, type LabProject } from '../types';
 
 export interface TestSagaOptions {
@@ -31,6 +32,8 @@ export interface TestSagaOptions {
   seasons?: number;
   /** living covenants of the Tribunal's book to build in too (their ids: 'heorot', 'triamore'…) */
   living?: string[];
+  /** every optional rule on but inflation, as the owner plays (app/docs/owner.md); else the five most used */
+  allOptional?: boolean;
 }
 
 const ALIGNMENTS: NonNullable<Covenant['auraAlignment']>[] = [{ kind: 'art', art: 'Co' }, { kind: 'healing' }, { kind: 'art', art: 'Ig' }, { kind: 'emotion', text: 'Fearful' }];
@@ -41,7 +44,9 @@ export function buildTestSaga(data: GameData, o: TestSagaOptions): SagaState {
   saga.tribunal = o.tribunal ?? 'Rhine';
   saga.currentYear = 1220;
   saga.currentSeason = 'Spring';
-  saga.options = { illness: true, labRoutines: true, originalResearch: true, rhineGilds: true, auraVariation: true };
+  saga.options = o.allOptional
+    ? Object.fromEntries(OPTIONAL_RULES.filter((r) => r.id !== 'inflation').map((r) => [r.id, true]))
+    : { illness: true, labRoutines: true, originalResearch: true, rhineGilds: true, auraVariation: true };
   const g = { data, saga, rules };
   const chars: Character[] = [];
   const names: string[] = [];

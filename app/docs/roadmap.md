@@ -1,13 +1,13 @@
 # Roadmap
 
-What is left to do, in order. Tick an item when its pull request merges. When you finish one, the next unticked item is the next thing to do.
+What is left to do, in order. Tick an item in its own pull request, with a "Done as" note. When you finish one, the next unticked item is the next thing to do.
 
 ## What "finished" means
 
 The toolkit is finished when all of these are true.
 
 1. **Every system in the Fifth Edition books that a troupe would use at the table more than once in a saga is built,** checked against the book, and can be found (design principles 8, 9 and 11). Anything rarer has a pointer to the book's text instead.
-2. **The audit has no open findings** (`audit-2026-11.md`), and the file is deleted.
+2. **No audit has open findings** (`audits/`). Closed audits are kept there as the record.
 3. **The limits in `src/quality.test.ts` are at their targets** (stage 1 gives them).
 4. **The books match upstream,** and the weekly check is quiet.
 
@@ -20,18 +20,19 @@ The owner may call it finished sooner. These are deliberately out of scope:
 
 ## How to work this list
 
-- **One item to a pull request, and a fresh session for each item.** Read `CLAUDE.md` and `design-principles.md` first. This file, the audit and the pull request carry the plan. A long conversation does not.
+- **One item to a pull request, and a fresh session for each item.** Read `CLAUDE.md`, `owner.md` and `design-principles.md` first. This file, the open audit and the pull request carry the plan. A long conversation does not.
+- **Before the owner merges,** a review of the pull request against `owner.md` and the design principles' integration checklist, by the owner's long-running session or a fresh one. Audit 3, section W, says why.
 - Each item is marked **Mechanical** or **Judgment**.
   - **Mechanical:** the fix is written down, with file and line. Follow it, test it against the book's example, and do not redesign.
   - **Judgment:** the item needs decisions about what a player sees. Read the principles, write the plan into the pull request before building, and ask the owner where a choice is theirs.
-- An item is closed only when its checklist in the design principles passes.
+- An item is closed only when its checklists in the design principles pass, the integration checklist among them.
 - If an item turns out twice the size expected, split it and write the split here.
 
 ---
 
 ## Stage 1. Close the audit
 
-Every item refers to `audit-2026-11.md` by its number. That file has the detail: file, line, the book's text, and the fix.
+Every item refers to `audits/2026-11-16.md` by its number. That file has the detail: file, line, the book's text, and the fix.
 
 - [x] **1.1 Rules fixes.** *Mechanical.* A1 to A7, all of B, all of F. Each fix gets a test built on the book's own example. One pull request.
 - [x] **1.2 Small fixes to how cards behave.** *Mechanical.* C3 (pickers that need a second button), C4 (creation settings at the table), C5 (cards that open on a warning), C7 (numbers the player must already know), C9 (one wording for one act: use the vocabulary table). Then E2: an "In the app" pointer for every topic the new pages cover. `topicsWithoutPointer` in `quality.test.ts` must go down.
@@ -61,7 +62,7 @@ Every item refers to `audit-2026-11.md` by its number. That file has the detail:
   - Found on the way: a character with one gruagach Form and no Technique (Quick build can give the Form Vision alone) broke Dice › Hedge magic. The card now says what to take. `hedgeTradition` counts a tradition only when the character can cast with it, and the hedge tutorial follows only such a character.
   - `tutorials.cjs --fixtures` imports each hedge, Faerie and Mysteries practice saga and takes its tutorial on each finished character. Clean is "no target: 0". `tours.test.ts` checks that each tradition's fixture is shown its own cast and season cards.
 
-When stage 1 is done, lower every limit in `quality.test.ts` to what was reached, and delete the audit file.
+Stage 1 is done. Its limits in `quality.test.ts` were lowered as each item closed. Its audit is kept, marked closed, as the record and the model for the next (`audits/2026-11-16.md`). Audit 3 checked stage 1's work: stage 5 holds what it found.
 
 ## Stage 2. Bring the books in step with upstream
 
@@ -71,6 +72,21 @@ When stage 1 is done, lower every limit in `quality.test.ts` to what was reached
 - [x] **2.3 Item effects in the spell catalog.** *Mechanical.* Found during 2.1. `extract_spells.py` now tells an item effect from a spell by the book's marks, as `extract_hp.py` does for *Hermetic Projects*: 273 effects from fourteen other books moved to `enchantments.json`, and the item editor groups them by book.
 
 Do stage 2 before stage 3: building more on text that is about to shift doubles the work.
+
+## Stage 5. Close audit 3 (do this before stage 3)
+
+Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 and how they were done. Every item refers to it by its number. Most of its findings are at the joins between systems, so each item here also passes the integration checklist.
+
+- [ ] **5.1 Warping and what follows it.** *Mechanical.* A1 (a double botch studying vis owes no Twilight) and B1 (Unlog leaves the reaction owed). One pull request, with the guard in `quality.test.ts` widened.
+- [ ] **5.2 Offer only what can apply, and open on what can be done.** *Mechanical.* A2 (the Hermetic Arts offered to any Gifted character) and B4 (season cards that open on a disabled button).
+- [ ] **5.3 The Chronicle tells each kind of season.** *Mechanical.* B2.
+- [ ] **5.4 A season in full, ordered by the character.** *Judgment.* B3. After 5.2. Write the order into the pull request first; the owner may want a say.
+- [ ] **5.5 Sympathy Traits in one place; the troupe's list of changes.** *Mechanical.* B5 and B6.
+- [ ] **5.6 Smaller.** *Mechanical.* C1 (split `HolyPart.tsx` by card) and C2 (the 56 Game Mechanics topics with no "In the app" pointer).
+- [ ] **5.7 Quick build for the hedge traditions, faerie wizards and the Mysteries.** *Judgment.* B7. The largest. One tradition at a time if it grows.
+- [ ] **5.8 For the owner:** where the Great buildings' and the menagerie's rolls are made (B8). No work unless the owner wants it moved.
+
+When stage 5 is done, mark audit 3 closed. The next audit is due after stage 3's first five or six systems.
 
 ## Stage 3. What the other books add
 
@@ -107,7 +123,7 @@ The Tribunals covered only by Third or Fourth Edition books are not built.
 Not items to schedule. Do them when a change touches the place.
 
 - **Files over 800 lines** are listed in `quality.test.ts`. When you add to one, split it first. `tours.ts` splits by tutorial, and each `*Part.tsx` splits by card.
-- **Two audits a year,** or after every five or six systems: read what was added against the books and against the design principles, as `audit-2026-11.md` did. Write the findings as numbered items with file, line and fix, then add them here as a stage.
+- **An audit after each stage,** or after every five or six systems: read what was added against the books, the design principles and `owner.md`, and how the work was done. `audits/README.md` says how; the audits there are the models. Write the findings as numbered items with file, line and fix, then add them here as a stage. Keep the audit, marked closed, when its stage is done.
 - **When a rule of work changes,** change `CLAUDE.md` or the design principles in the same pull request. They are the only memory a new session has.
 
 ---
@@ -125,5 +141,6 @@ Not items to schedule. Do them when a change touches the place.
 - 2026-11: the README cut to a page: a table of areas, and what is not yet automated (1.6).
 - 2026-11: every tutorial step cut to 60 words or fewer, and the tutorials split into a file each (1.7).
 - 2026-11: tutorials for hedge magic, Faerie and the Mysteries; steps for The Church and *Hermetic Projects* (1.7b).
+- 2026-11: audit 3 of stages 1 and 2, and of how they were done. The owner's expectations written down (`owner.md`); an integration checklist; the sweep's saga set up as the owner plays (`QA_LIVING=all QA_OPTIONAL=all`); audits kept in `audits/`.
 - 2026-11: the books brought in step with upstream (2.1). *Hermetic Projects*' errata are in, four books moved to `reviewed/`, and the reader gained shelves for earlier editions and third-party books.
 - Earlier work is in the merged pull requests.
