@@ -6,7 +6,7 @@ import type { Character } from './types';
 import { LEARNED_FORMS, LEARNED_TECHNIQUES } from '../data/hedgeLearned';
 import { RUNES } from '../data/hedgeVitkir';
 import { GRUAGACH_FORMS, GRUAGACH_TECHNIQUES } from '../data/hedgeGruagach';
-import { ELEMENTAL_ART_IDS } from '../data/hedgeElemental';
+import { ELEMENTAL_ART_IDS, ELEMENTS } from '../data/hedgeElemental';
 import { isFolkWitch } from './folkWitch';
 
 const holds = (c: Pick<Character, 'virtues' | 'abilities'>, ids: readonly string[]) => c.virtues.some((v) => ids.includes(v.defId)) || c.abilities.some((a) => ids.includes(a.abilityId));
@@ -34,3 +34,21 @@ export { isFolkWitch };
 
 /** Anyone the Hedge magic page is for. */
 export const hasHedgeMagic = (c: Character) => hasLearnedMagic(c) || hasHerbalism(c) || isFolkWitch(c) || hasGruagach(c) || hasNightwalker(c) || hasVitki(c) || isElementalist(c);
+
+export type HedgeTradition = 'witch' | 'learned' | 'elemental' | 'gruagach' | 'vitki' | 'nightwalker';
+
+/**
+ * The tradition a character practices, when they have enough of it to work its magic: the
+ * tradition's own Virtue, or a Technique with a Form. A single Art taken on its own (a gruagach's
+ * Vision, a learned magician's Magicam) shows on the page but casts nothing, so it is not counted.
+ */
+export function hedgeTradition(c: Character): HedgeTradition | undefined {
+  const pair = (techs: readonly string[], forms: readonly string[]) => holds(c, techs) && holds(c, forms);
+  if (isFolkWitch(c)) return 'witch';
+  if (holds(c, ['mathematicus-of-bologna']) || !!c.learned?.charms?.length || pair(LEARNED_TECHNIQUES.map((t) => t.id), LEARNED_FORMS.map((f) => f.id))) return 'learned';
+  if (holds(c, ELEMENTS.map((e) => e.ability))) return 'elemental';
+  if (holds(c, ['gruagach']) || pair(GRUAGACH_TECHNIQUES.flatMap((t) => [t.id, t.virtue]), GRUAGACH_FORMS.flatMap((f) => [f.id, f.virtue]))) return 'gruagach';
+  if (hasVitki(c)) return 'vitki';
+  if (hasNightwalker(c)) return 'nightwalker';
+  return undefined;
+}

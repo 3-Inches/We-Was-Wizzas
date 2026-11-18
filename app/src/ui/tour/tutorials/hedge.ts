@@ -1,15 +1,15 @@
 import { dice, plan, sagaPage, table } from '../places';
 import type { StepVariant, Tour } from '../tours';
 import type { Character } from '../../../engine/types';
-import { hasGruagach, hasHedgeMagic, hasLearnedMagic, hasNightwalker, hasVitki, isElementalist, isFolkWitch } from '../../../engine/hedgeTraditions';
+import { hedgeTradition, type HedgeTradition } from '../../../engine/hedgeTraditions';
 
 // The six traditions share a shape (who, the aura, cast or use, a season's work, the tradition's
 // Warping), so one tutorial follows whichever the character has: a step that differs by tradition
-// has a variant for each, in this order (the first that fits is shown).
-type Trad = 'witch' | 'learned' | 'elemental' | 'gruagach' | 'vitki' | 'nightwalker';
-const IS: Record<Trad, (c: Character) => boolean> = { witch: isFolkWitch, learned: hasLearnedMagic, elemental: isElementalist, gruagach: hasGruagach, vitki: hasVitki, nightwalker: hasNightwalker };
+// has a variant for each.
+type Trad = HedgeTradition;
+const TRADS: Trad[] = ['witch', 'learned', 'elemental', 'gruagach', 'vitki', 'nightwalker'];
 const byTradition = (v: Partial<Record<Trad, Omit<StepVariant, 'when'>>>): StepVariant[] =>
-  (Object.keys(IS) as Trad[]).flatMap((k) => (v[k] ? [{ when: IS[k], ...v[k]! }] : []));
+  TRADS.flatMap((k) => (v[k] ? [{ when: (c: Character) => hedgeTradition(c) === k, ...v[k]! }] : []));
 
 /** The cards a tradition's season is worked on, in the character's season in full. */
 const SEASON_CARDS = ['witch-kitchen', 'hedge-season', 'hedge-amulet', 'hedge-refining', 'gruagach-season', 'vitki-season'];
@@ -21,7 +21,8 @@ export const hedgeTour: Tour = {
   group: 'Magic',
   inSaga: true,
   prefers: 'companion',
-  suits: hasHedgeMagic,
+  // one with enough of a tradition to work it (a lone Art casts nothing, and the page has no card for it)
+  suits: (c) => !!hedgeTradition(c),
   practice: {
     type: 'companion', role: 'physician', label: 'a practice folk witch',
     ensure: ['folk-witch', 'the-gift', 'unstable-magic-flaw'], abilities: { 'witch-healing': 15, 'folk-witch-magic-theory': 15 },

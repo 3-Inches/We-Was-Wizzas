@@ -219,7 +219,11 @@ export function GruagachSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: b
           {s.text && <div className="soft" style={{ flexBasis: '100%' }}>{s.text}</div>}
         </div>
       ))}
+      {gruagachPairs(c, d).length === 0 ? (
+        <p className="small warn-text">No Technique and Form of the gruagachan yet: take Give or Take, and a Form, on the sheet to design spells.</p>
+      ) : (
       <SpellDesigner pairs={gruagachPairs(c, d)} label={atTable ? 'Add one learned in play' : 'Add a spell known'} onAdd={(s) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: [...(x.gruagach?.spells ?? []), { ...s, source: atTable || x.creation.finalized ? 'play' : 'training' }] }))} />
+      )}
     </Card>
   );
 }
