@@ -26,8 +26,8 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Look at the hedge magic, Faerie and Mysteries pages | `node scripts/qa/shots.cjs [width] [fixture]` (see `scripts/qa/fixtures/index.json`) |
 | Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 2 "no target" steps (Welcome, and "Design the power"). |
 | Run the hedge magic, Faerie and Mysteries tutorials on each practice saga | `node scripts/qa/tutorials.cjs 1280 --fixtures`, then `390`. Clean is "no target: 0" and "errors: none". |
-| Make the saga the sweep visits, set up as the owner plays | `QA_LIVING=all QA_OPTIONAL=all npm run qa:saga` (about 5 minutes; writes `scripts/qa/out/saga.json`) |
-| Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. Clean is "0 with problems" on the owner's saga (about 1,000 pages). |
+| Make the saga the sweep visits, set up as the owner plays | `QA_LIVING=all QA_OPTIONAL=all npm run qa:saga` (a few minutes; writes `scripts/qa/out/saga.json`) |
+| Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. Clean is "0 with problems" on the owner's saga (about 1,100 pages, some 30 minutes a width). |
 | Regenerate data from the books | `cd .. && python3 -I tools/extract/run_all.py` |
 | Rebuild the Game Mechanics index | `cd .. && python3 -I tools/extract/build_mechanics.py --report` |
 | Open every book in the reader | `node scripts/qa/books.cjs 1280`, then `390` |
