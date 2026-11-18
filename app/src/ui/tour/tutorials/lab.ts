@@ -37,6 +37,11 @@ export const labTour: Tour = {
       at: plan, needs: 'character', target: ['lab-projects', 'table-plan'],
     },
     {
+      title: 'Great projects',
+      body: '*Hermetic Projects* adds the covenant’s **great buildings** and its **menagerie**, kept on the covenant’s Overview. A building keeps its height, the quality of its work and the damage it has taken, with a stress check when it is tested. A mason raises or mends it with **Build (a season)** or **Repair (a season)**, on Seasons.',
+      at: covenant('overview'), needs: 'covenant', target: 'great-projects',
+    },
+    {
       title: 'Enchantments',
       body: 'The Enchantments page designs enchanted devices and talismans, Longevity Rituals and vis extraction, and copies books and lab texts, all from the magus’s Lab Totals.',
       at: sagaPage('enchant?tab=items'), needs: 'saga', target: 'tab-items',

@@ -538,7 +538,7 @@ function FaerieDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who:
   const c = pick(x, who, hasFaerieTable);
   return (
     <>
-      <div className="row">
+      <div className="row" data-tour="faerie-who">
         <WhoPicker x={x} value={c?.id} onChange={setWho} keep={hasFaerieTable} label="Who" none="Nobody in this saga has Sympathy Traits, faerie wizardry, or is a faerie." />
         {c && <CharLink sagaId={sagaId} c={c} />}
       </div>
@@ -556,7 +556,7 @@ function HedgeDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: 
   const c = pick(x, who, hasHedgeMagic);
   return (
     <>
-      <div className="row">
+      <div className="row" data-tour="hedge-who">
         <WhoPicker x={x} value={c?.id} onChange={setWho} keep={hasHedgeMagic} label="Who" none="Nobody in this saga works hedge magic (a learned magician or an elementalist)." />
         {c && <CharLink sagaId={sagaId} c={c} />}
       </div>
@@ -574,7 +574,7 @@ function MysteriesDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; w
   const c = pick(x, who, hasTableMystery);
   return (
     <>
-      <div className="row">
+      <div className="row" data-tour="mysteries-who">
         <WhoPicker x={x} value={c?.id} onChange={setWho} keep={hasTableMystery} label="Who" none="Nobody in this saga holds a Mystery rolled here." />
         {c && <CharLink sagaId={sagaId} c={c} tab="lab" />}
       </div>

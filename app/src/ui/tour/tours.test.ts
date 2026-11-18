@@ -4,12 +4,18 @@
 import { describe, expect, it } from 'vitest';
 import mechanics from '../../data/generated/mechanics/index.json';
 import { STEPS } from '../character/wizardSteps';
-import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, TOURS, nextTour, tourNeeds } from './tours';
+import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, TOURS, nextTour, stepFor, tourNeeds } from './tours';
 import { ACTIONS, makePractice } from './actions';
 import { newCovenant } from '../../engine/covenant';
 import { useStore } from '../../store/store';
 import { SAGA_TABS, TABLE_TABS, DICE_SUBS } from '../routes';
 import { TOOLKIT_GUIDE } from '../../data/toolkitGuide';
+import { gameDataFor } from '../../store/hooks';
+import { deriveCharacter } from '../../engine/character/derive';
+import { validateCharacter } from '../../engine/character/validate';
+import { DEFAULT_HOUSE_RULES, type Character } from '../../engine/types';
+import { witchPowers } from '../../engine/folkWitch';
+import { faerieArts } from '../../engine/faerieWizardry';
 
 const sources = Object.values(import.meta.glob('../**/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>).join('\n');
 
@@ -32,7 +38,7 @@ describe('tutorials', () => {
   it('point only at controls the app marks', () => {
     for (const t of TOURS)
       for (const s of t.steps)
-        for (const name of [s.target ?? []].flat()) expect(marked(name), `${t.id}: ${s.title} → ${name}`).toBe(true);
+        for (const name of [s.target ?? [], ...(s.variants ?? []).map((v) => v.target ?? [])].flat()) expect(marked(name), `${t.id}: ${s.title} → ${name}`).toBe(true);
   });
 
   it('open real wizard steps and go to real pages', () => {
@@ -143,6 +149,52 @@ describe('tutorials', () => {
     expect(useStore.getState().covenants[ours.id].memberIds).toEqual([]);
     expect(useStore.getState().characters[stray.id].covenantId).toBe(a.covId);
     expect(moved.notice).toMatch(/moved to/);
+  });
+
+  it('make practice ones for hedge magic, Faerie and the Mysteries that the tutorial follows, with no error in the rules check', () => {
+    const saga = useStore.getState().createSaga('Practice');
+    for (const id of ['hedge', 'faerie', 'mysteries']) {
+      const t = TOUR_BY_ID.get(id)!;
+      const r = makePractice(t, { sagaId: saga.id }, { character: true });
+      const ch = useStore.getState().characters[r.charId!];
+      expect(t.suits?.(ch), id).toBe(true);
+      expect(ch.creation.finalized, id).toBe(true);
+      const data = gameDataFor(saga);
+      const d = deriveCharacter(ch, data, DEFAULT_HOUSE_RULES);
+      expect(validateCharacter(d, data, DEFAULT_HOUSE_RULES).filter((i) => i.severity === 'error').map((i) => i.message), id).toEqual([]);
+      if (id === 'hedge') {
+        expect(witchPowers(ch, d).find((p) => p.id === 'witch-healing')?.score).toBe(2);
+        expect(stepFor(t.steps.find((s) => s.title === 'Cast or use')!, ch).target).toBe('witch-power');
+      }
+      if (id === 'faerie') {
+        expect(faerieArts(d)).toMatchObject({ methods: ['evocation'], powers: expect.arrayContaining(['weal']) });
+        expect(ch.sympathy).toMatchObject([{ trait: 'Dawn', score: 3 }]);
+      }
+      if (id === 'mysteries') expect(d.abilities.find((a) => a.abilityId === 'divination')?.total).toBe(2);
+    }
+  });
+
+  it('follow a hedge character’s own tradition: each tradition’s practice saga is shown its own cards', () => {
+    const t = TOUR_BY_ID.get('hedge')!;
+    const step = (title: string) => t.steps.find((s) => s.title === title)!;
+    const fixtures = import.meta.glob('../../../scripts/qa/fixtures/*.saga.json', { eager: true, import: 'default' }) as Record<string, { characters: Character[] }>;
+    const who = (file: string, id: string) => Object.entries(fixtures).find(([k]) => k.endsWith(`/${file}.saga.json`))![1].characters.find((c) => c.id === id)!;
+    const cases: [string, string, string, string][] = [
+      ['witch', '2f21ffa5c86f', 'witch-power', 'witch-kitchen'],
+      ['learned', '70fe0036f986', 'hedge-charm', 'hedge-season'],
+      ['elem', '1f8d2137a573', 'hedge-elemental', 'hedge-refining'],
+      ['gru', 'bf5f92f9a31e', 'gruagach-cast', 'gruagach-season'],
+      ['vit', 'bd0eb3c7df9e', 'vitki-cast', 'vitki-season'],
+      ['vit', '21208df916be', 'nightwalker', 'table-plan'],
+    ];
+    for (const [file, id, cast, season] of cases) {
+      const c = who(file, id);
+      expect(t.suits!(c), file).toBe(true);
+      expect([stepFor(step('Cast or use'), c).target].flat()[0], file).toBe(cast);
+      expect([stepFor(step('A season’s work'), c).target].flat()[0], file).toBe(season);
+    }
+    // a character of none of them sees the step as written
+    expect(stepFor(step('Cast or use'), undefined)).toBe(step('Cast or use'));
   });
 
   it('go on by themselves only where the step asks for a button press', () => {

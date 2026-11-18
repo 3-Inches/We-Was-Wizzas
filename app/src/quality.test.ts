@@ -64,7 +64,7 @@ const BIG_FILES: string[] = [
 
 describe('limits that may only go down', () => {
   const blocks = guideBlocks();
-  const steps = TOURS.flatMap((t) => t.steps.map((s) => words(s.body)));
+  const steps = TOURS.flatMap((t) => t.steps.flatMap((s) => [s.body, ...(s.variants ?? []).map((v) => v.body)].map(words)));
   const topics: string[] = [];
   const walk = (o: unknown) => {
     if (Array.isArray(o)) o.forEach(walk);

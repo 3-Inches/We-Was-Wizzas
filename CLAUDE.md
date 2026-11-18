@@ -24,6 +24,7 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Serve the build | `npx vite preview --port 4173 --strictPort` (in the background) |
 | Look at the hedge magic, Faerie and Mysteries pages | `node scripts/qa/shots.cjs [width] [fixture]` (see `scripts/qa/fixtures/index.json`) |
 | Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 2 "no target" steps (Welcome, and "Design the power"). |
+| Run the hedge magic, Faerie and Mysteries tutorials on each practice saga | `node scripts/qa/tutorials.cjs 1280 --fixtures`, then `390`. Clean is "no target: 0" and "errors: none". |
 | Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. |
 | Regenerate data from the books | `cd .. && python3 -I tools/extract/run_all.py` |
 | Rebuild the Game Mechanics index | `cd .. && python3 -I tools/extract/build_mechanics.py --report` |
@@ -39,7 +40,7 @@ Stop at the first step that fails. Each step costs more than the one before.
 1. Typecheck, and the test file for what changed. Seconds.
 2. All tests.
 3. Build, then look at the changed page in a browser at 1280 and at 390 wide. Write a short Playwright script or use `scripts/qa/shots.cjs`.
-4. **Once per pull request, at the end:** the tutorials at both widths, then the full sweep at both widths. Together they take about 25 minutes, so run them in the background with a long timeout. Do not rebuild while a sweep is running: it reads `dist/`.
+4. **Once per pull request, at the end:** the tutorials at both widths (with `--fixtures` too, when a tutorial changed), then the full sweep at both widths. Together they take about 25 minutes, so run them in the background with a long timeout. Do not rebuild while a sweep is running: it reads `dist/`.
 
 ## Rules that are not negotiable
 
