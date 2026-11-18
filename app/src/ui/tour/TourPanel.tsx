@@ -5,12 +5,10 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useStore, type TourState } from '../../store/store';
-import type { Character } from '../../engine/types';
 import { Markdown } from '../kit';
 import { visibleSteps } from '../character/wizardSteps';
-import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, nextTour, startTour, tourNeeds, type Tour, type TourCtx, type TourStep } from './tours';
+import { COURSE, DETOUR_OFFERS, TOUR_BY_ID, nextTour, startTour, tourNeeds, variantIndex, withVariant, type Tour, type TourCtx, type TourStep } from './tours';
 import { ACTIONS, PRACTICE_NOTE, isPracticeCovenant, makePractice } from './actions';
-import { HOLY_METHODS, HOLY_POWERS } from '../../data/divine';
 
 /** Open or close the menu, which a phone keeps behind ☰ (App listens). */
 function sidebarOpen(open: boolean) {
@@ -52,15 +50,6 @@ function findTarget(names: string[]): HTMLElement | null {
   return hidden;
 }
 
-/** A craftsman's or merchant's livelihood to show. */
-// the City & Guild tutorial's steps point at a workshop's parts: a character with a trade but no workshop set up has none of them
-const hasWorkshop = (c: Character) => !!c.workshop;
-
-/** One who works holy powers: a Holy Method and a Holy Power (the Virtues; whether they go together the page says). */
-const HOLY_METHOD_IDS = new Set(HOLY_METHODS.map((m) => m.id));
-const HOLY_POWER_IDS = new Set(HOLY_POWERS.map((p) => (p.id === 'blessing' ? 'blessing-power' : p.id)));
-const hasHoly = (c: Character) => c.virtues.some((v) => HOLY_METHOD_IDS.has(v.defId)) && c.virtues.some((v) => HOLY_POWER_IDS.has(v.defId));
-
 /** The saga, character and covenant the tour works on: what it has found so far, else what is open. */
 function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: string): TourCtx {
   const characters = useStore((s) => s.characters);
@@ -89,10 +78,9 @@ function useTourCtx(tour: Tour | undefined, t: TourState | undefined, path: stri
       : tour.wantsDraft
         ? (made ?? newest(drafts))
         : (made ??
-          // a tutorial about a livelihood follows by itself only someone whose workshop is set up: its steps press the
-          // workshop's own controls (one with a trade and no workshop yet can still be chosen; else a practice craftsman)
-          // one about holy powers follows only someone who works them (else it offers a practice wonder-worker)
-          (tour.prefersTrade ? newest(finished.filter((c) => !!c.workshop)) : tour.prefersHoly ? newest(finished.filter(hasHoly)) : newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga)));
+          // a tutorial about something only some characters have (a workshop, holy powers, a hedge tradition)
+          // follows by itself only one who has it; else it offers a practice one
+          (tour.suits ? newest(finished.filter(tour.suits)) : newest(finished.filter((c) => c.type === tour.prefers)) ?? newest(finished) ?? newest(inSaga)));
     const charId = fits(t.charId) ? t.charId : m?.[2] === 'character' && fits(m[3]) ? m[3] : fallback?.id;
     const covs = Object.values(covenants).filter((c) => c.sagaId === sagaId && !c.living);
     const covId = t.covId && covenants[t.covId]?.sagaId === sagaId ? t.covId : m?.[2] === 'covenant' && covenants[m[3]] ? m[3] : newest(covs)?.id;
@@ -111,7 +99,10 @@ export default function TourPanel() {
   const here = loc.pathname + loc.search;
   const ctx = useTourCtx(tour, t, here);
   const i = t && tour ? Math.min(t.step, tour.steps.length - 1) : 0;
-  const step = tour?.steps[i];
+  // the step as it reads for the character followed (a hedge tradition's own card)
+  // (by the variant's index, so a change to the character that leaves it the same keeps the step as it is)
+  const vi = useStore((s) => (tour?.steps[i] ? variantIndex(tour.steps[i], ctx.charId ? s.characters[ctx.charId] : undefined) : -1));
+  const step = useMemo(() => tour?.steps[i] && withVariant(tour.steps[i], vi), [tour, i, vi]);
   const dest = step?.at?.(ctx);
   const onPage = !dest || isAt(here, dest);
 
@@ -383,7 +374,7 @@ function WorkingOn({ tour, ctx }: { tour: Tour; ctx: TourCtx }) {
   const livingIds = new Set(living.map((c) => c.id));
   const chars = Object.values(characters)
     .filter((c) => c.sagaId === ctx.sagaId && !npcs.has(c.id) && !(c.covenantId && livingIds.has(c.covenantId)) && !c.wounds.dead)
-    .filter((c) => (!tour.charType || c.type === tour.charType) && (tour.wantsDraft ? !c.creation.finalized : c.creation.finalized) && (!tour.prefersTrade || hasWorkshop(c)) && (!tour.prefersHoly || hasHoly(c)))
+    .filter((c) => (!tour.charType || c.type === tour.charType) && (tour.wantsDraft ? !c.creation.finalized : c.creation.finalized) && (!tour.suits || tour.suits(c)))
     .sort((a, b) => a.name.localeCompare(b.name));
   const covs = Object.values(covenants).filter((c) => c.sagaId === ctx.sagaId && !c.living);
   // go on to the step's page with what was chosen
@@ -441,5 +432,6 @@ function isAt(here: string, dest: string): boolean {
   if (!dq) return true;
   const want = new URLSearchParams(dq);
   const have = new URLSearchParams(hq);
-  return [...want.entries()].every(([k, v]) => have.get(k) === v || (k === 'tab' && !have.get(k) && (v === 'overview' || v === 'saga')));
+  // a tab or a part left out of the address is the first one
+  return [...want.entries()].every(([k, v]) => have.get(k) === v || (!have.get(k) && ((k === 'tab' && (v === 'overview' || v === 'saga')) || (k === 'sub' && v === 'roll'))));
 }

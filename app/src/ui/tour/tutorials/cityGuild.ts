@@ -9,7 +9,8 @@ export const cityGuildTour: Tour = {
   group: 'In play',
   inSaga: true,
   prefers: 'companion',
-  prefersTrade: true,
+  // its steps press a workshop's own controls: one with a trade and no workshop yet can still be chosen; else a practice craftsman
+  suits: (c) => !!c.workshop,
   practice: { type: 'companion', role: 'master-craftsman', folk: true, label: 'a practice master craftsman' },
   steps: [
     {
