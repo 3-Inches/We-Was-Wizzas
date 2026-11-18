@@ -15,6 +15,7 @@ Each point says what the owner wants, then what it means for a change.
 
 1. **One place for each thing you do in play.** Rolls on Dice, the season's work on Seasons, belongings on Possessions. A sheet is for reference. Two places to do one thing means two things to test, and a way to cheat: working a season on one page and unlogging it on another once kept its Labor Points.
    - *For a change:* before adding a control, find where it already is. Another page links to it.
+   - *Rolls are always at the Game Table,* even when the record they change is kept elsewhere, such as a covenant's building. The record's page links to the roll.
 2. **The toolkit prompts; the player does not remember.** When the record changes and the rules react (a Warping Score rises, a season ends, a crisis comes), the next step waits on the Seasons page's Resolve list until it is settled. Plan warns ahead: Labor Points short at the year's end, vis running out, spending over income.
    - *For a change:* ask what the rules make happen next, and make it wait in Resolve or warn in Plan.
 3. **A rule that is described must work.** The owner's fear is a mechanic "paid lip service in its section but not working when it is supposed to". A card that names a rule applies it, or says plainly that the troupe applies it.

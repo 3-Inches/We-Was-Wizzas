@@ -84,7 +84,8 @@ Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 and how they were done. 
 - [ ] **5.5 Sympathy Traits in one place; the troupe's list of changes.** *Mechanical.* B5 and B6.
 - [ ] **5.6 Smaller.** *Mechanical.* C1 (split `HolyPart.tsx` by card) and C2 (the 56 Game Mechanics topics with no "In the app" pointer).
 - [ ] **5.7 Quick build for the hedge traditions, faerie wizards and the Mysteries.** *Judgment.* B7. The largest. One tradition at a time if it grows.
-- [ ] **5.8 For the owner:** where the Great buildings' and the menagerie's rolls are made (B8). No work unless the owner wants it moved.
+- [ ] **5.8 Great projects' rolls at the Game Table.** *Mechanical.* B8.
+  - Decided by the owner (18 November 2026): rolls happen at the Game Table. The building's stress check and the menagerie's rolls move to **Game Table › Dice**, with the same choice of covenant, mason and handler. The covenant's Overview keeps the record (height, quality, damage) and links to the rolls. Move the tutorial steps and pointers that led to the old place (`tutorials/lab.ts`).
 
 When stage 5 is done, mark audit 3 closed. The next audit is due after stage 3's first five or six systems.
 
