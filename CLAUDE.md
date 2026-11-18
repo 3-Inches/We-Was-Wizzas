@@ -6,9 +6,10 @@ This repository holds the *Ars Magica* open-license books as markdown (`reviewed
 
 | File | What it is |
 |---|---|
-| `app/docs/roadmap.md` | What is left to do, in order, and what "finished" means. **Tick items off as you close them.** |
-| `app/docs/design-principles.md` | How the toolkit should work and read, with the checklists a change must pass. |
-| `app/docs/audit-2026-11.md` | Open findings from the last review, each with file, line and a proposed fix. |
+| `app/docs/owner.md` | How the owner's troupe plays, and what the owner expects of every change. **Read it first.** |
+| `app/docs/roadmap.md` | What is left to do, in order, and what "finished" means. **Tick an item in its own pull request.** |
+| `app/docs/design-principles.md` | How the toolkit should work and read, with the checklists a change must pass, the integration checklist among them. |
+| `app/docs/audits/` | The audits. The open one has the findings the roadmap refers to, each with file, line and fix. Its `README.md` says how to do one. |
 | `app/README.md` | What the toolkit does, and how it is built. |
 
 ## Commands
@@ -25,7 +26,8 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Look at the hedge magic, Faerie and Mysteries pages | `node scripts/qa/shots.cjs [width] [fixture]` (see `scripts/qa/fixtures/index.json`) |
 | Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 2 "no target" steps (Welcome, and "Design the power"). |
 | Run the hedge magic, Faerie and Mysteries tutorials on each practice saga | `node scripts/qa/tutorials.cjs 1280 --fixtures`, then `390`. Clean is "no target: 0" and "errors: none". |
-| Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. |
+| Make the saga the sweep visits, set up as the owner plays | `QA_LIVING=all QA_OPTIONAL=all npm run qa:saga` (a few minutes; writes `scripts/qa/out/saga.json`) |
+| Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. Clean is "0 with problems" on the owner's saga (about 1,100 pages, some 30 minutes a width). |
 | Regenerate data from the books | `cd .. && python3 -I tools/extract/run_all.py` |
 | Rebuild the Game Mechanics index | `cd .. && python3 -I tools/extract/build_mechanics.py --report` |
 | Open every book in the reader | `node scripts/qa/books.cjs 1280`, then `390` |
@@ -40,7 +42,7 @@ Stop at the first step that fails. Each step costs more than the one before.
 1. Typecheck, and the test file for what changed. Seconds.
 2. All tests.
 3. Build, then look at the changed page in a browser at 1280 and at 390 wide. Write a short Playwright script or use `scripts/qa/shots.cjs`.
-4. **Once per pull request, at the end:** the tutorials at both widths (with `--fixtures` too, when a tutorial changed), then the full sweep at both widths. Together they take about 25 minutes, so run them in the background with a long timeout. Do not rebuild while a sweep is running: it reads `dist/`.
+4. **Once per pull request, at the end:** the tutorials at both widths (with `--fixtures` too, when a tutorial changed), then the full sweep at both widths, on the owner's saga. Together they take about 25 minutes, so run them in the background with a long timeout. Do not rebuild while a sweep is running: it reads `dist/`.
 
 ## Rules that are not negotiable
 
@@ -57,6 +59,10 @@ Stop at the first step that fails. Each step costs more than the one before.
 - The session's instructions name the branch. Pull requests are drafts. Never merge, never amend, never force-push.
 - No model names in commit messages, pull request titles or bodies, or code, other than the attribution lines the session's instructions give.
 - One roadmap item to a pull request. When a pull request merges, bring the branch up to date with `origin/main` before starting the next.
+- **Tick the roadmap item in its own pull request,** with a "Done as" note. Do not leave it for the next session.
+- **Open the pull request when every check has finished,** with their results in it. The owner merges soon after a pull request opens.
+- **A finding the item does not fix goes into the roadmap,** in the same pull request. A finding written only in a pull request's text is lost.
+- **"Intermittent" is not a cause.** A fault seen twice is traced, or written into the roadmap as a finding. Say what you saw, not that it is not this pull request's.
 
 ## How the code is laid out
 
@@ -82,6 +88,7 @@ Patterns to copy, not reinvent:
 ## Working efficiently
 
 - **Reading a book:** list its headings first (`grep -n '^#' file`), then its formula lines (`grep -n 'TOTAL\|Total:'`), then read only the ranges you need with `sed -n 'A,Bp'`. Whole chapters are rarely needed.
-- **Start a fresh session for each roadmap item.** These documents carry the memory, and a short conversation is cheaper and sharper than a long one that has been summarized many times.
+- **Start a fresh session for each roadmap item.** These documents carry the memory, and a short conversation is cheaper and sharper than a long one that has been summarized many times. What a session learns that the next one needs goes into these documents, `app/docs/owner.md` for what the owner says.
+- **Before calling an item finished, look at the joins.** Go down the integration checklist in the design principles. The last audit found most of its faults there, not in the item's own cards.
 - **Write the plan into the pull request or the roadmap, not only into the conversation.**
 - **Before adding a card, a page, a tab or a paragraph, check the design principles' budgets.** The toolkit is large. Adding is easy; finding things afterwards is the cost.
