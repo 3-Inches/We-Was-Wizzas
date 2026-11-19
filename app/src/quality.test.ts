@@ -40,7 +40,7 @@ const LIMITS = {
   /** the README's longest line, in characters */
   readmeLongestLine: 431,
   /** Game Mechanics topics with no "In the app" pointer */
-  topicsWithoutPointer: 56,
+  topicsWithoutPointer: 24,
 };
 
 /** Source files over 800 lines. A file may leave this list; none may join it. */
