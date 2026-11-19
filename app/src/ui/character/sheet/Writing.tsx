@@ -81,7 +81,7 @@ export function WritingCard({ ed }: { ed: CharEditor }) {
   };
   const e = { ...ed, c, d, saga } as Ed;
   return (
-    <Card title="Writing and copying" tour="writing">
+    <Card title="Writing and copying" tour="writing" fold="writing" summary={open.length ? open.map((p) => `${p.title} ${p.points}/${p.needed}`).join(' · ') : waiting.length ? `${waiting.map((p) => p.title).join(', ')}: finished, for the library.` : 'A summa or tractatus written, or a book copied, as a season’s work.'}>
       <RulesNote
         book="DE"
         line={16248}

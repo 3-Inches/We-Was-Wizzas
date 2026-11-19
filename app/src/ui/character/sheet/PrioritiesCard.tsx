@@ -31,7 +31,12 @@ export function PrioritiesCard({ c, d, ctx, saga, data, chars, update }: { c: Ch
     });
   const move = (i: number, by: number) => set((l) => void ([l[i], l[i + by]] = [l[i + by], l[i]]));
   return (
-    <Card title="Season priorities" tour="priorities">
+    <Card
+      title="Season priorities"
+      tour="priorities"
+      fold="priorities"
+      summary={list.length ? `${list.length} entr${list.length === 1 ? 'y' : 'ies'}${following ? ', followed in a season nobody plans' : ', not followed'}.` : 'None yet: what they do with a season nobody planned, in order.'}
+    >
       {!list.length ? (
         <>
           <p className="small" style={{ marginTop: 0 }}>

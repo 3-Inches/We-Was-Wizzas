@@ -19,8 +19,11 @@ const ELEMENTAL_IDS = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling
 /** An elementalist: a Technique or Form Virtue of elemental magic. */
 export const isElementalist = (c: Character) => holds(c, ELEMENTAL_IDS);
 
-const GRUAGACH_IDS = ['gruagach', ...GRUAGACH_TECHNIQUES.flatMap((t) => [t.id, t.virtue]), ...GRUAGACH_FORMS.flatMap((f) => [f.id, f.virtue])];
-export const hasGruagach = (c: Character) => holds(c, GRUAGACH_IDS);
+// a gruagach's Arts are Virtues (give, blessing…) and Abilities (gruagach-give…): each is looked for where it
+// is kept, since the holy power Blessing is an Ability called 'blessing' too (RoP: The Divine)
+const GRUAGACH_VIRTUES = ['gruagach', ...GRUAGACH_TECHNIQUES.map((t) => t.virtue), ...GRUAGACH_FORMS.map((f) => f.virtue)];
+const GRUAGACH_ABILITIES = [...GRUAGACH_TECHNIQUES.map((t) => t.id), ...GRUAGACH_FORMS.map((f) => f.id)];
+export const hasGruagach = (c: Character) => c.virtues.some((v) => GRUAGACH_VIRTUES.includes(v.defId)) || c.abilities.some((a) => GRUAGACH_ABILITIES.includes(a.abilityId));
 
 const VITKI_IDS = ['vitki', ...RUNES.map((r) => r.id)];
 export const hasVitki = (c: Character) => holds(c, VITKI_IDS);

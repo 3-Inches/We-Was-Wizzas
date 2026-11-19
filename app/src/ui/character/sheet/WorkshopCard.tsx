@@ -244,6 +244,8 @@ export function WorkshopCard({ ed, where = 'guild' }: { ed: CharEditor; where?: 
     <Card
       title={forSeasons ? `Livelihood: ${season} ${year}` : 'Livelihood & workshop (City & Guild)'}
       tour={forSeasons ? 'workshop-season' : 'workshop'}
+      fold={forSeasons ? 'workshop-season' : undefined}
+      summary={`${w.laborPoints} Labor Points banked${busy ? `; ${season} is spent` : ''}.`}
       actions={
         forSeasons ? undefined : (
           <button className="small ghost danger" onClick={() => window.confirm('Stop tracking this livelihood?') && update((x) => void (x.workshop = undefined))}>

@@ -5,7 +5,7 @@ import { RollAtTable, useAtTable, useEditable } from '../../play';
 import { useMemo, useState } from 'react';
 import { deriveCharacter } from '../../../engine/character/derive';
 import {
-  ORDEALS, SCRIPT_ELEMENTS, applyInitiation, criamonProgress, initiationTarget, initiationTotal, mysteryLores, stationLoreNeeded, varyScript, type OrdealTier,
+  ORDEALS, SCRIPT_ELEMENTS, applyInitiation, criamonProgress, initiationTarget, initiationTotal, mysteryLores, mysteryWayIn, stationLoreNeeded, varyScript, type OrdealTier,
 } from '../../../engine/initiation';
 import { optionOn } from '../../../engine/optional';
 import { seasonTaken } from '../../../engine/time';
@@ -17,8 +17,6 @@ import { useSagaCharacters } from '../../../store/hooks';
 import { Card, Field, Stepper } from '../../kit';
 import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
-
-const MYSTERY_HOUSES = ['bjornaer', 'criamon', 'merinita', 'verditius'];
 
 export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const { c, d, data, saga, update, change } = ed;
@@ -48,13 +46,10 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   if (!c || !d || !saga) return null;
 
   const history = c.initiations ?? [];
-  const myLores = mysteryLores(d, c.house);
-  const holdsMystery = d.virtues.some((v) => v.def?.categories.includes('Mystery'));
   if (!optionOn(saga, 'mysteries') && !history.length) return null;
-  // anyone may be Initiated by a Mystagogue (a cult's member, or the storyguide's): at the table the
-  // card is there for everyone; a sheet shows it for those with a Mystery to keep
-  const mine = MYSTERY_HOUSES.includes(c.house ?? '') || myLores.length > 0 || history.length > 0 || holdsMystery;
-  if (!atTable && !mine) return null;
+  // only one with a way in is Initiated: of a Mystery House, or with its Lore (DE, Mystery Initiation);
+  // at the table the season in full says why the card is not there for anyone else
+  if (!mysteryWayIn(c, d)) return null;
 
   // an Initiation takes the Initiate's season
   const taken = seasonTaken(c, saga.currentYear, saga.currentSeason);
@@ -149,7 +144,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const dormant = CRIAMON_STATIONS.filter((s) => s.path !== path && held.has(s.id));
 
   return (
-    <Card title="Mysteries & Initiation" tour="mysteries" actions={atTable ? <button className="small" onClick={() => setOpen((o) => !o)}>{open ? 'Close' : 'Plan an Initiation'}</button> : undefined}>
+    <Card title="Mysteries & Initiation" tour="mysteries" fold="mysteries" summary={history.length ? `${history.length} Initiation${history.length > 1 ? 's' : ''}; the latest: ${history[history.length - 1].virtueName}.` : 'An Initiation into a Mystery is a season’s work.'} actions={atTable ? <button className="small" onClick={() => setOpen((o) => !o)}>{open ? 'Close' : 'Plan an Initiation'}</button> : undefined}>
       <RulesNote book="DE" line={16483} endLine={16551}>
         The Mystagogue’s Presence + (House) Lore + the Script’s bonus against 15 for a Minor Virtue or 21 for a Major one (18 and 30 for one the Mystagogue lacks). No die.
       </RulesNote>
