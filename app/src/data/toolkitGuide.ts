@@ -182,7 +182,7 @@ export const TOOLKIT_GUIDE: RpGuide = {
           points: [
             ['A teacher', 'is chosen from the saga, and the subjects offered are those they can teach this student. Logging the lesson logs the teacher’s season too.'],
             ['Writing and copying', 'works a summa, tractatus or copy a season at a time. The finished book goes to the covenant’s library.'],
-            ['A season logged by mistake', 'is **Unlogged** on the character’s season log, and all it did comes off. **Turn back**, on Seasons, takes the whole saga back up to two years.'],
+            ['A season logged by mistake', 'is **Unlogged** on the character’s season log, and all it did comes off. A roll its work left that has been made, such as a curse, stands, and the button says so. **Turn back**, on Seasons, takes the whole saga back up to two years.'],
           ],
         },
         { p: 'Each year’s end closes the covenants’ books, rolls aging, adds Warping, and recasts wards such as the Aegis of the Hearth from the covenant’s vis.' },

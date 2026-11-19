@@ -90,12 +90,17 @@ describe('a double botch studying vis, at a planned season’s end', () => {
     expect(e.undo?.owed).toBeUndefined();
   });
 
-  it('a living covenant’s magus gains the points, and nothing is owed (no player resolves it)', () => {
+  it('a living covenant’s magus gains the points, and the toolkit rolls the Twilight as the season ends (owner point 5)', () => {
     const st = sagaWith(6, { living: true });
     const before = st.characters[0].warpingPoints;
-    const m = advanceSeason(st, data, { fillUnplanned: true, rollAging: false, yearEnd: { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true }, rng: zeros }).state.characters[0];
-    expect(m.warpingPoints).toBe(before + 2);
+    // every die 0: the roll to avoid it botches, so the magus enters Twilight; the simple die's 0 is 10 more points
+    const { state, report } = advanceSeason(st, data, { fillUnplanned: true, rollAging: false, yearEnd: { permanentIncome: true, inflation: true, harvestVis: true, skipVis: [], clearSundry: true }, rng: zeros });
+    const m = state.characters[0];
+    expect(m.warpingPoints).toBe(before + 2 + 10);
     expect(m.owed ?? []).toHaveLength(0);
+    expect(report.lines.find((l) => l.who === 'Magus' && /BOTCH/.test(l.text))?.text).toMatch(/the toolkit rolls it as the season ends/);
+    expect(report.lines.some((l) => l.who === 'Magus' && /entered Wizard’s Twilight/.test(l.text) && l.tribunal)).toBe(true);
+    expect(state.saga.tribunalNews?.some((n) => n.characterId === m.id && /Wizard’s Twilight/.test(n.text))).toBe(true);
   });
 });
 

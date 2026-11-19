@@ -9,7 +9,7 @@ import { deriveCharacter, type DerivedCharacter } from '../../engine/character/d
 import { characterContext } from '../../engine/context';
 import { currentSeverity, prognosisTotal } from '../../engine/disease';
 import { DAY, HOUR, MONTH, SEASON, WEEK, ailmentsOf, condition, medicCapacity, medicsOf, nextRecovery, passTime, spanText, type Care } from '../../engine/recovery';
-import { livingConditions } from '../../engine/time';
+import { livingConditions } from '../../engine/yearEnd';
 import type { Character, Covenant, Saga } from '../../engine/types';
 import { useStore } from '../../store/store';
 import { Card, Empty, Field, Stepper } from '../kit';

@@ -13,7 +13,8 @@ import { generateCharacter } from './generate/character';
 import { strike } from './calamity';
 import { fillCovenant } from './generate/covenant';
 import { seeded } from './generate/random';
-import { advanceSeason, DEFAULT_ADVANCE, livingConditions } from './time';
+import { advanceSeason, DEFAULT_ADVANCE } from './time';
+import { livingConditions } from './yearEnd';
 import { DEFAULT_HOUSE_RULES, type Covenant, type CovenantHookBoon, type Saga } from './types';
 
 const data = buildGameData();

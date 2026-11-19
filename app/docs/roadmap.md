@@ -18,15 +18,6 @@ What is left to do, in order. Work the first open batch under **Now**.
 
 Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and how they were done. Its findings, and what was found while fixing them, are below. The numbers in parentheses are the ones the old roadmap gave them (5.1 to 5.17), which earlier pull requests use. Most are at the joins between systems, so go down the integration checklist for each. When these are done, mark audit 3 closed.
 
-### Batch A. Twilight, Warping and Unlog
-
-All *Mechanical*. Big files it will add to, to split first: `src/engine/time.ts`, and `src/engine/types.ts` if item 3 needs a field on `SeasonUndo`.
-
-1. **Living covenants' magi roll Twilight (5.9).** Decided by the owner (`owner.md`, point 5): they roll it as the players do. A living covenant's magus gains Warping Points from a botch studying vis and from the aura (`src/engine/time.ts`, `seasonWarping` and `auraYearEnd`), and nothing follows, since no player resolves it. But a lab accident's Warping goes through `gainWarping` whoever the magus is (`src/engine/projects.ts:622`), so a living magus can owe a Twilight nobody rolls. Fix: one rule for all three. Roll Twilight avoidance for a living magus when the season ends (DE line 9755), and tell the Twilight in the Tribunal's news (owner point 5).
-2. **A roll already made stands (5.10).** Decided by the owner (`owner.md`, point 2). Unlogging the season of a woven curse or a ring's first recitation drops the roll while it waits in Resolve (`seasonEndRolls`), as now. Once it is rolled, Unlog leaves what it did, and the Unlog button says so. Turn back undoes everything. What stays: a botched curse's Warping and the Witch Moon it brings (`rollWovenCurse`, `src/engine/folkWitch.ts:198`), and a ring learned.
-3. **Holy work and Unlog (5.12).** A season of holy work (`src/ui/pages/holy/HolyWorksCard.tsx`, `work`) is logged with no `undo`. Unlog takes back its experience, but not the work's progress and seasons, the long-term Fatigue a Merkavah season costs, or a finished amulet or golem power, which should make the season final. Fix: log it through `useSeasonWork`, with the work as it was in `undo`, and `final` when the work is done.
-4. **The check, so Unlog's kind of fault cannot come back.** Seasons are logged in 13 files (`grep -rln 'seasonLog.push' src`), and `src/engine/initiation.ts` (about line 161) builds its entry inline. Each must record in `undo` everything it changes outside the entry's `gains`. The check must test behavior, not source text (a text guard is what audit 3's A1 got past): a test that logs each kind of season and unlogs it, and finds the character and the covenant as they were before.
-
 ### Batch B. Plan a season, and small fixes at the Game Table
 
 All *Mechanical*. Items 1 and 2 are in `src/ui/character/sheet/PlanSeasonCard.tsx`, split from `AdvancementTab.tsx` in 5.4.
@@ -45,6 +36,11 @@ All *Mechanical*. Items 1 and 2 are in `src/ui/character/sheet/PlanSeasonCard.ts
 
 Findings not yet in a batch.
 
+- **A living covenant's hedge people suffer nothing from Warping.** Batch A has the toolkit roll a living magus's Twilight when the season ends (`src/engine/livingTwilight.ts`), but for a living folk witch, vitki or one with Sympathy Traits `gainWarping` owes nothing (`living` in `src/engine/warping.ts`, `addWarping`), so the Witch Moon, Nátt-thel and Faerie Calling never come. *Judgment*: roll them as Twilight is rolled, and how each shows in the Tribunal's news. Goes with the next item.
+- **A living magus's Twilight is not everything the book's is.** `livingTwilight` applies the knowledge gained or lost (in the magus's best Art), the simple die of Warping, a scar, and the seasons lost (logged "In Wizard's Twilight"); a Virtue, Flaw or spell from it is left to the storyguide (README, "Not yet automated"), and the magus still ages while away, though "immune to … aging" in Twilight (DE line 9806). *Mechanical* for the aging: skip `ageCharacter` for a year spent in Twilight.
+- **The card check does not reach every season yet.** `src/ui/pages/unlogEverySeason.test.tsx` varies only the first select of each season card, so a learned magician inventing a charm (`src/ui/pages/HedgePart.tsx`), the kitchen's fetish (`FolkWitchPart.tsx`) and a ring of Solomon's first recitation (`DevotionSeasonsCard.tsx`) are never pressed. *Mechanical*: set them up in its `prepared()` and add them to its list of seasons reached.
+- **Unlogging a student's season leaves the teacher's.** A lesson from a covenant-mate (`PlanSeasonCard.tsx`, the teacher's entry) and a lab helper's season (`LabProjects.tsx`, the helpers' entries) are logged on each character, and each is unlogged on its own row. *Judgment*: should Unlog take back the linked season too, and say so?
+- **Two roads to the season log are checked by copying their code, not by pressing them.** `src/ui/pages/unlogEverySeason.test.tsx` presses every button of a character's season in full; an Initiation (several steps on the Mysteries card) and After a story (`src/ui/pages/AfterStoryCard.tsx`, another page) are checked in `src/engine/unlogEverySeason.test.ts` by doing what they do. *Mechanical*: press them too.
 - **The living covenants' people work no hedge, holy, devotion or mason seasons.** No engine path runs that work for them (found during 5.3), so the owner's Tribunal's five faerie wizards, three hedge wizards and holy magus spend their seasons as other characters do. Owner point 5 asks that they play by the players' rules. *Judgment*: which of that work they should do, and how it shows in the Tribunal's news.
 
 ## Next: what the other books add
@@ -93,6 +89,7 @@ Out of scope:
 One line each, newest first. The pull request has the detail.
 
 **Audit 3** (`audits/2026-11-18.md`):
+- Living covenants' magi roll Twilight; a roll already made stands, and Unlog says so; holy work is unlogged whole; and two tests log and unlog every kind of season, by the clock and by pressing each card's buttons (5.9, 5.10, 5.12, Batch A, #83).
 - A character's season in full opens on their own work and draws only the cards that apply to them, with a folded line for the rest; `AdvancementTab.tsx` split into a file a card (5.4, #82).
 - Nothing on a page is wider than a phone, and the sweep visits every tab, every part of Dice and the practice sagas (5.15, #80).
 - The Faith page split into a file a card; 32 more Game Mechanics topics point into the app (5.6, #79).

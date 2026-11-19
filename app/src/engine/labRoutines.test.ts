@@ -5,7 +5,7 @@ import { newCharacter, ensureAbility } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { routineClash, routineYear, toggleRoutine } from './labRoutines';
 import { newProject, planProject, workProject } from './projects';
-import { ageCharacter } from './time';
+import { ageCharacter } from './yearEnd';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 
 const data = buildGameData();

@@ -4,9 +4,10 @@
 import { useState } from 'react';
 import { ARTS, ART_NAMES, type Art } from '../../../data';
 import { addVirtue } from '../../../engine/character/factory';
-import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
+import { TWILIGHT_TIME, twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
 import { Card, Field, Stepper, HowItWorks } from '../../kit';
-import { AURA_TIME, auraWarping } from '../../../engine/time';
+import { AURA_TIME, auraWarping } from '../../../engine/yearEnd';
+import { simpleDie } from '../../../engine/dice';
 import type { CharEditor } from '../useChar';
 import { settle } from '../../../engine/seasonPlan';
 import type { Character } from '../../../engine/types';
@@ -43,16 +44,18 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
   const atTable = useAtTable();
   const edit = useEditable(c);
   if (!c || !d) return null;
-  const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
+  // the local aura, whatever its realm: the book's example counts a Faerie aura of 4 (DE, Twilight Example)
+  const aura = ctx.aura.strength;
   const log = (s: string) => setText((t) => [s, ...t].slice(0, 20));
   const ew = d.abilities.find((a) => a.abilityId === 'enigmatic-wisdom');
   const score = warpingScoreWith(d, gain, added);
 
   const avoid = () => {
     const r = twilightAvoidance(d, gain, aura, undefined, added);
-    log(`Avoid Twilight: ${r.my} vs ${r.tw}: ${r.success ? 'avoided; two minutes to bring the magic under control' : r.botch ? 'BOTCH: enters Twilight and cannot comprehend it' : 'enters Twilight'}. ${r.detail}`);
+    log(`Avoid Twilight: ${r.my} vs ${r.tw}: ${r.success ? 'avoided; two minutes to bring the magic under control' : r.botch ? `BOTCH: enters Twilight and cannot comprehend it; time in the world: ${TWILIGHT_TIME[Math.min(10, Math.max(1, score))]}` : 'enters Twilight'}. ${r.detail}`);
     if (!r.success) setStage({ kind: 'entered', gained: gain });
-    if (r.botch) setStage({ kind: 'outcome', gained: gain, comprehended: false, extra: 0, duration: '' });
+    // a botch enters Twilight and cannot comprehend it: no roll, the base time, and the simple die's mark all the same (DE)
+    if (r.botch) setStage({ kind: 'outcome', gained: gain, comprehended: false, extra: simpleDie().value, duration: TWILIGHT_TIME[Math.min(10, Math.max(1, score))] });
     // avoided: the Twilight check waiting on the Resolve list is settled
     if (r.success) update((x) => void settleTwilight(x));
   };

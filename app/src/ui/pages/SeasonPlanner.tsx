@@ -7,7 +7,8 @@ import { deriveCharacter, type DerivedCharacter } from '../../engine/character/d
 import { covenantOf } from '../../engine/context';
 import { teaches } from '../../engine/covenfolk';
 import { extraSeasonHere, seasonsOf, seasonsUsed } from '../../engine/seasons';
-import { describeStanding, inPlay, loggedThisSeason, resolveStanding } from '../../engine/time';
+import { describeStanding, loggedThisSeason, resolveStanding } from '../../engine/time';
+import { inPlay } from '../../engine/yearEnd';
 import { orderOfPlay } from '../../engine/seasonPlan';
 import { PlayerOrder } from './SeasonResolve';
 import type { Character, Covenant, Saga } from '../../engine/types';

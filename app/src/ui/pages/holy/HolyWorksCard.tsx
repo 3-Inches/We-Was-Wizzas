@@ -5,9 +5,8 @@ import { useState } from 'react';
 import {
   holyMethodsOf, holyPowersOf, holyWorkLabel, holyWorkPlan, holyWorksOpen, workHolySeason, type HolyWork, type HolyWorkKind,
 } from '../../../engine/holy';
-import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { holyWorkTold } from '../../../engine/seasonTold';
-import { seasonBusy } from '../../../engine/time';
+import { useSeasonWork } from '../../seasonWork';
 import type { AuraState } from '../../../engine/magic';
 import { Card, Field, Stepper, Total } from '../../kit';
 import { uid } from '../../../util/id';
@@ -17,18 +16,16 @@ import { useLines, Lines } from './shared';
 const WORK_ABILITY: Record<HolyWorkKind, string> = { amulet: 'craft-amulets', golem: 'kabbalah', empower: 'kabbalah', trueName: 'merkavah', shinnui: 'gematria' };
 
 export function HolyWorksCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
-  const { c, d, update, saga } = ed;
+  const { c, d, update } = ed;
   const [kind, setKind] = useState<HolyWorkKind | ''>('');
   const [name, setName] = useState('');
   const [target, setTarget] = useState(10);
   const [lines, show] = useLines();
+  // a season's work is the season: one already logged leaves none for this (as lab work)
+  const { year, season, busy, work: spend } = useSeasonWork(ed);
   if (!c || !d) return null;
   const open = holyWorksOpen(d);
   const works = c.holy?.works ?? [];
-  const year = saga?.currentYear ?? 1220;
-  const season = saga?.currentSeason ?? 'Spring';
-  // a season's work is the season: one already logged leaves none for this (as lab work)
-  const busy = seasonBusy(c, year, season);
   const start = () => {
     if (!kind) return;
     const w: HolyWork = {
@@ -46,21 +43,24 @@ export function HolyWorksCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
     setName('');
   };
   const set = (u: string, patch: Partial<HolyWork>) => update((x) => void (x.holy = { ...(x.holy ?? {}), works: (x.holy?.works ?? []).map((w) => (w.uid === u ? { ...w, ...patch } : w)) }));
-  const work = (w: HolyWork, finish?: boolean) => {
-    let out: string[] = [];
-    update((x) => {
-      out = workHolySeason(x, d, w.uid, aura, { finish });
-      const ab = x.abilities.find((a) => a.abilityId === WORK_ABILITY[w.kind]);
-      const e = newSeasonEntry(year, season, 'other', `Holy work: ${w.name}`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
-      e.notes = out.join(' ');
-      // the name the player gave it, not the default the card set ("A Major amulet")
-      const after = x.holy?.works?.find((y) => y.uid === w.uid);
-      e.told = holyWorkTold(w.kind, w.name.toLowerCase() === holyWorkLabel(w.kind).toLowerCase() ? undefined : w.name, !!after?.done);
-      applySeason(x, e, 1);
-      x.seasonLog.push(e);
-    });
-    show([...out, `${season} ${year} logged, +2 xp Exposure.`]);
-  };
+  // logged as one change that Unlog takes back whole: the work's progress and seasons, and Merkavah's
+  // Fatigue; a work finished (an amulet made, a golem awakened, a True Name learned) makes the season final
+  const work = (w: HolyWork, finish?: boolean) =>
+    show(
+      spend(`Holy work: ${w.name}`, WORK_ABILITY[w.kind], (x) => {
+        const fatigue = x.longTermFatigueLost;
+        const out = workHolySeason(x, d, w.uid, aura, { finish });
+        const after = x.holy?.works?.find((y) => y.uid === w.uid);
+        const spent = x.longTermFatigueLost - fatigue;
+        return {
+          lines: out,
+          // the name the player gave it, not the default the card set ("A Major amulet")
+          told: holyWorkTold(w.kind, w.name.toLowerCase() === holyWorkLabel(w.kind).toLowerCase() ? undefined : w.name, !!after?.done),
+          made: after?.done ? w.name : undefined,
+          undo: { holyWork: structuredClone(w), ...(spent > 0 ? { fatigue: spent } : {}) },
+        };
+      }),
+    );
   return (
     <Card title="Seasons of holy work" tour="holy-works" fold="holy-works" summary={works.filter((w) => !w.done).map((w) => w.name).join(' · ') || 'Major amulets, golems, True Names, Shinnui Shem'}>
       {works.map((w) => {

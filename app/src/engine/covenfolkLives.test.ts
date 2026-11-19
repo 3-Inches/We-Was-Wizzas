@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { newCovenant } from './covenant';
 import { covenfolkYearEnd } from './covenfolk';
 import { inhumanCovenfolk, inhumanGroups, inhumanUpkeep } from './covenantBoons';
-import { covenfolkWarpingYearEnd } from './time';
+import { covenfolkWarpingYearEnd } from './yearEnd';
 import type { Covenant, CovenantHookBoon, Specialist } from './types';
 
 const boon = (uid: string, nature: 'faerie' | 'spirit' | 'magic' | 'animal', share?: number): CovenantHookBoon =>
@@ -137,7 +137,7 @@ describe('a covenant immune to a Flaw', () => {
   });
   it('makes one away from the aura hunger for a pawn a season', async () => {
     const { newCharacter } = await import('./character/factory');
-    const { hungerSeason } = await import('./time');
+    const { hungerSeason } = await import('./yearEnd');
     const c = newCharacter('companion', 's');
     c.virtues.push({ uid: 'h', defId: 'hunger-for-form-magic-flaw', size: 'Major', param: 'Ig', heldBy: 'im' });
     expect(hungerSeason(c)).toEqual([]);

@@ -19,7 +19,7 @@ import { extraFree, inPlay, seasonBusy, seasonTaken } from '../../../engine/time
 import { type Character, type HouseRules, type LabProject, type LabVirtueEntry, type Season } from '../../../engine/types';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from '../../../engine/labHelp';
 import { bindFamiliarSheets } from '../../../engine/teaching';
-import { labUndo } from '../../../engine/unlog';
+import { begunUndo, labUndo } from '../../../engine/unlog';
 import { deriveCharacter, type DerivedCharacter } from '../../../engine/character/derive';
 import { ensureAbility } from '../../../engine/character/factory';
 import type { GameData } from '../../../data';
@@ -68,11 +68,11 @@ export function useWorkProject(ed: CharEditor): (p: LabProject, helperIds?: stri
     applySeason(x, e, 1);
     x.seasonLog.push(e);
     for (const h of helpers.filter((y) => y.used)) {
-      const mt = ensureAbility(h.c, 'magic-theory', {});
+      const had = { abilities: [...h.c.abilities] }, mt = ensureAbility(h.c, 'magic-theory', {});
       const r = computeStudy(h.d, { kind: 'exposure', subject: 'Magic Theory' }, { abilityUid: mt.uid });
       const he = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${x.name || 'a magus'} in the lab: ${p.name} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
       if (h.extra) he.extra = true;
-      he.told = helperTold(x.name || 'a magus');
+      he.told = helperTold(x.name || 'a magus'); if (begunUndo(had, h.c).abilities) he.undo = begunUndo(had, h.c);
       applySeason(h.c, he, 1);
       h.c.seasonLog.push(he);
       lines.push(`${h.c.name || 'The helper'} helped: +${h.value} to the Lab Total, Exposure in Magic Theory +${r.xp} xp.`);

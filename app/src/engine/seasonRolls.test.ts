@@ -8,7 +8,8 @@ import { deriveCharacter } from './character/derive';
 import { DEVOTION_GAINS, QUEST_COMPONENTS, SHRINE_SEASON_POINTS, churchCardsOpen, hagiographyPoints } from './church';
 import { recitationParts } from './holy';
 import { newSeasonEntry } from './longterm';
-import { SOLOMON_SEARCH_EASE, firstRecitationEase, rollSeasonRoll, seasonEndRolls } from './seasonRolls';
+import { SOLOMON_SEARCH_EASE, firstRecitationEase, noteSeasonRoll, rollSeasonRoll, seasonEndRolls } from './seasonRolls';
+import { canUnlog, unlogSeason } from './unlog';
 import { advanceSeason, DEFAULT_ADVANCE } from './time';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 
@@ -118,5 +119,77 @@ describe('a season’s search for the Book of Solomon (RoP: The Divine, Finding 
   it('short of 21, not found; a botch, a different book', () => {
     expect(rollSeasonRoll(searching(12), 'search', die(8)).found).toBe(false);
     expect(rollSeasonRoll(searching(12), 'search', die(0, 1)).lines[1]).toMatch(/different book/);
+  });
+});
+
+// owner.md, point 2: Unlog takes back a season's work and anything still waiting in Resolve, but not what a
+// roll the table has made did; it says so. (Roadmap Batch A, 5.10.)
+describe('Unlog and the roll a season left', () => {
+  function weaving() {
+    const s = newSaga('T');
+    s.currentYear = 1220;
+    s.currentSeason = 'Spring';
+    const c = scholar();
+    c.sagaId = s.id;
+    c.warpingPoints = 4; // one more makes a Warping Score of 1
+    const e = newSeasonEntry(1220, 'Spring', 'other', 'Wove the curse of Disease');
+    e.applied = true;
+    c.seasonLog.push(e);
+    c.folkWitch = { curse: { name: 'Disease', ease: 9, target: 'the reeve', score: 6, auraBotch: 0, penetration: 2, year: 1220, season: 'Spring', entryUid: e.uid } };
+    return { s, c, e };
+  }
+  const ended = (s: ReturnType<typeof weaving>['s'], c: Character) => advanceSeason({ saga: s, characters: [c], covenants: [] }, data, { ...DEFAULT_ADVANCE, fillUnplanned: false }).state.characters[0];
+
+  it('a roll still waiting in Resolve goes with its season', () => {
+    const w = weaving();
+    const c = ended(w.s, w.c);
+    expect(c.owed?.map((o) => o.kind)).toEqual(['curse']);
+    const r = unlogSeason(c, w.e.uid);
+    expect(r.ok).toBe(true);
+    expect(c.owed ?? []).toEqual([]);
+    expect(c.folkWitch?.curse).toBeUndefined();
+  });
+
+  it('unlogged before its season ends, nothing is owed when it does', () => {
+    const w = weaving();
+    unlogSeason(w.c, w.e.uid);
+    expect(w.c.folkWitch?.curse).toBeUndefined();
+    expect(ended(w.s, w.c).owed ?? []).toEqual([]);
+  });
+
+  it('a botched curse, once rolled, stands: its Warping and the Witch Moon stay, and Unlog says so', () => {
+    const w = weaving();
+    const c = ended(w.s, w.c);
+    const entryUid = c.folkWitch!.curse!.entryUid;
+    c.owed = c.owed!.filter((o) => o.kind !== 'curse'); // settled in Resolve
+    const lines = rollSeasonRoll(c, 'curse', die(0, 1)).lines;
+    noteSeasonRoll(c, 'curse', entryUid, lines);
+    expect(c.warpingPoints).toBe(5);
+    const e = c.seasonLog.find((x) => x.uid === entryUid)!;
+    expect(e.notes).toMatch(/BOTCH/);
+    expect(canUnlog(e)).toEqual({ ok: true, stands: expect.stringMatching(/The curse has been rolled: what it did stands/) });
+    expect(unlogSeason(c, entryUid).ok).toBe(true);
+    expect(c.warpingPoints).toBe(5);
+    expect(c.owed?.map((o) => o.kind)).toEqual(['witch-moon']);
+    expect(c.folkWitch?.witchMoon).toBeDefined();
+  });
+
+  it('a ring of Solomon, once recited and rolled, stays learned when its season is unlogged', () => {
+    const s = newSaga('T');
+    s.currentYear = 1220;
+    s.currentSeason = 'Spring';
+    const c = scholar();
+    const e = newSeasonEntry(1220, 'Spring', 'other', 'Devotion: a ring of Solomon first recited');
+    e.applied = true;
+    c.seasonLog.push(e);
+    c.holy = { recitation: { ring: 1, seasons: 2, score: 6, ease: firstRecitationEase(1, 2), year: 1220, season: 'Spring', entryUid: e.uid } };
+    noteSeasonRoll(c, 'ring', e.uid, rollSeasonRoll(c, 'ring', die(5)).lines);
+    expect(canUnlog(e).stands).toMatch(/a ring learned stays learned/);
+    expect(unlogSeason(c, e.uid).ok).toBe(true);
+    expect(c.holy?.notoria?.learned).toBe(1);
+  });
+
+  it('a season with no roll says nothing stands', () => {
+    expect(canUnlog(newSeasonEntry(1220, 'Spring', 'practice', 'Practice'))).toEqual({ ok: true });
   });
 });

@@ -619,7 +619,7 @@ function workOne(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: 
   const wp = (hz?.warpingPoints ?? 0) + (xr?.warpingPoints ?? 0);
   if (wp) {
     // a single event: Twilight follows on two or more, owed on the Resolve list (warping.ts)
-    const follows = year !== undefined && o.season ? gainWarping(c, d, { points: wp, why: 'from the lab', year, season: o.season as Season }) : ((c.warpingPoints += wp), wp >= 2 ? "Roll for Wizard's Twilight." : undefined);
+    const follows = year !== undefined && o.season ? gainWarping(c, d, { points: wp, why: 'from the lab', year, season: o.season as Season, living: !!cov?.living || !!c.wanderer }) : ((c.warpingPoints += wp), wp >= 2 ? "Roll for Wizard's Twilight." : undefined);
     lines.push(`${wp} Warping Point${wp > 1 ? 's' : ''} for ${c.name || 'the magus'}.${follows ? ` ${follows}` : ''}`);
   }
   // the chart rolled only for Infernal vis adds no die to the Lab Total: it is not an experiment

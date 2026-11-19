@@ -8,7 +8,7 @@ import { deriveCharacter } from './character/derive';
 import { applyAgingPoint, sparestCharacteristic } from './longterm';
 import { newProject, planProject, shapeMaterialChoices, workProject } from './projects';
 import { GUILD_RANKS, guildRank } from './society';
-import { feedHunger } from './time';
+import { feedHunger } from './yearEnd';
 import { isTrade } from './workshop';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import { newEffect, newItem } from '../ui/items/ItemEditor';

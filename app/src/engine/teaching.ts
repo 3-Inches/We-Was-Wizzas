@@ -7,6 +7,7 @@
 import { ARTS, ART_NAMES, abilityTypeOf, isLanguageAbility, type Art, type GameData } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import { ensureAbility } from './character/factory';
+import { begunUndo } from './unlog';
 import { applySeason, computeStudy, newSeasonEntry, type StudyResult } from './longterm';
 import type { Character, CharSpell, Season, SeasonLogEntry } from './types';
 import { abilityScoreFromXp } from './xp';
@@ -235,6 +236,7 @@ export function giveLesson(t: Learner, plan: LessonPlan, year: number, season: S
   const out: { who: Character; text: string }[] = [];
   const tName = t.c.name || 'The teacher';
   const names = plan.students.map((w) => w.s.c.name || 'a student');
+  const had = { abilities: [...t.c.abilities] };
   const teaching = ensureAbility(t.c, 'teaching', {});
   const ex = computeStudy(t.d, { kind: 'exposure', subject: 'Teaching' }, { abilityUid: teaching.uid });
   const mark = (e: SeasonLogEntry) => {
@@ -245,15 +247,18 @@ export function giveLesson(t: Learner, plan: LessonPlan, year: number, season: S
     return e;
   };
   const te = mark(newSeasonEntry(year, season, 'teach', `Taught ${plan.label} to ${names.join(', ')} (Exposure: Teaching +${ex.xp} xp)`, ex.xp ? { [`ability:${teaching.uid}`]: ex.xp } : {}));
+  if (begunUndo(had, t.c).abilities) te.undo = begunUndo(had, t.c);
   applySeason(t.c, te, 1);
   t.c.seasonLog.push(te);
   out.push({ who: t.c, text: `${o.extra ? 'Extra season: ' : ''}Taught ${plan.label} to ${names.join(' and ')}${o.asked ? ' (as asked)' : ''}: ${plan.total} xp in all; Exposure in Teaching +${ex.xp} xp.${!ex.xp && t.d.magicChar ? ` Its Might ${t.d.magicChar.might} comes off its own Advancement Totals.` : ''}` });
   for (const w of plan.students) {
     let key = w.sub.studentKey;
+    const hadS = { abilities: [...w.s.c.abilities] };
     if (!key && w.sub.newAbility) key = `ability:${ensureAbility(w.s.c, w.sub.newAbility.abilityId, {}, w.sub.newAbility.param).uid}`;
     if (!key) continue;
     const e = newSeasonEntry(year, season, 'taught', `Taught by ${tName}: ${plan.label} (+${w.result.xp} xp)`, w.result.xp ? { [key]: w.result.xp } : {});
     e.sourceQuality = w.result.sourceQuality;
+    if (begunUndo(hadS, w.s.c).abilities) e.undo = begunUndo(hadS, w.s.c);
     applySeason(w.s.c, e, 1);
     w.s.c.seasonLog.push(e);
     out.push({ who: w.s.c, text: `Taught ${plan.label} by ${tName}${plan.students.length > 1 ? ` with ${plan.students.length - 1} other${plan.students.length > 2 ? 's' : ''}` : ''}: Quality ${w.result.sourceQuality}, +${w.result.xp} xp${w.result.capped ? ' (as far as the teacher knows)' : ''}${w.sub.newAbility ? `, a new Ability` : ''}.` });

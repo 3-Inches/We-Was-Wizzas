@@ -4,7 +4,7 @@ import { deriveCharacter } from '../../../engine/character/derive';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { describeStress, stressDie } from '../../../engine/dice';
 import { ailmentsOf, condition, spanText } from '../../../engine/recovery';
-import { feedHunger } from '../../../engine/time';
+import { feedHunger } from '../../../engine/yearEnd';
 import type { WoundState } from '../../../engine/types';
 import { Card, Field, Stepper, signed } from '../../kit';
 import EquipmentEditor from '../EquipmentEditor';

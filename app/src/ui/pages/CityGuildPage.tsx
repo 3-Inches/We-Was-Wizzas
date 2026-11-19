@@ -12,7 +12,7 @@ import type { GameData } from '../../data';
 import { deriveCovenant, memberCraft } from '../../engine/covenant';
 import { guildRanksApply } from '../../engine/covenfolk';
 import { optionOn } from '../../engine/optional';
-import { inPlay } from '../../engine/time';
+import { inPlay } from '../../engine/yearEnd';
 import type { Character, Covenant, Season, Specialist } from '../../engine/types';
 import { useGameData, usePlayerCharacters, usePlayerCovenants, useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
