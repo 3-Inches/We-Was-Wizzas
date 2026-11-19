@@ -160,6 +160,8 @@ hr { border: none; border-top: 1px solid var(--line); margin: 1em 0; }
 /* on a phone, a wide table scrolls inside its card instead of widening the page */
 @media (max-width: 700px) { table.compact, table.breakdown { display: block; overflow-x: auto; max-width: 100%; } }
 .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+/* a row wraps; an item wider than the whole line shrinks to it, and what it holds wraps (5.15) */
+.row > * { min-width: 0; }
 .row.tight { gap: 6px; }
 .row.between { justify-content: space-between; }
 .stack { display: flex; flex-direction: column; gap: 10px; }
@@ -206,13 +208,14 @@ button.selected { background: var(--accent-2); border-color: var(--accent-2); co
 input, select, textarea {
   font-family: var(--font-body); font-size: 0.95em; color: var(--ink);
   background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: 6px; padding: 5px 8px; min-width: 0;
+  /* never wider than what holds it: a select is as wide as its longest option (5.15) */
+  max-width: 100%;
 }
 input:focus, select:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 1px; }
 textarea { width: 100%; min-height: 80px; resize: vertical; }
 input[type='number'] { width: 70px; }
 input[type='checkbox'] { accent-color: var(--accent); }
 label.field { display: flex; flex-direction: column; gap: 3px; font-size: 0.85em; color: var(--ink-soft); min-width: 0; }
-label.field select, label.field input { max-width: 100%; }
 .grid > * { min-width: 0; }
 label.field > span { font-weight: 600; }
 label.field > .stepper { align-self: flex-start; }
@@ -252,7 +255,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .ware-name { flex: 1 1 280px; min-width: 0; }
 .ware-price { white-space: nowrap; }
 .ware-buy { flex: 0 1 auto; flex-wrap: wrap; margin-left: auto; }
-.ware-buy select { width: 170px; max-width: 100%; }
+.ware-buy select { width: 170px; }
 
 /* casting grid */
 .art-grid { display: grid; grid-template-columns: 70px repeat(10, minmax(34px, 1fr)); font-size: 0.85em; }
@@ -430,7 +433,6 @@ button.big { font-size: 1.1em; padding: 10px 22px; }
 .issue.clickable:hover { outline: 1px solid var(--accent-2); outline-offset: -1px; }
 .issue.compact { padding: 4px 6px; margin-top: 4px; font-size: 0.9em; }
 .fix-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; align-items: center; }
-.fix-row select { max-width: 100%; }
 button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font-weight: 600; }
 .resolve-bar { margin-bottom: 8px; }
 .resolve-bar.open { padding: 8px 10px; border: 1px solid var(--accent-2); border-radius: 6px; background: var(--panel-2); }
@@ -443,7 +445,6 @@ button.fix-primary { border-color: var(--accent-2); color: var(--accent-2); font
 .badge.house { border-color: var(--accent); color: var(--accent); }
 
 .select-or-type { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 100%; }
-.select-or-type select, .select-or-type input { max-width: 100%; }
 
 /* guided build */
 .bubble-row { display: flex; gap: 3px; align-items: center; flex-wrap: wrap; margin: 4px 0 2px; }

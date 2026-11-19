@@ -29,7 +29,7 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 2 "no target" steps (Welcome, and "Design the power"). |
 | Run the hedge magic, Faerie and Mysteries tutorials on each practice saga | `node scripts/qa/tutorials.cjs 1280 --fixtures`, then `390`. Clean is "no target: 0" and "errors: none". |
 | Make the saga the sweep visits, set up as the owner plays | `QA_LIVING=all QA_OPTIONAL=all npm run qa:saga` (a few minutes; writes `scripts/qa/out/saga.json`) |
-| Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. Clean is "0 with problems" on the owner's saga (about 1,100 pages, some 30 minutes a width). |
+| Visit every page | `node scripts/qa/sweep.cjs --width 1280`, then `--width 390`. One width at a time. Each run sweeps the owner's saga, then each practice saga in `scripts/qa/fixtures/`. It presses every tab it finds, so a new tab needs no change to it. Clean is "0 with problems" (about 2,300 pages, some 18 minutes a width). |
 | Regenerate data from the books | `cd .. && python3 -I tools/extract/run_all.py` |
 | Rebuild the Game Mechanics index | `cd .. && python3 -I tools/extract/build_mechanics.py --report` |
 | Open every book in the reader | `node scripts/qa/books.cjs 1280`, then `390` |
@@ -44,7 +44,7 @@ Stop at the first step that fails. Each step costs more than the one before.
 1. Typecheck, and the test file for what changed. Seconds.
 2. All tests.
 3. Build, then look at the changed page in a browser at 1280 and at 390 wide. Write a short Playwright script or use `scripts/qa/shots.cjs`.
-4. **Once per pull request, at the end:** the tutorials at both widths (with `--fixtures` too, when a tutorial changed), then the full sweep at both widths, on the owner's saga. Together they take about 25 minutes, so run them in the background with a long timeout. Do not rebuild while a sweep is running: it reads `dist/`.
+4. **Once per pull request, at the end:** the tutorials at both widths (with `--fixtures` too, when a tutorial changed), then the full sweep at both widths, on the owner's saga and the practice sagas. Together they take about 50 minutes, so run them in the background with a long timeout. Do not rebuild while a sweep is running: it reads `dist/`.
 
 ## Rules that are not negotiable
 

@@ -83,10 +83,10 @@ For testing in a browser, `src/engine/testing/sagaFixture.ts` builds a whole sag
 
 ```sh
 npm run qa:saga    # writes it to scripts/qa/out/saga.json (QA_SEED, QA_SEASONS, QA_TRIBUNAL, QA_OUT)
-npm run qa:sweep   # imports it into the built app and visits every page and tab at 1280 and 390 pixels
+npm run qa:sweep   # imports it, then each practice saga, into the built app and visits every page and tab at 1280 and 390 pixels
 ```
 
-The sweep reports page and console errors, pages wider than the screen, and "undefined" or "NaN" on a page. It needs a build, and Playwright with Chromium. `scripts/qa/` has the other browser checks: the tutorials, screenshots and the book reader.
+The sweep presses every tab a page shows, so a new tab is swept without being listed. It reports page and console errors, pages wider than the screen, and "undefined" or "NaN" on a page. It needs a build, and Playwright with Chromium. `scripts/qa/` has the other browser checks: the tutorials, screenshots and the book reader.
 
 The workflow `.github/workflows/toolkit.yml` tests and builds on pull requests. On pushes to the default branch it also deploys to GitHub Pages. For the deploy to work, enable Pages with the source set to "GitHub Actions" in the repository settings.
 
