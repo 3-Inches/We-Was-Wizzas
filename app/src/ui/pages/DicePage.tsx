@@ -126,9 +126,14 @@ interface X {
   saga?: Saga;
 }
 
-/** Who acts in a part: one of the saga's people, the players' first, the Tribunal's after. */
-function WhoPicker({ x, value, onChange, keep, label, none }: { x: X; value?: string; onChange: (id: string) => void; keep?: (c: Character) => boolean; label: string; none: string }) {
-  const groups = keep ? x.groups.map((g) => ({ ...g, people: g.people.filter(keep) })).filter((g) => g.people.length) : x.groups;
+/**
+ * Who acts in a part: one of the saga's people, the players' first, the Tribunal's after. `first` puts
+ * those it holds in a group of their own at the top (the holy, on the Faith page), in the same order.
+ */
+function WhoPicker({ x, value, onChange, keep, first, label, none }: { x: X; value?: string; onChange: (id: string) => void; keep?: (c: Character) => boolean; first?: { label: string; ids: Set<string> }; label: string; none: string }) {
+  const kept = keep ? x.groups.map((g) => ({ ...g, people: g.people.filter(keep) })) : x.groups;
+  const top = first ? [{ label: first.label, people: kept.flatMap((g) => g.people.filter((c) => first.ids.has(c.id))) }] : [];
+  const groups = [...top, ...(first ? kept.map((g) => ({ ...g, people: g.people.filter((c) => !first.ids.has(c.id)) })) : kept)].filter((g) => g.people.length);
   if (!groups.length) return <Empty>{none}</Empty>;
   return (
     <Field label={label}>
@@ -590,16 +595,19 @@ function MysteriesDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; w
 
 /**
  * The holy at the table (Realms of Power: The Divine): anyone may pray or invoke a saint, so everyone
- * is in the list, the holy first. The others can join a ceremony.
+ * is in the list, the holy (holy powers, True Faith or Faith Points) in a group of their own at the top.
+ * The others can join a ceremony.
  */
 function HolyDicePart({ sagaId, x, who, setWho }: { sagaId: string; x: X; who: string; setWho: (id: string) => void }) {
   const fellows = useMemo<Fellow[]>(() => x.chars.map((c) => ({ c, d: deriveCharacter(c, x.data, x.rules ?? DEFAULT_HOUSE_RULES) })), [x.chars, x.data, x.rules]);
   const holy = useMemo(() => new Set(fellows.filter((f) => isHolyCharacter(f.d) || f.d.trueFaith > 0 || f.d.faithPoints > 0).map((f) => f.c.id)), [fellows]);
+  const first = useMemo(() => ({ label: 'The holy', ids: holy }), [holy]);
+  // opens on the first of the holy, as the picker lists them
   const c = x.chars.find((y) => y.id === who) ?? x.chars.find((y) => holy.has(y.id)) ?? x.chars[0];
   return (
     <>
       <div className="row">
-        <WhoPicker x={x} value={c?.id} onChange={setWho} label="Who prays" none="Nobody in this saga yet." />
+        <WhoPicker x={x} value={c?.id} onChange={setWho} first={first} label="Who prays" none="Nobody in this saga yet." />
         {c && <CharLink sagaId={sagaId} c={c} />}
       </div>
       {c && (
