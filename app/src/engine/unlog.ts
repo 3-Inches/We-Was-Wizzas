@@ -3,7 +3,7 @@
 // (Twilight from a botch), the Labor Points it earned and the workshop's counts, a lab project's
 // progress and the vis the work spent, the purse's pounds, a Virtue an Initiation gave, a Discovery, a
 // season taught to the apprentice, a covenant teacher's seasons taught, a great building's progress, a holy
-// work's progress and the Fatigue it cost, an Ability it began, a roll its work left still waiting. A
+// work's progress and the Fatigue it cost, the parts of a tradition's record it changed, an Ability it began, a roll its work left still waiting. A
 // roll already made stands: what it did is not taken back (`undo.rolled`). A season whose work finished something
 // (a spell learned, an item made, a familiar bound) is final: what it made is on the sheet, so it is not
 // unlogged (Undo at the top takes back the last change instead).
@@ -12,6 +12,7 @@ import { applySeason } from './longterm';
 import { dropSeasonRoll, seasonRollOf } from './seasonRolls';
 import { PROJECT_KINDS } from './projects';
 import type { Art } from '../data';
+import type { SeasonRecordField } from './seasonLogTypes';
 import type { Character, Covenant, SeasonLogEntry, SeasonUndo, VisStock } from './types';
 import { addVis, purseOf, takeVis, visAvailable } from './vis';
 
@@ -49,6 +50,24 @@ export function visUndo(before: Character, after: Character, covBefore?: Covenan
   if (toCov.length) u.visAdded = { to: 'covenant', covenantId: covAfter!.id, added: toCov };
   else if (toPurse.length) u.visAdded = { to: 'purse', added: toPurse };
   return u;
+}
+
+/** The tradition records a season card's work may change. */
+const RECORD_FIELDS: SeasonRecordField[] = ['learned', 'folkWitch', 'gruagach', 'vitki', 'pilgrimage', 'spiritualPath'];
+
+/**
+ * The parts of each tradition record a season's work changed, as they were before it, from the
+ * character before and after: Unlog puts back those parts only, so a later change to another part stays.
+ */
+export function recordsUndo(before: Character, after: Character): Pick<SeasonUndo, 'records'> {
+  const out: NonNullable<SeasonUndo['records']> = [];
+  for (const field of RECORD_FIELDS) {
+    const b = (before[field] ?? {}) as Record<string, unknown>;
+    const a = (after[field] ?? {}) as Record<string, unknown>;
+    for (const key of new Set([...Object.keys(b), ...Object.keys(a)]))
+      if (JSON.stringify(b[key]) !== JSON.stringify(a[key])) out.push({ field, key, ...(b[key] === undefined ? {} : { was: structuredClone(b[key]) }) });
+  }
+  return out.length ? { records: out } : {};
 }
 
 /** What a season's work left owed on the Resolve list (a Warping reaction), from the character before and after. */
@@ -157,7 +176,11 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
     }
     if (u.virtueUids?.length) c.virtues = c.virtues.filter((v) => !u.virtueUids!.includes(v.uid));
     if (u.initiationUid) c.initiations = (c.initiations ?? []).filter((i) => i.uid !== u.initiationUid);
-    if (u.discoveryUid && c.research) c.research.discoveries = c.research.discoveries.filter((d) => d.uid !== u.discoveryUid);
+    if (u.discoveryUid && c.research) {
+      c.research.discoveries = c.research.discoveries.filter((d) => d.uid !== u.discoveryUid);
+      // the record the first Discovery began, with nothing in it now
+      if (!c.research.discoveries.length && !c.research.goal) delete c.research;
+    }
     if (u.apprentice && c.apprentice) c.apprentice.seasons = Math.max(0, c.apprentice.seasons - 1);
     if (u.tractatus) {
       const cov = covs.find((x) => x.id === u.tractatus!.covenantId);
@@ -166,6 +189,12 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
         b.readBy = b.readBy.filter((id) => id !== c.id);
         if (!changed.includes(cov)) changed.push(cov);
       }
+    }
+    for (const r of u.records ?? []) {
+      const rec = { ...((c[r.field] ?? {}) as Record<string, unknown>) };
+      if (r.was === undefined) delete rec[r.key];
+      else rec[r.key] = structuredClone(r.was);
+      (c as unknown as Record<string, unknown>)[r.field] = Object.keys(rec).length ? rec : undefined;
     }
     if (u.specialist) {
       const cov = covs.find((x) => x.id === u.specialist!.covenantId);

@@ -28,6 +28,9 @@ export type SeasonActivityKind =
   | 'worship'
   | 'other';
 
+/** A tradition's own record on a character, which a season's work may change (the season cards' undo). */
+export type SeasonRecordField = 'learned' | 'folkWitch' | 'gruagach' | 'vitki' | 'pilgrimage' | 'spiritualPath';
+
 export interface SeasonLogEntry {
   uid: string;
   year: number;
@@ -99,6 +102,11 @@ export interface SeasonUndo {
   building?: { covenantId: string; uid: string; before?: GreatBuilding };
   /** a covenant teacher's seasons taught this year, as they were before this lesson (two a year, DE p.180) */
   specialist?: { covenantId: string; uid: string; taught?: Specialist['taught'] };
+  /**
+   * The parts of a tradition's own record the season's work changed (a spell being invented, a curse
+   * woven), as they were: `field` the record, `key` the part; no `was`, there was none (unlog.ts, recordsUndo)
+   */
+  records?: { field: SeasonRecordField; key: string; was?: unknown }[];
   /** a season of holy work: the work as it was before (Mythic Judaism) */
   holyWork?: HolyWork;
   /** long-term Fatigue levels the season cost (a season of Merkavah), given back while the season lasts */

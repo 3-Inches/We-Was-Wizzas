@@ -10,10 +10,13 @@ export function sagaFixtures(): [string, SagaState][] {
 }
 
 /**
- * Plain JSON, as a save keeps it: a field set to undefined is no field, and no experience from play
- * (`play: 0`, which Unlog leaves where a season's experience was taken off) is none.
+ * Plain JSON, as a save keeps it: a field set to undefined is no field, an empty list or record is none,
+ * no experience from play (`play: 0`, which Unlog leaves where a season's experience was taken off) is
+ * none, and when a record was last saved (`updatedAt`) is not something a season did.
  */
-const plain = (x: unknown): unknown => (x === undefined ? undefined : JSON.parse(JSON.stringify(x), (k, v) => (k === 'play' && v === 0 ? undefined : v)));
+const empty = (v: unknown) => (Array.isArray(v) ? v.length === 0 : !!v && typeof v === 'object' && Object.keys(v).length === 0);
+const plain = (x: unknown): unknown =>
+  x === undefined ? undefined : JSON.parse(JSON.stringify(x), (k, v) => ((k === 'play' && v === 0) || k === 'updatedAt' || (k !== '' && !/^\d+$/.test(k) && empty(v)) ? undefined : v));
 
 /** Where two states differ, as "path: before → after" lines (at most `most`). */
 export function differences(before: unknown, after: unknown, most = 8): string[] {

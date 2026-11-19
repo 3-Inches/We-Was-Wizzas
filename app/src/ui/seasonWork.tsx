@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { ART_NAMES, type Art } from '../data';
 import { applySeason, newSeasonEntry } from '../engine/longterm';
 import { seasonBusy } from '../engine/time';
-import { owedUndo, visUndo } from '../engine/unlog';
+import { owedUndo, recordsUndo, visUndo } from '../engine/unlog';
 import { artsText, fullerPlace, visInPlaces, visShortText, type VisPlace } from '../engine/vis';
 import type { Character, Covenant, SeasonUndo } from '../engine/types';
 import { useStore } from '../store/store';
@@ -61,7 +61,7 @@ export function useSeasonWork(ed: CharEditor) {
     if (r.gains) for (const [k, v] of Object.entries(r.gains)) e.gains[k] = (e.gains[k] ?? 0) + v;
     e.notes = lines.join(' ');
     e.told = r.told;
-    const u = { ...visUndo(c, x, cov, k), ...owedUndo(c, x), ...r.undo, ...(r.made ? { final: `This season made ${r.made}, which is on the sheet, so the season stays logged (remove what it made by hand if it must go).` } : {}) };
+    const u = { ...visUndo(c, x, cov, k), ...owedUndo(c, x), ...recordsUndo(c, x), ...r.undo, ...(r.made ? { final: `This season made ${r.made}, which is on the sheet, so the season stays logged (remove what it made by hand if it must go).` } : {}) };
     if (Object.keys(u).length) e.undo = u;
     applySeason(x, e, 1);
     x.seasonLog.push(e);
