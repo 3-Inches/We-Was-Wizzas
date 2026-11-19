@@ -21,7 +21,7 @@ import { AtTable, PeopleOptions, canPlay, groupPeople, useLandOn } from '../play
 import { useCharEditor } from '../character/useChar';
 import AdvancementTab from '../character/sheet/AdvancementTab';
 import { LabProjects } from '../character/sheet/LabProjects';
-import { HolyWorksCard } from './HolyPart';
+import { HolyWorksCard } from './holy/HolyWorksCard';
 import { HedgeSeasonCards } from './HedgePart';
 import { DevotionSeasonsCard } from './DevotionSeasonsCard';
 import { MasonSeasonCard } from './MasonSeasonCard';

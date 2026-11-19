@@ -57,7 +57,6 @@ const BIG_FILES: string[] = [
   'src/ui/character/sheet/MagicTab.tsx',
   'src/ui/covenant/CovenfolkCards.tsx',
   'src/ui/covenant/FinancesTab.tsx',
-  'src/ui/pages/HolyPart.tsx',
   'src/ui/pages/MarketPage.tsx',
   'src/ui/pages/QuickBuildPage.tsx',
 ];
@@ -136,7 +135,8 @@ const RAW_WARPING: Record<string, string> = {
   'src/ui/character/sheet/Twilight.tsx': 'Twilight’s own card',
   'src/ui/pages/FolkWitchPart.tsx': 'the Witch Moon’s own card',
   'src/ui/pages/VitkirPart.tsx': 'Nátt-thel’s own card',
-  'src/ui/pages/HolyPart.tsx': 'the Divine Ascent, rolled on its own card',
+  'src/ui/pages/holy/AscentCard.tsx': 'the Divine Ascent, rolled on its own card',
+  'src/ui/pages/holy/HolyPowerCard.tsx': 'a holy power’s botch: the Divine Ascent follows, on its own card',
 };
 
 // any change to Warping Points: `x.warpingPoints += n`, `= n`, `-= n`, `++`, and a season entry's `e.warpingPoints = n`
