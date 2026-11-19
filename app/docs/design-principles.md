@@ -145,8 +145,8 @@ Use these words for these things, everywhere.
 - [ ] It has a Guide entry written as steps, an "In the app" pointer, and tutorial coverage if it adds a page.
 - [ ] The README has a row for it, and lists what was left out under "Not yet automated".
 - [ ] It passes the integration checklist below.
-- [ ] The four checks in `CLAUDE.md` pass, ending with the tutorials and the sweeps at both widths.
-- [ ] The roadmap is ticked, in the same pull request.
+- [ ] The checks in `CLAUDE.md` pass, the adversarial review among them, ending with the tutorials and the sweeps at both widths.
+- [ ] The roadmap is updated, in the same pull request.
 
 ### A change works with the rest when
 
