@@ -29,6 +29,7 @@ import { useStore } from '../../../store/store';
 import { Card, Field, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
 import { digestSeasons, holds, horoscopeFor, longevityModifier, periaptMaxLevel } from '../../../engine/hermeticMysteries';
+import { helperTold, labTold } from '../../../engine/seasonTold';
 
 /**
  * A season's work on a project, logged for the saga's current season with Exposure in Magic Theory:
@@ -62,6 +63,7 @@ export function useWorkProject(ed: CharEditor): (p: LabProject, helperIds?: stri
     const e = newSeasonEntry(year, season, 'other', `Lab: ${p.name}`, theory ? { [`ability:${theory.uid}`]: 2 } : {});
     e.notes = lines.join(' ');
     e.labKind = p.kind;
+    e.told = labTold(x.projects?.find((y) => y.uid === p.uid) ?? p, x);
     e.undo = labUndo(before, x, p.uid, covBefore, cov);
     applySeason(x, e, 1);
     x.seasonLog.push(e);
@@ -70,6 +72,7 @@ export function useWorkProject(ed: CharEditor): (p: LabProject, helperIds?: stri
       const r = computeStudy(h.d, { kind: 'exposure', subject: 'Magic Theory' }, { abilityUid: mt.uid });
       const he = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${x.name || 'a magus'} in the lab: ${p.name} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
       if (h.extra) he.extra = true;
+      he.told = helperTold(x.name || 'a magus');
       applySeason(h.c, he, 1);
       h.c.seasonLog.push(he);
       lines.push(`${h.c.name || 'The helper'} helped: +${h.value} to the Lab Total, Exposure in Magic Theory +${r.xp} xp.`);

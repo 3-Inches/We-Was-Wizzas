@@ -11,6 +11,7 @@ import type { VFSize } from '../data/types';
 import { CRIAMON_STATIONS, type CriamonStation } from '../data/mysteries';
 import { HOUSE_BY_ID } from '../data/houses';
 import { uid } from '../util/id';
+import { initiationTold } from './seasonTold';
 
 export type OrdealTier = 'Minor' | 'Medium' | 'Major';
 
@@ -157,6 +158,6 @@ export function applyInitiation(c: Character, data: GameData, p: InitiationPlan)
   // Unlog takes the Virtue (and an Ordeal's Flaw) back; an Ordeal that took or worsened a Virtue is for good
   const gained = c.virtues.filter((v) => !before.has(v.uid)).map((v) => v.uid);
   const final = o?.loseUid || o?.worsenUid ? `The Ordeal of ${name} took its price from ${c.name || 'the Initiate'}: an Initiation with that Ordeal is not unlogged (remove its Virtue by hand if it must go).` : undefined;
-  c.seasonLog.push({ uid: uid(), year: p.year, season: p.season, activity: 'other', summary, gains: {}, applied: true, undo: { virtueUids: gained, initiationUid: rec.uid, final } });
+  c.seasonLog.push({ uid: uid(), year: p.year, season: p.season, activity: 'other', summary, told: initiationTold(name, p.mystagogue), gains: {}, applied: true, undo: { virtueUids: gained, initiationUid: rec.uid, final } });
   return summary;
 }

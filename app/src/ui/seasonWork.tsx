@@ -13,11 +13,16 @@ import { useStore } from '../store/store';
 import type { CharEditor } from './character/useChar';
 import { Field } from './kit';
 
-export interface SeasonWorkResult {
+/** The season's work done: what it did, and how the Chronicle tells it. */
+export interface SeasonWorkDone {
   /** what the season did, in lines, kept in the season log */
   lines: string[];
-  /** why it cannot be done: nothing is changed or logged */
-  refused?: string;
+  /**
+   * how the Chronicle tells the season, from what this season's work did: a phrase after the character's
+   * name, such as "brewed four doses of a Healing potion in the kitchen" (engine/seasonTold.ts)
+   */
+  told: string;
+  refused?: undefined;
   /** what the season made that stays on the sheet (a potion, a tattoo): the season can then not be unlogged */
   made?: string;
   /** experience the season gives besides its Exposure (`ability:<uid>` → points), and how to say it */
@@ -26,6 +31,9 @@ export interface SeasonWorkResult {
   /** what else Unlog must put back (a great building's progress) */
   undo?: SeasonUndo;
 }
+
+/** What the work returns: done, or refused (why it cannot be done: nothing is changed or logged). */
+export type SeasonWorkResult = SeasonWorkDone | { refused: string; lines?: string[] };
 
 /** A season's work for the character being edited: this season, whether it is spent, their covenant, and the work itself. */
 export function useSeasonWork(ed: CharEditor) {
@@ -48,10 +56,11 @@ export function useSeasonWork(ed: CharEditor) {
     const ab = ability ? x.abilities.find((a) => a.abilityId === ability) : undefined;
     const e = newSeasonEntry(year, season, 'other', title, ab ? { [`ability:${ab.uid}`]: 2 } : {});
     const r = fn(x, k, e.uid);
-    if (r.refused) return [r.refused];
+    if (r.refused !== undefined) return [r.refused];
     const lines = r.lines.filter(Boolean);
     if (r.gains) for (const [k, v] of Object.entries(r.gains)) e.gains[k] = (e.gains[k] ?? 0) + v;
     e.notes = lines.join(' ');
+    e.told = r.told;
     const u = { ...visUndo(c, x, cov, k), ...owedUndo(c, x), ...r.undo, ...(r.made ? { final: `This season made ${r.made}, which is on the sheet, so the season stays logged (remove what it made by hand if it must go).` } : {}) };
     if (Object.keys(u).length) e.undo = u;
     applySeason(x, e, 1);

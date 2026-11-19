@@ -11,6 +11,7 @@ import {
   characteristicPotion, controlledEmotion, controlledSoak, elementVisArt, formFor, POTION_CHARACTERISTICS, diviningAid, elementalArts, elementalTotal, elementalVisLimit, longevityPotion, moveVis, potionVisOk, refineMight, refiningExtraction, refiningVisArts, THEURGY_REALMS, type MightRelation, summoningNeeds, summoningReach,
 } from '../../engine/elementalMagic';
 import { putInto, spendFrom } from '../../engine/vis';
+import { refiningTold } from '../../engine/seasonTold';
 import { useSeasonWork, useVisSource } from '../seasonWork';
 import type { AuraState } from '../../engine/magic';
 import { Card, Field, Stepper, Total, signed } from '../kit';
@@ -241,7 +242,16 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
         if (work === 'longevity' && other) out.push('Give the potion to its drinker and note it on their sheet.');
         if (work === 'characteristic') out.push('Note the potion on the drinker’s sheet.');
         if (work === 'longevity' && !other && potion.bonus > 0) out.push(kept ? 'The longevity ritual already taken is as good or better, and is kept.' : 'The potion is on the sheet as the character’s longevity ritual.');
-        return { lines: out, made: work === 'longevity' ? 'a longevity potion' : work === 'characteristic' ? 'a potion of vigor' : undefined };
+        const mightDone = work === 'might' ? refineMight(tot.total, might, relation, { drain: drainOther, pool }) : undefined;
+        const told = refiningTold(
+          work === 'longevity' ? { work, forOther: other }
+          : work === 'characteristic' ? { work, characteristic: ch ? CHAR_NAMES[ch as keyof typeof CHAR_NAMES] : '' }
+          : work === 'extract' ? { work, pawns: drawn, art: el?.hermetic ?? 'the element’s' }
+          : work === 'move' ? { work, pawns, arrive: moved?.arrive ?? 0, art: ART_NAMES[elArt] }
+          : work === 'might' ? { work, points: mightDone?.changed ?? 0, drain: !!mightDone?.drain }
+          : { work: 'other' },
+        );
+        return { lines: out, told, made: work === 'longevity' ? 'a longevity potion' : work === 'characteristic' ? 'a potion of vigor' : undefined };
       }),
     );
   const works: [RefineWork, string][] = [

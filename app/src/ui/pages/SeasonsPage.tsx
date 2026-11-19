@@ -37,7 +37,7 @@ import { R } from '../routes';
 import { owedInOrder, seasonForecast } from '../../engine/seasonPlan';
 import { ForecastList, ResolveCard, TurnBackControl } from './SeasonResolve';
 import { keepTurnBack } from '../turnBack';
-import { ChronicleEntry } from './ChroniclePage';
+import { ChronicleEntry, useLoggedSeasons } from './ChroniclePage';
 
 export default function SeasonsPage() {
   const { sagaId } = useParams();
@@ -47,6 +47,7 @@ export default function SeasonsPage() {
   const allChars = useSagaCharacters(sagaId);
   const allCovs = useSagaCovenants(sagaId);
   const chars = usePlayerCharacters(sagaId);
+  const logged = useLoggedSeasons(allChars);
   const covs = usePlayerCovenants(sagaId);
   const putSagaState = useStore((s) => s.putSagaState);
   const replaceSagaState = useStore((s) => s.replaceSagaState);
@@ -129,7 +130,7 @@ export default function SeasonsPage() {
           last.length ? (
             <div className="stack" style={{ gap: 6, marginTop: 8 }}>
               {last.slice(-2).reverse().map((r) => (
-                <ChronicleEntry key={r.id} r={r} />
+                <ChronicleEntry key={r.id} r={r} logged={logged} />
               ))}
               {last.length > 2 && <span className="small muted">and {last.length - 2} season{last.length > 3 ? 's' : ''} before:</span>}
               <Link to={R.table(saga.id, 'chronicle')}>The whole Chronicle ›</Link>

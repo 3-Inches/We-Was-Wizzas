@@ -21,6 +21,7 @@ import {
   type ActiveTemper, type AscentForm, type CeremonyGroup, type CeremonyMember, type HolyWork, type HolyWorkKind,
 } from '../../engine/holy';
 import { applySeason, newSeasonEntry } from '../../engine/longterm';
+import { holyWorkTold } from '../../engine/seasonTold';
 import { seasonBusy } from '../../engine/time';
 import { auraAtTime, type AuraTime } from '../../engine/aura';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
@@ -1442,6 +1443,9 @@ export function HolyWorksCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
       const ab = x.abilities.find((a) => a.abilityId === WORK_ABILITY[w.kind]);
       const e = newSeasonEntry(year, season, 'other', `Holy work: ${w.name}`, ab ? { [`ability:${ab.uid}`]: 2 } : {});
       e.notes = out.join(' ');
+      // the name the player gave it, not the default the card set ("A Major amulet")
+      const after = x.holy?.works?.find((y) => y.uid === w.uid);
+      e.told = holyWorkTold(w.kind, w.name.toLowerCase() === holyWorkLabel(w.kind).toLowerCase() ? undefined : w.name, !!after?.done);
       applySeason(x, e, 1);
       x.seasonLog.push(e);
     });

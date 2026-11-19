@@ -15,6 +15,7 @@ import { countOf, specAbilities } from './covenantRules';
 import { workSeasons } from './covenfolk';
 import { uid } from '../util/id';
 import type { BookFormat, BookMake, Character, Covenant, LibraryBook, Season, WritingProject } from './types';
+import { clarifyTold } from './seasonTold';
 
 export type { ScriptoriumCopy } from './types';
 
@@ -538,6 +539,7 @@ export function startClarifying(c: Character, cov: Covenant, b: LibraryBook, yea
   b.clarifying = { since: year, aura, by: c.name };
   const e = newSeasonEntry(year, season, 'other', `Opened ${b.title} for enchantment, to clarify it (${OPEN_BOOK_PAWNS} pawns of Vim${fromPurse ? '' : ' from the covenant'})`);
   e.visUsed = [{ art: 'Vi', pawns: OPEN_BOOK_PAWNS }];
+  e.told = clarifyTold(b.title);
   e.undo = { final: `${b.title} was opened for enchantment, and its vis is spent: the season stays logged.` };
   c.seasonLog.push(e);
   return undefined;

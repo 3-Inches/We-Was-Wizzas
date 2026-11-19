@@ -13,6 +13,7 @@ import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { seasonTaken } from '../../../engine/time';
 import { RollAtTable, useAtTable, useEditable } from '../../play';
 import { gainWarping, nowOf } from '../../../engine/warping';
+import { researchTold } from '../../../engine/seasonTold';
 
 export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicTheory: number }) {
   const { c, d, update, ctx, saga } = ed;
@@ -54,6 +55,7 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
       const e = saga ? newSeasonEntry(saga.currentYear, saga.currentSeason, 'other', `Lab: ${res.stable ? 'stabilized' : 'tried to stabilize'} ${name || 'a Discovery'} (original research)`, theory ? { [`ability:${theory.uid}`]: 2 } : {}) : undefined;
       if (e) {
         e.notes = lines.join(' ');
+        e.told = researchTold(name.trim() || undefined, res.stable);
         e.undo = { warping: res.warpingPoints || undefined, discoveryUid: found };
       }
       // two or more points from the experiment: roll to avoid Twilight (DE, Original Research), owed on the Resolve list and kept on the season, for Unlog
