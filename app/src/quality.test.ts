@@ -43,7 +43,8 @@ const LIMITS = {
 };
 
 /** Source files over 800 lines, each with its length now. A file may leave this list and none may join it, and
- * none may grow: split one before adding to it (principle 12). Lower a number when a file shrinks. */
+ * none may grow: split one before adding to it (principle 12), rather than squeezing lines out of it to fit.
+ * A number may be lowered when its file shrinks. */
 const BIG_FILES: Record<string, number> = {
   'src/engine/character/derive.ts': 908,
   'src/engine/covenant.ts': 1042,

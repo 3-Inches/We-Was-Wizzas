@@ -8,7 +8,8 @@
 // Usage: node scripts/qa/pointers.cjs [width] [saga.json] [topic …]
 //   e.g. node scripts/qa/pointers.cjs 390 scripts/qa/fixtures/learned.saga.json other-hazards holy-traditions
 // With no topics, every topic with a pointer. The built app must be served: npx vite preview --port 4173 --strictPort
-// Writes scripts/qa/out/pointers-<width>.txt. Clean is "problems: 0".
+// Writes scripts/qa/out/pointers-<width>.txt. Clean is "problems: 0". On the owner's saga it is "problems: 1": Trade, money and
+// wealth's "Stories and investments" is on a craftsman's workshop card, and that troupe has no craftsman.
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
