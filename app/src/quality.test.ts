@@ -94,7 +94,7 @@ describe('limits that may only go down', () => {
     /** the Guide's "Using the toolkit" page, in words (roadmap 1.5 asked for under 6,000) */
     guideWords: { at: blocks.reduce((t, b) => t + guideWords(b), 0), most: 6000 },
     /** the README, in words */
-    readmeWords: { at: words(readme), most: 20000 },
+    readmeWords: { at: words(readme), most: 5000 },
   };
   for (const [k, { at, most }] of Object.entries(CEILINGS)) {
     it(`${k} is under its ceiling`, () => {

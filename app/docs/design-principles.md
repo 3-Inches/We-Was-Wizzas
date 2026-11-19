@@ -111,7 +111,7 @@ Not every paragraph of every book needs a card.
 ## 12. Keep it from growing without bound.
 
 - Before adding a card, look for the card it belongs in. Before adding a page or a tab, look for the page.
-- When you add to a document, look first for what it replaces. The README and the Guide's toolkit page have ceilings (`src/quality.test.ts`: 20,000 and 6,000 words), and a pull request adds at most **300 words** to each. Other limits there may only go down.
+- When you add to a document, look first for what it replaces. The README and the Guide's toolkit page have ceilings (`src/quality.test.ts`: 5,000 and 6,000 words), and a pull request adds at most **300 words** to each. Other limits there may only go down.
 - Delete what a change makes unused: exports, styles, helper text, tutorial steps.
 - A file over about 600 lines is a sign that two things live in it.
 
