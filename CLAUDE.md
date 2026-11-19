@@ -60,6 +60,7 @@ Stop at the first step that fails. Each step costs more than the one before.
 
 - The session's instructions name the branch. Pull requests are drafts. Never amend, never force-push.
 - **A session that builds an item never merges it.** The owner has handed merging to one **lead session**. The lead writes each item's brief and starts a fresh session to build it. It then reviews the pull request against `app/docs/owner.md`, the integration checklist and the checks' results. It fixes small faults itself, sends large ones back, and merges when the review passes and every check is green. Then it tells the owner what changed. A pull request that changes something the owner would have an opinion on (layout, what a card shows, a *Judgment* item) waits for the owner.
+- **A question for the owner** is asked only after the books and earlier decisions have been searched and settle nothing. The lead asks it with the question prompt, which reaches the owner's phone, with its own recommendation first. Its report to the owner names every decision it made itself, and on what grounds.
 - No model names in commit messages, pull request titles or bodies, or code, other than the attribution lines the session's instructions give.
 - One roadmap item to a pull request. When a pull request merges, bring the branch up to date with `origin/main` before starting the next.
 - **Tick the roadmap item in its own pull request,** with a "Done as" note. Do not leave it for the next session.
@@ -95,3 +96,5 @@ Patterns to copy, not reinvent:
 - **Before calling an item finished, look at the joins.** Go down the integration checklist in the design principles. The last audit found most of its faults there, not in the item's own cards.
 - **Write the plan into the pull request or the roadmap, not only into the conversation.**
 - **Before adding a card, a page, a tab or a paragraph, check the design principles' budgets.** The toolkit is large. Adding is easy; finding things afterwards is the cost.
+- **The README and the Guide grow by at most 300 words a pull request.** Each has a ceiling in `src/quality.test.ts`, with room under it. Do not cut what another system needs to make room; replace what your change makes out of date. Say in the pull request how many words each grew.
+- **Before calling something a judgment call, look for the answer.** A section silent on a case is often settled by the core rules' general mechanics (stress rolls and botches, Ease Factors, Fatigue), by the book's worked example, or by an earlier decision (`app/docs/owner.md`, and "Decided by the owner" in the roadmap). Cite what settles it. Only what none of these settles is the owner's.

@@ -33,3 +33,5 @@ Each point says what the owner wants, then what it means for a change.
 13. **Nothing from the Fifth Edition books is given up because it is hard.** It is made gradual instead.
 14. **Moving something breaks nothing.** Every link, tutorial step and pointer that led to the old place leads to the new one.
 15. **Judgment calls are told, not hidden.** Where the book is unclear, follow its example, say so in the pull request, and the owner will overrule if they want. The owner likes being asked before a choice that is theirs, and answers quickly.
+   - *Look before asking.* Search the books, the core rules' general mechanics and the decisions already made first. A botched study from vis was once called unsettled, when the stress-roll rules settle it. Ask only what is left, and say what was decided without asking.
+16. **Room to write.** The README and the Guide may grow, by up to about 300 words a task. The owner would rather they grow a little than see each new system written in by cutting the others.
