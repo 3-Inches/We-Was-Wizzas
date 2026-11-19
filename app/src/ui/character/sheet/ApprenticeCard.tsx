@@ -8,6 +8,7 @@ import { RollAtTable, useAtTable } from '../../play';
 import { ensureAbility } from '../../../engine/character/factory';
 import { applySeason, newSeasonEntry } from '../../../engine/longterm';
 import { seasonTaken } from '../../../engine/time';
+import { begunUndo } from '../../../engine/unlog';
 import { RulesNote } from '../../RulesNote';
 import type { CharEditor } from '../useChar';
 import { apprenticeTold } from '../../../engine/seasonTold';
@@ -58,13 +59,14 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
   const teach = () =>
     update((x) => {
       if (!x.apprentice) return;
+      const had = { abilities: [...x.abilities] };
       const t = ensureAbility(x, 'teaching', {});
       // the first season of teaching opens the apprentice's Arts, and teaches nothing else (DE, Opening the Arts)
       const who = x.apprentice.name || 'the apprentice';
       const e = newSeasonEntry(year, saga.currentSeason, 'other', x.apprentice.seasons === 0 ? `Opened the Arts of ${who}, the apprentice: a score of 0 in all fifteen Arts, and nothing else this season (Exposure in Teaching)` : `Taught ${who}, the apprentice (Exposure in Teaching)`, { [`ability:${t.uid}`]: 2 });
       e.priority = 'apprentice';
       e.told = apprenticeTold(who, x.apprentice.seasons === 0);
-      e.undo = { apprentice: true };
+      e.undo = { apprentice: true, ...begunUndo(had, x) };
       applySeason(x, e, 1);
       x.seasonLog.push(e);
       x.apprentice.seasons += 1;

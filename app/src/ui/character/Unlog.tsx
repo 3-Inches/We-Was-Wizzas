@@ -4,14 +4,16 @@
 
 import { canUnlog, unlogSeason } from '../../engine/unlog';
 import type { Character } from '../../engine/types';
-import { useSagaCovenants } from '../../store/hooks';
+import { useSaga, useSagaCharacters, useSagaCovenants } from '../../store/hooks';
 import { useStore } from '../../store/store';
 
 export function Unlog({ c, uid }: { c: Character; uid: string }) {
   const putRecords = useStore((s) => s.putRecords);
   const covs = useSagaCovenants(c.sagaId);
+  const troupe = useSagaCharacters(c.sagaId);
+  const saga = useSaga(c.sagaId);
   const e = c.seasonLog.find((y) => y.uid === uid);
-  const can = e ? canUnlog(e) : { ok: false, why: 'Not on the log.' };
+  const can = e ? canUnlog(e, c, troupe) : { ok: false, why: 'Not on the log.' };
   // a roll its work left, already made, stands: Unlog leaves what it did (owner.md, point 2)
   const stands = 'stands' in can ? can.stands : undefined;
   const button = (
@@ -22,7 +24,7 @@ export function Unlog({ c, uid }: { c: Character; uid: string }) {
       onClick={() => {
         const x = structuredClone(c);
         const cs = structuredClone(covs);
-        const r = unlogSeason(x, uid, cs);
+        const r = unlogSeason(x, uid, cs, { troupe, now: saga ? { year: saga.currentYear, season: saga.currentSeason } : undefined });
         if (r.ok) putRecords({ characters: [x], covenants: r.covenants }, `Unlog ${e?.season ?? ''} ${e?.year ?? ''} for ${c.name || 'a character'}`);
       }}
     >

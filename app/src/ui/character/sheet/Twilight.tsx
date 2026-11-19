@@ -4,9 +4,10 @@
 import { useState } from 'react';
 import { ARTS, ART_NAMES, type Art } from '../../../data';
 import { addVirtue } from '../../../engine/character/factory';
-import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
+import { TWILIGHT_TIME, twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
 import { Card, Field, Stepper, HowItWorks } from '../../kit';
 import { AURA_TIME, auraWarping } from '../../../engine/yearEnd';
+import { simpleDie } from '../../../engine/dice';
 import type { CharEditor } from '../useChar';
 import { settle } from '../../../engine/seasonPlan';
 import type { Character } from '../../../engine/types';
@@ -51,9 +52,10 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
 
   const avoid = () => {
     const r = twilightAvoidance(d, gain, aura, undefined, added);
-    log(`Avoid Twilight: ${r.my} vs ${r.tw}: ${r.success ? 'avoided; two minutes to bring the magic under control' : r.botch ? 'BOTCH: enters Twilight and cannot comprehend it' : 'enters Twilight'}. ${r.detail}`);
+    log(`Avoid Twilight: ${r.my} vs ${r.tw}: ${r.success ? 'avoided; two minutes to bring the magic under control' : r.botch ? `BOTCH: enters Twilight and cannot comprehend it; time in the world: ${TWILIGHT_TIME[Math.min(10, Math.max(1, score))]}` : 'enters Twilight'}. ${r.detail}`);
     if (!r.success) setStage({ kind: 'entered', gained: gain });
-    if (r.botch) setStage({ kind: 'outcome', gained: gain, comprehended: false, extra: 0, duration: '' });
+    // a botch enters Twilight and cannot comprehend it: no roll, the base time, and the simple die's mark all the same (DE)
+    if (r.botch) setStage({ kind: 'outcome', gained: gain, comprehended: false, extra: simpleDie().value, duration: TWILIGHT_TIME[Math.min(10, Math.max(1, score))] });
     // avoided: the Twilight check waiting on the Resolve list is settled
     if (r.success) update((x) => void settleTwilight(x));
   };

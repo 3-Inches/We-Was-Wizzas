@@ -8,12 +8,13 @@
 // (a spell learned, an item made, a familiar bound) is final: what it made is on the sheet, so it is not
 // unlogged (Undo at the top takes back the last change instead).
 
+import { seasonIndex } from './effects';
 import { applySeason } from './longterm';
 import { dropSeasonRoll, seasonRollOf } from './seasonRolls';
 import { PROJECT_KINDS } from './projects';
 import type { Art } from '../data';
 import type { SeasonRecordField } from './seasonLogTypes';
-import type { Character, Covenant, SeasonLogEntry, SeasonUndo, VisStock } from './types';
+import type { Character, Covenant, Season, SeasonLogEntry, SeasonUndo, VisStock } from './types';
 import { addVis, purseOf, takeVis, visAvailable } from './vis';
 
 /** The vis gone from one set of stocks to another, by Art (and pair): what a season spent. */
@@ -70,6 +71,13 @@ export function recordsUndo(before: Character, after: Character): Pick<SeasonUnd
   return out.length ? { records: out } : {};
 }
 
+/** The Abilities a season's work began, from the character before and after. */
+export function begunUndo(before: Pick<Character, 'abilities'>, after: Pick<Character, 'abilities'>): Pick<SeasonUndo, 'abilities'> {
+  const had = new Set(before.abilities.map((a) => a.uid));
+  const begun = after.abilities.filter((a) => !had.has(a.uid)).map((a) => a.uid);
+  return begun.length ? { abilities: begun } : {};
+}
+
 /** What a season's work left owed on the Resolve list (a Warping reaction), from the character before and after. */
 export function owedUndo(before: Character, after: Character): Pick<SeasonUndo, 'owed'> {
   const had = new Set((before.owed ?? []).map((o) => o.uid));
@@ -108,11 +116,36 @@ export interface Unlogged {
 }
 
 /**
+ * The records a season's `undo` puts back as they were (a project, a tradition's record, a holy work, a
+ * great building): putting one back under a later season's work on it would take that work too.
+ */
+function snapshots(u: SeasonUndo | undefined): string[] {
+  if (!u) return [];
+  return [
+    ...(u.project ? [`project ${u.project.uid}`] : []),
+    ...(u.holyWork ? [`holy ${u.holyWork.uid}`] : []),
+    ...(u.building ? [`building ${u.building.covenantId} ${u.building.uid}`] : []),
+    ...(u.records ?? []).map((r) => `record ${r.field} ${r.key}`),
+  ];
+}
+
+/**
  * Whether a logged season can be unlogged, and why not; and `stands`, what a roll already made at its end
  * did, which Unlog leaves (owner.md, point 2: a roll already made stands; Turn back undoes everything).
+ * With the character (and the troupe, for a covenant's building), a season that a later season's work
+ * on the same record follows is unlogged after that one, not before.
  */
-export function canUnlog(e: SeasonLogEntry): { ok: boolean; why?: string; stands?: string } {
+export function canUnlog(e: SeasonLogEntry, c?: Character, troupe: Character[] = []): { ok: boolean; why?: string; stands?: string } {
   if (e.undo?.final) return { ok: false, why: e.undo.final };
+  const mine = snapshots(e.undo);
+  if (mine.length && c) {
+    const at = seasonIndex(e.year, e.season);
+    const pos = c.seasonLog.indexOf(e);
+    const later = [...c.seasonLog.map((x, i) => ({ x, i, who: c })), ...troupe.filter((t) => t.id !== c.id).flatMap((t) => t.seasonLog.map((x) => ({ x, i: -1, who: t })))].find(
+      ({ x, i, who }) => x !== e && (seasonIndex(x.year, x.season) > at || (who === c && seasonIndex(x.year, x.season) === at && i > pos)) && snapshots(x.undo).some((k) => mine.includes(k)),
+    );
+    if (later) return { ok: false, why: `${later.who === c ? '' : `${later.who.name || 'Another'}’s `}${later.x.season} ${later.x.year} (${later.x.summary}) worked on the same thing after this season: unlog that one first.` };
+  }
   return { ok: true, ...(e.undo?.rolled ? { stands: e.undo.rolled } : {}) };
 }
 
@@ -120,16 +153,21 @@ export function canUnlog(e: SeasonLogEntry): { ok: boolean; why?: string; stands
  * Take a logged season back on a character (changed in place), giving vis back to the covenant it
  * came from (changed in place, and returned so the caller saves it).
  */
-export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = []): Unlogged {
+export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [], o: { now?: { year: number; season: Season }; troupe?: Character[] } = {}): Unlogged {
   const e = c.seasonLog.find((x) => x.uid === entryUid);
   if (!e) return { ok: false, why: 'That season is not on the log.', covenants: [] };
-  const can = canUnlog(e);
+  const can = canUnlog(e, c, o.troupe);
   if (!can.ok) return { ok: false, why: can.why, covenants: [] };
   const changed: Covenant[] = [];
   if (e.applied) applySeason(c, e, -1);
   // a roll its work left, not yet made: set aside with the season (what it kept, and the Resolve line, by `undo.owed`)
   const waiting = seasonRollOf(c, e.uid);
-  if (waiting) dropSeasonRoll(c, waiting);
+  if (waiting) {
+    dropSeasonRoll(c, waiting);
+    // a save from before the roll's Resolve line was kept on the season: its line goes too
+    c.owed = c.owed?.filter((x) => !(x.kind === waiting && x.year === e.year && x.season === e.season));
+    if (c.owed && !c.owed.length) delete c.owed;
+  }
   const u = e.undo;
   if (u) {
     if (c.workshop) {
@@ -178,8 +216,8 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
     if (u.initiationUid) c.initiations = (c.initiations ?? []).filter((i) => i.uid !== u.initiationUid);
     if (u.discoveryUid && c.research) {
       c.research.discoveries = c.research.discoveries.filter((d) => d.uid !== u.discoveryUid);
-      // the record the first Discovery began, with nothing in it now
-      if (!c.research.discoveries.length && !c.research.goal) delete c.research;
+      // the record this season began with its first Discovery, with nothing in it now
+      if (u.research && !c.research.discoveries.length) delete c.research;
     }
     if (u.apprentice && c.apprentice) c.apprentice.seasons = Math.max(0, c.apprentice.seasons - 1);
     if (u.tractatus) {
@@ -199,8 +237,11 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
     if (u.specialist) {
       const cov = covs.find((x) => x.id === u.specialist!.covenantId);
       const sp = cov?.specialists.find((x) => x.uid === u.specialist!.uid);
-      if (cov && sp) {
-        if (u.specialist.taught) sp.taught = { ...u.specialist.taught };
+      if (cov && sp?.taught?.year === e.year) {
+        // a season fewer taught that year: other lessons the teacher gave since stay counted
+        const was = u.specialist.taught;
+        if (sp.taught.seasons > 1) sp.taught = { ...sp.taught, seasons: sp.taught.seasons - 1 };
+        else if (was) sp.taught = { ...was };
         else delete sp.taught;
         if (!changed.includes(cov)) changed.push(cov);
       }
@@ -210,7 +251,8 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
       const works = c.holy?.works ?? [];
       c.holy = { ...(c.holy ?? {}), works: works.some((w) => w.uid === was.uid) ? works.map((w) => (w.uid === was.uid ? was : w)) : [...works, was] };
     }
-    if (u.fatigue) c.longTermFatigueLost = Math.max(0, c.longTermFatigueLost - u.fatigue);
+    // Fatigue comes back as each season ends: given back only within the season that cost it
+    if (u.fatigue && (!o.now || (o.now.year === e.year && o.now.season === e.season))) c.longTermFatigueLost = Math.max(0, c.longTermFatigueLost - u.fatigue);
     if (u.building) {
       const cov = covs.find((x) => x.id === u.building!.covenantId);
       if (cov) {
@@ -222,10 +264,9 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
       }
     }
   }
-  // an Ability the season began (Worship's Church Lore, a new language from a book) goes again, once it
-  // is left with no experience and nothing else to it: not one a Virtue gives, a native tongue, or one with a specialty
-  const begun = Object.keys(e.gains).filter((k) => k.startsWith('ability:')).map((k) => k.slice(8));
-  c.abilities = c.abilities.filter((a) => !begun.includes(a.uid) || a.why || a.native || a.specialty || Object.values(a.xp).some((v) => v));
+  // an Ability the season began (Worship's Church Lore, a language first taught) goes again while it has no experience
+  const begun = e.undo?.abilities ?? [];
+  c.abilities = c.abilities.filter((a) => !begun.includes(a.uid) || Object.values(a.xp).some((v) => v));
   c.seasonLog = c.seasonLog.filter((x) => x.uid !== entryUid);
   return { ok: true, covenants: changed };
 }

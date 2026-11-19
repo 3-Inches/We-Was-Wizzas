@@ -199,7 +199,19 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
         <button
           className="small ghost"
           title={o.kind === 'warping' ? 'Chosen and added on the sheet by hand' : isSeasonRoll(o.kind) ? 'Rolled by hand, or set aside: it is dropped' : 'Rolled and settled'}
-          onClick={() => done(isSeasonRoll(o.kind) ? (x) => dropSeasonRoll(x, o.kind as Parameters<typeof dropSeasonRoll>[1]) : undefined)}
+          onClick={() =>
+            done(
+              isSeasonRoll(o.kind)
+                ? (x) => {
+                    const kind = o.kind as Parameters<typeof dropSeasonRoll>[1];
+                    const entryUid = (kind === 'curse' ? x.folkWitch?.curse : kind === 'ring' ? x.holy?.recitation : x.holy?.search)?.entryUid;
+                    dropSeasonRoll(x, kind);
+                    // rolled by hand: what it did stands, as for a roll made here
+                    noteSeasonRoll(x, kind, entryUid, ['Rolled by hand, or set aside, in Resolve.']);
+                  }
+                : undefined,
+            )
+          }
         >
           Done
         </button>

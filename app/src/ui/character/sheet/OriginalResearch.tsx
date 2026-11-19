@@ -46,6 +46,7 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
     let follows: string | undefined;
     update((x) => {
       const found = res.stable ? uid() : undefined;
+      const begun = !!found && !x.research;
       if (found) {
         x.research ??= { goal: '', kind: 'minor', discoveries: [] };
         x.research.discoveries.push({ uid: found, name: name || 'A stabilized Discovery', magnitude, ...when });
@@ -56,7 +57,7 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
       if (e) {
         e.notes = lines.join(' ');
         e.told = researchTold(name.trim() || undefined, res.stable);
-        e.undo = { warping: res.warpingPoints || undefined, discoveryUid: found };
+        e.undo = { warping: res.warpingPoints || undefined, discoveryUid: found, ...(begun ? { research: true } : {}) };
       }
       // two or more points from the experiment: roll to avoid Twilight (DE, Original Research), owed on the Resolve list and kept on the season, for Unlog
       follows = d ? gainWarping(x, d, { points: res.warpingPoints, why: 'from stabilizing a Discovery', ...nowOf(saga), entry: e }) : ((x.warpingPoints += res.warpingPoints), undefined);

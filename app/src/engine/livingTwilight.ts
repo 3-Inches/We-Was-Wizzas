@@ -8,7 +8,7 @@ import { ART_NAMES, ARTS, type Art } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import { stressDie, type Rng } from './dice';
 import { newSeasonEntry, twilightAvoidance, twilightComprehension, TWILIGHT_TIME } from './longterm';
-import { nextSeason } from './effects';
+import { nextSeason, seasonIndex } from './effects';
 import type { Character, Season, TribunalNews } from './types';
 import { uid } from '../util/id';
 import { warpingScoreFromPoints } from './xp';
@@ -74,19 +74,23 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
       continue;
     }
     const comp = twilightComprehension(d, gained, rng, true);
-    // a botched avoidance enters Twilight and cannot comprehend it: the base time
+    // a botched avoidance enters Twilight and cannot comprehend it (DE line 9761): no roll, the base time
     const comprehended = comp.success && !avoid.botch;
     const score = warpingScoreFromPoints(c.warpingPoints);
-    const time = comprehended || !comp.success ? comp.duration : TWILIGHT_TIME[Math.min(10, Math.max(1, score))];
+    const time = avoid.botch ? TWILIGHT_TIME[Math.min(10, Math.max(1, score))] : comp.duration;
     const idx = TWILIGHT_TIME.indexOf(time);
     const total = gained + comp.extraWarping;
     c.warpingPoints += comp.extraWarping;
     const art = bestArt(d);
-    const xp = changeArt(c, art, (comprehended ? 2 : -2) * total);
+    // Final Twilight takes the magus from the world: nothing of it comes back
+    const xp = idx >= 10 ? 0 : changeArt(c, art, (comprehended ? 2 : -2) * total);
     const scar = `${season} ${year}: ${comprehended ? 'a beneficial' : 'an annoying'} Twilight Scar (the storyguide describes it)`;
     c.twilightScars = [...c.twilightScars.filter(Boolean), scar];
     const away = idx >= 10 ? { text: '', seasons: 0 } : timeAway(idx, rng);
-    let when = { year, season };
+    // after any seasons a Twilight already took from the world
+    const lost = c.seasonLog.filter((x) => x.told === 'was lost in Wizard’s Twilight' && seasonIndex(x.year, x.season) > seasonIndex(year, season));
+    const last = lost.sort((a, b) => seasonIndex(b.year, b.season) - seasonIndex(a.year, a.season))[0];
+    let when = last ? { year: last.year, season: last.season } : { year, season };
     for (let i = 0; i < away.seasons; i++) {
       when = nextSeason(when.year, when.season);
       const e = newSeasonEntry(when.year, when.season, 'other', `In Wizard’s Twilight, from ${season} ${year}.`);
@@ -94,12 +98,12 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
       e.applied = true;
       c.seasonLog.push(e);
     }
-    const what = `${comprehended ? 'comprehended it' : 'did not comprehend it'}, and ${xp >= 0 ? 'gained' : 'lost'} ${Math.abs(xp)} experience in ${ART_NAMES[art]}`;
+    const what = idx >= 10 ? 'and could not find the way back' : `${comprehended ? 'comprehended it' : 'did not comprehend it'}, and ${xp >= 0 ? 'gained' : 'lost'} ${Math.abs(xp)} experience in ${ART_NAMES[art]}`;
     const detail = `${avoid.botch ? 'botched the roll to avoid it' : `failed to avoid it (${avoid.my} vs ${avoid.tw})`}, ${what}; ${comp.extraWarping} more Warping Point${comp.extraWarping === 1 ? '' : 's'}, and a Twilight Scar`;
     if (idx >= 10) c.wounds.dead = true;
     const gone = idx >= 10 ? 'passed into Final Twilight, and is gone from the world' : `was lost to the world for ${away.text}`;
     out.lines.push(`${who} entered Wizard’s Twilight from ${gained} Warping Points: ${detail}. ${who} ${gone}.`);
-    out.news.push({ uid: uid(), year, season, kind: idx >= 10 ? 'death' : 'event', covenantId, characterId: c.id, text: `${who} fell into Wizard’s Twilight and ${gone}${comprehended ? ', and came back wiser in the ways of magic' : idx >= 10 ? '' : ', marked by it'}.` });
+    out.news.push({ uid: uid(), year, season, kind: idx >= 10 ? 'death' : 'event', covenantId, characterId: c.id, text: `${who} fell into Wizard’s Twilight and ${gone}${idx >= 10 ? '' : comprehended ? ', and came back wiser in the ways of magic' : ', marked by it'}.` });
   }
   return out;
 }

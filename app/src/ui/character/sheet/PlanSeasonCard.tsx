@@ -11,6 +11,7 @@ import { applySeason, computeStudy, magianLinkedGains, newSeasonEntry, visForStu
 import { stressDie, describeStress } from '../../../engine/dice';
 import type { SeasonLogEntry } from '../../../engine/types';
 import { ensureAbility } from '../../../engine/character/factory';
+import { begunUndo } from '../../../engine/unlog';
 import { purseOf, takeVis, visAvailable } from '../../../engine/vis';
 import { Card, Field, HowItWorks, Stepper, Total } from '../../kit';
 import type { CharEditor } from '../useChar';
@@ -248,6 +249,7 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
     if (bookUid) entry.bookId = bookUid;
     let follows: string | undefined;
     update((x) => {
+      const had = { abilities: [...x.abilities] };
       if (fromPurse) takeVis(purseOf(x).vis, [...ARTS], eaten);
       if (kind === 'vis' && art && visFrom === 'purse') takeVis(purseOf(x).vis, [art], visPawns);
       // Magian Lineage: the connected Abilities gain too (added to the character if new)
@@ -263,6 +265,8 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
         delete entry.gains[target];
       }
       if (insight) for (const a of insightPicked) entry.gains[`art:${a}`] = (entry.gains[`art:${a}`] ?? 0) + 1;
+      // the Abilities this season began, for Unlog
+      if (begunUndo(had, x).abilities) entry.undo = { ...entry.undo, ...begunUndo(had, x) };
       applySeason(x, entry, 1);
       // a double botch studying vis: Twilight, owed in Resolve; Unlog takes it back with the points
       follows = seasonWarping(x, d, entry, 'from studying vis', !!cov?.living);
@@ -272,10 +276,12 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
     // the teacher's season: Exposure in Teaching, in their own season or an extra one
     if (mate && mateD && logTeacher && teacherSlot) {
       updateCharacter(mate.id, (t) => {
+        const had = { abilities: [...t.abilities] };
         const tch = ensureAbility(t, 'teaching', {});
         const ex = computeStudy(mateD, { kind: 'exposure', subject: 'Teaching' }, { abilityUid: tch.uid });
         const e = newSeasonEntry(year, season, 'teach', `${teacherSlot === 'extra' ? 'Extra season (needs no sleep): ' : ''}Taught ${subject} to ${c.name || 'a student'} (Exposure: Teaching +${ex.xp} xp)`, ex.xp ? { [`ability:${tch.uid}`]: ex.xp } : {});
         if (teacherSlot === 'extra') e.extra = true;
+        if (begunUndo(had, t).abilities) e.undo = begunUndo(had, t);
         applySeason(t, e, 1);
         t.seasonLog.push(e);
       });

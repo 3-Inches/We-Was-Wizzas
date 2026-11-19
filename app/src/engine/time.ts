@@ -17,7 +17,7 @@ import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import { payAllowance } from './economy';
 import { expireEffects, nextSeason, seasonIndex } from './effects';
 import { applySeason, computeStudy, newSeasonEntry, visForStudy } from './longterm';
-import { labUndo } from './unlog';
+import { begunUndo, labUndo } from './unlog';
 import { hopedHoroscope, planProject, visShort, workProject } from './projects';
 import { auraOf } from './aura';
 import { optionOn } from './optional';
@@ -228,10 +228,12 @@ function runActivity(c: Character, d: DerivedCharacter, ctx0: CharacterContext, 
 }
 
 function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext, cov: Covenant | undefined, data: GameData, year: number, season: Season, rng: Rng, s: StandingActivity, chars?: Character[]): string[] {
+  // an Ability the season begins (Worship's Church Lore) is kept on its entry, for Unlog
+  const had = { abilities: [...c.abilities] };
   const log = (activity: SeasonLogEntry['activity'], summary: string, gains: Record<string, number>, warping = 0, undo?: SeasonLogEntry['undo']) => {
     const e = newSeasonEntry(year, season, activity, summary, gains);
     if (warping) e.warpingPoints = warping;
-    if (undo) e.undo = undo;
+    if (undo || begunUndo(had, c).abilities) e.undo = { ...undo, ...begunUndo(had, c) };
     applySeason(c, e, 1);
     c.seasonLog.push(e);
     return e;
@@ -613,10 +615,12 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     const out: string[] = [];
     const magus = [...state.characters].find((m) => LAB_HELP.get(m)?.includes(h));
     if (h.used) {
+      const had = { abilities: [...c.abilities] };
       const mt = ensureAbility(c, 'magic-theory', {});
       const r = computeStudy(d, { kind: 'exposure', subject: 'Magic Theory' }, { abilityUid: mt.uid });
       const e = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${magus?.name || 'a magus'} in the lab: ${h.used} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
       if (h.extra) e.extra = true;
+      if (begunUndo(had, c).abilities) e.undo = begunUndo(had, c);
       e.told = helperTold(magus?.name || 'a magus');
       applySeason(c, e, 1);
       c.seasonLog.push(e);

@@ -97,6 +97,30 @@ describe('a living magus’s Twilight, rolled when the season ends', () => {
     expect(c.twilightScars.at(-1)).toMatch(/annoying/);
   });
 
+  it('a botched roll to avoid it: the base time, with no comprehension roll’s botches added (DE line 9761)', () => {
+    const c = owing(2, 2); // Warping Score 2: two hours
+    // avoid: 0 and a botch die 0; the comprehension roll the code makes anyway botches three times over
+    const r = livingTwilight(c, derive, 0, 'cov', 1220, 'Spring', faces(0, 0, 0, 0, 0, 0, 3));
+    expect(r.lines[0]).toMatch(/lost to the world for two hours/);
+  });
+
+  it('two Twilights owed at once lose the world seasons one after the other, not the same seasons twice', () => {
+    const c = owing(2, 6);
+    c.owed!.push({ uid: 'tw2', year: 1220, season: 'Spring', kind: 'twilight', text: '', points: 2 });
+    // each: avoid fails, comprehension fails, the base time (a Season), a simple die of 1
+    livingTwilight(c, derive, 0, 'cov', 1220, 'Spring', faces(2, 9, 2, 9, 1));
+    expect(c.seasonLog.map((e) => `${e.season} ${e.year}`)).toEqual(['Summer 1220', 'Autumn 1220']);
+  });
+
+  it('Final Twilight, even comprehended, brings nothing back', () => {
+    const c = owing(2, 10);
+    // avoid fails; comprehension succeeds, but by too little to shorten Final Twilight
+    const r = livingTwilight(c, derive, 0, 'cov', 1220, 'Spring', faces(2, 9, 9, 0, 1));
+    expect(c.wounds.dead).toBe(true);
+    expect(c.arts.Cr).toEqual({ apprenticeship: 15 });
+    expect(r.news[0].text).not.toMatch(/wiser/);
+  });
+
   it('Warping Score 10: Final Twilight takes the magus from play', () => {
     const c = owing(2, 10);
     const r = livingTwilight(c, derive, 0, 'cov', 1220, 'Spring', faces(2, 9, 2, 9, 1));

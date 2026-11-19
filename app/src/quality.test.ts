@@ -51,7 +51,7 @@ const BIG_FILES: Record<string, number> = {
   'src/engine/guided/autobuild.ts': 1180,
   'src/engine/holy.ts': 877,
   'src/engine/projects.ts': 913,
-  'src/engine/time.ts': 816,
+  'src/engine/time.ts': 820,
   'src/engine/types.ts': 1869,
   'src/ui/character/sheet/LabProjects.tsx': 885,
   'src/ui/character/sheet/MagicTab.tsx': 1211,

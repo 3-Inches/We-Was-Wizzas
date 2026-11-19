@@ -100,6 +100,10 @@ export interface SeasonUndo {
   tractatus?: { covenantId: string; bookUid: string };
   /** a great building as it was before the season's work (none: the season began it) */
   building?: { covenantId: string; uid: string; before?: GreatBuilding };
+  /** Abilities the season began (Worship's Church Lore, a language first taught): taken off again while they have no experience */
+  abilities?: string[];
+  /** the season began the research record (its first Discovery): taken off again with it */
+  research?: boolean;
   /** a covenant teacher's seasons taught this year, as they were before this lesson (two a year, DE p.180) */
   specialist?: { covenantId: string; uid: string; taught?: Specialist['taught'] };
   /**

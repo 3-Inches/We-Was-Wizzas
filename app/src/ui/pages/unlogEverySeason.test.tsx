@@ -109,6 +109,18 @@ function choose(el: HTMLElement, i: number, value: string) {
   sel.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
+/** Fill each empty text field of the season-work cards as a player would (a curse's target, a charm's name), so its button can be pressed. */
+function fill(el: Element) {
+  el.querySelectorAll('input:not([type]), input[type="text"]').forEach((i) => {
+    const input = i as HTMLInputElement;
+    // not Plan a season's, which names the season logged
+    const tour = input.closest('section')?.getAttribute('data-tour') ?? '';
+    if (input.value || !WORK_CARDS.test(tour) || tour === 'plan-season') return;
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, 'Wulfstan');
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+}
+
 /** Press a button: if it logged a season, unlog it as the Unlog button does, and say what is not as it was. */
 async function pressed(b: HTMLButtonElement, what: string): Promise<Pressed> {
   const before = records();
@@ -147,6 +159,7 @@ async function pressAll(st: SagaState, c: Character): Promise<Pressed[]> {
     const n = el.querySelectorAll('button').length;
     for (let i = 0; i < n; i++) {
       if (dirty) await act(async () => load(st));
+      if (dirty || i === 0) await act(async () => fill(el));
       dirty = false;
       const b = button(i);
       if (!work(b)) continue;
@@ -172,6 +185,7 @@ async function pressAll(st: SagaState, c: Character): Promise<Pressed[]> {
           if (dirty) {
             await act(async () => load(st));
             await act(async () => choose(el, s.i, value));
+            await act(async () => fill(el));
           }
           dirty = false;
           const b = button(j, card());
@@ -204,5 +218,9 @@ describe('a season done from a card, unlogged, leaves everyone as they were', ()
     for (const k of ['Lab', 'Taught Ansel, the apprentice', 'Read a summa', 'Practice', 'Exposure', 'Studied Creo vis', 'Worship', 'Wrote', 'Devotion', 'Building', 'Holy work', 'Elemental refining', 'Gruagach', 'Learned magic', 'Vitki', "Witch's kitchen"])
       expect([...reached], k).toContain(k);
     expect([...reached].some((k) => /^Worked as/.test(k)), 'a season in the workshop').toBe(true);
+    // and the seasons whose rolls wait for the season's end, or that change a tradition's own record
+    const whole = new Set(out.flatMap((r) => r.seasons));
+    for (const k of ["Witch's kitchen: a curse woven", 'Gruagach: inventing', 'Vitki: learning rune scripts', 'Devotion: the search for the Book of Solomon'])
+      expect([...whole].some((x) => x.startsWith(k)), k).toBe(true);
   }, 120000);
 });
