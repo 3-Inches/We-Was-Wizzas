@@ -80,9 +80,11 @@ const vfLabel = (d: DerivedCharacter) => new Map(d.virtues.map((v) => [`${v.cv.d
  * Virtues and Flaws, Ability and Art scores and experience, spells and their mastery, Confidence,
  * Personality Traits, Reputations, what they carry and own, wounds, Warping, Decrepitude, the
  * seasons logged, and the two things a storyguide most wants to see: numbers set by hand and rules
- * problems waved through as troupe rulings. Anything else that differs is said in one line, so the
- * page never says nothing changed when something did. The storyguide reads it before the new
- * version takes the old one's place.
+ * problems waved through as troupe rulings. Then every other field a rule reads, by its name
+ * (CHANGE_FIELDS): Sympathy Traits, charms, rune scripts, Devotion Points, the holy and the rest.
+ * What no rule reads (a description, a portrait) is said in one line of other details, and so is
+ * anything else that differs, so the page never says nothing changed when something did. The
+ * storyguide reads it before the new version takes the old one's place.
  */
 export function characterChanges(before: Character, after: Character, data: GameData, rules: HouseRules): ChangeLine[] {
   const out: ChangeLine[] = [];
@@ -107,10 +109,14 @@ export function characterChanges(before: Character, after: Character, data: Game
   const ab = abil(b);
   for (const [k, y] of ab) {
     const x = aa.get(k);
-    if (!x && y.score > 0) out.push({ kind: 'added', text: `${y.name} ${y.score}` });
-    else if (x && (x.score !== y.score || x.effectiveXp !== y.effectiveXp)) changed(`${y.name} ${x.score} → ${y.score}${x.score === y.score ? ` (${x.effectiveXp} → ${y.effectiveXp} xp)` : ''}`);
+    // one at 0 counts too: a hedge Art held at 0 is still one the character works
+    if (!x) out.push({ kind: 'added', text: `${y.name} ${y.score}` });
+    else if (x.score !== y.score || x.effectiveXp !== y.effectiveXp) changed(`${y.name} ${x.score} → ${y.score}${x.score === y.score ? ` (${x.effectiveXp} → ${y.effectiveXp} xp)` : ''}`);
+    const sx = before.abilities.find((z) => z.uid === x?.uid)?.specialty ?? '';
+    const sy = after.abilities.find((z) => z.uid === y.uid)?.specialty ?? '';
+    if (x && sx !== sy) changed(`${y.name}: specialty ${sx || '(none)'} → ${sy || '(none)'}`);
   }
-  for (const [k, x] of aa) if (!ab.has(k) && x.score > 0) out.push({ kind: 'removed', text: `${x.name} ${x.score}` });
+  for (const [k, x] of aa) if (!ab.has(k)) out.push({ kind: 'removed', text: `${x.name} ${x.score}` });
   for (const art of ARTS) {
     const x = a.arts[art];
     const y = b.arts[art];
@@ -122,6 +128,10 @@ export function characterChanges(before: Character, after: Character, data: Game
   const sb = spells(after);
   for (const [k, label] of sb) if (!sa.has(k)) out.push({ kind: 'added', text: `Spell: ${label}` });
   for (const [k, label] of sa) if (!sb.has(k)) out.push({ kind: 'removed', text: `Spell: ${label}` });
+  // what else a spell keeps that a rule reads: its Mastery abilities, Magical Focus, Potency and casting tool
+  const kept = (c: Character) => new Map(c.spells.map((s) => [`${s.spell.name}|${s.spell.level}`, JSON.stringify([s.masteryAbilities, s.inFocus, s.potency, s.castingTool, s.source, s.spell])]));
+  const ka = kept(before);
+  for (const [k, v] of kept(after)) if (ka.has(k) && ka.get(k) !== v) changed(`Spell: ${sb.get(k)}: its Mastery abilities, Focus, Potency, casting tool or design`);
   // spell mastery
   const mastery = (c: Character) => new Map(c.spells.map((sp) => [`${sp.spell.name}|${sp.spell.level}`, Object.values(sp.masteryXp ?? {}).reduce<number>((t, v) => t + (v ?? 0), 0)]));
   const ma = mastery(before);
@@ -182,10 +192,241 @@ export function characterChanges(before: Character, after: Character, data: Game
   if ((before.player ?? '') !== (after.player ?? '')) changed(`Player: ${before.player || '(none)'} → ${after.player || '(none)'}`);
   if ((before.description ?? '') !== (after.description ?? '')) changed('Description');
   if ((before.notes ?? '') !== (after.notes ?? '')) changed('Notes');
-  // whatever else differs, so that "nothing differs" is only said when it is true
-  if (!out.length) {
-    const rest = (c: Character) => JSON.stringify({ ...c, updatedAt: undefined, createdAt: undefined, sagaId: undefined, covenantId: undefined, schemaVersion: undefined });
-    if (rest(before) !== rest(after)) changed('Other details of the sheet differ (nothing the rules count)');
-  }
+  // every other field a rule reads, by name (CHANGE_FIELDS below)
+  const fields = fieldChanges(before, after);
+  out.push(...fields.lines);
+  // what no rule reads, in one line; and whatever else differs, so that "nothing differs" is only said when it is true
+  const other = fields.other;
+  const rest = (c: Character) => JSON.stringify({ ...c, updatedAt: undefined, createdAt: undefined, sagaId: undefined, covenantId: undefined, schemaVersion: undefined });
+  if (other || (!out.length && rest(before) !== rest(after))) changed('Other details of the sheet differ');
   return out;
+}
+
+/** How a field is named in the list of changes: a label, its items' labels, and the labels of its parts. */
+export interface Named {
+  label: string;
+  /** a list: each item named by this, matched by its uid (or by the name it is given) */
+  item?: (x: never) => string;
+  /** an object: its parts named one by one ('shown' above, 'other' read by no rule); a part not listed is named by the whole's label */
+  parts?: Record<string, Named | 'shown' | 'other'>;
+}
+
+const plus = (n: number) => `${n >= 0 ? '+' : ''}${n}`;
+const named = (label: string, item?: (x: never) => string): Named => ({ label, item });
+
+/**
+ * Every field of a character, and how the list of changes names it. 'shown': compared line by line in
+ * `characterChanges` itself. A label: a field some rule reads, named when it differs. 'other': no rule
+ * reads it (a description, a portrait), and it goes in the one line of other details. 'meta': the
+ * record's own bookkeeping, never compared. A field added to `Character` must be placed here, or the
+ * typecheck fails.
+ */
+export const CHANGE_FIELDS: { [K in keyof Required<Character>]: 'shown' | 'other' | 'meta' | Named } = {
+  id: 'meta',
+  sagaId: 'meta',
+  schemaVersion: 'meta',
+  createdAt: 'meta',
+  updatedAt: 'meta',
+  covenantId: 'meta',
+  name: 'shown',
+  age: 'shown',
+  house: 'shown',
+  creation: { label: 'Creation choices', parts: { finalized: 'shown', step: 'other', guidedWhy: 'other', agingLog: 'other', apprenticeshipStartAge: named('Age apprenticeship began'), yearsPostGauntlet: named('Years since the Gauntlet'), postGauntletLabSeasons: named('Lab seasons since the Gauntlet'), extraPools: named('Extra experience pools', (x: { label: string; amount: number }) => `${x.label} ${x.amount}`) } },
+  characteristics: 'shown',
+  virtues: 'shown',
+  abilities: 'shown',
+  arts: 'shown',
+  spells: 'shown',
+  overrides: 'shown',
+  acknowledgedIssues: 'shown',
+  confidence: 'shown',
+  faith: 'shown',
+  personality: 'shown',
+  reputations: 'shown',
+  items: 'shown',
+  possessions: 'shown',
+  equipment: 'shown',
+  familiar: 'shown',
+  wounds: 'shown',
+  fatigueLost: 'shown',
+  longTermFatigueLost: 'shown',
+  agingPoints: 'shown',
+  twilightScars: 'shown',
+  warpingPoints: 'shown',
+  decrepitudePoints: 'shown',
+  seasonLog: 'shown',
+  player: 'shown',
+  description: 'shown',
+  notes: 'shown',
+  // what no rule reads
+  gender: 'other',
+  society: 'other',
+  nationality: 'other',
+  apparentAge: 'other',
+  guided: 'other',
+  npc: 'other',
+  characteristicNotes: 'other',
+  sigil: 'other',
+  portrait: 'other',
+  fromBook: 'other',
+  // what the rules read, by name
+  type: named('Kind of character'),
+  birthYear: named('Year of birth'),
+  creature: named('Might, Size or kind of creature'),
+  session: named('All According to Plan used this session'),
+  owed: named('Waiting in Resolve', (x: { text: string }) => x.text),
+  insight: named('Secondary Insight’s Arts'),
+  hungerLost: named('Long-Term Fatigue lost to Hunger for Magic'),
+  storiesTold: named('Story and Personality Flaws last in play'),
+  powers: named('Supernatural power', (x: { name: string }) => x.name),
+  holy: {
+    label: 'The holy',
+    parts: {
+      ascent: named('The Divine Ascent'),
+      unity: named('Divine Unity'),
+      commandingAura: named('A commanding aura'),
+      temper: named('A holy temper'),
+      aid: named('God’s aid'),
+      tradition: named('Holy tradition'),
+      faithLost: named('Faith Points lost to a botched prayer'),
+      silent: named('Saints who will not answer'),
+      tragedies: named('Tragedies of hubris'),
+      notoria: named('The Rings of Solomon'),
+      recitation: named('A Ring of Solomon being recited'),
+      search: named('The search for the Book of Solomon'),
+      works: named('Holy work', (x: { name: string; progress: number; target: number; done?: boolean }) => `${x.name} ${x.done ? 'done' : `${x.progress} of ${x.target}`}`),
+      shinnui: named('Shinnui Shem'),
+      trueNames: named('True Names'),
+    },
+  },
+  agingLoss: named('Characteristics lost to aging'),
+  auraTime: named('Time spent in the covenant’s aura'),
+  awayFromCovenant: named('Away from the covenant'),
+  warpingNoted: named('Warping Score whose effects were reported'),
+  warpingAttuned: named('Realm the Warping Score is attuned to'),
+  talismanUid: named('The talisman'),
+  workshop: named('The workshop'),
+  longevity: named('Longevity Ritual'),
+  longevityLapsed: named('A lapsed Longevity Ritual'),
+  sympathy: named('Sympathy Trait', (x: { trait: string; score: number; xp?: number }) => `${x.trait || '(unnamed)'} ${plus(x.score)}${x.xp ? ` (${x.xp} xp)` : ''}`),
+  learned: {
+    label: 'Learned magic',
+    parts: {
+      trainingYears: named('Years under a master'),
+      charms: named('Charm', (x: { name: string; tf: string; level: number }) => `${x.name} (${x.tf} ${x.level})`),
+      inventing: named('Charm being invented'),
+    },
+  },
+  folkWitch: {
+    label: 'Folk witch',
+    parts: {
+      apprenticeYears: named('Years of a folk witch’s apprenticeship'),
+      things: named('Potion or fetish', (x: { name: string; kind: string; doses?: number }) => `${x.name} (${x.kind}${x.doses !== undefined ? `, ${x.doses} doses` : ''})`),
+      witchMoon: named('The Witch Moon'),
+      curse: named('A woven curse'),
+    },
+  },
+  gruagach: {
+    label: 'Gruagach',
+    parts: {
+      apprenticeYears: named('Years of a gruagach’s apprenticeship'),
+      spells: named('Gruagach spell', (x: { name: string; tf: string; level: number }) => `${x.name} (${x.tf} ${x.level})`),
+      inventing: named('Gruagach spell being invented'),
+    },
+  },
+  vitki: {
+    label: 'Vitki',
+    parts: {
+      apprenticeYears: named('Years of a vitki’s apprenticeship'),
+      scripts: named('Rune script', (x: { name: string; level: number }) => `${x.name} (level ${x.level})`),
+    },
+  },
+  devotions: named('Devotion Points', (x: { saint: string; points: number }) => `${x.saint} ${x.points}`),
+  pilgrimage: named('A pilgrimage'),
+  spiritualPath: named('A Spiritual Path'),
+  greatElixir: named('The Great Elixir'),
+  activeEffects: named('Effect on the character', (x: { name: string }) => x.name),
+  magicGain: named('Characteristics raised by magic'),
+  purse: named('The purse'),
+  projects: named('Lab project', (x: { kind: string; name?: string }) => x.name || x.kind),
+  agents: named('Agent', (x: { name: string }) => x.name),
+  initiations: named('Mystery Initiation', (x: { virtueName: string }) => x.virtueName),
+  criamonPath: named('Criamon Path'),
+  heartbeast: named('Heartbeast'),
+  rhine: named('Rank in the Rhine'),
+  forestPacts: named('Pact with a forest spirit', (x: { spirit: string }) => x.spirit),
+  theban: named('Theban citizenship, tokens and shards'),
+  privilege: named('Transylvanian privilege'),
+  guild: named('Guild membership'),
+  illnesses: named('Illness', (x: { name: string }) => x.name),
+  recovery: named('Recovery'),
+  research: named('Original research'),
+  labRoutines: named('Seasons under a lab routine'),
+  writing: named('Book being written', (x: { title: string }) => x.title),
+  standing: named('Standing activity'),
+  priorities: named('Season priorities'),
+  apprentice: named('The apprentice'),
+  wanderer: named('Wandering the Tribunal'),
+  redcap: named('A Redcap’s device levels'),
+  labAuraUse: named('Seasons under the lab’s aura'),
+  seasons: named('Seasons a year'),
+  inhuman: named('Inhuman nature'),
+  lastAgedYear: named('Last year aged'),
+  rations: named('Rations'),
+  hazards: named('Hazards to aging'),
+  retired: named('Retired or dismissed'),
+};
+
+/**
+ * The changes to the fields CHANGE_FIELDS names, each by its name; and whether a field no rule reads
+ * differs (`other`), for the one line of other details.
+ */
+export function fieldChanges(before: Character, after: Character): { lines: ChangeLine[]; other: boolean } {
+  const lines: ChangeLine[] = [];
+  let other = false;
+  for (const k of Object.keys(CHANGE_FIELDS) as (keyof Character)[]) {
+    const how = CHANGE_FIELDS[k];
+    if (typeof how === 'object') other = compareField(how, before[k], after[k], lines) || other;
+    else if (how === 'other') other ||= !sameJson(before[k], after[k]);
+  }
+  return { lines, other };
+}
+
+const sameJson = (x: unknown, y: unknown) => JSON.stringify(x ?? null) === JSON.stringify(y ?? null);
+const shownValue = (v: unknown) => (v === undefined || v === null || v === '' ? 'none' : typeof v === 'object' ? undefined : String(v));
+
+/** One field's changes, by the name CHANGE_FIELDS gives it. True when a part no rule reads differs. */
+function compareField(how: Named, x: unknown, y: unknown, out: ChangeLine[]): boolean {
+  if (sameJson(x, y)) return false;
+  if (how.item && (Array.isArray(x) || Array.isArray(y))) {
+    const item = how.item as (v: unknown) => string;
+    const keyed = (xs: unknown) => new Map(((xs as Record<string, unknown>[] | undefined) ?? []).map((v, i) => [String(v.uid ?? item(v) ?? i), v]));
+    const a = keyed(x);
+    const b = keyed(y);
+    for (const [k, v] of b) {
+      const w = a.get(k);
+      if (!w) out.push({ kind: 'added', text: `${how.label}: ${item(v)}` });
+      else if (!sameJson(w, v)) out.push({ kind: 'changed', text: item(w) === item(v) ? `${how.label}: ${item(v)}` : `${how.label}: ${item(w)} → ${item(v)}` });
+    }
+    for (const [k, v] of a) if (!b.has(k)) out.push({ kind: 'removed', text: `${how.label}: ${item(v)}` });
+    return false;
+  }
+  if (how.parts && (typeof x === 'object' || typeof y === 'object')) {
+    const xo = (x ?? {}) as Record<string, unknown>;
+    const yo = (y ?? {}) as Record<string, unknown>;
+    let unnamed = false;
+    let other = false;
+    for (const k of new Set([...Object.keys(xo), ...Object.keys(yo)])) {
+      const part = how.parts[k];
+      if (part === 'shown' || sameJson(xo[k], yo[k])) continue;
+      if (part === 'other') other = true;
+      else if (part) other = compareField(part, xo[k], yo[k], out) || other;
+      else unnamed = true;
+    }
+    if (unnamed) out.push({ kind: 'changed', text: how.label });
+    return other;
+  }
+  const [sx, sy] = [shownValue(x), shownValue(y)];
+  out.push({ kind: 'changed', text: sx !== undefined && sy !== undefined ? `${how.label}: ${sx} → ${sy}` : how.label });
+  return false;
 }

@@ -169,8 +169,8 @@ function SpellDesigner({ pairs, onAdd, label, live, initial }: { pairs: Gruagach
 }
 
 /** On the sheet: the apprenticeship and the spells known. */
-/** The gruagach's card: on the sheet with the apprenticeship; at the table (`atTable`) only the spells known, and one added as learned in play. */
-export function GruagachSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: boolean }) {
+/** The gruagach's card, on the sheet only. Dice › Hedge magic names the spells in one line, with a link here. */
+export function GruagachSheetCard({ ed }: { ed: CharEditor }) {
   const { c, d, update } = ed;
   if (!c || !d || !hasGruagach(c) || c.type === 'magus') return null;
   const budget = d.budgets.find((b) => b.id === GRUAGACH_APPRENTICESHIP);
@@ -180,41 +180,33 @@ export function GruagachSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: b
   const over = gruagachArts(c, d).techniques.concat(gruagachArts(c, d).forms).filter((a) => a.score > cap);
   const set = (fn: (x: Character) => void) => update(fn);
   return (
-    <Card title={atTable ? 'Spells known' : 'Gruagach'} tour="gruagach-card" fold="gruagach-card" summary={`${spells.length} spell${spells.length === 1 ? '' : 's'} · Pictish ${pi}`}>
-      {atTable ? (
-        <p className="small muted" style={{ marginTop: 0 }}>The spells this gruagach knows. The apprenticeship is on the sheet.</p>
-      ) : (
-        <p className="small muted" style={{ marginTop: 0 }}>
-          A gruagach&apos;s apprenticeship gives 160 experience points and 80 levels of spells to the Gifted (about ten years), or 16 points and 8 levels a year to the unGifted (three to five),
-          in place of those later-life years. Pictish stands for Magic Theory and caps the Arts at {cap === Infinity ? 'nothing (Pictish 4)' : cap}. Spells are cast and tattoos made on the
-          Game Table, Dice › Hedge magic.
-        </p>
-      )}
-      {!atTable && (
-        <div className="row">
-          <Field label="Years of apprenticeship">
-            <Stepper value={c.gruagach?.apprenticeYears ?? (d.hasGift ? 10 : 4)} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), apprenticeYears: v }))} />
-          </Field>
-          {budget && (
-            <span className="small">
-              {budget.spent} of {budget.total} experience; {budget.spellLevels?.spent ?? 0} of {budget.spellLevels?.total ?? 0} levels of spells.
-            </span>
-          )}
-        </div>
-      )}
-      {!atTable && over.length > 0 && <p className="small warn-text">Above Pictish {pi}&apos;s cap of {cap}: {over.map((a) => `${a.name} ${a.score}`).join(', ')}.</p>}
+    <Card title="Gruagach" tour="gruagach-card" fold="gruagach-card" summary={`${spells.length} spell${spells.length === 1 ? '' : 's'} · Pictish ${pi}`}>
+      <p className="small muted" style={{ marginTop: 0 }}>
+        A gruagach&apos;s apprenticeship gives 160 experience points and 80 levels of spells to the Gifted (about ten years), or 16 points and 8 levels a year to the unGifted (three to five),
+        in place of those later-life years. Pictish stands for Magic Theory and caps the Arts at {cap === Infinity ? 'nothing (Pictish 4)' : cap}. Spells are cast on the Game Table, Dice ›
+        Hedge magic, and tattoos made in a season. A spell learned in a story is added here.
+      </p>
+      <div className="row">
+        <Field label="Years of apprenticeship">
+          <Stepper value={c.gruagach?.apprenticeYears ?? (d.hasGift ? 10 : 4)} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), apprenticeYears: v }))} />
+        </Field>
+        {budget && (
+          <span className="small">
+            {budget.spent} of {budget.total} experience; {budget.spellLevels?.spent ?? 0} of {budget.spellLevels?.total ?? 0} levels of spells.
+          </span>
+        )}
+      </div>
+      {over.length > 0 && <p className="small warn-text">Above Pictish {pi}&apos;s cap of {cap}: {over.map((a) => `${a.name} ${a.score}`).join(', ')}.</p>}
       {spells.map((s) => (
         <div key={s.uid} className="row small" style={{ borderTop: '1px solid var(--line)', paddingTop: 4 }}>
           <b>{s.name}</b>
           <span>
             {s.tf} {s.level} · R: {s.range}, D: {s.duration}, T: {s.target}
           </span>
-          {!atTable && (
-            <select value={s.source} aria-label="Where it was learned" onChange={(e) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: (x.gruagach?.spells ?? []).map((y) => (y.uid === s.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}>
-              <option value="training">in apprenticeship</option>
-              <option value="play">in play</option>
-            </select>
-          )}
+          <select value={s.source} aria-label="Where it was learned" onChange={(e) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: (x.gruagach?.spells ?? []).map((y) => (y.uid === s.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}>
+            <option value="training">in apprenticeship</option>
+            <option value="play">in play</option>
+          </select>
           <button className="small ghost" aria-label="Remove the spell" onClick={() => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: (x.gruagach?.spells ?? []).filter((y) => y.uid !== s.uid) }))}>
             ✕
           </button>
@@ -224,7 +216,7 @@ export function GruagachSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: b
       {gruagachPairs(c, d).length === 0 ? (
         <p className="small warn-text">No Technique and Form of the gruagachan yet: take Give or Take, and a Form, on the sheet to design spells.</p>
       ) : (
-      <SpellDesigner pairs={gruagachPairs(c, d)} label={atTable ? 'Add one learned in play' : 'Add a spell known'} onAdd={(s) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: [...(x.gruagach?.spells ?? []), { ...s, source: atTable || x.creation.finalized ? 'play' : 'training' }] }))} />
+      <SpellDesigner pairs={gruagachPairs(c, d)} label={c.creation.finalized ? 'Add one learned in play' : 'Add a spell known'} onAdd={(s) => set((x) => void (x.gruagach = { ...(x.gruagach ?? {}), spells: [...(x.gruagach?.spells ?? []), { ...s, source: x.creation.finalized ? 'play' : 'training' }] }))} />
       )}
     </Card>
   );

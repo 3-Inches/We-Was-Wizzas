@@ -90,6 +90,23 @@ export function useLandOn(around: string[] = []): string | null {
   return to;
 }
 
+/**
+ * At the Game Table, in place of a card the sheet keeps: what it holds, in one line, and a link that
+ * opens the card on the sheet. The record is changed there, in one place; the table's rolls change it too.
+ */
+export function OnSheet({ sagaId, c, card, tour, tab = 'overview', link = 'Changed on', children }: { sagaId?: string; c: Character; /** the sheet card's tour name */ card: string; /** this line's own */ tour: string; tab?: string; /** the link's words before the sheet's name */ link?: string; children: ReactNode }) {
+  return (
+    <p className="small" data-tour={tour}>
+      {children}{' '}
+      {sagaId && (
+        <Link to={R.character(sagaId, c, tab, card)} className="nowrap">
+          {link} {c.name ? `${c.name}’s` : 'their'} sheet ›
+        </Link>
+      )}
+    </p>
+  );
+}
+
 /** On a sheet, in place of a card's rolls: where at the Game Table they are made. Nothing at the table. */
 export function RollAtTable({ sagaId, who, where, what }: { sagaId?: string; who?: string; where: Where; what: ReactNode }) {
   const atTable = useAtTable();

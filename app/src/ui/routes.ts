@@ -38,7 +38,8 @@ export const R = {
   people: (sagaId: string) => `/saga/${sagaId}/people`,
   covenants: (sagaId: string) => `/saga/${sagaId}/covenants`,
   covenant: (sagaId: string, covId: string, tab?: string, sub?: string) => `/saga/${sagaId}/covenant/${covId}${q({ tab, sub })}`,
-  character: (sagaId: string, c: { id: string; creation: { finalized?: boolean } }, tab?: string) => `/saga/${sagaId}/character/${c.id}${c.creation.finalized ? '' : '/create'}${q({ tab })}`,
+  /** a character's sheet, on a tab; `to` names a card on it to open and scroll to */
+  character: (sagaId: string, c: { id: string; creation: { finalized?: boolean } }, tab?: string, to?: string) => `/saga/${sagaId}/character/${c.id}${c.creation.finalized ? '' : '/create'}${q({ tab, to: c.creation.finalized ? to : undefined })}`,
   tribunal: (sagaId: string, tab?: string) => `/saga/${sagaId}/tribunal${q({ tab })}`,
 };
 

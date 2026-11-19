@@ -1,9 +1,9 @@
 // The troupe: players and how far along their characters are, and what a character sent again changes.
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
-import { addVirtue, newCharacter } from './character/factory';
-import { characterChanges, troupeOf } from './troupe';
-import { DEFAULT_HOUSE_RULES, type Saga } from './types';
+import { addVirtue, ensureAbility, newCharacter } from './character/factory';
+import { CHANGE_FIELDS, characterChanges, fieldChanges, troupeOf, type Named } from './troupe';
+import { DEFAULT_HOUSE_RULES, type Character, type Saga } from './types';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -80,6 +80,79 @@ describe('the troupe', () => {
     // something no line names still shows
     const other = structuredClone(before);
     other.gender = 'Female';
-    expect(characterChanges(before, other, data, rules)).toEqual([{ kind: 'changed', text: 'Other details of the sheet differ (nothing the rules count)' }]);
+    expect(characterChanges(before, other, data, rules)).toEqual([{ kind: 'changed', text: 'Other details of the sheet differ' }]);
+  });
+
+  it('names hedge, faerie and holy changes: Sympathy Traits, hedge Arts, charms, spells, scripts, potions, Devotion Points, holy work', () => {
+    const before = newCharacter('companion', 's');
+    addVirtue(before, data, 'mathematicus-of-bologna', 'Free');
+    addVirtue(before, data, 'succurro', 'Major');
+    addVirtue(before, data, 'salutem', 'Minor');
+    before.sympathy = [{ uid: 'dawn', trait: 'Dawn', score: 3 }];
+    before.devotions = [{ uid: 'm', saint: 'Saint Martin', points: 2 }];
+    before.creation.finalized = true;
+    const after = structuredClone(before);
+    after.sympathy = [{ uid: 'dawn', trait: 'Dawn', score: 4 }, { uid: 'iron', trait: 'Iron', score: -1 }];
+    ensureAbility(after, 'succurro', { laterLife: 5 });
+    after.learned = { charms: [{ uid: 'c', name: 'Ward of the Hearth', tf: 'TuSa', level: 10, range: 'Touch', duration: 'Sun', target: 'Individual', source: 'play' }] };
+    after.gruagach = { spells: [{ uid: 'g', name: 'The Giant’s Grip', tf: 'GvBl', level: 15, range: 'Touch', duration: 'Momentary', target: 'Individual', source: 'play' }] };
+    after.vitki = { scripts: [{ uid: 'v', name: 'Ward against Iron', runes: ['Algiz', 'Isa'], level: 10, method: 'I', source: 'play' }] };
+    after.folkWitch = { things: [{ uid: 'p', power: 'witch-healing', name: 'Willow-bark draught', kind: 'potion', doses: 3 }] };
+    after.devotions = [{ uid: 'm', saint: 'Saint Martin', points: 3 }];
+    after.holy = { works: [{ uid: 'w', kind: 'amulet', name: 'Amulet of the Seven', target: 20, progress: 5, seasons: 1 }], trueNames: ['Sammael'] };
+    after.powers = [{ uid: 'pw', name: 'Wings of the Dove' } as never];
+    after.gender = 'Male';
+    const lines = characterChanges(before, after, data, rules).map((l) => `${l.kind}:${l.text}`);
+    const text = lines.join(' | ');
+    expect(text).toMatch(/changed:Sympathy Trait: Dawn \+3 → Dawn \+4/);
+    expect(text).toMatch(/added:Sympathy Trait: Iron −1|added:Sympathy Trait: Iron -1/);
+    expect(text).toMatch(/changed:Succurro 0 → 1/);
+    expect(text).toMatch(/added:Charm: Ward of the Hearth \(TuSa 10\)/);
+    expect(text).toMatch(/added:Gruagach spell: The Giant’s Grip \(GvBl 15\)/);
+    expect(text).toMatch(/added:Rune script: Ward against Iron \(level 10\)/);
+    expect(text).toMatch(/added:Potion or fetish: Willow-bark draught \(potion, 3 doses\)/);
+    expect(text).toMatch(/changed:Devotion Points: Saint Martin 2 → Saint Martin 3/);
+    expect(text).toMatch(/added:Holy work: Amulet of the Seven 5 of 20/);
+    expect(text).toMatch(/changed:True Names/);
+    expect(text).toMatch(/added:Supernatural power: Wings of the Dove/);
+    // the line of other details is said beside the others, not only when nothing else changed
+    expect(lines).toContain('changed:Other details of the sheet differ');
+    expect(text).not.toMatch(/nothing the rules count/);
+  });
+
+  it('names a change to every field a rule reads, and keeps the line of other details for what none reads', () => {
+    const base = newCharacter('companion', 's');
+    // a value of the field's own shape, different from the one before
+    const changedValue = (how: Named) => {
+      if (how.item) return [{ uid: 'test', name: 'Test', trait: 'Test', score: 1, saint: 'Test', points: 1, text: 'Test', virtueName: 'Test', spirit: 'Test', title: 'Test', kind: 'test', tf: 'TuSa', level: 1, label: 'Test', amount: 1 }];
+      return 'test value';
+    };
+    for (const [k, how] of Object.entries(CHANGE_FIELDS) as [keyof Character, (typeof CHANGE_FIELDS)[keyof Character]][]) {
+      if (typeof how !== 'object') continue;
+      const after = structuredClone(base);
+      // an object's part no rule names is added to what is there, so nothing else of it differs
+      (after as unknown as Record<string, unknown>)[k] = how.parts ? { ...((base as unknown as Record<string, object>)[k] ?? {}), testPart: 1 } : changedValue(how);
+      const r = fieldChanges(base, after);
+      expect(r.lines.map((l) => l.text).join(' | '), k).toContain(how.label);
+      expect(r.other, k).toBe(false);
+      // each named part of a field, by its own name
+      for (const [part, sub] of Object.entries(how.parts ?? {})) {
+        if (typeof sub !== 'object') continue;
+        const withPart = structuredClone(base);
+        (withPart as unknown as Record<string, unknown>)[k] = { ...((base as unknown as Record<string, object>)[k] ?? {}), [part]: changedValue(sub) };
+        expect(fieldChanges(base, withPart).lines.map((l) => l.text).join(' | '), `${k}.${part}`).toContain(sub.label);
+      }
+    }
+    for (const [k, how] of Object.entries(CHANGE_FIELDS)) {
+      if (how !== 'other') continue;
+      const after = structuredClone(base);
+      (after as unknown as Record<string, unknown>)[k] = 'test value';
+      expect(fieldChanges(base, after), k).toEqual({ lines: [], other: true });
+      expect(characterChanges(base, after, data, rules).map((l) => l.text), k).toEqual(['Other details of the sheet differ']);
+    }
+    // a field the list compares line by line above is not named twice
+    const finished = structuredClone(base);
+    finished.creation.finalized = true;
+    expect(characterChanges(base, finished, data, rules).map((l) => l.text)).toEqual(['Creation finished']);
   });
 });

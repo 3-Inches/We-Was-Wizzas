@@ -17,6 +17,7 @@ import LabItemsTab from './sheet/LabItemsTab';
 import SheetSummary from './SheetSummary';
 import { summarize } from '../../engine/character/validate';
 import { Hint } from '../Hint';
+import { useLandOn } from '../play';
 
 type TabId = 'overview' | 'abilities' | 'magic' | 'combat' | 'advancement' | 'lab' | 'summary' | 'rules';
 
@@ -24,6 +25,8 @@ export default function CharacterSheet() {
   const ed = useCharEditor();
   const nav = useNavigate();
   const [tab, setTab] = useTabParam<TabId>('overview');
+  // a link from the Game Table to a card the sheet keeps (?to=): opened and scrolled to
+  useLandOn();
   const [share, setShare] = useState('');
   const deleteCharacter = useStore((s) => s.deleteCharacter);
   const { c, d, saga, issues } = ed;
