@@ -38,6 +38,7 @@ import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
 import { holySeason } from './holy';
 import { seasonEndRolls } from './seasonRolls';
 import { seasonWarping } from './warping';
+import { livingTwilight } from './livingTwilight';
 import { uid } from '../util/id';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
@@ -334,7 +335,7 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       if (r.botches) {
         const e = log('study-vis', `Studied ${ART_NAMES[art]} vis: ${describeStress(r)}: botch`, {}, r.botches, spent);
         // a double botch: Twilight, owed in Resolve (warping.ts)
-        const follows = seasonWarping(c, d, e, 'from studying vis', !!cov?.living);
+        const follows = seasonWarping(c, d, e, 'from studying vis', !!cov?.living || !!c.wanderer);
         return [`Studied ${ART_NAMES[art]} vis (${pawns} pawns): BOTCH, ${r.botches} Warping Point${r.botches > 1 ? 's' : ''}.${follows ? ` ${follows}` : ''}`];
       }
       const res = computeStudy(d, { kind: 'vis', art, dieRoll: r.value, aura }, { art });
@@ -720,6 +721,10 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     for (const t of holySeason(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
     // the rolls this season's work left (a curse woven, a ring first recited, a search): made in Resolve
     for (const r of seasonEndRolls(c, year, season)) owe(c, year, season, r.kind, r.text);
+    // a living covenant's magus rolls the Twilight its Warping owes: nobody plays them to settle it in Resolve
+    const tw = tribunalOf(c) ? livingTwilight(c, derive, ctxOf(c).aura.strength, tribunalOf(c) === 'wanderers' ? undefined : tribunalOf(c), year, season, rng) : undefined;
+    for (const t of tw?.lines ?? []) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
+    if (tw?.news.length) saga.tribunalNews = [...tw.news, ...(saga.tribunalNews ?? [])];
     c.fatigueLost = 0;
     c.longTermFatigueLost = 0;
     if (c.creature) {

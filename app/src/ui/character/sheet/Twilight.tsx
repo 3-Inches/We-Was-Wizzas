@@ -43,7 +43,8 @@ export function TwilightCard({ ed }: { ed: CharEditor }) {
   const atTable = useAtTable();
   const edit = useEditable(c);
   if (!c || !d) return null;
-  const aura = ctx.aura.realm === 'Magic' ? ctx.aura.strength : 0;
+  // the local aura, whatever its realm: the book's example counts a Faerie aura of 4 (DE, Twilight Example)
+  const aura = ctx.aura.strength;
   const log = (s: string) => setText((t) => [s, ...t].slice(0, 20));
   const ew = d.abilities.find((a) => a.abilityId === 'enigmatic-wisdom');
   const score = warpingScoreWith(d, gain, added);

@@ -344,10 +344,8 @@ export function auraYearEnd(cov: Covenant, members: Character[], saga: Saga, yea
   if (Math.abs(mod.total) >= 4) changeAura(cov, r.delta, r.lines.join(' '), year, 'Winter');
   if (r.warping) {
     // a single event, so each tradition's reaction follows (warping.ts): Twilight, Nátt-thel, Faerie Calling
-    for (const m of members.filter((x) => inPlay(x) && x.auraTime !== 'away')) {
-      if (cov.living) m.warpingPoints += r.warping;
-      else gainWarping(m, derive(m), { points: r.warping, why: 'at once from the aura’s surge', year, season: 'Winter' });
-    }
+    // a living covenant's magi roll for Twilight as the season ends (livingTwilight.ts)
+    for (const m of members.filter((x) => inPlay(x) && x.auraTime !== 'away')) gainWarping(m, derive(m), { points: r.warping, why: 'at once from the aura’s surge', year, season: 'Winter', living: !!cov.living });
     lines.push({ who: cov.name, kind: 'covenant', text: `${r.warping} Warping Points for everyone living in the aura; magi roll for Twilight${cov.living ? '' : ' (Seasons › Resolve)'}.` });
   }
   cov.auraTrack.notes = cov.auraTrack.notes.filter((n) => n.year > year);

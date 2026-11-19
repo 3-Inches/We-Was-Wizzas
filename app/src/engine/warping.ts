@@ -58,6 +58,8 @@ export interface WarpingGain {
   counted?: boolean;
   /** the season's work that brought them: the reaction owed is kept on its `undo`, so Unlog takes it back too */
   entry?: SeasonLogEntry;
+  /** one of a living covenant's people, whom nobody plays: only Wizard's Twilight follows, and the toolkit rolls it as the season ends (livingTwilight.ts) */
+  living?: boolean;
 }
 
 /** Whether a gain of Warping Points brings on the reaction. `before` is the Warping Points before the gain. */
@@ -97,24 +99,26 @@ export function gainWarping(c: Character, d: DerivedCharacter, g: WarpingGain): 
 }
 
 function addWarping(c: Character, d: DerivedCharacter, g: WarpingGain): string | undefined {
-  if (!g.handled && warpingReaction(c, d) === 'witch-moon') return witchWarping(c, g.points, g);
+  if (!g.handled && !g.living && warpingReaction(c, d) === 'witch-moon') return witchWarping(c, g.points, g);
   const before = g.counted ? Math.max(0, c.warpingPoints - g.points) : c.warpingPoints;
   if (!g.counted) c.warpingPoints += g.points;
   const reaction = warpingReaction(c, d);
-  if (!reaction || g.handled || !reactionFollows(c, d, reaction, g, before)) return undefined;
+  if (!reaction || g.handled || (g.living && reaction !== 'twilight') || !reactionFollows(c, d, reaction, g, before)) return undefined;
   (c.owed ??= []).push({ uid: uid(), year: g.year, season: g.season, kind: reaction, text: owedText(reaction, g), points: g.points });
+  if (g.living) return 'Wizard’s Twilight follows: the toolkit rolls it as the season ends.';
   return `${REACTION_NAMES[reaction][0].toUpperCase()}${REACTION_NAMES[reaction].slice(1)} follows: it waits on Game Table › Seasons, under Resolve.`;
 }
 
 /**
  * A season logged with Warping Points on its entry, from a botch (studying raw vis): owe what follows, once
  * the entry is applied. A double botch "may enter Wizard's Twilight" (DE, Studying from Vis, line 16215);
- * Twilight Prone rolls on a single magical botch (line 6965). Nothing is owed for a living covenant's
- * people. Unlog takes off the points (through the entry) and the reaction (through its `undo`).
+ * Twilight Prone rolls on a single magical botch (line 6965). For a living covenant's people only Twilight
+ * follows, rolled as the season ends. Unlog takes off the points (through the entry) and the reaction
+ * (through its `undo`).
  */
 export function seasonWarping(c: Character, d: DerivedCharacter, e: SeasonLogEntry, why: string, living?: boolean): string | undefined {
-  if (!e.warpingPoints || living) return undefined;
-  return gainWarping(c, d, { points: e.warpingPoints, why, year: e.year, season: e.season, botch: true, counted: true, entry: e });
+  if (!e.warpingPoints) return undefined;
+  return gainWarping(c, d, { points: e.warpingPoints, why, year: e.year, season: e.season, botch: true, counted: true, entry: e, living });
 }
 
 /** The oldest of a reaction still owed, if any. */
