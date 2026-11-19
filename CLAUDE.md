@@ -25,6 +25,7 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Serve the build | `npx vite preview --port 4173 --strictPort` (in the background) |
 | Look at the hedge magic, Faerie and Mysteries pages | `node scripts/qa/shots.cjs [width] [fixture]` (see `scripts/qa/fixtures/index.json`) |
 | Check that each card opens on something the character can do, and only a magus is offered the Arts | `node scripts/qa/firstChoice.cjs 390` (clean is "0 cards open on a disabled button or a warning; Arts offered: as they should be") |
+| Check that a record the sheet keeps is changed there, and named when a character is sent back | `node scripts/qa/sentBack.cjs 390` (clean is "problems: 0") |
 | Run every tutorial | `node scripts/qa/tutorials.cjs 1280` and `390`. Clean is "errors: none" with 2 "no target" steps (Welcome, and "Design the power"). |
 | Run the hedge magic, Faerie and Mysteries tutorials on each practice saga | `node scripts/qa/tutorials.cjs 1280 --fixtures`, then `390`. Clean is "no target: 0" and "errors: none". |
 | Make the saga the sweep visits, set up as the owner plays | `QA_LIVING=all QA_OPTIONAL=all npm run qa:saga` (a few minutes; writes `scripts/qa/out/saga.json`) |

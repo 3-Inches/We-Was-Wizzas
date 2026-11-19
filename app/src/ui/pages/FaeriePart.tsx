@@ -2,20 +2,21 @@
 // its level held to five times the applicable Sympathy Traits), the four Arts of the Ars Fabulosa
 // against a faerie's Might, Faerie Calling after Warping, and a faerie's change of role through a
 // creative human. Sympathy experience from a 1 or a botch, Fatigue, Confidence and Warping go on the sheet.
+// The Sympathy Traits themselves are kept and changed on the sheet; here they are one line, with a link.
 
 import { useState } from 'react';
 import { BARGAIN_ARTS, FAERIE_DURATIONS, FAERIE_RANGES, FAERIE_TARGETS, FAERIE_GUIDELINES, FAERIE_METHODS, FAERIE_POWERS, type BargainArtId, type FaerieMethodId, type FaeriePowerId } from '../../data/faerie';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
   CREATIVITY_TABLE, bargainPenetration, bargainTotal, callingActEase, callingApplies, callingResolveEase, creativityCost, enchantmentEase, evocationVisLimit, faerieArts, hasFaerieTable,
-  faerieRank, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyBotchDice, sympathySum, sympathyXp,
+  faerieRank, hasSympathy, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyBotchDice, sympathySum, sympathyXp,
 } from '../../engine/faerieWizardry';
 import { auraModifier } from '../../engine/magic';
 import { DURATIONS, RANGES, TARGETS } from '../../engine/spellDesign';
 import type { SympathyTrait } from '../../engine/types';
 import { Card, Field, Stepper, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
-import { SympathyCard } from '../character/SympathyCard';
+import { OnSheet } from '../play';
 import { uid } from '../../util/id';
 import { settle } from '../../engine/seasonPlan';
 import { gainWarping, nowOf, owedReaction } from '../../engine/warping';
@@ -72,13 +73,20 @@ export default function FaeriePart({ ed }: { ed: CharEditor }) {
   const arts = faerieArts(d);
   const bargains = BARGAIN_ARTS.filter((a) => d.abilities.some((x) => x.abilityId === (a.id === 'summoning' ? 'faerie-summoning' : a.id)));
   const rank = faerieRank(c.sympathy);
+  const traits = c.sympathy ?? [];
+  const botch = sympathyBotchDice(c);
   return (
     <>
+      {hasSympathy(c) || traits.length ? (
+        <OnSheet sagaId={ed.saga?.id} c={c} card="sympathy" tour="faerie-traits">
+          Sympathy Traits: <b>{traits.map((t) => `${t.trait || '…'} ${signed(t.score)}`).join(', ') || 'none yet'}</b> · Faerie Rank <b>{signed(rank)}</b>
+          {botch.dice ? ` · ${negBotchText(botch)}` : ''}.
+        </OnSheet>
+      ) : null}
       <p className="small muted">
-        Faerie Rank <b>{signed(rank)}</b>. Faerie aura here: {signed(aura)} to faerie effects. Sympathy Traits are kept on the sheet; a 1 on the stress die gives each trait used an
+        {hasSympathy(c) || traits.length ? '' : <>Faerie Rank <b>{signed(rank)}</b>. </>}Faerie aura here: {signed(aura)} to faerie effects. A 1 on the stress die gives each trait used an
         experience point, and each 0 of a botch takes one away.
       </p>
-      <SympathyCard ed={ed} />
       {arts.methods.length > 0 && arts.powers.length > 0 && <RiteCard ed={ed} aura={aura} />}
       {bargains.length > 0 && <BargainCard ed={ed} aura={aura} rank={rank} arts={bargains.map((a) => a.id)} />}
       {callingApplies(c, d) && <CallingCard ed={ed} rank={rank} />}
@@ -397,7 +405,9 @@ function CallingCard({ ed, rank }: { ed: CharEditor; rank: number }) {
     });
     setLines([
       `Resolve the Calling: stress die ${describeStress(r)} + Perception + Concentration ${per + concentration} = ${t} against ${resolveEase}.`,
-      good ? 'A positive experience: a new Sympathy Trait +1 (or raise a fitting one by 1 on the card above instead).' : 'A negative experience: a new Sympathy Trait −1 (or lower a fitting one by 1 instead).',
+      good
+        ? 'A positive experience: a new Sympathy Trait +1. To raise a fitting one by 1 instead, change it on the sheet (the link at the top of this page).'
+        : 'A negative experience: a new Sympathy Trait −1. To lower a fitting one by 1 instead, change it on the sheet (the link at the top of this page).',
       ...(good && rank >= 10 ? ['With Faerie Rank 10 or more, the character does not return: transformed, into Faerieland for ever.'] : []),
       ...(!good && rank <= -10 ? ['With Faerie Rank −10 or less, the character does not return: transformed, into Faerieland for ever.'] : []),
     ]);

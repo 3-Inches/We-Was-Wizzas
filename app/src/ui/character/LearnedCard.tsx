@@ -139,8 +139,8 @@ export function CharmDesigner({ pairs, device, onAdd, label = 'Add the charm', l
   );
 }
 
-/** The learned magician's card: on the sheet with the years under a master; at the table (`atTable`) only the charms known, and one added as learned in play. */
-export function LearnedCard({ ed, atTable }: { ed: CharEditor; atTable?: boolean }) {
+/** The learned magician's card, on the sheet only: the years under a master and the charms known. Dice › Hedge magic names the charms in one line, with a link here. */
+export function LearnedCard({ ed }: { ed: CharEditor }) {
   const { c, d, update } = ed;
   if (!c || !d || !hasLearnedMagic(c) || c.type === 'magus') return null;
   const charms = c.learned?.charms ?? [];
@@ -149,43 +149,36 @@ export function LearnedCard({ ed, atTable }: { ed: CharEditor; atTable?: boolean
   const set = (fn: (x: Character) => void) => update(fn);
   const trainingLevels = charms.filter((x) => x.source === 'training').reduce((t, x) => t + x.level, 0);
   return (
-    <Card title={atTable ? 'Charms known' : 'Learned magic'} tour="learned-card" fold="learned-card" summary={`${charms.length} charm${charms.length === 1 ? '' : 's'}${!atTable && c.learned?.trainingYears ? ` · ${c.learned.trainingYears} years with a master` : ''}`}>
-      {atTable ? (
-        <p className="small muted" style={{ marginTop: 0 }}>The charms this magician knows. Years under a master are on the sheet.</p>
-      ) : (
-        <p className="small muted" style={{ marginTop: 0 }}>
-          A learned magician (Hedge Magic) casts verbal charms from memory or reads them from a formulary, and writes chartae and amulets. Each year under a master gives 30 experience points,
-          taken from the later-life years, for Academic and Arcane Abilities, the hedge Arts and charms (5 levels a point). Charms are cast and devices made on the Game Table, Dice › Hedge magic.
-        </p>
-      )}
-      {!atTable && (
-        <div className="row">
-          <Field label="Years under a master" hint="30 experience points a year; Skilled Master adds 50, Poorly Trained takes 50">
-            <Stepper value={c.learned?.trainingYears ?? 0} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.learned = { ...(x.learned ?? {}), trainingYears: v }))} />
-          </Field>
-          {budget && (
-            <span className="small">
-              Training: {budget.spent} of {budget.total} experience spent{trainingLevels ? ` (charms ${trainingLevels} levels = ${charmXp(trainingLevels)})` : ''}.
-            </span>
-          )}
-        </div>
-      )}
+    <Card title="Learned magic" tour="learned-card" fold="learned-card" summary={`${charms.length} charm${charms.length === 1 ? '' : 's'}${c.learned?.trainingYears ? ` · ${c.learned.trainingYears} years with a master` : ''}`}>
+      <p className="small muted" style={{ marginTop: 0 }}>
+        A learned magician (Hedge Magic) casts verbal charms from memory or reads them from a formulary, and writes chartae and amulets. Each year under a master gives 30 experience points,
+        taken from the later-life years, for Academic and Arcane Abilities, the hedge Arts and charms (5 levels a point). Charms are cast and devices made on the Game Table, Dice › Hedge magic.
+        A charm learned in a story is added here.
+      </p>
+      <div className="row">
+        <Field label="Years under a master" hint="30 experience points a year; Skilled Master adds 50, Poorly Trained takes 50">
+          <Stepper value={c.learned?.trainingYears ?? 0} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.learned = { ...(x.learned ?? {}), trainingYears: v }))} />
+        </Field>
+        {budget && (
+          <span className="small">
+            Training: {budget.spent} of {budget.total} experience spent{trainingLevels ? ` (charms ${trainingLevels} levels = ${charmXp(trainingLevels)})` : ''}.
+          </span>
+        )}
+      </div>
       {charms.map((ch) => (
         <div key={ch.uid} className="row small" style={{ borderTop: '1px solid var(--line)', paddingTop: 4 }}>
           <b>{ch.name}</b>
           <span>
             {ch.tf} {ch.level} · R: {ch.range}, D: {ch.duration}, T: {ch.target}
           </span>
-          {!atTable && (
-            <select
-              value={ch.source}
-              aria-label="Where it was learned"
-              onChange={(e) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: (x.learned?.charms ?? []).map((y) => (y.uid === ch.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}
-            >
-              <option value="training">in training ({charmXp(ch.level)} xp)</option>
-              <option value="play">in play</option>
-            </select>
-          )}
+          <select
+            value={ch.source}
+            aria-label="Where it was learned"
+            onChange={(e) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: (x.learned?.charms ?? []).map((y) => (y.uid === ch.uid ? { ...y, source: e.target.value as LearnedCharm['source'] } : y)) }))}
+          >
+            <option value="training">in training ({charmXp(ch.level)} xp)</option>
+            <option value="play">in play</option>
+          </select>
           <button className="small ghost" aria-label="Remove the charm" onClick={() => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: (x.learned?.charms ?? []).filter((y) => y.uid !== ch.uid) }))}>
             ✕
           </button>
@@ -194,8 +187,8 @@ export function LearnedCard({ ed, atTable }: { ed: CharEditor; atTable?: boolean
       ))}
       <CharmDesigner
         pairs={pairs}
-        label={atTable ? 'Add one learned in play' : 'Add a charm known'}
-        onAdd={(ch) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: [...(x.learned?.charms ?? []), { ...ch, source: atTable || x.creation.finalized ? 'play' : 'training' }] }))}
+        label={c.creation.finalized ? 'Add one learned in play' : 'Add a charm known'}
+        onAdd={(ch) => set((x) => void (x.learned = { ...(x.learned ?? {}), charms: [...(x.learned?.charms ?? []), { ...ch, source: x.creation.finalized ? 'play' : 'training' }] }))}
       />
     </Card>
   );

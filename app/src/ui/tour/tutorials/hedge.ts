@@ -56,14 +56,14 @@ export const hedgeTour: Tour = {
     },
     {
       title: 'What the sheet keeps',
-      body: 'What a tradition knows is kept on the sheet, and shown here for reference. A card says where each thing changes.',
-      at: dice('hedge'), needs: 'character', target: ['witch-things', 'learned-card', 'elemental-traits', 'gruagach-card', 'vitki-card', 'hedge-who'],
+      body: 'What a tradition knows is kept on the sheet, and shown here in one line, with a link to where it changes.',
+      at: dice('hedge'), needs: 'character', target: ['witch-things', 'hedge-charms-known', 'hedge-elemental-traits', 'hedge-spells-known', 'hedge-scripts-known', 'hedge-who'],
       variants: byTradition({
         witch: { title: 'Potions and fetishes', target: ['witch-things', 'hedge-who'], body: 'A folk witch’s **potions and fetishes** are made in a season in the kitchen. Once there are any, they are kept on this page, and a dose is drunk with its button. The apprenticeship and the powers are kept on the sheet.' },
-        learned: { title: 'Charms known', target: 'learned-card', body: '**Charms known** lists the charms the magician knows by heart. New ones are invented or learned from a teacher in a season. The years under a master are kept on the sheet.' },
-        elemental: { title: 'Elemental Traits', target: 'elemental-traits', body: 'As an elementalist’s Warping Score grows, they take on **Elemental Traits**: the nature of their elements shows in them. This card lists them and what each does.' },
-        gruagach: { title: 'Spells known', target: 'gruagach-card', body: '**Spells known** lists the gruagach’s spells, from the book or designed on the sheet. New ones are invented in a season.' },
-        vitki: { title: 'Runes and scripts known', target: 'vitki-card', body: 'The **24 runes** are raised as Arts. **Runes and scripts known** lists the scripts the vitki can cast. New ones are invented or learned in a season.' },
+        learned: { title: 'Charms known', target: ['hedge-charms-known', 'hedge-who'], body: '**Charms known** names the charms the magician knows by heart. They are kept on the sheet, with the years under a master; the link opens that card. New ones are invented or learned from a teacher in a season.' },
+        elemental: { title: 'Elemental Traits', target: ['hedge-elemental-traits', 'hedge-who'], body: 'As an elementalist’s Warping Score grows, they take on **Elemental Traits**: the nature of their elements shows in them. This line names them; the link opens the sheet’s card, which says what each does.' },
+        gruagach: { title: 'Spells known', target: ['hedge-spells-known', 'hedge-who'], body: '**Spells known** names the gruagach’s spells. They are kept on the sheet, where one from the book or of their own design is added; the link opens that card. New ones are invented in a season.' },
+        vitki: { title: 'Runes and scripts known', target: ['hedge-scripts-known', 'hedge-who'], body: 'The **24 runes** are raised as Arts. **Rune scripts known** names the scripts the vitki can cast. They are kept on the sheet; the link opens that card. New ones are invented or learned in a season.' },
         nightwalker: { title: 'Nothing more to keep', target: 'nightwalker', body: 'A nightwalker keeps nothing more here: their straying is all on the one card.' },
       }),
     },
@@ -93,11 +93,11 @@ export const hedgeTour: Tour = {
     {
       title: 'The tradition’s Warping',
       body: 'A botch adds **Warping Points**, which the sheet keeps. Where a tradition has a reaction of its own, it waits in Resolve: the **Witch Moon** for folk witches, **Nátt-thel** for vitkir. An elementalist takes on Elemental Traits.',
-      at: dice('hedge'), needs: 'character', target: ['witch-moon', 'vitki-natt-thel', 'elemental-traits', 'hedge-who'],
+      at: dice('hedge'), needs: 'character', target: ['witch-moon', 'vitki-natt-thel', 'hedge-elemental-traits', 'hedge-who'],
       variants: byTradition({
         witch: { title: 'The Witch Moon', target: 'witch-moon', body: 'Each time a folk witch’s Warping Score rises, the **Witch Moon** comes in place of Twilight. For a month at least the witch loses their powers, though potions still work. It begins by itself when the toolkit adds Warping Points, and waits in Resolve. **Roll the month’s end** here.' },
         vitki: { title: 'Nátt-thel', target: 'vitki-natt-thel', body: '**Nátt-thel** comes in place of Twilight: when two or more Warping Points come from one event, roll Stamina + Concentration against the Warping Score × 3. A failure risks **The Gift** itself. It is owed by itself when the toolkit adds the points, and waits in Resolve.' },
-        elemental: { target: 'elemental-traits', body: 'An elementalist’s Warping shows as **Elemental Traits**, which grow with the Warping Score. A botch adds Warping Points, which the sheet keeps.' },
+        elemental: { target: ['hedge-elemental-traits', 'hedge-who'], body: 'An elementalist’s Warping shows as **Elemental Traits**, which grow with the Warping Score. A botch adds Warping Points, which the sheet keeps.' },
       }),
     },
     {

@@ -1,4 +1,4 @@
-import { dice, sagaPage } from '../places';
+import { dice, sagaPage, sheet } from '../places';
 import type { Tour } from '../tours';
 import { hasFaerieTable } from '../../../engine/faerieWizardry';
 
@@ -22,8 +22,13 @@ export const faerieTour: Tour = {
     },
     {
       title: 'Sympathy Traits',
-      body: 'A **Sympathy Trait** ties the character to a subject narrower than a Form: Dawn, Hounds, Iron. A positive one adds like a specialty. The worst negative one takes away, and adds botch dice. **Faerie Rank** is the highest positive trait with the lowest negative one. The card says how high experience may raise each.',
-      at: dice('faerie'), needs: 'character', target: ['sympathy', 'faerie-who'],
+      body: 'A **Sympathy Trait** ties the character to a subject narrower than a Form: Dawn, Hounds, Iron. A positive one adds like a specialty. The worst negative one takes away, and adds botch dice. **Faerie Rank** is the highest positive trait with the lowest negative one. This line shows them, and links to the sheet, where they are kept.',
+      at: dice('faerie'), needs: 'character', target: ['faerie-traits', 'faerie-who'],
+    },
+    {
+      title: 'Kept on the sheet',
+      body: 'The traits are added, named and set on the sheet’s **Sympathy Traits** card, on the Overview tab. The card says how high experience may raise each. The rolls on Dice › Faerie change them too: a 1 adds experience to each trait used.',
+      at: sheet('overview'), needs: 'character', target: ['sympathy', 'tab-overview'],
     },
     {
       title: 'A faerie rite',

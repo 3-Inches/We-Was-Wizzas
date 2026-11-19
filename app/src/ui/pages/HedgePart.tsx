@@ -23,15 +23,16 @@ import type { CharEditor } from '../character/useChar';
 import { amuletTold, charmTold } from '../../engine/seasonTold';
 import { useSeasonWork } from '../seasonWork';
 import { R } from '../routes';
-import { CharmDesigner, LearnedCard, artPairs, hasLearnedMagic } from '../character/LearnedCard';
-import { elementalArts } from '../../engine/elementalMagic';
-import { ElementalTraitsCard } from '../character/ElementalTraitsCard';
+import { CharmDesigner, artPairs, hasLearnedMagic } from '../character/LearnedCard';
+import { elementalArts, elementalTraits } from '../../engine/elementalMagic';
+import { OnSheet } from '../play';
 import { ElementalCard, RefiningCard } from './ElementalPart';
 import { KitchenCard, WitchMoonCard, WitchPowerCard, WitchThingsCard } from './FolkWitchPart';
 import { isFolkWitch, witchPowers } from '../../engine/folkWitch';
-import { GruagachCastCard, GruagachSeasonCard, GruagachSheetCard, hasGruagach } from './GruagachPart';
+import { GruagachCastCard, GruagachSeasonCard, hasGruagach } from './GruagachPart';
 import { NightwalkerCard, hasNightwalker } from './NightwalkerPart';
-import { NattThelCard, VitkiCastCard, VitkiSeasonCard, VitkiSheetCard, hasVitki } from './VitkirPart';
+import { NattThelCard, VitkiCastCard, VitkiSeasonCard, hasVitki } from './VitkirPart';
+import { vitkirRunes } from '../../engine/vitkir';
 import { gainWarping, nowOf } from '../../engine/warping';
 
 /** Someone this page is for: a learned magician or an elementalist. */
@@ -102,8 +103,7 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
       {usesAura && (
         <p className="small muted">
           Hedge magic is of the Magic realm: a Magic aura adds, others take away as for Hermetic magic ({signed(a.mod)} here
-          {a.botch ? `, ${a.botch} more botch dice` : ''}).{learned ? ' A learned magician’s charms and years of training are kept on the sheet.' : ''}
-          {isElemental ? ' An elementalist’s Elemental Traits are kept on the sheet.' : ''}
+          {a.botch ? `, ${a.botch} more botch dice` : ''}).
           {isFolkWitch(c) ? ' A folk witch’s apprenticeship is kept on the sheet; their potions and fetishes are here.' : ''}
         </p>
       )}
@@ -131,23 +131,39 @@ export default function HedgePart({ ed }: { ed: CharEditor }) {
       {learned && pairs.length === 0 && <p className="small warn-text">No Technique and Form of the learned magicians yet: take their Virtues on the sheet (a Gifted mathematicus has all six).</p>}
       {pairs.length > 0 && <CharmCard ed={ed} aura={aura} pairs={pairs} />}
       {pairs.length > 0 && <ChartaCard ed={ed} aura={aura} pairs={pairs} />}
-      {learned && <LearnedCard ed={ed} atTable />}
+      {learned && c.type !== 'magus' && (
+        <OnSheet sagaId={ed.saga?.id} c={c} card="learned-card" tour="hedge-charms-known">
+          Charms known: <b>{(c.learned?.charms ?? []).map((x) => x.name).join(', ') || 'none yet'}</b>.
+        </OnSheet>
+      )}
       {hasHerbalism(c) && <HerbalismCard ed={ed} />}
       {isElemental && (!elemental.techniques.length || !elemental.forms.length) && (
         <p className="small warn-text">An elementalist needs a Technique and a Form: take their Virtues on the sheet.</p>
       )}
       {isElemental && elemental.forms.length > 0 && <ElementalCard ed={ed} aura={aura} />}
-      {isElemental && <ElementalTraitsCard ed={ed} />}
+      {isElemental && elementalTraits(c, d).length > 0 && (
+        <OnSheet sagaId={ed.saga?.id} c={c} card="elemental-traits" tour="hedge-elemental-traits" link="What each does, on">
+          Elemental Traits, from the Warping Score: <b>{elementalTraits(c, d).map((t) => `${t.trait} ${signed(t.score)}`).join(', ')}</b>.
+        </OnSheet>
+      )}
       {isFolkWitch(c) && witchPowers(c, d).length === 0 && <p className="small warn-text">No folk witch powers yet: take their Virtues on the sheet (a Gifted folk witch has all seven).</p>}
       {isFolkWitch(c) && <WitchPowerCard ed={ed} aura={aura} />}
       {isFolkWitch(c) && <WitchThingsCard ed={ed} />}
       {isFolkWitch(c) && <WitchMoonCard ed={ed} />}
       {hasGruagach(c) && <GruagachCastCard ed={ed} aura={aura} />}
-      {hasGruagach(c) && <GruagachSheetCard ed={ed} atTable />}
+      {hasGruagach(c) && c.type !== 'magus' && (
+        <OnSheet sagaId={ed.saga?.id} c={c} card="gruagach-card" tour="hedge-spells-known">
+          Spells known: <b>{(c.gruagach?.spells ?? []).map((x) => x.name).join(', ') || 'none yet'}</b>.
+        </OnSheet>
+      )}
       {hasNightwalker(c) && <NightwalkerCard ed={ed} />}
       {hasVitki(c) && <VitkiCastCard ed={ed} aura={aura} />}
       {hasVitki(c) && <NattThelCard ed={ed} />}
-      {hasVitki(c) && <VitkiSheetCard ed={ed} atTable />}
+      {hasVitki(c) && c.type !== 'magus' && (
+        <OnSheet sagaId={ed.saga?.id} c={c} card="vitki-card" tour="hedge-scripts-known">
+          Rune scripts known: <b>{(c.vitki?.scripts ?? []).map((x) => x.name).join(', ') || 'none yet'}</b>; {vitkirRunes(c, d).length} runes open.
+        </OnSheet>
+      )}
     </>
   );
 }

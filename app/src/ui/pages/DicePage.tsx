@@ -151,7 +151,7 @@ function CharAtTable({ sagaId, charId, children }: { sagaId: string; charId: str
 function CharLink({ sagaId, c, tab }: { sagaId: string; c: Character; tab?: string }) {
   return (
     <Link to={R.character(sagaId, c, tab)} className="small">
-      {c.name || 'Their'} sheet ›
+      {c.name ? `${c.name}’s` : 'Their'} sheet ›
     </Link>
   );
 }

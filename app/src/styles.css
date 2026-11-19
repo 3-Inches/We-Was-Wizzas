@@ -145,6 +145,8 @@ hr { border: none; border-top: 1px solid var(--line); margin: 1em 0; }
   .nav-close { display: block; position: absolute; top: 8px; right: 8px; font-size: 18px; padding: 2px 8px; }
   .nav-backdrop { display: block; position: fixed; inset: 0; z-index: 35; background: rgba(0, 0, 0, 0.35); }
   .mobile-bar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--panel-2); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 30; }
+  /* a card a link scrolls to (?to=) clears the bar above */
+  html { scroll-padding-top: 84px; }
   .main { padding: 14px 16px 60px; }
 }
 

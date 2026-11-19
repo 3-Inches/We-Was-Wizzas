@@ -154,8 +154,8 @@ function ScriptDesigner({ runes, who, onAdd, label, maxLevel, capText }: { runes
 }
 
 /** On the sheet: the apprenticeship, the runes by aett and the scripts known. */
-/** The vitki's card: on the sheet with the apprenticeship; at the table (`atTable`) only the runes and scripts known, and one added as learned in play. */
-export function VitkiSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: boolean }) {
+/** The vitki's card, on the sheet only. Dice › Hedge magic names the scripts in one line, with a link here. */
+export function VitkiSheetCard({ ed }: { ed: CharEditor }) {
   const { c, d, update } = ed;
   if (!c || !d || !hasVitki(c) || c.type === 'magus') return null;
   const budget = d.budgets.find((b) => b.id === VITKI_APPRENTICESHIP);
@@ -164,27 +164,21 @@ export function VitkiSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: bool
   const set = (fn: (x: Character) => void) => update(fn);
   const setScripts = (fn: (s: RuneScript[]) => RuneScript[]) => set((x) => void (x.vitki = { ...(x.vitki ?? {}), scripts: fn(x.vitki?.scripts ?? []) }));
   return (
-    <Card title={atTable ? 'Runes and scripts known' : 'Vitki'} tour="vitki-card" fold="vitki-card" summary={`${scripts.length} script${scripts.length === 1 ? '' : 's'} · ${runes.length} runes`}>
-      {atTable ? (
-        <p className="small muted" style={{ marginTop: 0 }}>The runes and scripts this vitki knows. The apprenticeship is on the sheet.</p>
-      ) : (
-        <p className="small muted" style={{ marginTop: 0 }}>
-          A vitki&apos;s apprenticeship (about fifteen years) gives 240 experience points, at least half on the runes, and 120 levels of rune scripts, in place of those later-life years. The
-          runes are raised as Arts. Scripts are cast and invented on the Game Table, Dice › Hedge magic.
-        </p>
-      )}
-      {!atTable && (
-        <div className="row">
-          <Field label="Years of apprenticeship">
-            <Stepper value={c.vitki?.apprenticeYears ?? 15} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.vitki = { ...(x.vitki ?? {}), apprenticeYears: v }))} />
-          </Field>
-          {budget && (
-            <span className="small">
-              {budget.spent} of {budget.total} experience; {budget.spellLevels?.spent ?? 0} of {budget.spellLevels?.total ?? 0} levels of scripts.
-            </span>
-          )}
-        </div>
-      )}
+    <Card title="Vitki" tour="vitki-card" fold="vitki-card" summary={`${scripts.length} script${scripts.length === 1 ? '' : 's'} · ${runes.length} runes`}>
+      <p className="small muted" style={{ marginTop: 0 }}>
+        A vitki&apos;s apprenticeship (about fifteen years) gives 240 experience points, at least half on the runes, and 120 levels of rune scripts, in place of those later-life years. The
+        runes are raised as Arts. Scripts are cast on the Game Table, Dice › Hedge magic, and invented in a season. A script learned in a story is added here.
+      </p>
+      <div className="row">
+        <Field label="Years of apprenticeship">
+          <Stepper value={c.vitki?.apprenticeYears ?? 15} min={0} max={Math.max(0, c.age - 5)} width={36} onChange={(v) => set((x) => void (x.vitki = { ...(x.vitki ?? {}), apprenticeYears: v }))} />
+        </Field>
+        {budget && (
+          <span className="small">
+            {budget.spent} of {budget.total} experience; {budget.spellLevels?.spent ?? 0} of {budget.spellLevels?.total ?? 0} levels of scripts.
+          </span>
+        )}
+      </div>
       {(['Freya', 'Heimdall', 'Tyr'] as const).map((aett) => (
         <p key={aett} className="small" style={{ margin: '2px 0' }}>
           <b>{aett}&apos;s aett:</b> {runes.filter((r) => r.aett === aett).map((r) => `${r.letter} ${r.score}`).join(', ') || 'none open'}
@@ -194,19 +188,17 @@ export function VitkiSheetCard({ ed, atTable }: { ed: CharEditor; atTable?: bool
         <div key={s.uid} className="row small" style={{ borderTop: '1px solid var(--line)', paddingTop: 4 }}>
           <b>{s.name}</b>
           <span>{short(s)}</span>
-          {!atTable && (
-            <select value={s.source} aria-label="Where it was learned" onChange={(e) => setScripts((l) => l.map((y) => (y.uid === s.uid ? { ...y, source: e.target.value as RuneScript['source'] } : y)))}>
-              <option value="training">in apprenticeship</option>
-              <option value="play">in play</option>
-            </select>
-          )}
+          <select value={s.source} aria-label="Where it was learned" onChange={(e) => setScripts((l) => l.map((y) => (y.uid === s.uid ? { ...y, source: e.target.value as RuneScript['source'] } : y)))}>
+            <option value="training">in apprenticeship</option>
+            <option value="play">in play</option>
+          </select>
           <button className="small ghost" aria-label="Remove the script" onClick={() => setScripts((l) => l.filter((y) => y.uid !== s.uid))}>
             ✕
           </button>
           {s.text && <div className="soft" style={{ flexBasis: '100%' }}>{s.text}</div>}
         </div>
       ))}
-      <ScriptDesigner runes={runes} who={c.name} label={atTable ? 'Add one learned in play' : 'Add a script known'} onAdd={(s) => setScripts((l) => [...l, { ...s, source: atTable || c.creation.finalized ? 'play' : 'training' }])} />
+      <ScriptDesigner runes={runes} who={c.name} label={c.creation.finalized ? 'Add one learned in play' : 'Add a script known'} onAdd={(s) => setScripts((l) => [...l, { ...s, source: c.creation.finalized ? 'play' : 'training' }])} />
     </Card>
   );
 }
