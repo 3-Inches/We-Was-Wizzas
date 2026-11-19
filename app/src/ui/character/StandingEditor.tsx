@@ -3,7 +3,8 @@
 import { ARTS, ART_NAMES, type GameData } from '../../data';
 import type { DerivedCharacter } from '../../engine/character/derive';
 import { covenantOf } from '../../engine/context';
-import { describeStanding, inPlay, resolveStanding } from '../../engine/time';
+import { describeStanding, resolveStanding } from '../../engine/time';
+import { inPlay } from '../../engine/yearEnd';
 import type { Character, Covenant, LibraryBook, Specialist, StandingActivity } from '../../engine/types';
 import { teacherQuality } from '../../engine/covenantRules';
 import { bestLesson, lessonStudy, maxStudents, teachableSubjects, type Learner } from '../../engine/teaching';

@@ -9,7 +9,7 @@ import { effectExpiry, seasonIndex } from './effects';
 import { mechanicOf } from './covenantRules';
 import { gatheringSeason, nextGatherings } from './living';
 import { tribunalBook } from '../data/livingCovenants';
-import { HOOK_REMINDERS } from './time';
+import { HOOK_REMINDERS } from './yearEnd';
 import type { Character, Covenant, Saga, Season } from './types';
 
 export interface CalEvent {

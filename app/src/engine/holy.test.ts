@@ -11,7 +11,7 @@ import {
   holyOutcome, miracleLevel, miracleTotal, schism, threatEase, threatResult,
 } from './holy';
 import { castingScore, divineResistance, labTotal, magicResistance } from './magic';
-import { auraWarping } from './time';
+import { auraWarping } from './yearEnd';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 
 const data = buildGameData();

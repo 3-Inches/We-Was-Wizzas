@@ -4,7 +4,7 @@ import { buildGameData } from '../data';
 import { addVirtue, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { newCovenant } from './covenant';
-import { ageCharacter } from './time';
+import { ageCharacter } from './yearEnd';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import { gainWarping, owedReaction, warpingReaction } from './warping';
 import { warpingScoreFromPoints } from './xp';

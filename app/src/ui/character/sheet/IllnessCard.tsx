@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { auraRecovery } from '../../../engine/aura';
 import { immuneToDisease } from '../../../engine/covenantBoons';
 import { DISEASES, STAGES, STAGE_PENALTY, TOWN_DISEASES, avoidanceRoll, currentSeverity, illnessFrom, prognosisTotal, recoveryRoll, townExposure } from '../../../engine/disease';
-import { livingConditions } from '../../../engine/time';
+import { livingConditions } from '../../../engine/yearEnd';
 import type { Illness } from '../../../engine/types';
 import { uid } from '../../../util/id';
 import { Card, Field, Stepper } from '../../kit';

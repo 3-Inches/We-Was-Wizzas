@@ -6,7 +6,7 @@ import { ARTS, ART_NAMES, type Art } from '../../../data';
 import { addVirtue } from '../../../engine/character/factory';
 import { twilightAvoidance, twilightComprehension, twilightEffects, twilightSizes, twilightTriggered, warpingScoreWith, type TwilightEffect } from '../../../engine/longterm';
 import { Card, Field, Stepper, HowItWorks } from '../../kit';
-import { AURA_TIME, auraWarping } from '../../../engine/time';
+import { AURA_TIME, auraWarping } from '../../../engine/yearEnd';
 import type { CharEditor } from '../useChar';
 import { settle } from '../../../engine/seasonPlan';
 import type { Character } from '../../../engine/types';
