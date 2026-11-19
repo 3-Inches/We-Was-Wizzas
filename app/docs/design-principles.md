@@ -113,7 +113,7 @@ Not every paragraph of every book needs a card.
 - Before adding a card, look for the card it belongs in. Before adding a page or a tab, look for the page.
 - When you add to a document, look first for what it replaces. The README and the Guide's toolkit page have ceilings (`src/quality.test.ts`: 5,000 and 6,000 words), and a pull request adds at most **300 words** to each. Other limits there may only go down.
 - Delete what a change makes unused: exports, styles, helper text, tutorial steps.
-- A file over about 600 lines is a sign that two things live in it.
+- A file over about 600 lines is a sign that two things live in it. A source file over 800 lines is on a list in `src/quality.test.ts`: none may join the list, and none on it may grow. Split one before adding to it.
 
 ---
 
@@ -145,8 +145,8 @@ Use these words for these things, everywhere.
 - [ ] It has a Guide entry written as steps, an "In the app" pointer, and tutorial coverage if it adds a page.
 - [ ] The README has a row for it, and lists what was left out under "Not yet automated".
 - [ ] It passes the integration checklist below.
-- [ ] The four checks in `CLAUDE.md` pass, ending with the tutorials and the sweeps at both widths.
-- [ ] The roadmap is ticked, in the same pull request.
+- [ ] The checks in `CLAUDE.md` pass, the adversarial review among them, ending with the tutorials and the sweeps at both widths.
+- [ ] The roadmap is updated, in the same pull request.
 
 ### A change works with the rest when
 

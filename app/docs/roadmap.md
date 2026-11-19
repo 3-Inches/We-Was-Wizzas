@@ -1,203 +1,115 @@
 # Roadmap
 
-What is left to do, in order. Tick an item in its own pull request, with a "Done as" note. When you finish one, the next unticked item is the next thing to do.
+What is left to do, in order. Work the first open batch under **Now**.
+
+## How to work this list
+
+- **A batch is one session and one pull request.** It groups items that touch the same pages and files, or small items that together fill a session, so the checks at the end (`CLAUDE.md`, "Check work in this order") run once for all of them. Do its items in the order given. If a batch turns out twice the size expected, finish the first part and write the rest here as the next batch.
+- **Mechanical** items have the fix written down, with file and line: follow it, test it against the book's example, and do not redesign. **Judgment** items need decisions about what a player sees: plan first and ask the owner where the choice is theirs, as `CLAUDE.md` says.
+- **Fix the kind of fault, not only the case.** The same kinds keep turning up. A card that opens on a disabled button: audit 2's C5, then audit 3's B4. A card drawn in two places: audit 2's C4, then audit 3's B5 and more found in 5.5. Unlog leaving something behind: audit 3's B1, then 5.10 and 5.12. A big file growing: audit 3's C1, then 5.16. Each was fixed case by case, or guarded by a check that missed a road: the Warping guard matched source text and A1 got past it, the sweep never opened the Faith page, and the big-files test let a listed file grow. So when an item is one case of a kind, find every case, and add a check that tests the behavior on every road: a type the compiler enforces, a test, or a QA script that visits every page.
+- **When a batch is done,** its pull request takes it out of Now and adds one line to Done. The detail stays in the pull request, whose title starts with the batch's name. A decision of the owner's goes into `owner.md`, under Decided, so it is not lost with the detail.
+- **A finding the batch does not fix** goes under Found, with file and line. The lead session puts it into a batch.
+- **Standing rules, not items:**
+  - When the weekly check opens an issue (**The books have changed upstream**), the next batch takes it in. `tools/books/README.md` has the procedure.
+  - A file on the list of big files in `src/quality.test.ts` is split before it grows. The test fails if it grows, so each batch below names the big files it will add to.
+  - An audit is due after every five or six systems from the books, or when the owner asks. `audits/README.md` says how. Its findings become batches here.
+
+## Now: close audit 3
+
+Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and how they were done. Its findings, and what was found while fixing them, are below. The numbers in parentheses are the ones the old roadmap gave them (5.1 to 5.17), which earlier pull requests use. Most are at the joins between systems, so go down the integration checklist for each. When these are done, mark audit 3 closed.
+
+### Batch A. Twilight, Warping and Unlog
+
+All *Mechanical*. Big files it will add to, to split first: `src/engine/time.ts`, and `src/engine/types.ts` if item 3 needs a field on `SeasonUndo`.
+
+1. **Living covenants' magi roll Twilight (5.9).** Decided by the owner (`owner.md`, point 5): they roll it as the players do. A living covenant's magus gains Warping Points from a botch studying vis and from the aura (`src/engine/time.ts`, `seasonWarping` and `auraYearEnd`), and nothing follows, since no player resolves it. But a lab accident's Warping goes through `gainWarping` whoever the magus is (`src/engine/projects.ts:622`), so a living magus can owe a Twilight nobody rolls. Fix: one rule for all three. Roll Twilight avoidance for a living magus when the season ends (DE line 9755), and tell the Twilight in the Tribunal's news (owner point 5).
+2. **A roll already made stands (5.10).** Decided by the owner (`owner.md`, point 2). Unlogging the season of a woven curse or a ring's first recitation drops the roll while it waits in Resolve (`seasonEndRolls`), as now. Once it is rolled, Unlog leaves what it did, and the Unlog button says so. Turn back undoes everything. What stays: a botched curse's Warping and the Witch Moon it brings (`rollWovenCurse`, `src/engine/folkWitch.ts:198`), and a ring learned.
+3. **Holy work and Unlog (5.12).** A season of holy work (`src/ui/pages/holy/HolyWorksCard.tsx`, `work`) is logged with no `undo`. Unlog takes back its experience, but not the work's progress and seasons, the long-term Fatigue a Merkavah season costs, or a finished amulet or golem power, which should make the season final. Fix: log it through `useSeasonWork`, with the work as it was in `undo`, and `final` when the work is done.
+4. **The check, so Unlog's kind of fault cannot come back.** Seasons are logged in 13 files (`grep -rln 'seasonLog.push' src`), and `src/engine/initiation.ts` (about line 161) builds its entry inline. Each must record in `undo` everything it changes outside the entry's `gains`. The check must test behavior, not source text (a text guard is what audit 3's A1 got past): a test that logs each kind of season and unlogs it, and finds the character and the covenant as they were before.
+
+### Batch B. Plan a season, and small fixes at the Game Table
+
+All *Mechanical*. Items 1 and 2 are in `src/ui/character/sheet/PlanSeasonCard.tsx`, split from `AdvancementTab.tsx` in 5.4.
+
+1. **A botched study from vis teaches nothing (5.13).** Decided by the owner (`owner.md`, Decided), and settled by the book: "On a botch, your total for the roll is never any higher than zero", and the modifiers are negated with it (DE, Stress Rolls, line 570). So a botched study's Source Quality is 0: no experience, and the vis is spent. A planned season already gives none (`src/engine/time.ts`, the `vis` standing activity). Plan a season's roll sets the die to 0 and still counts the aura (`PlanSeasonCard.tsx`, the stress-die button, then `computeStudy`), while its badge says "no xp". Make it agree, and test both on the book's line.
+2. **A new Ability from a book (5.11).** Plan a season's "From the covenant library" (`PlanSeasonCard.tsx`, the library filter and `pickBook`) lists a book on an Ability only to one who has the Ability, and `pickBook` cannot set an Ability the character lacks as the subject. So a companion cannot begin Latin from the covenant's summa. Fix: list the books on Abilities this character could learn (Supernatural ones need their Virtue first: check the book), and let picking one begin the Ability at 0, as Worship begins Church Lore (`new:church-lore`). Test: a companion reads a Latin summa and gains the Ability.
+3. **A season that draws no vis (5.14).** On the gruagach fixture, "draw vis from the aura" was offered and spent a season for 0 pawns (Lab Total under 10; `gruagachExtraction`, `src/ui/pages/GruagachPart.tsx`). The card should say it draws none, and not offer the season. Check the kitchen's and Refining's draws the same way.
+4. **The holy first, on the Faith page (5.17).** Dice › Faith & miracles lists everyone in "Who prays", as it should, but `HolyDicePart` (`src/ui/pages/DicePage.tsx`, about line 593) says "the holy first" and mixes them in with the rest. Put the holy (holy powers, True Faith or Faith Points) in a group of their own at the top of the picker. Then have `scripts/qa/sweep.cjs` read them from the picker, as it does the Faerie, Hedge magic and Mysteries people, and visit each holy character's turn.
+5. **Great projects' rolls at the Game Table (5.8).** Decided by the owner (`owner.md`, point 1): rolls happen at the Game Table. The building's stress check and the menagerie's rolls move to **Game Table › Dice**, with the same choice of covenant, mason and handler. The covenant's Overview keeps the record (height, quality, damage) and links to the rolls. Move the tutorial steps and pointers that led to the old place (`src/ui/tour/tutorials/lab.ts`).
+
+### Batch C. Quick build for the hedge traditions, faerie wizards and the Mysteries (5.7)
+
+*Judgment.* Audit B7, the largest item. The guided build's answers for Folk Witch, Gruagach, Vitki, Mathematicus and faerie wizardry rarely make one; the practice characters get their Virtues free instead. Fix: an answer for each tradition that takes its Social Status and Virtues and fills its Abilities as its chapter says, with a test per tradition that the character passes the rules check (owner points 11 and 13). Big files it will add to, to split first: `src/engine/guided/autobuild.ts`, and `src/ui/pages/QuickBuildPage.tsx` if the page changes. If it grows, do one tradition at a time and write the split here. Then mark audit 3 closed.
+
+## Found
+
+Findings not yet in a batch.
+
+- **The living covenants' people work no hedge, holy, devotion or mason seasons.** No engine path runs that work for them (found during 5.3), so the owner's Tribunal's five faerie wizards, three hedge wizards and holy magus spend their seasons as other characters do. Owner point 5 asks that they play by the players' rules. *Judgment*: which of that work they should do, and how it shows in the Tribunal's news.
+
+## Next: what the other books add
+
+In the owner's order. Before each, apply principle 11: build what a troupe will use, and point at the rest. The cuts suggested here are the owner's to overrule. **S** is part of a session, so it goes into a batch with others; **M** is a session; **L** is several, and the session that starts one first writes its split here.
+
+Already built: *Hedge Magic*, *Realms of Power: Faerie*, *The Mysteries*, *The Church*, *Hermetic Projects*.
+
+1. ***Lords of Men*.** *Judgment.* L. Build mass combat (battles, battlefield events, sieges) as one Game Table page; mounted combat as modifiers on the Combat page; a manor as a covenant income source, with its peasants, court and tithes (LoM line 3060 on); a lord's retinue, offices and wardship (LoM line 576). Point at hawking, tournaments and law.
+2. ***Apprentices*.** *Judgment.* M. Gifted children: child characters in the builder (apprentices in play are built already), Turbulence as a roll, the stages of maturing, Cantations as a spell list, the schools.
+3. ***Ancient Magic*.** *Judgment.* L. Each lost tradition as a Breakthrough to research, with its book's Insight sources (original research is built); Defixio and Hyperborean hymns as magic to use. Point at the rest until a saga wants it.
+4. ***Realms of Power: The Infernal*.** *Judgment.* L. Copy the shape of the Faith page. The Maleficia (RoP_I line 5032), the three Goetic Arts not yet built (line 5807), infernal characters, Infernal Warping and its causes (line 566), possession and exorcism (Church line 1568, RoP_D line 4011).
+5. ***The Cradle & the Crescent*** (wip, but placed here in the owner's order). *Judgment.* L. Sahir summoning and binding of jinn; jinn as characters.
+6. ***Rival Magic*.** *Judgment.* L or more, one tradition a batch, starting with the one the owner's saga would meet.
+7. ***Art & Academe*.** *Judgment.* M. Medicine beyond disease, on the Recovery cards; university study as season activities, and a university's examinations (AA lines 3912 to 4008); experimental philosophy, its ligatures and formulae (AA line 2725 on); Mythic Alchemy (audit 2 left it for this book); mundane astrology; works of art.
+8. ***Antagonists* and *Magi of Hermes*** (wip). *Mechanical.* L. About ten opponents and a dozen magi as characters, read by the stat-block reader that built the Rhine magi (`src/engine/character/statBlock.ts`).
+9. **Living covenants for Normandy** (*The Lion and the Lily*). *Judgment.* L. Copy the Rhine: `src/data/livingCovenants/`.
+10. **Living covenants for Thebes** (*The Sundered Eagle*). L.
+11. **Living covenants for Transylvania** (*Against the Dark*). L.
+12. **Other Tribunals** (*Lands of the Nile*, *Faith & Flame*, *The Contested Isle*, *Between Sand & Sea*). L each, and only those the owner asks for. The Tribunals covered only by Third or Fourth Edition books are not built.
+13. ***Through the Aegis* and *The Living Covenant*** (wip). *Mechanical.* L. Seven covenants to import whole, and about fifteen named covenfolk.
+14. **The Tribunal books' hedge traditions.** *Judgment.* M each. Copy the shape of the Hedge magic page. The owner's Rhine first: the Order of Odin and the Exsules (GotF lines 3423 and 3458). Then *Against the Dark*'s storm wizards (AtD line 5505) and vampire hunters with the Hunters' Arts (lines 5741 and 5841); *The Sundered Eagle*'s Katadesmos, Makhai and Diabolai (SE lines 4219 to 4283); Egypt's lector priests (LotN line 2699).
+15. **Small additions.** *Judgment.* S each, one batch. Mostly a pointer to the book each (principle 11); the owner decides which to build.
+    - *Grogs*: training packages for wealthy and poor grogs (Grogs line 2444) and templates (lines 4311, 4821 and 5005), as choices in the builder or Quick build; animal grogs (line 5087) and beasts as characters (Cov line 3051).
+    - *Legends of Hermes*: adapting another cult's Initiation Script (LoH line 2294), temporary laboratories (line 2452), the optional rule for swarms (line 2086).
+    - Travel in the Magic realm, and advancement there (RoP_M lines 980 and 1145).
+    - Penalties under the Code: fines, determining penalties and seasons of service (HoH_TL lines 1898, 1906 and 1939), for a case judged at Tribunal.
 
 ## What "finished" means
 
-The toolkit is finished when all of these are true.
+The toolkit is finished when all of these are true. The owner may call it finished sooner.
 
-1. **Every system in the Fifth Edition books that a troupe would use at the table more than once in a saga is built,** checked against the book, and can be found (design principles 8, 9 and 11). Anything rarer has a pointer to the book's text instead.
-2. **No audit has open findings** (`audits/`). Closed audits are kept there as the record.
-3. **The limits in `src/quality.test.ts` are at their targets** (stage 1 gives them).
-4. **The books match upstream,** and the weekly check is quiet.
+1. **Every system in the Fifth Edition books that a troupe would use at the table more than once in a saga is built,** checked against the book, and can be found (design principles 8, 9 and 11). Anything rarer has a pointer to the book's text.
+2. **No audit has open findings** (`audits/`).
+3. **The books match upstream,** and the weekly check is quiet.
 
-The owner may call it finished sooner. These are deliberately out of scope:
+Out of scope:
 
 - **Third and Fourth Edition books, and third-party books.** They are in the reader on shelves of their own, as setting reference. No rules, characters or covenants are taken from them, even where they are the only source for a Tribunal.
 - **Setting, history and story seeds.** They are read in the reader.
 - **Adventures** (*Dies Irae*, *Tales of Power* and the like).
 - **Books in `wip/`** are optional. Their text is rougher, so anything taken from them needs more checking. Do them last, and only the ready-made characters and covenants.
 
-## How to work this list
-
-- **One item to a pull request, and a fresh session for each item.** Read `CLAUDE.md`, `owner.md` and `design-principles.md` first. This file, the open audit and the pull request carry the plan. A long conversation does not.
-- **Before the owner merges,** a review of the pull request against `owner.md` and the design principles' integration checklist, by the owner's long-running session or a fresh one. Audit 3, section W, says why.
-- Each item is marked **Mechanical** or **Judgment**.
-  - **Mechanical:** the fix is written down, with file and line. Follow it, test it against the book's example, and do not redesign.
-  - **Judgment:** the item needs decisions about what a player sees. Read the principles, write the plan into the pull request before building, and ask the owner where a choice is theirs.
-- An item is closed only when its checklists in the design principles pass, the integration checklist among them.
-- If an item turns out twice the size expected, split it and write the split here.
-
----
-
-## Stage 1. Close the audit
-
-Every item refers to `audits/2026-11-16.md` by its number. That file has the detail: file, line, the book's text, and the fix.
-
-- [x] **1.1 Rules fixes.** *Mechanical.* A1 to A7, all of B, all of F. Each fix gets a test built on the book's own example. One pull request.
-- [x] **1.2 Small fixes to how cards behave.** *Mechanical.* C3 (pickers that need a second button), C4 (creation settings at the table), C5 (cards that open on a warning), C7 (numbers the player must already know), C9 (one wording for one act: use the vocabulary table). Then E2: an "In the app" pointer for every topic the new pages cover. `topicsWithoutPointer` in `quality.test.ts` must go down.
-- [x] **1.3 Season work is reachable from the Seasons page, and spends from the stores.** *Judgment.* C1 and C2. Every card that takes a season (hedge magic, Faerie, the Mysteries, Great projects) is offered among the season's activities and is checked by `seasonBusy`. Vis and silver come out of the covenant's stores or the character's own, and the result says so.
-  - Split by the owner (17 November 2026). Here: hedge magic's six season cards and the seasons of holy work move to the Seasons page only, their vis from the stores, and a woven curse is rolled in Resolve. Faerie and the Mysteries have no season card outside Lab projects, which were on Seasons already. No hedge season spends silver. Great projects and the Church's seasons go to 1.4.
-- [x] **1.4 Fewer cards, better placed: Faith & miracles.** *Judgment.* C6, and the Church's and holy seasons split from 1.3 (C1). Split three ways by the owner (17 November 2026); 1.4b and 1.4c follow.
-  - A card that cannot apply to the character chosen is hidden, and one line says what is hidden and why.
-  - The season-long work moves to one "Seasons of devotion" card on Seasons, with `useSeasonWork`: a season of devotion at a shrine, a saint's hagiography, the mystic's path's seasons, a pilgrimage's season, the first recitation of a Ring of Solomon, the search for the Book of Solomon. The Faith page keeps the records and what happens in play, with a link.
-- [x] **1.4b Prompts after Warping, and Sympathy Traits on rolls.** *Judgment.* C8. When Warping Points come, offer what follows, as Twilight is offered: the Witch Moon, Nátt-thel, Faerie Calling. A roll the book makes when a season ends waits in Resolve. On the Roll page, a tick per Sympathy Trait for a character who has them.
-  - Done as: `gainWarping` (`src/engine/warping.ts`) adds the points and owes the tradition's reaction on the Resolve list, linked to its card, which opens on it. `quality.test.ts` lists the files still allowed to add Warping Points directly, each with its reason. The year's Warping (prolonged) brings only the Witch Moon, and gives a folk witch or a faerie-touched character no ordinary Warping Virtues or Flaws.
-- [x] **1.4c Where Great projects lives.** *Judgment.* C10, and a mason's building season split from 1.3 (C1): logged and checked by `seasonBusy`, the building's progress kept where C10 puts it.
-  - Decided by the owner (17 November 2026): the building and the menagerie go to the covenant, in one **Great projects** card on its Overview tab. The covenant keeps each building's record: its height, the quality of its weakest and its latest work, and damage taken. The card's stress check uses the covenant's best mason and records a lost damage level. The menagerie's handler is chosen from the members.
-  - The mason's season is on Seasons, in a character's season in full: **Build (a season)** raises the building by the mason's pace, its quality from the Workshop Total (Int + Craft: Mason + Innovation + Raw Materials against 3, 6, 12, 15). **Repair (a season)** mends one damage level, or brings shoddy work up to standard. Both are logged with `useSeasonWork`, and Unlog restores the building.
-  - Possessions loses the card.
-- [x] **1.5 The Guide, rewritten as steps.** *Judgment.* D2. Model: `src/data/roleplay.ts`. Each system gets "make one, use it, spend a season, what to watch for". Move the Guide's text into data, as the roleplay pages are, so the same tests can check it. Targets: under 6,000 words, no sentence over 40 words, no block over 85.
-  - Done as: the page's text is `src/data/toolkitGuide.ts`, drawn by the roleplay pages' renderer, one folding card a system. 3,529 words (from 9,431), longest sentence 34, no block over 85. `toolkitGuide.test.ts` holds it there, and checks that each system is written as numbered steps and names the Game Table's pages as the app does. `src/data/guideText.ts` measures the Guide one way for its tests and for `quality.test.ts`. Complete lists (every Boon's effect, every living covenant's custom) were cut: the cards and Game Mechanics hold them. `HelpPage.tsx` keeps only what it draws live (the tutorials, Game Mechanics' subjects, the optional rules, the data counts), and fell from 998 lines to 200.
-- [x] **1.6 The README, cut to what a visitor needs.** *Judgment.* D3. Targets: under 25,000 characters, no line over 600. Keep: what it is, what it covers (one line a system), how to run it, how it is built, what is not automated. The long descriptions go to the Guide or are deleted.
-  - Done as: 14,149 characters (from 123,520), longest line 431 (from 9,648), no sentence over 40 words. Where things are, then a table of areas (what each does in one line, and its books), then "Not yet automated", running it, and how it is built. The long descriptions were deleted: the Guide (1.5) has each system as steps. Some of that detail explains how the systems connect, so look there before rebuilding something: `git show 079464b:app/README.md` is the last long README. Pilgrimages left "Not yet automated", since *The Church*'s card tracks them. Counts that drift are rounded. `quality.test.ts`'s README limits are lowered to match.
-- [x] **1.7 Tutorials.** *Judgment.* D4. Shorten every step over 60 words (71 of them; 56 were over 70). Fix the stale sidebar step and the Dice step, and the City & Guild step that finds no card at 390. Split from E1 (17 November 2026), since the new tutorials need practice characters the toolkit cannot yet make; they are 1.7b.
-  - Done as: `tours.ts` split into one file a tutorial in `src/ui/tour/tutorials/`, the page addresses they share in `places.ts`; it is off the big-files list. Every step is 60 words or fewer (the longest was 185). A step was cut where its detail is on the card, and split where all of it was needed: City & Guild went from 19 steps to 30, the Divine from 17 to 26. `quality.test.ts` counts steps over 60 words, at 0. The City & Guild step that found no card at 390 was the QA script's doing: `tutorials.cjs` looked for the card before it chose the practice craftsman, so it found one only when the course's random companion had a Craft. It now chooses first.
-- [x] **1.7b Tutorials for hedge magic, and for Faerie and the Mysteries.** *Judgment.* E1. Hedge magic follows whichever tradition the character has. The Church got a step in the Divine tutorial, and *Hermetic Projects* one in the laboratory tutorial.
-  - Decided by the owner (18 November 2026): Faerie and the Mysteries are **two short tutorials**, each following one character, not one that changes character halfway.
-  - Done as: **Hedge magic** (9 steps), **Faerie at the table** (8) and **The Mysteries at the table** (6), in the course after the Divine. `Tour.suits` makes a tutorial follow only a character it suits, and replaced `prefersTrade` and `prefersHoly`. `TourStep.variants` gives a step its text and target for the first kind of character that fits: the hedge steps for casting, the sheet's record, the season's work and the Warping each have one for each of the six traditions.
-  - The practice characters are made by Quick build, with what the tutorial is about given free "For practice". `PracticeSpec` gained `abilities` and `sympathy`. A folk witch: a physician with Folk Witch, The Gift, Unstable Magic and Healing 2. A faerie wizard: cunning folk with Evocation, Weal, Summoning, Faerie Sympathy and Dawn +3. A magus with Divination & Augury and Hermetic Dream Interpreter. The tests hold each to no error in the rules check. The fixtures were not bundled.
-  - Who each Dice page is for (`hasHedgeMagic`, each tradition's check, `hasFaerieTable`, `hasTableMystery`) moved from the pages into the engine (`src/engine/hedgeTraditions.ts` and the Faerie and Mysteries modules), so the tutorials need not load the pages.
-  - Found on the way: a step on **Dice › Roll** counted as already there on any other part of the Dice page, so it never went. `places.dice` now names the part always.
-  - Found on the way: a character with one gruagach Form and no Technique (Quick build can give the Form Vision alone) broke Dice › Hedge magic. The card now says what to take. `hedgeTradition` counts a tradition only when the character can cast with it, and the hedge tutorial follows only such a character.
-  - `tutorials.cjs --fixtures` imports each hedge, Faerie and Mysteries practice saga and takes its tutorial on each finished character. Clean is "no target: 0". `tours.test.ts` checks that each tradition's fixture is shown its own cast and season cards.
-
-Stage 1 is done. Its limits in `quality.test.ts` were lowered as each item closed. Its audit is kept, marked closed, as the record and the model for the next (`audits/2026-11-16.md`). Audit 3 checked stage 1's work: stage 5 holds what it found.
-
-## Stage 2. Bring the books in step with upstream
-
-- [x] **2.1 The update.** *Judgment.* Done against upstream of 16 November 2026. `tools/books/README.md` has the procedure, and what that run found.
-- [ ] **2.2 After each later upstream change,** the weekly check opens an issue. Follow `tools/books/README.md`. It will be far smaller. This item is never ticked.
-
-- [x] **2.3 Item effects in the spell catalog.** *Mechanical.* Found during 2.1. `extract_spells.py` now tells an item effect from a spell by the book's marks, as `extract_hp.py` does for *Hermetic Projects*: 273 effects from fourteen other books moved to `enchantments.json`, and the item editor groups them by book.
-
-Do stage 2 before stage 3: building more on text that is about to shift doubles the work.
-
-## Stage 5. Close audit 3 (do this before stage 3)
-
-Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 and how they were done. Every item refers to it by its number. Most of its findings are at the joins between systems, so each item here also passes the integration checklist.
-
-- [x] **5.1 Warping and what follows it.** *Mechanical.* A1 (a double botch studying vis owes no Twilight) and B1 (Unlog leaves the reaction owed). One pull request, with the guard in `quality.test.ts` widened.
-  - Done as: `gainWarping` takes `counted` (the points are on the sheet already, through a season entry) and `entry` (the season whose work brought them: the reaction's uid goes on its `undo.owed`). `seasonWarping` (`src/engine/warping.ts`) owes what follows a season entry's botch, and both a planned season's vis study (`time.ts`) and one logged by hand (`AdvancementTab.tsx`) call it after `applySeason`. Unlog takes off what `undo.owed` names. A lab season (`labUndo`), original research and every `useSeasonWork` card record any reaction their work raised. A living covenant's magus owes nothing, as for the aura's Warping. The guard now catches any change to `warpingPoints`, a season entry's included, outside the listed files. Tests: `src/engine/warpingSeason.test.ts`.
-- [x] **5.2 Offer only what can apply, and open on what can be done.** *Mechanical.* A2 (the Hermetic Arts offered to any Gifted character) and B4 (season cards that open on a disabled button).
-  - Done as: `learnsArts` (`src/engine/firstChoice.ts`) is the one test of who learns the Arts: a magus. The toolkit records a Gift opened to the Arts nowhere else (an apprentice is a light record until the Gauntlet), so a Gifted hedge wizard or companion is offered none (*Hedge Magic* lines 433 and 846). Every place an Art is offered uses it: Plan a season (the subject, Study raw vis, and the library's books, which now list only books on what the character can study), the standing activity, priorities, a covenant-mate's or the covenant's teaching, the best study the clock picks, experience from a story, and the Arts table on the sheet (kept for one who has Art experience by mistake, so it can be taken off). A season set on an Art for one who is not a magus, by an old save, goes to their own work, and the report says why (`runActivity`, `src/engine/time.ts`). The study opens on the character's best Ability. The Twilight roll is offered to magi only (*Hedge Magic* line 634: no hedge tradition has Wizard's Twilight).
-  - The first choice a card opens on: `bestFirst` and `firstDoable` in the same module. The kitchen (`firstKitchenWork`, `src/engine/folkWitch.ts`) opens on the first work the witch can do with the vis to hand, with her best power for it, and drawing vis from the aura when nothing else can be done; the witch's power card on her best power; a gruagach's season (`firstGruagachWork`, `src/engine/gruagach.ts`) on a tattoo of the highest book spell within the Lab Total, else a spell they progress on, else vis. Inventing a gruagach spell with no progress is now refused. The Aging card offers its roll only to one who ages; the Great Elixir says in one line what comes first, with no button; the Apprentice card takes an apprentice without a name.
-  - `scripts/qa/firstChoice.cjs [width] [fixture] [--shots]` opens every card on Dice and Seasons for each fixture character and lists any that opens on a disabled button or a warning, and checks that only a magus is offered the Arts. Clean is "0 cards open on a disabled button or a warning; Arts offered: as they should be". Tests: `src/engine/firstChoice.test.ts`.
-  - Left as it is: the faerie rite and bargaining buttons wait until a Sympathy Trait is ticked, as audit 2's C5 decided: which traits fit an effect only the player can say. The button's title says so.
-- [x] **5.3 The Chronicle tells each kind of season.** *Mechanical.* B2.
-  - Found during 5.1: a botched study from vis is told as a successful one ("the pawns glowing faintly as their power was drawn into understanding", `src/engine/chronicle.ts:101`), since a botch is logged as `study-vis` with no xp. And the record's fold says "(1 lines)" (`src/ui/pages/ChroniclePage.tsx:63`).
-  - Done as: a season log entry keeps `told` (optional), a phrase that follows the character's name, made from what the work did. `src/engine/seasonTold.ts` makes it, one function to a kind of work: the kitchen (the potion and its doses, the curse's target, the fetish), Refining, a vitki's scripts, an amulet, charms, a gruagach's tattoo or spell, the mason's building and its height, devotion (the saint, the ring, the path's Quest), holy work, each kind of lab project (the spell, the item), help in the lab, original research, the apprentice, the workshop, a wondrous item, an Initiation, a book opened to be clarified, and a gathering of the Tribunal. `useSeasonWork`'s result must give `told`, so the typecheck catches a card that does not.
-  - The Chronicle (`seasonTelling` and `writeChronicle`, `src/engine/chronicle.ts`) prefers `told`. A study from vis with Warping Points is told as a botch, with the Wizard's Twilight still owed from it; this works on old saves too. An old entry with no `told` is told from its activity as before, an old lab season from its project's kind, and any other `'other'` season as "business of their own", not as the daily round.
-  - The people's section keeps each character's phrase with its entry's uid (`TimeReport.story[].people`). The Chronicle and the Seasons page drop a season unlogged since (`tellPeople`). Sentences now name two people at most ("A did this, while B did that"), so none runs over 40 words read aloud. The record's folds say "1 line".
-  - Not given a phrase: a season planned on Plan a season as "Other" carries only the player's free text, which is not a phrase. It is told as "went about business of their own". The living covenants' people run none of the hedge, holy, devotion or mason work (no engine path runs it for them); their lab seasons carry the same `told` as the players', and the Tribunal's news quotes their season's line, which already names the work.
-  - `scripts/qa/chronicle.cjs [width] [fixture] [saga.json]` works one season of each kind on each practice character's season cards, ends it, and prints what the Chronicle says. Clean is "stock phrases: 0". Tests: `src/engine/seasonTold.test.ts`.
-  - Also fixed: three lines of the kitchen card's player text said "herself" and "she", and five of the Chronicle's stock phrases had British spelling ("practised", "ploughed", "grey", "travellers").
-- [x] **5.4 A season in full, ordered by the character.** *Mechanical*: the order decided by the owner (19 November 2026). B3. After 5.2.
-  - First, the character's own season work: their tradition's cards, and Lab projects for a magus.
-  - Then the planning: Plan a season, the standing activity and priorities, offering only what applies to them.
-  - Then the season log and aging.
-  - Last, the Mysteries and writing, only where they apply.
-  - A card that cannot apply is hidden, with one line saying why, as the Faith page does.
-  - Done as: `seasonCards` (`src/ui/pages/seasonCards.ts`) reads the character's record and gives the cards that apply, in the owner's four groups, with a line for each card left out. `SeasonInFull` (`src/ui/pages/SeasonInFull.tsx`) draws them, and the lines in a fold at the foot ("Not open to Name, so not shown (6)"). Own work: a magus's laboratory first (Lab projects, original research, the Longevity Ritual, the apprentice), then a hedge tradition's season cards, holy work, devotion, a mason's season and a kept livelihood, each drawn for whoever has it, so a magus who is also a holy worker gets both. Planning: Plan a season, the standing activity, priorities, Spell Mastery (with spells), Secondary Insight (with the Virtue). Record: the season log, aging, and a non-magus's Longevity Ritual when one was made for them. Last: the Mysteries and writing.
-  - When each applies, and on what grounds: the laboratory, original research and the apprentice need a magus. Aging needs one who ages: not a magic character, a faerie, the inhuman or an immortal (`neverAges`, `src/engine/longterm.ts`, now also what the year's end uses). The Mysteries need a way in (`mysteryWayIn`, `src/engine/initiation.ts`): a Mystery House, a Mystery Lore, a Mystery Virtue or an Initiation behind them, since an Initiate not apprenticed in the House needs (House) Lore 1 (DE line 16487). The card now shows only for them at the table too; it was there for everyone. Writing needs a book begun, something to write on (5 in an Art or 2 in an Ability, with 5 in a language: DE, Writing Books) or the covenant's books to copy (Artes Liberales and 3 in a language: DE, Corrupted Copies). A faerie wizard and a nightwalker have no season's work of their own (RoP: Faerie, ch. 6 has none), so theirs opens on Plan a season.
-  - Each card of the season in full folds, with a summary line, so on a phone it opens as an outline with the character's own work on top. The fold keys are the cards' tour names, so a link with `?to=` still opens its card.
-  - `AdvancementTab.tsx` is split (895 lines to 56): `PlanSeasonCard`, `StandingCard`, `SeasonLogCard` and `AgingCard` in `src/ui/character/sheet/`. The sheet's Advancement tab draws the record (log, aging, Twilight, the Mysteries, livelihood); the Seasons page draws each card in its place. It is off the list of files over 800 lines.
-  - Also fixed, found on the way: `hasGruagach` took the holy power Blessing, an Ability whose id is `blessing`, for the gruagach's Form Blessing, a Virtue with the same id. A holy companion (the gruagach saga's Ida) counted as a gruagach. Virtues are now looked for among Virtues and Abilities among Abilities.
-  - The Seasons tutorial's first step says the season opens on the character's own work, and the optional rules tutorial and the Guide say who the Mysteries card is for. Tests: `src/ui/pages/seasonCards.test.tsx` draws the season of every practice saga's people. `scripts/qa/seasonOrder.cjs [width] [saga.json | --no-saga] [--only fixture|saga]` opens it for each kind of character in a fresh browser, lists the cards in order and saves a screenshot. Clean is "problems: 0".
-- [x] **5.5 Sympathy Traits in one place; the troupe's list of changes.** *Mechanical.* B5 and B6.
-  - Done as (B5): the Sympathy Traits card is on the sheet only. Dice › Faerie shows the traits, the Faerie Rank and the extra botch dice in one line, with a link that opens the sheet's card and scrolls to it (`OnSheet`, `src/ui/play.tsx`; `R.character` takes `to`, and the sheet calls `useLandOn`). The rite and bargaining cards still tick the traits that fit, and a roll's experience still changes them. The Faerie Calling's result says to change a fitting trait on the sheet, not "on the card above". The faerie tutorial's Sympathy step now shows the line, then goes to the sheet's card.
-  - The same fault, found and fixed the same way: Dice › Hedge magic drew the learned magician's, the gruagach's and the vitki's sheet cards whole (`atTable`), so their charms, spells and scripts could be added and removed in both places. They are now one line each with a link; the sheet's cards add one learned in play once the character is finished. Elemental Traits (read-only, but drawn twice) are a line with a link too. The hedge tutorial's "What the sheet keeps" and Warping steps point at the lines. Every other card drawn on a sheet and at the table is already split by `useAtTable` or `useEditable`.
-  - Done as (B6): `CHANGE_FIELDS` (`src/engine/troupe.ts`) places every field of `Character`: compared line by line, named by a label (with its items' or parts' labels), read by no rule ("other"), or the record's bookkeeping. A field added to `Character` fails the typecheck until it is placed. Sympathy Traits, charms, gruagach spells, rune scripts, potions and fetishes, Devotion Points, the holy (works, True Names, the Rings of Solomon…), Supernatural powers and some fifty more are named. A hedge or faerie Art is an Ability, and was already named by its own name ("Succurro 3 → 3 (30 → 45 xp)"); an Ability added at 0 is now named too, since a hedge Art held at 0 is still worked, and so is a changed specialty. The one line for what no rule reads says "Other details of the sheet differ", and is said beside the other lines, not only when nothing else changed. Tests: `src/engine/troupe.test.ts` (each field changed in turn), `src/ui/pages/onSheet.test.tsx`.
-  - Also: on a phone a card a link scrolls to (`?to=`) no longer lands under the sticky top bar (`scroll-padding-top`), and Dice's link to a sheet says "Name’s sheet". `scripts/qa/sentBack.cjs [width]` follows Dice › Faerie's link to the sheet and back, and sends the faerie wizard and the learned magician back with a trait, an Art and a charm changed in the file. Clean is "problems: 0".
-- [x] **5.6 Smaller.** *Mechanical.* C1 (split `HolyPart.tsx` by card) and C2 (the 56 Game Mechanics topics with no "In the app" pointer).
-  - Done as (C1): the holy page's cards are in `src/ui/pages/holy/`, one file a card (the Faith line with Holy standing), and what they share in `holy/shared.tsx`. `HolyPart.tsx` keeps the page, 85 lines, and leaves the list of files over 800 lines. No line of the cards changed: the Faith page, as the divine tutorial's practice character, is the same text and the same pixels at 390 and 1280 before and after (`scripts/qa/holyPage.cjs [width] [profile] [label]`).
-  - Done as (C2): 32 of the 56 topics now point to where the toolkit plays them (`src/data/appPlaces.ts`). The 24 left are setting, story or law with nothing to compute, a one-off conversion from Fourth Edition, an adventure, or rules not yet built; those are now in the README's "Not yet automated" and in stage 3 below (3.16 to 3.20, and additions to 3.1, 3.4 and 3.7). The pull request has the table. `topicsWithoutPointer` is 24.
-  - `scripts/qa/pointers.cjs [width] [saga.json] [topic …]` follows every pointer that is a link and checks the place it names is on the page it lands on, picking each of the troupe's characters in turn on a Game Table page. It found the four Tribunals' customs pointers landing on the Saga Overview's first tab, not Optional rules: fixed. Clean on the owner's saga is "problems: 1": *Trade, money and wealth*'s "Stories and investments" is on a craftsman's workshop card, and that saga's troupe has no craftsman.
-- [ ] **5.7 Quick build for the hedge traditions, faerie wizards and the Mysteries.** *Judgment.* B7. The largest. One tradition at a time if it grows.
-- [ ] **5.8 Great projects' rolls at the Game Table.** *Mechanical.* B8.
-  - Decided by the owner (18 November 2026): rolls happen at the Game Table. The building's stress check and the menagerie's rolls move to **Game Table › Dice**, with the same choice of covenant, mason and handler. The covenant's Overview keeps the record (height, quality, damage) and links to the rolls. Move the tutorial steps and pointers that led to the old place (`tutorials/lab.ts`).
-- [ ] **5.9 Living covenants' magi and Twilight.** *Mechanical*: decided by the owner (18 November 2026), they roll Twilight as the players do. Found during 5.1. A living covenant's magus gains Warping Points from a botch studying vis and from the aura (`src/engine/time.ts`, `seasonWarping` and `auraYearEnd`), and nothing follows: no player resolves it. But a lab accident's Warping goes through `gainWarping` whoever the magus is (`src/engine/projects.ts:622`), so a living magus can owe a Twilight nobody rolls. Owner point 5 asks that they play by the players' rules. Fix: one rule for all three. Roll Twilight avoidance for a living magus when the season ends (DE line 9755), and tell the Twilight in the Tribunal's news.
-- [ ] **5.10 Unlog after a season's roll is made.** *Mechanical*: decided by the owner (18 November 2026), a roll already made stands. Unlog drops a roll still waiting in Resolve, as now; once it is rolled, Unlog leaves what it did, and the Unlog button says so. Turn back undoes everything. Found during 5.1. Unlogging the season of a woven curse or a ring's first recitation drops the roll while it waits in Resolve (`seasonEndRolls`). Once the roll is made, Unlog no longer touches what it did. A botched curse's Warping and the Witch Moon it brings stay (`rollWovenCurse`, `src/engine/folkWitch.ts:198`), and so does a ring learned.
-- [ ] **5.11 A new Ability from a book.** *Mechanical.* Found reviewing 5.2. Plan a season's "From the covenant library" (`src/ui/character/sheet/AdvancementTab.tsx`, the library filter and `pickBook`) lists an Ability's book only to one who has the Ability already, and `pickBook` cannot set an Ability the character lacks as the subject. So a companion cannot begin Latin or Artes Liberales from the covenant's summa. Fix: list the books on Abilities this character could learn (check the book for which need a Virtue first: Supernatural ones do), and let picking one begin the Ability at 0, as Worship begins Church Lore (`new:church-lore`). A test: a companion reads a Latin summa and gains the Ability.
-
-- [ ] **5.12 Holy work and Unlog.** *Mechanical.* Found during 5.3. A season of holy work (`HolyWorksCard`, `src/ui/pages/holy/HolyWorksCard.tsx`, `work`) is logged with no `undo`. Unlog takes back its experience but not the work's progress and seasons, the long-term Fatigue a Merkavah season costs, or a finished amulet or golem power, which should make the season final. Fix: log it through `useSeasonWork`, with the work as it was in `undo`, and `final` when the work is done.
-- [ ] **5.13 A botched study from vis: experience.** *Mechanical*: decided by the owner (19 November 2026), a botch teaches nothing. The book settles it after all: "On a botch, your total for the roll is never any higher than zero", and the modifiers are negated with it (DE, Stress Rolls, line 570). So a botched study's Source Quality is 0: no experience, the vis spent. Make Plan a season's roll agree with the planned season, and test both with the book's line. Found during 5.3. The two ways to study vis disagree on a botch. A planned season gives no experience (`src/engine/time.ts`, the `vis` standing activity). Plan a season's roll sets the die to 0 and still counts the aura (`src/ui/character/sheet/AdvancementTab.tsx`, the stress-die button, then `computeStudy`), while its badge says "no xp".
-- [ ] **5.14 A gruagach's season that draws no vis.** *Mechanical.* Found during 5.3. On the gruagach fixture, "draw vis from the aura" was offered and spent a season for 0 pawns (Lab Total under 10; `gruagachExtraction`, `src/ui/pages/GruagachPart.tsx`). The card should say it draws none and not offer the season. Check the kitchen's and Refining's draws the same way.
-- [x] **5.15 The Faith page is wider than a phone.** *Mechanical.* Found during 5.6. At 390 wide, Dice › Faith & miracles scrolls sideways to 450 pixels: the "+ Faith Points…" select in Here and now is as wide as its longest option ("the Eucharist, confirmation, marriage, ordination or last rites…"), and runs past the card (`FaithLine`, `src/ui/pages/holy/StandingCard.tsx`). Seen on the divine tutorial's practice character before and after the split, and on every character of the owner's saga. Fix: shorter option labels, or `max-width: 100%` on the select. The sweep missed it because it opens only two of Dice's sub-pages, Combat & perils and Spellcasting (`scripts/qa/sweep.cjs` lines 86 and 90), never Faith & miracles, Faerie, Hedge magic or Mysteries. Add them to the sweep, for each character as it already does for those two, and fix what it then finds.
-  - Done as (the select): selects and inputs are never wider than what holds them (`max-width: 100%` in `src/styles.css`, replacing four rules that did it for one place each), and an item of a `.row` may shrink below its content (`.row > * { min-width: 0 }`, as `.grid` already had). The second was the cause: the Faith line's box was a flex item, which by default is never narrower than its widest child, so the select's own `max-width` had nothing to hold it to. Rows already wrap, so only an item wider than a whole line shrinks.
-  - Done as (the sweep): `scripts/qa/sweep.cjs` reads what it visits from the app. It presses every tab a page shows, and every tab that opens under it, so a tab added later is swept; it visits every part of Dice in `DICE_SUBS` (`src/ui/routes.ts`), the hidden ones too; a character's turn is every Game Table page whose page reads `?who=`. It also opens every Game Mechanics area and topic, every step of the creation wizard and the guided build (it starts one character of each kind on the People page), and each sheet's own tabs (the Magic tab of a Gifted companion on the practice sagas, never swept before).
-  - Whose turn: not the first 12 any more. Everyone the Faerie, Hedge magic and Mysteries pickers list (those pages differ by tradition), the one the Faith page opens on, the troupe's own people, and one of each type left. On the owner's saga that is 19 of 111: the troupe's 10 (a faerie wizard and the Mystery cultist among them), and the Tribunal's other 5 faerie wizards, its 3 hedge wizards and a holy magus, none of whom the first 12 reached. Every sheet is still swept.
-  - The practice sagas: one run of the sweep now also sweeps each saga in `scripts/qa/fixtures/` (`--no-fixtures` or `--only-fixtures` to choose): the Game Table, every part of Dice, and the chosen characters' turns and sheets, and one still in creation through the wizard.
-  - Before: about 1,114 pages a width on the owner's saga, some 30 minutes. After: 2,293 pages a width, 1,540 of them on the owner's saga and 753 on the seven practice sagas, about 18 minutes a width (the check for a page wider than the screen now looks for the culprit only when there is one, and a tab is pressed rather than the page reloaded).
-- [ ] **5.16 Big files that grew in stage 5.** *Mechanical.* Found during 5.6. Five files on `quality.test.ts`'s list of files over 800 lines grew in stage 5 (from the audit's merge, `ace5fe7`, to 5.5's): `src/engine/time.ts` 1,168 → 1,185, `src/engine/types.ts` 1,949 → 1,960, `src/ui/character/sheet/AdvancementTab.tsx` 881 → 895, `src/ui/character/sheet/LabProjects.tsx` 879 → 882, `src/ui/character/sheet/MagicTab.tsx` 1,208 → 1,210. Split each before it is next added to (stage 4). `AdvancementTab.tsx` was split in 5.4.
-- [ ] **5.17 Who is holy, on the Faith page.** *Mechanical.* Found during 5.15. Dice › Faith & miracles lists everyone in "Who prays", as it should, but `HolyDicePart` (`src/ui/pages/DicePage.tsx` line 593) says "the holy first" and does not do it: the holy are mixed in with the rest, and the page opens on the first holy character only when none is chosen. Put the holy (holy powers, True Faith or Faith Points) in a group of their own at the top of the picker. The sweep could then read them from the picker, as it does the Faerie, Hedge magic and Mysteries people, and visit each holy character's turn, not only the first.
-
-When stage 5 is done, mark audit 3 closed. The next audit is due after stage 3's first five or six systems.
-
-## Stage 3. What the other books add
-
-In the owner's order. Sizes: **S** a day, **M** a few days, **L** a week or more. Before each, apply principle 11: build what a troupe will use, point at the rest. The suggested cuts are below each item; the owner may overrule them.
-
-Already built: *Hedge Magic*, *Realms of Power: Faerie*, *The Mysteries*, *The Church*, *Hermetic Projects*.
-
-- [ ] **3.1 *Lords of Men*.** *Judgment.* L. Mass combat (battles, battlefield events, sieges), mounted combat, a manor and its income, hawking.
-  - Build: mass combat as one Game Table page; mounted combat as modifiers on the Combat page; a manor as a covenant income source.
-  - Point at the book: hawking, tournaments' detail, law.
-  - Also (found in 5.6): a lord's retinue, offices and wardship (LoM line 576), and the manor's peasants, court and tithes (LoM line 3060 on).
-- [ ] **3.2 *Apprentices*.** *Judgment.* M. Gifted children: Turbulence, the stages of maturing, Cantations, the schools.
-  - Build: child characters in the builder (the toolkit has apprentices in play already), Turbulence as a roll, Cantations as a spell list.
-- [ ] **3.3 *Ancient Magic*.** *Judgment.* L. Each lost tradition is a Breakthrough to research (the toolkit has original research) and sometimes a power to use.
-  - Build: each tradition as a research goal with its book's Insight sources, plus Defixio and Hyperborean hymns as usable magic.
-  - Point at the book: the rest, until a saga wants them.
-- [ ] **3.4 *Realms of Power: The Infernal*.** *Judgment.* L. The Maleficia, the three Goetic Arts not yet built, infernal characters. Copy the shape of the Holy page.
-  - Also (found in 5.6): Infernal Warping and its causes (RoP_I line 566), the Maleficia (line 5032) and the Goetic Arts (line 5807); possession and exorcism (Church line 1568, RoP_D line 4011).
-- [ ] **3.5 *The Cradle & the Crescent*** (wip). *Judgment.* L. Sahir summoning and binding of jinn, jinn as characters.
-- [ ] **3.6 *Rival Magic*** (now in `reviewed/`). *Judgment.* L or more. One tradition to a pull request. Start with the one the owner's saga would meet.
-- [ ] **3.7 *Art & Academe*.** *Judgment.* M. Medicine beyond disease, mundane astrology, universities, works of art.
-  - Build: medicine on the Recovery cards; university study as season activities.
-  - Also (found in 5.6): experimental philosophy, its ligatures and formulae (AA line 2725 on), and a university's examinations (AA lines 3912 to 4008).
-- [ ] **3.8 *Antagonists*** (wip). *Mechanical.* M. About ten opponents as non-player characters, read by the stat-block reader that built the Rhine magi (`src/engine/character/statBlock.ts`).
-- [ ] **3.9 *Magi of Hermes*** (wip). *Mechanical.* M. About a dozen magi, the same way.
-- [ ] **3.10 Living covenants for Normandy** (*The Lion and the Lily*). *Judgment.* L. Copy the Rhine: `src/data/livingCovenants/`.
-- [ ] **3.11 Living covenants for Thebes** (*The Sundered Eagle*). L.
-- [ ] **3.12 Living covenants for Transylvania** (*Against the Dark*). L.
-- [ ] **3.13 Other Tribunals** (*Lands of the Nile*, *Faith & Flame*, *The Contested Isle*, *Between Sand & Sea*). L each. Only those the owner asks for.
-- [ ] **3.14 *Through the Aegis*** (wip). *Mechanical.* L. Seven covenants to import whole.
-- [ ] **3.15 *The Living Covenant*** (wip). *Mechanical.* S. About fifteen named covenfolk.
-- [ ] **3.16 The Tribunal books' traditions.** *Judgment.* M each. Found in 5.6: hedge traditions the Tribunal books add, which no card plays. The owner's Rhine first: the Order of Odin and the Exsules (GotF lines 3423 and 3458). Then *Against the Dark*'s storm wizards (AtD line 5505) and vampire hunters with the Hunters' Arts (AtD lines 5741 and 5841); *The Sundered Eagle*'s Katadesmos, Makhai and Diabolai (SE lines 4219 to 4283); Egypt's lector priests (LotN line 2699). Copy the shape of the Hedge magic page.
-- [ ] **3.17 *Grogs*' training packages, templates and animal grogs.** *Judgment.* S. Found in 5.6. Training packages for wealthy and poor grogs (Grogs line 2444) and their templates (lines 4311, 4821 and 5005) as choices in the builder or Quick build; animal grogs (Grogs line 5087) and beasts as characters (Cov line 3051).
-- [ ] **3.18 *Legends of Hermes*.** *Judgment.* S. Found in 5.6. Mostly the histories of legendary magi, for the reader. Its rules: adapting another cult's Initiation Script (LoH line 2294), temporary laboratories (line 2452), the optional rule for swarms (line 2086). Decide which a troupe would use (principle 11) and point at the rest.
-- [ ] **3.19 Travel in the Magic realm.** *Judgment.* S. Found in 5.6. Entering the Magic realm and advancement there (RoP_M lines 980 and 1145), as the Faerie realm's travel is left now. Likely a pointer to the book (principle 11); the owner decides.
-- [ ] **3.20 Penalties under the Code.** *Judgment.* S. Found in 5.6. Fines, determining penalties and seasons of service (HoH_TL lines 1898, 1906 and 1939), for a case judged at Tribunal. The Tribunal page votes on motions but sets no penalty; the troupe does.
-
-The Tribunals covered only by Third or Fourth Edition books are not built.
-
-## Stage 4. Keeping it in shape
-
-Not items to schedule. Do them when a change touches the place.
-
-- **Files over 800 lines** are listed in `quality.test.ts`. When you add to one, split it first. `tours.ts` splits by tutorial, and each `*Part.tsx` splits by card.
-- **An audit after each stage,** or after every five or six systems: read what was added against the books, the design principles and `owner.md`, and how the work was done. `audits/README.md` says how; the audits there are the models. Write the findings as numbered items with file, line and fix, then add them here as a stage. Keep the audit, marked closed, when its stage is done.
-- **When a rule of work changes,** change `CLAUDE.md` or the design principles in the same pull request. They are the only memory a new session has.
-
----
-
 ## Done
 
-- 2026-11: the foundations for working this list (`CLAUDE.md`, design principles, this roadmap, `quality.test.ts`, the QA tools and practice sagas in `scripts/qa/`, the book tools in `tools/books/`, the weekly upstream check).
-- 2026-11: the Guide's pages **Playing the game** and **Running the game**.
-- 2026-11: stage 1's rules fixes (1.1) and small card fixes (1.2).
-- 2026-11: hedge magic's and holy work's seasons on the Seasons page, their vis from the stores (1.3).
-- 2026-11: the Faith page shows only what applies; the seasons of devotion on Seasons (1.4).
-- 2026-11: prompts after Warping wait in Resolve; Sympathy Traits on the Roll page (1.4b).
-- 2026-11: great buildings and the menagerie on the covenant; a mason's season on Seasons (1.4c).
-- 2026-11: the Guide's toolkit page rewritten as steps, its text moved into data (1.5).
-- 2026-11: the README cut to a page: a table of areas, and what is not yet automated (1.6).
-- 2026-11: every tutorial step cut to 60 words or fewer, and the tutorials split into a file each (1.7).
-- 2026-11: tutorials for hedge magic, Faerie and the Mysteries; steps for The Church and *Hermetic Projects* (1.7b).
-- 2026-11: audit 3 of stages 1 and 2, and of how they were done. The owner's expectations written down (`owner.md`); an integration checklist; the sweep's saga set up as the owner plays (`QA_LIVING=all QA_OPTIONAL=all`); audits kept in `audits/`.
-- 2026-11: the books brought in step with upstream (2.1). *Hermetic Projects*' errata are in, four books moved to `reviewed/`, and the reader gained shelves for earlier editions and third-party books.
-- 2026-11: what follows a season's Warping waits in Resolve, a double botch studying vis among it, and Unlog takes it back with the points (5.1).
-- 2026-11: only a magus is offered the Hermetic Arts, study from vis and the Twilight roll; the season and power cards open on what the character can do, checked by `scripts/qa/firstChoice.cjs` (5.2).
-- 2026-11: a character's season in full opens on their own work, and draws only the cards that apply to them (5.4).
-- Earlier work is in the merged pull requests.
+One line each, newest first. The pull request has the detail.
+
+**Audit 3** (`audits/2026-11-18.md`):
+- A character's season in full opens on their own work and draws only the cards that apply to them, with a folded line for the rest; `AdvancementTab.tsx` split into a file a card (5.4, #82).
+- Nothing on a page is wider than a phone, and the sweep visits every tab, every part of Dice and the practice sagas (5.15, #80).
+- The Faith page split into a file a card; 32 more Game Mechanics topics point into the app (5.6, #79).
+- Sympathy Traits are kept on the sheet only, and the troupe's list of changes names every field of a character, held there by a typecheck (5.5, #75).
+- The Chronicle tells each kind of season's work in words of its own (5.3, #74).
+- Only a magus is offered the Arts, and every season and power card opens on something the character can do, checked by `scripts/qa/firstChoice.cjs` (5.2, #72).
+- What follows Warping from a season's work waits in Resolve, and Unlog takes it back with the points (5.1, #70).
+
+**Audit 2** (`audits/2026-11-16.md`):
+- Tutorials for hedge magic, Faerie and the Mysteries (1.7b, #66); every tutorial step 60 words or fewer, a file a tutorial (1.7, #65).
+- The README cut to a page (1.6, #64; the last long one, which says how the systems connect, is `git show 079464b:app/README.md`); the Guide's toolkit page written as steps, its text in data (1.5, #62).
+- Great buildings and the menagerie kept on the covenant; a mason's season on Seasons (1.4c, #61).
+- What follows Warping waits in Resolve; Sympathy Traits on the Roll page (1.4b, #60).
+- The Faith page shows only what applies; the seasons of devotion on Seasons (1.4, #59).
+- Hedge magic's and holy work's seasons on Seasons, their vis from the stores (1.3, #58).
+- Small fixes to how cards behave (1.2, #55), and the rules fixes (1.1, #54).
+
+**The books:** item effects moved out of the spell catalog (2.3, #57); the books in step with upstream of 16 November 2026, with shelves for earlier editions and third-party books (2.1, #56).
+
+**Before these:** the foundations of this list (`CLAUDE.md`, the design principles, `quality.test.ts`, the QA tools and practice sagas, the book tools, the weekly upstream check); the Guide's pages **Playing the game** and **Running the game**; audit 3, `owner.md` and the integration checklist. Earlier work is in the merged pull requests.

@@ -42,22 +42,24 @@ const LIMITS = {
   topicsWithoutPointer: 24,
 };
 
-/** Source files over 800 lines. A file may leave this list; none may join it. */
-const BIG_FILES: string[] = [
-  'src/engine/character/derive.ts',
-  'src/engine/covenant.ts',
-  'src/engine/guided/autobuild.ts',
-  'src/engine/holy.ts',
-  'src/engine/projects.ts',
-  'src/engine/time.ts',
-  'src/engine/types.ts',
-  'src/ui/character/sheet/LabProjects.tsx',
-  'src/ui/character/sheet/MagicTab.tsx',
-  'src/ui/covenant/CovenfolkCards.tsx',
-  'src/ui/covenant/FinancesTab.tsx',
-  'src/ui/pages/MarketPage.tsx',
-  'src/ui/pages/QuickBuildPage.tsx',
-];
+/** Source files over 800 lines, each with its length now. A file may leave this list and none may join it, and
+ * none may grow: split one before adding to it (principle 12), rather than squeezing lines out of it to fit.
+ * A number may be lowered when its file shrinks. */
+const BIG_FILES: Record<string, number> = {
+  'src/engine/character/derive.ts': 908,
+  'src/engine/covenant.ts': 1042,
+  'src/engine/guided/autobuild.ts': 1180,
+  'src/engine/holy.ts': 877,
+  'src/engine/projects.ts': 913,
+  'src/engine/time.ts': 1186,
+  'src/engine/types.ts': 1961,
+  'src/ui/character/sheet/LabProjects.tsx': 885,
+  'src/ui/character/sheet/MagicTab.tsx': 1211,
+  'src/ui/covenant/CovenfolkCards.tsx': 820,
+  'src/ui/covenant/FinancesTab.tsx': 1191,
+  'src/ui/pages/MarketPage.tsx': 916,
+  'src/ui/pages/QuickBuildPage.tsx': 823,
+};
 
 describe('limits that may only go down', () => {
   const blocks = guideBlocks();
@@ -106,12 +108,18 @@ describe('limits that may only go down', () => {
 
   it('lets no new source file grow past 800 lines', () => {
     const big = sources.filter(([, text]) => text.split('\n').length > 800).map(([path]) => path.replace(/^\.\//, 'src/'));
-    expect(big.filter((p) => !BIG_FILES.includes(p)), 'a file passed 800 lines: split it (principle 12)').toEqual([]);
+    expect(big.filter((p) => !(p in BIG_FILES)), 'a file passed 800 lines: split it (principle 12)').toEqual([]);
   });
 
   it('keeps the list of big files current', () => {
     const big = new Set(sources.filter(([, text]) => text.split('\n').length > 800).map(([path]) => path.replace(/^\.\//, 'src/')));
-    expect(BIG_FILES.filter((p) => !big.has(p)), 'these are no longer over 800 lines: take them off BIG_FILES').toEqual([]);
+    expect(Object.keys(BIG_FILES).filter((p) => !big.has(p)), 'these are no longer over 800 lines: take them off BIG_FILES').toEqual([]);
+  });
+
+  it('lets no big file grow', () => {
+    const length = new Map(sources.map(([path, text]) => [path.replace(/^\.\//, 'src/'), text.split('\n').length]));
+    const grown = Object.entries(BIG_FILES).filter(([p, most]) => (length.get(p) ?? 0) > most).map(([p, most]) => `${p}: ${length.get(p)} lines, at most ${most}`);
+    expect(grown, 'split these before adding to them (principle 12)').toEqual([]);
   });
 });
 

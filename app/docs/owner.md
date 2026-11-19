@@ -35,3 +35,13 @@ Each point says what the owner wants, then what it means for a change.
 15. **Judgment calls are told, not hidden.** Where the book is unclear, follow its example, say so in the pull request, and the owner will overrule if they want. The owner likes being asked before a choice that is theirs, and answers quickly.
    - *Look before asking.* Search the books, the core rules' general mechanics and the decisions already made first. A botched study from vis was once called unsettled, when the stress-roll rules settle it. Ask only what is left, and say what was decided without asking.
 16. **Room to write.** The README and the Guide may grow, by up to about 300 words a task. The owner would rather they grow a little than see each new system written in by cutting the others.
+
+## Decided
+
+The owner's answers on particular cases, newest first, kept here when the roadmap's item for them is done. A session that finds its question answered here does not ask again.
+
+- **A season in full is ordered by the character** (19 November 2026). Their own season work first (their tradition's cards, Lab projects for a magus), then the planning (Plan a season, the standing activity, priorities), then the season log and aging, and last the Mysteries and writing, where they apply.
+- **A botched study from vis teaches nothing** (19 November 2026). The vis is spent and no experience is gained. The rules for stress rolls settle it (DE line 570).
+- **Great projects** (17 and 18 November 2026). The building and the menagerie are kept on the covenant, in one Great projects card on its Overview. Their rolls are made at Game Table › Dice (point 1). A mason's Build and Repair are seasons on Seasons.
+- **Faerie and the Mysteries have a short tutorial each** (18 November 2026), each following one character.
+- **Hedge magic's and holy work's seasons are on Seasons only** (17 November 2026). Their vis comes from the covenant's stores or the character's own, and no hedge season spends silver. A woven curse is rolled in Resolve.
