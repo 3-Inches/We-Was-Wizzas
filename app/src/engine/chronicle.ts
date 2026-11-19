@@ -45,7 +45,7 @@ export interface ChronicleFacts {
   covenants: {
     name: string;
     realm: string;
-    /** a Road Hook: mundane travellers (Minor) or mystical ones (Major) */
+    /** a Road Hook: mundane travelers (Minor) or mystical ones (Major) */
     road?: 'minor' | 'major';
     urban?: boolean;
     remote?: boolean;
@@ -75,7 +75,7 @@ const list = (xs: string[]) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1
 const OPENINGS: Record<Season, string[]> = {
   Spring: [
     'The thaw came late, and for weeks the meltwater ran loud in every ditch and gully before the first green showed on the hills.',
-    'Spring came on wet and gentle. The fields were ploughed in a fine rain, and lambs bleated in the lower pastures by the end of the first month.',
+    'Spring came on wet and gentle. The fields were plowed in a fine rain, and lambs bleated in the lower pastures by the end of the first month.',
     'A hard frost lingered into spring, blackening the first blossom on the orchard trees, but by Eastertide the woods were loud with birdsong.',
     'The roads turned to mire with the thaw, and for a while nothing came or went; then the sun returned, and with it the carters and the cuckoo.',
   ],
@@ -93,7 +93,7 @@ const OPENINGS: Record<Season, string[]> = {
   ],
   Winter: [
     'Winter closed in hard. Snow lay deep on the passes, the well-rope froze stiff each morning, and the hall fire was never let die.',
-    'It was a grey, wet winter rather than a cold one: mud in the yard, damp in the stores, and coughs in every corner of the covenant.',
+    'It was a gray, wet winter rather than a cold one: mud in the yard, damp in the stores, and coughs in every corner of the covenant.',
     'A bitter cold came down after the solstice; wolves were heard in the forest at night, and the grogs doubled the watch on the gate.',
     'The winter was kind, as winters go: clear frosty days, bright stars, and enough firewood stacked against the walls to last until spring.',
   ],
@@ -127,7 +127,7 @@ const DID: Partial<Record<SeasonActivityKind, string[]>> = {
   'study-vis': ['studied raw vis, the pawns glowing faintly as their power was drawn into understanding', 'meditated over pawns of vis until they were spent'],
   taught: ['sat at the feet of a teacher', 'took lessons, and came away with aching head and new understanding'],
   trained: ['trained hard in the yard', 'drilled under a master’s eye'],
-  practice: ['practised, over and over, until it came without thought', 'spent the season in patient practice'],
+  practice: ['practiced, over and over, until it came without thought', 'spent the season in patient practice'],
   exposure: ['went about the season’s ordinary work', 'saw to the daily round of duties', 'was kept busy with the business of the covenant'],
   adventure: ['was out on the road, and came back with a tale', 'rode out on the covenant’s business'],
   teach: ['gave lessons', 'taught, patiently and at length'],
@@ -232,7 +232,7 @@ const URBAN = [
   'A great lord visited the town, household and all, and for a week the streets were thick with liveried retainers and opportunity.',
 ];
 
-const REMOTE = ['No one came. The covenant kept its own company, and the silence of the wilds pressed close around the walls.', 'The season passed without a single traveller at the gate.'];
+const REMOTE = ['No one came. The covenant kept its own company, and the silence of the wilds pressed close around the walls.', 'The season passed without a single traveler at the gate.'];
 
 const INCOME: Record<IncomeModification, string> = {
   Boom: 'had a year beyond all hope',
