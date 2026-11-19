@@ -198,7 +198,7 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
       case 'curse':
         return `The curse of ${k.name} (${k.ease}): a fabric woven with an Arcane Connection to its target, penetrating all season. It is complete when the season ends, and is rolled then, in Resolve: Casting Score ${curseScore.total} + a stress die against ${k.ease}.`;
       case 'vis':
-        return `${drawn} pawn${drawn === 1 ? '' : 's'} of Vim vis from the aura (a tenth of the Lab Total, rounded up).`;
+        return drawn ? `${drawn} pawn${drawn === 1 ? '' : 's'} of Vim vis from the aura (a tenth of the Lab Total, rounded up).` : `No vis from the aura: a tenth of the Lab Total, rounded up, and it is ${lt.total}.`;
       case 'longevity':
         return `A longevity ritual for the witch alone: +${Math.ceil(lt.total / 5)} to Aging rolls (the Healing Lab Total ÷ 5, as for magi), for ${need} pawns of vis (a pawn for every five years of age).`;
       case 'familiar':
@@ -209,6 +209,7 @@ export function KitchenCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) {
   const why =
     sw.busy ? `${sw.season} ${sw.year} is already spent.`
     : ks.blocked === 'no-dose' ? (src.have ? `Too little vis for a dose and the effect (${(eff?.vis ?? 0) + 1} pawns).` : `No ${artsText(visArts)} vis in ${src.place === 'purse' ? 'the purse' : 'the covenant’s stores'}.`)
+    : ks.blocked === 'no-vis' ? 'It would draw no vis: the Lab Total must be above 0.'
     : ks.blocked === 'over-limit' ? `It needs ${need} pawns, more than the ${seasonLimit} a season in the kitchen allows (twice Folk Witch Magic Theory).`
     : w === 'curse' && !target.trim() ? 'Name the target, to whom the witch holds an Arcane Connection.'
     : need ? src.short(need) : undefined;
