@@ -303,7 +303,7 @@ export function LongevityCard({ ed }: { ed: CharEditor }) {
   const lr = labTotal(d, { technique: 'Cr', form: 'Co' }, { activity: 'longevity', aura: ctx.aura, lab: lab ? labContextOf(lab) : undefined, forSelfLongevity: true });
   const planned = (c.projects ?? []).find((p) => p.kind === 'longevity' && !p.done);
   return (
-    <Card title="Longevity Ritual" tour="longevity">
+    <Card title="Longevity Ritual" tour="longevity" fold="longevity" summary={c.longevity ? `−${longevityModifier(c.longevity)} to aging rolls.` : c.longevityLapsed ? 'Ended by an aging crisis: it can be performed again.' : planned ? `Planned: ${planned.name}.` : 'None: a season’s lab work, Creo Corpus.'}>
       <div className="row">
         {!edit ? (
           <span className="small">

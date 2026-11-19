@@ -89,7 +89,7 @@ Patterns to copy, not reinvent:
 - **A new system from a book:** data in `src/data/<system>.ts` with `source: { book, line }`, rules in `src/engine/<system>.ts` with `<system>.test.ts`, cards in `src/ui/pages/<System>Part.tsx`. Look at `folkWitch` for a complete small example.
 - **A card:** `<Card title tour fold summary>` from `src/ui/kit`. `fold` makes it collapse to its `summary` line, and it starts folded on a phone.
 - **A total:** return `{ total, parts }` from the engine and show it with `<Total>`, so a click shows the breakdown.
-- **A season's work:** `useSeasonWork` (`src/ui/seasonWork.tsx`) checks `seasonBusy`, logs the season, and records what Unlog needs; `useVisSource` takes its vis from the purse or the covenant's stores. Underneath are `newSeasonEntry` and `applySeason`.
+- **A season's work:** `useSeasonWork` (`src/ui/seasonWork.tsx`) checks `seasonBusy`, logs the season, and records what Unlog needs; `useVisSource` takes its vis from the purse or the covenant's stores. Underneath are `newSeasonEntry` and `applySeason`. A new season card is drawn in the character's season in full through `seasonCards` (`src/ui/pages/seasonCards.ts`): its group, when it applies, and the line that says why when it does not.
 - **A pointer into a book:** `{ book, line }` opens the reader at that line. `<RulesNote>` shows the book's text in place.
 
 ## Working efficiently

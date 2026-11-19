@@ -9,6 +9,7 @@ import { characterContext, covenantOf } from './context';
 import { deriveCovenant } from './covenant';
 import { DEFAULT_YEAR_END, planYearEnd } from './covenantYear';
 import { effectExpiry } from './effects';
+import { neverAges } from './longterm';
 import { planProject, visShort } from './projects';
 import { inPlay, loggedThisSeason, resolveStanding } from './time';
 import type { Character, Covenant, Owed, Saga } from './types';
@@ -124,12 +125,12 @@ export function seasonForecast(state: State, data: GameData, derive: (c: Charact
         }
       }
     }
-    if (season === 'Winter' && !c.creature?.magicCharacter && !c.inhuman && (c.age + 1 >= d.agingStartAge || c.longevity)) aging.push(who);
+    if (season === 'Winter' && !neverAges(c) && (c.age + 1 >= d.agingStartAge || c.longevity)) aging.push(who);
     // the Code asks a season a year of teaching of a master (DE, Apprentices)
     if (c.apprentice && season === 'Winter' && !c.seasonLog.some((e) => e.year === year && e.priority === 'apprentice'))
       notes.push({ level: 'warn', charId: c.id, who, text: `${who} has not taught ${c.apprentice.name || 'the apprentice'} this year: the Code asks a season a year (Teach them, on the Seasons page, in full).`, to: 'plan' });
     if (c.apprentice && c.apprentice.since + 15 <= year) notes.push({ level: 'info', charId: c.id, who, text: `${c.apprentice.name || `${who}’s apprentice`} has had fifteen years of training: the Gauntlet is due.`, to: 'plan' });
-    if (c.type === 'magus' && covenantOf(c, covs) && !c.longevity && c.age + 1 >= 35 && season === 'Winter') notes.push({ level: 'warn', charId: c.id, who, text: `${who} rolls for aging with no Longevity Ritual.`, to: 'lab' });
+    if (c.type === 'magus' && covenantOf(c, covs) && !c.longevity && !neverAges(c) && c.age + 1 >= d.agingStartAge && season === 'Winter') notes.push({ level: 'warn', charId: c.id, who, text: `${who} rolls for aging with no Longevity Ritual.`, to: 'lab' });
   }
   if (aging.length) notes.push({ level: 'info', text: `The year closes after this season: aging rolls for ${aging.join(', ')}; the vis harvest, the accounts and the year's Warping.` });
   else if (season === 'Winter') notes.push({ level: 'info', text: 'The year closes after this season: the vis harvest, the accounts and the year\'s Warping.' });

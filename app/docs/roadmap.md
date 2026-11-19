@@ -18,16 +18,6 @@ What is left to do, in order. Work the first open batch under **Now**.
 
 Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and how they were done. Its findings, and what was found while fixing them, are below. The numbers in parentheses are the ones the old roadmap gave them (5.1 to 5.17), which earlier pull requests use. Most are at the joins between systems, so go down the integration checklist for each. When these are done, mark audit 3 closed.
 
-### In progress: a season in full, ordered by the character (5.4)
-
-*Mechanical*: the order was decided by the owner (`owner.md`, Decided). Audit B3.
-
-- First, the character's own season work: their tradition's cards, and Lab projects for a magus.
-- Then the planning: Plan a season, the standing activity and priorities, offering only what applies to them.
-- Then the season log and aging.
-- Last, the Mysteries and writing, only where they apply.
-- A card that cannot apply is hidden, with one line saying why, as the Faith page does.
-
 ### Batch A. Twilight, Warping and Unlog
 
 All *Mechanical*. Big files it will add to, to split first: `src/engine/time.ts`, and `src/engine/types.ts` if item 3 needs a field on `SeasonUndo`.
@@ -39,10 +29,10 @@ All *Mechanical*. Big files it will add to, to split first: `src/engine/time.ts`
 
 ### Batch B. Plan a season, and small fixes at the Game Table
 
-All *Mechanical*. Big files it will add to, to split first: `src/ui/character/sheet/AdvancementTab.tsx` (items 1 and 2), unless 5.4 has split it.
+All *Mechanical*. Items 1 and 2 are in `src/ui/character/sheet/PlanSeasonCard.tsx`, split from `AdvancementTab.tsx` in 5.4.
 
-1. **A botched study from vis teaches nothing (5.13).** Decided by the owner (`owner.md`, Decided), and settled by the book: "On a botch, your total for the roll is never any higher than zero", and the modifiers are negated with it (DE, Stress Rolls, line 570). So a botched study's Source Quality is 0: no experience, and the vis is spent. A planned season already gives none (`src/engine/time.ts`, the `vis` standing activity). Plan a season's roll sets the die to 0 and still counts the aura (`AdvancementTab.tsx`, the stress-die button, then `computeStudy`), while its badge says "no xp". Make it agree, and test both on the book's line.
-2. **A new Ability from a book (5.11).** Plan a season's "From the covenant library" (`AdvancementTab.tsx`, the library filter and `pickBook`) lists a book on an Ability only to one who has the Ability, and `pickBook` cannot set an Ability the character lacks as the subject. So a companion cannot begin Latin from the covenant's summa. Fix: list the books on Abilities this character could learn (Supernatural ones need their Virtue first: check the book), and let picking one begin the Ability at 0, as Worship begins Church Lore (`new:church-lore`). Test: a companion reads a Latin summa and gains the Ability.
+1. **A botched study from vis teaches nothing (5.13).** Decided by the owner (`owner.md`, Decided), and settled by the book: "On a botch, your total for the roll is never any higher than zero", and the modifiers are negated with it (DE, Stress Rolls, line 570). So a botched study's Source Quality is 0: no experience, and the vis is spent. A planned season already gives none (`src/engine/time.ts`, the `vis` standing activity). Plan a season's roll sets the die to 0 and still counts the aura (`PlanSeasonCard.tsx`, the stress-die button, then `computeStudy`), while its badge says "no xp". Make it agree, and test both on the book's line.
+2. **A new Ability from a book (5.11).** Plan a season's "From the covenant library" (`PlanSeasonCard.tsx`, the library filter and `pickBook`) lists a book on an Ability only to one who has the Ability, and `pickBook` cannot set an Ability the character lacks as the subject. So a companion cannot begin Latin from the covenant's summa. Fix: list the books on Abilities this character could learn (Supernatural ones need their Virtue first: check the book), and let picking one begin the Ability at 0, as Worship begins Church Lore (`new:church-lore`). Test: a companion reads a Latin summa and gains the Ability.
 3. **A season that draws no vis (5.14).** On the gruagach fixture, "draw vis from the aura" was offered and spent a season for 0 pawns (Lab Total under 10; `gruagachExtraction`, `src/ui/pages/GruagachPart.tsx`). The card should say it draws none, and not offer the season. Check the kitchen's and Refining's draws the same way.
 4. **The holy first, on the Faith page (5.17).** Dice › Faith & miracles lists everyone in "Who prays", as it should, but `HolyDicePart` (`src/ui/pages/DicePage.tsx`, about line 593) says "the holy first" and mixes them in with the rest. Put the holy (holy powers, True Faith or Faith Points) in a group of their own at the top of the picker. Then have `scripts/qa/sweep.cjs` read them from the picker, as it does the Faerie, Hedge magic and Mysteries people, and visit each holy character's turn.
 5. **Great projects' rolls at the Game Table (5.8).** Decided by the owner (`owner.md`, point 1): rolls happen at the Game Table. The building's stress check and the menagerie's rolls move to **Game Table › Dice**, with the same choice of covenant, mason and handler. The covenant's Overview keeps the record (height, quality, damage) and links to the rolls. Move the tutorial steps and pointers that led to the old place (`src/ui/tour/tutorials/lab.ts`).
@@ -103,6 +93,7 @@ Out of scope:
 One line each, newest first. The pull request has the detail.
 
 **Audit 3** (`audits/2026-11-18.md`):
+- A character's season in full opens on their own work and draws only the cards that apply to them, with a folded line for the rest; `AdvancementTab.tsx` split into a file a card (5.4, #82).
 - Nothing on a page is wider than a phone, and the sweep visits every tab, every part of Dice and the practice sagas (5.15, #80).
 - The Faith page split into a file a card; 32 more Game Mechanics topics point into the app (5.6, #79).
 - Sympathy Traits are kept on the sheet only, and the troupe's list of changes names every field of a character, held there by a typecheck (5.5, #75).

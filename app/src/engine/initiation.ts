@@ -97,6 +97,18 @@ export function mysteryLores(d: DerivedCharacter, house?: string): { uid: string
   return lores.map((a) => ({ uid: a.uid, name: a.name, score: a.total })).sort((a, b) => own(b.name) - own(a.name) || b.score - a.score);
 }
 
+/** The Houses whose Mysteries are Exoteric, each with its (House) Lore (DE, Mystery Initiation). */
+export const MYSTERY_HOUSES = ['bjornaer', 'criamon', 'merinita', 'verditius'];
+
+/**
+ * A way into the Mysteries: a magus of a Mystery House, a Mystery Lore (a House's or a cult's), a
+ * Mystery Virtue held, or an Initiation already behind them. An Initiate not apprenticed in the House
+ * needs (House) Lore 1 at least (DE, Mystery Initiation, line 16487), so anyone else has none.
+ */
+export function mysteryWayIn(c: Pick<Character, 'house' | 'initiations'>, d: DerivedCharacter): boolean {
+  return MYSTERY_HOUSES.includes(c.house ?? '') || mysteryLores(d, c.house).length > 0 || (c.initiations ?? []).length > 0 || d.virtues.some((v) => v.def?.categories.includes('Mystery'));
+}
+
 /** The Criamon stations of a Path, in order, with which ones the magus has reached. */
 export function criamonProgress(c: Character, path: string): { station: CriamonStation; held: boolean }[] {
   return CRIAMON_STATIONS.filter((s) => s.path === path).map((s) => ({ station: s, held: c.virtues.some((v) => v.defId === s.id) }));

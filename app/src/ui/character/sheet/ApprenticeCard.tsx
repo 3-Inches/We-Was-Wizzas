@@ -36,7 +36,7 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
   }
   if (!ap)
     return (
-      <Card title="Apprentice" tour="apprentice">
+      <Card title="Apprentice" tour="apprentice" fold="apprentice" summary="None yet: an apprentice is taken from seven years old, and taught a season a year.">
         <RulesNote book="DE" line={11001} endLine={11031}>
           An apprentice from seven years old, fifteen years of training, a season a year taught by the master; they help in the laboratory (Intelligence + Magic Theory).
         </RulesNote>
@@ -72,7 +72,7 @@ export function ApprenticeCard({ ed }: { ed: CharEditor }) {
   const left = ap.since + 15 - year;
   const taught = c.seasonLog.filter((e) => e.year === year && e.priority === 'apprentice').length;
   return (
-    <Card title="Apprentice" tour="apprentice">
+    <Card title="Apprentice" tour="apprentice" fold="apprentice" summary={`${ap.name || 'The apprentice'}, year ${year - ap.since + 1} of 15 of training.`}>
       <div className="row" style={{ flexWrap: 'wrap' }}>
         <Field label="Name">
           <input value={ap.name} onChange={(e) => set((a) => void (a.name = e.target.value))} style={{ width: 150 }} />

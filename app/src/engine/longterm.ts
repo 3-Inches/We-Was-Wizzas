@@ -255,6 +255,13 @@ export interface AgingResult {
   text: string;
 }
 
+/**
+ * One who never ages: a magic character (RoP: Magic), a faerie (RoP: Faerie), one of the inhuman
+ * covenfolk, or an immortal of the Great Elixir (The Mysteries). They make no aging rolls.
+ */
+export const neverAges = (c: Pick<Character, 'creature' | 'inhuman' | 'greatElixir'>): boolean =>
+  !!c.creature?.magicCharacter || !!c.inhuman || c.greatElixir?.might !== undefined || !!c.creature?.faerieCharacter;
+
 const AGING_TABLE: Record<number, string[]> = {
   14: ['Qik'], 15: ['Sta'], 16: ['Per'], 17: ['Pre'], 18: ['Str', 'Sta'], 19: ['Dex', 'Qik'], 20: ['Com', 'Pre'], 21: ['Int', 'Per'],
 };

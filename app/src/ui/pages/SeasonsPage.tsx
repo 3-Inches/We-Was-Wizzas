@@ -17,21 +17,9 @@ import { Card, Empty, Field, Stepper } from '../kit';
 import { CovenantEffects } from '../covenant/CovenantEffects';
 import { Hint } from '../Hint';
 import { timeMayMove } from '../advanceGuard';
-import { AtTable, PeopleOptions, canPlay, groupPeople, useLandOn } from '../play';
+import { PeopleOptions, canPlay, groupPeople, useLandOn } from '../play';
+import { SeasonInFull } from './SeasonInFull';
 import { useCharEditor } from '../character/useChar';
-import AdvancementTab from '../character/sheet/AdvancementTab';
-import { LabProjects } from '../character/sheet/LabProjects';
-import { HolyWorksCard } from './holy/HolyWorksCard';
-import { HedgeSeasonCards } from './HedgePart';
-import { DevotionSeasonsCard } from './DevotionSeasonsCard';
-import { MasonSeasonCard } from './MasonSeasonCard';
-import { holyWorksOpen } from '../../engine/holy';
-import { LongevityCard } from '../character/sheet/LabItemsTab';
-import { OriginalResearch } from '../character/sheet/OriginalResearch';
-import { ApprenticeCard } from '../character/sheet/ApprenticeCard';
-import { WorkshopCard } from '../character/sheet/WorkshopCard';
-import { SpellMasteryCard } from '../character/sheet/SpellMastery';
-import { InsightCard } from '../character/sheet/InsightCard';
 import { ComingsCard } from '../covenant/CovenfolkCards';
 import { R } from '../routes';
 import { owedInOrder, seasonForecast } from '../../engine/seasonPlan';
@@ -283,10 +271,10 @@ export default function SeasonsPage() {
 }
 
 /**
- * One character's season in full, as the sheet once had it: a book, a teacher, training, vis, a lab
- * project, a hedge tradition's season (a brew, a refining, a tattoo, rune scripts, an amulet, charms), a
- * season of holy work or of devotion, writing or copying, an Initiation, their standing activity and priorities, and
- * aging out of turn. What is planned is logged in their season log; the season ends for everyone above.
+ * One character's season in full, ordered by the character (seasonCards): their own season work first (a
+ * hedge tradition's, holy work, devotion, a trade, the laboratory), then the plan (a book, a teacher, vis,
+ * the standing activity and priorities), then the season log and aging, then the Mysteries and writing.
+ * What is planned is logged in their season log; the season ends for everyone below.
  */
 function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: string; chars: Character[]; covs: Covenant[]; who: string; onPick: (id: string) => void; season: string }) {
   // the players' people first; the Tribunal's magi too, for their priorities
@@ -294,7 +282,7 @@ function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: stri
   const all = groups.flatMap((g) => g.people);
   const c = all.find((x) => x.id === who) ?? all[0];
   return (
-    <Card title={c ? `${c.name || 'Unnamed'}: ${season} in full` : 'A season in full'} tour="table-plan" fold="table-plan" summary="One character's season: a book, a teacher, a lab project, hedge magic or holy work, a mason's building, writing, an Initiation; aging out of turn.">
+    <Card title={c ? `${c.name || 'Unnamed'}: ${season} in full` : 'A season in full'} tour="table-plan" fold="table-plan" summary="One character's season: their own work first, then the plan, the season log and aging.">
       {!c ? (
         <Empty>No character in play yet.</Empty>
       ) : (
@@ -316,22 +304,6 @@ function PlanInFull({ sagaId, chars, covs, who, onPick, season }: { sagaId: stri
 
 function SeasonFor({ sagaId, charId }: { sagaId: string; charId: string }) {
   const ed = useCharEditor({ sagaId, charId });
-  if (!ed.c || !ed.d) return null;
-  const mt = ed.d.abilities.find((a) => a.abilityId === ed.d!.theoryAbility)?.total ?? 0;
-  return (
-    <AtTable>
-      <AdvancementTab ed={ed} />
-      <SpellMasteryCard ed={ed} />
-      <InsightCard ed={ed} />
-      {ed.d.isMagus && <LabProjects ed={ed} />}
-      {ed.d.isMagus && <OriginalResearch ed={ed} magicTheory={mt} />}
-      <HedgeSeasonCards ed={ed} aura={ed.ctx.aura} />
-      {holyWorksOpen(ed.d).length > 0 && <HolyWorksCard ed={ed} aura={ed.ctx.aura} />}
-      <DevotionSeasonsCard ed={ed} />
-      <MasonSeasonCard ed={ed} />
-      <LongevityCard ed={ed} />
-      <ApprenticeCard ed={ed} />
-      <WorkshopCard ed={ed} where="seasons" />
-    </AtTable>
-  );
+  const sagaChars = useSagaCharacters(sagaId);
+  return <SeasonInFull ed={ed} chars={sagaChars} />;
 }

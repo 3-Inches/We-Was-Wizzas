@@ -11,7 +11,7 @@ export const seasonTour: Tour = {
   steps: [
     {
       title: 'Plan the season',
-      body: 'On the Game Table’s **Seasons** page, pick a character and plan what they do this season in full: study from a book, practice, train, teach, or a lab project. The toolkit works out the experience and logs it on their sheet.',
+      body: 'On the Game Table’s **Seasons** page, pick a character. Their season in full opens on their own work, a magus’s **Lab projects**. **Plan a season** comes next: study from a book, practice, train or teach. The toolkit works out the experience and logs it on their sheet. Cards that cannot apply to them are listed at the foot.',
       at: plan, needs: 'character', target: ['plan-season', 'table-plan'],
     },
     {
