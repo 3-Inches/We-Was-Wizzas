@@ -2,12 +2,20 @@
 // weather and the feast days, what each character did, who came up the road, the year's harvest and
 // vis, and the news a Redcap brought. Beneath each, folded, the full record of what the clock did.
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import type { TimeReport } from '../../engine/types';
-import { useSaga } from '../../store/hooks';
+import { tellPeople } from '../../engine/chronicle';
+import type { Character, TimeReport } from '../../engine/types';
+import { useSaga, useSagaCharacters } from '../../store/hooks';
 import { Card, Empty } from '../kit';
 import { R } from '../routes';
+
+const lines = (n: number) => `${n} line${n === 1 ? '' : 's'}`;
+
+/** The season entries still on the characters' logs: a season unlogged since leaves the Chronicle. */
+export function useLoggedSeasons(chars: Character[]): Set<string> {
+  return useMemo(() => new Set(chars.flatMap((c) => c.seasonLog.map((e) => e.uid))), [chars]);
+}
 
 const KIND_BADGE: Record<string, string> = { aging: 'aging', crisis: 'bad', warping: 'warn', reminder: 'warn' };
 
@@ -27,7 +35,7 @@ export function ReportLines({ r }: { r: TimeReport }) {
       {own.map(line)}
       {tribunal.length > 0 && (
         <details style={{ marginLeft: 12 }}>
-          <summary className="small">The Tribunal’s living covenants ({tribunal.length} lines)</summary>
+          <summary className="small">The Tribunal’s living covenants ({lines(tribunal.length)})</summary>
           {tribunal.map(line)}
         </details>
       )}
@@ -36,8 +44,10 @@ export function ReportLines({ r }: { r: TimeReport }) {
 }
 
 /** One season told: its story, and the record folded beneath. */
-export function ChronicleEntry({ r, open }: { r: TimeReport; open?: boolean }) {
-  const [first, ...rest] = r.story ?? [];
+export function ChronicleEntry({ r, open, logged }: { r: TimeReport; open?: boolean; logged?: Set<string> }) {
+  const [first, ...all] = r.story ?? [];
+  // the people's part as it reads now: a season unlogged since the story was written is left out
+  const rest = all.map((s) => (s.people ? { ...s, text: tellPeople(s.people, s.grogs, logged && ((u) => logged.has(u))) } : s)).filter((s) => s.text);
   const crisis = r.lines.some((l) => l.kind === 'crisis' && !l.tribunal);
   return (
     <article className="chronicle-entry" data-tour="chronicle-entry">
@@ -60,7 +70,7 @@ export function ChronicleEntry({ r, open }: { r: TimeReport; open?: boolean }) {
         <p className="small muted">This season passed before the Chronicle was kept: only its record remains.</p>
       )}
       <details open={open || !first} className="chronicle-record">
-        <summary className="small">The record in full ({r.lines.filter((l) => !l.tribunal).length} lines)</summary>
+        <summary className="small">The record in full ({lines(r.lines.filter((l) => !l.tribunal).length)})</summary>
         <ReportLines r={r} />
       </details>
     </article>
@@ -70,6 +80,7 @@ export function ChronicleEntry({ r, open }: { r: TimeReport; open?: boolean }) {
 export default function ChroniclePage() {
   const { sagaId } = useParams();
   const saga = useSaga(sagaId);
+  const logged = useLoggedSeasons(useSagaCharacters(sagaId));
   const reports = saga?.timeLog ?? [];
   const years = [...new Set(reports.map((r) => r.year))];
   const [year, setYear] = useState<number | 'all'>('all');
@@ -98,7 +109,7 @@ export default function ChroniclePage() {
       </Card>
       {shown.length === 0 && <Empty>No season has passed yet. End one on the Seasons page, and its story is told here.</Empty>}
       {shown.map((r) => (
-        <ChronicleEntry key={r.id} r={r} />
+        <ChronicleEntry key={r.id} r={r} logged={logged} />
       ))}
     </div>
   );

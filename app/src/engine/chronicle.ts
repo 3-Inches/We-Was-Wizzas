@@ -6,11 +6,37 @@
 
 import { ART_NAMES, type Art } from '../data';
 import type { Rng } from './dice';
-import type { IncomeModification, Season, SeasonActivityKind, TribunalNews } from './types';
+import type { IncomeModification, LabProject, Owed, Season, SeasonActivityKind, SeasonLogEntry, TribunalNews } from './types';
+
+/** One character's part of the season's story: their name and phrase, and the season entry it tells. */
+export interface ToldPerson {
+  name: string;
+  type: string;
+  /** "Aldith brewed four doses of a Healing potion in the kitchen" */
+  text: string;
+  /** the season log entry it tells: unlogged, it leaves the Chronicle */
+  entryUid?: string;
+}
 
 export interface ChronicleSection {
   title: string;
   text: string;
+  /** the people's section: each character's part, so a season unlogged later can leave it (tellPeople) */
+  people?: ToldPerson[];
+  /** the people's section: the grogs' sentence, which tells no season of work */
+  grogs?: string;
+}
+
+/** What the Chronicle needs to know of a character's season: its activity, its own phrase, a botch. */
+export interface SeasonTelling {
+  did?: SeasonActivityKind;
+  /** the work's own phrase (SeasonLogEntry.told) */
+  told?: string;
+  entryUid?: string;
+  /** the lab project's kind, for a lab season logged before `told` was kept */
+  labKind?: LabProject['kind'];
+  /** a study from vis that botched: the Art, and whether Wizard's Twilight waits on it */
+  botch?: { art?: string; twilight: boolean };
 }
 
 export interface ChronicleFacts {
@@ -19,7 +45,7 @@ export interface ChronicleFacts {
   covenants: {
     name: string;
     realm: string;
-    /** a Road Hook: mundane travellers (Minor) or mystical ones (Major) */
+    /** a Road Hook: mundane travelers (Minor) or mystical ones (Major) */
     road?: 'minor' | 'major';
     urban?: boolean;
     remote?: boolean;
@@ -31,7 +57,7 @@ export interface ChronicleFacts {
     feasts?: boolean;
   }[];
   /** the players' people and what they spent the season on */
-  people: { name: string; type: string; did?: SeasonActivityKind; away?: boolean }[];
+  people: ({ name: string; type: string; away?: boolean } & SeasonTelling)[];
   /** at the year's end: those the years told on, those in crisis, those the aura changed, the dead */
   aged?: string[];
   crises?: string[];
@@ -49,7 +75,7 @@ const list = (xs: string[]) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1
 const OPENINGS: Record<Season, string[]> = {
   Spring: [
     'The thaw came late, and for weeks the meltwater ran loud in every ditch and gully before the first green showed on the hills.',
-    'Spring came on wet and gentle. The fields were ploughed in a fine rain, and lambs bleated in the lower pastures by the end of the first month.',
+    'Spring came on wet and gentle. The fields were plowed in a fine rain, and lambs bleated in the lower pastures by the end of the first month.',
     'A hard frost lingered into spring, blackening the first blossom on the orchard trees, but by Eastertide the woods were loud with birdsong.',
     'The roads turned to mire with the thaw, and for a while nothing came or went; then the sun returned, and with it the carters and the cuckoo.',
   ],
@@ -67,7 +93,7 @@ const OPENINGS: Record<Season, string[]> = {
   ],
   Winter: [
     'Winter closed in hard. Snow lay deep on the passes, the well-rope froze stiff each morning, and the hall fire was never let die.',
-    'It was a grey, wet winter rather than a cold one: mud in the yard, damp in the stores, and coughs in every corner of the covenant.',
+    'It was a gray, wet winter rather than a cold one: mud in the yard, damp in the stores, and coughs in every corner of the covenant.',
     'A bitter cold came down after the solstice; wolves were heard in the forest at night, and the grogs doubled the watch on the gate.',
     'The winter was kind, as winters go: clear frosty days, bright stars, and enough firewood stacked against the walls to last until spring.',
   ],
@@ -101,7 +127,7 @@ const DID: Partial<Record<SeasonActivityKind, string[]>> = {
   'study-vis': ['studied raw vis, the pawns glowing faintly as their power was drawn into understanding', 'meditated over pawns of vis until they were spent'],
   taught: ['sat at the feet of a teacher', 'took lessons, and came away with aching head and new understanding'],
   trained: ['trained hard in the yard', 'drilled under a master’s eye'],
-  practice: ['practised, over and over, until it came without thought', 'spent the season in patient practice'],
+  practice: ['practiced, over and over, until it came without thought', 'spent the season in patient practice'],
   exposure: ['went about the season’s ordinary work', 'saw to the daily round of duties', 'was kept busy with the business of the covenant'],
   adventure: ['was out on the road, and came back with a tale', 'rode out on the covenant’s business'],
   teach: ['gave lessons', 'taught, patiently and at length'],
@@ -117,7 +143,71 @@ const DID: Partial<Record<SeasonActivityKind, string[]>> = {
   'lab-improvement': ['saw to the laboratory: new benches, new vessels, new wards'],
   work: ['worked at the bench from dawn till dusk', 'worked at the trade, and the orders kept coming'],
   worship: ['kept the hours of prayer'],
+  // a season of work logged without its own phrase (before the Chronicle kept one)
+  other: ['went about business of their own', 'saw to affairs of their own'],
 };
+
+/** A lab season logged before `told` was kept: told from its project's kind, with the stock phrases above. */
+const LAB_DID: Partial<Record<LabProject['kind'], SeasonActivityKind>> = {
+  invent: 'invent-spell', open: 'enchant-item', attune: 'enchant-item', instill: 'enchant-item', castingTool: 'enchant-item',
+  longevity: 'longevity-ritual', elixir: 'longevity-ritual', bind: 'bind-familiar', strengthen: 'bind-familiar', empower: 'bind-familiar',
+  extract: 'vis-extraction', refine: 'lab-improvement', install: 'lab-improvement', repair: 'lab-improvement',
+};
+const LAB_WORK = ['labored in the laboratory', 'was shut in the laboratory at work of their own'];
+
+/** A study from vis that botched (DE, Studying from Vis): no understanding, and perhaps Wizard's Twilight. */
+const BOTCH = ['botched a study of {art} vis: the pawns flared and burned away, and nothing was learned', 'studied {art} vis, and botched it: the power slipped loose and was lost'];
+const BOTCH_TWILIGHT = ['botched a study of {art} vis, and the power it loosed drew them to the edge of Wizard’s Twilight'];
+
+/**
+ * How a season log entry is told: its own phrase if the work gave one; a botched study from vis as a
+ * botch (Warping Points on a study-vis entry), with the Twilight still owed from it; else its activity.
+ */
+export function seasonTelling(e: SeasonLogEntry | undefined, owed: Owed[] = []): SeasonTelling {
+  if (!e) return {};
+  const t: SeasonTelling = { did: e.activity, entryUid: e.uid };
+  if (e.told) t.told = e.told;
+  if (e.labKind) t.labKind = e.labKind;
+  if (e.activity === 'study-vis' && (e.warpingPoints ?? 0) > 0) {
+    const art = e.visUsed?.[0] ? ART_NAMES[e.visUsed[0].art] : /Studied (\w+) vis/.exec(e.summary)?.[1];
+    const twilight = (e.undo?.owed ?? []).some((u) => owed.some((o) => o.uid === u && o.kind === 'twilight'));
+    t.botch = { ...(art ? { art } : {}), twilight };
+  }
+  return t;
+}
+
+/** The phrase for one character's season, picked once, as the season ends. */
+function phraseFor(p: SeasonTelling, rng: Rng): string {
+  if (p.told) return p.told;
+  if (p.botch) return pick(rng, p.botch.twilight ? BOTCH_TWILIGHT : BOTCH).replace('{art}', p.botch.art ?? 'raw');
+  if (p.did === 'other' && p.labKind) {
+    const k = LAB_DID[p.labKind];
+    return pick(rng, (k && DID[k]) || LAB_WORK);
+  }
+  return pick(rng, DID[p.did!] ?? DID.exposure!);
+}
+
+/** Sentences of at most two people each, so none runs long when read aloud: "A did this, while B did that." */
+const pairs = (xs: string[]) => {
+  const out: string[] = [];
+  for (let i = 0; i < xs.length; i += 2) out.push(xs.slice(i, i + 2).join(', while '));
+  return out;
+};
+
+/**
+ * The people's section as it reads now: the magi, then the companions, then the grogs. A season unlogged
+ * since leaves it (`logged`, the season entries still on the characters' logs).
+ */
+export function tellPeople(people: ToldPerson[], grogs?: string, logged?: (entryUid: string) => boolean): string {
+  const kept = people.filter((p) => !p.entryUid || !logged || logged(p.entryUid));
+  const magi = pairs(kept.filter((p) => p.type === 'magus').map((p) => p.text));
+  const comps = pairs(kept.filter((p) => p.type === 'companion' || p.type === 'mythic').map((p) => p.text));
+  const parts: string[] = [];
+  magi.forEach((m, i) => parts.push(`${i === 0 ? 'Of the magi, ' : ''}${m}.`));
+  comps.forEach((m, i) => parts.push(`${i === 0 && magi.length ? 'Among the companions, ' : ''}${m}.`.replace(/^./, (c) => c.toUpperCase())));
+  if (grogs) parts.push(grogs);
+  return parts.join(' ');
+}
 
 const MINOR_ROAD = [
   'A merchant train stopped a night on its way to market, and its master paid for lodging with bolts of cloth and news of rising prices in the towns.',
@@ -142,7 +232,7 @@ const URBAN = [
   'A great lord visited the town, household and all, and for a week the streets were thick with liveried retainers and opportunity.',
 ];
 
-const REMOTE = ['No one came. The covenant kept its own company, and the silence of the wilds pressed close around the walls.', 'The season passed without a single traveller at the gate.'];
+const REMOTE = ['No one came. The covenant kept its own company, and the silence of the wilds pressed close around the walls.', 'The season passed without a single traveler at the gate.'];
 
 const INCOME: Record<IncomeModification, string> = {
   Boom: 'had a year beyond all hope',
@@ -175,18 +265,15 @@ export function writeChronicle(f: ChronicleFacts, rng: Rng): ChronicleSection[] 
   // the people: the magi, then the companions, then the grogs
   const home = f.people.filter((p) => !p.away);
   if (home.length) {
-    const told = (type: string) =>
+    const told = (type: string): ToldPerson[] =>
       home
         .filter((p) => p.type === type && p.did)
-        .map((p) => `${p.name} ${pick(rng, DID[p.did!] ?? DID.exposure!)}`);
-    const magi = told('magus');
-    const comps = [...told('companion'), ...told('mythic')];
-    const grogs = home.filter((p) => p.type === 'grog');
-    const parts: string[] = [];
-    if (magi.length) parts.push(`Of the magi, ${list(magi)}.`);
-    if (comps.length) parts.push(`${magi.length ? 'Among the companions, ' : ''}${list(comps)}.`.replace(/^./, (c) => c.toUpperCase()));
-    if (grogs.length) parts.push(grogs.length === 1 ? `${grogs[0].name} stood the watches and kept the gate.` : `The grogs — ${list(grogs.map((g) => g.name))} — drilled in the yard and stood their watches.`);
-    if (parts.length) out.push({ title: 'At the covenant', text: parts.join(' ') });
+        .map((p) => ({ name: p.name, type: p.type, text: `${p.name} ${phraseFor(p, rng)}`, ...(p.entryUid ? { entryUid: p.entryUid } : {}) }));
+    const people = [...told('magus'), ...told('companion'), ...told('mythic')];
+    const g = home.filter((p) => p.type === 'grog');
+    const grogs = !g.length ? undefined : g.length === 1 ? `${g[0].name} stood the watches and kept the gate.` : `The grogs — ${list(g.map((x) => x.name))} — drilled in the yard and stood their watches.`;
+    const text = tellPeople(people, grogs);
+    if (text) out.push({ title: 'At the covenant', text, ...(people.length ? { people } : {}), ...(grogs ? { grogs } : {}) });
   }
 
   // who came up the road

@@ -20,6 +20,7 @@ import type { Character, LearnedCharm } from '../../engine/types';
 import { warpingScoreFromPoints } from '../../engine/xp';
 import { Card, Field, Stepper, Total, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
+import { amuletTold, charmTold } from '../../engine/seasonTold';
 import { useSeasonWork } from '../seasonWork';
 import { R } from '../routes';
 import { CharmDesigner, LearnedCard, artPairs, hasLearnedMagic } from '../character/LearnedCard';
@@ -406,7 +407,7 @@ function AmuletCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState; pair
     const text = `${name}: Lab Total ${lt.total} against level ${effect.level}, ${charges} charge${charges === 1 ? '' : 's'}.`;
     const out = s.work(`Learned magic: ${name}`, TECHNIQUE_ID[effect.tf.slice(0, 2)], (x) => {
       x.items.push(amuletItem(name, effect, charges, x.id));
-      return { lines: [text, 'The amulet is on the sheet’s items.'], made: 'an amulet' };
+      return { lines: [text, 'The amulet is on the sheet’s items.'], told: amuletTold(effect.name, bearer.trim() || undefined), made: 'an amulet' };
     });
     ent.reset();
     setLines(out);
@@ -459,14 +460,14 @@ function CharmSeasonCard({ ed, aura, pairs }: { ed: CharEditor; aura: AuraState;
     setLines(
       s.work(`Learned magic: inventing ${inv?.charm.name ?? 'a charm'}`, TECHNIQUE_ID[tf.slice(0, 2)], (x) => {
         const msg = inventSeason(x, lt.total);
-        return { lines: [msg], made: x.learned?.inventing ? undefined : `the charm ${inv?.charm.name ?? ''}`.trim() };
+        return { lines: [msg], told: charmTold({ work: 'invent', charm: inv?.charm.name ?? 'a charm', done: !x.learned?.inventing }), made: x.learned?.inventing ? undefined : `the charm ${inv?.charm.name ?? ''}`.trim() };
       }),
     );
   const learn = () => {
     setLines(
       s.work('Learned magic: charms from a teacher', undefined, (x) => {
         x.learned = { ...(x.learned ?? {}), charms: [...(x.learned?.charms ?? []), ...lessons.map((l) => ({ ...l, source: 'play' as const }))] };
-        return { lines: [`Learned ${lessons.length} charm${lessons.length === 1 ? '' : 's'}: ${lessons.map((l) => l.name).join(', ')} (${levels} levels of ${cap}).`], made: 'charms learned' };
+        return { lines: [`Learned ${lessons.length} charm${lessons.length === 1 ? '' : 's'}: ${lessons.map((l) => l.name).join(', ')} (${levels} levels of ${cap}).`], told: charmTold({ work: 'teacher', charms: lessons.map((l) => l.name) }), made: 'charms learned' };
       }),
     );
     setLessons([]);

@@ -17,6 +17,7 @@ import { SOLOMON_SEARCH_EASE, firstRecitationEase } from '../../engine/seasonRol
 import type { Character } from '../../engine/types';
 import { Card, Field, Stepper, Total } from '../kit';
 import type { CharEditor } from '../character/useChar';
+import { devotionTold } from '../../engine/seasonTold';
 import { useSeasonWork } from '../seasonWork';
 import { ModList, modParts } from './holyMods';
 
@@ -128,7 +129,7 @@ export function DevotionSeasonsCard({ ed }: { ed: CharEditor }) {
           const ab = ensureAbility(x, lo.id, {}, lo.param);
           const xp = w === 'shrine' ? 2 : computeStudy(d, { kind: 'tractatus', quality, isArt: false, subject: lo.name }, { abilityUid: ab.uid }).xp;
           if (dev) out.push(`${saintName(dev.saint)}: ${dev.points + points} Devotion Points, Devotion ${devotionScore(dev.points + points)}.`);
-          return { lines: out, gains: xp ? { [`ability:${ab.uid}`]: xp } : {}, gainText: xp ? `+${xp} experience in ${lo.name}` : undefined };
+          return { lines: out, told: devotionTold({ work: w, saint: dev ? saintName(dev.saint) : undefined }), gains: xp ? { [`ability:${ab.uid}`]: xp } : {}, gainText: xp ? `+${xp} experience in ${lo.name}` : undefined };
         }
         if (w === 'path' && q && x.spiritualPath) {
           x.spiritualPath = { ...x.spiritualPath, components: [...x.spiritualPath.components, { label: q.label, value: q.value }] };
@@ -136,17 +137,17 @@ export function DevotionSeasonsCard({ ed }: { ed: CharEditor }) {
           if (/personal devotion/.test(q.label)) {
             addPoints(x, points);
             const ab = ensureAbility(x, 'dominion-lore');
-            return { lines: out, gains: { [`ability:${ab.uid}`]: 2 }, gainText: '+2 experience in Dominion Lore' };
+            return { lines: out, told: devotionTold({ work: 'path', quest: q.label }), gains: { [`ability:${ab.uid}`]: 2 }, gainText: '+2 experience in Dominion Lore' };
           }
-          return { lines: out };
+          return { lines: out, told: devotionTold({ work: 'path', quest: q.label }) };
         }
         if (w === 'ring' && ring) {
           x.holy = { ...(x.holy ?? {}), recitation: { ring: ring.ring, seasons, score: sum(ringParts), ease: ringEase, ...(ring.ring === 3 ? { disease } : {}), year: sw.year, season: sw.season, entryUid } };
-          return { lines: [...out, 'Roll it in Resolve, at the top of the Seasons page, when the season ends.'] };
+          return { lines: [...out, 'Roll it in Resolve, at the top of the Seasons page, when the season ends.'], told: devotionTold({ work: 'ring', ring: ring.name }) };
         }
         if (w === 'search') {
           x.holy = { ...(x.holy ?? {}), search: { score: searchScore, year: sw.year, season: sw.season, entryUid } };
-          return { lines: [...out, 'Roll it in Resolve, at the top of the Seasons page, when the season ends.'] };
+          return { lines: [...out, 'Roll it in Resolve, at the top of the Seasons page, when the season ends.'], told: devotionTold({ work: 'search' }) };
         }
         return { lines: [], refused: 'Nothing to do this season.' };
       }),

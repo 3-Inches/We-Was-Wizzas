@@ -35,6 +35,7 @@ import { pct, simpleChance, stressChance, stressContestChance } from '../../../e
 import type { CharEditor } from '../useChar';
 import { useSagaCharacters, useSagaCovenants } from '../../../store/hooks';
 import { useStore } from '../../../store/store';
+import { merchantTold, wondrousTold, workshopImproveTold } from '../../../engine/seasonTold';
 
 /** situations that raise the base Craft Level (C&G, Finished Goods Craft Levels) */
 const SITUATIONS = [
@@ -149,6 +150,7 @@ export function WorkshopCard({ ed, where = 'guild' }: { ed: CharEditor; where?: 
       x.workshop.laborPoints -= cost;
       x.workshop[kind] = cur + 1;
       const e = newSeasonEntry(year, season, 'other', `Improving the workshop: ${what} (${cost} Labor Points)`);
+      e.told = workshopImproveTold(kind === 'innovation' ? 'Innovation' : 'Raw Materials');
       e.undo = { laborPoints: -cost, workshop: { [kind]: cur } };
       x.seasonLog.push(e);
     });
@@ -194,6 +196,7 @@ export function WorkshopCard({ ed, where = 'guild' }: { ed: CharEditor; where?: 
       if (!x.workshop) return;
       x.workshop.laborPoints += lp;
       const e = newSeasonEntry(year, season, 'other', `${what}: +${lp} Labor Points${extra ? `; ${extra}` : ''}`, {});
+      e.told = merchantTold(what);
       e.undo = { laborPoints: lp, pounds: spentPounds || undefined };
       applySeason(x, e, 1);
       x.seasonLog.push(e);
@@ -676,6 +679,7 @@ function WonderProject({ ed, wondrous, magnitude, freq }: { ed: CharEditor; wond
     const done = points >= w.craftLevel;
     const maker = structuredClone(c);
     const entry = newSeasonEntry(year, season, 'other', `Making a wondrous item, ${w.name}: +${gain} points (${points} of ${w.craftLevel})${done ? '; finished' : ''}`, {});
+    entry.told = wondrousTold(w.name, done);
     entry.undo = done ? { final: `This season finished ${w.name}: it is in its owner’s possessions, so the season stays logged.` } : { workshop: { wonder: structuredClone(w) } };
     applySeason(maker, entry, 1);
     maker.seasonLog.push(entry);

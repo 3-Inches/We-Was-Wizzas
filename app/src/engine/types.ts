@@ -204,8 +204,11 @@ export interface TimeReport {
   year: number;
   season: Season;
   lines: { who?: string; text: string; kind?: 'season' | 'year' | 'aging' | 'crisis' | 'warping' | 'covenant' | 'lab' | 'effect' | 'reminder' | 'money'; tribunal?: string }[];
-  /** the season told as a story (the Chronicle), in sections */
-  story?: { title: string; text: string }[];
+  /**
+   * the season told as a story (the Chronicle), in sections. The people's section also keeps each
+   * character's phrase with the season it tells, so a season unlogged later leaves the Chronicle.
+   */
+  story?: { title: string; text: string; people?: { name: string; type: string; text: string; entryUid?: string }[]; grogs?: string }[];
 }
 
 /**
@@ -944,6 +947,12 @@ export interface SeasonLogEntry {
   season: 'Spring' | 'Summer' | 'Autumn' | 'Winter';
   activity: SeasonActivityKind;
   summary: string;
+  /**
+   * How the Chronicle tells the season: a phrase that follows the character's name, made from what the
+   * work did ("brewed four doses of a Healing potion in the kitchen"; engine/seasonTold.ts). The
+   * Chronicle prefers it to its stock phrases for the activity. Older entries have none.
+   */
+  told?: string;
   /** experience gained: target key -> xp. keys: 'art:Cr', 'ability:<uid>', 'mastery:<spellUid>' */
   gains: Record<string, number>;
   sourceQuality?: number;

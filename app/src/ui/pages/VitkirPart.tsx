@@ -18,6 +18,7 @@ import { warpingScoreFromPoints } from '../../engine/xp';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 import type { CharEditor } from '../character/useChar';
+import { vitkiTold } from '../../engine/seasonTold';
 import { useSeasonWork } from '../seasonWork';
 import { settle } from '../../engine/seasonPlan';
 import { gainWarping, nowOf, owedReaction } from '../../engine/warping';
@@ -370,7 +371,7 @@ export function VitkiSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraState 
     setLines(
       sw.work(`Vitki: ${mode === 'invent' ? 'inventing rune scripts' : 'learning rune scripts'}`, mode === 'invent' ? RUNES.find((r) => r.name === eff)?.id : undefined, (x) => {
         x.vitki = { ...(x.vitki ?? {}), scripts: [...(x.vitki?.scripts ?? []), ...pending.map((p) => ({ ...p, source: 'play' as const }))] };
-        return { lines: [text], made: pending.length ? 'rune scripts' : undefined };
+        return { lines: [text], told: vitkiTold(mode, set, pending.map((p) => p.name)), made: pending.length ? 'rune scripts' : undefined };
       }),
     );
     setPending([]);

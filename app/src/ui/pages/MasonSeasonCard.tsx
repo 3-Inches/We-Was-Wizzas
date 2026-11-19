@@ -13,6 +13,7 @@ import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total } from '../kit';
 import { R } from '../routes';
 import type { CharEditor } from '../character/useChar';
+import { masonTold } from '../../engine/seasonTold';
 import { useSeasonWork } from '../seasonWork';
 
 const MASON = /mason/i;
@@ -50,6 +51,7 @@ export function MasonSeasonCard({ ed }: { ed: CharEditor }) {
         k.buildings = chosen ? (k.buildings ?? []).map((y) => (y.uid === id ? after : y)) : [...(k.buildings ?? []), after];
         return {
           lines: [result.text, `Recorded on ${cov.name || 'the covenant'}.`],
+          told: masonTold(kind === 'build' ? { work: 'build', building: after.name, feet: after.height - b.height, height: after.height, started: b.height === 0 } : { work: 'repair', building: after.name }),
           gains: ab ? { [`ability:${ab.uid}`]: 2 } : {},
           gainText: ab ? '+2 experience in Craft: Mason' : undefined,
           undo: { building: { covenantId: k.id, uid: id, before: chosen ? structuredClone(chosen) : undefined } },

@@ -12,7 +12,7 @@ import { countOf } from './covenantRules';
 import { deriveLab } from './lab';
 import { specAbilities, specChar } from './covenantRules';
 import { DEFAULT_YEAR_END, applyYearEnd, planYearEnd, rollIncomeYear, type YearEndOptions } from './covenantYear';
-import { writeChronicle, type ChronicleFacts } from './chronicle';
+import { seasonTelling, writeChronicle, type ChronicleFacts } from './chronicle';
 import { agentReports } from './agency';
 import { defaultRng, describeStress, stressDie, type Rng } from './dice';
 import { payAllowance } from './economy';
@@ -49,6 +49,7 @@ import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
 import { longevityModifier } from './hermeticMysteries';
 import { learnsArts } from './firstChoice';
+import { gatheringTold, helperTold, labTold } from './seasonTold';
 
 export interface SagaState {
   saga: Saga;
@@ -439,7 +440,11 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       if (helped.length) lines.push(`Helped by ${helped.map((h) => `${h.c.name || 'an assistant'} (+${h.value})`).join(' and ')}.`);
       const gains: Record<string, number> = theory ? { [`ability:${theory.uid}`]: 2 } : {};
       log('other', p ? `Lab: ${p.name}` : 'Lab work', gains, 0, p && before ? labUndo(before, c, p.uid, covBefore, cov) : undefined);
-      if (p) c.seasonLog[c.seasonLog.length - 1].labKind = p.kind;
+      if (p) {
+        const e = c.seasonLog[c.seasonLog.length - 1];
+        e.labKind = p.kind;
+        e.told = labTold(c.projects?.find((y) => y.uid === p!.uid) ?? p, c);
+      }
       lines.push(theory ? `Lab work: +2 xp Exposure in ${theory.name}.` : 'Lab work.');
       return lines;
     }
@@ -783,6 +788,7 @@ function attendGathering(c: Character, d: DerivedCharacter, ctx: CharacterContex
   for (const e of c.seasonLog.slice(before)) {
     e.priority = 'politics';
     e.summary = `Attended ${g.name} at ${g.at}: ${e.summary}`;
+    e.told = gatheringTold(g.name, g.at);
   }
   return [`Attended ${g.name} at ${g.at}.`, ...out];
 }
@@ -945,6 +951,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       const r = computeStudy(d, { kind: 'exposure', subject: 'Magic Theory' }, { abilityUid: mt.uid });
       const e = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${magus?.name || 'a magus'} in the lab: ${h.used} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
       if (h.extra) e.extra = true;
+      e.told = helperTold(magus?.name || 'a magus');
       applySeason(c, e, 1);
       c.seasonLog.push(e);
       out.push(`${h.extra ? 'Extra season: ' : ''}Helped ${magus?.name || 'a magus'} in the lab (${h.used}): +${h.value} to the Lab Total; Exposure in Magic Theory +${r.xp} xp.${mightNote(d, r.xp)}`);
@@ -1087,7 +1094,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       covenants: own.map((cov) => yearFacts.get(cov.id) ?? chronicleCovenant(cov)),
       people: people
         .filter((c) => !c.wounds.dead || lines.some((l) => l.who === c.name && l.kind === 'crisis'))
-        .map((c) => ({ name: c.name || 'Unnamed', type: c.type, did: c.seasonLog.find((e) => e.year === year && e.season === season && !e.extra)?.activity, away: c.auraTime === 'away' })),
+        .map((c) => ({ name: c.name || 'Unnamed', type: c.type, ...seasonTelling(c.seasonLog.find((e) => e.year === year && e.season === season && !e.extra), c.owed), away: c.auraTime === 'away' })),
       ...(season === 'Winter'
         ? {
             aged: names('aging').filter((n) => lines.some((l) => l.who === n && l.kind === 'aging' && /Aging roll/.test(l.text) && !/No apparent aging/.test(l.text))),

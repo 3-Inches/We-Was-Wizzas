@@ -24,6 +24,7 @@ import { warpingScoreFromPoints } from '../../engine/xp';
 import { uid } from '../../util/id';
 import { Card, Field, Stepper, Total, signed } from '../kit';
 import type { CharEditor } from '../character/useChar';
+import { gruagachTold } from '../../engine/seasonTold';
 import { useSeasonWork, useVisSource } from '../seasonWork';
 import { gainWarping, nowOf } from '../../engine/warping';
 
@@ -433,7 +434,12 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
           out[0] = `${gruagachInventSeason(x, lt.total, chosen)} Lab Total ${lt.total}.`;
           if (!x.gruagach?.inventing) made = `the spell ${chosen.name}`;
         }
-        return { lines: out, made };
+        const told = gruagachTold(
+          work === 'tattoo' ? { work, effect: effect?.name ?? 'power' }
+          : work === 'invent' ? { work, spell: chosen?.name ?? 'a spell', done: !x.gruagach?.inventing }
+          : { work: 'vis', pawns: drawn },
+        );
+        return { lines: out, made, told };
       }),
     );
   return (
