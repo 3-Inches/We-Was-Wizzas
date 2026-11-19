@@ -2,11 +2,13 @@
 // off (applySeason), and whatever else it recorded in its `undo`: what it left owed on the Resolve list
 // (Twilight from a botch), the Labor Points it earned and the workshop's counts, a lab project's
 // progress and the vis the work spent, the purse's pounds, a Virtue an Initiation gave, a Discovery, a
-// season taught to the apprentice, a great building's progress. A season whose work finished something
+// season taught to the apprentice, a great building's progress, a roll its work left still waiting. A
+// roll already made stands: what it did is not taken back (`undo.rolled`). A season whose work finished something
 // (a spell learned, an item made, a familiar bound) is final: what it made is on the sheet, so it is not
 // unlogged (Undo at the top takes back the last change instead).
 
 import { applySeason } from './longterm';
+import { dropSeasonRoll, seasonRollOf } from './seasonRolls';
 import { PROJECT_KINDS } from './projects';
 import type { Art } from '../data';
 import type { Character, Covenant, SeasonLogEntry, SeasonUndo, VisStock } from './types';
@@ -85,10 +87,13 @@ export interface Unlogged {
   covenants: Covenant[];
 }
 
-/** Whether a logged season can be unlogged, and why not. */
-export function canUnlog(e: SeasonLogEntry): { ok: boolean; why?: string } {
+/**
+ * Whether a logged season can be unlogged, and why not; and `stands`, what a roll already made at its end
+ * did, which Unlog leaves (owner.md, point 2: a roll already made stands; Turn back undoes everything).
+ */
+export function canUnlog(e: SeasonLogEntry): { ok: boolean; why?: string; stands?: string } {
   if (e.undo?.final) return { ok: false, why: e.undo.final };
-  return { ok: true };
+  return { ok: true, ...(e.undo?.rolled ? { stands: e.undo.rolled } : {}) };
 }
 
 /**
@@ -102,6 +107,9 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
   if (!can.ok) return { ok: false, why: can.why, covenants: [] };
   const changed: Covenant[] = [];
   if (e.applied) applySeason(c, e, -1);
+  // a roll its work left, not yet made: set aside with the season (what it kept, and the Resolve line, by `undo.owed`)
+  const waiting = seasonRollOf(c, e.uid);
+  if (waiting) dropSeasonRoll(c, waiting);
   const u = e.undo;
   if (u) {
     if (c.workshop) {

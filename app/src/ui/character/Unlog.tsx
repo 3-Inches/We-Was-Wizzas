@@ -1,5 +1,6 @@
 // Unlogging a season at the Game Table: the season taken off the log, with everything it changed
-// (engine/unlog.ts). One button, used wherever a logged season is listed at the table.
+// (engine/unlog.ts). One button, used wherever a logged season is listed at the table. A roll the season
+// left, once made, stands: the button says so beside it.
 
 import { canUnlog, unlogSeason } from '../../engine/unlog';
 import type { Character } from '../../engine/types';
@@ -11,11 +12,13 @@ export function Unlog({ c, uid }: { c: Character; uid: string }) {
   const covs = useSagaCovenants(c.sagaId);
   const e = c.seasonLog.find((y) => y.uid === uid);
   const can = e ? canUnlog(e) : { ok: false, why: 'Not on the log.' };
-  return (
+  // a roll its work left, already made, stands: Unlog leaves what it did (owner.md, point 2)
+  const stands = 'stands' in can ? can.stands : undefined;
+  const button = (
     <button
       className="small ghost"
       disabled={!can.ok}
-      title={can.ok ? 'Take this season off the log: its experience and whatever else it changed (Labor Points, a project’s progress, the vis it spent) come back, and the season is free again' : can.why}
+      title={can.ok ? `Take this season off the log: its experience and whatever else it changed (Labor Points, a project’s progress, the vis it spent) come back, and the season is free again.${stands ? ` ${stands} Turn back undoes it.` : ''}` : can.why}
       onClick={() => {
         const x = structuredClone(c);
         const cs = structuredClone(covs);
@@ -25,5 +28,14 @@ export function Unlog({ c, uid }: { c: Character; uid: string }) {
     >
       Unlog
     </button>
+  );
+  if (!stands) return button;
+  return (
+    <span className="row tight">
+      {button}
+      <span className="small muted" title={stands}>
+        the roll stands
+      </span>
+    </span>
   );
 }

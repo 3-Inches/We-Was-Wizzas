@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import type { GameData } from '../../data';
 import { addVirtue } from '../../engine/character/factory';
 import { describeStress, stressDie } from '../../engine/dice';
-import { dropSeasonRoll, isSeasonRoll, rollSeasonRoll, seasonRollBotchDice, seasonRollText } from '../../engine/seasonRolls';
+import { dropSeasonRoll, isSeasonRoll, noteSeasonRoll, rollSeasonRoll, seasonRollBotchDice, seasonRollText } from '../../engine/seasonRolls';
 import { covenantOf } from '../../engine/context';
 import { uid } from '../../util/id';
 import { owedInOrder, playersInOrder, settle, type PlanNote } from '../../engine/seasonPlan';
@@ -124,8 +124,8 @@ function OwedRow({ saga, data, c, o }: { saga: Saga; data: GameData; c: Characte
       const res = rollSeasonRoll(x, kind, { value: r.value, zero: r.zero, botches: r.botches, text: describeStress(r) });
       out = res.lines;
       found = !!res.found;
-      const e = x.seasonLog.find((y) => y.uid === entryUid);
-      if (e) e.notes = [e.notes, ...out].filter(Boolean).join(' ');
+      // kept beside the season's work, and marked made: Unlog leaves what it did, and says so
+      noteSeasonRoll(x, kind, entryUid, out);
     });
     // a copy of the Book of Solomon found: kept in the covenant's library, as the finder's
     const cov = found ? covenantOf(c, Object.values(covenants)) : undefined;

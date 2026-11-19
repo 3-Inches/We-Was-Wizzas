@@ -9,6 +9,7 @@ import { ensureAbility } from './character/factory';
 import { rollWovenCurse } from './folkWitch';
 import { ringUntil } from './holy';
 import type { Character, Owed, Season } from './types';
+import { uid } from '../util/id';
 
 export type SeasonRollKind = Extract<Owed['kind'], 'curse' | 'ring' | 'search'>;
 export const SEASON_ROLL_KINDS: SeasonRollKind[] = ['curse', 'ring', 'search'];
@@ -62,6 +63,42 @@ export function seasonEndRolls(c: Character, year: number, season: Season): { ki
     } else out.push({ kind, text: 'A season’s search for the Book of Solomon is over: roll it.' });
   }
   return out;
+}
+
+/**
+ * Owe each roll the season that has just ended left, on the Resolve list, and keep it on the season's
+ * entry: Unlog takes the season back with the roll still waiting (unlog.ts). Changes `c`.
+ */
+export function oweSeasonEndRolls(c: Character, year: number, season: Season): void {
+  for (const r of seasonEndRolls(c, year, season)) {
+    const o: Owed = { uid: uid(), year, season, kind: r.kind, text: r.text };
+    (c.owed ??= []).push(o);
+    const e = c.seasonLog.find((x) => x.uid === pending(c, r.kind)?.entryUid);
+    if (e) (e.undo ??= {}).owed = [...(e.undo.owed ?? []), o.uid];
+  }
+}
+
+/** The season roll still waiting for this season's work, if any. */
+export function seasonRollOf(c: Character, entryUid: string): SeasonRollKind | undefined {
+  return SEASON_ROLL_KINDS.find((k) => pending(c, k)?.entryUid === entryUid);
+}
+
+/** What a roll made at the season's end did, that stands though its season is unlogged (owner.md, point 2). */
+const STANDS: Record<SeasonRollKind, string> = {
+  curse: 'The curse has been rolled: what it did stands (a botch’s Warping, and the Witch Moon it brought).',
+  ring: 'The recitation has been rolled: what it did stands (a ring learned stays learned).',
+  search: 'The search has been rolled: what it found stands (a copy found stays in the library).',
+};
+
+/**
+ * Keep the roll's result on the season's entry, beside its work, and mark it made: Unlog then leaves what
+ * it did, and says so. Call with the roll's season entry uid, taken before the roll. Changes `c`.
+ */
+export function noteSeasonRoll(c: Character, kind: SeasonRollKind, entryUid: string | undefined, lines: string[]): void {
+  const e = c.seasonLog.find((y) => y.uid === entryUid);
+  if (!e) return;
+  e.notes = [e.notes, ...lines].filter(Boolean).join(' ');
+  (e.undo ??= {}).rolled = STANDS[kind];
 }
 
 /** The botch dice of the roll: one, and a foreign aura's for a curse. */

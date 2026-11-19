@@ -98,4 +98,9 @@ export interface SeasonUndo {
   building?: { covenantId: string; uid: string; before?: GreatBuilding };
   /** why it cannot be unlogged: what its work made */
   final?: string;
+  /**
+   * The roll its work left for the season's end (a curse woven, a ring's first recitation, a search) has
+   * been made: what it did stands, and Unlog says so (owner.md, point 2). Turn back undoes it.
+   */
+  rolled?: string;
 }

@@ -36,7 +36,7 @@ import { redcapYearEnd } from './generate/items';
 import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
 import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
 import { holySeason } from './holy';
-import { seasonEndRolls } from './seasonRolls';
+import { oweSeasonEndRolls } from './seasonRolls';
 import { seasonWarping } from './warping';
 import { livingTwilight } from './livingTwilight';
 import { uid } from '../util/id';
@@ -44,7 +44,7 @@ import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
 import { learnsArts } from './firstChoice';
 import { gatheringTold, helperTold, labTold } from './seasonTold';
-import { ageCharacter, auraYearEnd, covenantAttendants, covenfolkWarpingYearEnd, hookReminders, hungerSeason, inPlay, owe, renewCovenantEffects } from './yearEnd';
+import { ageCharacter, auraYearEnd, covenantAttendants, covenfolkWarpingYearEnd, hookReminders, hungerSeason, inPlay, renewCovenantEffects } from './yearEnd';
 
 export interface SagaState {
   saga: Saga;
@@ -720,7 +720,7 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     for (const t of hungerSeason(c)) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
     for (const t of holySeason(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
     // the rolls this season's work left (a curse woven, a ring first recited, a search): made in Resolve
-    for (const r of seasonEndRolls(c, year, season)) owe(c, year, season, r.kind, r.text);
+    oweSeasonEndRolls(c, year, season);
     // a living covenant's magus rolls the Twilight its Warping owes: nobody plays them to settle it in Resolve
     const tw = tribunalOf(c) ? livingTwilight(c, derive, ctxOf(c).aura.strength, tribunalOf(c) === 'wanderers' ? undefined : tribunalOf(c), year, season, rng) : undefined;
     for (const t of tw?.lines ?? []) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
