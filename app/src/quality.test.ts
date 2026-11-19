@@ -1,7 +1,10 @@
-// Limits that may only go down. The toolkit's older writing and largest files do not yet meet the
-// design principles (docs/design-principles.md); these numbers record where they stand so that they
-// cannot get worse. When you improve one, lower its limit to the new value. Never raise a limit to
+// Limits that may only go down, and two ceilings. The toolkit's older writing and largest files do not
+// yet meet the design principles (docs/design-principles.md); the limits record where they stand so that
+// they cannot get worse. When you improve one, lower its limit to the new value. Never raise a limit to
 // make a change pass: shorten something else instead.
+// The README and the Guide's toolkit page have ceilings instead, set by the owner (19 November 2026): room
+// to grow, at most 300 words a pull request each (CLAUDE.md), so new systems are not written in by
+// cutting what is there.
 
 import { describe, expect, it } from 'vitest';
 import { APP_PLACES } from './data/appPlaces';
@@ -25,8 +28,6 @@ function guideBlocks(): string[] {
 // The limits. Lower them as the text improves.
 
 const LIMITS = {
-  /** the Guide's "Using the toolkit" page, in words (roadmap 1.5 asked for under 6,000) */
-  guideWords: 3529,
   /** its longest sentence, in words (the principle is 40) */
   guideLongestSentence: 34,
   /** its paragraphs over 85 words (the principle) */
@@ -35,8 +36,6 @@ const LIMITS = {
   tutorialLongSteps: 0,
   /** the longest tutorial step, in words */
   tutorialLongestStep: 60,
-  /** the README, in characters (rounded up a little, so a line of news can be swapped in) */
-  readmeChars: 14200,
   /** the README's longest line, in characters */
   readmeLongestLine: 431,
   /** Game Mechanics topics with no "In the app" pointer */
@@ -75,12 +74,10 @@ describe('limits that may only go down', () => {
   };
   walk(index);
   const measured = {
-    guideWords: blocks.reduce((t, b) => t + guideWords(b), 0),
     guideLongestSentence: Math.max(...blocks.flatMap((b) => guideSentences(b).map(guideWords))),
     guideLongBlocks: blocks.filter((b) => guideWords(b) > 85).length,
     tutorialLongSteps: steps.filter((n) => n > 60).length,
     tutorialLongestStep: Math.max(...steps),
-    readmeChars: readme.length,
     readmeLongestLine: Math.max(...readme.split('\n').map((l) => l.length)),
     topicsWithoutPointer: topics.filter((id) => !(APP_PLACES as Record<string, unknown>)[id]).length,
   };
@@ -88,6 +85,19 @@ describe('limits that may only go down', () => {
   for (const k of Object.keys(LIMITS) as (keyof typeof LIMITS)[]) {
     it(`${k} is no worse than before`, () => {
       expect(measured[k], `${k} is ${measured[k]}; the limit is ${LIMITS[k]}. Shorten something, do not raise the limit.`).toBeLessThanOrEqual(LIMITS[k]);
+    });
+  }
+
+  // ceilings, not limits: room to grow, at most 300 words a pull request (CLAUDE.md)
+  const CEILINGS = {
+    /** the Guide's "Using the toolkit" page, in words (roadmap 1.5 asked for under 6,000) */
+    guideWords: { at: blocks.reduce((t, b) => t + guideWords(b), 0), most: 6000 },
+    /** the README, in words */
+    readmeWords: { at: words(readme), most: 5000 },
+  };
+  for (const [k, { at, most }] of Object.entries(CEILINGS)) {
+    it(`${k} is under its ceiling`, () => {
+      expect(at, `${k} is ${at}; the ceiling is ${most}. Shorten something before raising it.`).toBeLessThanOrEqual(most);
     });
   }
 

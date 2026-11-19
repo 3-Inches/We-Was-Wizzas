@@ -62,7 +62,7 @@ Rules the toolkit shows as text or reminders, kept here for later work.
 - **Mysteries, with a note on the sheet:** Vulgar Alchemy's sharing of an experiment's bonus, astrologically linked enchantments, inventing theurgic spells, binding a Spirit Familiar, the Living Ghost and the Ascendancy, Dream Magic's journeys, Hermetic Architecture, Hermetic Sacrifice, the Great Talisman, the Neo-Mercurians, and an immortal's learning. Study seasons in the lab do not move a digesting extraction on.
 - **Faerie:** travel in the Faerie realm and its stories, sympathetic influence and tinted auras, Curse-Throwing's transfers, and learning faerie Abilities. A faerie's Pretenses learned by watching people are logged by hand. Bonding's and Captivating's lasting effects, and a glamour's faerie warping beyond Faerie Calling, are left to the troupe.
 - **The Divine:** sacraments are a Faith Point given by hand. Excommunication, exorcism, the Muslim calendar's stronger Dominion, the Evil Eye's extra botch die, Divine regiones, angels' powers and a golem as a character are left to the troupe. Holy magi's Art study from Hermetic books is not halved, only Laboratory Texts, as the book's rule reads.
-- **In the roadmap's stage 3:** *Art & Academe*'s universities and experimental philosophy, *Ancient Magic*, the Infernal's maleficia and Goetia, the Tribunal books' traditions (storm wizards, vampire hunters, lector priests), *Grogs*' training packages and animal grogs, *Legends of Hermes*, and travel in the Magic realm.
+- **Books in the roadmap's stage 3:** *Art & Academe*'s universities and experimental philosophy, *Ancient Magic*, the Infernal's maleficia and Goetic Arts, the Tribunal books' traditions (storm wizards, vampire hunters, Egypt's lector priests), *Grogs*' training packages and animal grogs, *Legends of Hermes*, and travel in the Magic realm.
 - **Seasons:** the Church's ordination, good works and care of souls, the apprenticeship schedule, *Grogs*' per-decade aging shortcut, and *Lords of Men*'s random method of death.
 
 ## Running it
@@ -88,7 +88,7 @@ npm run qa:sweep   # imports it into the built app and visits every page and tab
 
 The sweep reports page and console errors, pages wider than the screen, and "undefined" or "NaN" on a page. It needs a build, and Playwright with Chromium. `scripts/qa/` has the other browser checks: the tutorials, screenshots and the book reader.
 
-`.github/workflows/toolkit.yml` tests and builds pull requests, and deploys the default branch to GitHub Pages (set Pages' source to "GitHub Actions").
+The workflow `.github/workflows/toolkit.yml` tests and builds on pull requests. On pushes to the default branch it also deploys to GitHub Pages. For the deploy to work, enable Pages with the source set to "GitHub Actions" in the repository settings.
 
 Work on the toolkit follows `docs/roadmap.md` and `docs/design-principles.md`.
 
@@ -102,12 +102,12 @@ app/src/store/        zustand store persisted to IndexedDB, migrations, export/i
 app/src/ui/           React: the builder and sheet, covenants, the Game Table, tools, reference, reader
 ```
 
-- **Rules data is extracted from the books,** with a few entries added by hand: over 1,000 Virtues and Flaws, 1,000 spells, 600 guidelines and 500 creatures, and the rest.
-- **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as effects: experience pools, bonuses, Lab Total modifiers. Those with none are shown as text.
+- **Rules data is extracted from the books,** with a few entries added by hand. That is over 1,000 Virtues and Flaws, over 1,000 spells and 600 guidelines. It is also the Abilities, lab Virtues and Flaws, Hooks and Boons, Shape and Material, weapons and armor, and nearly 500 creatures' stat blocks.
+- **Mechanics are written by hand** in `src/data/mechanics.ts`, one entry per Virtue or Flaw, as declarative effects: experience pools, bonuses, Lab Total modifiers. Virtues and Flaws without numeric effects appear on the sheet as text for the troupe.
 - **Each rule cites its book and line.** The tests are built on the books' worked examples.
 - **References are followed.** `tools/extract/extract_vf_refs.py` finds the Virtues and Flaws each text names and the pages it cites. What those references mean for the rules is in `src/data/crossRefs.ts`.
-- **Restrictions are curated** in `src/data/restrictions.ts`, each quoted from its book in the rules check.
-- **The Game Mechanics reference was read, not guessed,** section by section into `tools/extract/mechanics_index/`. `tools/extract/build_mechanics.py` checks each entry against its book.
+- **Restrictions are curated** in `src/data/restrictions.ts` from the sentences in the books that limit a Virtue or Flaw. Each is quoted in the rules check.
+- **The Game Mechanics reference was read, not guessed.** The reviewed books were read section by section into `tools/extract/mechanics_index/`. `tools/extract/build_mechanics.py` checks every entry against its book, and the app shows the book's own text.
 - **Every total carries its breakdown.** Clicking a number shows how it was calculated.
 - **Books marked WIP** are still being transcribed, so their content can contain errors. Each saga can switch them off.
 
