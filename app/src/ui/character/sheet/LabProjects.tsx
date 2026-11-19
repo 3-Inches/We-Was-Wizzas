@@ -134,6 +134,8 @@ export function LabProjects({ ed }: { ed: CharEditor }) {
     <Card
       title="Lab projects"
       tour="lab-projects"
+      fold="lab-projects"
+      summary={projects.filter((p) => !p.done).map((p) => p.name).join(' · ') || 'None planned: a spell, an enchanted item, a familiar, a Longevity Ritual…'}
       actions={
         <span className="row tight">
           <select value={kind} onChange={(e) => setKind(e.target.value as LabProject['kind'])} aria-label="Kind of project">

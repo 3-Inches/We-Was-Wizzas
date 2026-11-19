@@ -37,7 +37,7 @@ export const optionalTour: Tour = {
     },
     {
       title: 'Seasons, Mysteries and guilds',
-      body: '**Mystery Initiation** is planned on **Game Table › Seasons**, for anyone a Mystagogue will Initiate. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials.',
+      body: '**Mystery Initiation** is planned on **Game Table › Seasons**, for one of a Mystery House or with a Mystery Lore. A craftsman in a guild has a **Guild** card beside the workshop. **Extended book Quality** makes the Writing and copying card count skilled artisans and resonant materials.',
       at: plan, needs: 'character', target: ['mysteries', 'writing', 'plan-season', 'table-plan'],
     },
     {

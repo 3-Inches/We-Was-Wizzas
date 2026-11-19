@@ -173,7 +173,7 @@ export const TOOLKIT_GUIDE: RpGuide = {
         {
           ordered: true,
           list: [
-            '**Plan.** Start with the covenant: its year’s end, its Hooks, its people coming and going. Then each player in turn, magi before companions, and the grogs last. **A season in full** plans one character’s season: a book, a teacher, a lab project, Spell Mastery, writing, an Initiation.',
+            '**Plan.** Start with the covenant: its year’s end, its Hooks, its people coming and going. Then each player in turn, magi before companions, and the grogs last. **A season in full** plans one character’s season. It opens on their own work: a magus’s lab, a hedge tradition’s, holy work, a trade. Then a book, a teacher or Spell Mastery; then the season log and aging; last, an Initiation and writing. A card that cannot apply to them is listed at the foot, with the reason.',
             '**End** the season, or several. Each character does what was logged, or their **standing activity** in their free seasons. A standing activity can be to teach covenant-mates, or to help in one’s lab.',
             '**Resolve** what it leaves: a crisis, Twilight, a curse to roll. Each stays at the top until it is settled.',
           ],
@@ -288,7 +288,7 @@ export const TOOLKIT_GUIDE: RpGuide = {
         {
           ordered: true,
           list: [
-            '**Be initiated.** In the season in full, choose a Mystery and a Mystagogue from the saga, then the book’s Script or one of your own. The card shows the Initiation Total against the target. **Initiate** adds the Virtue and the Ordeal’s Flaw.',
+            '**Be initiated.** In the season in full of one of a Mystery House or with a Mystery Lore, choose a Mystery and a Mystagogue from the saga, then the book’s Script or one of your own. The card shows the Initiation Total against the target. **Initiate** adds the Virtue and the Ordeal’s Flaw.',
             '**Use it in the lab.** A **Laboratory Horoscope**, Hermetic Alchemy and the Lesser Elixir are chosen on the **Lab projects** card.',
             '**Use it in play.** The page **Game Table › Dice › Mysteries** has the rolls made at the table: a favorable hour, divination and dreams, an invoked daimon, rotes. It shows only for those who hold one.',
           ],

@@ -71,7 +71,7 @@ export function OriginalResearch({ ed, magicTheory }: { ed: CharEditor; magicThe
   };
 
   return (
-    <Card title="Original research" tour="original-research">
+    <Card title="Original research" tour="original-research" fold="original-research" summary={c.research ? `Toward ${c.research.goal || 'a Breakthrough'}.` : 'Experiments toward a Breakthrough: Discoveries a season at a time.'}>
       <RulesNote book="HoH_TL" line={850} endLine={944}>
         Experiment until a Discovery, then stabilize it the next season: its magnitude counts toward the Breakthrough, at a cost in Warping.
       </RulesNote>

@@ -1,7 +1,7 @@
 // Which hedge tradition a character practices: each tradition's practice saga is recognized, and a
 // single Art taken alone (the gruagach Form Vision, the learned Form Magicam) is not a tradition.
 import { describe, expect, it } from 'vitest';
-import { hasHedgeMagic, hedgeTradition } from './hedgeTraditions';
+import { hasGruagach, hasHedgeMagic, hedgeTradition } from './hedgeTraditions';
 import type { Character } from './types';
 
 const fixtures = import.meta.glob('../../scripts/qa/fixtures/*.saga.json', { eager: true, import: 'default' }) as Record<string, { characters: Character[] }>;
@@ -24,5 +24,14 @@ describe('hedge traditions', () => {
       expect(hasHedgeMagic(c), defId).toBe(true);
       expect(hedgeTradition(c), defId).toBeUndefined();
     }
+  });
+
+  it('take the holy power Blessing, an Ability, for no gruagach’s Blessing, a Virtue', () => {
+    // the gruagach practice saga's Ida: Blessing and Holy Music (RoP: The Divine), no hedge magic
+    const ida = who('gru', 'd30684a76704');
+    expect(ida.abilities.some((a) => a.abilityId === 'blessing')).toBe(true);
+    expect(hasGruagach(ida)).toBe(false);
+    expect(hasHedgeMagic(ida)).toBe(false);
+    expect(hasGruagach(who('gru', 'bf5f92f9a31e'))).toBe(true);
   });
 });
