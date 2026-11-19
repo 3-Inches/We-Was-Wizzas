@@ -2,7 +2,8 @@
 // off (applySeason), and whatever else it recorded in its `undo`: what it left owed on the Resolve list
 // (Twilight from a botch), the Labor Points it earned and the workshop's counts, a lab project's
 // progress and the vis the work spent, the purse's pounds, a Virtue an Initiation gave, a Discovery, a
-// season taught to the apprentice, a great building's progress, a roll its work left still waiting. A
+// season taught to the apprentice, a covenant teacher's seasons taught, a great building's progress, a holy
+// work's progress and the Fatigue it cost, an Ability it began, a roll its work left still waiting. A
 // roll already made stands: what it did is not taken back (`undo.rolled`). A season whose work finished something
 // (a spell learned, an item made, a familiar bound) is final: what it made is on the sheet, so it is not
 // unlogged (Undo at the top takes back the last change instead).
@@ -166,6 +167,21 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
         if (!changed.includes(cov)) changed.push(cov);
       }
     }
+    if (u.specialist) {
+      const cov = covs.find((x) => x.id === u.specialist!.covenantId);
+      const sp = cov?.specialists.find((x) => x.uid === u.specialist!.uid);
+      if (cov && sp) {
+        if (u.specialist.taught) sp.taught = { ...u.specialist.taught };
+        else delete sp.taught;
+        if (!changed.includes(cov)) changed.push(cov);
+      }
+    }
+    if (u.holyWork) {
+      const was = structuredClone(u.holyWork);
+      const works = c.holy?.works ?? [];
+      c.holy = { ...(c.holy ?? {}), works: works.some((w) => w.uid === was.uid) ? works.map((w) => (w.uid === was.uid ? was : w)) : [...works, was] };
+    }
+    if (u.fatigue) c.longTermFatigueLost = Math.max(0, c.longTermFatigueLost - u.fatigue);
     if (u.building) {
       const cov = covs.find((x) => x.id === u.building!.covenantId);
       if (cov) {
@@ -177,6 +193,10 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
       }
     }
   }
+  // an Ability the season began (Worship's Church Lore, a new language from a book) goes again, once it
+  // is left with no experience and nothing else to it: not one a Virtue gives, a native tongue, or one with a specialty
+  const begun = Object.keys(e.gains).filter((k) => k.startsWith('ability:')).map((k) => k.slice(8));
+  c.abilities = c.abilities.filter((a) => !begun.includes(a.uid) || a.why || a.native || a.specialty || Object.values(a.xp).some((v) => v));
   c.seasonLog = c.seasonLog.filter((x) => x.uid !== entryUid);
   return { ok: true, covenants: changed };
 }

@@ -2,7 +2,8 @@
 // (engine/unlog.ts). Part of the persisted model (types.ts), kept apart so that file need not grow.
 
 import type { Art } from '../data/types';
-import type { GreatBuilding, LabProject, PriorityKind, Workshop } from './types';
+import type { HolyWork } from './holy';
+import type { GreatBuilding, LabProject, PriorityKind, Specialist, Workshop } from './types';
 
 export type SeasonActivityKind =
   | 'study-book'
@@ -96,6 +97,12 @@ export interface SeasonUndo {
   tractatus?: { covenantId: string; bookUid: string };
   /** a great building as it was before the season's work (none: the season began it) */
   building?: { covenantId: string; uid: string; before?: GreatBuilding };
+  /** a covenant teacher's seasons taught this year, as they were before this lesson (two a year, DE p.180) */
+  specialist?: { covenantId: string; uid: string; taught?: Specialist['taught'] };
+  /** a season of holy work: the work as it was before (Mythic Judaism) */
+  holyWork?: HolyWork;
+  /** long-term Fatigue levels the season cost (a season of Merkavah), given back while the season lasts */
+  fatigue?: number;
   /** why it cannot be unlogged: what its work made */
   final?: string;
   /**

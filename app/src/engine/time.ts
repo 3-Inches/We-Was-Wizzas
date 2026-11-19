@@ -370,8 +370,8 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
       const labTeaching = lab ? Math.min(3, deriveLab(lab, data).specializations.Teaching ?? 0) : 0;
       const r = computeStudy(d, { kind: 'teacher', com: specChar(sp, 'Com'), teaching: sp.teaching ?? 0, teacherScore: theirs.score, students: drill ? 3 : 1, goodTeacher: !!sp.goodTeacher, isArt: false, subject: t.label, labTeaching }, { abilityUid: t.abilityUid });
       if (!r.xp && r.capped) return instead(`${sp.name || 'The teacher'} knows no more ${t.label} than ${c.name || 'the student'} does.`, keep);
+      log('taught', `Taught by ${sp.name || 'a teacher'}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {}, 0, sameLesson ? undefined : { specialist: { covenantId: cov!.id, uid: sp.uid, taught: sp.taught && { ...sp.taught } } });
       if (!sameLesson) sp.taught = { year, seasons: (sp.taught?.year === year ? sp.taught.seasons : 0) + 1, season };
-      log('taught', `Taught by ${sp.name || 'a teacher'}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
       return [`Taught ${t.label} by ${sp.name || 'a teacher'}: Quality ${r.sourceQuality}, +${r.xp} xp${r.capped ? ' (as far as the teacher knows)' : ''}.${mightNote(d, r.xp)}`];
     }
     case 'worship': {
