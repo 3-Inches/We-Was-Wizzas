@@ -45,15 +45,17 @@ const score = (d: DerivedCharacter, id: string) => d.abilities.filter((a) => a.a
 
 /**
  * Something to write or copy: a book begun or finished and waiting for the library; a subject to write
- * on, 5 in an Art or 2 in an Ability, with 5 in a language (DE, Writing Books); or the covenant's books
- * to copy, read with Artes Liberales and 3 in a language (DE, Corrupted Copies).
+ * on, 5 in an Art or 2 in an Ability, with 5 in a language (DE, Writing Books) and Artes Liberales to write
+ * it down (DE, Artes Liberales: "covers the ability to read and write"); or the covenant's books to copy,
+ * read with Artes Liberales and 3 in a language (DE, Corrupted Copies).
  */
 export function hasSomethingToWrite(c: Character, d: DerivedCharacter, cov?: Covenant): boolean {
   if ((c.writing ?? []).some((p) => !p.done || !p.inLibrary)) return true;
   const lang = bestLanguage(d);
   const subject = (d.isMagus && Object.values(d.arts).some((a) => a.score >= 5)) || d.abilities.some((a) => a.score >= 2);
+  if (score(d, 'artes-liberales') < 1) return false;
   if (subject && lang >= 5) return true;
-  return !!cov?.library.length && lang >= 3 && score(d, 'artes-liberales') >= 1;
+  return !!cov?.library.length && lang >= 3;
 }
 
 /** The season in full for one character: the cards that apply, in the owner's order, and what is left out. */
@@ -99,11 +101,12 @@ export function seasonCards(c: Character, d: DerivedCharacter, saga: Saga, cov?:
   // 3. the record: the seasons logged, and aging (a ritual one has, made for them by a magus, beside it)
   add('log', 'record', true);
   add('aging', 'record', !neverAges(c), 'Aging', 'a magic character, a faerie or an immortal does not age');
-  if (!magus) add('longevity', 'record', !!c.longevity || !!c.longevityLapsed, 'Longevity Ritual', 'none made for them; a magus makes one in the laboratory');
+  // for anyone else, a ritual is made by a magus, often one outside the saga: its bonus is entered here
+  if (!magus) add('longevity', 'record', true, 'Longevity Ritual', '');
 
   // 4. last: the Mysteries and writing, where they apply
   const mysteriesOn = optionOn(saga, 'mysteries') || (c.initiations ?? []).length > 0;
   add('mysteries', 'last', mysteriesOn && mysteryWayIn(c, d), 'Mysteries & Initiation', mysteriesOn ? 'not of a Mystery House, and no Mystery Lore, which an Initiate needs' : 'off in this saga’s optional rules');
-  add('writing', 'last', hasSomethingToWrite(c, d, cov), 'Writing and copying', 'nothing to write on (5 in an Art or 2 in an Ability, with 5 in a language) and no book to copy');
+  add('writing', 'last', hasSomethingToWrite(c, d, cov), 'Writing and copying', 'cannot write (no Artes Liberales), or nothing to write on (5 in an Art or 2 in an Ability, with 5 in a language) and no book to copy');
   return { shown, hidden };
 }

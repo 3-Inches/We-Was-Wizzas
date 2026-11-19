@@ -53,9 +53,10 @@ describe('a season in full, ordered by the character', () => {
       const own = seasonCards(c, d, f.saga, characterContext(c, f.covenants, gameDataFor(f.saga)).covenant).shown.filter((s) => s.group === 'own');
       if (own.length) expect(cards[0], why).toMatch(OWN);
       else expect(cards[0], why).toBe('plan-season');
-      // and no own work after the planning has begun
-      const firstOther = cards.findIndex((t) => !OWN.test(t));
-      expect(cards.slice(firstOther).filter((t) => OWN.test(t)), why).toEqual([]);
+      // and no own work after the planning has begun (a non-magus's Longevity Ritual is kept with the record)
+      const ownHere = (t: string) => OWN.test(t) && !(t === 'longevity' && !d.isMagus);
+      const firstOther = cards.findIndex((t) => !ownHere(t));
+      expect(cards.slice(firstOther).filter(ownHere), why).toEqual([]);
     }
   });
 
@@ -91,7 +92,9 @@ describe('a season in full, ordered by the character', () => {
     const f = fixture('tmre');
     const grog = f.characters.find((c) => c.type === 'grog')!;
     const g = drawn(f, grog);
-    for (const t of ['lab-projects', 'original-research', 'apprentice', 'longevity', 'mysteries', 'witch-kitchen']) expect(g.cards).not.toContain(t);
+    for (const t of ['lab-projects', 'original-research', 'apprentice', 'mysteries', 'witch-kitchen']) expect(g.cards).not.toContain(t);
+    // a ritual for a grog is made by a magus, often one outside the saga: its bonus is entered on the record
+    expect(g.cards.indexOf('longevity')).toBeGreaterThan(g.cards.indexOf('season-log'));
     expect(g.hidden).toContain('Lab projects, original research and an apprentice: only a magus works in a Hermetic laboratory');
     expect(g.hidden).toContain('Mysteries & Initiation: not of a Mystery House, and no Mystery Lore');
     expect(g.hidden).toContain('Hedge magic’s seasons: no hedge tradition');
@@ -116,7 +119,7 @@ describe('a season in full, ordered by the character', () => {
     child.creation.finalized = true;
     const w = drawn(f, child);
     expect(w.cards).not.toContain('writing');
-    expect(w.hidden).toContain('Writing and copying: nothing to write on');
+    expect(w.hidden).toContain('Writing and copying: cannot write (no Artes Liberales)');
     // the same child with a Virtue that teaches nothing to write still has the season log, aging and the plan
     addVirtue(child, data, 'luck', 'Minor');
     expect(drawn(f, child).cards).toEqual(expect.arrayContaining(['plan-season', 'standing', 'priorities', 'season-log', 'aging']));

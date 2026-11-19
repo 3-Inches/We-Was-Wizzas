@@ -64,7 +64,7 @@ export function AgingCard({ ed }: { ed: CharEditor }) {
   };
 
   return (
-    <Card title="Aging" tour="aging" fold="aging" summary={`Age ${c.age}${c.apparentAge !== undefined && c.apparentAge !== c.age ? ` (looks ${c.apparentAge})` : ''}, Decrepitude ${d.decrepitude}; ${agedThisYear ? `aged for ${year}` : c.age < 35 && !c.longevity ? 'aging rolls start at 35' : 'aging is rolled at the year’s end'}.`}>
+    <Card title="Aging" tour="aging" fold="aging" summary={`Age ${c.age}${c.apparentAge !== undefined && c.apparentAge !== c.age ? ` (looks ${c.apparentAge})` : ''}, Decrepitude ${d.decrepitude}; ${agedThisYear ? `aged for ${year}` : c.age < d.agingStartAge && !c.longevity ? `aging rolls start at ${d.agingStartAge}` : 'aging is rolled at the year’s end'}.`}>
       <div className="row">
         <div className="stat">
           <span className="v">{c.age}</span>
@@ -129,7 +129,7 @@ export function AgingCard({ ed }: { ed: CharEditor }) {
         {/* the roll is offered only to one who ages, and not twice in a year; the lines around say why when it is not */}
         {atTable && agedThisYear ? (
           <span className="small muted">Aged for {year}.</span>
-        ) : atTable && !d.magicChar && (c.age >= 35 || c.longevity) ? (
+        ) : atTable && !d.magicChar && (c.age >= d.agingStartAge || c.longevity) ? (
           <button onClick={rollAging} title="Aging is rolled for everyone when the saga's year ends; roll here only out of turn">
             Roll aging now
           </button>
@@ -137,7 +137,7 @@ export function AgingCard({ ed }: { ed: CharEditor }) {
           <span className="small muted">{agedThisYear ? `Aged for ${year}.` : 'Aging is rolled for everyone when the year ends.'}</span>
         )}
       </div>
-      {c.age < 35 && !c.longevity && <p className="small muted">Aging rolls start at age 35 (or earlier with a Longevity Ritual).</p>}
+      {c.age < d.agingStartAge && !c.longevity && <p className="small muted">Aging rolls start at age {d.agingStartAge} (or earlier with a Longevity Ritual).</p>}
       <RollAtTable sagaId={saga.id} who={c.id} where="seasons" what="Aging is rolled at the year's end (or out of turn), its hazards and Living Conditions set," />
       {aging && (
         <div className="issue info" style={{ marginTop: 8 }}>
