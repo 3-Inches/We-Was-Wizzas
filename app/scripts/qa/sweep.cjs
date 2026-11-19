@@ -2,11 +2,11 @@
 // errors, a page wider than the screen, and "undefined", "NaN" or "[object Object]" in the text.
 //
 //   npm run build && npm run qa:saga && npm run qa:sweep
-//   node scripts/qa/sweep.cjs [saga.json] [--width 1280,390] [--base http://localhost:4173/] [--no-fixtures | --only-fixtures]
+//   node scripts/qa/sweep.cjs [saga.json] [--width 1280,390] [--jobs 3] [--base http://localhost:4173/] [--no-fixtures | --only-fixtures]
 //
-// One run sweeps the saga (the owner's, from npm run qa:saga) and then each practice saga in
-// scripts/qa/fixtures, whose hedge wizards, faerie wizards and Mystery cultists fill the pages the
-// owner's saga holds few of.
+// One run sweeps the saga (the owner's, from npm run qa:saga) and each practice saga in scripts/qa/fixtures,
+// whose hedge wizards, faerie wizards and Mystery cultists fill the pages the owner's saga holds few of. It
+// does so at each width, --jobs sagas at a time (3 by default; --jobs 1 sweeps them one after another).
 //
 // What it visits is read from the app, not listed here, so a page or tab added later is swept:
 // - every tab a page shows is pressed, and every tab that then appears under it (crawl);
@@ -46,6 +46,7 @@ const widths = opt('width', '1280,390').split(',').map(Number);
 const base = opt('base', 'http://localhost:4173/');
 const noFixtures = flag('no-fixtures');
 const onlyFixtures = flag('only-fixtures');
+const jobs = Number(opt('jobs', '3'));
 const file = path.resolve(args[0] ?? path.join(out, 'saga.json'));
 
 // ---- read from the app's code
@@ -266,29 +267,41 @@ async function sweepSaga(b, width, sagaFile, practice) {
   if (!onlyFixtures) sagas.push({ name: path.basename(file), file, practice: false });
   if (!noFixtures)
     for (const f of fs.readdirSync(FIX).filter((x) => x.endsWith('.saga.json')).sort()) sagas.push({ name: f, file: path.join(FIX, f), practice: true });
+  // Every saga at every width is a job, each in a browser context of its own (its own saved state), run
+  // `jobs` at a time. The owner's saga is two thirds of the pages, so its jobs go first.
+  const queue = widths.flatMap((w) => sagas.map((sg) => ({ w, sg })));
+  const results = new Map(); // `${w} ${saga}` -> report
+  const t0 = Date.now();
+  const b = await chromium.launch();
   try {
     fs.mkdirSync(out, { recursive: true });
+    const worker = async () => {
+      for (let job; (job = queue.shift()); ) {
+        const report = await sweepSaga(b, job.w, job.sg.file, job.sg.practice);
+        results.set(`${job.w} ${job.sg.name}`, report);
+        const bad = report.filter((l) => l.startsWith('XX'));
+        console.log(`${job.w}px ${job.sg.name}: ${report.filter((l) => !l.startsWith('--')).length} pages, ${bad.length} with problems${bad.length ? `:\n${bad.join('\n')}` : ''}`);
+      }
+    };
+    await Promise.all(Array.from({ length: Math.max(1, jobs) }, worker));
     for (const w of widths) {
-      const b = await chromium.launch();
       const lines = [];
       const counts = [];
-      const t0 = Date.now();
       for (const sg of sagas) {
-        const report = await sweepSaga(b, w, sg.file, sg.practice);
+        const report = results.get(`${w} ${sg.name}`);
         const pages = report.filter((l) => !l.startsWith('--'));
         const bad = pages.filter((l) => l.startsWith('XX'));
         failed += bad.length;
         counts.push(`${sg.name} ${pages.length} pages, ${bad.length} with problems`);
         lines.push(`== ${sg.name}: ${pages.length} pages, ${bad.length} with problems`, ...report);
-        console.log(`${w}px ${sg.name}: ${pages.length} pages, ${bad.length} with problems${bad.length ? `:\n${bad.join('\n')}` : ''}`);
       }
-      await b.close();
       const total = lines.filter((l) => /^(ok|XX) /.test(l));
-      const summary = `${w}px: ${total.length} pages, ${total.filter((l) => l.startsWith('XX')).length} with problems, in ${Math.round((Date.now() - t0) / 60000)} minutes (${counts.join('; ')})`;
+      const summary = `${w}px: ${total.length} pages, ${total.filter((l) => l.startsWith('XX')).length} with problems, in ${Math.round((Date.now() - t0) / 60000)} minutes with ${jobs} at a time (${counts.join('; ')})`;
       fs.writeFileSync(path.join(out, `sweep-${w}.txt`), `${summary}\n${lines.join('\n')}\n`);
       console.log(summary);
     }
   } finally {
+    await b.close();
     server?.kill();
   }
   process.exit(failed ? 1 : 0);
