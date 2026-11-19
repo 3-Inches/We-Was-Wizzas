@@ -52,6 +52,9 @@ describe('a double botch studying vis, at a planned season’s end', () => {
     const [e] = loggedThisSeason(m, 1220, 'Spring');
     expect(e.activity).toBe('study-vis');
     expect(e.warpingPoints).toBe(2);
+    // a botch's total is never higher than zero (DE, Stress Rolls, line 570): no experience, though the aura is 3
+    expect(Object.values(e.gains).filter((x) => x > 0)).toEqual([]);
+    expect(m.purse?.vis).toEqual([{ art: 'Cr', pawns: 2 }]);
     expect(m.warpingPoints).toBe(before + 2);
     expect(owedTwilight(m)).toHaveLength(1);
     expect(owedTwilight(m)[0]).toMatchObject({ year: 1220, season: 'Spring', points: 2 });

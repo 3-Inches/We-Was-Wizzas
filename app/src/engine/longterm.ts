@@ -16,7 +16,7 @@ export type StudySource =
   | { kind: 'practice'; quality: number; subject: string }
   | { kind: 'exposure'; subject: string }
   | { kind: 'adventure'; quality: number; subject: string }
-  | { kind: 'vis'; art: Art; dieRoll: number; aura: number }
+  | { kind: 'vis'; art: Art; dieRoll: number; aura: number; botched?: boolean }
   | { kind: 'worship'; quality: number; subject: string };
 
 export interface StudyResult {
@@ -113,6 +113,12 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
     parts.push({ label: `Magic Might ${d.magicChar.might} (a magic character's Might is subtracted)${eaten ? `, less ${Math.min(d.magicChar.might, 2 * eaten)} for ${eaten} pawn${eaten > 1 ? 's' : ''} of vis eaten` : ''}`, value: -penalty });
     total = Math.max(0, total - penalty);
     if (!total) notes.push(`A magic character with this much Might learns nothing from this source unless it eats vis: each pawn, of any Art, takes 2 off the penalty (RoP: Magic, Advancement).`);
+  }
+  // a botched stress roll's total is never higher than zero, whatever is added to the die (DE, Stress Rolls,
+  // line 570): a botched study from vis teaches nothing, and the vis is spent all the same
+  if (src.kind === 'vis' && src.botched && total > 0) {
+    parts.push({ label: 'Botched: the total is no higher than zero (DE, Stress Rolls)', value: -total });
+    total = 0;
   }
   // DE Distractions: each full month of the season lost takes a third of the original total (fractions rounded up)
   const months = Math.min(3, Math.max(0, Math.floor(target.monthsLost ?? 0)));

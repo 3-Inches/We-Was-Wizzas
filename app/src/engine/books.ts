@@ -233,6 +233,22 @@ export function covenantArtisans(cov: Covenant, members: { c: Character; d: Deri
   return { scribe: bestArtisan(cov, members, SCRIBE), binder: bestArtisan(cov, members, BINDER), illuminator: bestArtisan(cov, members, ILLUMINATOR) };
 }
 
+// ------------------------------------------------------------------------------ Reading
+
+/**
+ * Why a character cannot study from a book, or nothing if they can: "It is not possible to study from
+ * a book unless you are fluent (have a score of four or higher) in the language in which it is written,
+ * and can read and write the writing system used (which requires a score in Artes Liberales)" (DE,
+ * Reading Books, line 16191). A book written in several languages needs any one of them.
+ */
+export function readProblems(c: Character, d: DerivedCharacter, b: Pick<LibraryBook, 'language'>): string[] {
+  const out: string[] = [];
+  const langs = (b.language ?? '').split(/,\s*|\s+and\s+|\s+or\s+/).map((x) => x.trim()).filter(Boolean);
+  if (langs.length && !langs.some((l) => languageScore(c, d, l) >= 4)) out.push(`${langs.join(' or ')} 4 or more`);
+  if (score(d, 'artes-liberales') < 1) out.push('Artes Liberales (to read)');
+  return out;
+}
+
 // ------------------------------------------------------------------------------ Copying
 
 /**
