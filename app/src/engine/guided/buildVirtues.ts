@@ -12,6 +12,8 @@ import { evaluate, shortlist, tagWeights, traceOf, type GuidedContext, type Scor
 import { HOLY_METHODS, HOLY_POWERS, METHOD_POWERS } from '../../data/divine';
 
 import { SIZE_POINTS, TO_DECIDE, answer, choose, firstPassing, paramFor, type BuildInput } from './buildShared';
+import { addTraditionVirtues, fitsTradition, traditionOf } from './traditions';
+import { addMystery } from './buildMysteries';
 
 export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, refresh: () => void, log: string[], toDecide: string[]) {
   const { data, rules } = inp;
@@ -39,7 +41,9 @@ export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildIn
   const named = (id: string) => (st.answers[`vf:${id}`] ?? 0) >= 7;
   // Holy Magic remakes a magus's whole craft (no Magic Theory, every spell by a Method), and a Holy
   // Method or Power does nothing without its other half and a life of faith: none of them by chance
-  const simpleEnough = (s: Scored) => (s.def.id === 'holy-magic' || isHolyVirtue(s.def.id) ? named(s.def.id) || wantsHoly()
+  // a hedge tradition's own Virtues only for its member: alone, a gruagach's Form or a faerie Power casts nothing
+  // (asked each time: a faerie wizard is one only once their Method is taken)
+  const simpleEnough = (s: Scored) => fitsTradition(s.def.id, c, data, st, traditionOf(c)) && (s.def.id === 'holy-magic' || isHolyVirtue(s.def.id) ? named(s.def.id) || wantsHoly()
     : complexityOk || !(s.rec.flags.complexity || s.rec.flags.spellLike) || named(s.def.id));
   const sizeFor = (s: Scored, room: number) => {
     const sizes = s.def.sizes.filter((z) => z !== 'Free' || s.def.sizes.length === 1);
@@ -53,6 +57,9 @@ export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildIn
 
   // holy powers: a Method and a Power that go together, before anything else takes their points
   if (wantsHoly()) addHolyPair(c, st, inp, get, log, add, clean, maxFlaws * ratio);
+  // a hedge tradition's Virtues and the Flaw its chapter requires; a magus's Mystery
+  addTraditionVirtues(c, st, inp, get, log, add, clean, maxFlaws * ratio);
+  addMystery(c, st, inp, get, log, add, clean, maxFlaws * ratio);
 
   // Virtues: best fit first, while there is room (a Major only when it fits clearly better)
   const ev = evaluate(st, get());

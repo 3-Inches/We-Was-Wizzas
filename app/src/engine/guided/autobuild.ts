@@ -23,6 +23,7 @@ import { evaluate, recommendHouses, statusShortlist, tagWeights, traceOf, type G
 import { ACTS, balance, buildVirtuesAndFlaws } from './buildVirtues';
 import { chooseSpells, spendExperience } from './buildExperience';
 import { answer, ctxFor, mythicTypeOf, paramFor, type BuildInput, type BuildResult } from './buildShared';
+import { TRADITION_STATUSES, addSympathyTraits, mundaneStatus, needsMundaneStatus, takeTradition } from './traditions';
 
 export { TRIBUNAL_LANGUAGE, mythicTypeOf, type BuildInput, type BuildResult } from './buildShared';
 
@@ -38,6 +39,10 @@ export function resetChoices(c: Character) {
   c.abilities = c.abilities.filter((a) => a.native);
   for (const k of Object.keys(c.arts)) c.arts[k as keyof Character['arts']] = {};
   c.spells = [];
+  // a hedge tradition's spells, scripts and charms from the apprenticeship are chosen again
+  if (c.gruagach?.spells) c.gruagach.spells = c.gruagach.spells.filter((x) => x.source !== 'training');
+  if (c.vitki?.scripts) c.vitki.scripts = c.vitki.scripts.filter((x) => x.source !== 'training');
+  if (c.learned?.charms) c.learned.charms = c.learned.charms.filter((x) => x.source !== 'training');
   for (const k of Object.keys(c.characteristics)) c.characteristics[k as keyof Character['characteristics']] = 0;
   c.personality = c.personality.filter((p) => c.type === 'grog' && p.trait === 'Loyal');
   c.creation.childhoodPackage = undefined;
@@ -148,10 +153,16 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
     refresh();
   }
 
+  // ---------------------------------------------------------------- a hedge tradition: The Gift and its Social Status
+  if (takeTradition(c, st, inp, ctx, log)) refresh();
+
   // ---------------------------------------------------------------- Social Status
-  if (c.type !== 'magus' && !ctx.d.tally.socialStatuses.length) {
+  // a mathematicus also takes a status for a place in mundane society (Hedge Magic, line 4157)
+  const second = mundaneStatus(c, st, ctx, inp);
+  if (c.type !== 'magus' && (!ctx.d.tally.socialStatuses.length || needsMundaneStatus(c, ctx))) {
     const ev = evaluate(st, ctx);
-    const pick = statusShortlist(ev).find((s) => s.fit > 0 && s.size !== 'Major') ?? ev.scored.find((s) => s.def.id === (answer('f-travel', st, ctx) >= 7 ? 'wanderer' : 'covenfolk'));
+    // a tradition's status only for its member, who has it already
+    const pick = second ?? statusShortlist(ev).find((s) => s.fit > 0 && s.size !== 'Major' && !TRADITION_STATUSES.has(s.def.id)) ?? ev.scored.find((s) => s.def.id === (answer('f-travel', st, ctx) >= 7 ? 'wanderer' : 'covenfolk'));
     if (pick) {
       const cv = addVirtue(c, inp.data, pick.def.id, pick.def.sizes.includes('Free') ? 'Free' : pick.size, paramFor(pick));
       cv.why = pick.fit > 0 ? traceOf(pick, st, ctx) : 'from: the usual status for this concept';
@@ -178,6 +189,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
   spendExperience(c, st, inp, () => ctx, refresh, why, log);
   refresh();
   if (c.type === 'magus') chooseSpells(c, st, inp, () => ctx, refresh, log);
+  addSympathyTraits(c);
   refresh();
 
   // ---------------------------------------------------------------- personality

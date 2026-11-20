@@ -54,6 +54,7 @@ export const SECTIONS: { id: SectionId; title: string; intro: string; types?: Ch
 const MAGI: CharType[] = ['magus'];
 const NOT_GROGS: CharType[] = ['magus', 'companion', 'mythic'];
 const NON_MAGI: CharType[] = ['companion', 'mythic', 'grog'];
+const COMPANIONS: CharType[] = ['companion'];
 
 const ART_BLURB: Record<Art, string> = {
   Cr: 'making, healing and perfecting',
@@ -221,7 +222,25 @@ export const QUESTIONS: Question[] = [
   { id: 'f-politics', section: 'F', text: 'I care about Hermetic politics and the Tribunal.', tags: { politics: 1, order: 1 }, types: NOT_GROGS, presets: { politician: 9 } },
   { id: 'f-politics-law', section: 'F', parent: 'f-politics', text: 'I’d like to be involved in Hermetic law: the Code, Quaesitores and trials.', tags: { politics: 0.5, investigation: 1 }, types: NOT_GROGS },
   { id: 'f-lords', section: 'F', text: 'I care about mundane power: lords, towns, the Church’s hierarchy.', tags: { nobility: 0.5, church: 0.5, leadership: 0.5 }, types: NOT_GROGS, presets: { noble: 8 } },
-  { id: 'f-mystery', section: 'F', text: 'I’d like to be initiated into a Mystery Cult’s secrets.', tags: { mystery: 1 }, types: MAGI },
+  {
+    id: 'f-tradition', section: 'F', build: true, noHint: true, types: COMPANIONS,
+    text: 'I’d like my character to work a magic of their own, learned from a master outside the Order of Hermes. (Pick one below.)', tags: { 'realm:magic': 0.3, lore: 0.3 },
+    explainer: 'Hedge Magic and Realms of Power: Faerie describe magical traditions outside the Order. Each is a Social Status with the Virtues and Abilities its chapter requires, and the build makes them as the chapter says: the least scores first, then the spells, rune scripts or charms the master teaches. Their magic is worked on the Game Table’s Hedge magic and Faerie pages. A Gifted member suffers The Gift’s penalties among ordinary folk, as a magus does, and the Order may watch them.',
+  },
+  { id: 'f-trad-witch', section: 'F', parent: 'f-tradition', chip: true, build: true, types: COMPANIONS, text: 'A folk witch: healing, cursing, flight and second sight, taught by the wise woman of a village.', tags: { healing: 0.5, senses: 0.5 }, hint: 'Folk Witch (Free Social Status, Hedge Magic), her powers as Virtues, and a Flaw that limits her magic' },
+  { id: 'f-trad-gruagach', section: 'F', parent: 'f-tradition', chip: true, build: true, types: COMPANIONS, text: 'A gruagach: a Pictish warrior-wizard whose tattoos give and take strength, bless, curse and change shape.', tags: { combat: 0.5, shapechanged: 0.5 }, hint: 'Gruagach (Free Social Status, Hedge Magic), Arts of Give or Take and a Form, and tattooed spells' },
+  { id: 'f-trad-learned', section: 'F', parent: 'f-tradition', chip: true, build: true, types: COMPANIONS, text: 'A learned magician: a mathematicus of Bologna, who works charms, amulets and written chartae from Latin books.', tags: { scholarship: 0.5, writing: 0.5 }, hint: 'Mathematicus of Bologna (Free Social Status, Hedge Magic), a second status such as Clerk, and charms' },
+  { id: 'f-trad-vitki', section: 'F', parent: 'f-tradition', chip: true, build: true, types: COMPANIONS, text: 'A vitki: a Gifted rune-carver of the North, whose scripts are cut into wood and stone.', tags: { lore: 0.5, ritual: 0.5 }, hint: 'Vitki (Free Social Status, Hedge Magic), The Gift, a free Puissant Virtue from the master, runes and rune scripts' },
+  { id: 'f-trad-faerie', section: 'F', parent: 'f-tradition', chip: true, build: true, types: COMPANIONS, text: 'A faerie wizard: bards, wise folk or borrowers whose magic comes from bargains and kinship with faeries.', tags: { 'realm:faerie': 1, courts: 0.5 }, hint: 'a Faerie Method and Power, or Summoning, and Faerie Sympathy (Realms of Power: Faerie)' },
+  {
+    id: 'f-trad-gift', section: 'F', parent: 'f-tradition', build: true, types: COMPANIONS,
+    text: 'I’d like my character to have The Gift, so the tradition opens all its magic to them.', tags: { 'realm:magic': 0.5, outsider: 0.5 },
+    hint: 'The Gift (Free) for a folk witch, gruagach or learned magician: every power or Art of the tradition, but the Gift’s penalties with people. A vitki always has it; a faerie wizard never does',
+  },
+  {
+    id: 'f-mystery', section: 'F', build: true, text: 'I’d like to be initiated into a Mystery Cult’s secrets.', tags: { mystery: 1 }, types: MAGI,
+    hint: 'one Mystery from apprenticeship: of your House, for a magus of Bjornaer, Criamon, Merinita or Verditius; else Cabal Legacy and a cult’s Mystery (The Mysteries)',
+  },
   { id: 'f-travel', section: 'F', text: 'My character will travel far and often.', tags: { travel: 1 }, presets: { explorer: 8 } },
   { id: 'f-senses', section: 'F', text: 'I’d like my character to sense the supernatural: see spirits, feel danger coming, find hidden things.', tags: { senses: 1, perception: 0.5 }, presets: { mystic: 8 } },
 

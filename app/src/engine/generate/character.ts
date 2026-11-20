@@ -124,7 +124,9 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   const rng = seeded(o.seed);
   const { data, saga, rules } = g;
   const log: string[] = [];
-  const roles = rolesFor(o.type);
+  // a plain build keeps to the core book, so not to a role that is made from another (a hedge
+  // tradition, a Mystery, holy powers)
+  const roles = rolesFor(o.type).filter((r) => !o.coreOnly || !['f-tradition', 'f-mystery', 'f-divine-powers'].some((q) => (r.answers?.[q] ?? 0) >= 7));
   const role = (o.role && ROLE_BY_ID.get(o.role)) || pick(rng, roles);
   const c = newCharacter(o.type, saga.id, saga.currentYear);
   if (o.startAge !== undefined && o.type === 'magus') c.creation.apprenticeshipStartAge = o.startAge;
@@ -212,7 +214,9 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   // a craftsman, knight or merchant is no hedge wizard: the Supernatural Virtues of the hedge
   // traditions and the Realms books (Craft Amulets, Mythic Alchemy, Type Refining) go to characters
   // whose concept is mystical; the core book's (Second Sight, Eye of Hephaestus) stay open to anyone
-  if (o.type !== 'magus' && !role.mythic && !c.creation.archetypes.some((t) => MYSTIC_THEMES.includes(t))) {
+  // a hedge wizard or faerie wizard is a mystic whatever the concept's themes (guided/traditions.ts)
+  const tradition = Math.max(role.answers?.['f-tradition'] ?? 0, o.answers?.['f-tradition'] ?? 0) >= 7;
+  if (o.type !== 'magus' && !role.mythic && !tradition && !c.creation.archetypes.some((t) => MYSTIC_THEMES.includes(t))) {
     const hedge = data.virtuesFlaws.filter((d) => d.kind === 'virtue' && d.categories.includes('Supernatural') && !MUNDANE_BOOKS.includes(d.source.book)).map((d) => d.id);
     // unless the player asked for one by name
     st.declined = [...new Set([...st.declined, ...hedge.filter((id) => o.answers?.[`vf:${id}`] === undefined)])];

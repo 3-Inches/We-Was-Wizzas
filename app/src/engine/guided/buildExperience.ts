@@ -20,6 +20,9 @@ import { mythicAbility } from '../character/factory';
 
 import { TRIBUNAL_LANGUAGE, answer, mythicTypeOf, type BuildInput } from './buildShared';
 import { powerVirtue } from './buildVirtues';
+import { TRADITION_BY_ID, chooseTraditionMagic, spendTradition, traditionAbilities, traditionOf } from './traditions';
+import { mysteryLoreOf } from './buildMysteries';
+import { divines } from '../hermeticMysteries';
 
 const ABILITY_CHOICES: Record<string, string[]> = {
   combat: ['single-weapon', 'brawl', 'athletics', 'great-weapon', 'bows'],
@@ -71,7 +74,9 @@ function abilityParam(id: string, c: Character, inp: BuildInput): string | undef
     // the tongue of the character's own people, wherever the saga is set (a Syrian in the Rhine speaks Arabic)
     case 'living-language': return nativeLanguageFor(c.nationality) ?? TRIBUNAL_LANGUAGE[region] ?? 'French';
     case 'dead-language': return 'Latin';
-    case 'organization-lore': return 'Order of Hermes';
+    // a hedge tradition's people (Gruagach Lore, Lore of the Mathematici), else the Order's
+    case 'organization-lore': return TRADITION_BY_ID.get(traditionOf(c) ?? 'faerie')?.lore ?? 'Order of Hermes';
+    case 'mystery-cult-lore': return mysteryLoreOf(c);
     default: return undefined;
   }
 }
@@ -90,6 +95,11 @@ function rankedAbilities(c: Character, st: GuidedState, ctx: GuidedContext): { i
   // a Holy Method or Power the character has is what they pray with: raised whatever else was said
   const holy = [...HOLY_METHODS, ...HOLY_POWERS].filter((x) => c.abilities.some((a) => a.abilityId === x.id) && c.virtues.some((v) => v.defId === powerVirtue(x.id)));
   for (const x of holy) bump(x.id, 3 + (w['holy-power'] ?? 0), 'holy-power');
+  // a faerie wizard's Method, Power and Arts of bargaining; a Mystery's Lore and what it rolls
+  for (const x of traditionAbilities(c, w)) bump(x.id, x.w, 'realm:faerie');
+  if (c.type === 'magus' && mysteryLoreOf(c)) bump('mystery-cult-lore', 2.5, 'mystery');
+  // Divination & Augury and Dream Interpreter divine with the Divination Ability (TMRE)
+  if (divines(c)) bump('divination', 2, 'mystery');
   // the devout: Dominion Lore, their faith's Theology where they may learn it, Concentration to pray for a miracle
   const piety = Math.max(w.piety ?? 0, holy.length ? 2 : 0);
   if (piety > 0) {
@@ -291,6 +301,11 @@ export function spendExperience(c: Character, st: GuidedState, inp: BuildInput, 
     }
   }
 
+  // a hedge tradition's apprenticeship, as its chapter spends it; a learned magician's charms are paid
+  // from the training, so they are chosen before the rest of it is spent
+  spendTradition(c, st, inp, get, refresh, log);
+  chooseTraditionMagic(c, inp, get, refresh, log, 'charms');
+
   // every other pool: later life, Virtue pools
   for (let guard = 0; guard < 8; guard++) {
     const pools = get().d.budgets.filter((b) => !['native', 'childhood', 'apprenticeship', 'postGauntlet'].includes(b.id) && b.total - b.spent > 0 && b.kind !== 'art+ability');
@@ -305,6 +320,8 @@ export function spendExperience(c: Character, st: GuidedState, inp: BuildInput, 
     }
   }
   refresh();
+  // a gruagach's spells and a vitki's scripts have levels of their own: chosen for the Arts and runes as they end
+  chooseTraditionMagic(c, inp, get, refresh, log, 'spells');
 }
 
 /**
