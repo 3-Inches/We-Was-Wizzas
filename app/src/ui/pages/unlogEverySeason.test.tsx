@@ -47,7 +47,9 @@ const records = () => {
 
 /**
  * The practice sagas, each with what its characters may begin elsewhere set up, so their season's work
- * shows: an apprentice for a magus, a workshop for one with a trade, a holy work begun, a mason.
+ * shows: an apprentice for a magus, a workshop for one with a trade, a holy work begun, a mason; a charm
+ * under way for a learned magician, vis for a folk witch's fetish, and Ars Notoria for a companion, whose
+ * First Ring is recited in spring (every practice saga's season).
  */
 function prepared(): [string, SagaState][] {
   return sagaFixtures().map(([name, f]) => {
@@ -64,6 +66,13 @@ function prepared(): [string, SagaState][] {
     }
     const mason = alive.find((c) => c.type === 'grog' && c.covenantId);
     if (mason) ensureAbility(mason, 'craft-type', { laterLife: 75 }, 'Mason');
+    for (const c of alive) {
+      const known = c.learned?.charms?.[0];
+      if (known && !c.learned?.inventing) c.learned = { ...c.learned, inventing: { charm: { ...known, uid: `inv-${c.id}`, name: 'A charm under way', source: 'play' }, progress: 0, seasons: 0 } };
+      if (c.virtues.some((v) => v.defId === 'folk-witch')) c.purse = { pounds: c.purse?.pounds ?? 0, vis: [...(c.purse?.vis ?? []), { art: 'In', pawns: 3 }, { art: 'Au', pawns: 3 }, { art: 'An', pawns: 3 }] };
+    }
+    const reader = alive.find((c) => c.type === 'companion' && st.saga.currentSeason === 'Spring');
+    if (reader) ensureAbility(reader, 'ars-notoria', { laterLife: 5 });
     return [name, st];
   });
 }
@@ -220,7 +229,7 @@ describe('a season done from a card, unlogged, leaves everyone as they were', ()
     expect([...reached].some((k) => /^Worked as/.test(k)), 'a season in the workshop').toBe(true);
     // and the seasons whose rolls wait for the season's end, or that change a tradition's own record
     const whole = new Set(out.flatMap((r) => r.seasons));
-    for (const k of ["Witch's kitchen: a curse woven", 'Gruagach: inventing', 'Vitki: learning rune scripts', 'Devotion: the search for the Book of Solomon'])
+    for (const k of ["Witch's kitchen: a curse woven", "Witch's kitchen: a fetish", 'Gruagach: inventing', 'Learned magic: inventing', 'Vitki: learning rune scripts', 'Devotion: the search for the Book of Solomon', 'Devotion: a ring of Solomon first recited'])
       expect([...whole].some((x) => x.startsWith(k)), k).toBe(true);
   }, 120000);
 });
