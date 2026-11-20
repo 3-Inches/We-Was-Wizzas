@@ -40,6 +40,10 @@ Each point says what the owner wants, then what it means for a change.
 
 The owner's answers on particular cases, newest first, kept here when the roadmap's item for them is done. A session that finds its question answered here does not ask again.
 
+- **A book is read only by one who can read it** (20 November 2026). 4 in its language and Artes Liberales for its alphabet (DE line 16191), on every road a book is read: Plan a season, the standing activity and the clock. A book the character cannot read is not offered, with one line saying why.
+- **Great projects' rolls have their own part of Dice** (20 November 2026): Game Table › Dice › Great projects.
+- **The living covenants' people play by their tradition** (19 November 2026). Their hedge wizards, faerie wizards and holy people work their tradition's seasons, and the toolkit rolls their Warping reactions (the Witch Moon, Nátt-thel, Faerie Calling), told in the Tribunal's news. A Virtue, Flaw or spell that a living magus's Twilight may bring is left to the storyguide, and the news says one may have come of it.
+- **Unlog takes back a linked season with its own** (19 November 2026). Unlogging either side of a lesson from a covenant-mate, or of a lab helper's season, takes back both, and says whose.
 - **A season in full is ordered by the character** (19 November 2026). Their own season work first (their tradition's cards, Lab projects for a magus), then the planning (Plan a season, the standing activity, priorities), then the season log and aging, and last the Mysteries and writing, where they apply.
 - **A botched study from vis teaches nothing** (19 November 2026). The vis is spent and no experience is gained. The rules for stress rolls settle it (DE line 570).
 - **Great projects** (17 and 18 November 2026). The building and the menagerie are kept on the covenant, in one Great projects card on its Overview. Their rolls are made at Game Table › Dice (point 1). A mason's Build and Repair are seasons on Seasons.
