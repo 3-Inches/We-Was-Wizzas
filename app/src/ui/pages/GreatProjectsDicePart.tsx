@@ -43,8 +43,12 @@ function useMembers(cov: Covenant) {
 /** Dice › Great projects: which covenant, then its buildings' stress check and its menagerie's rolls. */
 export function GreatProjectsDicePart({ sagaId }: { sagaId: string }) {
   const covs = useSagaCovenants(sagaId);
-  // the troupe's own covenants first, then the Tribunal's; a covenant with a building before one without
-  const order = useMemo(() => [...covs].sort((a, b) => Number(!!a.living) - Number(!!b.living) || Number(!(b.buildings ?? []).length) - Number(!(a.buildings ?? []).length)), [covs]);
+  // the troupe's own covenants first, then the Tribunal's; a covenant with a building before one without,
+  // then the one with the most members (the troupe's home)
+  const order = useMemo(
+    () => [...covs].sort((a, b) => Number(!!a.living) - Number(!!b.living) || Number(!(a.buildings ?? []).length) - Number(!(b.buildings ?? []).length) || b.memberIds.length - a.memberIds.length),
+    [covs],
+  );
   const [covId, setCovId] = useState('');
   const cov = order.find((c) => c.id === covId) ?? order[0];
   if (!cov) return <Empty>No covenant in this saga yet: its great buildings and menagerie are kept on a covenant.</Empty>;
