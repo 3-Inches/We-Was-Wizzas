@@ -138,7 +138,7 @@ describe('Quick build: a learned magician (HMRE line 4117)', () => {
       const { c, d, label } = common('learned-magician', seed, 'learned');
       expect(hedgeTradition(c), label).toBe('learned');
       expect(has(c, 'mathematicus-of-bologna'), label).toBe(true);
-      // a place in mundane society (line 4157): Clerk, Priest or Mendicant Friar where the rules allow one, else another
+      // a place in mundane society (line 4160): Clerk, Priest or Mendicant Friar where the rules allow one, else another
       expect(d.tally.socialStatuses.filter((v) => v.cv.defId !== 'mathematicus-of-bologna').length, label).toBeGreaterThanOrEqual(1);
       expect(LEARNED_TECHNIQUES.some((x) => has(c, x.id)) && LEARNED_FORMS.some((x) => has(c, x.id)), label).toBe(true);
       expect(languageScore(c, d, 'Latin'), label).toBeGreaterThanOrEqual(1);

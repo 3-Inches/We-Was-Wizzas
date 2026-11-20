@@ -17,7 +17,7 @@ import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
 import { HOUSE_BENEFIT_SCALE, HOUSE_EITHER_WAY, HOUSE_IDENTITY, MAGNITUDES, RANKED_TOTALS } from './magnitudes';
-import { traditionGate, traditionOf, wantedTradition } from './traditionRules';
+import { traditionGate, traditionOf, wantedTradition, type Tradition } from './traditionRules';
 
 
 export interface GuidedContext {
@@ -119,7 +119,7 @@ export function sagaRegion(ctx: GuidedContext): string | undefined {
 }
 
 /** Why an option is filtered out before scoring, or null. Gates are never scored. */
-export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, ctx: GuidedContext, complexityOk: boolean): string | null {
+export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, ctx: GuidedContext, complexityOk: boolean, tradition: Tradition | null = traditionOf(ctx.c) ?? wantedTradition(st, ctx.c, ctx.data) ?? null): string | null {
   const { c, d, data } = ctx;
   if (def.creatureOnly) return 'Creature only';
   if (!data.inBooks(def)) return 'Book not enabled';
@@ -131,8 +131,8 @@ export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, c
   if (rec.cultures.length && !rec.cultures.includes(c.society)) return `For ${rec.cultures.join(' or ')} characters`;
   // a hedge tradition's own Virtues only for its member, or one who asks to be one: alone, a gruagach's
   // Form or a faerie Power casts nothing (traditionRules.ts)
-  const tradition = traditionGate(def.id, c, data, st, traditionOf(c) ?? wantedTradition(st, c, data));
-  if (tradition) return tradition;
+  const outside = traditionGate(def.id, c, data, st, tradition ?? undefined);
+  if (outside) return outside;
   // asked for by name, or a Holy Method or Power when the player wants holy powers: complexity is no bar
   const named = (st.answers[`vf:${def.id}`] ?? 0) >= FOLLOW_UP_HIGH;
   const holy = rec.links.some((l) => l.tag === 'holy-power' && l.dir > 0 && l.strength >= 2) && (st.answers['f-divine-powers'] ?? 5) >= FOLLOW_UP_HIGH;
@@ -462,10 +462,12 @@ export function evaluate(st: GuidedState, ctx: GuidedContext): Evaluation {
   const gated = new Map<string, string>();
   // the saga's factors are the same for every option
   const f = sagaFactors(st, ctx);
+  // and so is the character's tradition
+  const tradition = traditionOf(ctx.c) ?? wantedTradition(st, ctx.c, ctx.data) ?? null;
   for (const def of ctx.data.virtuesFlaws) {
     const rec = recs.get(def.id);
     if (!rec) continue;
-    const why = gateReason(def, rec, st, ctx, complexityOk);
+    const why = gateReason(def, rec, st, ctx, complexityOk, tradition);
     if (why) {
       gated.set(def.id, why);
       continue;

@@ -100,10 +100,10 @@ export const TRADITION_STATUSES = new Set(TRADITIONS.flatMap((t) => (t.status ? 
  */
 const UNBUILT_OWN = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining', 'elemental-affinity', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae', 'elemental-theurgy', 'vulnerable-to-form-flaw', 'weak-elemental-resistance-flaw', 'nightwalker', 'versatile-phantasticum', 'half-taltos', 'hamr', 'sleepwalker'];
 
-/** A faerie wizard's Methods and Powers: rites need one of each (RoP: Faerie line 7503). */
+/** A faerie wizard's Methods and Powers: rites need one of each (RoP: Faerie line 7505). */
 export const FAERIE_METHOD_IDS: readonly string[] = ['evocation', 'enchantment', 'empathy'];
 export const FAERIE_POWER_IDS: readonly string[] = ['beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe'];
-/** The Virtues of faerie bargaining, "usually Summoning" (RoP: Faerie line 7503). */
+/** The Virtues of faerie bargaining, "usually Summoning" (RoP: Faerie line 7505). */
 const FAERIE_BARGAIN_IDS = ['summoning', 'bonding', 'captivating', 'dismissing'];
 
 /** The chips of the guided build's `f-tradition`, in the order the build takes them if several are picked. */
@@ -140,7 +140,7 @@ export function wantedTradition(st: GuidedState, c: Pick<Character, 'type'>, dat
  * Whether the saga's books and the player's answers leave the tradition open: its Social Status (a
  * faerie wizard's Methods, Powers and Sympathy) in the saga's books, and not declined, as a plain
  * build declines every book beyond the core. A faerie wizard needs a Method or a Virtue of bargaining,
- * and a Sympathy Trait "either from a Virtue or a Flaw" (RoP: Faerie line 7503).
+ * and a Sympathy Trait "either from a Virtue or a Flaw" (RoP: Faerie line 7505).
  */
 export function traditionOpen(t: Tradition, st: GuidedState, data: GameData): boolean {
   const open = (id: string) => {
@@ -184,13 +184,18 @@ export function fitsTradition(defId: string, c: Pick<Character, 'virtues'>, data
   return !traditionGate(defId, c, data, st, t);
 }
 
+// Every Virtue and Flaw a tradition gates. The scorer asks of each one each time it ranks the
+// shortlist, so the rest are let through at once.
+const GATED = new Set([...TRADITIONS.flatMap((t) => [...t.own, ...(t.opens ?? [])]), ...UNBUILT_OWN, ...FAERIE_METHOD_IDS, ...FAERIE_POWER_IDS]);
+
 /** Why the build and its shortlist leave this Virtue or Flaw out for the character's tradition, or none. */
 export function traditionGate(defId: string, c: Pick<Character, 'virtues'>, data: GameData, st: GuidedState, t: Tradition | undefined): string | null {
-  if ((st.answers[`vf:${defId}`] ?? 0) >= 7) return null;
   const mine = t ? TRADITION_BY_ID.get(t)! : undefined;
+  if (!GATED.has(defId) && !mine?.hermetic) return null;
+  if ((st.answers[`vf:${defId}`] ?? 0) >= 7) return null;
   const gifted = c.virtues.some((v) => v.defId === 'the-gift');
   if (gifted && mine?.opens?.includes(defId)) return `The Gift opens it for ${mine.member}`;
-  // a faerie wizard's rites need a Method and a Power together (RoP: Faerie line 7503), so one who
+  // a faerie wizard's rites need a Method and a Power together (RoP: Faerie line 7505), so one who
   // bargains with faeries instead (a Borrower's Summoning) is not drawn either alone
   if (t === 'faerie' && traditionOf(c) === 'faerie') {
     const holds = (ids: readonly string[]) => c.virtues.some((v) => ids.includes(v.defId));

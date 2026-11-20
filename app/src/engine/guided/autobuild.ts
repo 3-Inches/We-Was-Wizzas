@@ -158,7 +158,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
   if (takeTradition(c, st, inp, ctx, log)) refresh();
 
   // ---------------------------------------------------------------- Social Status
-  // a mathematicus also takes a status for a place in mundane society (Hedge Magic, line 4157)
+  // a mathematicus also takes a status for a place in mundane society (Hedge Magic, line 4160)
   const second = mundaneStatus(c, st, ctx, inp);
   if (c.type !== 'magus' && (!ctx.d.tally.socialStatuses.length || needsMundaneStatus(c, ctx))) {
     const ev = evaluate(st, ctx);

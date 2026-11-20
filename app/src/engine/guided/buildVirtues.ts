@@ -8,7 +8,7 @@ import { addVirtue, removeVirtue } from '../character/factory';
 import { vfProblems } from '../character/restrictions';
 import { HOUSE_ARTS } from '../generate/variety';
 import { isHolyCharacter, suitedTradition } from '../holy';
-import { evaluate, scoreOption, shortlist, tagWeights, traceOf, type GuidedContext, type Scored } from './score';
+import { evaluate, scoreOption, shortlist, tagWeights, traceOf, type Evaluation, type GuidedContext, type Scored } from './score';
 import { vfRecords } from './records';
 import { HOLY_METHODS, HOLY_POWERS, METHOD_POWERS } from '../../data/divine';
 
@@ -71,20 +71,22 @@ export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildIn
     !!s.def.effects?.some((e) => e.type === 'abilityAccess' && (e.abilityTypes ?? []).some((t) => !get().d.abilityAccess.types.has(t) && (ev.weights[typeTag(t)] ?? 0) >= 2));
   // a Virtue asked for by name comes first of all (Quick build's named Virtues, a tutorial's practice character)
   // (one the questions gate out, as adding complexity, is still taken: the player asked for it)
-  const namedFirst = (xs: Scored[]) => {
-    const ev = evaluate(st, get());
+  // (it takes the evaluation the list was drawn from: scoring every Virtue again for each pick doubled the build's time)
+  const namedFirst = (xs: Scored[], ev: Evaluation) => {
     const asked = Object.keys(st.answers).filter((k) => k.startsWith('vf:') && named(k.slice(3)) && !st.declined.includes(k.slice(3))).map((k) => k.slice(3));
+    if (!asked.length) return xs;
     const recs = vfRecords(data);
     const scoredOf = (id: string) => ev.scored.find((x) => x.def.id === id) ?? (data.vfById.get(id) && recs.get(id) ? scoreOption(data.vfById.get(id)!, recs.get(id)!, st, ev.weights, get()) : undefined);
     return [...asked.map(scoredOf).filter((x): x is Scored => !!x && x.def.kind === 'virtue' && !x.excluded && simpleEnough(x)), ...xs];
   };
-  virtues = namedFirst([...virtues.filter(accessWanted), ...virtues.filter((s) => !accessWanted(s))]);
+  virtues = namedFirst([...virtues.filter(accessWanted), ...virtues.filter((s) => !accessWanted(s))], ev);
   const cap = maxFlaws * ratio;
   const anyFit = virtues.some((x) => x.fit > 0);
   const tried = new Set<string>();
   for (let guard = 0; guard < 40; guard++) {
     // re-rank after each choice: a new Virtue can change the best sub-choice (Warrior opens weapons)
-    const list = guard === 0 ? virtues : namedFirst([...virtues.filter(accessWanted), ...shortlist(evaluate(st, get()), 'virtue').filter((x) => simpleEnough(x))]);
+    const now = guard === 0 ? null : evaluate(st, get());
+    const list = now ? namedFirst([...virtues.filter(accessWanted), ...shortlist(now, 'virtue').filter((x) => simpleEnough(x))], now) : virtues;
     const open = list.filter((x) => !tried.has(x.def.id));
     // a Virtue named or one that opens wanted Abilities still comes first; the rest by fit (Quick build: drawn among the best)
     const s = open[0] && (named(open[0].def.id) || accessWanted(open[0])) ? open[0] : choose(inp, c, anyFit ? open.filter((x) => x.fit > 0) : open, (x) => sizeFor(x, cap - get().d.tally.virtuePoints));

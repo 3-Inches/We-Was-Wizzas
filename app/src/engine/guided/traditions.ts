@@ -81,16 +81,16 @@ export function takeTradition(c: Character, st: GuidedState, inp: BuildInput, ct
   return t;
 }
 
-/** The statuses a mathematicus takes for a place in mundane society (HMRE line 4157), the Minor ones. */
+/** The statuses a mathematicus takes for a place in mundane society (HMRE line 4160), the Minor ones. */
 const LEARNED_SECOND = ['clerk', 'priest', 'mendicant-friar'];
 
-/** Whether the character is a mathematicus still without a status for their place in mundane society (HMRE line 4157). */
+/** Whether the character is a mathematicus still without a status for their place in mundane society (HMRE line 4160). */
 export const needsMundaneStatus = (c: Character, ctx: GuidedContext) => traditionOf(c) === 'learned' && !ctx.d.tally.socialStatuses.some((v) => !TRADITION_STATUSES.has(v.cv.defId));
 
 /**
  * A learned magician's second Social Status: of those the book suggests, the one that fits the answers
  * best and that the rules allow. Where none is open (a woman, or a society outside Christendom) the
- * build takes its usual choice, as "these lists are not exhaustive" (line 4157).
+ * build takes its usual choice, as "these lists are not exhaustive" (line 4160).
  */
 export function mundaneStatus(c: Character, st: GuidedState, ctx: GuidedContext, inp: BuildInput): Scored | undefined {
   if (!needsMundaneStatus(c, ctx)) return undefined;
@@ -224,7 +224,7 @@ export function addTraditionVirtues(c: Character, st: GuidedState, inp: BuildInp
   }
 
   if (t === 'faerie') {
-    // "at least four points of the character's starting Virtues to a Faerie Method and a Faerie Power ... and Sympathy Traits" (RoP: Faerie line 7503)
+    // "at least four points of the character's starting Virtues to a Faerie Method and a Faerie Power ... and Sympathy Traits" (RoP: Faerie line 7505)
     // a Method, Power or Summoning the player names is taken, in the tradition that favors it most
     const named = (ids: readonly string[]) => ids.filter((id) => (st.answers[`vf:${id}`] ?? 0) >= 7);
     const asked = named([...FAERIE_METHOD_IDS, ...FAERIE_POWER_IDS, 'summoning']);
