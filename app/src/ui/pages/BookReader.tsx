@@ -4,64 +4,10 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import { BOOK_BY_ID, BOOK_SHELVES, readOnlyMark } from '../../data';
 import { Card, Empty, SearchInput } from '../kit';
-import { bookCache, loadBookLines } from '../bookText';
-import { dropEmptyHeads, tidyTables } from '../tables';
+import { bookCache, findAnchor, loadBookLines, parseBook } from '../bookText';
+import { dropEmptyHeads, tableRowAt, tidyTables } from '../tables';
 
-interface Heading {
-  line: number; // 0-based
-  level: number;
-  text: string;
-  slug: string;
-}
-
-interface Section {
-  start: number;
-  end: number; // exclusive
-  heading: Heading;
-}
-
-// shared with the mechanics reference, so a book is fetched once
-
-/** GitHub-style heading slug (what the books' internal links use), with -1, -2 for duplicates. */
-function githubSlug(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/<[^>]+>/g, '')
-    .replace(/[*_`[\]()]/g, '')
-    .replace(/[^\p{L}\p{N}\s-]/gu, '')
-    .replace(/\s/g, '-');
-}
-
-function looseSlug(s: string): string {
-  return s
-    .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase()
-    .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-function parse(lines: string[]): { headings: Heading[]; sections: Section[] } {
-  const headings: Heading[] = [];
-  const seen = new Map<string, number>();
-  let inCode = false;
-  lines.forEach((l, i) => {
-    if (l.startsWith('```')) inCode = !inCode;
-    if (inCode) return;
-    const m = /^(#{1,6})\s+(.*?)\s*#*\s*$/.exec(l);
-    if (!m) return;
-    const base = githubSlug(m[2]);
-    const n = seen.get(base) ?? 0;
-    seen.set(base, n + 1);
-    headings.push({ line: i, level: m[1].length, text: m[2].replace(/[*_]/g, ''), slug: n ? `${base}-${n}` : base });
-  });
-  const tops = headings.filter((h) => h.level <= 3);
-  const sections: Section[] = [];
-  if (!tops.length || tops[0].line > 0) sections.push({ start: 0, end: tops[0]?.line ?? lines.length, heading: { line: 0, level: 1, text: 'Front matter', slug: 'front' } });
-  tops.forEach((h, i) => sections.push({ start: h.line, end: tops[i + 1]?.line ?? lines.length, heading: h }));
-  return { headings, sections };
-}
+const LIST_ITEM = /^\s*(>\s*)?([-*+]|\d+[.)])\s/;
 
 export default function BookReader() {
   const { bookId } = useParams();
@@ -91,7 +37,7 @@ export default function BookReader() {
       .catch((e) => setError(`Could not load ${book.file} (${e.message}). Run "npm run build" (or "node scripts/copy-books.mjs") so the books are copied into public/books.`));
   }, [book]);
 
-  const parsed = useMemo(() => (lines ? parse(lines) : null), [lines]);
+  const parsed = useMemo(() => (lines ? parseBook(lines) : null), [lines]);
 
   // Resolve target: line (1-based from extractors) or anchor → section index + target line
   const target = useMemo(() => {
@@ -99,8 +45,7 @@ export default function BookReader() {
     let line: number | null = null;
     if (lineParam) line = Math.max(0, Number(lineParam) - 1);
     else if (anchorParam) {
-      const a = anchorParam.replace(/^#/, '');
-      const h = parsed.headings.find((x) => x.slug === a) ?? parsed.headings.find((x) => looseSlug(x.text) === looseSlug(a)) ?? parsed.headings.find((x) => looseSlug(x.slug) === looseSlug(a.replace(/-\d+$/, '')));
+      const h = findAnchor(parsed.headings, anchorParam);
       if (h) line = h.line;
     }
     let idx = secParam ? Number(secParam) : 0;
@@ -108,18 +53,24 @@ export default function BookReader() {
     return { idx: Math.min(idx, parsed.sections.length - 1), line };
   }, [parsed, lines, lineParam, anchorParam, secParam]);
 
-  const html = useMemo(() => {
-    if (!parsed || !lines || !target) return '';
+  const drawn = useMemo((): { html: string; row: number | null } => {
+    if (!parsed || !lines || !target) return { html: '', row: null };
     const sec = parsed.sections[target.idx];
     const slice = lines.slice(sec.start, sec.end);
+    let row: number | null = null;
     if (target.line !== null && target.line >= sec.start && target.line < sec.end) {
-      // Insert a marker at the start of the paragraph/table containing the target line.
+      // Insert a marker before the block that holds the target line: its table (and the row is
+      // marked once drawn), or its paragraph, list item or heading.
       let at = target.line - sec.start;
-      while (at > 0 && slice[at - 1].trim() !== '' && !/^#/.test(slice[at])) at--;
+      const inTable = tableRowAt(slice, at);
+      if (inTable) {
+        at = inTable.start;
+        row = inTable.row;
+      } else while (at > 0 && slice[at - 1].trim() !== '' && !/^(>\s*)?#/.test(slice[at]) && !LIST_ITEM.test(slice[at])) at--;
       slice.splice(at, 0, '<div id="reader-target" class="reader-target"></div>', '');
     }
     const raw = marked.parse(tidyTables(slice.join('\n')), { async: false, gfm: true }) as string;
-    return DOMPurify.sanitize(dropEmptyHeads(raw), { ADD_ATTR: ['id'] });
+    return { html: DOMPurify.sanitize(dropEmptyHeads(raw), { ADD_ATTR: ['id'] }), row };
   }, [parsed, lines, target]);
 
   // Give headings ids and scroll to the target.
@@ -132,12 +83,18 @@ export default function BookReader() {
       if (hs[i]) node.id = `h-${hs[i].slug}`;
     });
     const t = el.querySelector('#reader-target');
-    if (t) t.scrollIntoView({ block: 'start' });
+    // a line in a table: its row, not the whole table
+    const table = drawn.row === null ? null : t?.nextElementSibling?.matches('table') ? t.nextElementSibling : t?.nextElementSibling?.querySelector('table');
+    const tr = table?.querySelectorAll('tbody tr')[drawn.row ?? -1];
+    if (tr) {
+      tr.classList.add('reader-row');
+      tr.scrollIntoView({ block: 'center' });
+    } else if (t) t.scrollIntoView({ block: 'start' });
     else window.scrollTo({ top: 0 });
     const list = document.querySelector<HTMLElement>('.toc-list');
     const act = list?.querySelector<HTMLElement>('.toc-item.active');
     if (list && act) list.scrollTop = act.offsetTop - list.clientHeight / 2;
-  }, [html, parsed, target]);
+  }, [drawn, parsed, target]);
 
   const results = useMemo(() => {
     if (!lines || q.trim().length < 3) return [];
@@ -166,7 +123,10 @@ export default function BookReader() {
     const href = a.getAttribute('href') ?? '';
     if (href.startsWith('#') && !href.startsWith('#/')) {
       e.preventDefault();
-      go({ anchor: href.slice(1) });
+      // a few of the books' own links name no heading: stay here rather than open the front matter
+      const h = parsed && findAnchor(parsed.headings, decodeURIComponent(href.slice(1)));
+      if (h) go({ line: String(h.line + 1) });
+      else a.title = 'The book has no heading for this link';
     }
   };
 
@@ -229,7 +189,7 @@ export default function BookReader() {
                 {parsed.sections[target.idx + 1]?.heading.text ?? ''} →
               </button>
             </div>
-            <div ref={bodyRef} className="markdown book-body card" onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: html }} />
+            <div ref={bodyRef} className="markdown book-body card" onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: drawn.html }} />
           </div>
         </div>
       )}
