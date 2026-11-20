@@ -22,6 +22,31 @@ Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and 
 
 *Judgment.* Audit B7, the largest item. The guided build's answers for Folk Witch, Gruagach, Vitki, Mathematicus and faerie wizardry rarely make one; the practice characters get their Virtues free instead. Fix: an answer for each tradition that takes its Social Status and Virtues and fills its Abilities as its chapter says, with a test per tradition that the character passes the rules check (owner points 11 and 13). Big files it will add to, to split first: `src/engine/guided/autobuild.ts`, and `src/ui/pages/QuickBuildPage.tsx` if the page changes. If it grows, do one tradition at a time and write the split here. Then mark audit 3 closed.
 
+**The plan** (branch `claude/batch-c-quick-build-traditions`).
+
+*What a player sees.* Quick build › Characters gains roles, each with its line saying what it is. Companions: **Folk witch** and **Folk witch, Gifted**; **Gruagach** (Gifted) and **Gruagach, unGifted**; **Learned magician** and **Learned magician, Gifted**; **Vitki**; **Faerie wizard**. Magi: **Mystery initiate**. The page itself does not change. The guided build (on a character's sheet) asks one question more in section F, "I'd like my character to belong to a hedge tradition", with the five traditions to pick from and a follow-up on The Gift. Its question on Mystery Cults now steers the build too.
+
+*The answers.* `f-tradition`, with a choice of `f-trad-witch`, `f-trad-gruagach`, `f-trad-learned`, `f-trad-vitki` and `f-trad-faerie`; `f-trad-gift`; and `f-mystery`, now a build question. Each role is these answers, as the holy wonder-worker is `f-divine-powers`. The build lives in a module of its own (`src/engine/guided/traditions.ts`), hooked where `addHolyPair` is.
+
+*What each chapter asks, and what the build takes.*
+
+| Tradition | Social Status and Virtues | Experience | Magic known |
+|---|---|---|---|
+| Folk witch (HMRE line 1572) | Folk Witch (Free). UnGifted: a power's Virtue for each power (Healing or Cursing Major; Flight, Animal Ken, Dowsing, Second Sight Minor), by the answers. Gifted: The Gift opens all seven. Either way a Flaw that limits her magic. | 200 points of apprenticeship from age 10. Gifted: 1 in each of the seven powers and Folk Witch Magic Theory (line 1588); then Animal Handling, Concentration, Folk Witch Lore, Penetration (line 1590); then the powers the answers want. | — |
+| Gruagach (line 2788) | Gruagach (Free). Gifted: The Gift opens the six Arts. UnGifted: Giant Blood, Large or Shapeshifter, a Technique (Major) and a Form (Minor) (line 2825). | Gifted: 160 points; Pictish 2, Gruagach Lore 2, every Art 1 (line 2811). UnGifted: 16 a year for four years, on the Arts of its Virtues. | Spells from the book's samples: 80 levels Gifted, 8 a year unGifted. |
+| Learned magician (line 4119) | Mathematicus of Bologna (Free) and a second Social Status for the mundane life (Clerk, Priest, Mendicant Friar, line 4155). UnGifted: a Technique (Major) and one or two Forms (Minor). Gifted: The Gift opens all six. | Years with a master from about 16 (line 4123), 30 points each on Academic and Arcane Abilities and the Arts. Latin 1 and Artes Liberales 1 at least (line 4139). | Charms from the samples, 5 levels a point of that training. |
+| Vitki (line 6146) | The Gift, Vitki (Free), and the free Minor Virtue of the master's specialty: Puissant in a rune, Craft: Runes or Rune Magic (line 6148; the sample has "Puissant Othila (free)", line 7420). | 240 points: Craft: Runes 2, Old Norse 3, Rune Magic 1 first; at least half on the runes, none above 10. | Rune scripts from the samples, 120 levels. |
+| Faerie wizard (RoP: Faerie line 7503) | A Faerie Method (Major) and a Power (Minor), at least four points, and Faerie Sympathy with its Trait on the sheet. One of the book's four traditions sets which: Ollamhain, Volkhvy, Wise Folk; or Borrowers, who bargain (Summoning). | Later life, raising the Method and Power first. | — |
+| Mystery initiate | A magus of Bjornaer, Criamon, Merinita or Verditius takes one of the House's Mystery Virtues "as normal Virtues" (HoH: Mystery Cults line 249). A magus of another House takes Cabal Legacy and one cult Virtue (TMRE line 748), from those the Game Table rolls. | Apprenticeship as any magus; Mystery Cult Lore. | — |
+
+Each tradition's own Virtues (a lone gruagach Form, a learned magician's Magicam, a faerie Power without a Method) are no longer drawn for a character who is not of the tradition: alone they cast nothing (line 2862 and its like), as a holy Power without its Method is not drawn now.
+
+*Tests.* A test per tradition, Gifted and not where the book has both: built from its role, it passes the rules check, `hedgeTradition` or its like names it, and its least scores and magic are there.
+
+*Then.* The tutorials' practice characters are made from these roles, with nothing given "For practice".
+
+*Decided here, for the owner to overrule.* Gifted and unGifted are separate roles where the book has both (folk witches, gruagachan, learned magicians), so a player chooses rather than Quick build drawing it. A Gifted gruagach or learned magician is built as a companion, which the book allows (lines 2788 and 4119). A folk witch is built as a companion only; a folk witch grog is left for later.
+
 ### Batch D. Reading books by the rules, and linked Unlog
 
 All *Mechanical*, decided by the owner (`owner.md`, Decided).
