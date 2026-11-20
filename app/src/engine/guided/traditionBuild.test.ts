@@ -19,6 +19,10 @@ import { TRADITIONS, type Tradition } from './traditions';
 import { CULT_MYSTERIES, mysteryLoreOf } from './buildMysteries';
 import { evaluate } from './score';
 import { newCharacter } from '../character/factory';
+import { autoBuild, resetChoices } from './autobuild';
+import { addSympathyTraits, settleAntipathy } from './traditions';
+import { rolesFor } from '../generate/roles';
+import { seeded } from '../generate/random';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -48,19 +52,23 @@ function common(role: string, seed: number, t: Tradition) {
   const mine = TRADITIONS.find((x) => x.id === t)!;
   const foreign = g.c.virtues.filter((v) => others.includes(v.defId) && !mine.own.includes(v.defId)).map((v) => v.defId);
   expect(foreign, `${label}: another tradition's Virtues`).toEqual([]);
-  // a Gifted member's Opening gives these: a Virtue for one is wasted points
-  if (has(g.c, 'the-gift')) expect(g.c.virtues.filter((v) => mine.opens?.includes(v.defId)).map((v) => v.defId), label).toEqual([]);
+  // a Gifted member's Opening gives these: a Virtue paid for one is wasted points
+  if (has(g.c, 'the-gift')) expect(g.c.virtues.filter((v) => mine.opens?.includes(v.defId) && !v.free).map((v) => v.defId), label).toEqual([]);
   // every pool and level the apprenticeship gives is spent or left for the player to design, never over
   for (const b of g.d.budgets) expect(b.spent, `${label}: ${b.label}`).toBeLessThanOrEqual(b.total);
-  sympathyOnSheet(g.c, label);
+  sympathyOnSheet(g.c, g.d, label);
   return { ...g, label };
 }
 
-/** Each Faerie Sympathy and Antipathy names its Trait, and the Trait is on the sheet (RoP: Faerie lines 6367, 6523). */
-function sympathyOnSheet(c: Character, label: string) {
+/**
+ * Each Faerie Sympathy and Antipathy names its Trait, and the Trait is on the sheet, an Antipathy's
+ * less the Warping Score at the end of creation (RoP: Faerie lines 6367, 6523).
+ */
+function sympathyOnSheet(c: Character, d: DerivedCharacter, label: string) {
   for (const v of c.virtues.filter((x) => x.defId === 'faerie-sympathy' || x.defId === 'faerie-antipathy-flaw')) {
     expect(v.param && v.param !== 'to be decided', `${label}: ${v.defId} names its Trait`).toBeTruthy();
-    const score = (v.size === 'Major' ? 3 : 1) * (v.defId === 'faerie-sympathy' ? 1 : -1);
+    const size = v.size === 'Major' ? 3 : 1;
+    const score = v.defId === 'faerie-sympathy' ? size : -size - d.warpingScore;
     expect(c.sympathy?.find((t) => t.trait === v.param)?.score, `${label}: ${v.param} on the sheet`).toBe(score);
   }
 }
@@ -147,6 +155,8 @@ describe('Quick build: a learned magician (HMRE line 4117)', () => {
       const { c, d, label } = common('learned-magician-gifted', seed, 'learned');
       expect(has(c, 'the-gift') && has(c, 'mathematicus-of-bologna'), label).toBe(true);
       expect(LEARNED_TECHNIQUES.some((x) => score(d, x.id) > 0) && LEARNED_FORMS.some((x) => score(d, x.id) > 0), label).toBe(true);
+      // the Opening gives "the Entreat the Powers Virtue" with the Arts (HMRE line 4123)
+      expect(c.virtues.some((v) => v.defId === 'entreat-the-powers' && v.free), `${label}: Entreat the Powers, free`).toBe(true);
     }
   }, 120_000);
 });
@@ -189,6 +199,42 @@ describe('Quick build: a faerie wizard (RoP: Faerie line 7501)', () => {
       expect(c.creation.concept, label).toMatch(/^Faerie wizard of the /);
     }
   }, 120_000);
+
+  it('a Faerie Power only with a Method, and a Method only with a Power: a Borrower who bargains takes neither alone', () => {
+    // the seed that once gave a Borrower Dream with no Method
+    const lochs = { ...saga('Loch Leglean') } as Saga;
+    const cases = [
+      generateCharacter({ type: 'companion', role: 'faerie-wizard', variety: 'wild', npc: true, seed: 209470 }, { data, saga: lochs, rules }),
+      ...[11, 12, 13, 14, 15, 16, 17, 18].map((seed) => make('faerie-wizard', seed, { variety: 'wild' })),
+    ];
+    for (const g of cases) {
+      const holds = (ids: string[]) => g.c.virtues.some((v) => ids.includes(v.defId));
+      const method = holds(['evocation', 'enchantment', 'empathy']);
+      const power = holds(['beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe']);
+      expect(method === power, `${g.c.name}: Method ${method}, Power ${power}`).toBe(true);
+    }
+  }, 120_000);
+
+  it('a player who turns down Faerie Sympathy takes Faerie Antipathy: the Trait may come "from a Virtue or a Flaw"', () => {
+    const c = newCharacter('companion', 's', 1220);
+    c.age = 30;
+    const st = { answers: { 'f-tradition': 10, 'f-trad-faerie': 10 }, declined: ['faerie-sympathy'] };
+    autoBuild(c, st, { data, rules, saga: saga('Stonehenge'), archetypes: [], rng: seeded(4) });
+    const d = deriveCharacter(c, data, rules);
+    expect(isFaerieWizard(d)).toBe(true);
+    expect(has(c, 'faerie-sympathy')).toBe(false);
+    expect(has(c, 'faerie-antipathy-flaw')).toBe(true);
+    sympathyOnSheet(c, d, 'antipathy');
+  }, 60_000);
+
+  it('an Antipathy Trait loses the Warping Score at the end of creation: Minor with Warping 3 begins at −4 (RoP: Faerie line 6523)', () => {
+    const c = newCharacter('companion', 's', 1220);
+    c.virtues.push({ uid: 'a', defId: 'faerie-antipathy-flaw', size: 'Minor', param: 'Iron' });
+    addSympathyTraits(c, 0);
+    expect(c.sympathy?.map((t) => [t.trait, t.score])).toEqual([['Iron', -1]]);
+    settleAntipathy(c, 3);
+    expect(c.sympathy?.map((t) => [t.trait, t.score])).toEqual([['Iron', -4]]);
+  });
 });
 
 describe('Quick build: a Mystery initiate (HoH: Mystery Cults line 249; The Mysteries, Cabal Legacy)', () => {
@@ -214,6 +260,85 @@ describe('Quick build: a Mystery initiate (HoH: Mystery Cults line 249; The Myst
       expect(hasTableMystery(g.c), label).toBe(true);
       expect(mysteryLoreOf(g.c), label).toBe(CULT_MYSTERIES.find((m) => has(g.c, m.id))!.cult);
     }
+  }, 120_000);
+
+  it('a magus of a Mystery House who names a cult’s Mystery learns the cult’s Lore, not the House’s', () => {
+    for (const house of ['criamon', 'merinita', 'verditius']) {
+      const g = make('magus-mystery', 7, { house, variety: 'focused', answers: { 'vf:hermetic-dream-interpreter': 10 } });
+      expect(problems(g), house).toEqual([]);
+      expect(has(g.c, 'cabal-legacy-flaw') && has(g.c, 'hermetic-dream-interpreter'), house).toBe(true);
+      expect(mysteryLoreOf(g.c), house).toBe('Volshebnii Mechtateli');
+    }
+  }, 120_000);
+
+  it('a magus made at random is no initiate unless the role asks: the Mystery question is not answered by chance', () => {
+    for (const role of ['magus-scholar', 'magus-faerie', 'magus-mystic', 'magus-lab']) {
+      for (let seed = 1; seed <= 12; seed++) {
+        const g = make(role, seed);
+        const mystery = g.c.virtues.filter((v) => v.defId === 'cabal-legacy-flaw' || (data.vfById.get(v.defId)?.categories.includes('Mystery') && !v.free));
+        expect(mystery.map((v) => v.defId), `${role} (seed ${seed})`).toEqual([]);
+      }
+    }
+  }, 240_000);
+});
+
+describe('Quick build in a saga without the books', () => {
+  const core = buildGameData({ enabledBooks: ['DE'] });
+  const de = { ...saga('Stonehenge'), enabledBooks: ['DE'] } as Saga;
+  it('offers no tradition or Mystery role, and draws none at random', () => {
+    expect(rolesFor('companion', core).filter((r) => r.books).map((r) => r.id)).toEqual([]);
+    expect(rolesFor('magus', core).filter((r) => r.books).map((r) => r.id)).toEqual([]);
+    expect(rolesFor('companion', data).filter((r) => r.books).length).toBe(8);
+    for (let seed = 1; seed <= 30; seed++) {
+      const g = generateCharacter({ type: 'companion', variety: 'varied', npc: true, seed }, { data: core, saga: de, rules });
+      expect(g.c.virtues.filter((v) => !core.inBooks(core.vfById.get(v.defId) ?? { source: { book: 'DE' } })).map((v) => v.defId), `seed ${seed}`).toEqual([]);
+    }
+  }, 120_000);
+
+  it('a tradition role asked for anyway makes no member: no status from a book the saga does not use', () => {
+    for (const role of ['folk-witch', 'vitki', 'learned-magician', 'faerie-wizard']) {
+      const g = generateCharacter({ type: 'companion', role, variety: 'varied', npc: true, seed: 3 }, { data: core, saga: de, rules });
+      expect(g.c.virtues.filter((v) => !core.inBooks(core.vfById.get(v.defId) ?? { source: { book: 'DE' } })).map((v) => v.defId), role).toEqual([]);
+      expect(g.issues.filter((i) => i.severity === 'error' || i.severity === 'warning').map((i) => i.message), role).toEqual([]);
+    }
+  }, 120_000);
+});
+
+describe('Quick build, Plain, with a role picked by hand', () => {
+  it('still brings what the role requires, as the Plain choice says', () => {
+    const plain = (role: string) => make(role, 5, { coreOnly: true });
+    const vitki = plain('vitki');
+    expect(has(vitki.c, 'vitki') && has(vitki.c, 'the-gift'), 'vitki').toBe(true);
+    const witch = plain('folk-witch-gifted');
+    expect(has(witch.c, 'folk-witch') && has(witch.c, 'the-gift'), 'folk witch').toBe(true);
+    expect(isFaerieWizard(plain('faerie-wizard').d), 'faerie wizard').toBe(true);
+    const initiate = make('magus-mystery', 5, { coreOnly: true, house: 'tremere' });
+    expect(has(initiate.c, 'cabal-legacy-flaw'), 'initiate').toBe(true);
+    for (const g of [vitki, witch, initiate]) expect(problems(g), g.c.creation.concept).toEqual([]);
+  }, 120_000);
+});
+
+describe('the guided build’s fresh rebuild', () => {
+  it('clears what a tradition gave: The Gift it opened, a mathematicus’s years, Sympathy Traits with no Virtue behind them', () => {
+    const learned = make('learned-magician', 2).c;
+    expect(learned.learned?.trainingYears).toBeGreaterThan(0);
+    resetChoices(learned);
+    expect(learned.learned?.trainingYears).toBeUndefined();
+    // rebuilt as a folk witch: no training pool from the mathematicus that is gone
+    autoBuild(learned, { answers: { 'f-tradition': 10, 'f-trad-witch': 10 }, declined: [] }, { data, rules, saga: saga('Stonehenge'), archetypes: [], rng: seeded(2) });
+    const d = deriveCharacter(learned, data, rules);
+    expect(has(learned, 'folk-witch') && !has(learned, 'mathematicus-of-bologna')).toBe(true);
+    expect(budget(d, LEARNED_TRAINING)?.total ?? 0).toBe(0);
+
+    const witch = make('folk-witch-gifted', 3).c;
+    expect(has(witch, 'the-gift')).toBe(true);
+    resetChoices(witch);
+    expect(has(witch, 'the-gift'), 'the Gift the tradition opened').toBe(false);
+
+    const faerie = make('faerie-wizard', 1).c;
+    expect(faerie.sympathy?.length).toBeGreaterThan(0);
+    resetChoices(faerie);
+    expect(faerie.sympathy ?? []).toEqual([]);
   }, 120_000);
 });
 
@@ -242,7 +367,7 @@ describe('Quick build: no stray tradition Virtues (audit 3, B7)', () => {
         expect(g.c.virtues.filter((v) => own.includes(v.defId) && !(st(v.defId))).map((v) => v.defId), `${role} (seed ${seed})`).toEqual([]);
       }
     }
-    // Second Sight and Animal Ken are core Virtues anyone may have; the folk witch's own powers are counted only with her status
+    // Second Sight and Animal Ken are core Virtues anyone may have; the folk witch's own powers are counted only with their status
     function st(id: string) {
       return ['second-sight', 'animal-ken', 'dowsing', 'shapeshifter', 'no-magical-defenses-flaw', 'greater-magical-defenses', 'known-hedge-wizard-flaw'].includes(id);
     }

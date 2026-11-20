@@ -23,7 +23,7 @@ import { evaluate, recommendHouses, statusShortlist, tagWeights, traceOf, type G
 import { ACTS, balance, buildVirtuesAndFlaws } from './buildVirtues';
 import { chooseSpells, spendExperience } from './buildExperience';
 import { answer, ctxFor, mythicTypeOf, paramFor, type BuildInput, type BuildResult } from './buildShared';
-import { TRADITION_STATUSES, addSympathyTraits, mundaneStatus, needsMundaneStatus, takeTradition } from './traditions';
+import { TRADITION_STATUSES, addSympathyTraits, mundaneStatus, needsMundaneStatus, resetTradition, takeTradition } from './traditions';
 
 export { TRIBUNAL_LANGUAGE, mythicTypeOf, type BuildInput, type BuildResult } from './buildShared';
 
@@ -35,6 +35,7 @@ export function resetChoices(c: Character) {
   const mt = c.type === 'mythic' ? MYTHIC_TYPES[mythicTypeOf(c) ?? ''] : undefined;
   const keep = new Set(mt ? [mt.virtue, mt.freeMinor, ...[...mt.requiredVirtues, ...mt.requiredFlaws].map((x) => (typeof x === 'string' ? x : x.id))] : []);
   c.virtues = c.virtues.filter((v) => ['the-gift', 'hermetic-magus'].includes(v.defId) || (c.type === 'grog' && v.defId === 'covenfolk') || keep.has(v.defId));
+  resetTradition(c);
   if (c.type === 'magus') c.house = undefined;
   c.abilities = c.abilities.filter((a) => a.native);
   for (const k of Object.keys(c.arts)) c.arts[k as keyof Character['arts']] = {};
@@ -189,7 +190,7 @@ export function autoBuild(c: Character, st: GuidedState, inp: BuildInput): Build
   spendExperience(c, st, inp, () => ctx, refresh, why, log);
   refresh();
   if (c.type === 'magus') chooseSpells(c, st, inp, () => ctx, refresh, log);
-  addSympathyTraits(c);
+  addSympathyTraits(c, ctx.d.warpingScore);
   refresh();
 
   // ---------------------------------------------------------------- personality

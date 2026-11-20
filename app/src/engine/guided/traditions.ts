@@ -23,11 +23,12 @@ import { uid } from '../../util/id';
 import { gruagachArtCap, gruagachCastingScore } from '../gruagach';
 import { castingScore } from '../learnedMagic';
 import { vitkiCastingTotal } from '../vitkir';
+import { expectedTraits } from '../faerieWizardry';
 import { languageScore } from '../books';
 import { evaluate, scoreOption, tagWeights, type GuidedContext, type Scored } from './score';
 import { vfRecords } from './records';
 import { SIZE_POINTS, TO_DECIDE, type BuildInput } from './buildShared';
-import { TRADITION_BY_ID, TRADITION_STATUSES, traditionOf, wantedTradition, wantsGift, type Tradition } from './traditionRules';
+import { FAERIE_METHOD_IDS, FAERIE_POWER_IDS, TRADITION_BY_ID, TRADITION_STATUSES, traditionOf, wantedTradition, wantsGift, type Tradition } from './traditionRules';
 export { TRADITIONS, TRADITION_BY_ID, TRADITION_STATUSES, fitsTradition, traditionOf, type Tradition } from './traditionRules';
 
 // ------------------------------------------------------------------ The Gift and Social Status
@@ -39,7 +40,7 @@ export { TRADITIONS, TRADITION_BY_ID, TRADITION_STATUSES, fitsTradition, traditi
  * vitki has "Puissant Othila (free)", line 7420). A learned magician's years with a master are set.
  */
 export function takeTradition(c: Character, st: GuidedState, inp: BuildInput, ctx: GuidedContext, log: string[]): Tradition | undefined {
-  const t = wantedTradition(st, c);
+  const t = wantedTradition(st, c, inp.data);
   if (!t) return undefined;
   const def = TRADITION_BY_ID.get(t)!;
   const data = inp.data;
@@ -58,11 +59,17 @@ export function takeTradition(c: Character, st: GuidedState, inp: BuildInput, ct
     const w = tagWeights(st, ctx);
     const rune = favoredRunes(c, w, inp)[0];
     const pick = inp.rng ? Math.floor(inp.rng() * 3) : 0;
-    const [ability, param, name] = pick === 1 ? ['craft-type', 'Runes', 'Craft: Runes'] : pick === 2 ? ['rune-magic', undefined, 'Rune Magic'] : [rune.id, undefined, rune.name];
+    // Puissant Craft: Runes names Craft only, as the sheet's choice of an Ability can (roadmap, Found)
+    const [ability, name] = pick === 1 ? ['craft-type', 'Craft: Runes'] : pick === 2 ? ['rune-magic', 'Rune Magic'] : [rune.id, rune.name];
     const cv = addVirtue(c, data, 'puissant-ability', 'Minor', ability, { free: true, freeReason: 'from a vitki’s master (Hedge Magic, Vitkir)' });
     cv.why = `from: the master’s specialty, ${name} (free)`;
-    void param;
     log.push(`Free Virtue from the master: Puissant ${name}.`);
+  }
+  if (t === 'learned' && gifted && !has('entreat-the-powers')) {
+    // the Opening gives "the Entreat the Powers Virtue" with the six Arts (HMRE line 4123)
+    const cv = addVirtue(c, data, 'entreat-the-powers', 'Major', undefined, { free: true, freeReason: 'from a learned magician’s Opening (Hedge Magic, Learned Magicians)' });
+    cv.why = 'from: the Opening of a learned magician’s Gift (free)';
+    log.push('Free Virtue from the Opening: Entreat the Powers.');
   }
   if (t === 'learned' && !c.learned?.trainingYears) {
     // training begins between 14 and 19 (HMRE line 4121) and lasts as long as the student can stay
@@ -126,8 +133,6 @@ const FOCUS_TAGS: Record<string, string[]> = {
 };
 /** A faerie tradition by what the answers ask: Ollamhain perform, Volkhvy hold great rites, Wise Folk ward and mend, Borrowers bargain. */
 const FAERIE_TAGS: Record<string, string[]> = { ollamhain: ['performance', 'social', 'visions'], volkhvy: ['courts', 'leadership', 'outdoors'], 'wise-folk': ['healing', 'good', 'curse'], borrowers: ['wealth', 'travel', 'courts'] };
-const FAERIE_METHOD_IDS: readonly string[] = ['evocation', 'enchantment', 'empathy'];
-const FAERIE_POWER_IDS: readonly string[] = ['beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe'];
 /** A Sympathy Trait for each, narrower than a Form (RoP: Faerie line 5842; Dawn, Hounds and Storms are the book's own). */
 const FAERIE_TRAITS: Record<string, string[]> = { ollamhain: ['Song', 'Harps', 'Dreams'], volkhvy: ['Winter', 'Storms', 'Birch trees'], 'wise-folk': ['Dawn', 'Hounds', 'Hearths'], borrowers: ['Bargains', 'Roads', 'Markets'] };
 
@@ -149,7 +154,7 @@ function favoredRunes(c: Character, w: Record<string, number>, inp: BuildInput):
  */
 export function addTraditionVirtues(c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[], add: Add, clean: Clean, cap: number) {
   // a faerie wizard is known by the Method this takes, so before it by the answers
-  const t = traditionOf(c) ?? wantedTradition(st, c);
+  const t = traditionOf(c) ?? wantedTradition(st, c, inp.data);
   if (!t) return;
   const data = inp.data;
   const w = tagWeights(st, get());
@@ -225,8 +230,6 @@ export function addTraditionVirtues(c: Character, st: GuidedState, inp: BuildInp
     const asked = named([...FAERIE_METHOD_IDS, ...FAERIE_POWER_IDS, 'summoning']);
     const favors = (x: (typeof FAERIE_TRADITIONS)[number], id: string) => x.favored.includes(id === 'summoning' ? 'faerie-summoning' : id);
     const trad = pickBy(FAERIE_TRADITIONS.map((x) => ({ x, w: 1 + tag(w, ...(FAERIE_TAGS[x.id] ?? [])) + 10 * asked.filter((id) => favors(x, id)).length })), inp)!.x;
-    if (!c.creation.concept || /^faerie wizard$/i.test(c.creation.concept)) c.creation.concept = `Faerie wizard of the ${trad.name}`;
-    log.push(`Faerie tradition: the ${trad.name} (favored: ${trad.favored.map((id) => data.abilityById.get(id)?.name ?? id).join(', ')}).`);
     const sizeOf = (id: string): VFSize => (data.vfById.get(id)?.sizes.includes('Minor') ? 'Minor' : 'Major');
     if (trad.id === 'borrowers' || asked.includes('summoning')) take('summoning', 'Major', asked.includes('summoning') ? 'from: Summoning, which you asked for by name' : `from: the ${trad.name} bargain with faeries (Summoning)`);
     if (trad.id !== 'borrowers' || named(FAERIE_METHOD_IDS).length) {
@@ -236,11 +239,16 @@ export function addTraditionVirtues(c: Character, st: GuidedState, inp: BuildInp
       const power = pickBy(powers.map((id) => ({ id, w: 1 + (id === 'weal' ? tag(w, 'healing') : id === 'woe' ? tag(w, 'curse') : id === 'dream' ? tag(w, 'visions') : 0) })), inp)!;
       take(power.id, sizeOf(power.id), favors(trad, power.id) ? `from: a Power the ${trad.name} favor` : 'from: the Power you asked for by name');
     }
-    if (!has('faerie-sympathy')) {
+    if (!has('faerie-sympathy') && !has('faerie-antipathy-flaw')) {
       const names = FAERIE_TRAITS[trad.id] ?? ['Dawn'];
       const trait = inp.rng ? names[Math.floor(inp.rng() * names.length)] : names[0];
-      if (!take('faerie-sympathy', 'Major', 'from: the Sympathy Trait a faerie wizard’s rites need', trait)) take('faerie-sympathy', 'Minor', 'from: the Sympathy Trait a faerie wizard’s rites need', trait);
+      const why = 'from: the Sympathy Trait a faerie wizard’s rites need';
+      // "Sympathy Traits, either from a Virtue or a Flaw": Faerie Antipathy where Sympathy is declined or has no room
+      if (!take('faerie-sympathy', 'Major', why, trait) && !take('faerie-sympathy', 'Minor', why, trait)) take('faerie-antipathy-flaw', 'Minor', why);
     }
+    // the concept names the tradition once the character works its magic
+    if (traditionOf(c) === 'faerie' && (!c.creation.concept || /^faerie wizard$/i.test(c.creation.concept))) c.creation.concept = `Faerie wizard of the ${trad.name}`;
+    log.push(`Faerie tradition: the ${trad.name} (favored: ${trad.favored.map((id) => data.abilityById.get(id)?.name ?? id).join(', ')}).`);
   }
 }
 
@@ -250,10 +258,11 @@ const OPEN_ANTIPATHY = ['Iron', 'Courage'];
 
 /**
  * A Sympathy Trait on the sheet for each Faerie Sympathy (+3 for the Major Virtue, +1 for the Minor)
- * and Faerie Antipathy (−3, −1) (RoP: Faerie lines 6367, 6523). One whose Trait the build left to be
- * decided takes one: a faerie wizard's from their tradition's, else one of the book's examples.
+ * and Faerie Antipathy (−3, −1, less the Warping Score: `settleAntipathy`) (RoP: Faerie lines 6367,
+ * 6523). One whose Trait the build left to be decided takes one: a faerie wizard's from their
+ * tradition's, else one of the book's examples.
  */
-export function addSympathyTraits(c: Character) {
+export function addSympathyTraits(c: Character, warpingScore: number) {
   const held = () => new Set((c.sympathy ?? []).map((x) => x.trait.toLowerCase()).concat(c.virtues.filter((v) => v.param).map((v) => v.param!.toLowerCase())));
   const own = Object.values(FAERIE_TRAITS).find((xs) => xs.some((x) => held().has(x.toLowerCase()))) ?? [];
   for (const v of c.virtues) {
@@ -265,6 +274,31 @@ export function addSympathyTraits(c: Character) {
     const score = v.size === 'Major' ? 3 : 1;
     c.sympathy = [...(c.sympathy ?? []), { uid: uid(), trait: v.param, score: flaw ? -score : score }];
   }
+  settleAntipathy(c, warpingScore);
+}
+
+/**
+ * A Faerie Antipathy's Trait as creation ends: "Subtract the character's Warping Score from this value
+ * at the end of character creation" (RoP: Faerie line 6523). Called again when Quick build adds the
+ * Warping of the years before play.
+ */
+export function settleAntipathy(c: Character, warpingScore: number) {
+  for (const v of c.virtues) {
+    if (v.defId !== 'faerie-antipathy-flaw' || !v.param) continue;
+    const t = c.sympathy?.find((x) => x.trait.toLowerCase() === v.param!.toLowerCase());
+    if (t) t.score = -(v.size === 'Major' ? 3 : 1) - warpingScore;
+  }
+}
+
+/**
+ * The tradition's records a fresh rebuild clears with the rest of the draft (autobuild.resetChoices):
+ * The Gift a tradition opened, a learned magician's years with a master, and the Sympathy Traits of a
+ * character left with no Virtue or Flaw that gives them.
+ */
+export function resetTradition(c: Character) {
+  c.virtues = c.virtues.filter((v) => !(v.defId === 'the-gift' && c.type !== 'magus' && v.why?.endsWith('whose Gift the tradition opens')));
+  if (c.learned?.trainingYears) c.learned = { ...c.learned, trainingYears: undefined };
+  if (c.sympathy && !expectedTraits(c).length) c.sympathy = undefined;
 }
 
 // ------------------------------------------------------------------ experience

@@ -61,7 +61,8 @@ export const TRADITIONS: TraditionDef[] = [
   },
   {
     id: 'learned', member: 'a learned magician', status: 'mathematicus-of-bologna', gift: 'either', lore: 'Mathematici of Bologna',
-    opens: ['tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem'],
+    // "opens the apprentice's Gift to the powers of the learned magician's tradition — Tueor, Succurro, Vulnero, Fortunam, Magicam, and Salutem — and the Entreat the Powers Virtue" (HMRE line 4123)
+    opens: ['tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem', 'entreat-the-powers'],
     own: [
       'mathematicus-of-bologna', 'entreat-the-powers', 'entreat-the-realm-powers', 'strong-amulet-magic', 'strong-verbal-charms', 'tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem', 'skilled-master',
       'charm-magician-flaw', 'intervention-prone-flaw', 'laboratory-magician-flaw', 'weak-verbal-charms-flaw', 'no-chartae-making-flaw', 'no-text-casting-flaw', 'poorly-trained-magician-flaw', 'weak-amulets-flaw', 'weak-chartae-flaw', 'incompatible-hedge-arts-flaw', ...DEFENSES,
@@ -99,6 +100,12 @@ export const TRADITION_STATUSES = new Set(TRADITIONS.flatMap((t) => (t.status ? 
  */
 const UNBUILT_OWN = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining', 'elemental-affinity', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae', 'elemental-theurgy', 'vulnerable-to-form-flaw', 'weak-elemental-resistance-flaw', 'nightwalker', 'versatile-phantasticum', 'half-taltos', 'hamr', 'sleepwalker'];
 
+/** A faerie wizard's Methods and Powers: rites need one of each (RoP: Faerie line 7503). */
+export const FAERIE_METHOD_IDS: readonly string[] = ['evocation', 'enchantment', 'empathy'];
+export const FAERIE_POWER_IDS: readonly string[] = ['beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe'];
+/** The Virtues of faerie bargaining, "usually Summoning" (RoP: Faerie line 7503). */
+const FAERIE_BARGAIN_IDS = ['summoning', 'bonding', 'captivating', 'dismissing'];
+
 /** The chips of the guided build's `f-tradition`, in the order the build takes them if several are picked. */
 export const TRADITION_CHIPS: Record<Tradition, string> = { witch: 'f-trad-witch', gruagach: 'f-trad-gruagach', learned: 'f-trad-learned', vitki: 'f-trad-vitki', faerie: 'f-trad-faerie' };
 const TRADITION_TYPES: CharType[] = ['companion'];
@@ -117,17 +124,48 @@ export function traditionOf(c: Pick<Character, 'virtues'>): Tradition | undefine
  * one (the book's Gifted and unGifted companions; the grogs and Mythic Companions it allows are left
  * for later).
  */
-export function wantedTradition(st: GuidedState, c: Pick<Character, 'type'>): Tradition | undefined {
+export function wantedTradition(st: GuidedState, c: Pick<Character, 'type'>, data: GameData): Tradition | undefined {
   if (!TRADITION_TYPES.includes(c.type)) return undefined;
   // a choice counts while its question is rated high enough to show it
   const asked = (st.answers['f-tradition'] ?? 5) >= 7;
   for (const t of TRADITIONS) {
-    // a plain build declines the books beyond the core, and with them the tradition
-    if (st.declined.includes(t.status ?? 'faerie-sympathy')) continue;
+    if (!traditionOpen(t.id, st, data)) continue;
     if (asked && (st.answers[TRADITION_CHIPS[t.id]] ?? 0) >= 7) return t.id;
     if (t.status && (st.answers[`vf:${t.status}`] ?? 0) >= 7) return t.id;
   }
   return undefined;
+}
+
+/**
+ * Whether the saga's books and the player's answers leave the tradition open: its Social Status (a
+ * faerie wizard's Methods, Powers and Sympathy) in the saga's books, and not declined, as a plain
+ * build declines every book beyond the core. A faerie wizard needs a Method or a Virtue of bargaining,
+ * and a Sympathy Trait "either from a Virtue or a Flaw" (RoP: Faerie line 7503).
+ */
+export function traditionOpen(t: Tradition, st: GuidedState, data: GameData): boolean {
+  const open = (id: string) => {
+    const def = data.vfById.get(id);
+    return !!def && data.inBooks(def) && !st.declined.includes(id);
+  };
+  const def = TRADITION_BY_ID.get(t)!;
+  if (def.status) return open(def.status);
+  return [...FAERIE_METHOD_IDS, ...FAERIE_BARGAIN_IDS].some(open) && ['faerie-sympathy', 'faerie-antipathy-flaw'].some(open);
+}
+
+/**
+ * The Virtues and Flaws a member of the tradition may be made with: its Social Status, its own, the
+ * Hermetic ones the chapter allows a Gifted member, and a faerie wizard's Sympathy or Antipathy. A
+ * role picked by hand brings them even to a plain build.
+ */
+export function traditionVirtues(t: Tradition): string[] {
+  const def = TRADITION_BY_ID.get(t)!;
+  return [...(def.status ? [def.status] : []), ...def.own, ...(def.hermetic ?? []), ...(t === 'faerie' ? ['faerie-sympathy', 'faerie-antipathy-flaw'] : [])];
+}
+
+/** The tradition a role's answers ask for, whatever the books: the first chip picked. */
+export function traditionOfAnswers(answers: Record<string, number>): Tradition | undefined {
+  if ((answers['f-tradition'] ?? 0) < 7) return undefined;
+  return TRADITIONS.find((t) => (answers[TRADITION_CHIPS[t.id]] ?? 0) >= 7)?.id;
 }
 
 /** Whether the member is Gifted: a vitki always (HMRE line 6146), a faerie wizard never; else as the answers say. */
@@ -152,6 +190,13 @@ export function traditionGate(defId: string, c: Pick<Character, 'virtues'>, data
   const mine = t ? TRADITION_BY_ID.get(t)! : undefined;
   const gifted = c.virtues.some((v) => v.defId === 'the-gift');
   if (gifted && mine?.opens?.includes(defId)) return `The Gift opens it for ${mine.member}`;
+  // a faerie wizard's rites need a Method and a Power together (RoP: Faerie line 7503), so one who
+  // bargains with faeries instead (a Borrower's Summoning) is not drawn either alone
+  if (t === 'faerie' && traditionOf(c) === 'faerie') {
+    const holds = (ids: readonly string[]) => c.virtues.some((v) => ids.includes(v.defId));
+    if (FAERIE_POWER_IDS.includes(defId) && !holds(FAERIE_METHOD_IDS)) return 'A Faerie Power works rites only with a Faerie Method, which this character lacks';
+    if (FAERIE_METHOD_IDS.includes(defId) && !holds(FAERIE_POWER_IDS)) return 'A Faerie Method works rites only with a Faerie Power, which this character lacks';
+  }
   if (mine?.own.includes(defId)) return null;
   const other = TRADITIONS.find((x) => x.own.includes(defId));
   if (other) return `Of ${other.member}’s tradition, which this character does not follow`;

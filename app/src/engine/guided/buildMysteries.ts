@@ -4,7 +4,7 @@
 // line 249). A magus of another House takes the Cabal Legacy Flaw, which "allows a magus character to
 // be designed with cult Virtues as normal Virtues" (The Mysteries, line 748), and one cult Virtue.
 
-import type { VFSize } from '../../data';
+import type { GameData, VFSize } from '../../data';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { CRIAMON_STATIONS } from '../../data/mysteries';
 import type { Character, GuidedState } from '../types';
@@ -29,9 +29,16 @@ export const CULT_MYSTERIES: { id: string; cult: string }[] = [
 
 /** The (Mystery Cult) Lore a character's Mysteries teach: their House's, or their cult's. */
 export function mysteryLoreOf(c: Pick<Character, 'house' | 'virtues'>): string | undefined {
-  if (c.house && MYSTERY_HOUSES.includes(c.house) && c.virtues.some((v) => v.why?.startsWith('from: a Mystery'))) return `House ${HOUSE_BY_ID[c.house]?.name ?? c.house}`;
+  if (c.house && MYSTERY_HOUSES.includes(c.house) && c.virtues.some((v) => v.why?.startsWith(HOUSE_WHY))) return `House ${HOUSE_BY_ID[c.house]?.name ?? c.house}`;
   return CULT_MYSTERIES.find((m) => c.virtues.some((v) => v.defId === m.id))?.cult;
 }
+
+/** The Virtues and Flaw an initiate may begin with: Cabal Legacy, the cults' Mysteries and the Mystery Houses'. */
+export function mysteryVirtueIds(data: GameData): string[] {
+  return ['cabal-legacy-flaw', ...CULT_MYSTERIES.map((m) => m.id), ...data.virtuesFlaws.filter((d) => d.categories.includes('Mystery') && d.houses?.some((h) => MYSTERY_HOUSES.includes(h))).map((d) => d.id)];
+}
+
+const HOUSE_WHY = 'from: a Mystery of House';
 
 type Add = (s: Scored, size: VFSize) => { why?: string };
 type Clean = (def: Scored['def'], size: VFSize) => boolean;
@@ -61,11 +68,13 @@ export function addMystery(c: Character, st: GuidedState, inp: BuildInput, get: 
     const options = ids.map(scored).filter((s): s is Scored => !!s && SIZE_POINTS[size(s)] <= room() && clean(s.def, size(s))).sort((a, b) => SIZE_POINTS[size(a)] - SIZE_POINTS[size(b)] || b.fit - a.fit);
     const least = options.length ? SIZE_POINTS[size(options[0])] : 0;
     const pick = choose(inp, c, options.filter((s) => SIZE_POINTS[size(s)] === least), size);
-    if (!pick) return;
-    const cv = add(pick, size(pick));
-    cv.why = `from: a Mystery of House ${house}, Initiated in apprenticeship (Houses of Hermes: Mystery Cults)`;
-    log.push(`House Mystery: ${pick.def.name}, ${size(pick)} — Initiated in apprenticeship.`);
-    return;
+    if (pick) {
+      const cv = add(pick, size(pick));
+      cv.why = `${HOUSE_WHY} ${house}, Initiated in apprenticeship (Houses of Hermes: Mystery Cults)`;
+      log.push(`House Mystery: ${pick.def.name}, ${size(pick)} — Initiated in apprenticeship.`);
+      return;
+    }
+    // none the saga's books or the room allow: a cult's, through Cabal Legacy, as for any other House
   }
   // a magus of another House: Cabal Legacy, then the cult's Mystery
   const legacy = scored('cabal-legacy-flaw');

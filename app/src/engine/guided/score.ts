@@ -131,7 +131,7 @@ export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, c
   if (rec.cultures.length && !rec.cultures.includes(c.society)) return `For ${rec.cultures.join(' or ')} characters`;
   // a hedge tradition's own Virtues only for its member, or one who asks to be one: alone, a gruagach's
   // Form or a faerie Power casts nothing (traditionRules.ts)
-  const tradition = traditionGate(def.id, c, data, st, traditionOf(c) ?? wantedTradition(st, c));
+  const tradition = traditionGate(def.id, c, data, st, traditionOf(c) ?? wantedTradition(st, c, data));
   if (tradition) return tradition;
   // asked for by name, or a Holy Method or Power when the player wants holy powers: complexity is no bar
   const named = (st.answers[`vf:${def.id}`] ?? 0) >= FOLLOW_UP_HIGH;
