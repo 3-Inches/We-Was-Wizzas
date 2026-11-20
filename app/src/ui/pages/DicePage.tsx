@@ -16,6 +16,7 @@ import { AtTable, DICE_LABELS, PeopleOptions, canPlay, castsSpells, groupPeople,
 import { DICE_SUBS, R, type DiceSub } from '../routes';
 import { useCharEditor, type CharEditor } from '../character/useChar';
 import { CombatRolls, GroupCombat } from '../character/sheet/CombatTab';
+import { GreatProjectsDicePart } from './GreatProjectsDicePart';
 import MagicTab from '../character/sheet/MagicTab';
 import MysteriesPart, { hasTableMystery } from './MysteriesPart';
 import FaeriePart, { hasFaerieTable } from './FaeriePart';
@@ -105,7 +106,7 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
   return (
     <div className="stack">
       {standalone && <h1>Dice</h1>}
-      {saga && <Tabs tabs={DICE_SUBS.filter((id) => (id !== 'mysteries' || x.chars.some(hasTableMystery)) && (id !== 'faerie' || x.chars.some(hasFaerieTable)) && (id !== 'hedge' || x.chars.some(hasHedgeMagic))).map((id) => ({ id, label: DICE_LABELS[id] }))} value={sub} onChange={(t) => set('sub', t)} />}
+      {saga && <Tabs tabs={DICE_SUBS.filter((id) => (id !== 'mysteries' || x.chars.some(hasTableMystery)) && (id !== 'faerie' || x.chars.some(hasFaerieTable)) && (id !== 'hedge' || x.chars.some(hasHedgeMagic)) && (id !== 'projects' || covs.length > 0)).map((id) => ({ id, label: DICE_LABELS[id] }))} value={sub} onChange={(t) => set('sub', t)} />}
       {sub === 'roll' && <RollPart x={x} who={who} />}
       {saga && sub === 'combat' && <CombatPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'magic' && <MagicPart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
@@ -113,6 +114,7 @@ export default function DicePage({ standalone }: { standalone?: boolean } = {}) 
       {saga && sub === 'faerie' && <FaerieDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'hedge' && <HedgeDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
       {saga && sub === 'mysteries' && <MysteriesDicePart sagaId={saga.id} x={x} who={who} setWho={(id) => set('who', id)} />}
+      {saga && sub === 'projects' && <GreatProjectsDicePart sagaId={saga.id} />}
       {!saga && <p className="small muted">Open a saga first and its characters can take part in these rolls, their wounds going on their sheets.</p>}
     </div>
   );

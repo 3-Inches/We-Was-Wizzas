@@ -96,7 +96,7 @@ export const TOOLKIT_GUIDE: RpGuide = {
         { heading: 'In play' },
         {
           points: [
-            ['The covenant’s Overview', 'keeps the **Aura** and its changes, the **Troubles** that strike it, its **Great buildings** and **A menagerie**, and **Magic on the covenant**, which casts one spell on every member at once.'],
+            ['The covenant’s Overview', 'keeps the **Aura** and its changes, the **Troubles** that strike it, its **Great projects**, and **Magic on the covenant**, which casts one spell on every member at once.'],
             ['Each year’s end', 'settles the treasury, the vis and the year of familiarity. It happens when time passes on Seasons, or by hand on the **The year** card of the Finances tab, with Undo.'],
             ['When money runs short,', 'the **Hard times** card lists the book’s savings, each with its cost in Loyalty. Money can be borrowed and vis sold.'],
           ],
@@ -363,7 +363,8 @@ export const TOOLKIT_GUIDE: RpGuide = {
           ordered: true,
           list: [
             '**Use its spells.** They are in the spell list. Its enchantments are added to an item with **+ From the books…**.',
-            '**Keep a building.** The covenant’s Overview keeps its **Great buildings**, with their stress check, and **A menagerie** with its handler.',
+            '**Keep a building.** The covenant’s Overview keeps it under **Great projects**: its height, its work and its damage.',
+            '**Roll for it.** A building’s stress check and a menagerie’s breeding are at **Game Table › Dice › Great projects**.',
             '**Spend a season.** A mason’s **Build (a season)** or **Repair (a season)** is in their season in full.',
           ],
         },

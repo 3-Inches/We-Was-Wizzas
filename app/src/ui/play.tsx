@@ -26,7 +26,7 @@ export function useEditable(c?: Character): boolean {
   return atTable || !c?.creation.finalized;
 }
 
-export const DICE_LABELS: Record<DiceSub, string> = { roll: 'Roll', combat: 'Combat & perils', magic: 'Spellcasting', holy: 'Faith & miracles', faerie: 'Faerie', hedge: 'Hedge magic', mysteries: 'Mysteries' };
+export const DICE_LABELS: Record<DiceSub, string> = { roll: 'Roll', combat: 'Combat & perils', magic: 'Spellcasting', holy: 'Faith & miracles', faerie: 'Faerie', hedge: 'Hedge magic', mysteries: 'Mysteries', projects: 'Great projects' };
 
 type Where = DiceSub | 'society' | 'agents' | 'recovery' | 'confidence' | 'seasons' | 'guild' | 'items';
 
@@ -38,6 +38,7 @@ const PLACE: Record<Where, string> = {
   faerie: 'Dice › Faerie',
   hedge: 'Dice › Hedge magic',
   mysteries: 'Dice › Mysteries',
+  projects: 'Dice › Great projects',
   society: 'Society & the Tribunal',
   agents: 'Society & the Tribunal › Agents',
   recovery: 'Overview › Health & recovery',

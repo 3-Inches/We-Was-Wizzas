@@ -38,7 +38,7 @@ One line an area. The Guide has each one as steps, and the Game Mechanics page s
 | Faerie | Faerie characters, faerie wizardry, Sympathy Traits, rites, bargaining and Faerie Calling. | *Realms of Power: Faerie* |
 | The Mysteries | Initiation, the Criamon Path, horoscopes and alchemy in the lab, and the rolls of each Mystery at the table. | *The Mysteries*, *Houses of Hermes: Mystery Cults* |
 | Hedge magic | Elementalists, folk witches, gruagachan, learned magicians, nightwalkers and vitkir: each has a card on the sheet and its rolls at the table, and their season-long work is on Seasons. Mythic Herbalism. | *Hedge Magic* |
-| Hermetic Projects | The book's spells and enchantments, its laboratories, and great buildings and the menagerie on the covenant, with the mason's seasons. | *Hermetic Projects* |
+| Hermetic Projects | The book's spells and enchantments, its laboratories, and great buildings and the menagerie on the covenant, with their rolls at the Game Table and the mason's seasons. | *Hermetic Projects* |
 | Optional rules | Each supplement's subsystem is turned on or off for the saga. A card whose rule is off is not shown. | Several |
 | Reference | Game Mechanics: the rules from the core book and the reviewed supplements, with their text. Searchable lists of Virtues and Flaws, Abilities and more. A reader for every book. | All |
 | Sharing | Invite players with the saga's rules alone, follow the troupe's characters, and share a character, a covenant or a whole saga as a file or a link. | |

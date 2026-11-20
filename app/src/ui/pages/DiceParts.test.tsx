@@ -1,12 +1,14 @@
 // @vitest-environment jsdom
-// Dice › Faith & miracles lists everyone in "Who prays", the holy in a group of their own at the top
-// (roadmap Batch B, 5.17): anyone may pray, but the holy are who the page is for.
+// Parts of Dice moved or regrouped in Batch B. Faith & miracles lists everyone in "Who prays", the holy
+// in a group of their own at the top (5.17). Great projects rolls a covenant's building and menagerie at
+// the Game Table, and writes what a stress check costs on the covenant (5.8; owner point 1).
 import { afterEach, describe, expect, it, vi } from 'vitest';
 vi.mock('idb-keyval', () => ({ get: async () => undefined, set: async () => undefined, del: async () => undefined }));
 import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { MemoryRouter } from 'react-router-dom';
-import { addVirtue, newCharacter } from '../../engine/character/factory';
+import { addVirtue, ensureAbility, newCharacter } from '../../engine/character/factory';
+import { newCovenant } from '../../engine/covenant';
 import { gameDataFor } from '../../store/hooks';
 import { newSaga, useStore } from '../../store/store';
 import DicePage from './DicePage';
@@ -16,6 +18,7 @@ import DicePage from './DicePage';
 let root: Root | undefined;
 let el: HTMLDivElement | undefined;
 afterEach(async () => {
+  vi.restoreAllMocks();
   if (root) await act(async () => root!.unmount());
   el?.remove();
 });
@@ -48,5 +51,35 @@ describe('who prays, on the Faith page', () => {
       ['The players’ characters', ['Anna', 'Cora']],
     ]);
     expect(sel.value).toBe(brother.id);
+  });
+});
+
+describe('a great building’s stress check, at Game Table › Dice › Great projects', () => {
+  it('is rolled with the covenant’s mason, and a damage level lost is written on the covenant', async () => {
+    const saga = newSaga('Test');
+    const mason = newCharacter('grog', saga.id);
+    mason.name = 'Hugo';
+    mason.creation.finalized = true;
+    ensureAbility(mason, 'craft-type', { laterLife: 75 }, 'Mason'); // Craft: Mason 5
+    const cov = newCovenant(saga.id, 1220);
+    cov.name = 'Fengheld';
+    cov.memberIds = [mason.id];
+    mason.covenantId = cov.id;
+    cov.buildings = [{ uid: 'b1', name: 'The great tower', height: 100, weakest: 'standard', latest: 'standard', damage: 0 }];
+    localStorage.clear();
+    useStore.setState({ activeSagaId: saga.id, sagas: { [saga.id]: saga }, characters: { [mason.id]: mason }, covenants: { [cov.id]: cov } });
+    el = document.createElement('div');
+    document.body.appendChild(el);
+    root = createRoot(el);
+    await act(async () => root!.render(<MemoryRouter initialEntries={['/?sub=projects']}><DicePage /></MemoryRouter>));
+    expect(el.textContent).toMatch(/Master mason: Hugo, Craft: Mason 5/);
+    // a botched stress die: the building is damaged
+    vi.spyOn(Math, 'random').mockReturnValue(0);
+    const roll = [...el.querySelectorAll('button')].find((b) => /Roll the stress check/.test(b.textContent ?? ''))!;
+    await act(async () => roll.click());
+    const after = useStore.getState().covenants[cov.id];
+    expect(after.buildings![0].damage).toBeGreaterThan(0);
+    expect(after.log.at(-1)?.text).toMatch(/The great tower: .*damage level/);
+    expect(el.textContent).toMatch(/Recorded on Fengheld/);
   });
 });
