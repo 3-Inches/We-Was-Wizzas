@@ -177,15 +177,22 @@ async function sweepSaga(b, width, sagaFile, practice) {
     await settle(400);
     return page.evaluate((ids) => {
       const pick = [...document.querySelectorAll('main select')]
-        .map((el) => ({ value: el.value, all: [...el.options].map((o) => o.value).filter((v) => ids.includes(v)) }))
+        .map((el) => ({
+          value: el.value,
+          all: [...el.options].map((o) => o.value).filter((v) => ids.includes(v)),
+          // the picker's groups, by label: the Faith page puts the holy in one of their own
+          groups: Object.fromEntries([...el.querySelectorAll('optgroup')].map((g) => [g.label, [...g.querySelectorAll('option')].map((o) => o.value).filter((v) => ids.includes(v))])),
+        }))
         .sort((a, b) => b.all.length - a.all.length)[0];
-      return pick ?? { value: '', all: [] };
+      return pick ?? { value: '', all: [], groups: {} };
     }, [...ids]);
   };
   const special = {};
   for (const sub of ['faerie', 'hedge', 'mysteries']) special[sub] = (await pickerFor(sub)).all;
-  // the Faith page opens on the first holy character (or the first, when nobody is holy)
-  special['Faith page'] = [(await pickerFor('holy')).value].filter(Boolean);
+  // the Faith page lists everyone, the holy in a group of their own at the top: each of them, or the
+  // one it opens on when nobody is holy
+  const faith = await pickerFor('holy');
+  special['Faith page'] = faith.groups['The holy'] ?? [faith.value].filter(Boolean);
   const living = new Set(bundle.covenants.filter((c) => c.living).map((c) => c.id));
   const playing = bundle.characters.filter((c) => c.creation?.finalized && !c.wounds?.dead);
   const chosen = new Map();

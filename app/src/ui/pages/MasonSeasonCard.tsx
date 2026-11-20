@@ -1,7 +1,7 @@
 // A mason's season on a great building (Hermetic Projects, the Great Tower), on the Seasons page, in a
 // character's season in full: Build (a season) raises one of the covenant's buildings at the mason's pace,
 // in work whose quality the Workshop Total sets; Repair (a season) mends a damage level or brings shoddy
-// work up to standard. The building's record is on the covenant (GreatBuildingsCard); Unlog puts it back.
+// work up to standard. The building's record is on the covenant (GreatProjectsCard); Unlog puts it back.
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';

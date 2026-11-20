@@ -152,3 +152,41 @@ describe('a card opens on what this character can do (B4)', () => {
     expect(gruagachSeason(c, d, NO_AURA, 'invent', { tf: pairs[0], level: 200 }, { ...GRUAGACH_SEASON_SET, have: 0 }, pairs).blocked).toBe('no-gain');
   });
 });
+
+describe('a season that would draw no vis is not offered (5.14)', () => {
+  it('a gruagach whose Take Vision Lab Total is under 10 draws none (Hedge Magic, line 3103)', () => {
+    const s = saga('gru');
+    const c = who(s, GRUAGACH);
+    const d = derive(c);
+    const aura = characterContext(c, s.covenants, data).aura;
+    const pairs = gruagachPairs(c, d);
+    expect(pairs).toContain('TaVs');
+    const gs = gruagachSeason(c, d, aura, 'vis', undefined, { ...GRUAGACH_SEASON_SET, have: 0 }, pairs);
+    expect(gs.lt.total).toBeLessThan(10);
+    expect(gs.drawn).toBe(0);
+    expect(gs.blocked).toBe('no-vis');
+    // nor does the card open on it
+    expect(firstGruagachWork(c, d, aura, have(c, covOf(s, c)))?.work).not.toBe('vis');
+    // and vis comes only "from a magical aura": a strong Lab Total in a Divine one draws none
+    const strong = { ...c, abilities: c.abilities.map((a) => ({ ...a, xp: { ...a.xp, laterLife: (a.xp.laterLife ?? 0) + 200 } })) };
+    const divine = gruagachSeason(strong, derive(strong), { realm: 'Divine', strength: 0 }, 'vis', undefined, { ...GRUAGACH_SEASON_SET, have: 0 }, pairs);
+    expect(divine.drawn).toBe(0);
+    expect(divine.blocked).toBe('no-vis');
+    expect(gruagachSeason(strong, derive(strong), { realm: 'Magic', strength: 3 }, 'vis', undefined, { ...GRUAGACH_SEASON_SET, have: 0 }, pairs).drawn).toBeGreaterThan(0);
+  });
+
+  it('a folk witch draws a tenth of her Lab Total, rounded up, so none only when it is 0 or less (line 1924)', () => {
+    const s = saga('witch');
+    const c = who(s, WITCH);
+    const d = derive(c);
+    const aura = characterContext(c, s.covenants, data).aura;
+    const here = kitchenSeason(c, d, aura, 'vis', undefined, { have: 0 });
+    expect(here.drawn).toBe(Math.ceil(here.lt.total / 10));
+    expect(here.blocked).toBeUndefined();
+    // a strong Divine aura takes the Lab Total below 1: nothing drawn, and the season is not offered
+    const church = kitchenSeason(c, d, { realm: 'Divine', strength: 9 }, 'vis', undefined, { have: 0 });
+    expect(church.lt.total).toBeLessThanOrEqual(0);
+    expect(church.drawn).toBe(0);
+    expect(church.blocked).toBe('no-vis');
+  });
+});

@@ -72,8 +72,10 @@ const scholarly = (x: Learner) => x.c.abilities.some((a) => (a.abilityId === 'de
  * Supernatural Ability has its own rules; only the Gifted learn Parma Magica (DE, Abilities). A
  * familiar can learn Magic Theory (DE, Familiars).
  */
-export function mayLearn(s: Learner, data: GameData, abilityId: string): string | undefined {
+export function mayLearn(s: Learner, data: GameData, abilityId: string, param?: string): string | undefined {
   const { d } = s;
+  // a Virtue that opens one Ability only as one thing (Dead Language: Latin, say) opens that one
+  if (param && d.abilityAccess.onlyAs.get(abilityId)?.has(param.trim().toLowerCase())) return undefined;
   if (abilityId === 'parma-magica') return d.hasGift ? undefined : 'only the Gifted learn Parma Magica';
   if (abilityId === 'magic-theory' && s.c.creature?.familiarOf) return undefined;
   const type = abilityTypeOf(data, abilityId);
@@ -107,7 +109,7 @@ export function teachableSubjects(t: Learner, s: Learner, data: GameData): { sub
     const mine = s.c.abilities.find((x) => x.abilityId === ta.abilityId && (x.param ?? '').trim().toLowerCase() === (ta.param ?? '').trim().toLowerCase());
     const ss = mine ? s.d.abilityByUid.get(mine.uid)?.score ?? 0 : 0;
     if (da.score <= ss) continue;
-    const why = mine ? undefined : mayLearn(s, data, ta.abilityId);
+    const why = mine ? undefined : mayLearn(s, data, ta.abilityId, ta.param);
     if (why) blocked.push({ label: da.name, why });
     else subjects.push({ key: `ability:${ta.uid}`, label: da.name, isArt: false, teacherScore: da.score, studentScore: ss, studentKey: mine ? `ability:${mine.uid}` : undefined, newAbility: mine ? undefined : { abilityId: ta.abilityId, param: ta.param } });
   }

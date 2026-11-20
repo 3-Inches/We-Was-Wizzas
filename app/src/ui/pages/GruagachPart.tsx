@@ -10,7 +10,7 @@ import { GRUAGACH_GUIDELINES } from '../../data/gruagachSpells';
 import { GRUAGACH_APPRENTICESHIP } from '../../engine/character/derive';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
-  GRUAGACH_SEASON_SET, TRANSFORMATION_BAD, TRANSFORMATION_GOOD, durationProblem, firstGruagachWork, gruagachArtCap, gruagachArts, gruagachBookSpells, gruagachCastingScore, gruagachExtraction, gruagachFlex,
+  GRUAGACH_SEASON_SET, TRANSFORMATION_BAD, TRANSFORMATION_GOOD, durationProblem, firstGruagachWork, gruagachArtCap, gruagachArts, gruagachBookSpells, gruagachCastingScore, gruagachFlex,
   gruagachLevel, gruagachPairs, gruagachSeason, gruagachVisLimit, pictish, spontaneousTotal, tattooVisArts, transformationAvoid, transformationFollows, botchWarpingPoints, gruagachInventSeason,
   understandingTransformation, type GruagachWork,
 } from '../../engine/gruagach';
@@ -384,7 +384,12 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
   const { tf, lt, usesMod, tat, need, drawn } = gs;
   const under = inventing && chosen && inventing.spell.name === chosen.name && inventing.spell.level === chosen.level ? inventing : undefined;
   const plan = (): string => {
-    if (work === 'vis') return `${gruagachExtraction(lt.total)} pawns of Vim vis from the aura (the Take Vision Lab Total ÷ 10); a season uses up to ${gruagachVisLimit(pi)} pawns (twice Pictish).`;
+    if (work === 'vis')
+      return drawn
+        ? `${drawn} pawn${drawn === 1 ? '' : 's'} of Vim vis from the aura (the Take Vision Lab Total ÷ 10); a season uses up to ${gruagachVisLimit(pi)} pawns (twice Pictish).`
+        : aura?.realm !== 'Magic'
+          ? 'No vis: it is drawn only from a magical aura, and this one is not.'
+          : `No vis from the aura: a pawn for each full 10 of the Take Vision Lab Total, and it is ${lt.total}.`;
     if (work === 'tattoo') {
       if (!effect || !tat) return 'Design the effect first.';
       if (lt.total < 2 * tat.level) return `The Lab Total must be twice the level (${2 * tat.level}${usesMod ? `: ${effect.level} + ${usesMod} for ${uses} uses a day` : ''}); it allows up to level ${tat.maxLevel}.`;
@@ -402,6 +407,7 @@ export function GruagachSeasonCard({ ed, aura }: { ed: CharEditor; aura: AuraSta
     : gs.blocked === 'design' ? 'Design the effect first.'
     : gs.blocked === 'tattoo' ? 'The tattoo cannot be made as designed (above).'
     : gs.blocked === 'no-gain' ? `The Lab Total must beat the level (${chosen?.level}).`
+    : gs.blocked === 'no-vis' ? (aura?.realm !== 'Magic' ? 'It would draw no vis: the aura is not magical.' : 'It would draw no vis: the Take Vision Lab Total must be 10 or more.')
     : need ? src.short(need) : undefined;
   const doSeason = () =>
     setLines(

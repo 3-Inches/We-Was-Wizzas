@@ -16,8 +16,6 @@ import { canUnlog, unlogSeason } from './unlog';
 import { differences, sagaFixtures } from './testing/unlogCheck';
 import { isTrade, newWorkshop } from './workshop';
 import { bestLesson, giveLesson } from './teaching';
-import { applyInitiation } from './initiation';
-import { applySeason, newSeasonEntry } from './longterm';
 
 const data = buildGameData();
 
@@ -117,19 +115,7 @@ describe('every season the clock logs, unlogged, leaves the character and covena
       expect([...seasons], k).toContain(k);
   }, 120000);
 
-  it('an Initiation (with an Ordeal’s Flaw), and a story’s experience', () => {
-    const [, st] = sagas.find(([n]) => n === 'tmre')!;
-    const x: SagaState = structuredClone(st);
-    const c = x.characters.find((y) => y.type === 'magus' && y.creation.finalized)!;
-    const before = structuredClone(c);
-    applyInitiation(c, data, { virtueId: 'items-of-quality', size: 'Minor', mystagogue: 'M', total: 15, target: 15, year: 1220, season: 'Spring', ordeal: { tier: 'Minor', text: '', flawId: 'deficient-technique-flaw', flawSize: 'Minor' } });
-    // a story's experience, as After a story logs it (src/ui/pages/AfterStoryCard.tsx)
-    const story = newSeasonEntry(1220, 'Spring', 'adventure', 'Adventure: Creo (+5 xp)', { 'art:Cr': 5 });
-    applySeason(c, story, 1);
-    c.seasonLog.push(story);
-    for (const e of c.seasonLog.filter((e) => !before.seasonLog.some((b) => b.uid === e.uid)).reverse()) expect(unlogSeason(c, e.uid, x.covenants).ok).toBe(true);
-    expect(differences(before, c)).toEqual([]);
-  });
+  // an Initiation and After a story are pressed on their cards: src/ui/pages/unlogEverySeason.test.tsx
 
   it('catches a season that leaves something behind', () => {
     const [, st] = sagas.find(([n]) => n === 'tmre')!;

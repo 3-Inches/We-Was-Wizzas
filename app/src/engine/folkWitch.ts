@@ -246,7 +246,7 @@ export interface KitchenSeason {
   need: number;
   drawn: number;
   /** why it cannot be done with the vis to hand: no dose can be brewed, more vis than a season allows, or too little */
-  blocked?: 'no-dose' | 'over-limit' | 'short';
+  blocked?: 'no-dose' | 'over-limit' | 'short' | 'no-vis';
 }
 
 /**
@@ -261,7 +261,8 @@ export function kitchenSeason(c: Character, d: DerivedCharacter, aura: AuraState
   const b = brew(fwmt, o.effectVis ?? 0, Math.min(seasonLimit, o.have), { labText: o.labText });
   const need = w === 'brew' ? b.vis : w === 'fetish' ? 1 : w === 'longevity' ? witchLongevityVis(c.age) : 0;
   const drawn = w === 'vis' ? witchVisExtraction(lt.total) : 0;
-  const blocked = w === 'brew' && !b.doses ? 'no-dose' : w === 'longevity' && need > seasonLimit ? 'over-limit' : need > o.have ? 'short' : undefined;
+  // a Lab Total of 0 or less draws no vis (a tenth, rounded up: Hedge Magic, line 1924): not a season's work
+  const blocked = w === 'brew' && !b.doses ? 'no-dose' : w === 'longevity' && need > seasonLimit ? 'over-limit' : w === 'vis' && !drawn ? 'no-vis' : need > o.have ? 'short' : undefined;
   return { lt, seasonLimit, brew: b, need, drawn, blocked };
 }
 

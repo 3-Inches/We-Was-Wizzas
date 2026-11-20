@@ -268,8 +268,8 @@ export interface GruagachSeason {
   need: number;
   drawn: number;
   gain: number;
-  /** why it cannot be done: no effect designed, a tattoo beyond the Lab Total, no progress on the spell, too little vis to hand */
-  blocked?: 'design' | 'tattoo' | 'no-gain' | 'short';
+  /** why it cannot be done: no effect designed, a tattoo beyond the Lab Total, no progress on the spell, too little vis to hand, no vis to draw */
+  blocked?: 'design' | 'tattoo' | 'no-gain' | 'short' | 'no-vis';
 }
 
 /**
@@ -283,9 +283,11 @@ export function gruagachSeason(c: Character, d: DerivedCharacter, aura: AuraStat
   const usesMod = FREQUENCY.find((f) => f.value === set.uses)?.mod ?? 0;
   const tat = work === 'tattoo' && spell ? tattoo(lt.total, spell.level, pictish(c, d), has(c, 'tattoo-mastery'), { usesMod, sizeMult: TATTOO_SIZES[set.size]?.mult }) : undefined;
   const need = tat?.ok ? tat.vis : 0;
-  const drawn = work === 'vis' ? gruagachExtraction(lt.total) : 0;
+  // vis is drawn "from a magical aura" only (Hedge Magic, line 3103)
+  const drawn = work === 'vis' && aura?.realm === 'Magic' ? gruagachExtraction(lt.total) : 0;
   const gain = work === 'invent' && spell ? Math.max(0, lt.total - spell.level) : 0;
-  const blocked = work !== 'vis' && !spell ? 'design' : work === 'tattoo' && !tat?.ok ? 'tattoo' : work === 'invent' && !gain ? 'no-gain' : need > set.have ? 'short' : undefined;
+  // a Take Vision Lab Total under 10, or an aura not of Magic, draws no vis: a season spent for nothing is not offered
+  const blocked = work !== 'vis' && !spell ? 'design' : work === 'tattoo' && !tat?.ok ? 'tattoo' : work === 'invent' && !gain ? 'no-gain' : work === 'vis' && !drawn ? 'no-vis' : need > set.have ? 'short' : undefined;
   return { tf, lt, usesMod, tat, need, drawn, gain, blocked };
 }
 

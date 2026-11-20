@@ -8,7 +8,7 @@ export const TABLE_TABS = ['overview', 'seasons', 'chronicle', 'dice', 'society'
 export type TableTab = (typeof TABLE_TABS)[number];
 
 /** The Dice page's parts: any roll, combat and perils, spellcasting and certamen, and the holy: miracles, saints, God's aid (RoP: The Divine). */
-export const DICE_SUBS = ['roll', 'combat', 'magic', 'holy', 'faerie', 'hedge', 'mysteries'] as const;
+export const DICE_SUBS = ['roll', 'combat', 'magic', 'holy', 'faerie', 'hedge', 'mysteries', 'projects'] as const;
 export type DiceSub = (typeof DICE_SUBS)[number];
 
 /** The Saga Overview's tabs, in order: the saga's settings, its books, optional rules, the troupe's numbers and rulings, its own content, overrides, and its journal. */
@@ -28,7 +28,7 @@ export const R = {
   table: (sagaId: string, tab?: TableTab, sub?: string, more: Record<string, string | undefined> = {}) => `/saga/${sagaId}/table${q({ tab: tab && tab !== 'overview' ? tab : undefined, sub, ...more })}`,
   seasons: (sagaId: string) => R.table(sagaId, 'seasons'),
   /** the Dice page, on one of its parts, for one character (?who=) */
-  dice: (sagaId: string, sub?: DiceSub, who?: string) => R.table(sagaId, 'dice', sub && sub !== 'roll' ? sub : undefined, { who }),
+  dice: (sagaId: string, sub?: DiceSub, who?: string, cov?: string) => R.table(sagaId, 'dice', sub && sub !== 'roll' ? sub : undefined, { who, cov }),
   /** the Seasons page, for one character */
   /** the Seasons page, planning one character's season in full; `to` names a card on it to scroll to */
   seasonsFor: (sagaId: string, who?: string, to?: string) => R.table(sagaId, 'seasons', undefined, { who, to }),

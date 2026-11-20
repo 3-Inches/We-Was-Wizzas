@@ -592,8 +592,8 @@ function CovenantRolls({ cov, update }: Pick<CovTabProps, 'cov' | 'update'>) {
   const add = () =>
     update((x) => {
       x.library.push(
-        { uid: uid(), title: 'The covenant rolls (Profession: Chamberlain)', kind: 'summa', subjectType: 'ability', subject: 'profession-type', level, quality: 6, language: 'Latin', rolls: true, notes: 'Grogs: the covenant rolls serve as a summa for Profession: Chamberlain; a chamberlain cannot learn from what they wrote themselves.' },
-        { uid: uid(), title: 'The covenant rolls (Area Lore: the covenant)', kind: 'tractatus', subjectType: 'ability', subject: 'area-lore', level: 0, quality: 6, language: 'Latin', rolls: true, notes: 'Grogs: kept as a diary, every five decades of volumes make another tractatus; removed from the covenant, an Arcane Connection lasting weeks.' },
+        { uid: uid(), title: 'The covenant rolls (Profession: Chamberlain)', kind: 'summa', subjectType: 'ability', subject: 'profession-type', param: 'Chamberlain', level, quality: 6, language: 'Latin', rolls: true, notes: 'Grogs: the covenant rolls serve as a summa for Profession: Chamberlain; a chamberlain cannot learn from what they wrote themselves.' },
+        { uid: uid(), title: 'The covenant rolls (Area Lore: the covenant)', kind: 'tractatus', subjectType: 'ability', subject: 'area-lore', param: cov.name || 'the covenant', level: 0, quality: 6, language: 'Latin', rolls: true, notes: 'Grogs: kept as a diary, every five decades of volumes make another tractatus; removed from the covenant, an Arcane Connection lasting weeks.' },
       );
     });
   return (

@@ -3,11 +3,12 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { newSaga } from '../store/store';
 import {
-  annotateGain, bookQuality, clarifyProblems, copyOfBook, copyProblems, copyRate, covenantArtisans, florilegiumBonus, glossProblems, labTextRate, libraryYearEnd, planBook, refreshQuality,
+  annotateGain, bookQuality, readProblems, clarifyProblems, copyOfBook, copyProblems, copyRate, covenantArtisans, florilegiumBonus, glossProblems, labTextRate, libraryYearEnd, planBook, refreshQuality,
   scriptoriumSeason, workWriting,
 } from './books';
 import { deriveCharacter } from './character/derive';
-import { ensureAbility, newCharacter } from './character/factory';
+import { addVirtue, ensureAbility, newCharacter } from './character/factory';
+import { computeStudy } from './longterm';
 import { newCovenant } from './covenant';
 import { DEFAULT_ADVANCE, advanceSeason } from './time';
 import { DEFAULT_HOUSE_RULES, type Character, type LibraryBook, type Specialist, type WritingProject } from './types';
@@ -244,5 +245,37 @@ describe('the covenant’s scribes and artisans', () => {
     expect(a.scribe).toMatchObject({ name: 'Auctor', score: 8 });
     expect(a.binder).toMatchObject({ name: 'Binder', score: 7 });
     expect(a.illuminator).toBeUndefined();
+  });
+});
+
+describe('who can read a book (DE line 16191; RoP: The Divine, line 4993)', () => {
+  const reader = (langs: [string, number][], artes: number) => {
+    const c = newCharacter('companion', 's1');
+    for (const [l, n] of langs) ensureAbility(c, 'dead-language', { laterLife: abilityXp(n) }, l);
+    if (artes) ensureAbility(c, 'artes-liberales', { laterLife: abilityXp(artes) });
+    return c;
+  };
+  it('a book in one language needs 4 in it and a score in Artes Liberales', () => {
+    const fluent = reader([['Latin', 4]], 1);
+    expect(readProblems(fluent, derive(fluent), { language: 'Latin' })).toEqual([]);
+    const c = reader([['Latin', 3]], 0);
+    expect(readProblems(c, derive(c), { language: 'Latin' })).toEqual(['Latin 4 or more', 'Artes Liberales 1 (to read)']);
+  });
+  it('the Book of Solomon needs 4 in each of its four languages, and Artes Liberales 4', () => {
+    const solomon = { language: 'Latin, Greek, Hebrew and Chaldean' };
+    const one = reader([['Greek', 5]], 1);
+    expect(readProblems(one, derive(one), solomon)).toEqual(['Latin and Hebrew and Chaldean 4 or more', 'Artes Liberales 4 (to read 4 alphabets)']);
+    const all = reader([['Latin', 4], ['Greek', 4], ['Hebrew', 4], ['Chaldean', 4]], 4);
+    expect(readProblems(all, derive(all), solomon)).toEqual([]);
+  });
+});
+
+describe('an Ability begun from a book', () => {
+  it('counts an Affinity with it from the first season (DE, Affinity with Ability: experience × 1.5)', () => {
+    const c = newCharacter('companion', 's1');
+    addVirtue(c, data, 'affinity-with-ability', 'Minor', 'magic-theory');
+    const r = computeStudy(derive(c), { kind: 'summa', quality: 10, level: 5, isArt: false, subject: 'Magic Theory' }, { newAbility: { abilityId: 'magic-theory' } });
+    expect(r.xp).toBe(15);
+    expect(computeStudy(derive(c), { kind: 'summa', quality: 10, level: 5, isArt: false, subject: 'Concentration' }, { newAbility: { abilityId: 'concentration' } }).xp).toBe(10);
   });
 });

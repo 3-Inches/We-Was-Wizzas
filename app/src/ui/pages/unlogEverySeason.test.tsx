@@ -4,7 +4,8 @@
 // would: a character's season in full is drawn on Game Table › Seasons, each button that logs a season
 // is pressed (and each choice of the season cards' selects tried first), and the season is unlogged as
 // the Unlog button does it. The character, the others and the covenants must be as they were. It finds
-// the buttons itself, so a new card is checked without a change here. The clock's own seasons are
+// the buttons itself, so a new card is checked without a change here. Two roads take more than one press
+// and are walked step by step at the end: an Initiation, and After a story. The clock's own seasons are
 // checked in src/engine/unlogEverySeason.test.ts.
 import { describe, expect, it, vi } from 'vitest';
 vi.mock('idb-keyval', () => ({ get: async () => undefined, set: async () => undefined, del: async () => undefined }));
@@ -25,6 +26,7 @@ import { useStore } from '../../store/store';
 import { useCharEditor } from '../character/useChar';
 import { seasonCards } from './seasonCards';
 import { SeasonInFull } from './SeasonInFull';
+import { AfterStoryCard } from './AfterStoryCard';
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -47,7 +49,9 @@ const records = () => {
 
 /**
  * The practice sagas, each with what its characters may begin elsewhere set up, so their season's work
- * shows: an apprentice for a magus, a workshop for one with a trade, a holy work begun, a mason.
+ * shows: an apprentice for a magus, a workshop for one with a trade, a holy work begun, a mason; a charm
+ * under way for a learned magician, vis for a folk witch's fetish, and Ars Notoria for a companion, whose
+ * First Ring is recited in spring (every practice saga's season).
  */
 function prepared(): [string, SagaState][] {
   return sagaFixtures().map(([name, f]) => {
@@ -64,6 +68,13 @@ function prepared(): [string, SagaState][] {
     }
     const mason = alive.find((c) => c.type === 'grog' && c.covenantId);
     if (mason) ensureAbility(mason, 'craft-type', { laterLife: 75 }, 'Mason');
+    for (const c of alive) {
+      const known = c.learned?.charms?.[0];
+      if (known && !c.learned?.inventing) c.learned = { ...c.learned, inventing: { charm: { ...known, uid: `inv-${c.id}`, name: 'A charm under way', source: 'play' }, progress: 0, seasons: 0 } };
+      if (c.virtues.some((v) => v.defId === 'folk-witch')) c.purse = { pounds: c.purse?.pounds ?? 0, vis: [...(c.purse?.vis ?? []), { art: 'In', pawns: 3 }, { art: 'Au', pawns: 3 }, { art: 'An', pawns: 3 }] };
+    }
+    const reader = alive.find((c) => c.type === 'companion' && st.saga.currentSeason === 'Spring');
+    if (reader) ensureAbility(reader, 'ars-notoria', { laterLife: 5 });
     return [name, st];
   });
 }
@@ -220,7 +231,87 @@ describe('a season done from a card, unlogged, leaves everyone as they were', ()
     expect([...reached].some((k) => /^Worked as/.test(k)), 'a season in the workshop').toBe(true);
     // and the seasons whose rolls wait for the season's end, or that change a tradition's own record
     const whole = new Set(out.flatMap((r) => r.seasons));
-    for (const k of ["Witch's kitchen: a curse woven", 'Gruagach: inventing', 'Vitki: learning rune scripts', 'Devotion: the search for the Book of Solomon'])
+    for (const k of ["Witch's kitchen: a curse woven", "Witch's kitchen: a fetish", 'Gruagach: inventing', 'Learned magic: inventing', 'Vitki: learning rune scripts', 'Devotion: the search for the Book of Solomon', 'Devotion: a ring of Solomon first recited'])
       expect([...whole].some((x) => x.startsWith(k)), k).toBe(true);
   }, 120000);
+
+  it('an Initiation, chosen step by step on the Mysteries card, and After a story’s experience', async () => {
+    window.confirm = () => true;
+    window.alert = () => undefined;
+    Element.prototype.scrollIntoView = () => undefined;
+    const [, st] = prepared().find(([n]) => n === 'tmre')!;
+    const data = gameDataFor(st.saga);
+    const out: Pressed[] = [];
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    const root: Root = createRoot(el);
+    const sel = (re: RegExp) => [...el.querySelectorAll('select')].find((x) => [...x.querySelectorAll('optgroup, option')].some((o) => re.test((o as HTMLOptGroupElement).label ?? '') || re.test(o.textContent ?? ''))) as HTMLSelectElement | undefined;
+    const btn = (re: RegExp) => [...el.querySelectorAll('button')].find((b) => re.test(b.textContent ?? '')) as HTMLButtonElement | undefined;
+    const set = async (x: HTMLSelectElement | undefined, v: string) => {
+      if (!x) return;
+      await act(async () => {
+        Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value')!.set!.call(x, v);
+        x.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    };
+    try {
+      // the Initiate: one whose season in full draws the Mysteries card
+      const initiate = st.characters.find((c) => {
+        if (!c.creation.finalized || c.wounds.dead) return false;
+        const d = deriveCharacter(c, data, st.saga.houseRules);
+        return seasonCards(c, d, st.saga, characterContext(c, st.covenants, data).covenant).shown.some((x) => x.card === 'mysteries');
+      })!;
+      expect(initiate, 'a character who may be Initiated').toBeDefined();
+      localStorage.clear();
+      load(st);
+      await act(async () => root.render(<MemoryRouter><Season sagaId={st.saga.id} charId={initiate.id} /></MemoryRouter>));
+      await act(async () => btn(/Plan an Initiation/)!.click());
+      // each Virtue the card offers, with each Mystagogue, until one can be Initiated; an Ordeal with a Flaw when there is one
+      const virtues = [...(sel(/Other Virtues a cult may Initiate/)?.options ?? [])].map((o) => o.value).filter(Boolean);
+      let done = false;
+      for (const v of virtues) {
+        if (done) break;
+        await set(sel(/Other Virtues a cult may Initiate/), v);
+        const mystagogues = [...(sel(/self-Initiation|the Initiate/i)?.options ?? [])].map((o) => o.value);
+        for (const m of mystagogues.length ? mystagogues : ['self']) {
+          await set(sel(/self-Initiation|the Initiate/i), m);
+          const ordeal = sel(/The Initiate .*Flaw/);
+          const withFlaw = [...(ordeal?.options ?? [])].find((o) => /Flaw/.test(o.textContent ?? ''));
+          if (withFlaw) {
+            await set(ordeal, withFlaw.value);
+            const pick = [...el.querySelectorAll('select')].find((x) => x !== ordeal && [...x.options].some((o) => o.value && data.vfById.get(o.value)?.kind === 'flaw'));
+            if (pick) await set(pick, [...pick.options].find((o) => o.value)!.value);
+          }
+          const go = btn(/^Initiate \(/);
+          if (go && !go.disabled) {
+            out.push(await pressed(go, `Initiation into ${v}`));
+            done = true;
+            break;
+          }
+        }
+      }
+      expect(done, 'an Initiation the card could make').toBe(true);
+      expect(out[0].seasons.length, 'the Initiation logged a season').toBeGreaterThan(0);
+      // with an Ordeal's Flaw, which Unlog must take back too
+      expect(out[0].seasons[0]).toMatch(/Ordeal: /);
+      await act(async () => root.unmount());
+
+      // After a story: one character took part, and gains Adventure experience
+      const root2: Root = createRoot(el);
+      load(st);
+      const people = useStore.getState().characters;
+      const who = Object.values(people).find((c) => c.creation.finalized && !c.wounds.dead && c.type === 'magus')!;
+      const derived = new Map([[who.id, deriveCharacter(who, data, st.saga.houseRules)]]);
+      await act(async () => root2.render(<MemoryRouter><AfterStoryCard people={[who]} derived={derived} year={st.saga.currentYear} season={st.saga.currentSeason} /></MemoryRouter>));
+      await set(el.querySelector('[data-tour="story-count"]') as HTMLSelectElement, '1');
+      await set(el.querySelector('select[aria-label^="Who took part"]') as HTMLSelectElement, who.id);
+      const story = await pressed(btn(/^\+ xp$/)!, 'After a story');
+      expect(story.seasons[0]).toMatch(/^Adventure: /);
+      out.push(story);
+      await act(async () => root2.unmount());
+    } finally {
+      el.remove();
+    }
+    expect(out.flatMap((r) => r.problems.map((p) => `${r.what}: ${p}`))).toEqual([]);
+  }, 60000);
 });

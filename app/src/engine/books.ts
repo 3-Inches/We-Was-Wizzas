@@ -193,7 +193,7 @@ export function planBook(d: DerivedCharacter, p: BookPlan): BookResult {
 export function languageScore(c: Character, d: DerivedCharacter, name: string): number {
   const n = name.trim().toLowerCase();
   return c.abilities
-    .filter((a) => (a.abilityId === 'living-language' || a.abilityId === 'dead-language') && (a.param ?? '').toLowerCase() === n)
+    .filter((a) => ((a.abilityId === 'living-language' || a.abilityId === 'dead-language') && (a.param ?? '').toLowerCase() === n) || a.abilityId === `dead-language-${n}`)
     .reduce((m, a) => Math.max(m, d.abilityByUid.get(a.uid)?.total ?? 0), 0);
 }
 
@@ -231,6 +231,26 @@ export function bestArtisan(cov: Covenant, members: { c: Character; d: DerivedCh
 /** The covenant's best scribe, binder and illuminator, among its specialists and members. */
 export function covenantArtisans(cov: Covenant, members: { c: Character; d: DerivedCharacter }[]): Record<'scribe' | 'binder' | 'illuminator', Artisan | undefined> {
   return { scribe: bestArtisan(cov, members, SCRIBE), binder: bestArtisan(cov, members, BINDER), illuminator: bestArtisan(cov, members, ILLUMINATOR) };
+}
+
+// ------------------------------------------------------------------------------ Reading
+
+/**
+ * Why a character cannot study from a book, or nothing if they can: "It is not possible to study from
+ * a book unless you are fluent (have a score of four or higher) in the language in which it is written,
+ * and can read and write the writing system used (which requires a score in Artes Liberales)" (DE,
+ * Reading Books, line 16191). A book written in several languages needs 4 in each, and Artes Liberales
+ * for each alphabet, a point each (DE line 7401): the Book of Solomon's four need Artes Liberales 4
+ * (RoP: The Divine, line 4993).
+ */
+export function readProblems(c: Character, d: DerivedCharacter, b: Pick<LibraryBook, 'language'>): string[] {
+  const out: string[] = [];
+  const langs = (b.language ?? '').split(/,\s*(?:and\s+)?|\s+and\s+/).map((x) => x.trim()).filter(Boolean);
+  const short = langs.filter((l) => languageScore(c, d, l) < 4);
+  if (short.length) out.push(`${short.join(' and ')} 4 or more`);
+  const alphabets = Math.max(1, langs.length);
+  if (score(d, 'artes-liberales') < alphabets) out.push(`Artes Liberales ${alphabets} (to read${alphabets > 1 ? ` ${alphabets} alphabets` : ''})`);
+  return out;
 }
 
 // ------------------------------------------------------------------------------ Copying

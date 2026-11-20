@@ -16,7 +16,7 @@ export type StudySource =
   | { kind: 'practice'; quality: number; subject: string }
   | { kind: 'exposure'; subject: string }
   | { kind: 'adventure'; quality: number; subject: string }
-  | { kind: 'vis'; art: Art; dieRoll: number; aura: number }
+  | { kind: 'vis'; art: Art; dieRoll: number; aura: number; botched?: boolean }
   | { kind: 'worship'; quality: number; subject: string };
 
 export interface StudyResult {
@@ -38,7 +38,7 @@ function sqMods(d: DerivedCharacter, when: string): { label: string; value: numb
 }
 
 /** Compute xp from a season of study for a given target (art code or ability uid). */
-export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number; visEaten?: number; currentXp?: number }): StudyResult {
+export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number; visEaten?: number; currentXp?: number; /** an Ability not yet on the sheet, begun by this season */ newAbility?: { abilityId: string; param?: string } }): StudyResult {
   const parts: { label: string; value: number }[] = [];
   const notes: string[] = [];
   let gainLimit: number | undefined;
@@ -114,6 +114,12 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
     total = Math.max(0, total - penalty);
     if (!total) notes.push(`A magic character with this much Might learns nothing from this source unless it eats vis: each pawn, of any Art, takes 2 off the penalty (RoP: Magic, Advancement).`);
   }
+  // a botched stress roll's total is never higher than zero, whatever is added to the die (DE, Stress Rolls,
+  // line 570): a botched study from vis teaches nothing, and the vis is spent all the same
+  if (src.kind === 'vis' && src.botched && total > 0) {
+    parts.push({ label: 'Botched: the total is no higher than zero (DE, Stress Rolls)', value: -total });
+    total = 0;
+  }
   // DE Distractions: each full month of the season lost takes a third of the original total (fractions rounded up)
   const months = Math.min(3, Math.max(0, Math.floor(target.monthsLost ?? 0)));
   if (months) {
@@ -129,6 +135,10 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
   } else if (target.abilityUid) {
     const a = d.abilityByUid.get(target.abilityUid);
     if (a?.affinity) xp = withAffinity(total);
+  } else if (target.newAbility) {
+    // an Affinity with an Ability not yet begun counts from its first season (DE, Affinity with Ability)
+    const { abilityId, param } = target.newAbility;
+    if (d.effects.some((e) => e.type === 'abilityAffinity' && (e.ability === abilityId || (!!param && e.ability === `${abilityId}:${param}`)))) xp = withAffinity(total);
   }
   for (const e of d.effects) {
     if (e.type === 'advancementMultiplier' && (e.when === 'all' || (e.when as string[]).includes(kindKey))) {
