@@ -14,38 +14,9 @@ What is left to do, in order. Work the first open batch under **Now**.
   - A file on the list of big files in `src/quality.test.ts` is split before it grows. The test fails if it grows, so each batch below names the big files it will add to.
   - An audit is due after every five or six systems from the books, or when the owner asks. `audits/README.md` says how. Its findings become batches here.
 
-## Now: close audit 3
+## Now: what closing audit 3 found
 
-Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and how they were done. Its findings, and what was found while fixing them, are below. The numbers in parentheses are the ones the old roadmap gave them (5.1 to 5.17), which earlier pull requests use. Most are at the joins between systems, so go down the integration checklist for each. When these are done, mark audit 3 closed.
-
-### Batch C. Quick build for the hedge traditions, faerie wizards and the Mysteries (5.7)
-
-*Judgment.* Audit B7, the largest item. The guided build's answers for Folk Witch, Gruagach, Vitki, Mathematicus and faerie wizardry rarely make one; the practice characters get their Virtues free instead. Fix: an answer for each tradition that takes its Social Status and Virtues and fills its Abilities as its chapter says, with a test per tradition that the character passes the rules check (owner points 11 and 13). Big files it will add to, to split first: `src/engine/guided/autobuild.ts`, and `src/ui/pages/QuickBuildPage.tsx` if the page changes. If it grows, do one tradition at a time and write the split here. Then mark audit 3 closed.
-
-**The plan** (branch `claude/batch-c-quick-build-traditions`).
-
-*What a player sees.* Quick build › Characters gains roles, each with its line saying what it is. Companions: **Folk witch** and **Folk witch, Gifted**; **Gruagach** (Gifted) and **Gruagach, unGifted**; **Learned magician** and **Learned magician, Gifted**; **Vitki**; **Faerie wizard**. Magi: **Mystery initiate**. The page itself does not change. The guided build (on a character's sheet) asks one question more in section F, "I'd like my character to belong to a hedge tradition", with the five traditions to pick from and a follow-up on The Gift. Its question on Mystery Cults now steers the build too.
-
-*The answers.* `f-tradition`, with a choice of `f-trad-witch`, `f-trad-gruagach`, `f-trad-learned`, `f-trad-vitki` and `f-trad-faerie`; `f-trad-gift`; and `f-mystery`, now a build question. Each role is these answers, as the holy wonder-worker is `f-divine-powers`. The build lives in a module of its own (`src/engine/guided/traditions.ts`), hooked where `addHolyPair` is.
-
-*What each chapter asks, and what the build takes.*
-
-| Tradition | Social Status and Virtues | Experience | Magic known |
-|---|---|---|---|
-| Folk witch (HMRE line 1572) | Folk Witch (Free). UnGifted: a power's Virtue for each power (Healing or Cursing Major; Flight, Animal Ken, Dowsing, Second Sight Minor), by the answers. Gifted: The Gift opens all seven. Either way a Flaw that limits her magic. | 200 points of apprenticeship from age 10. Gifted: 1 in each of the seven powers and Folk Witch Magic Theory (line 1588); then Animal Handling, Concentration, Folk Witch Lore, Penetration (line 1590); then the powers the answers want. | — |
-| Gruagach (line 2788) | Gruagach (Free). Gifted: The Gift opens the six Arts. UnGifted: Giant Blood, Large or Shapeshifter, a Technique (Major) and a Form (Minor) (line 2825). | Gifted: 160 points; Pictish 2, Gruagach Lore 2, every Art 1 (line 2811). UnGifted: 16 a year for four years, on the Arts of its Virtues. | Spells from the book's samples: 80 levels Gifted, 8 a year unGifted. |
-| Learned magician (line 4119) | Mathematicus of Bologna (Free) and a second Social Status for the mundane life (Clerk, Priest, Mendicant Friar, line 4155). UnGifted: a Technique (Major) and one or two Forms (Minor). Gifted: The Gift opens all six. | Years with a master from about 16 (line 4123), 30 points each on Academic and Arcane Abilities and the Arts. Latin 1 and Artes Liberales 1 at least (line 4139). | Charms from the samples, 5 levels a point of that training. |
-| Vitki (line 6146) | The Gift, Vitki (Free), and the free Minor Virtue of the master's specialty: Puissant in a rune, Craft: Runes or Rune Magic (line 6148; the sample has "Puissant Othila (free)", line 7420). | 240 points: Craft: Runes 2, Old Norse 3, Rune Magic 1 first; at least half on the runes, none above 10. | Rune scripts from the samples, 120 levels. |
-| Faerie wizard (RoP: Faerie line 7503) | A Faerie Method (Major) and a Power (Minor), at least four points, and Faerie Sympathy with its Trait on the sheet. One of the book's four traditions sets which: Ollamhain, Volkhvy, Wise Folk; or Borrowers, who bargain (Summoning). | Later life, raising the Method and Power first. | — |
-| Mystery initiate | A magus of Bjornaer, Criamon, Merinita or Verditius takes one of the House's Mystery Virtues "as normal Virtues" (HoH: Mystery Cults line 249). A magus of another House takes Cabal Legacy and one cult Virtue (TMRE line 748), from those the Game Table rolls. | Apprenticeship as any magus; Mystery Cult Lore. | — |
-
-Each tradition's own Virtues (a lone gruagach Form, a learned magician's Magicam, a faerie Power without a Method) are no longer drawn for a character who is not of the tradition: alone they cast nothing (line 2862 and its like), as a holy Power without its Method is not drawn now.
-
-*Tests.* A test per tradition, Gifted and not where the book has both: built from its role, it passes the rules check, `hedgeTradition` or its like names it, and its least scores and magic are there.
-
-*Then.* The tutorials' practice characters are made from these roles, with nothing given "For practice".
-
-*Decided here, for the owner to overrule.* Gifted and unGifted are separate roles where the book has both (folk witches, gruagachan, learned magicians), so a player chooses rather than Quick build drawing it. A Gifted gruagach or learned magician is built as a companion, which the book allows (lines 2788 and 4119). A folk witch is built as a companion only; a folk witch grog is left for later.
+Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and how they were done. Its findings are fixed, and it is closed (Done, below). What was found while fixing them is below. The numbers in parentheses are the ones the old roadmap gave them (5.1 to 5.17), which earlier pull requests use. Most are at the joins between systems, so go down the integration checklist for each.
 
 ### Batch D. Reading books by the rules, and linked Unlog
 
@@ -65,7 +36,12 @@ All *Mechanical*, decided by the owner (`owner.md`, Decided): the living covenan
 
 ## Found
 
-Findings not yet in a batch. None.
+Findings not yet in a batch.
+
+- **Quick build leaves a Virtue's experience pool unspent.** A scholar (seed 1) keeps Educated (Bardic), Educated (Vernacular) and Physician of Salerno at 0 of 50 each; a cunning folk (seed 3) keeps four such pools at 0. A Lone Redcap (cunning folk, seeds 2, 7, 13, 16 and 30; a faerie wizard, seed 20) keeps the Redcap Apprenticeship at 0 of 300. The rules check says nothing, and the same seeds do the same before Batch C. Found in Batch C. The pools are spent in `src/engine/guided/buildExperience.ts` from line 309 ("every other pool"): find why these pools take nothing, spend them, and add a test that no Quick build character leaves a Virtue's pool empty.
+- **The second method of Hermetic divination is a Minor Virtue, and the rules check knows only the Major.** "If she has the Virtue Divination, she may Initiate into Dream Interpretation as an additional method as a Minor Virtue, and vice versa" (TMRE line 2493). Both are Major only in the data, and `src/engine/character/validate.ts` line 281 warns of any other size. So the Mysteries tutorial's practice magus, who holds both, pays 6 points where the book asks 4. Found in Batch C's review. Allow Minor for the second of the pair, in the rules check and in `addMystery` (`src/engine/guided/buildMysteries.ts`).
+- **A Virtue on an Ability of a kind can name only the kind.** Puissant, Affinity and the like on Craft name "Craft", not "Craft: Runes", because the sheet's choice lists Abilities only (`src/ui/character/ParamInput.tsx` line 23). The bonus then goes to every Craft the character has, though `derive.ts` lines 506 and 508 already match `craft-type:Runes`. Quick build's vitki takes "Puissant Craft: Runes" from the master this way (`src/engine/guided/traditions.ts` line 64). Found in Batch C's review. Let the choice take the kind's name as well (Craft, Profession, Area Lore and the like), and show it on the sheet.
+- **Plain with the holy wonder-worker picked by hand makes no holy worker.** A plain build declines *Realms of Power: The Divine*'s Methods and Powers (`src/engine/generate/character.ts` line 240), though the Plain choice says what a role requires still comes with it. Batch C keeps a hand-picked tradition or Mystery role's Virtues in the same place. Found in Batch C. Keep the holy pair the same way (`HOLY_VIRTUES`, `src/engine/guided/buildVirtues.ts` line 132).
 
 ## Next: what the other books add
 
@@ -113,6 +89,7 @@ Out of scope:
 One line each, newest first. The pull request has the detail.
 
 **Audit 3** (`audits/2026-11-18.md`):
+- Quick build makes folk witches, gruagachan, learned magicians and vitkir, Gifted and unGifted as the book allows, faerie wizards and Mystery initiates, each passing the rules check; a tradition's own Virtues are drawn only for its members; the tutorials' practice characters are made the ordinary way, with nothing given for practice (5.7, B7, Batch C, #PR).
 - A botched study from vis teaches nothing; a book begins an Ability; a season that would draw no vis is not offered; the holy first on the Faith page; great projects’ rolls at Game Table › Dice; the card check reaches the last seasons and presses an Initiation and After a story (5.13, 5.11, 5.14, 5.17, 5.8, Batch B, #84).
 - Living covenants' magi roll Twilight; a roll already made stands, and Unlog says so; holy work is unlogged whole; and two tests log and unlog every kind of season, by the clock and by pressing each card's buttons (5.9, 5.10, 5.12, Batch A, #83).
 - A character's season in full opens on their own work and draws only the cards that apply to them, with a folded line for the rest; `AdvancementTab.tsx` split into a file a card (5.4, #82).
