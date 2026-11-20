@@ -23,7 +23,7 @@ export function GreatProjectsCard({ cov, update }: { cov: Covenant; update: (fn:
     update((c) => {
       c.buildings = [...(c.buildings ?? []), { uid: uid(), name: buildings.length ? `Building ${buildings.length + 1}` : 'The great tower', height: 0, weakest: 'standard', latest: 'standard', damage: 0 }];
     });
-  const rolls = R.dice(cov.sagaId, 'projects');
+  const rolls = R.dice(cov.sagaId, 'projects', undefined, cov.id);
   return (
     <Card
       title="Great projects"

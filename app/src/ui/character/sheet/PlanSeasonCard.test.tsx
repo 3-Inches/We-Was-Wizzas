@@ -87,6 +87,23 @@ describe('a botched study from vis, in Plan a season', () => {
     expect(e.warpingPoints).toBe(1);
   });
 
+  it('a die entered by hand is its own roll: a toolkit botch is cleared, a botch by hand recorded', async () => {
+    const m = newCharacter('magus', 'x');
+    m.arts.Cr = { play: 15 };
+    m.purse = { pounds: 0, vis: [{ art: 'Cr', pawns: 3 }] };
+    await draw(m);
+    await choose(selectWith('Study raw vis'), 'vis');
+    vi.spyOn(Math, 'random').mockReturnValue(0);
+    await act(async () => button(/Roll stress die/).click());
+    expect(el!.textContent).toMatch(/no xp/);
+    vi.restoreAllMocks();
+    // the die read from the table, 7: no botch, the aura counts
+    const plus = [...el!.querySelectorAll('[data-tour="plan-season"] button, section button')].find((b) => b.textContent === '+' && b.closest('label, .field, div')?.textContent?.includes('or enter die')) as HTMLButtonElement;
+    for (let i = 0; i < 7; i++) await act(async () => plus.click());
+    expect(el!.textContent).not.toMatch(/Botch:/);
+    expect(el!.textContent).toMatch(/\+10xp gained/);
+  });
+
   it('a die that does not botch still counts the aura', async () => {
     const m = newCharacter('magus', 'x');
     m.arts.Cr = { play: 15 };
@@ -136,8 +153,9 @@ describe('a book on an Ability the character has not begun, in Plan a season', (
     expect(e.summary).toMatch(/Read a summa: Latin \(\+10 xp\)/);
     expect(e.gains).toEqual({ [`ability:${latin!.uid}`]: 10 });
     // and Unlog takes the Ability away again
-    const r = unlogSeason(structuredClone(after), e.uid, []);
-    expect(r.ok).toBe(true);
+    const back = structuredClone(after);
+    expect(unlogSeason(back, e.uid, []).ok).toBe(true);
+    expect(back.abilities.some((a) => a.abilityId === 'dead-language')).toBe(false);
   });
 
   it('is not offered to one who may not learn it', async () => {
@@ -146,6 +164,38 @@ describe('a book on an Ability the character has not begun, in Plan a season', (
     cov.library = [latinSumma('German'), swordSumma];
     await draw(c, cov);
     expect(selectWith('Ars Grammatica')).toBeUndefined();
+  });
+
+  it('offers a book on a Supernatural Ability only to one with a score of 1 in it (DE line 16203)', async () => {
+    const c = companion({ clerk: true });
+    const sight = ensureAbility(c, 'second-sight', {});
+    const cov = newCovenant('x', 1220);
+    cov.library = [{ uid: 'b-sight', title: 'De Visionibus', kind: 'summa', subjectType: 'ability', subject: 'second-sight', level: 4, quality: 10, language: 'German' }, latinSumma('German')];
+    await draw(c, cov);
+    expect([...selectWith('Ars Grammatica').options].map((o) => o.textContent)).not.toContain('De Visionibus (summa Second Sight L4 Q10)');
+    expect(selectWith('De Visionibus')).toBeUndefined();
+    await act(async () => root!.unmount());
+    el!.remove();
+    sight.xp = { laterLife: 5 }; // Second Sight 1
+    await draw(c, cov);
+    expect(selectWith('De Visionibus')).toBeDefined();
+  });
+
+  it('a tractatus read and unlogged can be read again', async () => {
+    const c = companion({ clerk: true });
+    ensureAbility(c, 'dead-language', { laterLife: 75 }, 'Latin');
+    const cov = newCovenant('x', 1220);
+    cov.library = [{ uid: 'b-t', title: 'Quaestiones', kind: 'tractatus', subjectType: 'ability', subject: 'dead-language', param: 'Latin', level: 0, quality: 7, language: 'German' }];
+    await draw(c, cov);
+    await choose(selectWith('Read a tractatus'), 'tractatus');
+    await choose(selectWith('Quaestiones'), 'b-t');
+    await act(async () => button(/^Log season/).click());
+    const covAfter = useStore.getState().covenants[cov.id];
+    expect(covAfter.library[0].readBy).toEqual([c.id]);
+    const who = structuredClone(me(c.id));
+    const covs = [structuredClone(covAfter)];
+    expect(unlogSeason(who, who.seasonLog.at(-1)!.uid, covs).ok).toBe(true);
+    expect(covs[0].library[0].readBy ?? []).toEqual([]);
   });
 
   it('says so when the reader cannot read the book’s language, and leaves it to the storyguide', async () => {

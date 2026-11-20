@@ -1,4 +1,4 @@
-import { sagaPage, sheet, covenant, plan, dice } from '../places';
+import { sagaPage, sheet, covenant, plan, projects } from '../places';
 import type { Tour } from '../tours';
 
 export const labTour: Tour = {
@@ -44,7 +44,7 @@ export const labTour: Tour = {
     {
       title: 'Their rolls',
       body: 'When an event threatens a building, its **stress check** is rolled at **Game Table › Dice › Great projects**, with the covenant’s master mason; a damage level lost is written on the covenant. The menagerie’s **Breeding Roll** is there too, with its lead handler.',
-      at: dice('projects'), needs: 'covenant', target: ['building-check', 'menagerie'],
+      at: projects, needs: 'covenant', target: ['building-check', 'menagerie'],
     },
     {
       title: 'Enchantments',

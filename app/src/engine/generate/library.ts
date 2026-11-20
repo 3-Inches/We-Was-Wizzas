@@ -205,7 +205,7 @@ export function stockLibrary(cov: Covenant, members: Character[], g: { data: Gam
           if (value <= 0) continue;
           out.push({
             value, cost: 3 * level + quality,
-            make: () => ({ uid: uid(), title: titled(ABILITY_TITLES, x.label), author: author(), kind: 'summa', subjectType: 'ability', subject: x.id, level, quality, language: 'Latin' }),
+            make: () => ({ uid: uid(), title: titled(ABILITY_TITLES, x.label), author: author(), kind: 'summa', subjectType: 'ability', subject: x.id, ...(x.param ? { param: x.param } : {}), level, quality, language: 'Latin' }),
             text: (b) => `${b.title}: summa on ${x.label}, Level ${level}, Quality ${quality} (${3 * level + quality} BP).`,
           });
         }

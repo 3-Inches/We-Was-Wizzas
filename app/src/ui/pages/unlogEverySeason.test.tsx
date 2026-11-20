@@ -292,6 +292,8 @@ describe('a season done from a card, unlogged, leaves everyone as they were', ()
       }
       expect(done, 'an Initiation the card could make').toBe(true);
       expect(out[0].seasons.length, 'the Initiation logged a season').toBeGreaterThan(0);
+      // with an Ordeal's Flaw, which Unlog must take back too
+      expect(out[0].seasons[0]).toMatch(/Ordeal: /);
       await act(async () => root.unmount());
 
       // After a story: one character took part, and gains Adventure experience

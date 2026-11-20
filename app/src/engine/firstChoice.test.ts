@@ -167,6 +167,12 @@ describe('a season that would draw no vis is not offered (5.14)', () => {
     expect(gs.blocked).toBe('no-vis');
     // nor does the card open on it
     expect(firstGruagachWork(c, d, aura, have(c, covOf(s, c)))?.work).not.toBe('vis');
+    // and vis comes only "from a magical aura": a strong Lab Total in a Divine one draws none
+    const strong = { ...c, abilities: c.abilities.map((a) => ({ ...a, xp: { ...a.xp, laterLife: (a.xp.laterLife ?? 0) + 200 } })) };
+    const divine = gruagachSeason(strong, derive(strong), { realm: 'Divine', strength: 0 }, 'vis', undefined, { ...GRUAGACH_SEASON_SET, have: 0 }, pairs);
+    expect(divine.drawn).toBe(0);
+    expect(divine.blocked).toBe('no-vis');
+    expect(gruagachSeason(strong, derive(strong), { realm: 'Magic', strength: 3 }, 'vis', undefined, { ...GRUAGACH_SEASON_SET, have: 0 }, pairs).drawn).toBeGreaterThan(0);
   });
 
   it('a folk witch draws a tenth of her Lab Total, rounded up, so none only when it is 0 or less (line 1924)', () => {

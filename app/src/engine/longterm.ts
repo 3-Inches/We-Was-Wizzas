@@ -38,7 +38,7 @@ function sqMods(d: DerivedCharacter, when: string): { label: string; value: numb
 }
 
 /** Compute xp from a season of study for a given target (art code or ability uid). */
-export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number; visEaten?: number; currentXp?: number }): StudyResult {
+export function computeStudy(d: DerivedCharacter, src: StudySource, target: { art?: Art; abilityUid?: string; monthsLost?: number; visEaten?: number; currentXp?: number; /** an Ability not yet on the sheet, begun by this season */ newAbility?: { abilityId: string; param?: string } }): StudyResult {
   const parts: { label: string; value: number }[] = [];
   const notes: string[] = [];
   let gainLimit: number | undefined;
@@ -135,6 +135,10 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
   } else if (target.abilityUid) {
     const a = d.abilityByUid.get(target.abilityUid);
     if (a?.affinity) xp = withAffinity(total);
+  } else if (target.newAbility) {
+    // an Affinity with an Ability not yet begun counts from its first season (DE, Affinity with Ability)
+    const { abilityId, param } = target.newAbility;
+    if (d.effects.some((e) => e.type === 'abilityAffinity' && (e.ability === abilityId || (!!param && e.ability === `${abilityId}:${param}`)))) xp = withAffinity(total);
   }
   for (const e of d.effects) {
     if (e.type === 'advancementMultiplier' && (e.when === 'all' || (e.when as string[]).includes(kindKey))) {

@@ -199,6 +199,7 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
       case 'characteristic':
         return `A potion for a year: ${ch ? CHAR_NAMES[ch as keyof typeof CHAR_NAMES] : 'a Characteristic'} ${signed(current)} → ${signed(cp.result)} (+${cp.bonus}, the total ÷ 5, but no higher than ${signed(cp.cap)}, half the Form). ${cp.vis} pawns of vis (the drinker's age ${age} ÷ 5).`;
       case 'extract':
+        if (aura?.realm !== 'Magic') return 'No vis: it is drawn only from a magical aura, and this one is not.';
         return refiningExtraction(tot.total)
           ? `${refiningExtraction(tot.total)} pawn${refiningExtraction(tot.total) === 1 ? '' : 's'} of ${ELEMENTS.find((e) => e.id === els[0])?.hermetic ?? 'the element’s'} vis drawn from the aura (the Refining Total ÷ 10).`
           : `No vis from the aura: a pawn for each full 10 of the Refining Total, and it is ${tot.total}.`;
@@ -217,13 +218,14 @@ export function RefiningCard({ ed, aura }: { ed: CharEditor; aura: AuraState }) 
   };
   const potionVis = work === 'longevity' ? potion.vis : work === 'characteristic' ? cp.vis : 0;
   const need = potionVis || (work === 'move' ? pawns : 0);
-  const drawn = work === 'extract' ? refiningExtraction(tot.total) : 0;
+  // vis is extracted "from a magical aura" only (Hedge Magic, line 1324)
+  const drawn = work === 'extract' && aura?.realm === 'Magic' ? refiningExtraction(tot.total) : 0;
   const moved = work === 'move' ? moveVis(tot.total, pawns, same) : undefined;
   // why the season cannot be refined as set, said beside the button
   const why =
     busy ? `${sw.season} ${year} is already spent.`
     : work !== 'longevity' && !els.length ? 'Choose the element.'
-    : work === 'extract' && !drawn ? 'It would draw no vis: the Refining Total must be 10 or more.'
+    : work === 'extract' && !drawn ? (aura?.realm !== 'Magic' ? 'It would draw no vis: the aura is not magical.' : 'It would draw no vis: the Refining Total must be 10 or more.')
     : potionShort ? `The potion needs ${potion.vis} pawns, but an elementalist can spend only ${visLimit} (the Elementalist Forms added together).`
     : work === 'move' && !moving ? 'Choose the vis to move (Of).'
     : work === 'move' && !moved?.ok ? `Moving ${pawns} pawns needs a Refining Total of ${5 * pawns}.`

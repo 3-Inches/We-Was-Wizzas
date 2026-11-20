@@ -8,7 +8,7 @@ import { bestLesson, mayLearn, teachableSubjects } from '../../../engine/teachin
 import { readProblems } from '../../../engine/books';
 import { abilityDisplayName, deriveCharacter } from '../../../engine/character/derive';
 import { specAbilities, specChar, specHighest } from '../../../engine/covenantRules';
-import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art } from '../../../data';
+import { ARTS, ART_NAMES, FORMS, TECHNIQUES, abilityTypeOf, type Art } from '../../../data';
 import { applySeason, computeStudy, magianLinkedGains, newSeasonEntry, visForStudy, type StudySource } from '../../../engine/longterm';
 import { stressDie, describeStress } from '../../../engine/dice';
 import type { SeasonLogEntry } from '../../../engine/types';
@@ -185,7 +185,7 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
   const eaten = might ? Math.min(eat, Math.ceil(might / 2)) : 0;
   const purseVis = visAvailable(c.purse?.vis ?? [], [...ARTS]);
   const masteryXp = masterySpell ? Object.values(masterySpell.masteryXp).reduce<number>((t, v) => t + (v ?? 0), 0) : undefined;
-  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost, visEaten: eaten, currentXp: masteryXp }) : null;
+  const res = src ? computeStudy(d, src, { art, abilityUid, monthsLost, visEaten: eaten, currentXp: masteryXp, newAbility: newFromBook ? { abilityId: newFromBook.subject, param: newFromBook.param } : lesson?.newAbility }) : null;
   const linked = src && res && res.xp > 0 ? magianLinkedGains(d, data, src, abilityUid, res.advancementTotal) : [];
   // Secondary Insight: a season studying a Technique (book, teacher or vis) gives 1 xp in up to four Forms;
   // a Form gives 1 xp in up to two Techniques (DE Secondary Insight)
@@ -256,6 +256,8 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
     const fromPurse = eaten > 0 && purseVis >= eaten;
     if (kind === 'vis' && visBotch) entry.warpingPoints = visBotch;
     if (bookUid) entry.bookId = bookUid;
+    // a tractatus is read once: Unlog takes the reading back
+    if (kind === 'tractatus' && bookUid && cov && !tractatusRead) entry.undo = { ...entry.undo, tractatus: { covenantId: cov.id, bookUid } };
     let follows: string | undefined;
     update((x) => {
       const had = { abilities: [...x.abilities] };
@@ -308,12 +310,24 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
   };
 
   // the character's own Ability a book is on: the same Ability, and the same one of it (Latin, not Greek)
-  const onBook = (a: { abilityId: string; param?: string }, b: (typeof library)[number]) => a.abilityId === b.subject && (!b.param || (a.param ?? '').trim().toLowerCase() === b.param.trim().toLowerCase());
+  // a book that names no one of an Ability taken as one thing (a Profession, a Lore: old saves' books) is on the character's
+  // own only when they have just one of it, and begins none
+  const named = (x?: string) => (x ?? '').trim().toLowerCase();
+  const unnamed = (b: (typeof library)[number]) => !b.param && !!data.abilityById.get(b.subject)?.parameterized;
+  const onBook = (a: { abilityId: string; param?: string }, b: (typeof library)[number]) =>
+    a.abilityId === b.subject && (b.param ? named(a.param) === named(b.param) : !unnamed(b) || c.abilities.filter((x) => x.abilityId === b.subject).length === 1);
   // the books this character can study: on an Art, for one who learns the Arts; on an Ability they have, or
   // one they may begin (Academic, Arcane and Martial need a Virtue, a Supernatural one its own: DE, Abilities)
   const studied = (b: (typeof library)[number]) =>
     (b.kind === 'summa' || b.kind === 'tractatus') &&
-    (b.subjectType === 'art' ? canStudyArts : b.subjectType === 'ability' && (c.abilities.some((a) => onBook(a, b)) || !mayLearn({ c, d }, data, b.subject, b.param)));
+    !b.corrupt &&
+    (b.subjectType === 'art' ? canStudyArts : b.subjectType === 'ability' && bookOnAbility(b));
+  // "A character can only study a Supernatural Ability from a book if he already has a score of at least one in that Ability" (DE line 16203)
+  function bookOnAbility(b: (typeof library)[number]) {
+    const mine = c!.abilities.find((a) => onBook(a, b));
+    if (abilityTypeOf(data, b.subject) === 'Supernatural') return !!mine && (d!.abilityByUid.get(mine.uid)?.score ?? 0) >= 1;
+    return !!mine || (!unnamed(b) && !mayLearn({ c: c!, d: d! }, data, b.subject, b.param));
+  }
   // why this character cannot read the book chosen (DE line 16191): the troupe may overrule
   const unreadable = book && (kind === 'summa' || kind === 'tractatus') ? readProblems(c, d, book) : [];
   const pickBook = (uid: string) => {
@@ -578,8 +592,23 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
               Roll stress die
             </button>
             <Field label="or enter die">
-              <Stepper value={visDie ?? 0} min={0} width={40} onChange={setVisDie} />
+              <Stepper
+                value={visDie ?? 0}
+                min={0}
+                width={40}
+                onChange={(v) => {
+                  // a die rolled by hand: its own botch, entered below when it shows 0
+                  setVisDie(v);
+                  if (v) setVisBotch(0);
+                  setSummary((x) => (x.startsWith('Studied ') ? '' : x));
+                }}
+              />
             </Field>
+            {visDie === 0 && (
+              <Field label="Botches" hint="the zeroes on the botch dice">
+                <Stepper value={visBotch} min={0} max={Math.max(1, visPawns)} width={32} onChange={setVisBotch} />
+              </Field>
+            )}
             {visBotch > 0 && <span className="badge bad">Botch: {visBotch} Warping point(s), no xp</span>}
             {visFollows && <span className="small warn-text">{visFollows}</span>}
           </>

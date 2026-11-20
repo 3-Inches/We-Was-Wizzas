@@ -82,4 +82,22 @@ describe('a great building’s stress check, at Game Table › Dice › Great pr
     expect(after.log.at(-1)?.text).toMatch(/The great tower: .*damage level/);
     expect(el.textContent).toMatch(/Recorded on Fengheld/);
   });
+
+  it('opens on the covenant its Overview links from', async () => {
+    const saga = newSaga('Test');
+    const a = newCovenant(saga.id, 1220);
+    a.name = 'Fengheld';
+    a.buildings = [{ uid: 'b1', name: 'The great tower', height: 100, weakest: 'standard', latest: 'standard', damage: 0 }];
+    const b = newCovenant(saga.id, 1220);
+    b.name = 'Valnastium';
+    b.buildings = [{ uid: 'b2', name: 'The bridge', height: 40, weakest: 'standard', latest: 'standard', damage: 0 }];
+    localStorage.clear();
+    useStore.setState({ activeSagaId: saga.id, sagas: { [saga.id]: saga }, characters: {}, covenants: { [a.id]: a, [b.id]: b } });
+    el = document.createElement('div');
+    document.body.appendChild(el);
+    root = createRoot(el);
+    await act(async () => root!.render(<MemoryRouter initialEntries={[`/?sub=projects&cov=${b.id}`]}><DicePage /></MemoryRouter>));
+    expect(el.textContent).toMatch(/Valnastium’s record/);
+    expect((el.querySelector('main select, select') as HTMLSelectElement).value).toBe(b.id);
+  });
 });

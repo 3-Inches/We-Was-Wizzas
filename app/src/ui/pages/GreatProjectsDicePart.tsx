@@ -5,7 +5,7 @@
 // and a stress check that costs a damage level is written there.
 
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { bestArtisan } from '../../engine/books';
 import { deriveCharacter } from '../../engine/character/derive';
 import { describeStress, stressDie } from '../../engine/dice';
@@ -49,7 +49,9 @@ export function GreatProjectsDicePart({ sagaId }: { sagaId: string }) {
     () => [...covs].sort((a, b) => Number(!!a.living) - Number(!!b.living) || Number(!(a.buildings ?? []).length) - Number(!(b.buildings ?? []).length) || b.memberIds.length - a.memberIds.length),
     [covs],
   );
-  const [covId, setCovId] = useState('');
+  // the covenant asked for (a covenant's Overview links here with it), else the first
+  const [params] = useSearchParams();
+  const [covId, setCovId] = useState(params.get('cov') ?? '');
   const cov = order.find((c) => c.id === covId) ?? order[0];
   if (!cov) return <Empty>No covenant in this saga yet: its great buildings and menagerie are kept on a covenant.</Empty>;
   return (
