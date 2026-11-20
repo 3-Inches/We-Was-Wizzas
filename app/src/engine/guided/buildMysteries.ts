@@ -9,7 +9,8 @@ import { HOUSE_BY_ID } from '../../data/houses';
 import { CRIAMON_STATIONS } from '../../data/mysteries';
 import type { Character, GuidedState } from '../types';
 import { MYSTERY_HOUSES } from '../initiation';
-import { evaluate, type GuidedContext, type Scored } from './score';
+import { evaluate, scoreOption, type GuidedContext, type Scored } from './score';
+import { vfRecords } from './records';
 import { SIZE_POINTS, answer, choose, type BuildInput } from './buildShared';
 
 /**
@@ -41,7 +42,14 @@ export function addMystery(c: Character, st: GuidedState, inp: BuildInput, get: 
   if (c.virtues.some((v) => inp.data.vfById.get(v.defId)?.categories.includes('Mystery'))) return;
   const room = () => cap - get().d.tally.virtuePoints;
   const ev = evaluate(st, get());
-  const scored = (id: string) => ev.scored.find((s) => s.def.id === id && !st.declined.includes(id));
+  // asked for, so taken even by a player who wants simple rules (whose questions gate out Cabal Legacy); never one declined
+  const recs = vfRecords(inp.data);
+  const scored = (id: string): Scored | undefined => {
+    if (st.declined.includes(id)) return undefined;
+    const def = inp.data.vfById.get(id);
+    const rec = recs.get(id);
+    return ev.scored.find((s) => s.def.id === id) ?? (def && rec ? scoreOption(def, rec, st, ev.weights, get()) : undefined);
+  };
   const size = (s: Scored): VFSize => (s.def.sizes.includes('Minor') ? 'Minor' : s.def.sizes[0]);
   const house = HOUSE_BY_ID[c.house]?.name ?? c.house;
   // a cult's Mystery the player names is taken through Cabal Legacy, even by a magus of a Mystery House

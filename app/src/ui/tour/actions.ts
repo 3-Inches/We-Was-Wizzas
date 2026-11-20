@@ -3,7 +3,7 @@
 // store, so it can be undone like any other change. Loaded with the tutorial panel only.
 
 import { applyBaseCovenant, newCovenant } from '../../engine/covenant';
-import { addVirtue, ensureAbility, newCharacter } from '../../engine/character/factory';
+import { addVirtue, newCharacter } from '../../engine/character/factory';
 import { generateCharacter } from '../../engine/generate/character';
 import { sumAlloc } from '../../engine/character/derive';
 import { newWorkshop } from '../../engine/workshop';
@@ -149,8 +149,6 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
       for (const id of p!.ensure ?? []) {
         if (!ch.virtues.some((v) => v.defId === id)) addVirtue(ch, gameDataFor(saga), id, undefined, undefined, { free: true, freeReason: 'For practice' });
       }
-      for (const [id, xp] of Object.entries(p!.abilities ?? {})) ensureAbility(ch, id, { free: xp });
-      if (p!.sympathy) ch.sympathy = p!.sympathy.map((t) => ({ uid: uid(), ...t }));
     }
     ch.notes = [ch.notes, tag].filter(Boolean).join('\n');
     // a craftsman's livelihood tracked from the start, for the tutorial to show

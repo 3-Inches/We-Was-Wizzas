@@ -120,6 +120,14 @@ export function generateCharacter(o: GenOptions, g: GenContext): Generated {
   return best!;
 }
 
+/** A role drawn by its weight, when none was asked for. */
+function pickRole(rng: () => number, roles: Role[]): Role {
+  const total = roles.reduce((t, r) => t + (r.weight ?? 1), 0);
+  let x = rng() * total;
+  for (const r of roles) if ((x -= r.weight ?? 1) < 0) return r;
+  return roles[roles.length - 1];
+}
+
 function attempt(o: GenOptions, g: GenContext): Generated {
   const rng = seeded(o.seed);
   const { data, saga, rules } = g;
@@ -127,7 +135,7 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   // a plain build keeps to the core book, so not to a role that is made from another (a hedge
   // tradition, a Mystery, holy powers)
   const roles = rolesFor(o.type).filter((r) => !o.coreOnly || !['f-tradition', 'f-mystery', 'f-divine-powers'].some((q) => (r.answers?.[q] ?? 0) >= 7));
-  const role = (o.role && ROLE_BY_ID.get(o.role)) || pick(rng, roles);
+  const role = (o.role && ROLE_BY_ID.get(o.role)) || pickRole(rng, roles);
   const c = newCharacter(o.type, saga.id, saga.currentYear);
   if (o.startAge !== undefined && o.type === 'magus') c.creation.apprenticeshipStartAge = o.startAge;
   const derive = () => deriveCharacter(c, data, rules);

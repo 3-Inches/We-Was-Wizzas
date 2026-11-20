@@ -14,8 +14,9 @@ export const mysteriesTour: Tour = {
   prefers: 'magus',
   suits: hasTableMystery,
   practice: {
-    type: 'magus', label: 'a practice magus with Mysteries',
-    ensure: ['divination-and-augury', 'hermetic-dream-interpreter'], abilities: { divination: 15 },
+    // made by Quick build as a player would make one: Cabal Legacy and the cult's Mystery (guided/buildMysteries.ts)
+    type: 'magus', role: 'magus-mystery', label: 'a practice magus with Mysteries',
+    answers: { 'vf:hermetic-dream-interpreter': 10, 'vf:divination-and-augury': 10 },
   },
   steps: [
     {
