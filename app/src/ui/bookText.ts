@@ -126,7 +126,8 @@ export function parseBook(lines: string[]): { headings: BookHeading[]; sections:
   lines.forEach((l, i) => {
     if (l.startsWith('```')) inCode = !inCode;
     if (inCode) return;
-    const m = /^(>\s*)?(#{1,6})\s+(.*?)\s*#*\s*$/.exec(l);
+    // up to three spaces may come before a heading, as markdown allows (" ## The Goliard Credo")
+    const m = /^ {0,3}(>\s*)?(#{1,6})\s+(.*?)\s*#*\s*$/.exec(l);
     if (!m) return;
     const base = githubSlug(m[3]);
     const n = seen.get(base) ?? 0;

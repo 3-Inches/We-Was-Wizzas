@@ -40,7 +40,10 @@ All *Mechanical*, decided by the owner (`owner.md`, Decided): the living covenan
 
 ## Found
 
-Findings not yet in a batch. None.
+Findings not yet in a batch.
+
+- **Vitest fills the disk.** Each run leaves about 100 MB in `/tmp` (folders holding `client/` and `ssr/`), and a session that runs the tests many times runs out of space. Chromium then fails with "Page crashed", which looks like a fault in the page. Seen twice in one session. Clean up after the run, or point Vitest's cache elsewhere.
+- **A dead link in a book does nothing on a phone.** `BookReader.tsx`'s `onBodyClick` only sets the link's `title`, which a tap never shows. Say it in the page instead.
 
 ## Next: what the other books add
 

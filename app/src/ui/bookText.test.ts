@@ -55,3 +55,10 @@ describe('tableRowAt', () => {
     expect(tableRowAt(['| a | b |', '| c | d |'], 1)).toEqual({ start: 0, row: 1 });
   });
 });
+
+describe('parseBook', () => {
+  it('finds a heading with up to three spaces before it, as markdown draws one', () => {
+    const p = parseBook(['## Lineages', 'text', ' ## The Goliard Credo', 'more', '    ## code, not a heading']);
+    expect(p.headings.map((h) => h.text)).toEqual(['Lineages', 'The Goliard Credo']);
+  });
+});

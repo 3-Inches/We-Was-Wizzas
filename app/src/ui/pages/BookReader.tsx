@@ -7,7 +7,12 @@ import { Card, Empty, SearchInput } from '../kit';
 import { bookCache, findAnchor, loadBookLines, parseBook } from '../bookText';
 import { dropEmptyHeads, tableRowAt, tidyTables } from '../tables';
 
-const LIST_ITEM = /^\s*(>\s*)?([-*+]|\d+[.)])\s/;
+// Where a block starts: an unindented heading or list item, in a sidebar or not. An indented item
+// is inside its parent's, and a marker put before it would break the list.
+const BLOCK_START = /^( {0,3}#|([-*+]|\d+[.)])\s)/;
+const quoteless = (l: string) => l.replace(/^>\s?/, '');
+// a line on its own, or a sidebar's line with only its ">"
+const blank = (l: string) => /^>?\s*$/.test(l);
 
 export default function BookReader() {
   const { bookId } = useParams();
@@ -66,8 +71,15 @@ export default function BookReader() {
       if (inTable) {
         at = inTable.start;
         row = inTable.row;
-      } else while (at > 0 && slice[at - 1].trim() !== '' && !/^(>\s*)?#/.test(slice[at]) && !LIST_ITEM.test(slice[at])) at--;
-      slice.splice(at, 0, '<div id="reader-target" class="reader-target"></div>', '');
+      } else
+        while (at > 0) {
+          const here = quoteless(slice[at]);
+          if (BLOCK_START.test(here) || (!/^\s/.test(here) && blank(slice[at - 1]))) break;
+          at--;
+        }
+      // in a sidebar the marker keeps its ">", so the sidebar stays one box
+      const quote = slice[at].startsWith('>') ? '> ' : '';
+      slice.splice(at, 0, `${quote}<div id="reader-target" class="reader-target"></div>`, quote.trim());
     }
     const raw = marked.parse(tidyTables(slice.join('\n')), { async: false, gfm: true }) as string;
     return { html: DOMPurify.sanitize(dropEmptyHeads(raw), { ADD_ATTR: ['id'] }), row };
