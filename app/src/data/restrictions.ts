@@ -46,8 +46,9 @@ const BEINGS: Record<string, string[]> = {
 // ------------------------------------------------------------------ hedge traditions
 // Members of these traditions take these Virtues and Flaws; Hermetic magi normally do not.
 const TRADITIONS: Record<string, string[]> = {
+  // not Fetch: "other characters may also have access to a fetch" (Hedge Magic line 2879)
   'Gruagachan (Hedge Magic)': [
-    'cailleach-magic', 'external-soul', 'give', 'take', 'gruagach-master', 'blessing', 'curse', 'fetch', 'flexible-gruagach-magic', 'shape', 'tattoo-mastery', 'vision',
+    'cailleach-magic', 'external-soul', 'give', 'take', 'gruagach-master', 'blessing', 'curse', 'flexible-gruagach-magic', 'shape', 'tattoo-mastery', 'vision',
     'well-trained-gruagach', 'no-tattoo-magic-flaw', 'transformation-prone-flaw', 'incompatible-hedge-arts-flaw', 'inflexible-magic-flaw', 'poorly-trained-gruagach-flaw',
     'weak-tattoo-magic-flaw',
   ],

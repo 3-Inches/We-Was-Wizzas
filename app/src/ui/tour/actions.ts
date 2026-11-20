@@ -3,8 +3,9 @@
 // store, so it can be undone like any other change. Loaded with the tutorial panel only.
 
 import { applyBaseCovenant, newCovenant } from '../../engine/covenant';
-import { addVirtue, ensureAbility, newCharacter } from '../../engine/character/factory';
+import { addVirtue, newCharacter } from '../../engine/character/factory';
 import { generateCharacter } from '../../engine/generate/character';
+import { ROLE_BY_ID } from '../../engine/generate/roles';
 import { sumAlloc } from '../../engine/character/derive';
 import { newWorkshop } from '../../engine/workshop';
 import { newSeed } from '../../engine/generate/random';
@@ -144,13 +145,14 @@ export function makePractice(tour: Tour, c: TourCtx, what: { character?: boolean
       ch = newCharacter(p!.type, saga.id, saga.currentYear);
       ch.name = `Practice ${p!.type}`;
     } else {
-      ch = generateCharacter({ type: p!.type, role: p!.role, answers: p!.answers, variety: 'focused', npc: false, finished: true, seed: newSeed(), avoidNames: names }, { data: gameDataFor(saga), saga, rules: saga.houseRules, covenant: cov }).c;
+      // made from the books its tutorial is about (a folk witch from Hedge Magic), whatever books the saga uses
+      const books = p!.role ? ROLE_BY_ID.get(p!.role)?.books : undefined;
+      const roleData = books && saga.enabledBooks?.length ? gameDataFor({ ...saga, enabledBooks: [...saga.enabledBooks, ...books] }) : gameDataFor(saga);
+      ch = generateCharacter({ type: p!.type, role: p!.role, answers: p!.answers, variety: 'focused', npc: false, finished: true, seed: newSeed(), avoidNames: names }, { data: roleData, saga, rules: saga.houseRules, covenant: cov }).c;
       // what the tutorial is about, if the build spent its points elsewhere: given for practice, at no cost
       for (const id of p!.ensure ?? []) {
         if (!ch.virtues.some((v) => v.defId === id)) addVirtue(ch, gameDataFor(saga), id, undefined, undefined, { free: true, freeReason: 'For practice' });
       }
-      for (const [id, xp] of Object.entries(p!.abilities ?? {})) ensureAbility(ch, id, { free: xp });
-      if (p!.sympathy) ch.sympathy = p!.sympathy.map((t) => ({ uid: uid(), ...t }));
     }
     ch.notes = [ch.notes, tag].filter(Boolean).join('\n');
     // a craftsman's livelihood tracked from the start, for the tutorial to show

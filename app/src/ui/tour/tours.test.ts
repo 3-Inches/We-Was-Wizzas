@@ -151,7 +151,7 @@ describe('tutorials', () => {
     expect(moved.notice).toMatch(/moved to/);
   });
 
-  it('make practice ones for hedge magic, Faerie and the Mysteries that the tutorial follows, with no error in the rules check', () => {
+  it('make practice ones for hedge magic, Faerie and the Mysteries the ordinary way, that the tutorial follows, passing the rules check', () => {
     const saga = useStore.getState().createSaga('Practice');
     for (const id of ['hedge', 'faerie', 'mysteries']) {
       const t = TOUR_BY_ID.get(id)!;
@@ -161,16 +161,23 @@ describe('tutorials', () => {
       expect(ch.creation.finalized, id).toBe(true);
       const data = gameDataFor(saga);
       const d = deriveCharacter(ch, data, DEFAULT_HOUSE_RULES);
-      expect(validateCharacter(d, data, DEFAULT_HOUSE_RULES).filter((i) => i.severity === 'error').map((i) => i.message), id).toEqual([]);
+      expect(validateCharacter(d, data, DEFAULT_HOUSE_RULES).filter((i) => i.severity === 'error' || i.severity === 'warning').map((i) => i.message), id).toEqual([]);
+      // made by Quick build as a player would make one: nothing given free "for practice"
+      expect(ch.virtues.filter((v) => v.freeReason === 'For practice').map((v) => v.defId), id).toEqual([]);
       if (id === 'hedge') {
-        expect(witchPowers(ch, d).find((p) => p.id === 'witch-healing')?.score).toBe(2);
+        expect(witchPowers(ch, d).find((p) => p.id === 'witch-healing')?.score, id).toBeGreaterThanOrEqual(1);
         expect(stepFor(t.steps.find((s) => s.title === 'Cast or use')!, ch).target).toBe('witch-power');
       }
       if (id === 'faerie') {
         expect(faerieArts(d)).toMatchObject({ methods: ['evocation'], powers: expect.arrayContaining(['weal']) });
-        expect(ch.sympathy).toMatchObject([{ trait: 'Dawn', score: 3 }]);
+        expect(ch.virtues.some((v) => v.defId === 'summoning'), id).toBe(true);
+        const sympathy = ch.virtues.find((v) => v.defId === 'faerie-sympathy')!;
+        expect(ch.sympathy).toMatchObject([{ trait: sympathy.param, score: sympathy.size === 'Major' ? 3 : 1 }]);
       }
-      if (id === 'mysteries') expect(d.abilities.find((a) => a.abilityId === 'divination')?.total).toBe(2);
+      if (id === 'mysteries') {
+        expect(['cabal-legacy-flaw', 'hermetic-dream-interpreter', 'divination-and-augury'].filter((x) => !ch.virtues.some((v) => v.defId === x)), id).toEqual([]);
+        expect(d.abilities.find((a) => a.abilityId === 'divination')?.score, id).toBeGreaterThanOrEqual(1);
+      }
     }
   });
 

@@ -98,7 +98,7 @@ function CharactersPanel({ saga, data }: { saga: Saga; data: GameData }) {
   const [familiar, setFamiliar] = useState(false);
   const [results, setResults] = useState<Result[]>([]);
   const [busy, setBusy] = useState('');
-  const roles = rolesFor(type);
+  const roles = rolesFor(type, data);
   // grogs and players' characters join the covenant; the storyguide's companions and magi need not
   const sagaChars = useSagaCharacters(saga.id);
   const home = homeCovenant(covs, sagaChars);

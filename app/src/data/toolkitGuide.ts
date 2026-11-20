@@ -126,6 +126,7 @@ export const TOOLKIT_GUIDE: RpGuide = {
             ['Essential Traits', 'are kept on the **Essential Traits** card: a being’s true form, and any Essential Virtue or Flaw.'],
             ['A character older than 35', 'rolls aging before play, on the Concept step. A year that would kill them is not applied, so it can be rolled again.'],
             ['For grogs in a hurry,', '**Quick build**, under Tools, makes whole characters, fills out the covenant’s people, and rolls creatures from the bestiaries.'],
+            ['A hedge wizard, faerie wizard or Mystery initiate', 'is made by Quick build as the book says: a role for each tradition, Gifted or not where the book allows both. In the guided build, ask for one under **I’d like my character to work a magic of their own**, or a Mystery under **initiated into a Mystery Cult’s secrets**.'],
           ],
         },
       ],
@@ -301,7 +302,7 @@ export const TOOLKIT_GUIDE: RpGuide = {
       title: 'Hedge magic',
       summary: '*Hedge Magic*: six traditions, their rolls at Dice › Hedge magic, their seasons on Seasons',
       blocks: [
-        { p: 'Each tradition is made in the character wizard, is used at **Game Table › Dice › Hedge magic**, and spends its seasons in the character’s season in full. (*Hedge Magic, Revised Edition*.)' },
+        { p: 'Each tradition is made in the character wizard, is used at **Game Table › Dice › Hedge magic**, and spends its seasons in the character’s season in full. Quick build makes a folk witch, gruagach, learned magician or vitki whole. (*Hedge Magic, Revised Edition*.)' },
         { heading: 'Folk witches' },
         {
           ordered: true,

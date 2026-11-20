@@ -3,7 +3,7 @@
 // Personality Traits that suit it. Magi take their roles from the concept themes; Mythic
 // Companions from their types.
 
-import type { CharType } from '../../data';
+import type { CharType, GameData } from '../../data';
 import { ARCHETYPES } from '../recommend';
 import { MYTHIC_TYPES } from '../character/factory';
 
@@ -29,7 +29,14 @@ export interface Role {
   gear?: Gear;
   traits: string[];
   ages: [number, number];
+  /** how often the role is drawn when none is asked for (default 1) */
+  weight?: number;
+  /** the books it is made from, one of which the saga must use for the role to be offered */
+  books?: string[];
 }
+
+/** The hedge traditions and faerie wizards together are drawn about as often as one other role: they are a saga's rarities. */
+const RARE = 0.15;
 
 const GROGS: Role[] = [
   { id: 'shield-grog', label: 'Shield grog', type: 'grog', blurb: 'Guards the magi with sword and shield.', themes: ['warrior'], answers: { 'h-fight': 10, 'd-fight': 9, 'd-hard-to-hurt': 8 }, gear: 'melee', traits: ['Brave', 'Loyal', 'Gruff', 'Dutiful'], ages: [18, 35] },
@@ -57,6 +64,15 @@ const COMPANIONS: Role[] = [
   { id: 'physician', label: 'Physician', type: 'companion', blurb: 'Trained in medicine; heals the sick.', themes: ['healer', 'scholar'], answers: { 'h-healing': 10, 'h-scholar': 7 }, gear: 'light', traits: ['Kind', 'Curious'], ages: [25, 55] },
   { id: 'courtier', label: 'Courtier or diplomat', type: 'companion', blurb: 'Speaks for the covenant to lords and bishops.', themes: ['social', 'noble'], answers: { 'h-social': 10, 'g-birth': 6 }, gear: 'light', traits: ['Charming', 'Ambitious'], ages: [20, 50] },
   { id: 'cunning-folk', label: 'Cunning folk', type: 'companion', blurb: 'A village healer and charmer with a touch of the uncanny.', themes: ['mystic', 'faerie'], answers: { 'f-faerie': 7, 'h-lore': 8, 'f-senses': 7 }, gear: 'light', traits: ['Wise', 'Secretive'], ages: [25, 60] },
+  // the hedge traditions and faerie wizards (Hedge Magic; Realms of Power: Faerie), made as their chapters say (guided/traditions.ts)
+  { id: 'folk-witch', label: 'Folk witch', type: 'companion', blurb: 'A village wise woman or cunning man with a folk witch’s powers: healing or cursing, and two lesser gifts such as flight or second sight (Hedge Magic).', themes: ['healer'], answers: { 'f-tradition': 10, 'f-trad-witch': 10, 'f-trad-gift': 0 }, gear: 'light', traits: ['Wise', 'Secretive', 'Sharp-tongued'], ages: [22, 60], weight: RARE, books: ['HMRE'] },
+  { id: 'folk-witch-gifted', label: 'Folk witch, Gifted', type: 'companion', blurb: 'A folk witch whose Gift opens all the tradition’s powers, at the price of the Gift’s penalties among ordinary folk (Hedge Magic).', themes: ['healer'], answers: { 'f-tradition': 10, 'f-trad-witch': 10, 'f-trad-gift': 10 }, gear: 'light', traits: ['Wise', 'Secretive', 'Aloof'], ages: [22, 60], weight: RARE, books: ['HMRE'] },
+  { id: 'gruagach', label: 'Gruagach', type: 'companion', blurb: 'A Gifted Pictish warrior-wizard: tattooed spells of Give and Take, Blessing, Curse, Shape and Vision (Hedge Magic).', themes: ['warrior'], answers: { 'f-tradition': 10, 'f-trad-gruagach': 10, 'f-trad-gift': 10 }, gear: 'melee', traits: ['Proud', 'Fierce', 'Loyal to their clan'], ages: [20, 45], weight: RARE, books: ['HMRE'] },
+  { id: 'gruagach-ungifted', label: 'Gruagach, unGifted', type: 'companion', blurb: 'A warrior favored by Gruagach with a giant’s frame or a beast’s shape, who knows a Technique and a Form of the tattoo magic (Hedge Magic).', themes: ['warrior'], answers: { 'f-tradition': 10, 'f-trad-gruagach': 10, 'f-trad-gift': 0 }, gear: 'melee', traits: ['Proud', 'Fierce', 'Loyal to their clan'], ages: [20, 45], weight: RARE, books: ['HMRE'] },
+  { id: 'learned-magician', label: 'Learned magician', type: 'companion', blurb: 'A mathematicus of Bologna: charms, amulets and written chartae of a Technique and a Form or two, learned from Latin books (Hedge Magic).', themes: ['scholar'], answers: { 'f-tradition': 10, 'f-trad-learned': 10, 'f-trad-gift': 0 }, gear: 'light', traits: ['Curious', 'Pedantic', 'Discreet'], ages: [24, 55], weight: RARE, books: ['HMRE'] },
+  { id: 'learned-magician-gifted', label: 'Learned magician, Gifted', type: 'companion', blurb: 'A mathematicus whose Gift opens all six of the learned Arts (Hedge Magic).', themes: ['scholar'], answers: { 'f-tradition': 10, 'f-trad-learned': 10, 'f-trad-gift': 10 }, gear: 'light', traits: ['Curious', 'Ambitious', 'Discreet'], ages: [24, 55], weight: RARE, books: ['HMRE'] },
+  { id: 'vitki', label: 'Vitki', type: 'companion', blurb: 'A Gifted rune-carver of the North, whose scripts are cut into wood, bone and stone (Hedge Magic).', themes: ['scholar'], answers: { 'f-tradition': 10, 'f-trad-vitki': 10 }, gear: 'light', traits: ['Patient', 'Grim', 'Proud'], ages: [22, 55], weight: RARE, books: ['HMRE'] },
+  { id: 'faerie-wizard', label: 'Faerie wizard', type: 'companion', blurb: 'Works the magic faeries taught their tradition: a Faerie Method and Power, or Summoning, and the Sympathy Traits their rites call on (Realms of Power: Faerie).', themes: ['faerie'], answers: { 'f-faerie': 8, 'f-tradition': 10, 'f-trad-faerie': 10 }, gear: 'light', traits: ['Dreamy', 'Clever', 'Keeps their word'], ages: [20, 50], weight: RARE, books: ['RoP_F'] },
   { id: 'demon-hunter', label: 'Demon hunter', type: 'companion', blurb: 'Hunts the servants of the Infernal.', themes: ['demon-hunter', 'faith'], answers: { 'f-infernal': 8, 'f-infernal-hunt': 9, 'h-fight': 7 }, gear: 'melee', traits: ['Zealous', 'Brave'], ages: [22, 45] },
 ];
 
@@ -68,11 +84,17 @@ const MYTHIC: Role[] = Object.entries(MYTHIC_TYPES).map(([id, t]) => ({
   id: `mythic-${id}`, label: t.label, type: 'mythic', blurb: `A Mythic Companion: ${t.label}.`, themes: t.themes ?? [], answers: t.answers, status: t.status, mythic: id, traits: [], ages: [20, 40],
 }));
 
-export const ROLES: Role[] = [...GROGS, ...COMPANIONS, ...MAGI, ...MYTHIC];
+/** A magus Initiated into a Mystery in apprenticeship, of their House's or, through Cabal Legacy, of a cult's (guided/buildMysteries.ts). */
+const INITIATE: Role = {
+  id: 'magus-mystery', label: 'Mystery initiate', type: 'magus', blurb: 'Initiated in apprenticeship into a Mystery: of their House for Bjornaer, Criamon, Merinita and Verditius, else of a cult, through the Cabal Legacy Flaw (The Mysteries).', themes: [], answers: { 'f-mystery': 10 }, traits: [], ages: [25, 25], books: ['HoH_MC', 'TMRE'],
+};
+
+export const ROLES: Role[] = [...GROGS, ...COMPANIONS, ...MAGI, INITIATE, ...MYTHIC];
 export const ROLE_BY_ID = new Map(ROLES.map((r) => [r.id, r]));
 
-export function rolesFor(type: CharType): Role[] {
-  return ROLES.filter((r) => r.type === type);
+/** The roles of a type, those made from books the saga does not use left out. */
+export function rolesFor(type: CharType, data: Pick<GameData, 'isBookEnabled'>): Role[] {
+  return ROLES.filter((r) => r.type === type && (!r.books || r.books.some(data.isBookEnabled)));
 }
 
 /** Traits any character may have, for those a role does not name. */

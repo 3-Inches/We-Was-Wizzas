@@ -20,7 +20,7 @@ One line an area. The Guide has each one as steps, and the Game Mechanics page s
 |---|---|---|
 | Characters | A step-by-step builder for grogs, companions, Mythic Companions and magi. It keeps every budget and pool, applies each Virtue and Flaw, and checks the rules, citing the book. Most problems are fixed with one click. | Core, *Houses of Hermes* |
 | Guided build | The player rates what they want to play, and gets Virtues, Flaws, a House, Arts and Abilities recommended, then a whole draft that passes the rules check. | Core and every book in the saga |
-| Quick build | Whole characters, one to eight at a time; a covenant's people, books and resources; and creature encounters from a bestiary of the books' stat blocks. | Core, *Covenants*, *Grogs* |
+| Quick build | Whole characters, one to eight at a time, hedge wizards, faerie wizards and Mystery initiates among them, each made as its book says; a covenant's people, books and resources; and creature encounters from a bestiary of the books' stat blocks. | Core, *Covenants*, *Grogs*, *Hedge Magic*, *Realms of Power: Faerie*, *The Mysteries* |
 | The core book's templates | The Definitive Edition's ready-made grogs, companions and magi, finished and ready to play. | Core |
 | Magic characters | Characters of Magic built to their own rules: Might, Qualities and Inferiorities, Powers, Essential Traits. A magical companion gets a sheet of its own. | *Realms of Power: Magic* |
 | Covenants | Build Points, Hooks and Boons, laboratories, covenfolk and their Loyalty, the yearly accounts, the aura, vis sources, and the library. | *Covenants*, *Grogs*, Core |

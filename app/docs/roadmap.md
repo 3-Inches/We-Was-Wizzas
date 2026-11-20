@@ -14,13 +14,9 @@ What is left to do, in order. Work the first open batch under **Now**.
   - A file on the list of big files in `src/quality.test.ts` is split before it grows. The test fails if it grows, so each batch below names the big files it will add to.
   - An audit is due after every five or six systems from the books, or when the owner asks. `audits/README.md` says how. Its findings become batches here.
 
-## Now: close audit 3
+## Now: what closing audit 3 found
 
-Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and how they were done. Its findings, and what was found while fixing them, are below. The numbers in parentheses are the ones the old roadmap gave them (5.1 to 5.17), which earlier pull requests use. Most are at the joins between systems, so go down the integration checklist for each. When these are done, mark audit 3 closed.
-
-### Batch C. Quick build for the hedge traditions, faerie wizards and the Mysteries (5.7)
-
-*Judgment.* Audit B7, the largest item. The guided build's answers for Folk Witch, Gruagach, Vitki, Mathematicus and faerie wizardry rarely make one; the practice characters get their Virtues free instead. Fix: an answer for each tradition that takes its Social Status and Virtues and fills its Abilities as its chapter says, with a test per tradition that the character passes the rules check (owner points 11 and 13). Big files it will add to, to split first: `src/engine/guided/autobuild.ts`, and `src/ui/pages/QuickBuildPage.tsx` if the page changes. If it grows, do one tradition at a time and write the split here. Then mark audit 3 closed.
+Audit 3 (`audits/2026-11-18.md`) checked stages 1 and 2 of the old roadmap, and how they were done. Its findings are fixed, and it is closed (Done, below). What was found while fixing them is below. The numbers in parentheses are the ones the old roadmap gave them (5.1 to 5.17), which earlier pull requests use. Most are at the joins between systems, so go down the integration checklist for each.
 
 ### Batch D. Reading books by the rules, and linked Unlog
 
@@ -40,7 +36,13 @@ All *Mechanical*, decided by the owner (`owner.md`, Decided): the living covenan
 
 ## Found
 
-Findings not yet in a batch. None.
+Findings not yet in a batch.
+
+- **Quick build leaves a Virtue's experience pool unspent.** A scholar (seed 1) keeps Educated (Bardic), Educated (Vernacular) and Physician of Salerno at 0 of 50 each; a cunning folk (seed 3) keeps four such pools at 0. A Lone Redcap (cunning folk, seeds 2, 7, 13, 16 and 30; a faerie wizard, seed 20) keeps the Redcap Apprenticeship at 0 of 300. The rules check says nothing, and the same seeds do the same before Batch C. Found in Batch C. The pools are spent in `src/engine/guided/buildExperience.ts` from line 309 ("every other pool"): find why these pools take nothing, spend them, and add a test that no Quick build character leaves a Virtue's pool empty.
+- **The second method of Hermetic divination is a Minor Virtue, and the rules check knows only the Major.** "If she has the Virtue Divination, she may Initiate into Dream Interpretation as an additional method as a Minor Virtue, and vice versa" (TMRE line 2493). Both are Major only in the data, and `src/engine/character/validate.ts` line 281 warns of any other size. So the Mysteries tutorial's practice magus, who holds both, pays 6 points where the book asks 4. Found in Batch C's review. Allow Minor for the second of the pair, in the rules check and in `addMystery` (`src/engine/guided/buildMysteries.ts`).
+- **A Virtue on an Ability of a kind can name only the kind.** Puissant, Affinity and the like on Craft name "Craft", not "Craft: Runes", because the sheet's choice lists Abilities only (`src/ui/character/ParamInput.tsx` line 23). The bonus then goes to every Craft the character has, though `derive.ts` lines 506 and 508 already match `craft-type:Runes`. Quick build's vitki takes "Puissant Craft: Runes" from the master this way (`src/engine/guided/traditions.ts` line 64). Found in Batch C's review. Let the choice take the kind's name as well (Craft, Profession, Area Lore and the like), and show it on the sheet.
+- **Two lists say which Virtues belong to a hedge tradition.** `src/data/restrictions.ts` (`TRADITIONS`, for the rules check, fourteen traditions) and `src/engine/guided/traditionRules.ts` (for Quick build, five) were written apart and differ: the rules check does not know the vitkir's Nameless Runes and Secret Runes (Hedge Magic line 6183), and it restricted Fetch to the gruagachan though "other characters may also have access to a fetch" (line 2879; Fetch fixed in Batch C's review). Found in Batch C's review. Make one list, and have the other read it.
+- **Plain with the holy wonder-worker picked by hand makes no holy worker.** A plain build declines *Realms of Power: The Divine*'s Methods and Powers (`src/engine/generate/character.ts` line 240), though the Plain choice says what a role requires still comes with it. Batch C keeps a hand-picked tradition or Mystery role's Virtues in the same place. Found in Batch C. Keep the holy pair the same way (`HOLY_VIRTUES`, `src/engine/guided/buildVirtues.ts` line 132).
 
 ## Next: what the other books add
 
@@ -88,6 +90,7 @@ Out of scope:
 One line each, newest first. The pull request has the detail.
 
 **Audit 3** (`audits/2026-11-18.md`):
+- Quick build makes folk witches, gruagachan, learned magicians and vitkir, Gifted and unGifted as the book allows, faerie wizards and Mystery initiates, each passing the rules check; a tradition's own Virtues are drawn only for its members; the tutorials' practice characters are made the ordinary way, with nothing given for practice (5.7, B7, Batch C, #86).
 - A botched study from vis teaches nothing; a book begins an Ability; a season that would draw no vis is not offered; the holy first on the Faith page; great projects’ rolls at Game Table › Dice; the card check reaches the last seasons and presses an Initiation and After a story (5.13, 5.11, 5.14, 5.17, 5.8, Batch B, #84).
 - Living covenants' magi roll Twilight; a roll already made stands, and Unlog says so; holy work is unlogged whole; and two tests log and unlog every kind of season, by the clock and by pressing each card's buttons (5.9, 5.10, 5.12, Batch A, #83).
 - A character's season in full opens on their own work and draws only the cards that apply to them, with a folded line for the rest; `AdvancementTab.tsx` split into a file a card (5.4, #82).
