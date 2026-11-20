@@ -17,6 +17,7 @@ import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
 import { HOUSE_BENEFIT_SCALE, HOUSE_EITHER_WAY, HOUSE_IDENTITY, MAGNITUDES, RANKED_TOTALS } from './magnitudes';
+import { traditionGate, traditionOf, wantedTradition } from './traditionRules';
 
 
 export interface GuidedContext {
@@ -128,6 +129,10 @@ export function gateReason(def: VirtueFlawDef, rec: VFRecord, st: GuidedState, c
   const region = sagaRegion(ctx);
   if (region && rec.regions.length && !rec.regions.includes(region)) return `Belongs to the ${rec.regions.join(' or ')} Tribunal`;
   if (rec.cultures.length && !rec.cultures.includes(c.society)) return `For ${rec.cultures.join(' or ')} characters`;
+  // a hedge tradition's own Virtues only for its member, or one who asks to be one: alone, a gruagach's
+  // Form or a faerie Power casts nothing (traditionRules.ts)
+  const tradition = traditionGate(def.id, c, data, st, traditionOf(c) ?? wantedTradition(st, c));
+  if (tradition) return tradition;
   // asked for by name, or a Holy Method or Power when the player wants holy powers: complexity is no bar
   const named = (st.answers[`vf:${def.id}`] ?? 0) >= FOLLOW_UP_HIGH;
   const holy = rec.links.some((l) => l.tag === 'holy-power' && l.dir > 0 && l.strength >= 2) && (st.answers['f-divine-powers'] ?? 5) >= FOLLOW_UP_HIGH;

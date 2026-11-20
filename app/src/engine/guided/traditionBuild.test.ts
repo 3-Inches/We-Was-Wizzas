@@ -17,6 +17,8 @@ import { LEARNED_FORMS, LEARNED_TECHNIQUES } from '../../data/hedgeLearned';
 import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
 import { TRADITIONS, type Tradition } from './traditions';
 import { CULT_MYSTERIES, mysteryLoreOf } from './buildMysteries';
+import { evaluate } from './score';
+import { newCharacter } from '../character/factory';
 
 const data = buildGameData();
 const rules = DEFAULT_HOUSE_RULES;
@@ -50,7 +52,17 @@ function common(role: string, seed: number, t: Tradition) {
   if (has(g.c, 'the-gift')) expect(g.c.virtues.filter((v) => mine.opens?.includes(v.defId)).map((v) => v.defId), label).toEqual([]);
   // every pool and level the apprenticeship gives is spent or left for the player to design, never over
   for (const b of g.d.budgets) expect(b.spent, `${label}: ${b.label}`).toBeLessThanOrEqual(b.total);
+  sympathyOnSheet(g.c, label);
   return { ...g, label };
+}
+
+/** Each Faerie Sympathy and Antipathy names its Trait, and the Trait is on the sheet (RoP: Faerie lines 6367, 6523). */
+function sympathyOnSheet(c: Character, label: string) {
+  for (const v of c.virtues.filter((x) => x.defId === 'faerie-sympathy' || x.defId === 'faerie-antipathy-flaw')) {
+    expect(v.param && v.param !== 'to be decided', `${label}: ${v.defId} names its Trait`).toBeTruthy();
+    const score = (v.size === 'Major' ? 3 : 1) * (v.defId === 'faerie-sympathy' ? 1 : -1);
+    expect(c.sympathy?.find((t) => t.trait === v.param)?.score, `${label}: ${v.param} on the sheet`).toBe(score);
+  }
 }
 
 describe('Quick build: a folk witch (HMRE line 1570)', () => {
@@ -205,6 +217,21 @@ describe('Quick build: a Mystery initiate (HoH: Mystery Cults line 249; The Myst
   }, 120_000);
 });
 
+describe('Quick build: an unGifted member learns only what they may', () => {
+  it('raises no Arcane Ability (Penetration) without Arcane Lore or the like, across seeds and sagas', () => {
+    const rhine = { ...saga('Rhine'), options: { illness: true, labRoutines: true, originalResearch: true, rhineGilds: true, auraVariation: true } } as unknown as Saga;
+    // the seed that once raised Penetration for a mathematicus with no Arcane access
+    const once = generateCharacter({ type: 'companion', role: 'learned-magician', variety: 'varied', npc: true, seed: 326222801 }, { data, saga: rhine, rules });
+    expect(once.issues.filter((i) => i.severity !== 'info').map((i) => i.message)).toEqual([]);
+    for (const role of ['folk-witch', 'gruagach-ungifted', 'learned-magician']) {
+      for (let seed = 20; seed < 32; seed++) {
+        const g = make(role, seed);
+        expect(problems(g), `${role} (seed ${seed})`).toEqual([]);
+      }
+    }
+  }, 240_000);
+});
+
 describe('Quick build: no stray tradition Virtues (audit 3, B7)', () => {
   it('a cunning folk, a woodsman or a physician takes no hedge tradition’s own Virtue on its own', () => {
     const own = TRADITIONS.flatMap((x) => x.own);
@@ -220,4 +247,21 @@ describe('Quick build: no stray tradition Virtues (audit 3, B7)', () => {
       return ['second-sight', 'animal-ken', 'dowsing', 'shapeshifter', 'no-magical-defenses-flaw', 'greater-magical-defenses', 'known-hedge-wizard-flaw'].includes(id);
     }
   }, 120_000);
+});
+
+describe('the guided build’s shortlist', () => {
+  it('offers a tradition’s status and own Virtues to one who asks for it, and no other tradition’s', () => {
+    const c = newCharacter('companion', 's', 1220);
+    const ctx = { c, d: deriveCharacter(c, data, rules), data, rules, archetypes: [], saga: saga('Rhine') };
+    const gruagach = evaluate({ answers: { 'f-tradition': 10, 'f-trad-gruagach': 10 }, declined: [] }, ctx);
+    for (const id of ['gruagach', 'give', 'shape']) expect(gruagach.gated.has(id), id).toBe(false);
+    expect(gruagach.gated.get('folk-witch'), 'folk-witch').toMatch(/folk witch’s tradition/);
+    expect(gruagach.gated.get('deft-rune'), 'deft-rune').toMatch(/vitki’s tradition/);
+    // a choice whose question is rated down no longer counts
+    const down = evaluate({ answers: { 'f-tradition': 3, 'f-trad-gruagach': 10 }, declined: [] }, ctx);
+    expect(down.gated.has('give')).toBe(true);
+    // nothing asked: no tradition's own Virtues, and none of the unbuilt traditions'
+    const none = evaluate({ answers: {}, declined: [] }, ctx);
+    for (const id of ['vitki', 'give', 'folk-witch', 'mathematicus-of-bologna', 'evocation', 'summoning', 'nightwalker']) expect(none.gated.has(id), id).toBe(true);
+  });
 });

@@ -5,8 +5,8 @@
 // (line 2786), Learned Magicians (line 4117), Vitkir (line 6144). Realms of Power: Faerie, Pagan
 // Traditions (line 7501).
 
-import type { CharType, GameData, VFSize } from '../../data';
-import { WITCH_POWERS, folkWitchVirtueDefs } from '../../data/hedgeFolkWitch';
+import type { VFSize } from '../../data';
+import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
 import { GRUAGACH_FORMS, GRUAGACH_TECHNIQUES, type GruagachArts } from '../../data/hedgeGruagach';
 import { GRUAGACH_SPELLS } from '../../data/gruagachSpells';
 import { LEARNED_FORMS, LEARNED_TECHNIQUES, type LearnedArts } from '../../data/hedgeLearned';
@@ -17,160 +17,18 @@ import { FAERIE_TRADITIONS } from '../../data/faerie';
 import type { Character, GuidedState, XpSource } from '../types';
 import { FOLK_APPRENTICESHIP, GRUAGACH_APPRENTICESHIP, LEARNED_TRAINING, VITKI_APPRENTICESHIP, canSpend, sumAlloc } from '../character/derive';
 import { addVirtue, ensureAbility } from '../character/factory';
-import { vfProblems } from '../character/restrictions';
+import { abilityAvailability, vfProblems } from '../character/restrictions';
 import { abilityScore, abilityXp } from '../xp';
 import { uid } from '../../util/id';
 import { gruagachArtCap, gruagachCastingScore } from '../gruagach';
 import { castingScore } from '../learnedMagic';
 import { vitkiCastingTotal } from '../vitkir';
 import { languageScore } from '../books';
-import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
 import { evaluate, scoreOption, tagWeights, type GuidedContext, type Scored } from './score';
 import { vfRecords } from './records';
-import { SIZE_POINTS, answer, type BuildInput } from './buildShared';
-
-export type Tradition = 'witch' | 'gruagach' | 'learned' | 'vitki' | 'faerie';
-
-interface TraditionDef {
-  id: Tradition;
-  /** a member, as the log says it: "a folk witch" */
-  member: string;
-  /** the tradition's own Social Status (a faerie wizard has none) */
-  status?: string;
-  gift: 'never' | 'either' | 'always';
-  /** the (Organization) Lore of its people, as the chapter names it */
-  lore?: string;
-  /**
-   * Virtues and Flaws of this tradition alone. Outside it they cast nothing ("useless unless the
-   * character also possesses a Technique", HMRE line 2853), so the build draws them only for a member.
-   */
-  own: string[];
-  /** the Hermetic Virtues and Flaws the chapter allows a Gifted member; others are not drawn for one */
-  hermetic?: string[];
-  /** the Virtues whose powers or Arts a Gifted member's Opening gives free, so they are not drawn for one */
-  opens?: string[];
-}
-
-const FOLK_OWN = folkWitchVirtueDefs(new Set()).map((d) => d.id);
-const DEFENSES = ['greater-magical-defenses', 'no-magical-defenses-flaw', 'known-hedge-wizard-flaw'];
-
-export const TRADITIONS: TraditionDef[] = [
-  {
-    id: 'witch', member: 'a folk witch', status: 'folk-witch', gift: 'either', lore: 'Folk Witches', own: [...FOLK_OWN, ...DEFENSES],
-    // "seven favored Supernatural Abilities ... you may freely spend experience points on these" (HMRE line 1580)
-    opens: ['witch-healing', 'witch-cursing', 'witch-flight', 'animal-ken', 'second-sight', 'dowsing', 'shapeshifter'],
-    // HMRE line 1709: the Hermetic Virtues and Flaws suitable for a Gifted folk witch
-    hermetic: [
-      'gentle-gift', 'adept-laboratory-student', 'cautious-sorcerer', 'cyclic-magic', 'fast-caster', 'free-study', 'harnessed-magic', 'inventive-genius', 'magical-memory', 'personal-vis-source', 'quiet-magic', 'side-effect', 'special-circumstances', 'subtle-magic',
-      'blatant-gift-flaw', 'difficult-longevity-ritual-flaw', 'necessary-condition-flaw', 'painful-magic-flaw', 'restriction-flaw', 'rigid-magic-flaw', 'waster-of-vis-flaw',
-      'careless-sorcerer-flaw', 'creative-block-flaw', 'cyclic-magic-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'unimaginative-learner-flaw', 'warped-magic-flaw', 'weak-magic-flaw', 'weird-magic-flaw',
-      'flawed-folk-witch-gift-opening',
-    ],
-  },
-  {
-    id: 'gruagach', member: 'a gruagach', status: 'gruagach', gift: 'either', lore: 'Gruagachan',
-    opens: ['give', 'take', 'blessing', 'curse', 'shape', 'vision'],
-    own: ['gruagach', 'gruagach-master', 'cailleach-magic', 'external-soul', 'give', 'take', 'blessing', 'curse', 'shape', 'vision', 'flexible-gruagach-magic', 'tattoo-mastery', 'well-trained-gruagach', 'no-tattoo-magic-flaw', 'transformation-prone-flaw', 'inflexible-magic-flaw', 'poorly-trained-gruagach-flaw', 'weak-tattoo-magic-flaw', 'incompatible-hedge-arts-flaw', ...DEFENSES],
-    // HMRE line 2945: "Gruagach may only take Hermetic Virtues or Flaws on the above list"
-    hermetic: [
-      'flawless-magic', 'gentle-gift', 'major-magical-focus', 'secondary-insight',
-      'adept-laboratory-student', 'affinity-with-art', 'cautious-sorcerer', 'deft-form', 'fast-caster', 'free-study', 'harnessed-magic', 'inventive-genius', 'life-boost', 'minor-magical-focus', 'magical-memory', 'personal-vis-source', 'puissant-art', 'side-effect', 'skilled-parens', 'special-circumstances', 'subtle-magic',
-      'blatant-gift-flaw', 'deficient-technique-flaw', 'necessary-condition-flaw', 'painful-magic-flaw', 'restriction-flaw', 'short-ranged-magic-flaw', 'waster-of-vis-flaw',
-      'careless-sorcerer-flaw', 'creative-block-flaw', 'deficient-form-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'incompatible-arts-flaw', 'infamous-master-flaw', 'offensive-to-animals-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'unimaginative-learner-flaw', 'unpredictable-magic-flaw', 'warped-magic-flaw', 'weak-magic-flaw', 'weird-magic-flaw',
-    ],
-  },
-  {
-    id: 'learned', member: 'a learned magician', status: 'mathematicus-of-bologna', gift: 'either', lore: 'Mathematici of Bologna',
-    opens: ['tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem'],
-    own: [
-      'mathematicus-of-bologna', 'entreat-the-powers', 'entreat-the-realm-powers', 'strong-amulet-magic', 'strong-verbal-charms', 'tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem', 'skilled-master',
-      'charm-magician-flaw', 'intervention-prone-flaw', 'laboratory-magician-flaw', 'weak-verbal-charms-flaw', 'no-chartae-making-flaw', 'no-text-casting-flaw', 'poorly-trained-magician-flaw', 'weak-amulets-flaw', 'weak-chartae-flaw', 'incompatible-hedge-arts-flaw', ...DEFENSES,
-    ],
-    // HMRE line 4384
-    hermetic: [
-      'gentle-gift', 'major-magical-focus', 'secondary-insight',
-      'adept-laboratory-student', 'affinity-with-art', 'cautious-sorcerer', 'deft-form', 'enduring-magic', 'fast-caster', 'harnessed-magic', 'inventive-genius', 'minor-magical-focus', 'magical-memory', 'personal-vis-source', 'puissant-art', 'quiet-magic', 'side-effect', 'special-circumstances', 'subtle-magic',
-      'blatant-gift-flaw', 'deficient-technique-flaw', 'necessary-condition-flaw', 'painful-magic-flaw', 'restriction-flaw', 'rigid-magic-flaw', 'short-ranged-magic-flaw',
-      'careless-sorcerer-flaw', 'creative-block-flaw', 'deficient-form-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'short-lived-magic-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'warped-magic-flaw', 'weak-magic-flaw', 'weak-scholar-flaw', 'weird-magic-flaw',
-    ],
-  },
-  {
-    id: 'vitki', member: 'a vitki', status: 'vitki', gift: 'always',
-    own: ['vitki', 'deft-rune', 'mastered-rune', 'minor-rune-focus', 'major-rune-focus', 'nameless-runes', 'secret-runes', 'minor-magical-deficiency-flaw', 'major-magical-deficiency-flaw', 'natt-thel-prone-flaw', 'short-lived-runes-flaw', 'known-hedge-wizard-flaw'],
-    // HMRE line 6176: the Hermetic Virtues and Flaws a vitki may take, as Supernatural ones for rune magic
-    hermetic: [
-      'gentle-gift', 'secondary-insight', 'cyclic-magic', 'fast-caster', 'free-study', 'inoffensive-to-animals', 'inventive-genius', 'life-boost', 'personal-vis-source', 'side-effect', 'special-circumstances',
-      'blatant-gift-flaw', 'magic-addiction-flaw', 'painful-magic-flaw', 'restriction-flaw',
-      'careless-sorcerer-flaw', 'cyclic-magic-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'offensive-to-animals-flaw', 'slow-caster-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'warped-magic-flaw', 'weird-magic-flaw',
-    ],
-  },
-  {
-    id: 'faerie', member: 'a faerie wizard', gift: 'never',
-    own: ['evocation', 'enchantment', 'empathy', 'beguile', 'conjure', 'dream', 'grant', 'portage', 'ware', 'weal', 'woe', 'summoning', 'bonding', 'captivating', 'dismissing'],
-  },
-];
-export const TRADITION_BY_ID = new Map(TRADITIONS.map((t) => [t.id, t]));
-/** The Social Statuses of the traditions, taken only by a member. */
-export const TRADITION_STATUSES = new Set(TRADITIONS.flatMap((t) => (t.status ? [t.status] : [])).concat('gruagach-master'));
-
-/**
- * Traditions the build does not make (the elementalists and nightwalkers of Hedge Magic): their own
- * Virtues are drawn only when the player names one.
- */
-const UNBUILT_OWN = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining', 'elemental-affinity', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae', 'elemental-theurgy', 'vulnerable-to-form-flaw', 'weak-elemental-resistance-flaw', 'nightwalker', 'versatile-phantasticum', 'half-taltos', 'hamr', 'sleepwalker'];
-
-/** The chips of the guided build's `f-tradition`, in the order the build takes them if several are picked. */
-export const TRADITION_CHIPS: Record<Tradition, string> = { witch: 'f-trad-witch', gruagach: 'f-trad-gruagach', learned: 'f-trad-learned', vitki: 'f-trad-vitki', faerie: 'f-trad-faerie' };
-const TRADITION_TYPES: CharType[] = ['companion'];
-
-/** A member's tradition, from the Social Status they hold (a faerie wizard by a Method, a Power or Summoning). */
-export function traditionOf(c: Pick<Character, 'virtues'>): Tradition | undefined {
-  const has = (id: string) => c.virtues.some((v) => v.defId === id);
-  const t = TRADITIONS.find((x) => x.status && has(x.status));
-  if (t) return t.id;
-  return TRADITION_BY_ID.get('faerie')!.own.some(has) ? 'faerie' : undefined;
-}
-
-/**
- * The tradition the answers ask for: a choice under `f-tradition`, the first in the book's order if
- * several are picked, or the tradition's Social Status asked for by name. Only a companion is made
- * one (the book's Gifted and unGifted companions; the grogs and Mythic Companions it allows are left
- * for later).
- */
-export function wantedTradition(st: GuidedState, ctx: GuidedContext): Tradition | undefined {
-  if (!TRADITION_TYPES.includes(ctx.c.type)) return undefined;
-  for (const t of TRADITIONS) {
-    // a plain build declines the books beyond the core, and with them the tradition
-    if (st.declined.includes(t.status ?? 'faerie-sympathy')) continue;
-    if (answer(TRADITION_CHIPS[t.id], st, ctx) >= 7) return t.id;
-    if (t.status && (st.answers[`vf:${t.status}`] ?? 0) >= 7) return t.id;
-  }
-  return undefined;
-}
-
-/** Whether the member is Gifted: a vitki always (HMRE line 6146), a faerie wizard never; else as the answers say. */
-export function wantsGift(t: Tradition, st: GuidedState, ctx: GuidedContext): boolean {
-  const def = TRADITION_BY_ID.get(t)!;
-  if (def.gift !== 'either') return def.gift === 'always';
-  return ctx.c.virtues.some((v) => v.defId === 'the-gift') || answer('f-trad-gift', st, ctx) >= 7 || (st.answers['vf:the-gift'] ?? 0) >= 7;
-}
-
-/**
- * Whether the build may draw this Virtue or Flaw for the character: another tradition's own Virtues
- * only when named (a lone gruagach Form casts nothing), and for a Gifted member only the Hermetic
- * Virtues and Flaws the chapter allows.
- */
-export function fitsTradition(defId: string, c: Character, data: GameData, st: GuidedState, t: Tradition | undefined): boolean {
-  if ((st.answers[`vf:${defId}`] ?? 0) >= 7) return true;
-  const mine = t ? TRADITION_BY_ID.get(t)! : undefined;
-  const gifted = c.virtues.some((v) => v.defId === 'the-gift');
-  if (gifted && mine?.opens?.includes(defId)) return false;
-  if (mine?.own.includes(defId)) return true;
-  if (UNBUILT_OWN.includes(defId) || TRADITIONS.some((x) => x.own.includes(defId))) return false;
-  const def = data.vfById.get(defId);
-  if (mine?.hermetic && def?.categories.includes('Hermetic') && defId !== 'the-gift' && gifted) return mine.hermetic.includes(defId);
-  return true;
-}
+import { SIZE_POINTS, TO_DECIDE, type BuildInput } from './buildShared';
+import { TRADITION_BY_ID, TRADITION_STATUSES, traditionOf, wantedTradition, wantsGift, type Tradition } from './traditionRules';
+export { TRADITIONS, TRADITION_BY_ID, TRADITION_STATUSES, fitsTradition, traditionOf, type Tradition } from './traditionRules';
 
 // ------------------------------------------------------------------ The Gift and Social Status
 
@@ -181,12 +39,12 @@ export function fitsTradition(defId: string, c: Character, data: GameData, st: G
  * vitki has "Puissant Othila (free)", line 7420). A learned magician's years with a master are set.
  */
 export function takeTradition(c: Character, st: GuidedState, inp: BuildInput, ctx: GuidedContext, log: string[]): Tradition | undefined {
-  const t = wantedTradition(st, ctx);
+  const t = wantedTradition(st, c);
   if (!t) return undefined;
   const def = TRADITION_BY_ID.get(t)!;
   const data = inp.data;
   const has = (id: string) => c.virtues.some((v) => v.defId === id);
-  const gifted = wantsGift(t, st, ctx);
+  const gifted = wantsGift(t, st, c);
   if (gifted && !has('the-gift')) {
     const cv = addVirtue(c, data, 'the-gift', 'Free');
     cv.why = `from: ${def.member} whose Gift the tradition opens`;
@@ -291,7 +149,7 @@ function favoredRunes(c: Character, w: Record<string, number>, inp: BuildInput):
  */
 export function addTraditionVirtues(c: Character, st: GuidedState, inp: BuildInput, get: () => GuidedContext, log: string[], add: Add, clean: Clean, cap: number) {
   // a faerie wizard is known by the Method this takes, so before it by the answers
-  const t = traditionOf(c) ?? wantedTradition(st, get());
+  const t = traditionOf(c) ?? wantedTradition(st, c);
   if (!t) return;
   const data = inp.data;
   const w = tagWeights(st, get());
@@ -386,12 +244,26 @@ export function addTraditionVirtues(c: Character, st: GuidedState, inp: BuildInp
   }
 }
 
-/** A Sympathy Trait on the sheet for each Faerie Sympathy that names one: +3 for the Major Virtue, +1 for the Minor (RoP: Faerie line 6367). */
+/** Traits for a Faerie Sympathy or Antipathy the build left open, from the book's own examples (RoP: Faerie lines 5842-5846, 6341). */
+const OPEN_SYMPATHY = ['Hounds', 'Ice', 'Storms', 'Dawn', 'Fear'];
+const OPEN_ANTIPATHY = ['Iron', 'Courage'];
+
+/**
+ * A Sympathy Trait on the sheet for each Faerie Sympathy (+3 for the Major Virtue, +1 for the Minor)
+ * and Faerie Antipathy (−3, −1) (RoP: Faerie lines 6367, 6523). One whose Trait the build left to be
+ * decided takes one: a faerie wizard's from their tradition's, else one of the book's examples.
+ */
 export function addSympathyTraits(c: Character) {
+  const held = () => new Set((c.sympathy ?? []).map((x) => x.trait.toLowerCase()).concat(c.virtues.filter((v) => v.param).map((v) => v.param!.toLowerCase())));
+  const own = Object.values(FAERIE_TRAITS).find((xs) => xs.some((x) => held().has(x.toLowerCase()))) ?? [];
   for (const v of c.virtues) {
-    if (v.defId !== 'faerie-sympathy' || !v.param || v.param === 'to be decided') continue;
+    const flaw = v.defId === 'faerie-antipathy-flaw';
+    if (v.defId !== 'faerie-sympathy' && !flaw) continue;
+    if (!v.param || v.param === TO_DECIDE) v.param = (flaw ? OPEN_ANTIPATHY : [...own, ...OPEN_SYMPATHY]).find((x) => !held().has(x.toLowerCase())) ?? v.param;
+    if (!v.param || v.param === TO_DECIDE) continue;
     if ((c.sympathy ?? []).some((x) => x.trait.toLowerCase() === v.param!.toLowerCase())) continue;
-    c.sympathy = [...(c.sympathy ?? []), { uid: uid(), trait: v.param, score: v.size === 'Major' ? 3 : 1 }];
+    const score = v.size === 'Major' ? 3 : 1;
+    c.sympathy = [...(c.sympathy ?? []), { uid: uid(), trait: v.param, score: flaw ? -score : score }];
   }
 }
 
@@ -413,7 +285,8 @@ interface Want {
 function raiseTo(c: Character, inp: BuildInput, get: () => GuidedContext, refresh: () => void, pool: XpSource, id: string, param: string | undefined, score: number, why: string): number {
   const def = inp.data.abilityById.get(id);
   const budget = get().d.budgets.find((x) => x.id === pool);
-  if (!def || !inp.data.inBooks(def) || !budget || !canSpend(get().d, inp.data, budget, { abilityId: id, param }).ok) return 0;
+  // one the character may learn (an Arcane Ability needs Arcane Lore or the like) and the pool may buy
+  if (!def || !inp.data.inBooks(def) || !budget || !abilityAvailability(get().d, inp.data, id, param).ok || !canSpend(get().d, inp.data, budget, { abilityId: id, param }).ok) return 0;
   const had = c.abilities.some((a) => a.abilityId === id && (a.param ?? '') === (param ?? ''));
   const ab = ensureAbility(c, id, {}, param);
   const cap = get().d.abilityByUid.get(ab.uid)?.cap ?? get().d.ageCap;
