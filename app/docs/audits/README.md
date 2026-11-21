@@ -7,7 +7,7 @@ Audits are kept here once closed, as the record and as models. **Do not delete t
 | Audit | Covered | Status |
 |---|---|---|
 | `2026-11-16.md` | The core-book check, *The Mysteries*, *Realms of Power: Faerie*, *Hedge Magic*, *Hermetic Projects*, *The Church*; and the toolkit's own writing | Closed by roadmap stage 1 |
-| `2026-11-18.md` | Roadmap stage 1 and stage 2 (pull requests #54 to #66), and how that work was done | Open: the roadmap's Now |
+| `2026-11-18.md` | Roadmap stage 1 and stage 2 (pull requests #54 to #66), and how that work was done | Closed by pull requests #70 to #84 and Batch C |
 
 ## How to do one
 

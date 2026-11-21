@@ -16,6 +16,9 @@ import { deriveCharacter, type DerivedCharacter } from '../character/derive';
 import { vfProblems } from '../character/restrictions';
 import { validateCharacter, type Issue } from '../character/validate';
 import { autoBuild } from '../guided/autobuild';
+import { settleAntipathy } from '../guided/traditions';
+import { traditionOfAnswers, traditionVirtues } from '../guided/traditionRules';
+import { mysteryVirtueIds } from '../guided/buildMysteries';
 import { CHAR_PRESETS } from '../guided/questions';
 import { fillChoices } from './paramChoices';
 import { takeImmunityFlaw } from '../covenantBoons';
@@ -120,12 +123,26 @@ export function generateCharacter(o: GenOptions, g: GenContext): Generated {
   return best!;
 }
 
+/** Questions Quick build never answers at random: what they ask for is a role's (roles.ts). */
+const NOT_BY_CHANCE = ['f-tradition', 'f-mystery'];
+
+/** A role drawn by its weight, when none was asked for. */
+function pickRole(rng: () => number, roles: Role[]): Role {
+  const total = roles.reduce((t, r) => t + (r.weight ?? 1), 0);
+  let x = rng() * total;
+  for (const r of roles) if ((x -= r.weight ?? 1) < 0) return r;
+  return roles[roles.length - 1];
+}
+
 function attempt(o: GenOptions, g: GenContext): Generated {
   const rng = seeded(o.seed);
   const { data, saga, rules } = g;
   const log: string[] = [];
-  const roles = rolesFor(o.type);
-  const role = (o.role && ROLE_BY_ID.get(o.role)) || pick(rng, roles);
+  // a plain build keeps to the core book, so not to a role that is made from another (a hedge
+  // tradition, a Mystery, holy powers)
+  const roles = rolesFor(o.type, data).filter((r) => !o.coreOnly || !['f-tradition', 'f-mystery', 'f-divine-powers'].some((q) => (r.answers?.[q] ?? 0) >= 7));
+  const chosen = o.role ? ROLE_BY_ID.get(o.role) : undefined;
+  const role = chosen || pickRole(rng, roles);
   const c = newCharacter(o.type, saga.id, saga.currentYear);
   if (o.startAge !== undefined && o.type === 'magus') c.creation.apprenticeshipStartAge = o.startAge;
   const derive = () => deriveCharacter(c, data, rules);
@@ -197,7 +214,8 @@ function attempt(o: GenOptions, g: GenContext): Generated {
         if (role.answers && q.id in role.answers) return role.answers[q.id];
         if (favorites.length && q.id === 'b-arts') return 8;
         if (favorites.length && q.id.startsWith('b-art-')) return favorites.includes(q.id.slice(6) as never) ? between(rng, 8, 10) : undefined;
-        if (q.chip) return undefined;
+        // a hedge tradition or a Mystery is a role's to ask for, not chance's (a chip is never answered by chance either)
+        if (q.chip || NOT_BY_CHANCE.includes(q.id)) return undefined;
         const p = o.variety === 'focused' ? 0.08 : o.variety === 'varied' ? 0.3 : 0.55;
         if (!chance(rng, p)) return undefined;
         return o.variety === 'focused' ? between(rng, 3, 7) : between(rng, 0, 10);
@@ -212,14 +230,19 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   // a craftsman, knight or merchant is no hedge wizard: the Supernatural Virtues of the hedge
   // traditions and the Realms books (Craft Amulets, Mythic Alchemy, Type Refining) go to characters
   // whose concept is mystical; the core book's (Second Sight, Eye of Hephaestus) stay open to anyone
-  if (o.type !== 'magus' && !role.mythic && !c.creation.archetypes.some((t) => MYSTIC_THEMES.includes(t))) {
+  // a hedge wizard or faerie wizard is a mystic whatever the concept's themes (guided/traditions.ts)
+  const tradition = Math.max(role.answers?.['f-tradition'] ?? 0, o.answers?.['f-tradition'] ?? 0) >= 7;
+  if (o.type !== 'magus' && !role.mythic && !tradition && !c.creation.archetypes.some((t) => MYSTIC_THEMES.includes(t))) {
     const hedge = data.virtuesFlaws.filter((d) => d.kind === 'virtue' && d.categories.includes('Supernatural') && !MUNDANE_BOOKS.includes(d.source.book)).map((d) => d.id);
     // unless the player asked for one by name
     st.declined = [...new Set([...st.declined, ...hedge.filter((id) => o.answers?.[`vf:${id}`] === undefined)])];
   }
   if (o.coreOnly) {
     const custom = new Set(saga.custom?.virtuesFlaws?.map((v) => v.id) ?? []);
-    const asked = (id: string) => o.answers?.[`vf:${id}`] !== undefined || role.answers?.[`vf:${id}`] !== undefined;
+    // a role picked by hand still brings what it requires (the Plain choice's hint): a tradition's Virtues, or a Mystery's
+    const t = chosen ? traditionOfAnswers(chosen.answers ?? {}) : undefined;
+    const required = new Set([...(t ? traditionVirtues(t) : []), ...((chosen?.answers?.['f-mystery'] ?? 0) >= 7 ? mysteryVirtueIds(data) : [])]);
+    const asked = (id: string) => o.answers?.[`vf:${id}`] !== undefined || role.answers?.[`vf:${id}`] !== undefined || required.has(id);
     const beyond = data.virtuesFlaws.filter((d) => d.source.book !== 'DE' && !d.alsoIn?.some((a) => a.book === 'DE') && !custom.has(d.id) && !asked(d.id)).map((d) => d.id);
     st.declined = [...new Set([...st.declined, ...beyond])];
     log.push('Plain: the core book’s Virtues and Flaws only.');
@@ -233,6 +256,7 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   ageBeforePlay(c, d, rng, log);
   warpBeforePlay(c, rng, log);
   d = derive();
+  settleAntipathy(c, d.warpingScore);
   addTraits(c, role, rng);
   // a craftsman met at random may be lucky or not at the work: say what helps and what holds them back
   const trade = c.abilities.filter((a) => a.abilityId === 'craft-type' && a.param).sort((a, b) => Object.values(b.xp).reduce<number>((t, n) => t + (n ?? 0), 0) - Object.values(a.xp).reduce<number>((t, n) => t + (n ?? 0), 0))[0];

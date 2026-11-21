@@ -24,8 +24,8 @@ export const hedgeTour: Tour = {
   // one with enough of a tradition to work it (a lone Art casts nothing, and the page has no card for it)
   suits: (c) => !!hedgeTradition(c),
   practice: {
-    type: 'companion', role: 'physician', label: 'a practice folk witch',
-    ensure: ['folk-witch', 'the-gift', 'unstable-magic-flaw'], abilities: { 'witch-healing': 15, 'folk-witch-magic-theory': 15 },
+    // made by Quick build as a player would make one (guided/traditions.ts)
+    type: 'companion', role: 'folk-witch-gifted', label: 'a practice folk witch',
   },
   steps: [
     {

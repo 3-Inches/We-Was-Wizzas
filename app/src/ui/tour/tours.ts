@@ -95,10 +95,6 @@ export interface PracticeSpec {
   answers?: Record<string, number>;
   /** Virtues the practice character has whatever the build chose, given free if it did not take them */
   ensure?: string[];
-  /** experience points in Abilities, given free (at least this many) */
-  abilities?: Record<string, number>;
-  /** Sympathy Traits the practice character has (Realms of Power: Faerie) */
-  sympathy?: { trait: string; score: number }[];
   label: string;
 }
 

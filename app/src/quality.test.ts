@@ -48,7 +48,6 @@ const LIMITS = {
 const BIG_FILES: Record<string, number> = {
   'src/engine/character/derive.ts': 908,
   'src/engine/covenant.ts': 1042,
-  'src/engine/guided/autobuild.ts': 1180,
   'src/engine/holy.ts': 877,
   'src/engine/projects.ts': 913,
   'src/engine/time.ts': 820,

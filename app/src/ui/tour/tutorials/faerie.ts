@@ -11,13 +11,14 @@ export const faerieTour: Tour = {
   prefers: 'companion',
   suits: hasFaerieTable,
   practice: {
-    type: 'companion', role: 'cunning-folk', label: 'a practice faerie wizard',
-    ensure: ['evocation', 'weal', 'summoning', 'faerie-sympathy'], abilities: { 'faerie-summoning': 5 }, sympathy: [{ trait: 'Dawn', score: 3 }],
+    // made by Quick build as a player would make one, a rite and a bargain asked for by name (guided/traditions.ts)
+    type: 'companion', role: 'faerie-wizard', label: 'a practice faerie wizard',
+    answers: { 'vf:evocation': 10, 'vf:weal': 10, 'vf:summoning': 10 },
   },
   steps: [
     {
       title: 'Faerie at the table',
-      body: '*Realms of Power: Faerie* adds faerie wizards, people the Faerie realm has touched, and faeries as characters. Each is played on **Game Table › Dice › Faerie**, for whoever is picked at the top. This tutorial works on a practice faerie wizard with Evocation, Weal and a Sympathy Trait.',
+      body: '*Realms of Power: Faerie* adds faerie wizards, people the Faerie realm has touched, and faeries as characters. Each is played on **Game Table › Dice › Faerie**, for whoever is picked at the top. This tutorial works on a practice faerie wizard with Evocation, Weal, Summoning and a Sympathy Trait.',
       at: dice('faerie'), needs: 'character', target: 'faerie-who',
     },
     {
