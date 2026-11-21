@@ -13,7 +13,8 @@
     "qa:saga": "vitest run --config scripts/qa/vitest.config.ts",
     "qa:sweep": "node scripts/qa/sweep.cjs",
     "qa:tutorials": "node scripts/qa/tutorials.cjs",
-    "qa:shots": "node scripts/qa/shots.cjs"
+    "qa:shots": "node scripts/qa/shots.cjs",
+    "qa:final": "node scripts/qa/final.cjs"
   },
   "dependencies": {
     "dompurify": "^3.4.16",
