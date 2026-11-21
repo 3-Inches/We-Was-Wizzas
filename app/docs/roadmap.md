@@ -92,7 +92,7 @@ Out of scope:
 One line each, newest first. The pull request has the detail.
 
 **Between batches:**
-- The reader opens what the books' own links and a search point at: a heading in a sidebar, and in a table its row, not the whole table; a link the book got wrong (ten in the Definitive Edition, listed in `src/ui/bookText.test.ts`) stays put rather than opening the front matter. Step 5's checks are one command (`npm run qa:final`), Vitest no longer fills the disk, and `CLAUDE.md` has Batch C's lessons (#PR).
+- The reader opens what the books' own links and a search point at: a heading in a sidebar, and in a table its row, not the whole table; a link the book got wrong (ten in the Definitive Edition, listed in `src/ui/bookText.test.ts`) stays put rather than opening the front matter. Step 5's checks are one command (`npm run qa:final`), Vitest no longer fills the disk, and `CLAUDE.md` has Batch C's lessons (#87).
 
 **Audit 3** (`audits/2026-11-18.md`):
 - Quick build makes folk witches, gruagachan, learned magicians and vitkir, Gifted and unGifted as the book allows, faerie wizards and Mystery initiates, each passing the rules check; a tradition's own Virtues are drawn only for its members; the tutorials' practice characters are made the ordinary way, with nothing given for practice (5.7, B7, Batch C, #86).
