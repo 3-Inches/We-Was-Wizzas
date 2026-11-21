@@ -51,3 +51,20 @@ export function tidyTables(text: string): string {
 export function dropEmptyHeads(html: string): string {
   return html.replace(/<thead>\s*<tr>(?:\s*<th[^>]*>\s*<\/th>)+\s*<\/tr>\s*<\/thead>/g, '');
 }
+
+/**
+ * Where line `i` sits in a table: the line its table starts on, and which of the drawn table's
+ * body rows it is (counting from 0, as `tidyTables` draws them), or null for the header and dash
+ * rows. Null when line `i` is not a table row.
+ */
+export function tableRowAt(lines: string[], i: number): { start: number; row: number | null } | null {
+  if (!isRow(lines[i] ?? '')) return null;
+  let start = i;
+  while (start > 0 && isRow(lines[start - 1])) start--;
+  const hasHeader = start + 1 < lines.length && isRow(lines[start + 1]) && !isDelimiter(lines[start]) && isDelimiter(lines[start + 1]);
+  const body = hasHeader ? start + 2 : start;
+  if (i < body || isDelimiter(lines[i])) return { start, row: null };
+  let row = 0;
+  for (let j = body; j < i; j++) if (!isDelimiter(lines[j])) row++;
+  return { start, row };
+}

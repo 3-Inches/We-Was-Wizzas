@@ -43,6 +43,8 @@ Findings not yet in a batch.
 - **A Virtue on an Ability of a kind can name only the kind.** Puissant, Affinity and the like on Craft name "Craft", not "Craft: Runes", because the sheet's choice lists Abilities only (`src/ui/character/ParamInput.tsx` line 23). The bonus then goes to every Craft the character has, though `derive.ts` lines 506 and 508 already match `craft-type:Runes`. Quick build's vitki takes "Puissant Craft: Runes" from the master this way (`src/engine/guided/traditions.ts` line 64). Found in Batch C's review. Let the choice take the kind's name as well (Craft, Profession, Area Lore and the like), and show it on the sheet.
 - **Two lists say which Virtues belong to a hedge tradition.** `src/data/restrictions.ts` (`TRADITIONS`, for the rules check, fourteen traditions) and `src/engine/guided/traditionRules.ts` (for Quick build, five) were written apart and differ: the rules check does not know the vitkir's Nameless Runes and Secret Runes (Hedge Magic line 6183), and it restricted Fetch to the gruagachan though "other characters may also have access to a fetch" (line 2879; Fetch fixed in Batch C's review). Found in Batch C's review. Make one list, and have the other read it.
 - **Plain with the holy wonder-worker picked by hand makes no holy worker.** A plain build declines *Realms of Power: The Divine*'s Methods and Powers (`src/engine/generate/character.ts` line 240), though the Plain choice says what a role requires still comes with it. Batch C keeps a hand-picked tradition or Mystery role's Virtues in the same place. Found in Batch C. Keep the holy pair the same way (`HOLY_VIRTUES`, `src/engine/guided/buildVirtues.ts` line 132).
+- **A dead link in a book does nothing on a phone.** `BookReader.tsx`'s `onBodyClick` only sets the link's `title`, which a tap never shows. Say it in the page instead.
+- **On a phone, the Mysteries tutorial's "Initiation, a season's work" step shows its card late.** For the practice magus Tullia (`scripts/qa/fixtures/tmre.saga.json`), the Mysteries & Initiation card comes into view about 3.4 s after Next, not 1.4 s. The season page draws the card about a second in, and the smooth scroll to it, some 5,500 px, is still under way. Urbanus and the 1280 run are in time. `scripts/qa/tutorials.cjs --fixtures` reports it as "in view only after 3.4 s". Found between batches. Find what makes the season page slow to draw for her, or scroll without smoothing over a long way (`showAbovePanel`, `src/ui/tour/TourPanel.tsx`).
 
 ## Next: what the other books add
 
@@ -88,6 +90,9 @@ Out of scope:
 ## Done
 
 One line each, newest first. The pull request has the detail.
+
+**Between batches:**
+- The reader opens what the books' own links and a search point at: a heading in a sidebar, and in a table its row, not the whole table; a link the book got wrong (ten in the Definitive Edition, listed in `src/ui/bookText.test.ts`) stays put rather than opening the front matter. Step 5's checks are one command (`npm run qa:final`), Vitest no longer fills the disk, and `CLAUDE.md` has Batch C's lessons (#87).
 
 **Audit 3** (`audits/2026-11-18.md`):
 - Quick build makes folk witches, gruagachan, learned magicians and vitkir, Gifted and unGifted as the book allows, faerie wizards and Mystery initiates, each passing the rules check; a tradition's own Virtues are drawn only for its members; the tutorials' practice characters are made the ordinary way, with nothing given for practice (5.7, B7, Batch C, #86).

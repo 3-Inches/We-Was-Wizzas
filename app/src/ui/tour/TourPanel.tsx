@@ -157,8 +157,20 @@ export default function TourPanel() {
     };
     // a folded card is opened with its own toggle, as the reader would open it
     const unfold = (card: Element) => card.querySelector<HTMLButtonElement>(':scope > .card-head > .fold-toggle')?.click();
+    let openedInside = false;
     const timer = window.setInterval(() => {
       el = findTarget(names);
+      // found only by a later name, whose area holds folded cards: the first may be in one (on a phone,
+      // the workshop's "Work a season" in its folded card of the season plan), so open them and look again
+      if (el && names.length > 1 && !openedInside && !findTarget(names.slice(0, 1))) {
+        const inner = el.querySelectorAll('.card.folded');
+        if (inner.length) {
+          openedInside = true;
+          inner.forEach(unfold);
+          el = null;
+          return;
+        }
+      }
       if (el?.matches('.card.folded')) unfold(el);
       // a closed fold of a card (a <details>) is opened to show what the step is about
       if (el instanceof HTMLDetailsElement && !el.open) el.open = true;
