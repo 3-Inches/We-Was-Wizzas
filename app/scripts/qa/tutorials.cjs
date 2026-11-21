@@ -34,7 +34,9 @@ if (process.argv.includes('--fixtures')) return void fixtures().catch((e) => { r
   await page.getByRole('button', { name: 'Take every tutorial in turn' }).click();
   const panel = page.locator('.tour-panel');
   let lastKey = '';
-  for (let n = 0; n < 220; n++) {
+  // a cap, so a tutorial that loops cannot run forever; a run that reaches it says so, and is not clean
+  let n = 0;
+  for (; n < 400; n++) {
     await page.waitForTimeout(1400);
     if (!(await panel.count())) { say('(panel gone)'); break; }
     const name = (await panel.locator('.tour-name').innerText().catch(() => '')).replace(/ · $/, '').trim();
@@ -123,6 +125,7 @@ if (process.argv.includes('--fixtures')) return void fixtures().catch((e) => { r
     else if (await nextTut.count()) { await nextTut.click(); say(''); }
     else { const fin = panel.getByRole('button', { name: /Finish/ }); if (await fin.count()) await fin.click(); say('(finished)'); break; }
   }
+  if (n >= 400) say('STOPPED at the step limit');
   // the companion the tutorial built: Personality Flaws, Reputations, descriptions and specialties
   say('\nerrors:', errors.join(' ; ') || 'none');
   fs.writeFileSync(require('path').join(OUT, `tutorials-${width}.txt`), report.join('\n'));
@@ -176,7 +179,8 @@ async function fixtures() {
         else say(`  NOT OFFERED: ${who} (offered: ${opts.join(', ')})`);
         await page.waitForTimeout(1200);
       }
-      for (let n = 0; n < 30; n++) {
+      let n = 0;
+      for (; n < 30; n++) {
         await page.waitForTimeout(1400);
         const count = (await panel.locator('.tour-count').innerText()).replace(/^.*· /, '').trim();
         const title = (await panel.locator('h4').innerText()).trim();
@@ -193,9 +197,11 @@ async function fixtures() {
         if (await next.count()) await next.click();
         else {
           await panel.getByRole('button', { name: /Finish/ }).click();
+          say('  (finished)');
           break;
         }
       }
+      if (n >= 30) say('  STOPPED at the step limit');
     }
     await ctx.close();
   }

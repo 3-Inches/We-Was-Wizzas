@@ -3,14 +3,15 @@
 // With the forks pool, Vitest copies each transformed module into a folder of the temp folder named
 // by a random id (`/tmp/<id>/ssr`, `/tmp/<id>/client`), and it does not always remove it: a full run
 // leaves about 100 MB. In a long session the disk fills, and Chromium then fails with "Page crashed",
-// which looks like a fault in the page. A folder is taken only when it holds nothing but those, and
-// none of it has changed for ten minutes, so a run going on at the same time keeps its own.
+// which looks like a fault in the page. At its end a run removes its own folder (Vitest's `_tmpDir`,
+// which Vitest itself leaves). Another run's folder is taken only when it holds nothing but those and
+// none of it has changed for an hour, so a run going on at the same time keeps its own.
 import { readdirSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 const KINDS = new Set(['ssr', 'client', '__vitest__']);
-const STALE_MS = 10 * 60_000;
+const STALE_MS = 60 * 60_000;
 
 export function clearStale(root = tmpdir(), now = Date.now()): string[] {
   const gone: string[] = [];
@@ -37,7 +38,15 @@ export function clearStale(root = tmpdir(), now = Date.now()): string[] {
   return gone;
 }
 
-export default function setup() {
+// Vitest passes the project; its folders are internal fields, so each is looked for, not assumed.
+type Project = { tmpDir?: unknown; vitest?: { _tmpDir?: unknown } };
+
+export default function setup(project?: Project) {
   clearStale();
-  return () => void clearStale();
+  return () => {
+    for (const dir of [project?.vitest?._tmpDir, project?.tmpDir]) {
+      if (typeof dir === 'string' && dir.startsWith(tmpdir())) rmSync(dir, { recursive: true, force: true });
+    }
+    clearStale();
+  };
 }
