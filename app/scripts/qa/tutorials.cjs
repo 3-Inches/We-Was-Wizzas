@@ -184,15 +184,24 @@ async function fixtures() {
         await page.waitForTimeout(1400);
         const count = (await panel.locator('.tour-count').innerText()).replace(/^.*· /, '').trim();
         const title = (await panel.locator('h4').innerText()).trim();
-        const info = await page.evaluate(() => {
+        const look = () => page.evaluate(() => {
           const el = document.querySelector('[data-tour-on]');
           if (!el) return { on: '' };
           const r = el.getBoundingClientRect();
           const top = document.querySelector('.tour-panel')?.getBoundingClientRect().top ?? innerHeight;
-          return { on: el.getAttribute('data-tour'), inView: r.bottom > 0 && r.top < top };
+          return { on: el.getAttribute('data-tour'), inView: r.bottom > 0 && r.top < top, at: `top ${Math.round(r.top)}, bottom ${Math.round(r.bottom)}, panel ${Math.round(top)}, scrollY ${Math.round(scrollY)}` };
         });
+        let info = await look();
+        // a long smooth scroll may still be on its way: look again before calling it out of view
+        let late = '';
+        if (info.on && !info.inView) {
+          const first = info.at;
+          await page.waitForTimeout(2000);
+          info = await look();
+          late = info.inView ? ` (in view only after 3.4 s; at 1.4 s ${first})` : ` (OUT OF VIEW: ${first}; 2 s later ${info.at})`;
+        }
         if (!info.on) missing++;
-        say(`  ${count} ${title}: ${info.on ? `→ ${info.on}${info.inView ? '' : ' (OUT OF VIEW)'}` : 'no target'}`);
+        say(`  ${count} ${title}: ${info.on ? `→ ${info.on}${late}` : 'no target'}`);
         const next = panel.getByRole('button', { name: /^Next ›$/ });
         if (await next.count()) await next.click();
         else {
