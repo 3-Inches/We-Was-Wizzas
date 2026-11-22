@@ -6,6 +6,7 @@
 // the saga's current season, or as the character's season activity on the Seasons page. The lab's
 // restrictions, its Specializations and the choice to experiment apply to every one.
 
+import { uid } from '../../../util/id';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ART_NAMES, FORMS, TECHNIQUES, type Form, type LabVFDef, type Technique } from '../../../data';
@@ -65,6 +66,8 @@ export function useWorkProject(ed: CharEditor): (p: LabProject, helperIds?: stri
     e.labKind = p.kind;
     e.told = labTold(x.projects?.find((y) => y.uid === p.uid) ?? p, x);
     e.undo = labUndo(before, x, p.uid, covBefore, cov);
+    // the helpers' seasons are logged with it: Unlog takes back all of them (owner.md, Decided)
+    if (helpers.some((y) => y.used)) e.link = uid();
     applySeason(x, e, 1);
     x.seasonLog.push(e);
     for (const h of helpers.filter((y) => y.used)) {
@@ -72,6 +75,7 @@ export function useWorkProject(ed: CharEditor): (p: LabProject, helperIds?: stri
       const r = computeStudy(h.d, { kind: 'exposure', subject: 'Magic Theory' }, { abilityUid: mt.uid });
       const he = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${x.name || 'a magus'} in the lab: ${p.name} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
       if (h.extra) he.extra = true;
+      he.link = e.link;
       he.told = helperTold(x.name || 'a magus'); if (begunUndo(had, h.c).abilities) he.undo = begunUndo(had, h.c);
       applySeason(h.c, he, 1);
       h.c.seasonLog.push(he);

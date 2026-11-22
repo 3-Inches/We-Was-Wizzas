@@ -2,6 +2,7 @@
 // exposure, adventure, raw vis, Worship or a season of lab work, worked out and logged on the season log.
 
 import { useState } from 'react';
+import { uid } from '../../../util/id';
 import { R } from '../../routes';
 import { Link } from 'react-router-dom';
 import { bestLesson, teachableSubjects } from '../../../engine/teaching';
@@ -231,6 +232,9 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
     const insightText = insight && insightPicked.length ? `; Secondary Insight: +1 ${insightPicked.join(', ')}` : '';
     const text = summary || (kind === 'other' ? 'Other activity' : `${KIND_LABEL[kind]}: ${subject}${res ? ` (+${res.xp} xp)` : ''}${linkedText ? `; Magian Lineage: ${linkedText}` : ''}${insightText}`);
     const entry = newSeasonEntry(year, season, ACTIVITY[kind], asExtra ? `Extra season (needs no sleep): ${text}` : text, gains);
+    // a lesson from a covenant-mate is logged on both: Unlog takes back both (owner.md, Decided)
+    const link = mate && mateD && logTeacher && teacherSlot ? uid() : undefined;
+    if (link) entry.link = link;
     if (asExtra) entry.extra = true;
     if (res) entry.sourceQuality = res.advancementTotal;
     if (kind === 'vis' && art) {
@@ -297,6 +301,7 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
         const ex = computeStudy(mateD, { kind: 'exposure', subject: 'Teaching' }, { abilityUid: tch.uid });
         const e = newSeasonEntry(year, season, 'teach', `${teacherSlot === 'extra' ? 'Extra season (needs no sleep): ' : ''}Taught ${subject} to ${c.name || 'a student'} (Exposure: Teaching +${ex.xp} xp)`, ex.xp ? { [`ability:${tch.uid}`]: ex.xp } : {});
         if (teacherSlot === 'extra') e.extra = true;
+        e.link = link;
         if (begunUndo(had, t).abilities) e.undo = begunUndo(had, t);
         applySeason(t, e, 1);
         t.seasonLog.push(e);

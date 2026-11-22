@@ -4,6 +4,7 @@
 // one; a teacher takes five students for each point of Teaching (one with none). The teacher gains
 // Exposure in Teaching and can do nothing else that season.
 
+import { uid } from '../util/id';
 import { ARTS, ART_NAMES, abilityTypeOf, isLanguageAbility, type Art, type GameData } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import { ensureAbility } from './character/factory';
@@ -250,6 +251,8 @@ export function giveLesson(t: Learner, plan: LessonPlan, year: number, season: S
   };
   const te = mark(newSeasonEntry(year, season, 'teach', `Taught ${plan.label} to ${names.join(', ')} (Exposure: Teaching +${ex.xp} xp)`, ex.xp ? { [`ability:${teaching.uid}`]: ex.xp } : {}));
   if (begunUndo(had, t.c).abilities) te.undo = begunUndo(had, t.c);
+  // the teacher's season and the students' are one lesson: Unlog takes back all of them (owner.md, Decided)
+  te.link = uid();
   applySeason(t.c, te, 1);
   t.c.seasonLog.push(te);
   out.push({ who: t.c, text: `${o.extra ? 'Extra season: ' : ''}Taught ${plan.label} to ${names.join(' and ')}${o.asked ? ' (as asked)' : ''}: ${plan.total} xp in all; Exposure in Teaching +${ex.xp} xp.${!ex.xp && t.d.magicChar ? ` Its Might ${t.d.magicChar.might} comes off its own Advancement Totals.` : ''}` });
@@ -260,6 +263,7 @@ export function giveLesson(t: Learner, plan: LessonPlan, year: number, season: S
     if (!key) continue;
     const e = newSeasonEntry(year, season, 'taught', `Taught by ${tName}: ${plan.label} (+${w.result.xp} xp)`, w.result.xp ? { [key]: w.result.xp } : {});
     e.sourceQuality = w.result.sourceQuality;
+    e.link = te.link;
     if (begunUndo(hadS, w.s.c).abilities) e.undo = begunUndo(hadS, w.s.c);
     applySeason(w.s.c, e, 1);
     w.s.c.seasonLog.push(e);

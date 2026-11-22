@@ -630,6 +630,9 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       const e = newSeasonEntry(year, season, 'other', `${h.extra ? 'Extra season (needs no sleep): ' : ''}Helped ${magus?.name || 'a magus'} in the lab: ${h.used} (+${r.xp} xp Exposure in Magic Theory)`, r.xp ? { [`ability:${mt.uid}`]: r.xp } : {});
       if (h.extra) e.extra = true;
       if (begunUndo(had, c).abilities) e.undo = begunUndo(had, c);
+      // logged with the magus's lab season: Unlog takes back both (owner.md, Decided)
+      const lab = magus?.seasonLog.find((x) => x.year === year && x.season === season && !!x.labKind && !x.extra);
+      if (lab) e.link = lab.link ??= uid();
       e.told = helperTold(magus?.name || 'a magus');
       applySeason(c, e, 1);
       c.seasonLog.push(e);

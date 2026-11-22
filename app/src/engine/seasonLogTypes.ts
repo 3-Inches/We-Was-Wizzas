@@ -62,6 +62,11 @@ export interface SeasonLogEntry {
   applied: boolean;
   /** what else the season changed, so Unlog can take it back (engine/unlog.ts) */
   undo?: SeasonUndo;
+  /**
+   * The seasons logged with this one on other characters share it: a lesson's teacher and students, a
+   * magus in the lab and their helpers. Unlog takes them all back (engine/unlog.ts, `unlogLinked`).
+   */
+  link?: string;
 }
 
 /**
