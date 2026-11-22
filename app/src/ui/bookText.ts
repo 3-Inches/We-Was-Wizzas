@@ -88,3 +88,78 @@ export function useBookSection(bookId: string, line: number, endLine: number | u
   }, [enabled, book, line, endLine]);
   return { ...state, loading: enabled && !state.text && !state.error };
 }
+
+export interface BookHeading {
+  line: number; // 0-based
+  level: number;
+  text: string;
+  slug: string;
+  /** a heading in a boxed sidebar ("> ### Title"): a link may point at it, but it opens no section */
+  sidebar: boolean;
+}
+
+export interface BookSection {
+  start: number;
+  end: number; // exclusive
+  heading: BookHeading;
+}
+
+/** GitHub-style heading slug (what the books' internal links use), with -1, -2 for duplicates. */
+function githubSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/<[^>]+>/g, '')
+    .replace(/[*_`[\]()]/g, '')
+    .replace(/[^\p{L}\p{N}\s-]/gu, '')
+    .replace(/\s/g, '-');
+}
+
+/**
+ * A book's headings, in order, with the slugs its own links use, and the sections the reader shows
+ * one at a time (one to a heading of level 3 or above, outside a sidebar). Headings in sidebars
+ * count too: GitHub numbers a repeated slug across every heading, boxed or not.
+ */
+export function parseBook(lines: string[]): { headings: BookHeading[]; sections: BookSection[] } {
+  const headings: BookHeading[] = [];
+  const seen = new Map<string, number>();
+  let inCode = false;
+  lines.forEach((l, i) => {
+    if (l.startsWith('```')) inCode = !inCode;
+    if (inCode) return;
+    // up to three spaces may come before a heading, as markdown allows (" ## The Goliard Credo")
+    const m = /^ {0,3}(>\s*)?(#{1,6})\s+(.*?)\s*#*\s*$/.exec(l);
+    if (!m) return;
+    const base = githubSlug(m[3]);
+    const n = seen.get(base) ?? 0;
+    seen.set(base, n + 1);
+    headings.push({ line: i, level: m[2].length, text: m[3].replace(/[*_]/g, ''), slug: n ? `${base}-${n}` : base, sidebar: !!m[1] });
+  });
+  const tops = headings.filter((h) => h.level <= 3 && !h.sidebar);
+  const sections: BookSection[] = [];
+  if (!tops.length || tops[0].line > 0)
+    sections.push({ start: 0, end: tops[0]?.line ?? lines.length, heading: { line: 0, level: 1, text: 'Front matter', slug: 'front', sidebar: false } });
+  tops.forEach((h, i) => sections.push({ start: h.line, end: tops[i + 1]?.line ?? lines.length, heading: h }));
+  return { headings, sections };
+}
+
+function looseSlug(s: string): string {
+  return s
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** The heading a book's own link ("#some-heading") points at: by its slug, else by a looser match; none when the book's link is wrong. */
+export function findAnchor(headings: BookHeading[], anchor: string): BookHeading | undefined {
+  const a = anchor.replace(/^#/, '');
+  return (
+    headings.find((x) => x.slug === a) ??
+    headings.find((x) => looseSlug(x.text) === looseSlug(a)) ??
+    headings.find((x) => looseSlug(x.slug) === looseSlug(a.replace(/-\d+$/, ''))) ??
+    // the link names the heading's first words ("#muqta" for "Muqta' (Muq-Ta')")
+    headings.find((x) => looseSlug(x.slug).startsWith(`${looseSlug(a)}-`))
+  );
+}

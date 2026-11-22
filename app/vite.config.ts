@@ -12,5 +12,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+    // clears what earlier runs left in the temp folder (see the file)
+    globalSetup: ['scripts/vitestTmp.ts'],
   },
 });

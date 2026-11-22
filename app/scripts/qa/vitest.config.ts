@@ -9,5 +9,6 @@ export default defineConfig({
     environment: 'node',
     include: ['scripts/qa/**/*.qa.ts'],
     testTimeout: 600_000,
+    globalSetup: ['scripts/vitestTmp.ts'],
   },
 });
