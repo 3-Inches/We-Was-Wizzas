@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { newSaga } from '../store/store';
 import {
-  annotateGain, bookQuality, readProblems, clarifyProblems, copyOfBook, copyProblems, copyRate, covenantArtisans, florilegiumBonus, glossProblems, labTextRate, libraryYearEnd, planBook, refreshQuality,
+  annotateGain, bookAbility, bookQuality, readProblems, studyProblem, clarifyProblems, copyOfBook, copyProblems, copyRate, covenantArtisans, florilegiumBonus, glossProblems, labTextRate, libraryYearEnd, planBook, refreshQuality,
   scriptoriumSeason, workWriting,
 } from './books';
 import { deriveCharacter } from './character/derive';
@@ -11,6 +11,7 @@ import { addVirtue, ensureAbility, newCharacter } from './character/factory';
 import { computeStudy } from './longterm';
 import { newCovenant } from './covenant';
 import { DEFAULT_ADVANCE, advanceSeason } from './time';
+import { bestStudy } from './priorities';
 import { DEFAULT_HOUSE_RULES, type Character, type LibraryBook, type Specialist, type WritingProject } from './types';
 
 const data = buildGameData();
@@ -277,5 +278,86 @@ describe('an Ability begun from a book', () => {
     const r = computeStudy(derive(c), { kind: 'summa', quality: 10, level: 5, isArt: false, subject: 'Magic Theory' }, { newAbility: { abilityId: 'magic-theory' } });
     expect(r.xp).toBe(15);
     expect(computeStudy(derive(c), { kind: 'summa', quality: 10, level: 5, isArt: false, subject: 'Concentration' }, { newAbility: { abilityId: 'concentration' } }).xp).toBe(10);
+  });
+});
+
+describe('a book is studied only by one who can read it, on every road (DE line 16191)', () => {
+  // a companion in a covenant whose library holds a Latin summa on Area Lore and a Greek one on Latin itself
+  const setup = (o: { latin: number; greek: number; artes: number }) => {
+    const s = newSaga('T');
+    s.currentYear = 1220;
+    s.currentSeason = 'Spring';
+    const cov = newCovenant(s.id, 1220);
+    const c = newCharacter('companion', s.id);
+    c.name = 'Lector';
+    c.creation.finalized = true;
+    c.age = 30;
+    ensureAbility(c, 'dead-language', { laterLife: abilityXp(o.latin) }, 'Latin');
+    if (o.greek) ensureAbility(c, 'dead-language', { laterLife: abilityXp(o.greek) }, 'Greek');
+    if (o.artes) ensureAbility(c, 'artes-liberales', { laterLife: abilityXp(o.artes) });
+    ensureAbility(c, 'area-lore', { laterLife: abilityXp(1) }, 'Rhine');
+    cov.memberIds.push(c.id);
+    c.covenantId = cov.id;
+    cov.library = [
+      book({ uid: 'greek', title: 'Peri Logou', subjectType: 'ability', subject: 'dead-language', param: 'Latin', level: 8, quality: 9, language: 'Greek' }),
+      book({ uid: 'lore', title: 'De Rheno', subjectType: 'ability', subject: 'area-lore', param: 'Rhine', level: 4, quality: 8, language: 'Latin' }),
+    ];
+    return { s, cov, c };
+  };
+
+  it('studyProblem names the language for a book the reader cannot read, and nothing for one they can', () => {
+    const { cov, c } = setup({ latin: 5, greek: 2, artes: 1 });
+    const d = derive(c);
+    expect(studyProblem(c, d, data, cov.library[0])).toMatch(/Greek 4 or more/);
+    expect(studyProblem(c, d, data, cov.library[1])).toBeUndefined();
+    const { c: unlettered } = setup({ latin: 5, greek: 0, artes: 0 });
+    expect(studyProblem(unlettered, derive(unlettered), data, cov.library[1])).toMatch(/Artes Liberales 1/);
+  });
+
+  it('the standing activity Read passes over a book in a language the reader cannot read, and says why', () => {
+    const { s, cov, c } = setup({ latin: 5, greek: 2, artes: 1 });
+    c.standing = { kind: 'read', bookUid: 'greek', target: `ability:${c.abilities[0].uid}` };
+    const { state, report } = advanceSeason({ saga: s, characters: [c], covenants: [cov] }, data, { ...DEFAULT_ADVANCE, rollAging: false });
+    const after = state.characters[0];
+    expect(after.seasonLog.some((e) => e.bookId === 'greek')).toBe(false);
+    expect(JSON.stringify(report)).toMatch(/cannot study Peri Logou: reading it needs Greek 4 or more/);
+  });
+
+  it('the priorities’ choice of a book passes over one the reader cannot read', () => {
+    const { s, cov, c } = setup({ latin: 5, greek: 2, artes: 1 });
+    // the Greek summa would teach more; the Latin one is read
+    const best = bestStudy(c, derive(c), cov, s.currentYear, s.currentSeason, [c], [], data);
+    expect(best?.standing.bookUid).toBe('lore');
+    const { c: greek } = setup({ latin: 5, greek: 5, artes: 1 });
+    expect(bestStudy(greek, derive(greek), cov, s.currentYear, s.currentSeason, [greek], [], data)?.standing.bookUid).toBe('greek');
+  });
+
+  it('Read matches a book by its Ability and its name, and begins an Ability the reader may learn', () => {
+    const { s, cov, c } = setup({ latin: 5, greek: 0, artes: 1 });
+    // a summa on Area Lore: Normandy, which the reader has not begun; its Rhine one is not it
+    cov.library = [book({ uid: 'normandy', title: 'De Normannia', subjectType: 'ability', subject: 'area-lore', param: 'Normandy', level: 3, quality: 7, language: 'Latin' })];
+    const rhine = c.abilities.find((a) => a.param === 'Rhine')!;
+    expect(bookAbility(c, data, cov.library[0])).toBeUndefined();
+    expect(studyProblem(c, derive(c), data, cov.library[0])).toBeUndefined();
+    c.standing = { kind: 'read', bookUid: 'normandy', target: `ability:${rhine.uid}` };
+    const { state } = advanceSeason({ saga: s, characters: [c], covenants: [cov] }, data, { ...DEFAULT_ADVANCE, rollAging: false });
+    const after = state.characters[0];
+    const normandy = after.abilities.find((a) => a.abilityId === 'area-lore' && a.param === 'Normandy');
+    expect(normandy).toBeDefined();
+    const e = after.seasonLog.find((x) => x.bookId === 'normandy')!;
+    // Quality 7 to a score of 0, below the summa's Level 3: 7 xp, and Unlog takes the Ability back
+    expect(e.gains[`ability:${normandy!.uid}`]).toBe(7);
+    expect(e.undo?.abilities).toEqual([normandy!.uid]);
+    expect(after.abilities.find((a) => a.uid === rhine.uid)?.xp.play ?? 0).toBe(0);
+  });
+
+  it('a book naming no one of a Profession is on the reader’s own only when they have just one', () => {
+    const c = newCharacter('companion', 's1');
+    const old = book({ subjectType: 'ability', subject: 'profession-type', param: undefined });
+    expect(bookAbility(c, data, old)).toBeUndefined();
+    ensureAbility(c, 'profession-type', {}, 'Scribe');
+    expect(bookAbility(c, data, old)?.param).toBe('Scribe');
+    ensureAbility(c, 'profession-type', {}, 'Binder');
+    expect(bookAbility(c, data, old)).toBeUndefined();
   });
 });

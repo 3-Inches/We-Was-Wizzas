@@ -10,6 +10,8 @@ import { teacherQuality } from '../../engine/covenantRules';
 import { bestLesson, lessonStudy, maxStudents, teachableSubjects, type Learner } from '../../engine/teaching';
 import { cannotHelp, helpValue } from '../../engine/labHelp';
 import { learnsArts } from '../../engine/firstChoice';
+import { bookAbility, studyProblem, unreadableBooks } from '../../engine/books';
+import { useGameData, useSaga } from '../../store/hooks';
 
 const KINDS: { id: StandingActivity['kind']; label: string }[] = [
   { id: 'auto', label: 'Automatic' },
@@ -57,9 +59,12 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
   const others = (team?.others ?? []).filter((m) => m.c.id !== c.id);
   const reach = [...mates, ...others];
   const me: Learner = { c, d };
-  // books the character can read: summae and tractatus on an Art (a magus) or an Ability they have
-  const readable = library.filter((b) => (b.kind === 'summa' || b.kind === 'tractatus') && !b.corrupt && (b.subjectType === 'art' ? learnsArts(d) : b.subjectType === 'ability' && c.abilities.some((a) => a.abilityId === b.subject)));
-  const readTarget = (b: LibraryBook) => (b.subjectType === 'art' ? `art:${b.subject}` : `ability:${c.abilities.find((a) => a.abilityId === b.subject && (!b.param || a.param === b.param))?.uid ?? ''}`);
+  // the books the character can study, by the rule Plan a season and the clock use (`studyProblem`): one in a
+  // language or alphabet they cannot read is not offered (DE line 16191); one on an Ability they may begin is
+  const data = useGameData(useSaga(c.sagaId));
+  const readable = library.filter((b) => !studyProblem(c, d, data, b));
+  const unreadable = unreadableBooks(c, d, data, library);
+  const readTarget = (b: LibraryBook) => (b.subjectType === 'art' ? `art:${b.subject}` : bookAbility(c, data, b) ? `ability:${bookAbility(c, data, b)!.uid}` : undefined);
   const shown = KINDS.filter(
     (k) =>
       (k.id !== 'work' || (c.workshop && !extra)) &&
@@ -189,11 +194,12 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
           <option value="">— book —</option>
           {readable.map((b) => (
             <option key={b.uid} value={b.uid}>
-              {b.title} ({b.kind === 'summa' ? `L${b.level} ` : ''}Q{b.quality})
+              {b.title} ({b.kind === 'summa' ? `L${b.level} ` : ''}Q{b.quality}){b.subjectType === 'ability' && !bookAbility(c, data, b) ? ', new' : ''}
             </option>
           ))}
         </select>
       )}
+      {s.kind === 'read' && unreadable.length > 0 && <span className="small muted">Not offered: {unreadable.map((u) => `${u.book.title} (needs ${u.needs})`).join('; ')}.</span>}
       {s.kind === 'priorities' && <span className="small muted">→ the first entry of {c.priorities?.length ? 'its' : 'a'} priority list that can be done (Season priorities)</span>}
       {s.kind === 'auto' && <span className="small muted">→ {extra ? (d.magicChar && d.magicChar.might > 0 && !c.creature?.familiarOf ? 'practice, unless its Might cancels it: then nothing' : 'practice of their best Ability') : `${describeStanding(c, d, resolved)}${!c.creature && (resolved.kind === 'practice' || (resolved.kind === 'lab' && !resolved.projectUid)) ? ', or the covenant’s best book or teacher if it teaches more' : ''}`}</span>}
     </span>

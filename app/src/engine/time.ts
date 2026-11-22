@@ -28,7 +28,7 @@ import { faceTrouble, troublesYearEnd } from './calamity';
 import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
 import { ensureAbility } from './character/factory';
 import type { Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
-import { libraryYearEnd, scriptoriumYear, workWriting, writingFor } from './books';
+import { bookTarget, libraryYearEnd, scriptoriumYear, studyProblem, workWriting, writingFor } from './books';
 import { purseOf, takeVis } from './vis';
 import { bestStudy, choosePriority, focusArts, priorityLabel } from './priorities';
 import { gatheringIn, gatheringNews, houseGatheringIn, livingIds, livingYearEnd } from './living';
@@ -183,7 +183,7 @@ export function runStanding(c: Character, d: DerivedCharacter, ctx: CharacterCon
   const s = resolveStanding(c, d, year);
   // left to the clock, a free season goes to the covenant's best book or teacher when it teaches more than the usual practice, or a magus's lab Exposure with no project
   if ((c.standing?.kind ?? 'auto') === 'auto' && !c.creature && (s.kind === 'practice' || (s.kind === 'lab' && !s.projectUid))) {
-    const best = bestStudy(c, d, cov, year, season, chars ?? [], d.isMagus ? focusArts(d) : []);
+    const best = bestStudy(c, d, cov, year, season, chars ?? [], d.isMagus ? focusArts(d) : [], data);
     if (best && best.xp >= 5 && best.xp > (s.kind === 'practice' ? 4 : 2)) return runActivity(c, d, ctx, cov, data, year, season, rng, best.standing, chars);
   }
   return runActivity(c, d, ctx, cov, data, year, season, rng, s, chars);
@@ -295,15 +295,24 @@ function runActivityIn(c: Character, d: DerivedCharacter, ctx: CharacterContext,
     }
     case 'read': {
       const b = cov?.library.find((x) => x.uid === s.bookUid);
-      const t = target(s.target);
-      if (!b || !t || (b.kind !== 'summa' && b.kind !== 'tractatus')) return ['Read: the book is not in the covenant’s library.'];
+      if (!b || (b.kind !== 'summa' && b.kind !== 'tractatus')) return ['Read: the book is not in the covenant’s library.'];
       if (b.kind === 'tractatus' && b.readBy?.includes(c.id)) return [`${b.title} has been read already: a tractatus teaches once.`];
+      // the same rule as Plan a season's: a book in a language the reader cannot read, or on an Ability
+      // they cannot study, is passed over (DE line 16191)
+      const why = studyProblem(c, d, data, b);
+      if (why) return instead(`${c.name || 'The character'} cannot study ${b.title}: ${why}.`);
+      // the book's own Art or Ability, begun at 0 when the character has none (as Plan a season does)
+      const had = { abilities: [...c.abilities] };
+      const key = bookTarget(c, data, b, true);
+      const t = target(key);
+      if (!key || !t) return ['Read: the book is not in the covenant’s library.'];
       const src = b.kind === 'summa' ? { kind: 'summa' as const, quality: b.quality, level: b.level, isArt: 'art' in t, subject: b.title } : { kind: 'tractatus' as const, quality: b.quality, isArt: 'art' in t, subject: b.title };
-      const r = computeStudy(d, src, 'art' in t ? { art: t.art } : { abilityUid: t.abilityUid });
-      const e = newSeasonEntry(year, season, 'study-book', `Read ${b.title}: ${t.label} (+${r.xp} xp)`, r.xp ? { [s.target!]: r.xp } : {});
+      const r = computeStudy(d, src, 'art' in t ? { art: t.art } : d.abilityByUid.has(t.abilityUid) ? { abilityUid: t.abilityUid } : { newAbility: { abilityId: b.subject, param: b.param } });
+      const e = newSeasonEntry(year, season, 'study-book', `Read ${b.title}: ${t.label} (+${r.xp} xp)`, r.xp ? { [key]: r.xp } : {});
       e.bookId = b.uid;
       e.sourceQuality = r.advancementTotal;
       if (b.kind === 'tractatus' && cov) e.undo = { tractatus: { covenantId: cov.id, bookUid: b.uid } };
+      if (begunUndo(had, c).abilities) e.undo = { ...e.undo, ...begunUndo(had, c) };
       applySeason(c, e, 1);
       c.seasonLog.push(e);
       if (b.kind === 'tractatus') b.readBy = [...(b.readBy ?? []), c.id];
