@@ -18,7 +18,7 @@ What is left to do, in order. Work the first open batch under **Now**.
 
 Batch D and Batch E hold what is left: what closing audit 3 found (`audits/2026-11-18.md`, closed; the numbers in parentheses, 5.1 to 5.17, are the old roadmap's, which earlier pull requests use) and the Found list. Most of it is at the joins between systems, so go down the integration checklist for each item.
 
-By the owner's choice (2026-11-22), **one fresh session builds both batches, in one pull request,** so that the costs paid once a pull request (the adversarial review, `npm run qa:final`, the lead's review) are paid once. So:
+By the owner's choice (2026-11-22, in `owner.md`'s Decided list: an exception to one batch a pull request), **one fresh session builds both batches, in one pull request,** so that the costs paid once a pull request (the adversarial review, `npm run qa:final`, the lead's review) are paid once. So:
 - Build D, then E, in the order given.
 - Commit and push after each item, with its typecheck and its test file clean, so that work done is kept if the session stops.
 - Run all tests after each batch, and fix what fails before going on.
@@ -50,7 +50,9 @@ All *Mechanical*, decided by the owner (`owner.md`, Decided): the living covenan
 
 ## Found
 
-Findings not yet in a batch. (None: Batches D and E took them all, 2026-11-22.)
+Findings not yet in a batch.
+
+- **A `tours.test.ts` failure in #86 was not traced** (#86's text calls it unexplained). Nobody has seen it since. If it fails again, trace it before anything else in that pull request.
 
 ## Next: what the other books add
 

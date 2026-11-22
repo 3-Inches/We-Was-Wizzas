@@ -32,7 +32,7 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 15 | 2026-10-22 | Undo with refunds |  | 248 |  |  |  |
 | 16 | 2026-10-22 | Optional rules, Mysteries |  | 278 |  |  |  |
 | 17 | 2026-10-22 | Quality pass, tutorials |  | 282 |  |  |  |
-| 18 | 2026-10-22 | Quick build, bestiary |  | 292 |  |  |  |
+| 18 | 2026-10-22 | Quick build, bestiary |  | 292 |  |  | #86 (audit 3 B7, with #51) |
 | 19 | 2026-10-23 | Play-test fixes |  | 296 |  |  |  |
 | 20 | 2026-10-23 | Lab projects |  |  |  |  |  |
 | 21 | 2026-10-27 | Rules fixes from review |  |  | 106 / 0 |  |  |
@@ -63,8 +63,8 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 46 | 2026-11-15 | Troupe card; import changes |  |  | 958 / 0 |  | #47 |
 | 47 | 2026-11-15 | Fixes from audit of #45-46 |  |  | 958 / 0 |  |  |
 | 48 | 2026-11-15 | Core book checked |  |  | 958 / 0 |  | #54, #55 (audit 2) |
-| 49 | 2026-11-16 | The Mysteries (Revised) |  |  | 958 / 0 |  | #54, #55, #58 (audit 2) |
-| 50 | 2026-11-16 | Realms of Power: Faerie |  |  |  |  | #54, #59, #60 (audit 2), #75 (audit 3 B5) |
+| 49 | 2026-11-16 | The Mysteries (Revised) |  |  | 958 / 0 |  | #54, #55 (audit 2) |
+| 50 | 2026-11-16 | Realms of Power: Faerie |  |  |  |  | #54, #60 (audit 2), #75 (audit 3 B5) |
 | 51 | 2026-11-16 | Hedge Magic, Projects, Church |  |  | 958 / 0 |  | #54, #58, #66, #86 (audit 2, B7) |
 | 52 | 2026-11-16 | Guide: playing and running |  | 812 |  |  |  |
 | 53 | 2026-11-17 | Foundations: principles, roadmap |  |  |  |  |  |
@@ -72,7 +72,7 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 55 | 2026-11-17 | 1.2 card behavior fixes |  | 842 | 357 / 0 |  |  |
 | 56 | 2026-11-17 | 2.1 books in step with upstream |  |  | 357 / 0 |  |  |
 | 57 | 2026-11-17 | 2.3 item effects out of spells |  |  | 357 / 0 |  |  |
-| 58 | 2026-11-17 | 1.3 hedge seasons on Seasons |  | 868 | 357 / 0 |  | #72, #74, #82 (audit 3) |
+| 58 | 2026-11-17 | 1.3 hedge seasons on Seasons |  | 868 | 357 / 0 |  | #74, #82 (audit 3) |
 | 59 | 2026-11-17 | 1.4 Faith page |  | 889 | 357 / 0 |  | #74, #79, #80, #84 |
 | 60 | 2026-11-17 | 1.4b Warping waits in Resolve |  | 906 | 357 / 0 |  | #70, #83 (audit 3 A1, B1) |
 | 61 | 2026-11-17 | 1.4c great buildings, menagerie |  | 913 |  |  | #63 (checks), #74, #84 |
@@ -112,27 +112,28 @@ Size jumps are from `stats.md`, a column growing by a fifth or more in one pull 
 - **#12, Game mechanics index.** Generated data more than doubled (2,915 to 6,125 KB): 5,303 mechanics read from every reviewed book. 111,530 lines added.
 - **#13, saga clock.** `app/src` grew 22% (1,325 to 1,616 KB), and tests 27% (179 to 227): the clock, rituals, lab projects and the market in one pull request.
 - **#18, Quick build.** Generated data grew 15% (the bestiary, 422 creatures, about 1 MB). Under a fifth, but the largest data change after #12.
-- **#3 to #7.** Tests grew 20% to 60% a pull request while the test suite was young (31 to 126).
+- **#3 to #7.** Tests grew 19% to 60% a pull request while the test suite was young (31 to 126).
 - **#51, Hedge Magic, Hermetic Projects and The Church.** The largest feature pull request after #1: 10,419 lines, `app/src` up 9.5%, 77 tests. It was audited as a whole (audit 2), with 41 findings.
 - **#56 and #57, the books.** 73,928 added and 39,963 removed, then 11,536 and 10,373: the books brought in step with upstream, and item effects moved out of the spell catalog. Data, not code.
 - **#62 and #65, shrinks.** `app/src` fell 44 KB and then 4 KB: the Guide rewritten as steps, tutorials cut to 60 words a step. #64 cut the README (291 lines removed).
 - **Sweep pages.** 120 (#23) to 223 (#28) to 744 (#29) to 852 (#30): the living Rhine covenants added their magi's sheets. Then 357 at #54: the regenerated default saga in #53 was smaller. 1,114 at #67: the owner's saga, set up as they play. 2,293 at #80: every tab, every part of Dice, and the practice sagas.
 - **Sweep time.** About 30 minutes a width before #80. 18 a width at #80 (a tab pressed, not the page reloaded). About 15 for both widths at #81 (three sagas at a time). 14 at #87.
+- **Test time, by commit.** A later session ran seven merges' tests in one container on one day, once each: #83 added about 26% (the UI `unlogEverySeason` test, one test of about 51 s) and #86 about 21% (`traditionBuild.test`, about 48 s). Single runs vary by up to 14% a file, so smaller changes in that run are noise.
 - **Test time.** The PR bodies give about 85 s at #83 and 157 s at #87, but they were measured in different containers. Measured in one container on 2026-11-22: main before #87 (`4d2c84d`, 1,054 tests) took 146 s, and after it (1,060 tests) 152 s. So #87 did not slow the tests; the container did. **Times from different containers do not compare:** a time in a PR is compared with main's, run in the same container the same day.
 
 ## Faults that came back
 
-**1. Fixes that needed a fix.** #14 fixed three faults reported after #13. #47 fixed what an audit of #45 and #46 found. Audit 2 found 41 faults in #48 to #51, among them 7 where the app and the book disagree. Audit 3 found 12 in #54 to #66. Each large pull request was followed by one or more fixing it.
-*Cost:* about one pull request in five, in both eras, fixes an earlier one.
-*Rule:* "A pull request that adds a system has its adversarial review before it opens, and the review's findings are fixed or written into Found."
+**1. Fixes that needed a fix.** #14 fixed three faults reported after #13. #47 fixed what an audit of #45 and #46 found. Audit 2 found 41 findings in #48 to #51, among them 7 where the app and the book disagree (D1 is praise, and D2 to D4 cover the whole toolkit's writing). Audit 3 found 10 in #54 to #66, several of them made earlier (B5 in #50, B7 with #18 and #51). Each large pull request was followed by one or more fixing it.
+*Cost:* in the single session about one pull request in five fixes an earlier one; in the batch era more than half do, most of them fixing the single session's systems.
+*Rule:* already in `CLAUDE.md` (step 4, the adversarial review, for every pull request).
 
 **2. Faults at the joins between systems.** Audit 3's A1, B1, B2, B3 and B5: Warping from vis that bypassed `gainWarping`; Unlog that left Twilight in Resolve; the Chronicle telling new seasons as ordinary work; a season in full with the character's work last; Sympathy Traits editable in two places. Each sat between the item's card and a system it did not name. Batch A (#83) and Batch B (#84) then found more Unlog and Warping cases. Batch D still lists linked Unlog.
-*Cost:* nine pull requests (#70 to #84) to close audit 3.
+*Cost:* ten pull requests (#70 to #84, and #86) to close audit 3.
 *Rule:* already in `CLAUDE.md` (the integration checklist). Keep it.
 
-**3. A fault called intermittent.** A City & Guild tutorial step found nothing at 390 in #54, #55, #56, #57, #58 and #63. Each called it intermittent. #65 traced it to the QA script, which looked before it made the practice craftsman. #86 again called a `tours.test.ts` failure unexplained, and #87 found a Mysteries step at 390 shown 3.4 s late.
-*Cost:* eight pull requests carried a false warning.
-*Rule:* already in `CLAUDE.md` ("Intermittent is not a cause"). Keep it.
+**3. A cause named, or not traced, and left unfixed.** A City & Guild tutorial step found nothing in the tutorial runs of #54 to #63. #54, #55, #58 and #63 named the cause (the script looked before it made the practice craftsman); #57, #60 and #62 called it intermittent. Nobody fixed it until #65, because each session saw it as not its own. #86 called a `tours.test.ts` failure unexplained and did not write it into Found. (#87's Mysteries step, 3.4 s late on a phone, was traced and written into Found: the rule working.)
+*Cost:* ten pull requests carried the warning.
+*Rule:* already in `CLAUDE.md` ("Intermittent is not a cause"; a fault seen twice is traced or written into Found). A cause named and not fixed is a Found item too.
 
 **4. A check that missed what it was meant to see.** The sweep visited a 357-page saga with no hedge or faerie characters (audit 3, W3). It opened only two parts of Dice, so the Faith page overflowed a phone on 34 of 743 practice pages unseen (#79, #80). `firstChoice` and `sentBack` were added because no check covered those faults. #87's own review found `qa:final` printed "All clean." with the sweep not run, and counted a tutorial that stopped early as clean.
 *Cost:* a phone overflow shipped; four pull requests on QA tools.
@@ -142,10 +143,10 @@ Size jumps are from `stats.md`, a column growing by a fifth or more in one pull 
 *Cost:* results on code that was not the merged code.
 *Rule:* already in `CLAUDE.md` ("Open the pull request when every check has finished"). `qa:final` now refuses a stale build.
 
-**6. A finding written only in a pull request.** B7 (Quick build makes no hedge wizard) was found in #65 and lost until audit 3. Closed in #86, eight days later.
+**6. A finding written only in a pull request.** B7 (Quick build makes no hedge wizard) was found in #65 and lost until audit 3. Closed in #86, three days later.
 *Rule:* already in `CLAUDE.md` (the Found list).
 
-**7. The same list kept twice.** Sympathy Traits on the sheet and the Roll page (B5, fixed #75). Two lists of a hedge tradition's Virtues, `restrictions.ts` and `traditionRules.ts` (Found, after #86).
+**7. The same list kept twice.** Sympathy Traits on the sheet and the Roll page (B5, fixed #75). Two lists of a hedge tradition's Virtues, `restrictions.ts` and `traditionRules.ts` (found after #86; Batch E's first item).
 *Rule:* already in `CLAUDE.md` ("Before writing a list or a rule, look for the one that exists").
 
 **8. Slow tests and timeouts.** #16 raised a timeout on a guided-build test that took 4 s. #40 raised one on `living.test.ts` (2 s alone, slower beside others). #86's Quick build ran 60% slower per character, caught only by the lead. #87's 157 s looked like a doubling, but it was the container (see Jumps).
@@ -167,15 +168,15 @@ Size jumps are from `stats.md`, a column growing by a fifth or more in one pull 
 | Pull requests | 52 | 35 |
 | Pull requests a day | 1.0 | 5.8 |
 | Lines added, mean, without the book imports (#1, #12, #56, #57) | 2,074 | 599 |
-| Lines added, median, same | 1,433 | 510 |
+| Lines added, median, same | 1,410 | 510 |
 | `app/src` growth | 656 to 5,218 KB (+4,562) | 5,218 to 5,518 KB (+300) |
 | Tests (grep count) | 31 to 810 (+779) | 810 to 1,033 (+223) |
-| Faults later found by audit | 41 in #48 to #51 alone (about 3 per 1,000 lines) | 12 in #54 to #66 (about 1.5 per 1,000 lines), two of them (B5, B7) made before #54 |
+| Faults later found by audit | 41 in #48 to #51 alone (about 3 per 1,000 lines) | 10 in #54 to #66 (about 1.6 per 1,000 lines; about 0.8 counting only those made in #54 to #66) |
 | Pull requests mostly documents, ticks or decisions | few | 12 of 35 |
 
 The second era's 5.8 a day is not more output. A third of its pull requests are a line or a decision. Its mean pull request is under a third of the first era's.
 
-**Which was more productive, once fixes are counted.** The single session. It wrote about 94% of the code and 78% of the tests. Its work did need fixing: audit 2's 41 findings and most of audit 3's join faults trace to systems it built (#51, #58 to #60 on top of #44 and #49). But those fixes took about 20 pull requests and roughly 15,000 lines, a fraction of what the era delivered. The batch era made about half the faults per line, and most of its own lines went to fixing the first era's. The two rates are not a like-for-like measure: audit 2 read new systems against their chapters, where most rule faults are made, and audit 3 read mostly fixes. Read them as "both eras made faults at the joins", not as "small pull requests make no faults".
+**Which was more productive, once fixes are counted.** The single session. It wrote about 94% of the code and 78% of the tests. Its work did need fixing: audit 2's 41 findings and most of audit 3's join faults trace to systems it built (#44, #49 to #51), on which the fresh sessions' #58 to #60 then built. But those fixes took about 20 pull requests and roughly 15,000 lines, a fraction of what the era delivered. The batch era made about half the faults per line, and most of its own lines went to fixing the first era's. The two rates are not a like-for-like measure: audit 2 read new systems against their chapters, where most rule faults are made, and audit 3 read mostly fixes. Read them as "both eras made faults at the joins", not as "small pull requests make no faults".
 
 **What the single session did well.** Speed, and knowing the joins. It held how the systems fed each other, which the audit found the fresh sessions lacked (W1). It ran the sweep and tutorials on most pull requests from #21 on. It played long sagas (twenty and thirty years) and caught slow, broken and bloated records (#28, #31, #32).
 
@@ -183,8 +184,8 @@ The second era's 5.8 a day is not more output. A third of its pull requests are 
 
 ## What went right
 
-- Every audit's findings were fixed in the code, not only in the text, and both audits are closed.
+- Every audit finding was fixed in the code, not only in the text, but one deferred to a later book (Mythic Alchemy, roadmap 3.7), and both audits are closed.
 - No sweep reported a page with problems on a merged pull request, from 106 pages (#21) to 2,347 (#84).
 - Tests grew with the code, from 31 to over 1,060.
-- What a session learned went into `CLAUDE.md`, `owner.md` and the design principles in the same pull request.
+- What a session learned mostly went into `CLAUDE.md`, `owner.md` and the design principles in the same pull request; audit 3 found two lessons that had not (W2, W5).
 - The owner was asked only where the books left the choice open, and the answers were written down.
