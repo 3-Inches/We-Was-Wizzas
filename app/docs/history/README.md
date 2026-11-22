@@ -7,7 +7,7 @@ A record of the 87 merged pull requests, #1 (25 September 2026) to #87 (22 Novem
 - `stats.md` holds the numbers from git: files, lines added and removed, and the size of `app/src`, the generated data and the tests on `main` after each pull request. It comes from `python3 -I tools/history/stats.py`. Run it again after a merge. Its test count is a grep, a little below the true count.
 - The table below holds what each pull request's own text says: test time, test count, the sweep and the review. A cell is empty when the pull request did not say. Nothing is guessed.
 - Each new pull request adds its row here, with the times from its Checks section. `npm run qa:final` writes most of them to `scripts/qa/out/final.txt`.
-- "Fixed later by" names the pull request that fixed a fault this one made, where a pull request or an audit says so.
+- "Fixed later by" names the pull request that fixed a fault this one made, where a pull request or an audit says so. A fault this one only found, or one that was there before it, is not counted against it: B7 was found by #65 but made with Quick build and the hedge traditions (#18, #51); Vitest's leak in `/tmp` (fixed #87) was there from the first test run, and #86 only felt it.
 
 ## The pull requests
 
@@ -64,7 +64,7 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 47 | 2026-11-15 | Fixes from audit of #45-46 |  |  | 958 / 0 |  |  |
 | 48 | 2026-11-15 | Core book checked |  |  | 958 / 0 |  | #54, #55 (audit 2) |
 | 49 | 2026-11-16 | The Mysteries (Revised) |  |  | 958 / 0 |  | #54, #55, #58 (audit 2) |
-| 50 | 2026-11-16 | Realms of Power: Faerie |  |  |  |  | #54, #59, #60 (audit 2) |
+| 50 | 2026-11-16 | Realms of Power: Faerie |  |  |  |  | #54, #59, #60 (audit 2), #75 (audit 3 B5) |
 | 51 | 2026-11-16 | Hedge Magic, Projects, Church |  |  | 958 / 0 |  | #54, #58, #66, #86 (audit 2, B7) |
 | 52 | 2026-11-16 | Guide: playing and running |  | 812 |  |  |  |
 | 53 | 2026-11-17 | Foundations: principles, roadmap |  |  |  |  |  |
@@ -74,12 +74,12 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 57 | 2026-11-17 | 2.3 item effects out of spells |  |  | 357 / 0 |  |  |
 | 58 | 2026-11-17 | 1.3 hedge seasons on Seasons |  | 868 | 357 / 0 |  | #72, #74, #82 (audit 3) |
 | 59 | 2026-11-17 | 1.4 Faith page |  | 889 | 357 / 0 |  | #74, #79, #80, #84 |
-| 60 | 2026-11-17 | 1.4b Warping waits in Resolve |  | 906 | 357 / 0 |  | #70, #75, #83 (audit 3 A1, B1, B5) |
+| 60 | 2026-11-17 | 1.4b Warping waits in Resolve |  | 906 | 357 / 0 |  | #70, #83 (audit 3 A1, B1) |
 | 61 | 2026-11-17 | 1.4c great buildings, menagerie |  | 913 |  |  | #63 (checks), #74, #84 |
 | 62 | 2026-11-17 | 1.5 Guide toolkit page |  | 920 | 357 / 0 |  |  |
 | 63 | 2026-11-17 | Tick 1.4c; #61's checks |  |  | 357 / 0 (#61's) |  |  |
 | 64 | 2026-11-17 | 1.6 README cut |  | 920 |  |  |  |
-| 65 | 2026-11-17 | 1.7 tutorial steps short |  | 920 | 357 / 0 |  | #86 (B7, found here, not written down) |
+| 65 | 2026-11-17 | 1.7 tutorial steps short |  | 920 | 357 / 0 |  |  |
 | 66 | 2026-11-18 | 1.7b tutorials hedge/Faerie/Mysteries |  |  | 357 / 0 |  |  |
 | 67 | 2026-11-18 | Audit 3 |  | 924 | 1,114 / 0 (390 only) |  |  |
 | 68 | 2026-11-18 | Owner decision B8 |  |  |  |  |  |
@@ -100,7 +100,7 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 83 | 2026-11-19 | Batch A: Twilight, Warping, Unlog | ~85 s | 1,016 | 2,280 / 0 | 11 |  |
 | 84 | 2026-11-20 | Batch B: Plan a season |  | 1,032 | 2,347 / 0 | 6 |  |
 | 85 | 2026-11-20 | Context compaction setting |  |  |  |  |  |
-| 86 | 2026-11-20 | Batch C: Quick build hedge/faerie |  | 1,054 | 2,250 / 0 | 10, and the lead's own | #87 (disk filled by Vitest) |
+| 86 | 2026-11-20 | Batch C: Quick build hedge/faerie |  | 1,054 | 2,250 / 0 | 10, and the lead's own |  |
 | 87 | 2026-11-22 | Reader links; qa:final | 157 s | 1,060 | 2,250 / 0 / 14 | 3, then 12 on the tooling |  |
 
 ## Jumps
@@ -149,7 +149,7 @@ Size jumps are from `stats.md`, a column growing by a fifth or more in one pull 
 *Rule:* already in `CLAUDE.md` ("Before writing a list or a rule, look for the one that exists").
 
 **8. Slow tests and timeouts.** #16 raised a timeout on a guided-build test that took 4 s. #40 raised one on `living.test.ts` (2 s alone, slower beside others). #86's Quick build ran 60% slower per character, caught only by the lead. #87's 157 s looked like a doubling, but it was the container (see Jumps).
-*Rule:* "A test's timeout is raised only with its measured time on main and on the branch, in the pull request."
+*Rule:* "A test's timeout is raised only with its measured time on main and on the branch, in the pull request." The lesson is to measure the code that got slower (Quick build in #86), not to run fewer tests: the suite grows because the toolkit does, and a check dropped to save time is a fault let through.
 
 **9. The environment filled up.** Vitest left about 100 MB in `/tmp` a run. In #86 two sweeps stopped with "Page crashed". #87 fixed it.
 *Rule:* "When a browser check crashes, check free disk and memory first, and write the cause into Found."
@@ -170,12 +170,12 @@ Size jumps are from `stats.md`, a column growing by a fifth or more in one pull 
 | Lines added, median, same | 1,433 | 510 |
 | `app/src` growth | 656 to 5,218 KB (+4,562) | 5,218 to 5,518 KB (+300) |
 | Tests (grep count) | 31 to 810 (+779) | 810 to 1,033 (+223) |
-| Faults later found by audit | 41 in #48 to #51 alone (about 3 per 1,000 lines) | 12 in #54 to #66 (about 1.5 per 1,000 lines) |
+| Faults later found by audit | 41 in #48 to #51 alone (about 3 per 1,000 lines) | 12 in #54 to #66 (about 1.5 per 1,000 lines), two of them (B5, B7) made before #54 |
 | Pull requests mostly documents, ticks or decisions | few | 12 of 35 |
 
 The second era's 5.8 a day is not more output. A third of its pull requests are a line or a decision. Its mean pull request is under a third of the first era's.
 
-**Which was more productive, once fixes are counted.** The single session. It wrote about 94% of the code and 78% of the tests. Its work did need fixing: audit 2's 41 findings and most of audit 3's join faults trace to systems it built (#51, #58 to #60 on top of #44 and #49). But those fixes took about 20 pull requests and roughly 15,000 lines, a fraction of what the era delivered. The batch era made about half the faults per line, and most of its own lines went to fixing the first era's.
+**Which was more productive, once fixes are counted.** The single session. It wrote about 94% of the code and 78% of the tests. Its work did need fixing: audit 2's 41 findings and most of audit 3's join faults trace to systems it built (#51, #58 to #60 on top of #44 and #49). But those fixes took about 20 pull requests and roughly 15,000 lines, a fraction of what the era delivered. The batch era made about half the faults per line, and most of its own lines went to fixing the first era's. The two rates are not a like-for-like measure: audit 2 read new systems against their chapters, where most rule faults are made, and audit 3 read mostly fixes. Read them as "both eras made faults at the joins", not as "small pull requests make no faults".
 
 **What the single session did well.** Speed, and knowing the joins. It held how the systems fed each other, which the audit found the fresh sessions lacked (W1). It ran the sweep and tutorials on most pull requests from #21 on. It played long sagas (twenty and thirty years) and caught slow, broken and bloated records (#28, #31, #32).
 
