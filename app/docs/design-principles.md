@@ -154,7 +154,7 @@ The toolkit's systems read each other's records. A change that is right on its o
 
 - [ ] **The season planner.** A season it spends is checked by `seasonBusy`, and the character's standing activity does not run on top of it.
 - [ ] **End and Resolve.** What follows it at the season's end waits in Resolve. Warping goes through `gainWarping`, never straight onto the sheet or a season entry.
-- [ ] **Unlog and Turn back.** Unlogging the season takes back everything it did: vis, silver, Labor Points, Warping, and anything it left waiting in Resolve. A roll already made at the season's end stands, and the Unlog button says so (owner point 2). The unlog tests (`unlogEverySeason.test.ts` and `.tsx`) must pass and must reach the new season.
+- [ ] **Unlog and Turn back.** Unlogging the season takes back everything it did: vis, silver, Labor Points, Warping, and anything it left waiting in Resolve. A roll already made at the season's end stands, and the Unlog button says so (owner point 2). The unlog tests (`unlogEverySeason.test.ts` and `.tsx`) must pass and must reach the new season: a new kind of season goes into the `reached` list in `unlogEverySeason.test.tsx`.
 - [ ] **The Chronicle.** The season is told in a sentence of its own, not as "the season's ordinary work".
 - [ ] **The living covenants.** Their people run the same rule in their own seasons, or the pull request says why not.
 - [ ] **Quick build, the generator and the practice characters.** They can make a character who uses it, and what they make passes the rules check.

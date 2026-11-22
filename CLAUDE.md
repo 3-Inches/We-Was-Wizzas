@@ -20,7 +20,7 @@ Run from `app/`. In a new container, run `npm ci` there first.
 |---|---|
 | Typecheck | `./node_modules/.bin/tsc -p tsconfig.json --noEmit 2>&1 \| grep -E "^src/"` (no output means clean) |
 | One test file | `./node_modules/.bin/vitest run src/path/to/file.test.ts` |
-| All tests (about 100 s) | `./node_modules/.bin/vitest run` |
+| All tests (about 145 s) | `./node_modules/.bin/vitest run` |
 | Build | `npm run build` |
 | Serve the build | `npx vite preview --port 4173 --strictPort` (in the background) |
 | Look at the hedge magic, Faerie and Mysteries pages | `node scripts/qa/shots.cjs [width] [fixture]` (see `scripts/qa/fixtures/index.json`) |
@@ -31,6 +31,7 @@ Run from `app/`. In a new container, run `npm ci` there first.
 | Make the saga the sweep visits, set up as the owner plays | `QA_LIVING=all QA_OPTIONAL=all npm run qa:saga` (a few minutes; writes `scripts/qa/out/saga.json`) |
 | Run step 5's checks in one command | `npm run qa:final` (add `-- --fixtures` when a tutorial changed). It makes the owner's saga afresh, runs the tutorials at both widths, then the sweep, and ends "All clean." only when every check ran and was clean; a check left out is named "not run". It refuses a build older than what it is built from (`src/`, the books, the configs), and counts a report older than the build as not clean. About 35 minutes: run it in the background. The summary is `scripts/qa/out/final.txt`. |
 | Visit every page | `node scripts/qa/sweep.cjs`. It sweeps the owner's saga and each practice saga in `scripts/qa/fixtures/`, at 1280 and 390 wide, three at a time (`--jobs`). It presses every tab it finds, so a new tab needs no change to it. Clean is "0 with problems" (about 2,300 pages a width, some 15 minutes for both). |
+| Measure every merged pull request from git (sizes, lines, tests) | `cd .. && python3 -I tools/history/stats.py > app/docs/history/stats.md` |
 | Regenerate data from the books | `cd .. && python3 -I tools/extract/run_all.py` |
 | Rebuild the Game Mechanics index | `cd .. && python3 -I tools/extract/build_mechanics.py --report` |
 | Open every book in the reader | `node scripts/qa/books.cjs 1280`, then `390` |
@@ -71,6 +72,8 @@ A pull request that changes only documents skips steps 3 and 5. The sweep and th
 - **Open the pull request when every check has finished,** with their results in it. The lead session reviews it soon after it opens.
 - **A finding the batch does not fix goes into the roadmap's Found list,** in the same pull request. A finding written only in a pull request's text is lost.
 - **"Intermittent" is not a cause.** A fault seen twice is traced, or written into the roadmap as a finding. Say what you saw, not that it is not this pull request's.
+- **Each pull request adds its row to `app/docs/history/README.md`,** with the numbers from its Checks: test time and count, the sweep's pages, problems and minutes, and the review's findings. Run `stats.py` first, so `stats.md` holds every merge. A size, line or test count from `stats.md` that grows by a fifth or more against the row before it, or a test time a fifth above main's in the same container, is explained in the pull request, or written into Found. New coverage (more tests, more pages swept) is a good explanation. Review findings and sweep problems are not compared this way: problems must be 0, and findings count what the review looked at.
+- **A fault of the code or of the workflow seen in two pull requests becomes a rule here,** in the pull request that sees it the second time: the history's "Faults that came back" says what it cost, and this file says how to avoid it. The rule names the kind of fault and the check that catches it, at the width the evidence has: a fault in one system is a rule for that system, not for all, and no rule cuts a check or changes the characters and sagas the checks build to make a case pass. Where a test or a script can hold the rule, write that too: the faults whose rule was only a sentence came back most.
 
 ## How the code is laid out
 
@@ -97,7 +100,9 @@ Patterns to copy, not reinvent:
 
 - **Reading a book:** list its headings first (`grep -n '^#' file`), then its formula lines (`grep -n 'TOTAL\|Total:'`), then read only the ranges you need with `sed -n 'A,Bp'`. Whole chapters are rarely needed.
 - **Each batch is built in a fresh session,** started by the lead session with a brief, at High effort unless the lead says otherwise. These documents carry the memory, and a short conversation is cheaper and sharper than a long one that has been summarized many times. What a session learns that the next one needs goes into these documents, `app/docs/owner.md` for what the owner says.
-- **Measure before making something faster.** Profile it, or count the calls, before changing it, and again after. Compare the test times with main's: a test that takes longer than on main is a finding, even while it passes.
+- **Measure before making something faster.** Profile it, or count the calls, before changing it, and again after. Compare the test times with main's: a test file that takes a fifth longer than on main, and at least 5 s longer, in two runs that take main and the branch in turn, is a finding, even while it passes. A suite that is slower because it has more tests is not; never drop or thin a check to save time. Times from different containers do not compare: run main's in the same container, the same day. A test's timeout is raised only with its time on main and on the branch, stated in the pull request.
+- **A new check is first run where it must fail:** on a build with the fault it targets put back (or, for a new kind of fault, put in by hand). A check that has never failed may be looking at the wrong thing.
+- **When a browser check crashes ("Page crashed", a timeout everywhere), look at free disk and memory first** (`df -h /tmp`, `free -m`), and write the cause into the roadmap's Found list.
 - **Before writing a list or a rule, look for the one that exists.** Search the data and the rules check (`src/data/`, `src/engine/character/validate.ts`) for the names it holds. Two lists that say the same thing drift apart, and the rules check then disagrees with what is built.
 - **Stop and re-plan when the fixes go in circles.** If a fault comes back after it was fixed, or a round of fixes runs past an hour, stop fixing. Write into the pull request what is wrong, why the fixes have not held, and the plan, then work from the plan. A large build followed by hours of fixes costs more than a smaller build checked as it goes.
 - **Before calling a batch finished, look at the joins.** Go down the integration checklist in the design principles. The last audit found most of its faults there, not in the cards the work set out to change.

@@ -40,6 +40,7 @@ Each point says what the owner wants, then what it means for a change.
 
 The owner's answers on particular cases, newest first, kept here when the roadmap's item for them is done. A session that finds its question answered here does not ask again.
 
+- **Batches D and E in one pull request** (22 November 2026): one fresh session builds both, so that the costs paid once a pull request (the adversarial review, `qa:final`, the lead's review) are paid once. An exception for these two batches, not a change to one batch a pull request.
 - **A book is read only by one who can read it** (20 November 2026). 4 in its language and Artes Liberales for its alphabet (DE line 16191), on every road a book is read: Plan a season, the standing activity and the clock. A book the character cannot read is not offered, with one line saying why.
 - **Great projects' rolls have their own part of Dice** (20 November 2026): Game Table › Dice › Great projects.
 - **The living covenants' people play by their tradition** (19 November 2026). Their hedge wizards, faerie wizards and holy people work their tradition's seasons, and the toolkit rolls their Warping reactions (the Witch Moon, Nátt-thel, Faerie Calling), told in the Tribunal's news. A Virtue, Flaw or spell that a living magus's Twilight may bring is left to the storyguide, and the news says one may have come of it.
