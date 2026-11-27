@@ -23,6 +23,8 @@ export default function BookReader() {
   const [error, setError] = useState('');
   const [q, setQ] = useState('');
   const [tocFilter, setTocFilter] = useState('');
+  // a link of the book's own that names no heading: said in the page, as a tap shows no title
+  const [dead, setDead] = useState<{ text: string; at: unknown } | null>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const lineParam = params.get('line');
   const anchorParam = params.get('anchor');
@@ -138,7 +140,7 @@ export default function BookReader() {
       // a few of the books' own links name no heading: stay here rather than open the front matter
       const h = parsed && findAnchor(parsed.headings, decodeURIComponent(href.slice(1)));
       if (h) go({ line: String(h.line + 1) });
-      else a.title = 'The book has no heading for this link';
+      else setDead({ text: a.textContent?.trim() || href, at: drawn });
     }
   };
 
@@ -201,6 +203,12 @@ export default function BookReader() {
                 {parsed.sections[target.idx + 1]?.heading.text ?? ''} →
               </button>
             </div>
+            {dead && dead.at === drawn && (
+              <p className="small warn" role="status">
+                The link “{dead.text}” goes nowhere: the book has no heading for it.{' '}
+                <button className="small ghost" onClick={() => setDead(null)}>Close</button>
+              </p>
+            )}
             <div ref={bodyRef} className="markdown book-body card" onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: drawn.html }} />
           </div>
         </div>
