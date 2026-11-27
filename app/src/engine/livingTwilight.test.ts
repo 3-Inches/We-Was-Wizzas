@@ -7,8 +7,8 @@ import { newSaga } from '../store/store';
 import { ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { newCovenant } from './covenant';
-import { twilightAvoidance } from './longterm';
-import { livingTwilight } from './livingTwilight';
+import { newSeasonEntry, twilightAvoidance } from './longterm';
+import { TWILIGHT_TOLD, livingTwilight } from './livingTwilight';
 import { DEFAULT_ADVANCE, advanceSeason, seasonBusy } from './time';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import { gainWarping } from './warping';
@@ -162,6 +162,28 @@ describe('the clock rolls it for a living covenant’s magus, and not for the pl
     const { state, report } = advanceSeason(sagaOwing(true), data, opts);
     expect(state.characters[0].owed ?? []).toEqual([]);
     expect(report.lines.some((l) => /avoided Wizard’s Twilight/.test(l.text) && l.tribunal === state.covenants[0].id)).toBe(true);
+  });
+
+  it('a year spent wholly in Twilight is not aged: the body "is completely immune to … aging" (DE line 9806)', () => {
+    const year = (lost: boolean) => {
+      const x = sagaOwing(true);
+      x.saga.currentSeason = 'Winter';
+      const m = x.characters[0];
+      m.owed = [];
+      m.age = 40;
+      if (lost) for (const season of ['Spring', 'Summer', 'Autumn', 'Winter'] as const) m.seasonLog.push({ ...newSeasonEntry(1220, season, 'other', 'In Wizard’s Twilight.'), told: TWILIGHT_TOLD, applied: true });
+      return advanceSeason(x, data, { ...opts, rollAging: true });
+    };
+    const away = year(true);
+    expect(away.state.characters[0].age).toBe(40);
+    expect(away.report.lines.some((l) => /spent 1220 in Wizard’s Twilight, and did not age/.test(l.text))).toBe(true);
+    expect(year(false).state.characters[0].age).toBe(41);
+  });
+
+  it('the news says a Virtue, Flaw or spell may have come of a Twilight, for the storyguide', () => {
+    const m = owing(2, 6);
+    const r = livingTwilight(m, derive, 0, 'cov', 1220, 'Spring', faces(0, 0, 5, 5, 5, 5));
+    expect(r.news.map((n) => n.text).join(' ')).toMatch(/A Virtue, Flaw or spell may have come of it/);
   });
 
   it('a player’s magus keeps it waiting in Resolve', () => {

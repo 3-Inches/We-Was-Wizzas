@@ -38,7 +38,8 @@ import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
 import { holySeason } from './holy';
 import { oweSeasonEndRolls } from './seasonRolls';
 import { seasonWarping } from './warping';
-import { livingTwilight } from './livingTwilight';
+import { TWILIGHT_TOLD, livingTwilight } from './livingTwilight';
+import { SEASONS } from '../data/constants';
 import { uid } from '../util/id';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
@@ -162,6 +163,11 @@ const NO_LESSON = new WeakMap<Character, string>();
 const NO_HELP = new WeakMap<Character, string>();
 
 /** The season is taken already: logged by hand, or by a lesson given before the season's other work. An adventure shares a season (DE). */
+/** Whether the character spent every season of the year in Wizard's Twilight (livingTwilight.ts logs each season lost). */
+export function twilightYear(c: Character, year: number): boolean {
+  return SEASONS.every((s) => c.seasonLog.some((x) => x.year === year && x.season === s && x.told === TWILIGHT_TOLD));
+}
+
 export function seasonBusy(c: Character, year: number, season: Season): boolean {
   return loggedThisSeason(c, year, season).some((e) => !e.extra && e.activity !== 'adventure');
 }
@@ -704,7 +710,10 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
       const home = covenantOf(c, state.covenants);
       const doc = home ? attendants.get(home.id)?.find((a) => a.id !== c.id) : undefined;
       const tribunal = tribunalOf(c);
-      lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging, doc).map((l) => ({ ...l, tribunal })));
+      // a magus's body in Twilight "is completely immune to magic, mundane damage, aging, and hunger" (DE line
+      // 9806): a year spent wholly in it is not aged
+      if (twilightYear(c, year)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: `${c.name || 'The magus'} spent ${year} in Wizard’s Twilight, and did not age (DE, Wizard’s Twilight).`, tribunal });
+      else lines.push(...ageCharacter(c, d, ctxOf(c), year, rng, o.rollAging, doc).map((l) => ({ ...l, tribunal })));
       for (const t of workshopYearEnd(c, d, year)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t, tribunal });
       for (const t of redcapYearEnd(c, data, rng)) lines.push({ who: c.name || 'Unnamed', kind: 'year', text: t, tribunal });
     }

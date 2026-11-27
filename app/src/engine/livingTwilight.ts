@@ -60,6 +60,9 @@ export interface LivingTwilight {
  * time lost to the world, kept as seasons logged "in Twilight". Final Twilight takes the magus from play.
  * Changes `c`.
  */
+/** How the Chronicle tells a season lost in Wizard's Twilight; time.ts finds the year so spent by it, and does not age it. */
+export const TWILIGHT_TOLD = 'was lost in Wizard’s Twilight';
+
 export function livingTwilight(c: Character, derive: (c: Character) => DerivedCharacter, aura: number, covenantId: string | undefined, year: number, season: Season, rng: Rng): LivingTwilight {
   const out: LivingTwilight = { lines: [], news: [] };
   const who = c.name || 'The magus';
@@ -88,13 +91,13 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
     c.twilightScars = [...c.twilightScars.filter(Boolean), scar];
     const away = idx >= 10 ? { text: '', seasons: 0 } : timeAway(idx, rng);
     // after any seasons a Twilight already took from the world
-    const lost = c.seasonLog.filter((x) => x.told === 'was lost in Wizard’s Twilight' && seasonIndex(x.year, x.season) > seasonIndex(year, season));
+    const lost = c.seasonLog.filter((x) => x.told === TWILIGHT_TOLD && seasonIndex(x.year, x.season) > seasonIndex(year, season));
     const last = lost.sort((a, b) => seasonIndex(b.year, b.season) - seasonIndex(a.year, a.season))[0];
     let when = last ? { year: last.year, season: last.season } : { year, season };
     for (let i = 0; i < away.seasons; i++) {
       when = nextSeason(when.year, when.season);
       const e = newSeasonEntry(when.year, when.season, 'other', `In Wizard’s Twilight, from ${season} ${year}.`);
-      e.told = 'was lost in Wizard’s Twilight';
+      e.told = TWILIGHT_TOLD;
       e.applied = true;
       c.seasonLog.push(e);
     }
@@ -103,7 +106,7 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
     if (idx >= 10) c.wounds.dead = true;
     const gone = idx >= 10 ? 'passed into Final Twilight, and is gone from the world' : `was lost to the world for ${away.text}`;
     out.lines.push(`${who} entered Wizard’s Twilight from ${gained} Warping Points: ${detail}. ${who} ${gone}.`);
-    out.news.push({ uid: uid(), year, season, kind: idx >= 10 ? 'death' : 'event', covenantId, characterId: c.id, text: `${who} fell into Wizard’s Twilight and ${gone}${idx >= 10 ? '' : comprehended ? ', and came back wiser in the ways of magic' : ', marked by it'}.` });
+    out.news.push({ uid: uid(), year, season, kind: idx >= 10 ? 'death' : 'event', covenantId, characterId: c.id, text: `${who} fell into Wizard’s Twilight and ${gone}${idx >= 10 ? '' : comprehended ? ', and came back wiser in the ways of magic' : ', marked by it'}${idx >= 10 ? '' : '. A Virtue, Flaw or spell may have come of it: the storyguide says (DE, Wizard’s Twilight)'}.` });
   }
   return out;
 }
