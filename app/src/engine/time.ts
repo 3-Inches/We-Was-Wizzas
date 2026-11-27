@@ -39,6 +39,7 @@ import { holySeason } from './holy';
 import { oweSeasonEndRolls } from './seasonRolls';
 import { seasonWarping } from './warping';
 import { TWILIGHT_TOLD, livingTwilight } from './livingTwilight';
+import { livingReactions } from './livingReactions';
 import { SEASONS } from '../data/constants';
 import { uid } from '../util/id';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
@@ -750,6 +751,10 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     const tw = tribunalOf(c) ? livingTwilight(c, derive, ctxOf(c).aura.strength, tribunalOf(c) === 'wanderers' ? undefined : tribunalOf(c), year, season, rng) : undefined;
     for (const t of tw?.lines ?? []) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
     if (tw?.news.length) saga.tribunalNews = [...tw.news, ...(saga.tribunalNews ?? [])];
+    // and the Witch Moon, Nátt-thel or a Calling it owes, rolled as the cards roll them
+    const lr = tribunalOf(c) ? livingReactions(c, derive, tribunalOf(c) === 'wanderers' ? undefined : tribunalOf(c), year, season, rng) : undefined;
+    for (const t of lr?.lines ?? []) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
+    if (lr?.news.length) saga.tribunalNews = [...lr.news, ...(saga.tribunalNews ?? [])];
     c.fatigueLost = 0;
     c.longTermFatigueLost = 0;
     if (c.creature) {
