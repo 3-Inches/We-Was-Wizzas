@@ -35,7 +35,10 @@ function showAbovePanel(el: HTMLElement) {
   const top = (document.querySelector('.mobile-bar')?.getBoundingClientRect().bottom ?? 0) + 12;
   const room = (document.querySelector('.tour-panel')?.getBoundingClientRect().top ?? window.innerHeight) - 12;
   if (r.top >= top && r.bottom <= room) return;
-  window.scrollTo({ top: Math.max(0, window.scrollY + r.top - top), behavior: 'smooth' });
+  // smooth over a short way; a long one (a phone's season page, some 5,500 px to the Mysteries card) jumps,
+  // as a smooth scroll that far is still moving when the step's card should be in view
+  const by = r.top - top;
+  window.scrollTo({ top: Math.max(0, window.scrollY + by), behavior: Math.abs(by) > window.innerHeight * 2 ? 'auto' : 'smooth' });
 }
 
 /** The element a step points at: the first with one of these data-tour names that can be seen, else one in the menu a phone keeps closed. */
