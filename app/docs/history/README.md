@@ -102,6 +102,7 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 85 | 2026-11-20 | Context compaction setting |  |  |  |  |  |
 | 86 | 2026-11-20 | Batch C: Quick build hedge/faerie |  | 1,054 | 2,250 / 0 | 10, and the lead's own |  |
 | 87 | 2026-11-22 | Reader links; qa:final | 157 s | 1,060 | 2,250 / 0 / 14 | 3, then 12 on the tooling |  |
+| 89 |  | Batches D and E | 127 s (main 111 s, same container) | 1,076 | 2,250 / 0 / 14 | 10 (3 fixed, 1 not a fault, 6 to Found) |  |
 
 ## Jumps
 
