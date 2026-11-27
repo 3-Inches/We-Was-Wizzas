@@ -390,3 +390,16 @@ describe('the guided build’s shortlist', () => {
     for (const id of ['vitki', 'give', 'folk-witch', 'mathematicus-of-bologna', 'evocation', 'summoning', 'nightwalker']) expect(none.gated.has(id), id).toBe(true);
   });
 });
+
+describe('Quick build spends every Virtue’s experience pool (Batch D)', () => {
+  it('leaves no pool of a Virtue or an apprenticeship at 0: the scholar’s Educated, the Lone Redcap’s 300', () => {
+    const empty: string[] = [];
+    for (const role of ['scholar', 'cunning-folk', 'faerie-wizard']) {
+      for (const seed of [1, 2, 3, 7, 13, 16, 20, 30]) {
+        const g = make(role, seed);
+        for (const b of g.d.budgets.filter((x) => x.kind !== 'art+ability' && x.total > 0 && x.spent === 0 && !['native', 'childhood'].includes(x.id))) empty.push(`${role} (seed ${seed}): ${b.label} 0 of ${b.total}`);
+      }
+    }
+    expect(empty).toEqual([]);
+  }, 240_000);
+});
