@@ -133,7 +133,8 @@ export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildIn
 
 /** The Virtue that gives a Holy Power its Ability (Blessing's is named apart from the gruagach's Form). */
 export const powerVirtue = (abilityId: string) => (abilityId === 'blessing' ? 'blessing-power' : abilityId);
-const HOLY_VIRTUES = new Set([...HOLY_METHODS.map((m) => m.id), ...HOLY_POWERS.map((p) => powerVirtue(p.id))]);
+/** The Holy Methods and Powers (RoP: The Divine): a role that asks for them keeps them in a Plain build (generate/character.ts). */
+export const HOLY_VIRTUES = new Set([...HOLY_METHODS.map((m) => m.id), ...HOLY_POWERS.map((p) => powerVirtue(p.id))]);
 const isHolyVirtue = (id: string) => HOLY_VIRTUES.has(id);
 /** The Power each kind of Method calls first when nothing else decides. */
 const FIRST_POWER: Record<string, string[]> = { invocation: ['blessing', 'wonders', 'adjuration', 'cursing'], meditation: ['understanding', 'blessing', 'intervention', 'transcendence'], purity: ['intervention', 'transcendence', 'adjuration', 'cursing'] };

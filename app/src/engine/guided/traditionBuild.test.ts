@@ -17,6 +17,7 @@ import { LEARNED_FORMS, LEARNED_TECHNIQUES } from '../../data/hedgeLearned';
 import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
 import { TRADITIONS, type Tradition } from './traditions';
 import { CULT_MYSTERIES, mysteryLoreOf } from './buildMysteries';
+import { HOLY_VIRTUES } from './buildVirtues';
 import { evaluate } from './score';
 import { newCharacter } from '../character/factory';
 import { autoBuild, resetChoices } from './autobuild';
@@ -323,7 +324,10 @@ describe('Quick build, Plain, with a role picked by hand', () => {
     expect(isFaerieWizard(plain('faerie-wizard').d), 'faerie wizard').toBe(true);
     const initiate = make('magus-mystery', 5, { coreOnly: true, house: 'tremere' });
     expect(has(initiate.c, 'cabal-legacy-flaw'), 'initiate').toBe(true);
-    for (const g of [vitki, witch, initiate]) expect(problems(g), g.c.creation.concept).toEqual([]);
+    // the holy wonder-worker keeps a Holy Method and a Power (RoP: The Divine), as the role says
+    const holy = plain('holy-worker');
+    expect(holy.c.virtues.some((v) => HOLY_VIRTUES.has(v.defId)), 'holy worker').toBe(true);
+    for (const g of [vitki, witch, initiate, holy]) expect(problems(g), g.c.creation.concept).toEqual([]);
   }, 120_000);
 });
 

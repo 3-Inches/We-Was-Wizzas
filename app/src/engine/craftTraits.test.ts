@@ -40,7 +40,7 @@ describe('craft Virtues and Flaws', () => {
   });
 
   it('a Virtue on one Craft names it and helps it alone (DE line 7474: skill in one Craft does not imply skill in any others)', () => {
-    const c = newCharacter('s', 'companion');
+    const c = newCharacter('companion', 's');
     c.abilities.push({ uid: 'r', abilityId: 'craft-type', param: 'Runes', xp: { laterLife: 15 } });
     c.abilities.push({ uid: 'w', abilityId: 'craft-type', param: 'Woodcarver', xp: { laterLife: 15 } });
     const pv = addVirtue(c, data, 'puissant-ability', 'Minor', 'craft-type:Runes');
