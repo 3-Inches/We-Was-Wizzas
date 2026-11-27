@@ -46,13 +46,12 @@ const LIMITS = {
  * none may grow: split one before adding to it (principle 12), rather than squeezing lines out of it to fit.
  * A number may be lowered when its file shrinks. */
 const BIG_FILES: Record<string, number> = {
-  'src/engine/character/derive.ts': 908,
+  'src/engine/character/derive.ts': 895,
   'src/engine/covenant.ts': 1042,
   'src/engine/holy.ts': 877,
   'src/engine/projects.ts': 913,
-  'src/engine/time.ts': 820,
   'src/engine/types.ts': 1869,
-  'src/ui/character/sheet/LabProjects.tsx': 885,
+  'src/ui/character/sheet/LabProjects.tsx': 828,
   'src/ui/character/sheet/MagicTab.tsx': 1211,
   'src/ui/covenant/CovenfolkCards.tsx': 820,
   'src/ui/covenant/FinancesTab.tsx': 1191,
@@ -134,6 +133,7 @@ const RAW_WARPING: Record<string, string> = {
   'src/engine/time.ts': 'a season entry’s points, with seasonWarping',
   'src/engine/yearEnd.ts': 'a living covenant’s people warped by the year: prolonged, so nothing follows',
   'src/engine/livingTwilight.ts': 'a Twilight’s own simple die of points, rolled for a living magus',
+  'src/engine/livingReactions.ts': 'a living folk witch’s Witch Moon: a point each month it goes on (HMRE line 2069)',
   'src/ui/character/sheet/PlanSeasonCard.tsx': 'a season logged by hand: its points on the entry, with seasonWarping',
   'src/engine/projects.ts': 'a project worked with no season given',
   'src/engine/experiment.ts': 'it counts the points; its caller adds them',

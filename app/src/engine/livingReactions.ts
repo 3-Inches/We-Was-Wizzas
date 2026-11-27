@@ -13,6 +13,7 @@ import type { Character, Season, TribunalNews } from './types';
 import { nattThelAvoid, nattThelDuration } from './vitkir';
 import { warpingScoreFromPoints } from './xp';
 import { uid } from '../util/id';
+import { livingTwilight } from './livingTwilight';
 
 export interface LivingReactions {
   lines: string[];
@@ -82,4 +83,11 @@ export function livingReactions(c: Character, derive: (c: Character) => DerivedC
     tell(`${who} heard a Faerie Calling${gone ? ' and went into Faerieland, never to return' : `, and came back ${good ? 'closer to the fae' : 'shaken by it'}`} (Realms of Power: Faerie).`);
   }
   return out;
+}
+
+/** What a living covenant's person's Warping owes this season, rolled: Twilight for a magus, else their tradition's reaction. */
+export function livingSeasonEnd(c: Character, derive: (c: Character) => DerivedCharacter, aura: number, covenantId: string | undefined, year: number, season: Season, rng: Rng): LivingReactions {
+  const tw = livingTwilight(c, derive, aura, covenantId, year, season, rng);
+  const r = livingReactions(c, derive, covenantId, year, season, rng);
+  return { lines: [...tw.lines, ...r.lines], news: [...r.news, ...tw.news] };
 }

@@ -25,7 +25,9 @@ import { hooksComeDue } from './hookEvents';
 import { hardshipYearEnd } from './hardship';
 import { magicalImprovement } from './livingEconomy';
 import { faceTrouble, troublesYearEnd } from './calamity';
-import { extraSeasonHere, seasonRole, seasonsOf, seasonsUsed } from './seasons';
+import { extraSeasonHere, seasonsOf, seasonsUsed } from './seasons';
+import { WORSHIP_AURA, resolveStanding, workAbility, worshipAbility } from './standing';
+export { describeStanding, resolveStanding } from './standing';
 import { ensureAbility } from './character/factory';
 import type { Character, Covenant, LabProject, Saga, Season, SeasonLogEntry, StandingActivity, TimeReport } from './types';
 import { bookTarget, libraryYearEnd, scriptoriumYear, studyProblem, workWriting, writingFor } from './books';
@@ -34,13 +36,12 @@ import { bestStudy, choosePriority, focusArts, priorityLabel } from './prioritie
 import { gatheringIn, gatheringNews, houseGatheringIn, livingIds, livingYearEnd } from './living';
 import { redcapYearEnd } from './generate/items';
 import { apprenticesYearEnd, tribunalGathering, wanderersSeasonStart, wanderersYearEnd } from './tribunalLife';
-import { isTrade, workshopSeason, workshopYearEnd } from './workshop';
+import { workshopSeason, workshopYearEnd } from './workshop';
 import { holySeason } from './holy';
 import { oweSeasonEndRolls } from './seasonRolls';
 import { seasonWarping } from './warping';
-import { TWILIGHT_TOLD, livingTwilight } from './livingTwilight';
-import { livingReactions } from './livingReactions';
-import { SEASONS } from '../data/constants';
+import { twilightYear } from './livingTwilight';
+import { livingSeasonEnd } from './livingReactions';
 import { uid } from '../util/id';
 import { bestLesson, bindFamiliarSheets, giveLesson } from './teaching';
 import { cannotHelp, helpValue, maxHelpers, type LabHelper } from './labHelp';
@@ -88,75 +89,6 @@ export function seasonTaken(c: Character, year: number, season: Season): SeasonL
 }
 
 
-/** The Ability Worship teaches: Church Lore, Concentration or Music (the one the character knows best), else Church Lore (The Church). */
-function worshipAbility(c: Character, d: DerivedCharacter): string {
-  const known = d.abilities.filter((a) => (a.abilityId === 'organization-lore' && /church/i.test(a.name)) || a.abilityId === 'concentration' || a.abilityId === 'music').sort((a, b) => b.total - a.total)[0];
-  return `ability:${known?.uid ?? ensureAbility(c, 'organization-lore', {}, 'Church').uid}`;
-}
-
-/** The Divine aura a character worships in (Worship's Source Quality): a small church's 4, unless the covenant's own aura is Divine. */
-const WORSHIP_AURA = 4;
-
-/** The Ability a character works with: its Craft or Profession, else its best Ability. */
-function workAbility(d: DerivedCharacter): string | undefined {
-  const trade = d.abilities.filter((a) => isTrade(a.abilityId)).sort((a, b) => b.total - a.total)[0];
-  if (trade) return `ability:${trade.uid}`;
-  const best = d.abilities.filter((a) => a.abilityId !== 'living-language' && a.abilityId !== 'dead-language').sort((a, b) => b.total - a.total)[0];
-  return best ? `ability:${best.uid}` : undefined;
-}
-
-/** What a character does when nobody planned the season: its standing activity, with 'auto' worked out. */
-export function resolveStanding(c: Character, d: DerivedCharacter, year: number): StandingActivity {
-  const s = c.standing ?? { kind: 'auto' };
-  // a creature left to the clock does nothing it was not set to do
-  if (c.creature && s.kind === 'auto') return { kind: 'none' };
-  // once the year's free seasons are spent, a season is work, or a Regular's Worship, whatever else was chosen (DE, Assigning Seasons)
-  const role = seasonRole(seasonsOf(c, d), seasonsUsed(c, year));
-  if (role === 'worship') return { kind: 'worship' };
-  if (role === 'work' && s.kind !== 'none') return c.workshop ? { kind: 'work' } : { kind: 'exposure', target: s.kind === 'exposure' && s.target ? s.target : workAbility(d) };
-  if (s.kind !== 'auto') return s;
-  if (c.creature) return { kind: 'none' };
-  if (d.isMagus) {
-    // vis extraction goes on only by choice: left to the clock, the magus works its own projects
-    const p = c.projects?.find((x) => !x.done && x.kind !== 'extract');
-    return { kind: 'lab', projectUid: p?.uid };
-  }
-  return { kind: 'practice', target: s.target ?? workAbility(d) };
-}
-
-export function describeStanding(c: Character, d: DerivedCharacter, s: StandingActivity): string {
-  const name = (t?: string) => {
-    if (!t) return 'nothing chosen';
-    const [k, id] = t.split(':');
-    if (k === 'mastery') return `${c.spells.find((x) => x.uid === id)?.spell.name ?? 'a spell'} (Mastery)`;
-    return k === 'art' ? ART_NAMES[id as Art] : d.abilityByUid.get(id)?.name ?? 'an Ability';
-  };
-  switch (s.kind) {
-    case 'priorities': return 'Follows the priority list';
-    case 'read': {
-      return `Read ${name(s.target)}${s.bookUid ? ' from the library' : ''}`;
-    }
-    case 'exposure': return `Exposure in ${name(s.target)} (2 xp)`;
-    case 'practice': return `Practice ${name(s.target)} (Quality 4)`;
-    case 'vis': return `Study ${name(s.target)} from vis`;
-    case 'work': return 'Work in the workshop';
-    case 'taught': return s.teacher?.startsWith('char:') ? `Taught by a covenant-mate${s.target ? '' : ' (what teaches the most)'}` : `Taught ${name(s.target)}`;
-    case 'teach': return `Teach ${s.students?.length ? `${s.students.length} student${s.students.length > 1 ? 's' : ''}` : 'whoever asks'}${s.target ? ` ${name(s.target)}` : ' (what teaches the most)'}`;
-    case 'assist': return 'Help in a covenant-mate’s lab';
-    case 'worship': return `Worship (Quality ${WORSHIP_AURA}, a church's Dominion)`;
-    case 'lab': {
-      const p = c.projects?.find((x) => x.uid === s.projectUid && !x.done);
-      return p ? `Lab: ${p.name}` : 'Lab work (Exposure in Magic Theory)';
-    }
-    case 'write': {
-      const p = writingFor(c, s.projectUid);
-      return p ? `Write: ${p.title} (${p.points}/${p.needed})` : 'Write (nothing left to write)';
-    }
-    case 'none': return 'Nothing';
-    default: return 'Automatic';
-  }
-}
-
 // Worked out for the season before its work is done (advanceSeason): those helping each magus in the
 // lab, and why a lesson or help planned did not happen.
 const LAB_HELP = new WeakMap<Character, LabHelper[]>();
@@ -164,11 +96,6 @@ const NO_LESSON = new WeakMap<Character, string>();
 const NO_HELP = new WeakMap<Character, string>();
 
 /** The season is taken already: logged by hand, or by a lesson given before the season's other work. An adventure shares a season (DE). */
-/** Whether the character spent every season of the year in Wizard's Twilight (livingTwilight.ts logs each season lost). */
-export function twilightYear(c: Character, year: number): boolean {
-  return SEASONS.every((s) => c.seasonLog.some((x) => x.year === year && x.season === s && x.told === TWILIGHT_TOLD));
-}
-
 export function seasonBusy(c: Character, year: number, season: Season): boolean {
   return loggedThisSeason(c, year, season).some((e) => !e.extra && e.activity !== 'adventure');
 }
@@ -747,12 +674,8 @@ export function advanceSeason(input: SagaState, data: GameData, o: AdvanceOption
     for (const t of holySeason(c, next.year, next.season)) lines.push({ who: c.name || 'Unnamed', kind: 'effect', text: t });
     // the rolls this season's work left (a curse woven, a ring first recited, a search): made in Resolve
     oweSeasonEndRolls(c, year, season);
-    // a living covenant's magus rolls the Twilight its Warping owes: nobody plays them to settle it in Resolve
-    const tw = tribunalOf(c) ? livingTwilight(c, derive, ctxOf(c).aura.strength, tribunalOf(c) === 'wanderers' ? undefined : tribunalOf(c), year, season, rng) : undefined;
-    for (const t of tw?.lines ?? []) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
-    if (tw?.news.length) saga.tribunalNews = [...tw.news, ...(saga.tribunalNews ?? [])];
-    // and the Witch Moon, Nátt-thel or a Calling it owes, rolled as the cards roll them
-    const lr = tribunalOf(c) ? livingReactions(c, derive, tribunalOf(c) === 'wanderers' ? undefined : tribunalOf(c), year, season, rng) : undefined;
+    // a living covenant's people roll what their Warping owes (Twilight, the Witch Moon, Nátt-thel, a Calling): nobody plays them to settle it in Resolve
+    const lr = tribunalOf(c) ? livingSeasonEnd(c, derive, ctxOf(c).aura.strength, tribunalOf(c) === 'wanderers' ? undefined : tribunalOf(c), year, season, rng) : undefined;
     for (const t of lr?.lines ?? []) lines.push({ who: c.name || 'Unnamed', kind: 'warping', text: t, tribunal: tribunalOf(c) });
     if (lr?.news.length) saga.tribunalNews = [...lr.news, ...(saga.tribunalNews ?? [])];
     c.fatigueLost = 0;

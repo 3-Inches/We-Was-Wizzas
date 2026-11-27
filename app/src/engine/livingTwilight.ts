@@ -11,6 +11,7 @@ import { newSeasonEntry, twilightAvoidance, twilightComprehension, TWILIGHT_TIME
 import { nextSeason, seasonIndex } from './effects';
 import type { Character, Season, TribunalNews } from './types';
 import { uid } from '../util/id';
+import { SEASONS } from '../data/constants';
 import { warpingScoreFromPoints } from './xp';
 
 /** How long the world goes without the magus, by the step of the Twilight time table (DE), and the seasons it takes. */
@@ -109,4 +110,9 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
     out.news.push({ uid: uid(), year, season, kind: idx >= 10 ? 'death' : 'event', covenantId, characterId: c.id, text: `${who} fell into Wizard’s Twilight and ${gone}${idx >= 10 ? '' : comprehended ? ', and came back wiser in the ways of magic' : ', marked by it'}${idx >= 10 ? '' : '. A Virtue, Flaw or spell may have come of it: the storyguide says (DE, Wizard’s Twilight)'}.` });
   }
   return out;
+}
+
+/** Whether the character spent every season of the year in Wizard's Twilight (livingTwilight logs each season lost). */
+export function twilightYear(c: Character, year: number): boolean {
+  return SEASONS.every((s) => c.seasonLog.some((x) => x.year === year && x.season === s && x.told === TWILIGHT_TOLD));
 }
