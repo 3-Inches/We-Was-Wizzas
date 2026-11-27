@@ -8,7 +8,7 @@ import { addVirtue, ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { newCovenant } from './covenant';
 import { newSeasonEntry, twilightAvoidance } from './longterm';
-import { TWILIGHT_TOLD, livingTwilight } from './livingTwilight';
+import { TWILIGHT_TOLD, livingTwilight, twilightYear } from './livingTwilight';
 import { livingReactions } from './livingReactions';
 import { DEFAULT_ADVANCE, advanceSeason, seasonBusy } from './time';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
@@ -219,6 +219,12 @@ describe('the clock rolls it for a living covenant’s magus, and not for the pl
     expect(away.state.characters[0].age).toBe(40);
     expect(away.report.lines.some((l) => /spent 1220 in Wizard’s Twilight, and did not age/.test(l.text))).toBe(true);
     expect(year(false).state.characters[0].age).toBe(41);
+  });
+
+  it('a year away that begins after Spring still skips one aging roll: one for every four seasons in Twilight', () => {
+    const m = owing(0, 0);
+    for (const [y, season] of [[1220, 'Summer'], [1220, 'Autumn'], [1220, 'Winter'], [1221, 'Spring']] as const) m.seasonLog.push({ ...newSeasonEntry(y, season, 'other', 'In Wizard’s Twilight.'), told: TWILIGHT_TOLD, applied: true });
+    expect([twilightYear(m, 1220), twilightYear(m, 1221)]).toEqual([false, true]);
   });
 
   it('the news says a Virtue, Flaw or spell may have come of a Twilight, for the storyguide', () => {

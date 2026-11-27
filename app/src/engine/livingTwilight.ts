@@ -11,7 +11,6 @@ import { newSeasonEntry, twilightAvoidance, twilightComprehension, TWILIGHT_TIME
 import { nextSeason, seasonIndex } from './effects';
 import type { Character, Season, TribunalNews } from './types';
 import { uid } from '../util/id';
-import { SEASONS } from '../data/constants';
 import { warpingScoreFromPoints } from './xp';
 
 /** How long the world goes without the magus, by the step of the Twilight time table (DE), and the seasons it takes. */
@@ -112,7 +111,12 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
   return out;
 }
 
-/** Whether the character spent every season of the year in Wizard's Twilight (livingTwilight logs each season lost). */
+/**
+ * Whether the year's aging roll is skipped for Twilight: one roll for every four seasons spent in it, counted
+ * across the years (livingTwilight logs each season lost, from the season after the Twilight began), so a
+ * year away that starts in Spring skips the aging of the year it ends in.
+ */
 export function twilightYear(c: Character, year: number): boolean {
-  return SEASONS.every((s) => c.seasonLog.some((x) => x.year === year && x.season === s && x.told === TWILIGHT_TOLD));
+  const upTo = (y: number) => c.seasonLog.filter((x) => x.year <= y && x.told === TWILIGHT_TOLD).length;
+  return Math.floor(upTo(year) / 4) > Math.floor(upTo(year - 1) / 4);
 }

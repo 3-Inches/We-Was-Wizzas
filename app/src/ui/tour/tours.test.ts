@@ -171,10 +171,10 @@ describe('tutorials', () => {
       if (id === 'faerie') {
         expect(faerieArts(d)).toMatchObject({ methods: ['evocation'], powers: expect.arrayContaining(['weal']) });
         expect(ch.virtues.some((v) => v.defId === 'summoning'), id).toBe(true);
-        // a Trait for each Faerie Sympathy: Quick build may give two, the rites' and the answers' (RoP: Faerie line 6367)
+        // one Faerie Sympathy, not repeatable (DE line 2898), and its Trait on the sheet
         const sympathies = ch.virtues.filter((v) => v.defId === 'faerie-sympathy');
-        expect(sympathies.length).toBeGreaterThan(0);
-        expect(ch.sympathy).toEqual(sympathies.map((v) => expect.objectContaining({ trait: v.param, score: v.size === 'Major' ? 3 : 1 })));
+        expect(sympathies).toHaveLength(1);
+        expect(ch.sympathy).toMatchObject([{ trait: sympathies[0].param, score: sympathies[0].size === 'Major' ? 3 : 1 }]);
       }
       if (id === 'mysteries') {
         expect(['cabal-legacy-flaw', 'hermetic-dream-interpreter', 'divination-and-augury'].filter((x) => !ch.virtues.some((v) => v.defId === x)), id).toEqual([]);

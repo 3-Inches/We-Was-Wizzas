@@ -20,6 +20,7 @@ import { CULT_MYSTERIES, mysteryLoreOf } from './buildMysteries';
 import { HOLY_VIRTUES } from './buildVirtues';
 import { evaluate } from './score';
 import { newCharacter } from '../character/factory';
+import { validateCharacter } from '../character/validate';
 import { autoBuild, resetChoices } from './autobuild';
 import { addSympathyTraits, settleAntipathy } from './traditions';
 import { rolesFor } from '../generate/roles';
@@ -279,6 +280,11 @@ describe('Quick build: a Mystery initiate (HoH: Mystery Cults line 249; The Myst
       expect(pair, `seed ${seed}`).toEqual(['Major', 'Minor']);
       expect(problems(g), `seed ${seed}`).toEqual([]);
     }
+    // both Minor is not allowed: only the second of the pair is
+    const g = make('magus-mystery', 1, { variety: 'focused', answers: { 'vf:hermetic-dream-interpreter': 10, 'vf:divination-and-augury': 10 } });
+    for (const v of g.c.virtues) if (['divination-and-augury', 'hermetic-dream-interpreter'].includes(v.defId)) v.size = 'Minor';
+    const d = deriveCharacter(g.c, data, DEFAULT_HOUSE_RULES);
+    expect(validateCharacter(d, data, DEFAULT_HOUSE_RULES).filter((i) => i.severity !== 'info').length).toBeGreaterThan(0);
   }, 120_000);
 
   it('a magus made at random is no initiate unless the role asks: the Mystery question is not answered by chance', () => {

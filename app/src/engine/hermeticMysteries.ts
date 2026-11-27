@@ -171,10 +171,10 @@ export const AUGURY_METHODS: { name: string; seen: string; uses: string }[] = [
   { name: 'Scrying', seen: 'reflective surfaces', uses: 'clairvoyance +5' },
 ];
 
-/** The second method of Hermetic divination is a Minor Virtue: "If she has the Virtue Divination, she may Initiate into Dream Interpretation as an additional method as a Minor Virtue, and vice versa" (TMRE line 2493). True when the character holds the other of the pair (`uid`, the Virtue's own, is not counted). */
+/** The second method of Hermetic divination is a Minor Virtue: "If she has the Virtue Divination, she may Initiate into Dream Interpretation as an additional method as a Minor Virtue, and vice versa" (TMRE line 2493). True when the character holds the other of the pair at Major (`uid`, the Virtue's own, is not counted): both cannot be the second. */
 export const DIVINATION_PAIR = ['divination-and-augury', 'hermetic-dream-interpreter'];
 export const secondDivination = (c: Character, defId: string, uid?: string) =>
-  DIVINATION_PAIR.includes(defId) && c.virtues.some((v) => v.uid !== uid && v.defId !== defId && DIVINATION_PAIR.includes(v.defId));
+  DIVINATION_PAIR.includes(defId) && c.virtues.some((v) => v.uid !== uid && v.defId !== defId && DIVINATION_PAIR.includes(v.defId) && v.size !== 'Minor');
 
 /** The sizes a Virtue may be taken at by this character: its own, and Minor for the second divination method. */
 export const vfSizesFor = <S extends string>(c: Character, def: { id: string; sizes: S[] }, uid?: string): S[] =>
