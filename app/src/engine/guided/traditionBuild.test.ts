@@ -314,6 +314,17 @@ describe('Quick build in a saga without the books', () => {
   }, 120_000);
 });
 
+describe('one list of each hedge tradition’s Virtues (Batch E)', () => {
+  it('the rules check knows every Virtue Quick build keeps to a tradition, the vitkir’s runes among them, and not Fetch', () => {
+    expect(data.vfById.get('nameless-runes')?.tradition).toBe('Vitkir (Hedge Magic)');
+    expect(data.vfById.get('secret-runes')?.tradition).toBe('Vitkir (Hedge Magic)');
+    // "other characters may also have access to a fetch" (HMRE line 2879)
+    expect(data.vfById.get('fetch')?.tradition).toBeUndefined();
+    for (const t of TRADITIONS.filter((x) => x.id !== 'faerie'))
+      for (const id of t.own) if (data.vfById.has(id)) expect(data.vfById.get(id)!.tradition, `${t.id}: ${id}`).toBeTruthy();
+  });
+});
+
 describe('Quick build, Plain, with a role picked by hand', () => {
   it('still brings what the role requires, as the Plain choice says', () => {
     const plain = (role: string) => make(role, 5, { coreOnly: true });
