@@ -203,13 +203,14 @@ export default function BookReader() {
                 {parsed.sections[target.idx + 1]?.heading.text ?? ''} →
               </button>
             </div>
+            <div ref={bodyRef} className="markdown book-body card" onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: drawn.html }} />
+            {/* kept at the foot of the screen, where it shows wherever in the book the link was tapped */}
             {dead && dead.at === drawn && (
-              <p className="small warn" role="status">
+              <p className="small warn card" role="status" style={{ position: 'sticky', bottom: 0 }}>
                 The link “{dead.text}” goes nowhere: the book has no heading for it.{' '}
                 <button className="small ghost" onClick={() => setDead(null)}>Close</button>
               </p>
             )}
-            <div ref={bodyRef} className="markdown book-body card" onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: drawn.html }} />
           </div>
         </div>
       )}
