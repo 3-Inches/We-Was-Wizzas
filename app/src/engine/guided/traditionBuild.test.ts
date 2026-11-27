@@ -271,6 +271,15 @@ describe('Quick build: a Mystery initiate (HoH: Mystery Cults line 249; The Myst
     }
   }, 120_000);
 
+  it('the second method of Hermetic divination is a Minor Virtue (TMRE line 2493), and the rules check allows it', () => {
+    for (const seed of [1, 7, 13]) {
+      const g = make('magus-mystery', seed, { variety: 'focused', answers: { 'vf:hermetic-dream-interpreter': 10, 'vf:divination-and-augury': 10 } });
+      const pair = g.c.virtues.filter((v) => ['divination-and-augury', 'hermetic-dream-interpreter'].includes(v.defId)).map((v) => v.size).sort();
+      expect(pair, `seed ${seed}`).toEqual(['Major', 'Minor']);
+      expect(problems(g), `seed ${seed}`).toEqual([]);
+    }
+  }, 120_000);
+
   it('a magus made at random is no initiate unless the role asks: the Mystery question is not answered by chance', () => {
     for (const role of ['magus-scholar', 'magus-faerie', 'magus-mystic', 'magus-lab']) {
       for (let seed = 1; seed <= 12; seed++) {

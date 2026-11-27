@@ -2,6 +2,7 @@
 // pair when asked for, the best-fitting Virtues within the budget, a magus's magic of their own, the
 // Flaws that pay for them, and Minor Virtues for any points left over.
 
+import { secondDivination } from '../hermeticMysteries';
 import { ARTS, type Art, type VFSize, type VirtueFlawDef } from '../../data';
 import type { Character, GuidedState } from '../types';
 import { addVirtue, removeVirtue } from '../character/factory';
@@ -48,6 +49,7 @@ export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildIn
   const sizeFor = (s: Scored, room: number) => {
     const sizes = s.def.sizes.filter((z) => z !== 'Free' || s.def.sizes.length === 1);
     if (c.type === 'grog') return sizes.includes('Minor') ? 'Minor' : undefined;
+    if (secondDivination(c, s.def.id)) return 'Minor';
     return sizes.includes('Major') && s.fit >= 25 && room >= 3 ? 'Major' : sizes.includes('Minor') ? 'Minor' : sizes[0];
   };
 

@@ -1,6 +1,7 @@
 // Mysteries & Initiation: the Mystagogue's Initiation Total against the target for a Mystery Virtue,
 // the books' Scripts, Ordeals and their later discount, varying a Script, and the Criamon Paths.
 
+import { secondDivination } from '../../../engine/hermeticMysteries';
 import { RollAtTable, useAtTable, useEditable } from '../../play';
 import { useMemo, useState } from 'react';
 import { deriveCharacter } from '../../../engine/character/derive';
@@ -57,7 +58,7 @@ export function MysteriesCard({ ed }: { ed: CharEditor }) {
   const held = new Set(c.virtues.map((v) => v.defId));
   const st = CRIAMON_STATIONS.find((s) => s.id === station);
   const def = data.vfById.get(st ? st.id : virtueId);
-  const size: VFSize = st ? 'Major' : def?.sizes.length === 1 ? def.sizes[0] : sizePick;
+  const size: VFSize = st ? 'Major' : def && secondDivination(c, def.id) ? 'Minor' : def?.sizes.length === 1 ? def.sizes[0] : sizePick;
   const scripts = def && !st ? scriptsFor(def.id, def.name) : [];
   const script = st ? undefined : scripts[scriptIdx];
   const mysHouse = st ? 'criamon' : HOUSE_MYSTERIES.find((m) => m.id === virtueId)?.house;
