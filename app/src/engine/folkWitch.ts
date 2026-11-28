@@ -40,6 +40,9 @@ export interface WitchTotal {
   auraBotch: number;
 }
 
+/** The botch dice of a folk witch's Casting Total: one, and a foreign aura's level (DE, Realm Interaction). */
+export const witchBotchDice = (t: { auraBotch: number }) => 1 + t.auraBotch;
+
 /** Casting Score: Characteristic + Ability + aura, −1 for a Flawed Opening's power, + vis (Gifted only, a pawn each), + 5 a Fatigue level with Life-Linked Magic. */
 export function witchCastingScore(c: Character, d: DerivedCharacter, power: string, aura: AuraState | undefined, o: { vis?: number; fatigue?: number } = {}): WitchTotal {
   const p = WITCH_POWERS.find((x) => x.id === power)!;

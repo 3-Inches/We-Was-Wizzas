@@ -30,6 +30,9 @@ export function simpleDie(rng: Rng = defaultRng): SimpleResult {
   return { kind: 'simple', face: f, value: f === 0 ? 10 : f };
 }
 
+/** The botch dice of a stress roll on a total: the one every roll has, and those the total adds (`TotalResult.botchDice`). */
+export const botchDiceOf = (t: { botchDice?: number }) => 1 + (t.botchDice ?? 0);
+
 /**
  * Stress die (DE p.7): roll; on 1, reroll and double (repeat); on 0 roll botch dice
  * (a 0 on any botch die is a botch); otherwise the face value (0 counts as 0).

@@ -10,7 +10,7 @@ import { GRUAGACH_GUIDELINES } from '../../data/gruagachSpells';
 import { GRUAGACH_APPRENTICESHIP } from '../../engine/character/derive';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
-  GRUAGACH_SEASON_SET, TRANSFORMATION_BAD, TRANSFORMATION_GOOD, durationProblem, firstGruagachWork, gruagachArtCap, gruagachArts, gruagachBookSpells, gruagachCastingScore, gruagachFlex,
+  GRUAGACH_SEASON_SET, TRANSFORMATION_BAD, gruagachBotchDice, TRANSFORMATION_GOOD, durationProblem, firstGruagachWork, gruagachArtCap, gruagachArts, gruagachBookSpells, gruagachCastingScore, gruagachFlex,
   gruagachLevel, gruagachPairs, gruagachSeason, gruagachVisLimit, pictish, spontaneousTotal, tattooVisArts, transformationAvoid, transformationFollows, botchWarpingPoints, gruagachInventSeason,
   understandingTransformation, type GruagachWork,
 } from '../../engine/gruagach';
@@ -250,7 +250,7 @@ export function GruagachCastCard({ ed, aura }: { ed: CharEditor; aura: AuraState
   const pj = POETIC_JUSTICE[justice];
   const cast = () => {
     const stress = mode === 'spontaneous' || stressOn || vis > 0;
-    const r = stress ? stressDie(1 + score.auraBotch + vis) : simpleDie();
+    const r = stress ? stressDie(gruagachBotchDice(score, vis)) : simpleDie();
     const botches = r.kind === 'stress' && r.zero ? r.botches : 0;
     const raw = score.total + r.value + 2 * vis;
     const total = mode === 'spontaneous' ? spontaneousTotal(score.total + 2 * vis, r.value) : raw;

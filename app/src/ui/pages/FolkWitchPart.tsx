@@ -8,7 +8,7 @@ import { WITCH_CURSES, WITCH_FETISHES, WITCH_HEALING, WITCH_POWERS } from '../..
 import { describeStress, stressDie } from '../../engine/dice';
 import {
   familiarBinding, firstKitchenWork, healingCost, kitchenAbility, kitchenPowers, kitchenSeason, kitchenVisArts, kitchenWorks, potionAbility, witchCastingScore, witchMoonEnds,
-  witchMoonOutcome, witchMoonWound, witchPenetration, witchPowers, witchWarping, type KitchenWork,
+  witchMoonOutcome, witchMoonWound, witchBotchDice, witchPenetration, witchPowers, witchWarping, type KitchenWork,
 } from '../../engine/folkWitch';
 import { artsText, putInto, spendFrom, visInPlaces } from '../../engine/vis';
 import { bestFirst } from '../../engine/firstChoice';
@@ -83,7 +83,7 @@ export function WitchPowerCard({ ed, aura }: { ed: CharEditor; aura: AuraState }
   const method = p.methods.filter((m) => m !== 'potion').join(' or ');
   const pen = score(d, 'penetration');
   const cast = () => {
-    const r = stressDie(1 + tot.auraBotch);
+    const r = stressDie(witchBotchDice(tot));
     const botches = r.zero ? r.botches : 0;
     const total = tot.total + r.value;
     const out = [`${p.name} by ${method}: stress die ${describeStress(r)} + ${tot.total} = ${total}, against ${ef}${eff ? ` (${eff.label})` : ''}.`];

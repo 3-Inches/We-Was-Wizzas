@@ -50,6 +50,20 @@ export function sympathyBotchDice(c: Pick<Character, 'sympathy'>): { dice: numbe
 }
 
 /**
+ * The botch dice of a faerie rite: one, the worst negative Sympathy Trait's ("Negative Sympathy Traits also
+ * add additional botch dice, as usual"), a foreign aura's level (DE, Realm Interaction), and a pawn of vis
+ * each "unless the vis is associated with Faerie" (RoP: Faerie, Faerie Rites and Evocation).
+ */
+export function riteBotchDice(c: Pick<Character, 'sympathy'>, o: { auraBotch: number; vis?: number; faerieVis?: boolean }): number {
+  return 1 + sympathyBotchDice(c).dice + o.auraBotch + (o.faerieVis ? 0 : Math.max(0, o.vis ?? 0));
+}
+
+/** The botch dice of a bargaining Art (Summoning, Bonding, Captivating): one, the worst negative Sympathy Trait's, and a foreign aura's level. */
+export function bargainBotchDice(c: Pick<Character, 'sympathy'>, auraBotch: number): number {
+  return 1 + sympathyBotchDice(c).dice + auraBotch;
+}
+
+/**
  * Sympathy Traits on an ordinary Ability roll (RoP: Faerie, Sympathy Traits, lines 5844 to 5848). Of the
  * traits that apply, the highest positive one stands in for a specialty, adding its score; it calls for a
  * stress die, and a botch gives Warping Points. They are not cumulative. The worst negative one that applies

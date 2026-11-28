@@ -6,7 +6,7 @@ import { CHAR_NAMES } from '../../../data';
 import {
   holyEffectLevel, holyEffectTotal, holyMethodsOf, holyOutcome, holyPowersOf, methodWorksWith, wouldBeRitual, type CeremonyGroup,
 } from '../../../engine/holy';
-import { describeStress, simpleDie, stressDie } from '../../../engine/dice';
+import { botchDiceOf, describeStress, simpleDie, stressDie } from '../../../engine/dice';
 import { DURATIONS, RANGES, TARGETS } from '../../../engine/spellDesign';
 import type { AuraState } from '../../../engine/magic';
 import { Card, Field, HowItWorks, Stepper, Total } from '../../kit';
@@ -109,7 +109,7 @@ export function HolyPowerCard({ ed, aura, fellows, onWarping }: { ed: CharEditor
     let faces: number[] | undefined;
     let botches = 0;
     if (stress) {
-      const r = stressDie(1 + (total.botchDice ?? 0));
+      const r = stressDie(botchDiceOf(total));
       die = r.value;
       botches = r.botches;
       faces = r.botches ? r.botchFaces : undefined;

@@ -63,6 +63,13 @@ const theurgyLore = (c: Character, d: DerivedCharacter) => score(d, LORE[c.virtu
 /** Vis in elemental magic: +2 a pawn of the Form's own vis, up to the sum of the four Forms (no vis in Refining). */
 export const elementalVisLimit = (d: DerivedCharacter) => ELEMENTS.reduce((t, e) => t + score(d, e.ability), 0);
 
+/**
+ * The botch dice of an elemental roll: one, the aura's (a foreign aura's level, DE, Realm Interaction),
+ * and one a pawn of vis, up to the limit. The chapter does not say what vis does to the botch dice (HMRE,
+ * Elementalist Vis); the core rule is taken: "+1 botch die per pawn of vis used" (DE, Sources of Botch Dice).
+ */
+export const elementalBotchDice = (t: { auraBotch: number }, vis: number, visMax: number) => 1 + t.auraBotch + Math.max(0, Math.min(vis, visMax));
+
 export interface ElementalTotal {
   total: number;
   parts: Part[];

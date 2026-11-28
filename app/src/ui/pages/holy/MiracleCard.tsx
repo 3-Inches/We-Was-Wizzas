@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { HOLY_GUIDELINES, HOLY_POWERS, MIRACLE_NEED, MIRACLE_TIMELINESS } from '../../../data/divine';
 import { holyMethodsOf, miracleLevel, miracleTotal, type CeremonyGroup } from '../../../engine/holy';
-import { describeStress, stressDie } from '../../../engine/dice';
+import { botchDiceOf, describeStress, stressDie } from '../../../engine/dice';
 import type { AuraState } from '../../../engine/magic';
 import { Card, Field, Stepper, Total, signed } from '../../kit';
 import type { CharEditor } from '../../character/useChar';
@@ -29,7 +29,7 @@ export function MiracleCard({ ed, aura, fellows }: { ed: CharEditor; aura: AuraS
   const pray = () => {
     const fx = Math.min(faithExtra, faithCap);
     const cx = Math.min(conf, confCap);
-    const r = stressDie(1);
+    const r = stressDie(botchDiceOf(total));
     update((x) => {
       x.faith = { score: d.trueFaith, points: Math.max(0, d.faithPoints - 1 - fx) };
       x.confidence.points = Math.max(0, x.confidence.points - cx);

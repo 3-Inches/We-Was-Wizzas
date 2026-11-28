@@ -8,8 +8,8 @@ import { useState } from 'react';
 import { BARGAIN_ARTS, FAERIE_DURATIONS, FAERIE_RANGES, FAERIE_TARGETS, FAERIE_GUIDELINES, FAERIE_METHODS, FAERIE_POWERS, type BargainArtId, type FaerieMethodId, type FaeriePowerId } from '../../data/faerie';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
-  CREATIVITY_TABLE, bargainPenetration, bargainTotal, callingActEase, callingApplies, callingResolveEase, creativityCost, enchantmentEase, evocationVisLimit, faerieArts, hasFaerieTable,
-  faerieRank, hasSympathy, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyBotchDice, sympathySum, sympathyXp,
+  CREATIVITY_TABLE, bargainBotchDice, bargainPenetration, bargainTotal, callingActEase, callingApplies, callingResolveEase, creativityCost, enchantmentEase, evocationVisLimit, faerieArts, hasFaerieTable,
+  faerieRank, hasSympathy, riteBotchDice, riteLevel, riteMaxLevel, riteOptions, riteTotal, riteWarps, sympathyBotchDice, sympathySum, sympathyXp,
 } from '../../engine/faerieWizardry';
 import { auraModifier } from '../../engine/magic';
 import { DURATIONS, RANGES, TARGETS } from '../../engine/spellDesign';
@@ -69,7 +69,8 @@ const negBotchText = (n: ReturnType<typeof sympathyBotchDice>) => (n.dice ? `${n
 export default function FaeriePart({ ed }: { ed: CharEditor }) {
   const { c, d, ctx } = ed;
   if (!c || !d) return null;
-  const aura = auraModifier('Faerie', ctx.aura).mod;
+  const am = auraModifier('Faerie', ctx.aura);
+  const aura = am.mod;
   const arts = faerieArts(d);
   const bargains = BARGAIN_ARTS.filter((a) => d.abilities.some((x) => x.abilityId === (a.id === 'summoning' ? 'faerie-summoning' : a.id)));
   const rank = faerieRank(c.sympathy);
@@ -84,18 +85,18 @@ export default function FaeriePart({ ed }: { ed: CharEditor }) {
         </OnSheet>
       ) : null}
       <p className="small muted">
-        {hasSympathy(c) || traits.length ? '' : <>Faerie Rank <b>{signed(rank)}</b>. </>}Faerie aura here: {signed(aura)} to faerie effects. A 1 on the stress die gives each trait used an
+        {hasSympathy(c) || traits.length ? '' : <>Faerie Rank <b>{signed(rank)}</b>. </>}Faerie aura here: {signed(aura)} to faerie effects{am.botch ? `, and ${am.botch} more botch dice (${am.note})` : ''}. A 1 on the stress die gives each trait used an
         experience point, and each 0 of a botch takes one away.
       </p>
-      {arts.methods.length > 0 && arts.powers.length > 0 && <RiteCard ed={ed} aura={aura} />}
-      {bargains.length > 0 && <BargainCard ed={ed} aura={aura} rank={rank} arts={bargains.map((a) => a.id)} />}
+      {arts.methods.length > 0 && arts.powers.length > 0 && <RiteCard ed={ed} aura={aura} auraBotch={am.botch} />}
+      {bargains.length > 0 && <BargainCard ed={ed} aura={aura} auraBotch={am.botch} rank={rank} arts={bargains.map((a) => a.id)} />}
       {callingApplies(c, d) && <CallingCard ed={ed} rank={rank} />}
       {c.creature?.realm === 'Faerie' && <CreativityCard ed={ed} />}
     </>
   );
 }
 
-function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
+function RiteCard({ ed, aura: aura0, auraBotch }: { ed: CharEditor; aura: number; auraBotch: number }) {
   const { c, d, update } = ed;
   const arts = d ? faerieArts(d) : { methods: [], powers: [] };
   const [method, setMethod] = useState<FaerieMethodId>(arts.methods[0] ?? 'evocation');
@@ -110,6 +111,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
   const [extra, setExtra] = useState(0);
   const [aura, setAura] = useState(aura0);
   const [vis, setVis] = useState(0);
+  const [faerieVis, setFaerieVis] = useState(false);
   const [extended, setExtended] = useState(false);
   const [simple, setSimple] = useState(false);
   const [performance, setPerformance] = useState(0);
@@ -132,7 +134,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
   const enchEase = enchantmentEase(lv.level);
   const cast = () => {
     const useSimple = simple && d.abilities.some((a) => a.abilityId === 'enchantment');
-    const r = useSimple ? simpleDie() : stressDie(1 + negBotch.dice + (canVis ? vis : 0));
+    const r = useSimple ? simpleDie() : stressDie(riteBotchDice(c, { auraBotch, vis: canVis ? vis : 0, faerieVis }));
     const v = useSimple ? r.value : r.value;
     const total = tot.total + v + (canVis ? 2 * vis : 0);
     const botched = r.kind === 'stress' && r.botches > 0;
@@ -259,6 +261,11 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
             <Stepper value={vis} min={0} max={visMax} width={32} onChange={setVis} />
           </Field>
         )}
+        {canVis && vis > 0 && (
+          <label className="inline small" title="Vis associated with Faerie adds no botch die">
+            <input type="checkbox" checked={faerieVis} onChange={(e) => setFaerieVis(e.target.checked)} /> Faerie vis
+          </label>
+        )}
         {d.abilities.some((a) => a.abilityId === 'enchantment') && (
           <label className="inline small" title="Enchantment: cast on a simple die, with no botch and no Sympathy experience">
             <input type="checkbox" checked={simple} onChange={(e) => setSimple(e.target.checked)} /> simple die (Enchantment)
@@ -290,7 +297,7 @@ function RiteCard({ ed, aura: aura0 }: { ed: CharEditor; aura: number }) {
   );
 }
 
-function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: number; rank: number; arts: BargainArtId[] }) {
+function BargainCard({ ed, aura: aura0, auraBotch, rank, arts }: { ed: CharEditor; aura: number; auraBotch: number; rank: number; arts: BargainArtId[] }) {
   const { c, d, update } = ed;
   const [art, setArt] = useState<BargainArtId>(arts[0]);
   // a character with a single trait has it ticked for them
@@ -309,7 +316,7 @@ function BargainCard({ ed, aura: aura0, rank, arts }: { ed: CharEditor; aura: nu
   const a = BARGAIN_ARTS.find((x) => x.id === art)!;
   const negBotch = sympathyBotchDice(c);
   const roll = () => {
-    const r = stressDie(1 + negBotch.dice);
+    const r = stressDie(bargainBotchDice(c, auraBotch));
     const total = tot.total + r.value;
     const botched = r.botches > 0;
     const penTotal = bargainPenetration(total, might, pen, best, art !== 'summoning' && held);

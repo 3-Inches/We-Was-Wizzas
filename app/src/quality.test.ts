@@ -189,3 +189,21 @@ describe('Warping', () => {
       expect(CHANGES_WARPING.test(t), t).toBe(false);
   });
 });
+
+// Batch F, item 6: a card rolls the botch dice its engine counts (botchDice.test.ts holds the books' cases).
+// "stressDie(1 + …)" in a card is the count worked out there, where a rule for it is missed.
+const SUMS_BOTCH_DICE = /\bstressDie\(\s*[^,()]*[-+]/;
+
+describe('Botch dice', () => {
+  it('are counted in the engine, not added up in a card', () => {
+    const cards = sources.filter(([path, text]) => /^\.\/ui\//.test(path) && SUMS_BOTCH_DICE.test(text)).map(([path]) => path.replace(/^\.\//, 'src/'));
+    expect(cards, 'count the botch dice in the system’s engine module, as riteBotchDice does').toEqual([]);
+  });
+
+  it('catches a sum, and passes a count from the engine', () => {
+    for (const t of ['stressDie(1 + tot.auraBotch)', 'stressDie(1 + negBotch.dice + (canVis ? vis : 0))', 'stressDie(1 + called.length)', 'stressDie(n - 1)'])
+      expect(SUMS_BOTCH_DICE.test(t), t).toBe(true);
+    for (const t of ['stressDie(1)', 'stressDie(0, undefined, true)', 'stressDie(riteBotchDice(c, { auraBotch, vis }))', 'stressDie(magicBotchDice(extra + vis.pawns, 0))', 'stressDie(botchDice)'])
+      expect(SUMS_BOTCH_DICE.test(t), t).toBe(false);
+  });
+});

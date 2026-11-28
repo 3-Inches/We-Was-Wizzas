@@ -12,7 +12,7 @@ import { learnedArtName, type LearnedArts } from '../../data/hedgeLearned';
 import { describeStress, simpleDie, stressDie } from '../../engine/dice';
 import {
   INTERVENTION_BOONS, INTERVENTION_PUNISHMENTS, amuletCharges, amuletItem, canCast, castingScore, charmBotchDice, charmDivisor, charmLanguage, charmOutcome, chartaTime, chartaWorks, entreatRealms,
-  entreatTotal, formularySearch, horoscopeRoll, interventionAvoid, interventionFollows, inventGain, inventSeason, learnFromTeacher, learnedAura, learnedLabTotal, naturalMagicianOffset, readingCharm,
+  entreatTotal, entreatyBotchDice, formularySearch, horoscopeRoll, interventionAvoid, interventionFollows, inventGain, inventSeason, learnFromTeacher, learnedAura, learnedLabTotal, naturalMagicianOffset, readingCharm,
   type Horoscope,
 } from '../../engine/learnedMagic';
 import type { AuraState, Realm } from '../../engine/magic';
@@ -71,7 +71,7 @@ function useEntreaty(ed: CharEditor, aura: AuraState) {
           className="small"
           disabled={!called.length || !ed.d}
           onClick={() => {
-            const r = stressDie(1 + called.length);
+            const r = stressDie(entreatyBotchDice(aura, called));
             const e = entreatTotal(ed.d!, called, aura, r.value);
             const botch = r.zero && r.botches > 0;
             setRoll({ offset: botch ? 0 : e.offset, botch, text: `Entreaty: stress die ${describeStress(r)} + ${e.parts.map((p) => `${p.label} ${p.value}`).join(' + ')}: ${botch ? 'a botch, the powers take offence' : e.text}` });

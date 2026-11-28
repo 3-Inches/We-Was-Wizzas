@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { canInvokeGodsAid, divineAidBonus, godsAidTotal, type CeremonyGroup } from '../../../engine/holy';
-import { describeStress, stressDie } from '../../../engine/dice';
+import { botchDiceOf, describeStress, stressDie } from '../../../engine/dice';
 import { Card, Field, Total } from '../../kit';
 import type { CharEditor } from '../../character/useChar';
 import { score, type Fellow, useLines, Lines, spendPoint, CeremonyPicker } from './shared';
@@ -21,7 +21,7 @@ export function GodsAidCard({ ed, fellows }: { ed: CharEditor; fellows: Fellow[]
     const spent = spendPoint(ed, d.trueFaith > 0 && d.faithPoints > 0 && c.confidence.points < 1 ? 'faith' : 'confidence');
     if (!spent) return show(can.why ?? 'Nothing to spend.');
     // a zero is checked with at least three botch dice: divine wrath for presumption
-    const r = stressDie(3);
+    const r = stressDie(botchDiceOf(total));
     const tot = total.total + r.value;
     const bonus = r.botches ? 0 : divineAidBonus(tot);
     const what = objective.trim() || 'the venture';

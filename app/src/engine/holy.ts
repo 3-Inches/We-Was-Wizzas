@@ -369,7 +369,7 @@ export function godsAidTotal(d: DerivedCharacter, ceremony?: CeremonyGroup): Tot
   ];
   if (d.currentWoundPenalty) parts.push({ label: 'Wounds', value: d.currentWoundPenalty });
   if (d.currentFatiguePenalty) parts.push({ label: 'Fatigue', value: d.currentFatiguePenalty });
-  return { total: parts.reduce((s, x) => s + x.value, 0), parts, halved: false, notes: ['A Confidence Point is spent (a Faith Point with True Faith); it does not add +3.'], botchDice: 3 };
+  return { total: parts.reduce((s, x) => s + x.value, 0), parts, halved: false, notes: ['A Confidence Point is spent (a Faith Point with True Faith); it does not add +3.'], botchDice: 2 }; // and the one every roll has: "at least three Botch dice" (RoP: The Divine, Invoking God's Aid)
 }
 
 /** Who may invoke God's aid: one who can spend a Confidence Point (not a grog, not Low Self-Esteem), or a Faith Point with True Faith. */

@@ -200,6 +200,12 @@ export function gruagachInventSeason(c: Character, labTotal: number, spell: Lear
 export const gruagachVisLimit = (pictishScore: number) => 2 * pictishScore;
 
 /**
+ * The botch dice of a gruagach's spell: one, the aura's, and one a pawn of vis, "the same as those for
+ * Hermetic magi" (HMRE, Gruagach Vis; DE, Sources of Botch Dice).
+ */
+export const gruagachBotchDice = (t: { auraBotch: number }, vis: number) => 1 + t.auraBotch + Math.max(0, vis);
+
+/**
  * The Hermetic Arts whose vis serves a gruagach Art (HMRE, Vis, line 3101): Give with Rego or Creo, Take
  * with Intellego, Rego or Perdo; Blessing and Curse with Corpus, Mentem or the target's Form; Shape with
  * Muto and the Forms of the target and its new shape; Vision with Imaginem, or Vim for visions granted.

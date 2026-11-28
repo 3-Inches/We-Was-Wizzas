@@ -6,7 +6,7 @@
 
 import { SOLOMON_RINGS } from '../data/divine';
 import { ensureAbility } from './character/factory';
-import { rollWovenCurse } from './folkWitch';
+import { rollWovenCurse, witchBotchDice } from './folkWitch';
 import { ringUntil } from './holy';
 import type { Character, Owed, Season } from './types';
 import { uid } from '../util/id';
@@ -103,7 +103,7 @@ export function noteSeasonRoll(c: Character, kind: SeasonRollKind, entryUid: str
 
 /** The botch dice of the roll: one, and a foreign aura's for a curse. */
 export function seasonRollBotchDice(c: Character, kind: SeasonRollKind): number {
-  return 1 + (kind === 'curse' ? (c.folkWitch?.curse?.auraBotch ?? 0) : 0);
+  return witchBotchDice({ auraBotch: kind === 'curse' ? (c.folkWitch?.curse?.auraBotch ?? 0) : 0 });
 }
 
 /** What the roll needs, in words: its score and Ease Factor. */

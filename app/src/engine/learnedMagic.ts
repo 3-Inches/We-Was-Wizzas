@@ -167,6 +167,14 @@ export function naturalMagicianOffset(c: Character, d: DerivedCharacter, aura: A
   return Math.max(0, Math.min(score(d, 'philosophiae'), penalty - already));
 }
 
+/**
+ * The botch dice of the entreaty's stress die: one, the aura's, and one for each realm entreated. The
+ * book's case: three realms called in an Infernal aura of 4, "he would have rolled eight botch dice — four
+ * extra for the Infernal aura and three more because he entreated three separate powers" (HMRE, Mitigation
+ * of Realm Interaction Effects).
+ */
+export const entreatyBotchDice = (aura: AuraState | undefined, called: readonly string[]) => 1 + learnedAura(aura).botch + called.length;
+
 /** The botch dice of a charm: one, the aura's, a die for each realm entreated, and from a text one for each point of Latin below 5 (vis adds as for magi). */
 export function charmBotchDice(o: { auraBotch: number; realms: number; fromText: boolean; latin: number; vis?: number }): number {
   return 1 + o.auraBotch + o.realms + (o.fromText ? Math.max(0, 5 - o.latin) : 0) + (o.vis ?? 0);

@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { ELEMENTS, ELEMENTAL_TECHNIQUES, type ElementId, type ElementalTechniqueId, type ElementalType } from '../../data/hedgeElemental';
 import { describeStress, stressDie } from '../../engine/dice';
 import {
-  characteristicPotion, controlledEmotion, controlledSoak, elementVisArt, formFor, POTION_CHARACTERISTICS, diviningAid, elementalArts, elementalTotal, elementalVisLimit, longevityPotion, moveVis, potionVisOk, refineMight, refiningExtraction, refiningVisArts, THEURGY_REALMS, type MightRelation, summoningNeeds, summoningReach,
+  characteristicPotion, controlledEmotion, controlledSoak, elementVisArt, formFor, POTION_CHARACTERISTICS, diviningAid, elementalArts, elementalBotchDice, elementalTotal, elementalVisLimit, longevityPotion, moveVis, potionVisOk, refineMight, refiningExtraction, refiningVisArts, THEURGY_REALMS, type MightRelation, summoningNeeds, summoningReach,
 } from '../../engine/elementalMagic';
 import { putInto, spendFrom } from '../../engine/vis';
 import { refiningTold } from '../../engine/seasonTold';
@@ -81,7 +81,7 @@ export function ElementalCard({ ed, aura }: { ed: CharEditor; aura: AuraState })
   const visMax = elementalVisLimit(d);
   const tot = elementalTotal(c, d, t.id, els, aura, { vis: Math.min(vis, visMax) });
   const roll = () => {
-    const r = stressDie(1 + tot.auraBotch + Math.min(vis, visMax));
+    const r = stressDie(elementalBotchDice(tot, vis, visMax));
     const botch = r.zero && r.botches > 0;
     const total = tot.total + r.value;
     const out = [`${t.name} (${ty}): stress die ${describeStress(r)} + ${tot.total} = ${total}.`];

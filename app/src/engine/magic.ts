@@ -33,6 +33,7 @@ export interface TotalResult {
   parts: Part[];
   halved: boolean;
   notes: string[];
+  /** botch dice beyond the one every stress roll has */
   botchDice?: number;
   /** the lab cannot be used for this work (Missing Equipment) */
   impossible?: boolean;
