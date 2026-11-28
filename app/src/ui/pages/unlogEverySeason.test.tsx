@@ -6,7 +6,8 @@
 // the Unlog button does it. The character, the others and the covenants must be as they were. It finds
 // the buttons itself, so a new card is checked without a change here. Two roads take more than one press
 // and are walked step by step at the end: an Initiation, and After a story. The clock's own seasons are
-// checked in src/engine/unlogEverySeason.test.ts.
+// checked in src/engine/unlogEverySeason.test.ts. Each season logged must also be told as its own (`told`),
+// but for the cards on PLAIN_SEASON (Batch F, item 5; audit 3, B2).
 import { describe, expect, it, vi } from 'vitest';
 vi.mock('idb-keyval', () => ({ get: async () => undefined, set: async () => undefined, del: async () => undefined }));
 import { act } from 'react';
@@ -40,6 +41,19 @@ function Season({ sagaId, charId }: { sagaId: string; charId: string }) {
 const NOT_WORK = /^(▾ Fold|▸ Show|More|Less|Read the rules|How |−|\+|✕|\d+$)/;
 /** The cards whose selects choose the season's work: a character's own work, and Plan a season. */
 const WORK_CARDS = /^(witch-kitchen|hedge-|gruagach-season|vitki-season|holy-|mason-season|workshop-season|lab-projects|original-research|longevity|apprentice|plan-season)/;
+
+/**
+ * The cards that rightly log a plain season, with the activities they log: the Chronicle tells each with
+ * its stock phrases (`DID`, src/engine/chronicle.ts). Every other card gives its season a phrase of its own
+ * (`told`), as `useSeasonWork` does.
+ */
+const PLAIN_SEASON: Record<string, string[]> = {
+  'plan-season': ['adventure', 'exposure', 'other', 'practice', 'study-book', 'study-vis', 'taught', 'trained', 'worship'],
+  'workshop-season': ['work'],
+  // After a story's experience (AfterStoryCard)
+  'table-story': ['adventure'],
+  writing: ['write-book', 'copy-book'],
+};
 
 /** What the troupe would keep: the saga's characters and covenants, and the saga. */
 const records = () => {
@@ -101,6 +115,8 @@ interface Pressed {
   problems: string[];
   /** the seasons logged (their summaries), or none */
   seasons: string[];
+  /** the seasons logged with no phrase of their own for the Chronicle (`told`), by the card that logged them */
+  untold: { card: string; activity: string; labKind?: string; summary: string }[];
 }
 
 /** The saga as it was, back in the store. */
@@ -135,18 +151,21 @@ function fill(el: Element) {
 /** Press a button: if it logged a season, unlog it as the Unlog button does, and say what is not as it was. */
 async function pressed(b: HTMLButtonElement, what: string): Promise<Pressed> {
   const before = records();
+  // the card that logs it, read before the press redraws it
+  const card = b.closest('section[data-tour]')?.getAttribute('data-tour') ?? '(no card)';
   await act(async () => b.click());
   const after = records();
   const logged = after.characters.flatMap((x) => x.seasonLog.filter((e) => !before.characters.find((y) => y.id === x.id)?.seasonLog.some((y) => y.uid === e.uid)).map((e) => ({ x, e })));
-  if (!logged.length) return { what, problems: [], seasons: [] };
+  if (!logged.length) return { what, problems: [], seasons: [], untold: [] };
   const seasons = logged.map(({ e }) => e.summary);
+  const untold = logged.filter(({ e }) => !e.told).map(({ e }) => ({ card, activity: e.activity, ...(e.labKind ? { labKind: e.labKind } : {}), summary: e.summary }));
   // a season whose work made something stays logged, and says why: nothing to compare
-  if (logged.some(({ e }) => !canUnlog(e).ok)) return { what, problems: logged.every(({ e }) => canUnlog(e).ok || canUnlog(e).why) ? [] : ['cannot be unlogged, and says not why'], seasons };
+  if (logged.some(({ e }) => !canUnlog(e).ok)) return { what, problems: logged.every(({ e }) => canUnlog(e).ok || canUnlog(e).why) ? [] : ['cannot be unlogged, and says not why'], seasons, untold };
   for (const { x, e } of logged.reverse()) {
     const r = unlogSeason(x, e.uid, after.covenants);
-    if (!r.ok) return { what, problems: [`Unlog refused: ${r.why}`], seasons };
+    if (!r.ok) return { what, problems: [`Unlog refused: ${r.why}`], seasons, untold };
   }
-  return { what, problems: differences(before, after), seasons };
+  return { what, problems: differences(before, after), seasons, untold };
 }
 
 /**
@@ -224,6 +243,10 @@ describe('a season done from a card, unlogged, leaves everyone as they were', ()
     }
     const problems = out.flatMap((r) => r.problems.map((p) => `${r.what}: ${p}`));
     expect(problems).toEqual([]);
+    // each season logged is told as its own (audit 3, B2), but for the cards that log a plain season, which the Chronicle's stock phrases tell
+    const untold = out.flatMap((r) => r.untold.filter((u) => !PLAIN_SEASON[u.card]?.includes(u.activity)).map((u) => `${r.what}: ${u.card} logged ${u.activity} (${u.summary}) with no phrase of its own`));
+    expect(untold).toEqual([]);
+    expect(out.some((r) => r.untold.length), 'a plain season was logged, so the list is looked at').toBe(true);
     // the kinds of season it reached, by how each is logged, so a change that stops reaching one is noticed
     const reached = new Set(out.filter((r) => r.seasons.length).map((r) => r.seasons[0].replace(/[:(].*/, '').trim()));
     for (const k of ['Lab', 'Taught Ansel, the apprentice', 'Read a summa', 'Practice', 'Exposure', 'Studied Creo vis', 'Worship', 'Wrote', 'Devotion', 'Building', 'Holy work', 'Elemental refining', 'Gruagach', 'Learned magic', 'Vitki', "Witch's kitchen"])
@@ -313,5 +336,6 @@ describe('a season done from a card, unlogged, leaves everyone as they were', ()
       el.remove();
     }
     expect(out.flatMap((r) => r.problems.map((p) => `${r.what}: ${p}`))).toEqual([]);
+    expect(out.flatMap((r) => r.untold.filter((u) => !PLAIN_SEASON[u.card]?.includes(u.activity)).map((u) => `${r.what}: ${u.card} logged ${u.activity} with no phrase of its own`))).toEqual([]);
   }, 60000);
 });
