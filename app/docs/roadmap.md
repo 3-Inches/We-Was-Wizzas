@@ -16,9 +16,7 @@ What is left to do, in order. Work the first open batch under **Now**.
 
 ## Now
 
-Nothing is open. The lead session puts the Found list into the next batch.
-
-## Proposed next: Batch F. Checks that hold the rules
+### Batch F. Checks that hold the rules
 
 From the forensic review of #1 to #88 (2026-11-28; `history/README.md`, faults 11 to 14). Each item fixes faults that are live on main and adds the test that would have caught them, so the rule is held by a test and not only a sentence. The review checked each against the books and the code; its scratch tests found the counts given. Build them in this order: the first two fix rules a player meets.
 
