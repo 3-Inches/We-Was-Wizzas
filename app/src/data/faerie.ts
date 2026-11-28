@@ -46,17 +46,23 @@ export const BARGAIN_ARTS: { id: BargainArtId; name: string; char: 'Pre' | 'Com'
   { id: 'dismissing', name: 'Dismissing', char: 'Int', text: 'Cancels an effect of a being with Might, ends effects on such a being, or releases it from a supernatural bargain.' },
 ];
 
+/** Each Method, Power and Art of the Ars Fabulosa at its own heading (RoP: Faerie). */
+const OWN_HEADING: Record<string, number> = {
+  evocation: 6833, enchantment: 6841, empathy: 6851,
+  beguile: 6865, conjure: 6926, dream: 6985, grant: 7056, portage: 7124, ware: 7171, weal: 7238, woe: 7315,
+  summoning: 7404, bonding: 7436, captivating: 7467, dismissing: 7483,
+};
 const methodAbility = (m: (typeof FAERIE_METHODS)[number]): AbilityDef => ({
-  id: m.id, name: m.name, type: 'Supernatural', restricted: true, specialties: ['a Power', 'a kind of target', 'a place or time'], source: src(6829),
+  id: m.id, name: m.name, type: 'Supernatural', restricted: true, specialties: ['a Power', 'a kind of target', 'a place or time'], source: src(OWN_HEADING[m.id]),
   text: `Faerie Method (Realms of Power: Faerie). Rite Casting Total: stress die + ${({ Com: 'Communication', Pre: 'Presence', Sta: 'Stamina' } as const)[m.char]} + ${m.name} + the Power + the Faerie aura; the level reached, no higher than 5 × the applicable Sympathy Traits. ${m.text}`,
 });
 const powerAbility = (p: (typeof FAERIE_POWERS)[number]): AbilityDef => ({
-  id: p.id, name: p.name, type: 'Supernatural', restricted: true, specialties: ['a kind of target', 'a Method', 'a Sympathy Trait'], source: src(6859),
+  id: p.id, name: p.name, type: 'Supernatural', restricted: true, specialties: ['a kind of target', 'a Method', 'a Sympathy Trait'], source: src(OWN_HEADING[p.id]),
   text: `Faerie Power (Realms of Power: Faerie), used with a Faerie Method in a rite. ${p.text}`,
 });
 const bargainAbility = (a: (typeof BARGAIN_ARTS)[number]): AbilityDef => ({
   id: a.id === 'summoning' ? 'faerie-summoning' : a.id, name: a.id === 'summoning' ? 'Summoning (Ars Fabulosa)' : a.name, type: 'Supernatural', restricted: true, asArt: true,
-  specialties: ['a kind of faerie', 'in a Faerie aura'], source: src(7396),
+  specialties: ['a kind of faerie', 'in a Faerie aura'], source: src(OWN_HEADING[a.id]),
   text: `Art of the Ars Fabulosa (Realms of Power: Faerie): opens at 0 and rises as an Art. Total: stress die + ${({ Pre: 'Presence', Com: 'Communication', Per: 'Perception', Int: 'Intelligence' } as const)[a.char]} + ${a.name} + Faerie Rank + aura, a Fatigue level spent; the highest Might it reaches is 5 × the applicable Sympathy Traits. ${a.text}`,
 });
 
@@ -202,11 +208,11 @@ export const FAERIE_TRADITIONS = [
 /** Two Flaws of faerie Might the extracted list lacks (RoP: Faerie, Flaws That Affect Might). */
 const FAERIE_VF: VirtueFlawDef[] = [
   {
-    id: 'decreased-might-flaw', name: 'Decreased Might', kind: 'flaw', sizes: ['Minor'], categories: ['Supernatural'], tainted: false, source: src(2135),
+    id: 'decreased-might-flaw', name: 'Decreased Might', kind: 'flaw', sizes: ['Minor'], categories: ['Supernatural'], tainted: false, source: src(2159),
     text: 'The faerie has only 1 point of Might instead of the usual 5. It keeps the powers that need no Might, such as regeneration and equipment without Encumbrance.',
   },
   {
-    id: 'restricted-might-flaw', name: 'Restricted Might', kind: 'flaw', sizes: ['Major', 'Minor'], categories: ['Supernatural'], tainted: false, source: src(2139),
+    id: 'restricted-might-flaw', name: 'Restricted Might', kind: 'flaw', sizes: ['Major', 'Minor'], categories: ['Supernatural'], tainted: false, source: src(2165),
     text: 'Under certain conditions the faerie is nearly powerless: its supernatural effects end (but those on itself) and it can neither spend nor recover Might while they last. Major if they are common (daylight, winter: a quarter of the time or more); Minor if uncommon (a thunderstorm, the new moon).',
   },
 ];

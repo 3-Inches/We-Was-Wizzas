@@ -74,16 +74,22 @@ export const SUMMONING_CHART: { total: number; size: number; note: string }[] = 
   { total: 50, size: 21, note: 'a mountain, the sea' },
 ];
 
+/** Each Elementalist Form and Technique at its own heading (Hedge Magic, Elementalist Forms and Techniques). */
+const OWN_HEADING: Record<string, number> = {
+  'elementalist-air': 1115, 'elementalist-earth': 1129, 'elementalist-fire': 1141, 'elementalist-water': 1151,
+  'elemental-summoning': 1167, 'elemental-controlling': 1234, 'elemental-divining': 1268, 'elemental-refining': 1296,
+};
+
 const ELEMENTAL_ABILITIES: AbilityDef[] = [
   ...ELEMENTAL_TECHNIQUES.map(
     (t): AbilityDef => ({
-      id: t.ability, name: `${t.name} (Elementalist)`, type: 'Supernatural', restricted: true, specialties: ['Medicinal', 'Philosophical', 'Theurgical', 'an element'], source: src(1300),
+      id: t.ability, name: `${t.name} (Elementalist)`, type: 'Supernatural', restricted: true, specialties: ['Medicinal', 'Philosophical', 'Theurgical', 'an element'], source: src(OWN_HEADING[t.ability]),
       text: `Elementalist Technique (Hedge Magic): a Difficult Art, raised as an Ability. Total: stress die + ${({ Sta: 'Stamina', Pre: 'Presence', Per: 'Perception', Int: 'Intelligence' } as const)[t.char]} + ${t.name} + the Elementalist Form + aura${t.id === 'refining' ? ' + the type’s Ability (Medicine, Philosophiae or Realm Lore), with no die' : ''}; it costs ${t.cost}. ${t.text}`,
     }),
   ),
   ...ELEMENTS.map(
     (e): AbilityDef => ({
-      id: e.ability, name: e.name, type: 'Supernatural', restricted: true, specialties: ['Medicinal', 'Philosophical', 'Theurgical'], source: src(1225),
+      id: e.ability, name: e.name, type: 'Supernatural', restricted: true, specialties: ['Medicinal', 'Philosophical', 'Theurgical'], source: src(OWN_HEADING[e.ability]),
       text: `Elementalist Form (Hedge Magic): a Difficult Art, raised as an Ability. Medicinal: ${e.types.Medicinal}. Philosophical: ${e.types.Philosophical}. Theurgical: ${e.types.Theurgical}. The ${e.trait} Trait adds to Soak against ${e.soak}. Vis: ${e.hermetic}.`,
     }),
   ),

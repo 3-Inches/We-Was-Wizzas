@@ -8,7 +8,7 @@ const GILDS = ['Oak Gild', 'Hawthorn Gild', 'Ash Gild', 'Elder Gild', 'Linden Gi
 const TRIBUNAL_VF: VirtueFlawDef[] = [
   {
     id: 'gild-trained', name: '(Gild) Trained', kind: 'virtue', sizes: ['Minor'], categories: ['Hermetic'], tainted: false,
-    notes: 'Rhine Tribunal', source: { book: 'GotF', line: 572 },
+    notes: 'Rhine Tribunal', source: { book: 'GotF', line: 562 },
     text: 'Trained at Durenmar at the end of apprenticeship and inducted into one of the Rhine’s political gilds. 30 experience points in Order of Hermes Lore, Intrigue and Durenmar Lore, and 60 more in General or Arcane Abilities, Arts and spells suited to the gild. May cancel the Weak Parens Flaw.',
     param: { kind: 'text', label: 'Gild', options: GILDS },
     effects: [

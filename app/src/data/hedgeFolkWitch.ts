@@ -3,7 +3,7 @@
 // Folk Witch Magic Theory for the kitchen (their laboratory); the Witch Moon in place of Twilight.
 // Cursing, Healing and Flight are kept apart from the Divine power and other books' versions.
 
-import type { AbilityDef, VFCategory, VirtueFlawDef } from './types';
+import type { AbilityDef, SourceRef, VFCategory, VirtueFlawDef } from './types';
 
 const src = (line: number) => ({ book: 'HMRE', line });
 
@@ -12,24 +12,24 @@ const v = (id: string, name: string, kind: 'virtue' | 'flaw', size: 'Major' | 'M
 });
 
 const FOLK_VF: VirtueFlawDef[] = [
-  v('folk-witch', 'Folk Witch', 'virtue', 'Free', 'Social Status', 1586, 'Trained as a folk witch: she brews potions and works in her kitchen, uses the folk witch casting methods with her Supernatural Abilities and has their Magical Defenses, and belongs to a coven that meets at sabbats. Not supported by a covenant, she spends two seasons a year supporting herself, usually with magical services to her community. Compatible with many other Social Statuses, and with Wealthy and Poor.'),
-  v('flawed-folk-witch-gift-opening', 'Flawed Folk Witch Gift Opening', 'flaw', 'Minor', 'Hermetic', 1590, 'One of the seven folk witch Abilities is not favored and cannot be learned at character creation; learned later, as any Supernatural Ability, it takes −1 on all its totals. Gifted folk witches only; may be taken for several Abilities.'),
-  v('witch-cursing', 'Cursing (Folk Witch)', 'virtue', 'Major', 'Supernatural', 1594, 'The folk witch can cast curses on other characters: a score of 1 in the Supernatural Ability Cursing (Folk Witch), worked through a curse fetish or a potion.'),
-  v('witch-healing', 'Healing (Folk Witch)', 'virtue', 'Major', 'Supernatural', 1598, 'The folk witch can heal characters: a score of 1 in the Supernatural Ability Healing (Folk Witch), by incantation or potion, at a cost in Corpus vis.'),
-  v('life-linked-folk-witch-magic', 'Life-Linked Folk Witch Magic', 'virtue', 'Major', 'Supernatural', 1602, 'The folk witch may spend Fatigue levels to boost her Casting Total: +5 for each.'),
-  v('animal-healer', 'Animal Healer', 'virtue', 'Minor', 'Supernatural', 1606, 'A score of 1 in the Supernatural Ability Animal Healing, which works as Healing on animals (with Animal vis). Potions can be made with it.'),
-  v('concentrated-potions', 'Concentrated Potions', 'virtue', 'Minor', 'Supernatural', 1610, 'Up to four times Folk Witch Magic Theory in vis in a season of brewing potions, double the usual.'),
-  v('expert-potion-brewer', 'Expert Potion Brewer', 'virtue', 'Minor', 'Supernatural', 1614, 'The Supernatural Ability counts double in the Lab Total for brewing potions, raising the Brew Potency.'),
-  v('witch-flight', 'Flight (Folk Witch)', 'virtue', 'Minor', 'Supernatural', 1618, 'The folk witch can fly: a score of 1 in the Supernatural Ability Flight (Folk Witch).'),
-  v('painless-moon', 'Painless Moon', 'virtue', 'Minor', 'Supernatural', 1622, 'No Medium Wound during each month of the Witch Moon.'),
-  v('well-trained-folk-witch', 'Well-Trained Folk Witch', 'virtue', 'Minor', 'General', 1626, '+50 experience points to spend during apprenticeship. May be taken several times.'),
-  v('primitive-tradition-flaw', 'Primitive Tradition', 'flaw', 'Major', 'Supernatural', 1630, 'The folk witch cannot brew potions.'),
-  v('rarefied-tradition-flaw', 'Rarefied Tradition', 'flaw', 'Major', 'Supernatural', 1634, 'She uses her Supernatural Abilities only through potions she brews and drinks, never by incantation or fetish.'),
-  v('harsh-moon-flaw', 'Harsh Moon', 'flaw', 'Minor', 'Supernatural', 1638, 'A Heavy Wound, not a Medium one, during each month of the Witch Moon.'),
-  v('short-ranged-curses-flaw', 'Short-Ranged Curses', 'flaw', 'Minor', 'Supernatural', 1642, 'Her curses work only while the fetish is within 100 yards of the target: disease, aging and miscarriage strike when the target comes in range; the lasting curses cease out of range and resume (penetrating again) in it.'),
-  v('silent-tradition-flaw', 'Silent Tradition', 'flaw', 'Minor', 'Supernatural', 1646, 'She cannot use the incantation casting method. Not with Rarefied Tradition.'),
-  v('unstable-magic-flaw', 'Unstable Magic', 'flaw', 'Minor', 'Supernatural', 1650, 'What she makes in the kitchen (potions, fetishes) stops working after a year and a day.'),
-  v('poorly-trained-folk-witch-flaw', 'Poorly Trained Folk Witch', 'flaw', 'Minor', 'General', 1654, '−50 experience points to spend during apprenticeship.'),
+  v('folk-witch', 'Folk Witch', 'virtue', 'Free', 'Social Status', 1598, 'Trained as a folk witch: she brews potions and works in her kitchen, uses the folk witch casting methods with her Supernatural Abilities and has their Magical Defenses, and belongs to a coven that meets at sabbats. Not supported by a covenant, she spends two seasons a year supporting herself, usually with magical services to her community. Compatible with many other Social Statuses, and with Wealthy and Poor.'),
+  v('flawed-folk-witch-gift-opening', 'Flawed Folk Witch Gift Opening', 'flaw', 'Minor', 'Hermetic', 1603, 'One of the seven folk witch Abilities is not favored and cannot be learned at character creation; learned later, as any Supernatural Ability, it takes −1 on all its totals. Gifted folk witches only; may be taken for several Abilities.'),
+  v('witch-cursing', 'Cursing (Folk Witch)', 'virtue', 'Major', 'Supernatural', 1609, 'The folk witch can cast curses on other characters: a score of 1 in the Supernatural Ability Cursing (Folk Witch), worked through a curse fetish or a potion.'),
+  v('witch-healing', 'Healing (Folk Witch)', 'virtue', 'Major', 'Supernatural', 1615, 'The folk witch can heal characters: a score of 1 in the Supernatural Ability Healing (Folk Witch), by incantation or potion, at a cost in Corpus vis.'),
+  v('life-linked-folk-witch-magic', 'Life-Linked Folk Witch Magic', 'virtue', 'Major', 'Supernatural', 1621, 'The folk witch may spend Fatigue levels to boost her Casting Total: +5 for each.'),
+  v('animal-healer', 'Animal Healer', 'virtue', 'Minor', 'Supernatural', 1627, 'A score of 1 in the Supernatural Ability Animal Healing, which works as Healing on animals (with Animal vis). Potions can be made with it.'),
+  v('concentrated-potions', 'Concentrated Potions', 'virtue', 'Minor', 'Supernatural', 1633, 'Up to four times Folk Witch Magic Theory in vis in a season of brewing potions, double the usual.'),
+  v('expert-potion-brewer', 'Expert Potion Brewer', 'virtue', 'Minor', 'Supernatural', 1639, 'The Supernatural Ability counts double in the Lab Total for brewing potions, raising the Brew Potency.'),
+  v('witch-flight', 'Flight (Folk Witch)', 'virtue', 'Minor', 'Supernatural', 1645, 'The folk witch can fly: a score of 1 in the Supernatural Ability Flight (Folk Witch).'),
+  v('painless-moon', 'Painless Moon', 'virtue', 'Minor', 'Supernatural', 1651, 'No Medium Wound during each month of the Witch Moon.'),
+  v('well-trained-folk-witch', 'Well-Trained Folk Witch', 'virtue', 'Minor', 'General', 1657, '+50 experience points to spend during apprenticeship. May be taken several times.'),
+  v('primitive-tradition-flaw', 'Primitive Tradition', 'flaw', 'Major', 'Supernatural', 1663, 'The folk witch cannot brew potions.'),
+  v('rarefied-tradition-flaw', 'Rarefied Tradition', 'flaw', 'Major', 'Supernatural', 1669, 'She uses her Supernatural Abilities only through potions she brews and drinks, never by incantation or fetish.'),
+  v('harsh-moon-flaw', 'Harsh Moon', 'flaw', 'Minor', 'Supernatural', 1675, 'A Heavy Wound, not a Medium one, during each month of the Witch Moon.'),
+  v('short-ranged-curses-flaw', 'Short-Ranged Curses', 'flaw', 'Minor', 'Supernatural', 1681, 'Her curses work only while the fetish is within 100 yards of the target: disease, aging and miscarriage strike when the target comes in range; the lasting curses cease out of range and resume (penetrating again) in it.'),
+  v('silent-tradition-flaw', 'Silent Tradition', 'flaw', 'Minor', 'Supernatural', 1687, 'She cannot use the incantation casting method. Not with Rarefied Tradition.'),
+  v('unstable-magic-flaw', 'Unstable Magic', 'flaw', 'Minor', 'Supernatural', 1693, 'What she makes in the kitchen (potions, fetishes) stops working after a year and a day.'),
+  v('poorly-trained-folk-witch-flaw', 'Poorly Trained Folk Witch', 'flaw', 'Minor', 'General', 1699, '−50 experience points to spend during apprenticeship.'),
 ];
 
 export function folkWitchVirtueDefs(existing: Set<string>): VirtueFlawDef[] {
@@ -77,14 +77,17 @@ export const WITCH_FETISHES: Record<string, { name: string; vis: string }> = {
   shapeshifter: { name: 'a knitted animal skin', vis: 'Animal' },
 };
 
+// each power at its own heading (HMRE, Folk Witch Powers); Animal Healing is described under the Virtue that gives it
+const WITCH_POWER_SOURCE: Record<string, SourceRef> = { 'witch-cursing': src(1771), 'witch-flight': src(1811), 'witch-healing': src(1821), 'animal-healing': { ...src(1627), group: 'Animal Healer' } };
+
 const FOLK_ABILITIES: AbilityDef[] = [
   {
-    id: 'folk-witch-magic-theory', name: 'Folk Witch Magic Theory', type: 'Arcane', restricted: false, specialties: ['potions', 'fetishes', 'curses', 'vis'], source: src(1882),
+    id: 'folk-witch-magic-theory', name: 'Folk Witch Magic Theory', type: 'Arcane', restricted: false, specialties: ['potions', 'fetishes', 'curses', 'vis'], source: { ...src(1876), group: 'Witch’s Kitchen' },
     text: 'The technical lore of folk witch magic (Hedge Magic), used in the kitchen as Magic Theory is in a laboratory: Lab Total = Supernatural Ability + Intelligence + Folk Witch Magic Theory + aura. A brew makes this many doses; a season uses up to twice it in vis (four times with Concentrated Potions). Anyone may be taught it.',
   },
   ...WITCH_POWERS.filter((p) => p.id.startsWith('witch-') || p.id === 'animal-healing').map(
     (p): AbilityDef => ({
-      id: p.id, name: p.id === 'animal-healing' ? 'Animal Healing' : `${p.name} (Folk Witch)`, type: 'Supernatural', restricted: true, specialties: p.id === 'witch-cursing' ? ['disease', 'emotion', 'a kind of curse'] : ['potions', p.methods[0]], source: src(1763),
+      id: p.id, name: p.id === 'animal-healing' ? 'Animal Healing' : `${p.name} (Folk Witch)`, type: 'Supernatural', restricted: true, specialties: p.id === 'witch-cursing' ? ['disease', 'emotion', 'a kind of curse'] : ['potions', p.methods[0]], source: WITCH_POWER_SOURCE[p.id],
       text: `Folk witch power (Hedge Magic). Casting Total: stress die + ${({ Com: 'Communication', Dex: 'Dexterity', Per: 'Perception', Sta: 'Stamina' } as const)[p.char]} + the Ability + aura, against an Ease Factor; Penetration: the total + the Penetration bonus − the Ease Factor. By ${p.methods.join(' or ')}. Vis: ${p.form}. ${p.text}`,
     }),
   ),

@@ -7,6 +7,9 @@ export interface SourceRef {
   line?: number;
   anchor?: string;
   page?: number;
+  /** The pointer is to the heading of a section that holds this one with others ("Faerie Powers"),
+   *  or that describes it under another name: that heading, as the book prints it (Batch F, item 3). */
+  group?: string;
 }
 
 export type Technique = 'Cr' | 'In' | 'Mu' | 'Pe' | 'Re';

@@ -27,16 +27,19 @@ export const gruagachArtName = (tf: GruagachArts) => `${GRUAGACH_TECHNIQUES.find
 
 export const GRUAGACH_ART_IDS = [...GRUAGACH_TECHNIQUES.map((t) => t.id), ...GRUAGACH_FORMS.map((f) => f.id)];
 
+/** Each gruagach Art at its own heading (Hedge Magic, Gruagach Arts), not at the Virtue of the same name. */
+const OWN_HEADING: Record<string, number> = { 'gruagach-give': 2965, 'gruagach-take': 2969, 'gruagach-blessing': 2975, 'gruagach-curse': 2979, 'gruagach-shape': 2983, 'gruagach-vision': 2987 };
+
 const GRUAGACH_ABILITIES: AbilityDef[] = [
   ...GRUAGACH_TECHNIQUES.map(
     (t): AbilityDef => ({
-      id: t.id, name: `${t.name} (Gruagach)`, type: 'Supernatural', restricted: true, specialties: ['a Form', 'spontaneous spells', 'tattoos'], source: src(2862),
+      id: t.id, name: `${t.name} (Gruagach)`, type: 'Supernatural', restricted: true, specialties: ['a Form', 'spontaneous spells', 'tattoos'], source: src(OWN_HEADING[t.id]),
       text: `Gruagach Technique (Hedge Magic): a Difficult Art, raised as an Ability. ${t.text} Casting Score: Technique + Form + Stamina + aura; Lab Total: Technique + Form + Intelligence + Pictish + aura. Arts are held by Pictish: 5 at Pictish 1, 15 at 2, 30 at 3.`,
     }),
   ),
   ...GRUAGACH_FORMS.map(
     (f): AbilityDef => ({
-      id: f.id, name: `${f.name} (Gruagach)`, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'spontaneous spells', 'tattoos'], source: src(2872),
+      id: f.id, name: `${f.name} (Gruagach)`, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'spontaneous spells', 'tattoos'], source: src(OWN_HEADING[f.id]),
       text: `Gruagach Form (Hedge Magic): opens at 0 and rises as an Art. ${f.text}`,
     }),
   ),

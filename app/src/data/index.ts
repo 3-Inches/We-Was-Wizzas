@@ -74,7 +74,7 @@ const RAW_ABILITIES = [...BOOK_ABILITIES, ...tribunalAbilityDefs(BOOK_ABILITY_ID
   .filter((a) => !ABILITY_ALIASES[a.id])
   .map((a) => {
     const others = BOOK_ABILITIES.filter((b) => ABILITY_ALIASES[b.id] === a.id);
-    return others.length ? { ...a, alsoIn: [...(a.alsoIn ?? []), ...others.map((b) => b.source)] } : a;
+    return others.length ? { ...a, alsoIn: [...(a.alsoIn ?? []), ...others.map((b) => (b.name === a.name ? b.source : { ...b.source, group: b.name }))] } : a;
   });
 // the extractor took a few enchanted-item headings for spells ("Invested 2 Herbam vis, took 1 season to enchant");
 // some books set spell names in capitals, shown here in title case

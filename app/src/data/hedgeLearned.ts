@@ -29,21 +29,24 @@ export const learnedArtName = (tf: LearnedArts) => `${LEARNED_TECHNIQUES.find((t
 /** The Ability ids of the six Arts. */
 export const LEARNED_ART_IDS = [...LEARNED_TECHNIQUES.map((t) => t.id), ...LEARNED_FORMS.map((f) => f.id)];
 
+/** Each Art at its own heading (Hedge Magic, The Arts), not at the Virtue of the same name. */
+const OWN_HEADING: Record<string, number> = { tueor: 4406, succurro: 4415, vulnero: 4422, fortunam: 4431, magicam: 4436, salutem: 4441 };
+
 const LEARNED_ABILITIES: AbilityDef[] = [
   ...LEARNED_TECHNIQUES.map(
     (t): AbilityDef => ({
-      id: t.id, name: t.name, type: 'Supernatural', restricted: true, specialties: ['a Form', 'charms', 'amulets'], source: src(4404),
+      id: t.id, name: t.name, type: 'Supernatural', restricted: true, specialties: ['a Form', 'charms', 'amulets'], source: src(OWN_HEADING[t.id]),
       text: `Learned Magician Technique (Hedge Magic): a Difficult Art, bought and raised as an Ability. ${t.text} Casting Score: Technique + Form + Communication + aura; Lab Total: Technique + Form + Intelligence + Artes Liberales + aura. Vis: ${t.vis}. Magic Defense: ${t.defense}.`,
     }),
   ),
   ...LEARNED_FORMS.map(
     (f): AbilityDef => ({
-      id: f.id, name: f.name, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'charms', 'amulets'], source: src(4420),
+      id: f.id, name: f.name, type: 'Supernatural', restricted: true, asArt: true, specialties: ['a Technique', 'charms', 'amulets'], source: src(OWN_HEADING[f.id]),
       text: `Learned Magician Form (Hedge Magic): opens at 0 and rises as an Art. ${f.text} Vis: ${f.vis}. Magic Defense: ${f.defense}.`,
     }),
   ),
   {
-    id: 'mythic-alchemy', name: 'Mythic Alchemy', type: 'Supernatural', restricted: true, specialties: ['metals', 'reagents', 'vis extraction'], source: src(4182),
+    id: 'mythic-alchemy', name: 'Mythic Alchemy', type: 'Supernatural', restricted: true, specialties: ['metals', 'reagents', 'vis extraction'], source: src(4167),
     text: 'Mythic Alchemy (Hedge Magic): truly transmutes matter, always in a season in an alchemical laboratory. Its score adds to the Lab Total (Intelligence + Philosophiae) for alchemical reagents (Art & Academe), and it opens reagents others cannot make. A learned magician with it extracts vis as a magus does, with the Succurro Magicam Lab Total, and Mythic Alchemy in place of Magic Theory for the pawns a season. It can prepare a craftsman’s raw materials, lowering the Ease Factor of superior goods (City & Guild).',
   },
 ];
