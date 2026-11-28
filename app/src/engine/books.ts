@@ -314,6 +314,20 @@ export function unreadableBooks(c: Character, d: DerivedCharacter, data: GameDat
   });
 }
 
+/**
+ * The line that says which books are not offered for want of a language or an alphabet, said once
+ * (Found F9): with no Artes Liberales the character reads no book at all, "which requires a score in
+ * Artes Liberales" (DE line 16191), so the library is not listed; otherwise the books are grouped by
+ * what they need.
+ */
+export function notOfferedLine(d: DerivedCharacter, unreadable: { book: LibraryBook; needs: string }[]): string | undefined {
+  if (!unreadable.length) return undefined;
+  if (score(d, 'artes-liberales') < 1) return 'Cannot read any book: needs Artes Liberales 1';
+  const byNeed = new Map<string, string[]>();
+  for (const u of unreadable) byNeed.set(u.needs, [...(byNeed.get(u.needs) ?? []), u.book.title]);
+  return `Not offered: ${[...byNeed].map(([needs, titles]) => `${titles.join(', ')} (${titles.length > 1 ? 'need' : 'needs'} ${needs})`).join('; ')}`;
+}
+
 /** The standing activity's target for reading a book: the Art, or the character's own Ability, begun at 0 when they have none. */
 export function bookTarget(c: Character, data: GameData, b: LibraryBook, begin: boolean): string | undefined {
   if (b.subjectType === 'art') return `art:${b.subject}`;

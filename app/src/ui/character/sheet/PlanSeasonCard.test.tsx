@@ -9,11 +9,14 @@ import { MemoryRouter } from 'react-router-dom';
 import { addVirtue, ensureAbility, newCharacter } from '../../../engine/character/factory';
 import { newCovenant } from '../../../engine/covenant';
 import { unlogSeason } from '../../../engine/unlog';
-import type { Character, Covenant, LibraryBook } from '../../../engine/types';
+import { DEFAULT_HOUSE_RULES, type Character, type Covenant, type LibraryBook } from '../../../engine/types';
+import { notOfferedLine } from '../../../engine/books';
+import { deriveCharacter } from '../../../engine/character/derive';
 import { gameDataFor } from '../../../store/hooks';
 import { newSaga, useStore } from '../../../store/store';
 import { useCharEditor } from '../useChar';
 import { PlanSeasonCard } from './PlanSeasonCard';
+import { StandingEditor } from '../StandingEditor';
 
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -205,5 +208,40 @@ describe('a book on an Ability the character has not begun, in Plan a season', (
     await draw(c, cov);
     expect([...el!.querySelectorAll('option')].some((o) => /Ars Grammatica/.test(o.textContent ?? ''))).toBe(false);
     expect(el!.textContent).toMatch(/Not offered: Ars Grammatica \(needs Latin/);
+  });
+
+  it('with no Artes Liberales says once that no book can be read, and does not list the library (Found F9)', async () => {
+    const c = companion({ clerk: true });
+    c.abilities = c.abilities.filter((a) => a.abilityId !== 'artes-liberales');
+    const cov = newCovenant('x', 1220);
+    cov.library = [latinSumma('German'), { ...latinSumma('German'), uid: 'b-2', title: 'Ars Minor' }];
+    await draw(c, cov);
+    expect(el!.textContent).toContain('Cannot read any book: needs Artes Liberales 1.');
+    expect(el!.textContent).not.toMatch(/Not offered/);
+    expect(el!.textContent).not.toMatch(/Ars Minor/);
+  });
+
+  it('the standing activity Read says it once too (the Seasons planner’s rows)', async () => {
+    const c = companion({ clerk: true });
+    c.abilities = c.abilities.filter((a) => a.abilityId !== 'artes-liberales');
+    const saga = newSaga('x');
+    c.sagaId = saga.id;
+    useStore.setState({ sagas: { [saga.id]: saga }, characters: { [c.id]: c }, covenants: {} });
+    const d = deriveCharacter(c, gameDataFor(saga), DEFAULT_HOUSE_RULES);
+    const library = [latinSumma('German'), { ...latinSumma('German'), uid: 'b-2', title: 'Ars Minor' }];
+    el = document.createElement('div');
+    document.body.appendChild(el);
+    root = createRoot(el);
+    await act(async () => root!.render(<MemoryRouter><StandingEditor c={c} d={d} year={1220} onChange={() => {}} value={{ kind: 'read', bookUid: '', target: '' }} library={library} /></MemoryRouter>));
+    expect(el.textContent).toContain('Cannot read any book: needs Artes Liberales 1.');
+    expect(el.textContent).not.toMatch(/Ars Minor/);
+  });
+
+  it('names books that need the same once, together', () => {
+    const c = companion({ clerk: true });
+    const d = deriveCharacter(c, gameDataFor(newSaga('x')), DEFAULT_HOUSE_RULES);
+    const b = (title: string, language: string) => ({ ...latinSumma(language), uid: title, title });
+    expect(notOfferedLine(d, [{ book: b('A', 'Greek'), needs: 'Greek 4 or more' }, { book: b('B', 'Greek'), needs: 'Greek 4 or more' }, { book: b('C', 'Arabic'), needs: 'Arabic 4 or more' }])).toBe('Not offered: A, B (need Greek 4 or more); C (needs Arabic 4 or more)');
+    expect(notOfferedLine(d, [])).toBeUndefined();
   });
 });

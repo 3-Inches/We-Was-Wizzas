@@ -6,7 +6,7 @@ import { uid } from '../../../util/id';
 import { R } from '../../routes';
 import { Link } from 'react-router-dom';
 import { bestLesson, teachableSubjects } from '../../../engine/teaching';
-import { bookAbility, studyProblem, unreadableBooks } from '../../../engine/books';
+import { bookAbility, notOfferedLine, studyProblem, unreadableBooks } from '../../../engine/books';
 import { abilityDisplayName, deriveCharacter } from '../../../engine/character/derive';
 import { specAbilities, specChar, specHighest } from '../../../engine/covenantRules';
 import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art } from '../../../data';
@@ -606,7 +606,7 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
       </div>
       {trainingNotAllowed && <p className="small bad-text">Arts cannot be learned by training (DE p.377); use teaching instead.</p>}
       {visNotAllowed && <p className="small bad-text">Raw vis teaches a Hermetic Art; choose an Art as the subject.</p>}
-      {(kind === 'summa' || kind === 'tractatus') && unreadable.length > 0 && <p className="small muted">Not offered: {unreadable.map((u) => `${u.book.title} (needs ${u.needs})`).join('; ')}. A book is read only in a language of 4 or more, with Artes Liberales for its alphabet (DE, Reading Books).</p>}
+      {(kind === 'summa' || kind === 'tractatus') && unreadable.length > 0 && <p className="small muted">{notOfferedLine(d, unreadable)}. A book is read only in a language of 4 or more, with Artes Liberales for its alphabet (DE, Reading Books).</p>}
       {tractatusRead && <p className="small warn-text">This character has already read this tractatus; a tractatus gives experience only once.</p>}
       {res && (
         <div className="row" style={{ marginTop: 8 }}>

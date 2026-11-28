@@ -10,7 +10,7 @@ import { teacherQuality } from '../../engine/covenantRules';
 import { bestLesson, lessonStudy, maxStudents, teachableSubjects, type Learner } from '../../engine/teaching';
 import { cannotHelp, helpValue } from '../../engine/labHelp';
 import { learnsArts } from '../../engine/firstChoice';
-import { bookAbility, studyProblem, unreadableBooks } from '../../engine/books';
+import { bookAbility, notOfferedLine, studyProblem, unreadableBooks } from '../../engine/books';
 import { useGameData, useSaga } from '../../store/hooks';
 
 const KINDS: { id: StandingActivity['kind']; label: string }[] = [
@@ -199,7 +199,7 @@ export function StandingEditor({ c, d, year, onChange, teachers = [], value, ext
           ))}
         </select>
       )}
-      {s.kind === 'read' && unreadable.length > 0 && <span className="small muted">Not offered: {unreadable.map((u) => `${u.book.title} (needs ${u.needs})`).join('; ')}.</span>}
+      {s.kind === 'read' && unreadable.length > 0 && <span className="small muted">{notOfferedLine(d, unreadable)}.</span>}
       {s.kind === 'priorities' && <span className="small muted">→ the first entry of {c.priorities?.length ? 'its' : 'a'} priority list that can be done (Season priorities)</span>}
       {s.kind === 'auto' && <span className="small muted">→ {extra ? (d.magicChar && d.magicChar.might > 0 && !c.creature?.familiarOf ? 'practice, unless its Might cancels it: then nothing' : 'practice of their best Ability') : `${describeStanding(c, d, resolved)}${!c.creature && (resolved.kind === 'practice' || (resolved.kind === 'lab' && !resolved.projectUid)) ? ', or the covenant’s best book or teacher if it teaches more' : ''}`}</span>}
     </span>
