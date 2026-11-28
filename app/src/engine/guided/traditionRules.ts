@@ -5,7 +5,7 @@
 // Realms of Power: Faerie, Pagan Traditions (line 7501).
 
 import type { CharType, GameData } from '../../data';
-import { folkWitchVirtueDefs } from '../../data/hedgeFolkWitch';
+import { HEDGE_DEFENSES, HEDGE_TRADITION_OWN } from '../../data/hedgeTraditionVirtues';
 import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
 import type { Character, GuidedState } from '../types';
 
@@ -31,12 +31,14 @@ interface TraditionDef {
   opens?: string[];
 }
 
-const FOLK_OWN = folkWitchVirtueDefs(new Set()).map((d) => d.id);
-const DEFENSES = ['greater-magical-defenses', 'no-magical-defenses-flaw', 'known-hedge-wizard-flaw'];
+// each tradition's own Virtues, from the list the rules check reads too
+// and the Magical Defenses of the three traditions that have them: Greater Magical Defenses "is only useful for a
+// hedge wizard whose tradition includes Magical Defenses" (HMRE line 698), and the vitkir's has none
+const own = (t: keyof typeof HEDGE_TRADITION_OWN) => [...HEDGE_TRADITION_OWN[t].ids, ...(t === 'vitki' ? ['known-hedge-wizard-flaw'] : HEDGE_DEFENSES)];
 
 export const TRADITIONS: TraditionDef[] = [
   {
-    id: 'witch', member: 'a folk witch', status: 'folk-witch', gift: 'either', lore: 'Folk Witches', own: [...FOLK_OWN, ...DEFENSES],
+    id: 'witch', member: 'a folk witch', status: 'folk-witch', gift: 'either', lore: 'Folk Witches', own: own('witch'),
     // "seven favored Supernatural Abilities ... you may freely spend experience points on these" (HMRE line 1580)
     opens: ['witch-healing', 'witch-cursing', 'witch-flight', 'animal-ken', 'second-sight', 'dowsing', 'shapeshifter'],
     // HMRE line 1709: the Hermetic Virtues and Flaws suitable for a Gifted folk witch
@@ -50,7 +52,7 @@ export const TRADITIONS: TraditionDef[] = [
   {
     id: 'gruagach', member: 'a gruagach', status: 'gruagach', gift: 'either', lore: 'Gruagachan',
     opens: ['give', 'take', 'blessing', 'curse', 'shape', 'vision'],
-    own: ['gruagach', 'gruagach-master', 'cailleach-magic', 'external-soul', 'give', 'take', 'blessing', 'curse', 'shape', 'vision', 'flexible-gruagach-magic', 'tattoo-mastery', 'well-trained-gruagach', 'no-tattoo-magic-flaw', 'transformation-prone-flaw', 'inflexible-magic-flaw', 'poorly-trained-gruagach-flaw', 'weak-tattoo-magic-flaw', 'incompatible-hedge-arts-flaw', ...DEFENSES],
+    own: own('gruagach'),
     // HMRE line 2945: "Gruagach may only take Hermetic Virtues or Flaws on the above list"
     hermetic: [
       'flawless-magic', 'gentle-gift', 'major-magical-focus', 'secondary-insight',
@@ -63,10 +65,7 @@ export const TRADITIONS: TraditionDef[] = [
     id: 'learned', member: 'a learned magician', status: 'mathematicus-of-bologna', gift: 'either', lore: 'Mathematici of Bologna',
     // "opens the apprentice's Gift to the powers of the learned magician's tradition — Tueor, Succurro, Vulnero, Fortunam, Magicam, and Salutem — and the Entreat the Powers Virtue" (HMRE line 4123)
     opens: ['tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem', 'entreat-the-powers'],
-    own: [
-      'mathematicus-of-bologna', 'entreat-the-powers', 'entreat-the-realm-powers', 'strong-amulet-magic', 'strong-verbal-charms', 'tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem', 'skilled-master',
-      'charm-magician-flaw', 'intervention-prone-flaw', 'laboratory-magician-flaw', 'weak-verbal-charms-flaw', 'no-chartae-making-flaw', 'no-text-casting-flaw', 'poorly-trained-magician-flaw', 'weak-amulets-flaw', 'weak-chartae-flaw', 'incompatible-hedge-arts-flaw', ...DEFENSES,
-    ],
+    own: own('learned'),
     // HMRE line 4384
     hermetic: [
       'gentle-gift', 'major-magical-focus', 'secondary-insight',
@@ -77,7 +76,7 @@ export const TRADITIONS: TraditionDef[] = [
   },
   {
     id: 'vitki', member: 'a vitki', status: 'vitki', gift: 'always',
-    own: ['vitki', 'deft-rune', 'mastered-rune', 'minor-rune-focus', 'major-rune-focus', 'nameless-runes', 'secret-runes', 'minor-magical-deficiency-flaw', 'major-magical-deficiency-flaw', 'natt-thel-prone-flaw', 'short-lived-runes-flaw', 'known-hedge-wizard-flaw'],
+    own: own('vitki'),
     // HMRE line 6176: the Hermetic Virtues and Flaws a vitki may take, as Supernatural ones for rune magic
     hermetic: [
       'gentle-gift', 'secondary-insight', 'cyclic-magic', 'fast-caster', 'free-study', 'inoffensive-to-animals', 'inventive-genius', 'life-boost', 'personal-vis-source', 'side-effect', 'special-circumstances',

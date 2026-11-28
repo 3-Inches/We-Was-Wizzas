@@ -198,13 +198,12 @@ describe('a book on an Ability the character has not begun, in Plan a season', (
     expect(covs[0].library[0].readBy ?? []).toEqual([]);
   });
 
-  it('says so when the reader cannot read the book’s language, and leaves it to the storyguide', async () => {
+  it('does not offer a book in a language the reader cannot read, and says why (DE line 16191; the owner chose blocking)', async () => {
     const c = companion({ clerk: true });
     const cov = newCovenant('x', 1220);
     cov.library = [latinSumma('Latin')];
     await draw(c, cov);
-    await choose(selectWith('Ars Grammatica'), 'b-latin');
-    expect(el!.textContent).toMatch(/Gerda cannot read Ars Grammatica: it needs Latin 4 or more/);
-    expect(button(/^Log season/).disabled).toBe(false);
+    expect([...el!.querySelectorAll('option')].some((o) => /Ars Grammatica/.test(o.textContent ?? ''))).toBe(false);
+    expect(el!.textContent).toMatch(/Not offered: Ars Grammatica \(needs Latin/);
   });
 });

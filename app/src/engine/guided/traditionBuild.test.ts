@@ -17,8 +17,10 @@ import { LEARNED_FORMS, LEARNED_TECHNIQUES } from '../../data/hedgeLearned';
 import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
 import { TRADITIONS, type Tradition } from './traditions';
 import { CULT_MYSTERIES, mysteryLoreOf } from './buildMysteries';
+import { HOLY_VIRTUES } from './buildVirtues';
 import { evaluate } from './score';
 import { newCharacter } from '../character/factory';
+import { validateCharacter } from '../character/validate';
 import { autoBuild, resetChoices } from './autobuild';
 import { addSympathyTraits, settleAntipathy } from './traditions';
 import { rolesFor } from '../generate/roles';
@@ -271,6 +273,20 @@ describe('Quick build: a Mystery initiate (HoH: Mystery Cults line 249; The Myst
     }
   }, 120_000);
 
+  it('the second method of Hermetic divination is a Minor Virtue (TMRE line 2493), and the rules check allows it', () => {
+    for (const seed of [1, 7, 13]) {
+      const g = make('magus-mystery', seed, { variety: 'focused', answers: { 'vf:hermetic-dream-interpreter': 10, 'vf:divination-and-augury': 10 } });
+      const pair = g.c.virtues.filter((v) => ['divination-and-augury', 'hermetic-dream-interpreter'].includes(v.defId)).map((v) => v.size).sort();
+      expect(pair, `seed ${seed}`).toEqual(['Major', 'Minor']);
+      expect(problems(g), `seed ${seed}`).toEqual([]);
+    }
+    // both Minor is not allowed: only the second of the pair is
+    const g = make('magus-mystery', 1, { variety: 'focused', answers: { 'vf:hermetic-dream-interpreter': 10, 'vf:divination-and-augury': 10 } });
+    for (const v of g.c.virtues) if (['divination-and-augury', 'hermetic-dream-interpreter'].includes(v.defId)) v.size = 'Minor';
+    const d = deriveCharacter(g.c, data, DEFAULT_HOUSE_RULES);
+    expect(validateCharacter(d, data, DEFAULT_HOUSE_RULES).filter((i) => i.severity !== 'info').length).toBeGreaterThan(0);
+  }, 120_000);
+
   it('a magus made at random is no initiate unless the role asks: the Mystery question is not answered by chance', () => {
     for (const role of ['magus-scholar', 'magus-faerie', 'magus-mystic', 'magus-lab']) {
       for (let seed = 1; seed <= 12; seed++) {
@@ -304,6 +320,17 @@ describe('Quick build in a saga without the books', () => {
   }, 120_000);
 });
 
+describe('one list of each hedge tradition’s Virtues (Batch E)', () => {
+  it('the rules check knows every Virtue Quick build keeps to a tradition, the vitkir’s runes among them, and not Fetch', () => {
+    expect(data.vfById.get('nameless-runes')?.tradition).toBe('Vitkir (Hedge Magic)');
+    expect(data.vfById.get('secret-runes')?.tradition).toBe('Vitkir (Hedge Magic)');
+    // "other characters may also have access to a fetch" (HMRE line 2879)
+    expect(data.vfById.get('fetch')?.tradition).toBeUndefined();
+    for (const t of TRADITIONS.filter((x) => x.id !== 'faerie'))
+      for (const id of t.own) if (data.vfById.has(id)) expect(data.vfById.get(id)!.tradition, `${t.id}: ${id}`).toBeTruthy();
+  });
+});
+
 describe('Quick build, Plain, with a role picked by hand', () => {
   it('still brings what the role requires, as the Plain choice says', () => {
     const plain = (role: string) => make(role, 5, { coreOnly: true });
@@ -314,7 +341,10 @@ describe('Quick build, Plain, with a role picked by hand', () => {
     expect(isFaerieWizard(plain('faerie-wizard').d), 'faerie wizard').toBe(true);
     const initiate = make('magus-mystery', 5, { coreOnly: true, house: 'tremere' });
     expect(has(initiate.c, 'cabal-legacy-flaw'), 'initiate').toBe(true);
-    for (const g of [vitki, witch, initiate]) expect(problems(g), g.c.creation.concept).toEqual([]);
+    // the holy wonder-worker keeps a Holy Method and a Power (RoP: The Divine), as the role says
+    const holy = plain('holy-worker');
+    expect(holy.c.virtues.some((v) => HOLY_VIRTUES.has(v.defId)), 'holy worker').toBe(true);
+    for (const g of [vitki, witch, initiate, holy]) expect(problems(g), g.c.creation.concept).toEqual([]);
   }, 120_000);
 });
 
@@ -389,4 +419,17 @@ describe('the guided build’s shortlist', () => {
     const none = evaluate({ answers: {}, declined: [] }, ctx);
     for (const id of ['vitki', 'give', 'folk-witch', 'mathematicus-of-bologna', 'evocation', 'summoning', 'nightwalker']) expect(none.gated.has(id), id).toBe(true);
   });
+});
+
+describe('Quick build spends every Virtue’s experience pool (Batch D)', () => {
+  it('leaves no pool of a Virtue or an apprenticeship at 0: the scholar’s Educated, the Lone Redcap’s 300', () => {
+    const empty: string[] = [];
+    for (const role of ['scholar', 'cunning-folk', 'faerie-wizard']) {
+      for (const seed of [1, 2, 3, 7, 13, 16, 20, 30]) {
+        const g = make(role, seed);
+        for (const b of g.d.budgets.filter((x) => x.kind !== 'art+ability' && x.total > 0 && x.spent === 0 && !['native', 'childhood'].includes(x.id))) empty.push(`${role} (seed ${seed}): ${b.label} 0 of ${b.total}`);
+      }
+    }
+    expect(empty).toEqual([]);
+  }, 240_000);
 });

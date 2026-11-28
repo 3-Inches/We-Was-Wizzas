@@ -583,7 +583,7 @@ export const MECHANICS: Record<string, Mechanics> = {
     ]),
   ),
   ceremony: { tags: ['supernatural', 'realm:faerie'], effects: [{ type: 'grantAbility', ability: 'ceremony', score: 1 }] },
-  'faerie-sympathy': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A positive Sympathy Trait: +1 as a Minor Virtue, +3 as a Major, raised by experience up to its first score + the Warping Score. Add it on the sheet’s Sympathy Traits card. The Warping Score may be raised freely at creation.')] },
+  'faerie-sympathy': { param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A positive Sympathy Trait: +1 as a Minor Virtue, +3 as a Major, raised by experience up to its first score + the Warping Score. Add it on the sheet’s Sympathy Traits card. The Warping Score may be raised freely at creation.')] },
   'faerie-antipathy-flaw': { repeatable: true, param: P.text('Sympathy Trait (a subject, narrower than a Form)'), tags: ['realm:faerie'], effects: [note('A negative Sympathy Trait: −1 as a Minor Flaw, −3 as a Major, less the Warping Score at the end of creation. It comes off any Ability it applies to, and adds a botch die.')] },
   'faerie-background': { tags: ['realm:faerie'], effects: [note('Two Sympathy Traits, one positive and one negative, each as high as the Warping Score. The Warping Score may be raised freely at creation.')] },
 

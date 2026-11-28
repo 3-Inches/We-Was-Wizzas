@@ -7,7 +7,9 @@
 // Specializations). Books are written, copied and glossed season by season; the covenant's scribes
 // copy books in their working seasons (Covenants ch.7, Scriptoria).
 
-import { ART_NAMES, type Art, type GameData } from '../data';
+import { ARTS, ART_NAMES, abilityTypeOf, type Art, type GameData } from '../data';
+import { learnsArts } from './firstChoice';
+import { mayLearn } from './teaching';
 import type { DerivedCharacter } from './character/derive';
 import { applySeason, newSeasonEntry } from './longterm';
 import { takeVis } from './vis';
@@ -251,6 +253,76 @@ export function readProblems(c: Character, d: DerivedCharacter, b: Pick<LibraryB
   const alphabets = Math.max(1, langs.length);
   if (score(d, 'artes-liberales') < alphabets) out.push(`Artes Liberales ${alphabets} (to read${alphabets > 1 ? ` ${alphabets} alphabets` : ''})`);
   return out;
+}
+
+/**
+ * The character's own Ability a book is on: the same Ability, and the same one of it (Latin, not Greek).
+ * A book that names no one of an Ability taken as one thing (a Profession, a Lore: old saves' covenant
+ * rolls and generated summae carry no name) is on the character's own only when they have just one of it.
+ */
+export function bookAbility(c: Pick<Character, 'abilities'>, data: GameData, b: Pick<LibraryBook, 'subject' | 'param' | 'subjectType'>): Character['abilities'][number] | undefined {
+  if (b.subjectType !== 'ability') return undefined;
+  const named = (x?: string) => (x ?? '').trim().toLowerCase();
+  const same = c.abilities.filter((a) => a.abilityId === b.subject);
+  if (b.param) return same.find((a) => named(a.param) === named(b.param));
+  if (unnamedBook(data, b)) return same.length === 1 ? same[0] : undefined;
+  return same[0];
+}
+
+/** A book that names no one of an Ability taken as one thing (Profession, a Lore): it begins none. */
+function unnamedBook(data: GameData, b: Pick<LibraryBook, 'subject' | 'param'>): boolean {
+  return !b.param && !!data.abilityById.get(b.subject)?.parameterized;
+}
+
+/**
+ * Why this character cannot study from a book, or nothing if they can. A summa or tractatus, not corrupt;
+ * on an Art, for one who learns the Arts; on an Ability they have, or may begin (Academic, Arcane and
+ * Martial need a Virtue: DE, Abilities), and "A character can only study a Supernatural Ability from a
+ * book if he already has a score of at least one in that Ability" (DE line 16203); and in a language and
+ * alphabet they read (DE line 16191, `readProblems`). One rule for Plan a season, the standing activity
+ * Read and the priorities' choice of a book.
+ */
+export function studyProblem(c: Character, d: DerivedCharacter, data: GameData, b: LibraryBook): string | undefined {
+  if (b.kind !== 'summa' && b.kind !== 'tractatus') return 'it is not a summa or a tractatus';
+  if (b.corrupt) return 'the copy is corrupt';
+  if (b.subjectType === 'art') {
+    if (!learnsArts(d)) return 'only one who learns the Arts studies them';
+    if (!(ARTS as readonly string[]).includes(b.subject)) return 'it is on no Art';
+  } else if (b.subjectType === 'ability') {
+    const mine = bookAbility(c, data, b);
+    if (abilityTypeOf(data, b.subject) === 'Supernatural') {
+      if (!mine || (d.abilityByUid.get(mine.uid)?.score ?? 0) < 1) return 'a Supernatural Ability is studied from a book only by one with a score in it (DE)';
+    } else if (!mine) {
+      if (unnamedBook(data, b)) return 'it names no one of the Ability, and the character has none, or several, of it';
+      const why = mayLearn({ c, d }, data, b.subject, b.param);
+      if (why) return why;
+    }
+  } else return 'it is on no Art or Ability';
+  const read = readProblems(c, d, b);
+  if (read.length) return `reading it needs ${read.join(' and ')} (DE, Reading Books)`;
+  return undefined;
+}
+
+/** The books a character could study but for their language or alphabet: listed in one line where a book is chosen. */
+export function unreadableBooks(c: Character, d: DerivedCharacter, data: GameData, library: LibraryBook[]): { book: LibraryBook; needs: string }[] {
+  return library.flatMap((b) => {
+    const read = readProblems(c, d, b);
+    if (!read.length) return [];
+    // what stops it apart from reading: a copy that does not count, or a subject the character cannot study
+    const other = studyProblem(c, d, data, { ...b, language: '' });
+    return other && !other.startsWith('reading') ? [] : [{ book: b, needs: read.join(' and ') }];
+  });
+}
+
+/** The standing activity's target for reading a book: the Art, or the character's own Ability, begun at 0 when they have none. */
+export function bookTarget(c: Character, data: GameData, b: LibraryBook, begin: boolean): string | undefined {
+  if (b.subjectType === 'art') return `art:${b.subject}`;
+  const mine = bookAbility(c, data, b);
+  if (mine) return `ability:${mine.uid}`;
+  if (!begin) return undefined;
+  const ab = { uid: uid(), abilityId: b.subject, param: b.param, xp: {} };
+  c.abilities.push(ab);
+  return `ability:${ab.uid}`;
 }
 
 // ------------------------------------------------------------------------------ Copying

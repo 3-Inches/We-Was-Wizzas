@@ -4,11 +4,12 @@
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { newSaga } from '../store/store';
-import { ensureAbility, newCharacter } from './character/factory';
+import { addVirtue, ensureAbility, newCharacter } from './character/factory';
 import { deriveCharacter } from './character/derive';
 import { newCovenant } from './covenant';
-import { twilightAvoidance } from './longterm';
-import { livingTwilight } from './livingTwilight';
+import { newSeasonEntry, twilightAvoidance } from './longterm';
+import { TWILIGHT_TOLD, livingTwilight, twilightYear } from './livingTwilight';
+import { livingReactions } from './livingReactions';
 import { DEFAULT_ADVANCE, advanceSeason, seasonBusy } from './time';
 import { DEFAULT_HOUSE_RULES, type Character } from './types';
 import { gainWarping } from './warping';
@@ -129,17 +130,57 @@ describe('a living magus’s Twilight, rolled when the season ends', () => {
     expect(r.news[0].text).toMatch(/Final Twilight/);
   });
 
-  it('only Twilight follows for a living covenant’s people: nothing else waits on a Resolve list nobody reads', () => {
+  it('for a living covenant’s people the reaction is rolled as the season ends, not left in a Resolve list nobody reads', () => {
     const m = owing(0, 0);
     m.owed = [];
     expect(gainWarping(m, derive(m), { points: 2, why: 'from the lab', year: 1220, season: 'Spring', living: true })).toMatch(/the toolkit rolls it as the season ends/);
     expect(m.owed).toHaveLength(1);
     const w = newCharacter('companion', 's1');
     w.creation.finalized = true;
-    w.folkWitch = { witchMoon: undefined } as NonNullable<Character['folkWitch']>;
+    addVirtue(w, data, 'folk-witch', 'Free');
+    expect(gainWarping(w, derive(w), { points: 6, why: 'from the aura', year: 1220, season: 'Winter', living: true })).toMatch(/Witch Moon begins: the toolkit rolls it/);
+    expect(w.folkWitch?.witchMoon).toBeDefined();
+  });
+
+  it('a living folk witch’s Witch Moon is rolled at each month’s end: Stamina − Warping Score + stress die against 6 (HM, The Witch Moon)', () => {
+    const w = newCharacter('companion', 's1');
+    w.name = 'Agna';
+    w.creation.finalized = true;
+    addVirtue(w, data, 'folk-witch', 'Free');
     gainWarping(w, derive(w), { points: 6, why: 'from the aura', year: 1220, season: 'Winter', living: true });
-    expect(w.warpingPoints).toBe(6);
-    expect(w.owed ?? []).toEqual([]);
+    const before = w.warpingPoints;
+    // Stamina 0, Warping Score 1: a 9 passes the first month
+    const r = livingReactions(w, derive, 'cov', 1220, 'Winter', faces(9));
+    expect(w.folkWitch?.witchMoon).toBeUndefined();
+    expect(w.warpingPoints).toBe(before);
+    expect(r.news.map((n) => n.text).join(' ')).toMatch(/Agna came through the Witch Moon after 1 month/);
+    // a 2 fails each of the three months: a point a month
+    const v = newCharacter('companion', 's2');
+    v.creation.finalized = true;
+    addVirtue(v, data, 'folk-witch', 'Free');
+    gainWarping(v, derive(v), { points: 6, why: 'from the aura', year: 1220, season: 'Winter', living: true });
+    const b2 = v.warpingPoints;
+    livingReactions(v, derive, 'cov', 1220, 'Winter', faces(2, 2, 2));
+    expect(v.warpingPoints).toBe(b2 + 3);
+    expect(v.folkWitch?.witchMoon?.months).toBe(3);
+  });
+
+  it('a living vitki’s Nátt-thel and a Calling are rolled and settled, nothing left owed', () => {
+    const k = newCharacter('companion', 's3');
+    k.name = 'Hrafn';
+    k.warpingPoints = 5;
+    k.owed = [{ uid: 'n', kind: 'natt-thel', points: 2, text: 'x', year: 1220, season: 'Spring' }];
+    // stress 2 against 3 × Warping Score 1: lost; simple die 4 + 1 = 5, times 2 points
+    const r = livingReactions(k, derive, 'cov', 1220, 'Spring', faces(2, 4));
+    expect(k.owed).toBeUndefined();
+    expect(r.news.map((n) => n.text).join(' ')).toMatch(/Hrafn fell into Nátt-thel/);
+    const f = newCharacter('companion', 's4');
+    f.warpingPoints = 5;
+    f.owed = [{ uid: 'c', kind: 'calling', text: 'x', year: 1220, season: 'Spring' }];
+    const q = livingReactions(f, derive, 'cov', 1220, 'Spring', faces(9));
+    expect(f.owed).toBeUndefined();
+    expect(f.sympathy?.at(-1)?.score).toBe(1);
+    expect(q.lines.join(' ')).toMatch(/a good experience/);
   });
 });
 
@@ -162,6 +203,34 @@ describe('the clock rolls it for a living covenant’s magus, and not for the pl
     const { state, report } = advanceSeason(sagaOwing(true), data, opts);
     expect(state.characters[0].owed ?? []).toEqual([]);
     expect(report.lines.some((l) => /avoided Wizard’s Twilight/.test(l.text) && l.tribunal === state.covenants[0].id)).toBe(true);
+  });
+
+  it('a year spent wholly in Twilight is not aged: the body "is completely immune to … aging" (DE line 9806)', () => {
+    const year = (lost: boolean) => {
+      const x = sagaOwing(true);
+      x.saga.currentSeason = 'Winter';
+      const m = x.characters[0];
+      m.owed = [];
+      m.age = 40;
+      if (lost) for (const season of ['Spring', 'Summer', 'Autumn', 'Winter'] as const) m.seasonLog.push({ ...newSeasonEntry(1220, season, 'other', 'In Wizard’s Twilight.'), told: TWILIGHT_TOLD, applied: true });
+      return advanceSeason(x, data, { ...opts, rollAging: true });
+    };
+    const away = year(true);
+    expect(away.state.characters[0].age).toBe(40);
+    expect(away.report.lines.some((l) => /spent 1220 in Wizard’s Twilight, and did not age/.test(l.text))).toBe(true);
+    expect(year(false).state.characters[0].age).toBe(41);
+  });
+
+  it('a year away that begins after Spring still skips one aging roll: one for every four seasons in Twilight', () => {
+    const m = owing(0, 0);
+    for (const [y, season] of [[1220, 'Summer'], [1220, 'Autumn'], [1220, 'Winter'], [1221, 'Spring']] as const) m.seasonLog.push({ ...newSeasonEntry(y, season, 'other', 'In Wizard’s Twilight.'), told: TWILIGHT_TOLD, applied: true });
+    expect([twilightYear(m, 1220), twilightYear(m, 1221)]).toEqual([false, true]);
+  });
+
+  it('the news says a Virtue, Flaw or spell may have come of a Twilight, for the storyguide', () => {
+    const m = owing(2, 6);
+    const r = livingTwilight(m, derive, 0, 'cov', 1220, 'Spring', faces(0, 0, 5, 5, 5, 5));
+    expect(r.news.map((n) => n.text).join(' ')).toMatch(/A Virtue, Flaw or spell may have come of it/);
   });
 
   it('a player’s magus keeps it waiting in Resolve', () => {

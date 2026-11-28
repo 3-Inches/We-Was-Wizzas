@@ -270,3 +270,47 @@ export function unlogSeason(c: Character, entryUid: string, covs: Covenant[] = [
   c.seasonLog = c.seasonLog.filter((x) => x.uid !== entryUid);
   return { ok: true, covenants: changed };
 }
+
+/** The seasons logged with this one on other characters (a lesson's teacher and students, a lab's helpers): one `link`. */
+export function linkedSeasons(e: SeasonLogEntry, c: Character, troupe: Character[]): { who: Character; entry: SeasonLogEntry }[] {
+  if (!e.link) return [];
+  return troupe.filter((t) => t.id !== c.id).flatMap((t) => t.seasonLog.filter((x) => x.link === e.link).map((entry) => ({ who: t, entry })));
+}
+
+/**
+ * Whether a season can be unlogged with the seasons linked to it (owner.md, Decided, 19 November 2026:
+ * Unlog takes back a linked season with its own, and says whose). A linked one that cannot be unlogged
+ * holds this one too.
+ */
+export function canUnlogLinked(e: SeasonLogEntry, c: Character, troupe: Character[] = []): { ok: boolean; why?: string; stands?: string; with: string[] } {
+  const own = canUnlog(e, c, troupe);
+  const linked = linkedSeasons(e, c, troupe);
+  const names = linked.map((l) => l.who.name || 'another character');
+  if (!own.ok) return { ...own, with: names };
+  for (const l of linked) {
+    const can = canUnlog(l.entry, l.who, troupe);
+    if (!can.ok) return { ok: false, why: `It was logged with ${l.who.name || 'another character'}’s season, which cannot be unlogged yet: ${can.why}`, with: names };
+  }
+  const stands = [own.stands, ...linked.map((l) => canUnlog(l.entry, l.who, troupe).stands)].filter(Boolean).join(' ');
+  return { ok: true, with: names, ...(stands ? { stands } : {}) };
+}
+
+/**
+ * Unlog a season and the seasons linked to it on the other characters (changed in place: `troupe` holds
+ * the copies to change and save). Returns the characters changed, the covenants, and whose seasons went with it.
+ */
+export function unlogLinked(c: Character, entryUid: string, covs: Covenant[], troupe: Character[], o: { now?: { year: number; season: Season } } = {}): Unlogged & { characters: Character[]; with: string[] } {
+  const e = c.seasonLog.find((x) => x.uid === entryUid);
+  if (!e) return { ok: false, why: 'That season is not on the log.', covenants: [], characters: [], with: [] };
+  const can = canUnlogLinked(e, c, troupe);
+  if (!can.ok) return { ok: false, why: can.why, covenants: [], characters: [], with: can.with };
+  const linked = linkedSeasons(e, c, troupe);
+  const r = unlogSeason(c, entryUid, covs, { ...o, troupe });
+  if (!r.ok) return { ...r, characters: [], with: can.with };
+  const covenants = [...r.covenants];
+  for (const l of linked) {
+    const rr = unlogSeason(l.who, l.entry.uid, covs, { ...o, troupe });
+    for (const cv of rr.covenants) if (!covenants.includes(cv)) covenants.push(cv);
+  }
+  return { ok: true, covenants, characters: [c, ...linked.map((l) => l.who).filter((w, i, a) => a.indexOf(w) === i)], with: can.with };
+}

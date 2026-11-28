@@ -8,6 +8,7 @@
 
 import { CHARACTERISTICS, CHAR_NAMES, STATUS_CULTURES, abilityTypeOf, type GameData } from '../../data';
 import { LAB_ONLY_VF } from '../../data/restrictions';
+import { secondDivination } from '../hermeticMysteries';
 import type { Character, HouseRules } from '../types';
 import { VITKI_APPRENTICESHIP, canSpend, purchasedCharacteristic, sumAlloc, type DerivedCharacter } from './derive';
 import { creationSpellLimit } from '../magic';
@@ -278,7 +279,7 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     }
     const key = `${def.id}|${v.cv.param ?? ''}`;
     seen.set(key, (seen.get(key) ?? 0) + 1);
-    if (!def.sizes.includes(v.cv.size) && !v.cv.free) add({ id: `size-${v.cv.uid}`, code: 'size', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name} is normally ${def.sizes.join(' or ')}, taken as ${v.cv.size}.` });
+    if (!def.sizes.includes(v.cv.size) && !v.cv.free && !(v.cv.size === 'Minor' && secondDivination(c, def.id, v.cv.uid))) add({ id: `size-${v.cv.uid}`, code: 'size', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name} is normally ${def.sizes.join(' or ')}, taken as ${v.cv.size}.` });
     if (def.param && !def.param.optional && !v.cv.param) add({ id: `param-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name}: choose the ${def.param.label}.` });
     for (const p of vfProblems(d, data, def, v.cv)) add({ id: p.id, code: p.code, vf: v.cv.uid, other: p.other, needIndex: p.needIndex, severity: p.severity, step: 'virtues', message: p.message, ref: p.ref, fix: p.fix });
     // a Virtue or Flaw about an Ability the character cannot learn (Puissant Heartbeast outside House Bjornaer), unless it is what gives the Ability

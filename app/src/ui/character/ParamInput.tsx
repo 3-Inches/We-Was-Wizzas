@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, TECHNIQUES, type GameData, type ParamSpec } from '../../data';
+import { ARTS, ART_NAMES, CHARACTERISTICS, CHAR_NAMES, FORMS, PARAMETERIZED_ABILITIES, TECHNIQUES, type GameData, type ParamSpec } from '../../data';
 import { paramValues } from '../../engine/character/derive';
 
 /** The choice a Virtue or Flaw asks for: an Ability, Art, Characteristic, Realm or a listed option. */
@@ -7,6 +7,20 @@ export default function ParamInput(props: { spec: ParamSpec; value?: string; onC
   const { spec, value, onChange, data } = props;
   const choices = listChoices(spec, data);
   if (choices && spec.multiple) return <MultiChoice spec={spec} choices={choices} value={value} onChange={onChange} />;
+  // an Ability of a kind (Craft, Profession, Area Lore...) names the kind as well: each Craft is its own
+  // Ability, and "skill in one Craft does not imply skill in any others" (DE line 7474)
+  if (choices && spec.kind === 'ability') {
+    const [id, ...rest] = (value ?? '').split(':');
+    const kind = rest.join(':');
+    const label = PARAMETERIZED_ABILITIES[id];
+    const set = (i: string, k: string) => onChange(k.trim() && PARAMETERIZED_ABILITIES[i] ? `${i}:${k.trim()}` : i);
+    return (
+      <>
+        <SingleChoice spec={spec} choices={choices} options={choices.flatMap((g) => g.options.map((o) => o.value))} allowOther={false} value={id} onChange={(i) => set(i, kind)} />
+        {label && <input value={kind} onChange={(e) => onChange(e.target.value ? `${id}:${e.target.value}` : id)} placeholder={`Which ${label.toLowerCase()}?`} aria-label={`${spec.label}: which ${label.toLowerCase()}`} />}
+      </>
+    );
+  }
   if (choices) {
     const options = choices.flatMap((g) => g.options.map((o) => o.value));
     const other = spec.kind === 'text' || spec.kind === 'realm';

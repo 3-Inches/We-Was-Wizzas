@@ -17,7 +17,7 @@ import { computeStudy, visForStudy } from './longterm';
 import { abilityScoreFromXp } from './xp';
 import { longevityVisCost } from './enchant';
 import { newProject, planProject, visShort } from './projects';
-import { planBook } from './books';
+import { bookAbility, planBook, studyProblem } from './books';
 import { FREQUENCY, chargedItemCharges, investEffect, openingCost } from './enchant';
 import { purseOf, visAvailable } from './vis';
 import { MAX_IMPROVEMENTS, spareVis, visShortfall } from './livingEconomy';
@@ -315,7 +315,7 @@ const TRY: Record<PriorityKind, Try> = {
     return 'nothing more to write a tractatus on';
   },
   read: (x, p) => {
-    const best = bestStudy(x.c, x.d, x.cov, x.year, x.season, x.chars, focusArts(x.d, p));
+    const best = bestStudy(x.c, x.d, x.cov, x.year, x.season, x.chars, focusArts(x.d, p), x.data);
     if (!best || best.xp < 5) return best ? `the best book or teacher teaches only ${best.xp} xp` : x.cov?.library.length ? 'no book or teacher it can learn from' : 'no library or teacher';
     return { standing: best.standing, what: best.what };
   },
@@ -432,7 +432,7 @@ const TRY: Record<PriorityKind, Try> = {
  * the covenant's teachers with a season left this year (an Ability the character has, which the
  * teacher knows better). A magus weighs its favored Arts above its Abilities.
  */
-export function bestStudy(c: Character, d: DerivedCharacter, cov: Covenant | undefined, year: number, season: Season, chars: Character[], focus: Art[] = []): { standing: StandingActivity; what: string; xp: number } | undefined {
+export function bestStudy(c: Character, d: DerivedCharacter, cov: Covenant | undefined, year: number, season: Season, chars: Character[], focus: Art[], data: GameData): { standing: StandingActivity; what: string; xp: number } | undefined {
   if (!cov) return undefined;
   const inUse = new Set(chars.filter((o) => o.id !== c.id).flatMap((o) => o.seasonLog.filter((e) => e.year === year && e.season === season && e.bookId).map((e) => e.bookId!)));
   let best: { standing: StandingActivity; what: string; xp: number; value: number } | undefined;
@@ -444,6 +444,8 @@ export function bestStudy(c: Character, d: DerivedCharacter, cov: Covenant | und
     if ((b.kind !== 'summa' && b.kind !== 'tractatus') || b.corrupt || inUse.has(b.uid)) continue;
     if (b.kind === 'tractatus' && b.readBy?.includes(c.id)) continue;
     if (b.ownerId && b.ownerId !== c.id) continue;
+    // a book the character cannot read, or study, is passed over (DE line 16191): the same rule as Plan a season's
+    if (studyProblem(c, d, data, b)) continue;
     const src = b.kind === 'summa'
       ? { kind: 'summa' as const, quality: b.quality, level: b.level, isArt: b.subjectType === 'art', subject: b.title }
       : { kind: 'tractatus' as const, quality: b.quality, isArt: b.subjectType === 'art', subject: b.title };
@@ -453,7 +455,7 @@ export function bestStudy(c: Character, d: DerivedCharacter, cov: Covenant | und
       const xp = computeStudy(d, src, { art }).xp;
       consider({ kind: 'read', bookUid: b.uid, target: `art:${art}` }, `reading ${b.title}`, xp, weigh(xp, true, art));
     } else if (b.subjectType === 'ability') {
-      const mine = c.abilities.find((a) => a.abilityId === b.subject && (!b.param || a.param === b.param));
+      const mine = bookAbility(c, data, b);
       if (!mine) continue;
       const xp = computeStudy(d, src, { abilityUid: mine.uid }).xp;
       consider({ kind: 'read', bookUid: b.uid, target: `ability:${mine.uid}` }, `reading ${b.title}`, xp, weigh(xp, false));
