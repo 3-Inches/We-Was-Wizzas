@@ -85,7 +85,7 @@ export default function FaeriePart({ ed }: { ed: CharEditor }) {
         </OnSheet>
       ) : null}
       <p className="small muted">
-        {hasSympathy(c) || traits.length ? '' : <>Faerie Rank <b>{signed(rank)}</b>. </>}Faerie aura here: {signed(aura)} to faerie effects{am.botch ? `, and ${am.botch} more botch dice (${am.note})` : ''}. A 1 on the stress die gives each trait used an
+        {hasSympathy(c) || traits.length ? '' : <>Faerie Rank <b>{signed(rank)}</b>. </>}The aura here: {signed(aura)} to faerie effects{am.botch ? `, and ${am.botch} more botch ${am.botch === 1 ? 'die' : 'dice'} (${am.note}, a realm not the faerie’s own)` : ''}. A 1 on the stress die gives each trait used an
         experience point, and each 0 of a botch takes one away.
       </p>
       {arts.methods.length > 0 && arts.powers.length > 0 && <RiteCard ed={ed} aura={aura} auraBotch={am.botch} />}
