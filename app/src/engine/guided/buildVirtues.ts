@@ -9,7 +9,7 @@ import { addVirtue, removeVirtue } from '../character/factory';
 import { vfProblems } from '../character/restrictions';
 import { HOUSE_ARTS } from '../generate/variety';
 import { isHolyCharacter, suitedTradition } from '../holy';
-import { evaluate, scoreOption, shortlist, tagWeights, traceOf, type Evaluation, type GuidedContext, type Scored } from './score';
+import { evaluate, onListFirst, scoreOption, shortlist, tagWeights, traceOf, type Evaluation, type GuidedContext, type Scored } from './score';
 import { vfRecords } from './records';
 import { HOLY_METHODS, HOLY_POWERS, METHOD_POWERS } from '../../data/divine';
 
@@ -274,7 +274,7 @@ function spendVirtuePoints(
     const ev = evaluate(st, get());
     const options = ev.scored
       .filter((v) => v.def.kind === 'virtue' && !v.excluded && v.fit >= 0 && v.def.sizes.includes('Minor') && !v.def.categories.includes('Social Status') && !v.def.categories.includes('Mystery') && !tried.has(v.def.id) && simpleEnough(v) && !dup(v))
-      .sort((a, b) => b.fit - a.fit);
+      .sort((a, b) => onListFirst(a, b) || b.fit - a.fit);
     const v = choose(inp, c, firstPassing(options, (x) => clean(x.def, 'Minor'), inp.rng ? 10 : 1), () => 'Minor', 10);
     if (!v) break;
     tried.add(v.def.id);
@@ -299,7 +299,7 @@ function addFlaws(
     const cheap = ev.scored
       .filter((f) => f.def.kind === 'flaw' && (!f.excluded || unlucky(f)) && (f.fit >= 0 || unlucky(f)) && !fitting.includes(f) && f.def.source.book === 'DE' && !f.def.categories.includes('Social Status'))
       .sort((a, b) => (b.strength.seasons ?? -2) - (a.strength.seasons ?? -2));
-    return [...fitting, ...cheap].filter((f) => simpleEnough(f) && !dup(f));
+    return [...fitting, ...cheap].sort(onListFirst).filter((f) => simpleEnough(f) && !dup(f));
   };
   const sizeOf = (f: Scored, need: number): VFSize => (need >= 3 && f.def.sizes.includes('Major') && c.type !== 'grog' ? 'Major' : f.def.sizes.includes('Minor') ? 'Minor' : f.def.sizes[0]);
   // magi: at least one Hermetic Flaw (DE p.63)

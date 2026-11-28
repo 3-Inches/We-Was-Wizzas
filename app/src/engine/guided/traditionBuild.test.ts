@@ -15,6 +15,7 @@ import { RUNES } from '../../data/hedgeVitkir';
 import { GRUAGACH_FORMS, GRUAGACH_TECHNIQUES } from '../../data/hedgeGruagach';
 import { LEARNED_FORMS, LEARNED_TECHNIQUES } from '../../data/hedgeLearned';
 import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
+import { HEDGE_TRADITION_OWN } from '../../data/hedgeTraditionVirtues';
 import { TRADITIONS, type Tradition } from './traditions';
 import { CULT_MYSTERIES, mysteryLoreOf } from './buildMysteries';
 import { HOLY_VIRTUES } from './buildVirtues';
@@ -326,8 +327,16 @@ describe('one list of each hedge tradition’s Virtues (Batch E)', () => {
     expect(data.vfById.get('secret-runes')?.tradition).toBe('Vitkir (Hedge Magic)');
     // "other characters may also have access to a fetch" (HMRE line 2879)
     expect(data.vfById.get('fetch')?.tradition).toBeUndefined();
+    // an id that names no Virtue fails here rather than being passed over (Batch F)
     for (const t of TRADITIONS.filter((x) => x.id !== 'faerie'))
-      for (const id of t.own) if (data.vfById.has(id)) expect(data.vfById.get(id)!.tradition, `${t.id}: ${id}`).toBeTruthy();
+      for (const id of t.own) {
+        expect(data.vfById.has(id), `${t.id}: ${id} names no Virtue or Flaw`).toBe(true);
+        expect(data.vfById.get(id)!.tradition, `${t.id}: ${id}`).toBeTruthy();
+      }
+    // the elementalists' and nightwalkers' come from the same list (Batch F)
+    const lists = Object.values(HEDGE_TRADITION_OWN);
+    for (const x of lists)
+      for (const id of x.ids) expect(data.vfById.get(id)?.tradition, id).toBe(lists.filter((y) => y.ids.includes(id)).length > 1 ? 'hedge wizards (Hedge Magic)' : x.label);
   });
 });
 

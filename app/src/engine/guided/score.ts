@@ -17,7 +17,7 @@ import { abilityTag, vfRecords, type TagLink, type VFRecord } from './records';
 import { QUESTIONS, SECTIONS, childrenOf, type Question } from './questions';
 import { isThemeTag, tagLabel } from './tags';
 import { HOUSE_BENEFIT_SCALE, HOUSE_EITHER_WAY, HOUSE_IDENTITY, MAGNITUDES, RANKED_TOTALS } from './magnitudes';
-import { traditionGate, traditionOf, wantedTradition, type Tradition } from './traditionRules';
+import { offSuitableList, traditionGate, traditionOf, wantedTradition, type Tradition } from './traditionRules';
 
 
 export interface GuidedContext {
@@ -178,6 +178,8 @@ export interface Scored {
   matches: Match[];
   /** why it is not recommended even though it passed the gates */
   excluded?: string;
+  /** a Hermetic Virtue or Flaw off the tradition's suitable list: drawn only when nothing on it fits */
+  offList?: true;
   /** where it stands against the other options for each Total it moves (best first) */
   ranks?: { tag: string; label: string; rank: number; of: number; note: string }[];
 }
@@ -472,7 +474,9 @@ export function evaluate(st: GuidedState, ctx: GuidedContext): Evaluation {
       gated.set(def.id, why);
       continue;
     }
-    scored.push(scoreOption(def, rec, st, w, ctx, undefined, f));
+    const s = scoreOption(def, rec, st, w, ctx, undefined, f);
+    if (offSuitableList(def.id, ctx.c, ctx.data, tradition ?? undefined)) s.offList = true;
+    scored.push(s);
   }
   rankTotals(scored);
   return { weights: w, scored, gated, complexityOk, type: ctx.c.type };
@@ -531,17 +535,23 @@ export function questionHint(q: Question, ev: Evaluation): string {
   return parts.join(' · ');
 }
 
+/**
+ * A hedge wizard's Hermetic Virtues and Flaws off the chapter's suitable list after every other option:
+ * "The traditions in this book indicate which Hermetic Virtues and Flaws are suitable" (HMRE line 690).
+ */
+export const onListFirst = (a: Scored, b: Scored) => (a.offList ? 1 : 0) - (b.offList ? 1 : 0);
+
 /** Options that match what the player said, best first; the neutral fallback when nothing does. */
 export function shortlist(ev: Evaluation, kind?: 'virtue' | 'flaw'): Scored[] {
   const pool = ev.scored.filter((s) => !s.excluded && (!kind || s.def.kind === kind) && !s.def.categories.includes('Social Status'));
-  const fitting = pool.filter((s) => s.fit > 0).sort((a, b) => b.fit - a.fit || (b.strength.seasons ?? 0) - (a.strength.seasons ?? 0));
+  const fitting = pool.filter((s) => s.fit > 0).sort((a, b) => onListFirst(a, b) || b.fit - a.fit || (b.strength.seasons ?? 0) - (a.strength.seasons ?? 0));
   if (fitting.length) return fitting;
   // everything left at 5: the broadly useful options for this kind of character
   const magus = ev.type === 'magus';
   return pool
     .filter((s) => s.def.kind === 'virtue' && (s.strength.seasons ?? 0) > 0 && s.def.source.book === 'DE' && !s.def.categories.includes('Social Status'))
     .filter((s) => !s.def.effects?.some((e) => e.type === 'xpPool' && (e.abilityTypes || e.abilities)) || !magus)
-    .sort((a, b) => (b.strength.seasons ?? 0) + (magus && b.def.categories.includes('Hermetic') ? 2 : 0) - (a.strength.seasons ?? 0) - (magus && a.def.categories.includes('Hermetic') ? 2 : 0));
+    .sort((a, b) => onListFirst(a, b) || (b.strength.seasons ?? 0) + (magus && b.def.categories.includes('Hermetic') ? 2 : 0) - (a.strength.seasons ?? 0) - (magus && a.def.categories.includes('Hermetic') ? 2 : 0));
 }
 
 /** Social Statuses are chosen separately: the best fits for this character. */

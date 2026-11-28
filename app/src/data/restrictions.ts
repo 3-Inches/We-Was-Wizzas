@@ -51,15 +51,10 @@ const SHARED = (() => {
   return new Set(all.filter((id, i) => all.indexOf(id) !== i));
 })();
 const TRADITIONS: Record<string, string[]> = {
-  // the folk witches', gruagachan's, learned magicians' and vitkir's are read from one list, shared with Quick build
-  // (hedgeTraditionVirtues.ts); a Virtue two of them share, and the defenses, are any hedge wizard's
+  // the hedge traditions' are read from one list, shared with Quick build (hedgeTraditionVirtues.ts); a
+  // Virtue two of them share, and the defenses, are any hedge wizard's
   ...Object.fromEntries(Object.values(HEDGE_TRADITION_OWN).map((t) => [t.label, t.ids.filter((id) => !SHARED.has(id))])),
   'hedge wizards (Hedge Magic)': [...HEDGE_DEFENSES, ...SHARED],
-  'Elementalists (Hedge Magic)': [
-    'elemental-affinity', 'elementalist-air', 'elementalist-earth', 'elementalist-fire', 'elementalist-water', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae',
-    'elemental-theurgy', 'type-controlling', 'type-divining', 'type-refining', 'type-summoning', 'weak-elemental-resistance-flaw',
-  ],
-  'Nightwalkers (Hedge Magic)': ['half-taltos', 'hamr', 'sleepwalker', 'nightwalker', 'versatile-phantasticum'],
   'Amazons (Rival Magic)': [
     'amazonian-slave-flaw', 'beloved-slave-flaw', 'bitter-mistress-flaw', 'frail-magic-flaw', 'friendly-mistress-flaw', 'magic-aura-temple-flaw', 'prolonged-apprenticeship-flaw',
     'amazon', 'amazon-sorceress', 'martial-connection-to-magic', 'proven-raider', 'strong-magic', 'symbolic-understanding',

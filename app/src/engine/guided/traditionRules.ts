@@ -5,7 +5,7 @@
 // Realms of Power: Faerie, Pagan Traditions (line 7501).
 
 import type { CharType, GameData } from '../../data';
-import { HEDGE_DEFENSES, HEDGE_TRADITION_OWN } from '../../data/hedgeTraditionVirtues';
+import { HEDGE_DEFENSES, HEDGE_HERMETIC, HEDGE_TRADITION_OWN, HERMETIC_TOO, type BuiltHedgeTradition } from '../../data/hedgeTraditionVirtues';
 import { ELEMENTAL_ART_IDS } from '../../data/hedgeElemental';
 import type { Character, GuidedState } from '../types';
 
@@ -25,8 +25,12 @@ interface TraditionDef {
    * character also possesses a Technique", HMRE line 2853), so the build draws them only for a member.
    */
   own: string[];
-  /** the Hermetic Virtues and Flaws the chapter allows a Gifted member; others are not drawn for one */
-  hermetic?: string[];
+  /**
+   * the Hermetic Virtues and Flaws the chapter names as suitable (hedgeTraditionVirtues.ts): drawn first
+   * for a Gifted member, and others only when none of these fits, or, where the book makes it a limit
+   * (the gruagach's), never
+   */
+  hermetic?: { line: number; limit?: true; ids: string[] };
   /** the Virtues whose powers or Arts a Gifted member's Opening gives free, so they are not drawn for one */
   opens?: string[];
 }
@@ -34,55 +38,32 @@ interface TraditionDef {
 // each tradition's own Virtues, from the list the rules check reads too
 // and the Magical Defenses of the three traditions that have them: Greater Magical Defenses "is only useful for a
 // hedge wizard whose tradition includes Magical Defenses" (HMRE line 698), and the vitkir's has none
-const own = (t: keyof typeof HEDGE_TRADITION_OWN) => [...HEDGE_TRADITION_OWN[t].ids, ...(t === 'vitki' ? ['known-hedge-wizard-flaw'] : HEDGE_DEFENSES)];
+const own = (t: BuiltHedgeTradition) => [...HEDGE_TRADITION_OWN[t].ids, ...(t === 'vitki' ? ['known-hedge-wizard-flaw'] : HEDGE_DEFENSES)];
 
 export const TRADITIONS: TraditionDef[] = [
   {
     id: 'witch', member: 'a folk witch', status: 'folk-witch', gift: 'either', lore: 'Folk Witches', own: own('witch'),
     // "seven favored Supernatural Abilities ... you may freely spend experience points on these" (HMRE line 1580)
     opens: ['witch-healing', 'witch-cursing', 'witch-flight', 'animal-ken', 'second-sight', 'dowsing', 'shapeshifter'],
-    // HMRE line 1709: the Hermetic Virtues and Flaws suitable for a Gifted folk witch
-    hermetic: [
-      'gentle-gift', 'adept-laboratory-student', 'cautious-sorcerer', 'cyclic-magic', 'fast-caster', 'free-study', 'harnessed-magic', 'inventive-genius', 'magical-memory', 'personal-vis-source', 'quiet-magic', 'side-effect', 'special-circumstances', 'subtle-magic',
-      'blatant-gift-flaw', 'difficult-longevity-ritual-flaw', 'necessary-condition-flaw', 'painful-magic-flaw', 'restriction-flaw', 'rigid-magic-flaw', 'waster-of-vis-flaw',
-      'careless-sorcerer-flaw', 'creative-block-flaw', 'cyclic-magic-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'unimaginative-learner-flaw', 'warped-magic-flaw', 'weak-magic-flaw', 'weird-magic-flaw',
-      'flawed-folk-witch-gift-opening',
-    ],
+    hermetic: HEDGE_HERMETIC.witch,
   },
   {
     id: 'gruagach', member: 'a gruagach', status: 'gruagach', gift: 'either', lore: 'Gruagachan',
     opens: ['give', 'take', 'blessing', 'curse', 'shape', 'vision'],
     own: own('gruagach'),
-    // HMRE line 2945: "Gruagach may only take Hermetic Virtues or Flaws on the above list"
-    hermetic: [
-      'flawless-magic', 'gentle-gift', 'major-magical-focus', 'secondary-insight',
-      'adept-laboratory-student', 'affinity-with-art', 'cautious-sorcerer', 'deft-form', 'fast-caster', 'free-study', 'harnessed-magic', 'inventive-genius', 'life-boost', 'minor-magical-focus', 'magical-memory', 'personal-vis-source', 'puissant-art', 'side-effect', 'skilled-parens', 'special-circumstances', 'subtle-magic',
-      'blatant-gift-flaw', 'deficient-technique-flaw', 'necessary-condition-flaw', 'painful-magic-flaw', 'restriction-flaw', 'short-ranged-magic-flaw', 'waster-of-vis-flaw',
-      'careless-sorcerer-flaw', 'creative-block-flaw', 'deficient-form-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'incompatible-arts-flaw', 'infamous-master-flaw', 'offensive-to-animals-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'unimaginative-learner-flaw', 'unpredictable-magic-flaw', 'warped-magic-flaw', 'weak-magic-flaw', 'weird-magic-flaw',
-    ],
+    hermetic: HEDGE_HERMETIC.gruagach,
   },
   {
     id: 'learned', member: 'a learned magician', status: 'mathematicus-of-bologna', gift: 'either', lore: 'Mathematici of Bologna',
     // "opens the apprentice's Gift to the powers of the learned magician's tradition — Tueor, Succurro, Vulnero, Fortunam, Magicam, and Salutem — and the Entreat the Powers Virtue" (HMRE line 4123)
     opens: ['tueor', 'succurro', 'vulnero', 'fortunam', 'magicam', 'salutem', 'entreat-the-powers'],
     own: own('learned'),
-    // HMRE line 4384
-    hermetic: [
-      'gentle-gift', 'major-magical-focus', 'secondary-insight',
-      'adept-laboratory-student', 'affinity-with-art', 'cautious-sorcerer', 'deft-form', 'enduring-magic', 'fast-caster', 'harnessed-magic', 'inventive-genius', 'minor-magical-focus', 'magical-memory', 'personal-vis-source', 'puissant-art', 'quiet-magic', 'side-effect', 'special-circumstances', 'subtle-magic',
-      'blatant-gift-flaw', 'deficient-technique-flaw', 'necessary-condition-flaw', 'painful-magic-flaw', 'restriction-flaw', 'rigid-magic-flaw', 'short-ranged-magic-flaw',
-      'careless-sorcerer-flaw', 'creative-block-flaw', 'deficient-form-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'short-lived-magic-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'warped-magic-flaw', 'weak-magic-flaw', 'weak-scholar-flaw', 'weird-magic-flaw',
-    ],
+    hermetic: HEDGE_HERMETIC.learned,
   },
   {
     id: 'vitki', member: 'a vitki', status: 'vitki', gift: 'always',
     own: own('vitki'),
-    // HMRE line 6176: the Hermetic Virtues and Flaws a vitki may take, as Supernatural ones for rune magic
-    hermetic: [
-      'gentle-gift', 'secondary-insight', 'cyclic-magic', 'fast-caster', 'free-study', 'inoffensive-to-animals', 'inventive-genius', 'life-boost', 'personal-vis-source', 'side-effect', 'special-circumstances',
-      'blatant-gift-flaw', 'magic-addiction-flaw', 'painful-magic-flaw', 'restriction-flaw',
-      'careless-sorcerer-flaw', 'cyclic-magic-flaw', 'deleterious-circumstances-flaw', 'disorienting-magic-flaw', 'offensive-to-animals-flaw', 'slow-caster-flaw', 'susceptibility-to-divine-power-flaw', 'susceptibility-to-faerie-power-flaw', 'susceptibility-to-infernal-power-flaw', 'warped-magic-flaw', 'weird-magic-flaw',
-    ],
+    hermetic: HEDGE_HERMETIC.vitki,
   },
   {
     id: 'faerie', member: 'a faerie wizard', gift: 'never',
@@ -97,7 +78,7 @@ export const TRADITION_STATUSES = new Set(TRADITIONS.flatMap((t) => (t.status ? 
  * Traditions the build does not make (the elementalists and nightwalkers of Hedge Magic): their own
  * Virtues are drawn only when the player names one.
  */
-const UNBUILT_OWN = [...ELEMENTAL_ART_IDS, 'type-summoning', 'type-controlling', 'type-divining', 'type-refining', 'elemental-affinity', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae', 'elemental-theurgy', 'vulnerable-to-form-flaw', 'weak-elemental-resistance-flaw', 'nightwalker', 'versatile-phantasticum', 'half-taltos', 'hamr', 'sleepwalker'];
+const UNBUILT_OWN = [...ELEMENTAL_ART_IDS, ...HEDGE_TRADITION_OWN.elementalist.ids, ...HEDGE_TRADITION_OWN.nightwalker.ids];
 
 /** A faerie wizard's Methods and Powers: rites need one of each (RoP: Faerie line 7505). */
 export const FAERIE_METHOD_IDS: readonly string[] = ['evocation', 'enchantment', 'empathy'];
@@ -158,7 +139,7 @@ export function traditionOpen(t: Tradition, st: GuidedState, data: GameData): bo
  */
 export function traditionVirtues(t: Tradition): string[] {
   const def = TRADITION_BY_ID.get(t)!;
-  return [...(def.status ? [def.status] : []), ...def.own, ...(def.hermetic ?? []), ...(t === 'faerie' ? ['faerie-sympathy', 'faerie-antipathy-flaw'] : [])];
+  return [...(def.status ? [def.status] : []), ...def.own, ...(def.hermetic?.ids ?? []), ...(t === 'faerie' ? ['faerie-sympathy', 'faerie-antipathy-flaw'] : [])];
 }
 
 /** The tradition a role's answers ask for, whatever the books: the first chip picked. */
@@ -176,7 +157,7 @@ export function wantsGift(t: Tradition, st: GuidedState, c: Pick<Character, 'vir
 
 /**
  * Whether the build may draw this Virtue or Flaw for the character: another tradition's own Virtues
- * only when named (a lone gruagach Form casts nothing), and for a Gifted member only the Hermetic
+ * only when named (a lone gruagach Form casts nothing), and for a Gifted gruagach only the Hermetic
  * Virtues and Flaws the chapter allows.
  */
 export function fitsTradition(defId: string, c: Pick<Character, 'virtues'>, data: GameData, st: GuidedState, t: Tradition | undefined): boolean {
@@ -190,7 +171,7 @@ const GATED = new Set([...TRADITIONS.flatMap((t) => [...t.own, ...(t.opens ?? []
 /** Why the build and its shortlist leave this Virtue or Flaw out for the character's tradition, or none. */
 export function traditionGate(defId: string, c: Pick<Character, 'virtues'>, data: GameData, st: GuidedState, t: Tradition | undefined): string | null {
   const mine = t ? TRADITION_BY_ID.get(t)! : undefined;
-  if (!GATED.has(defId) && !mine?.hermetic) return null;
+  if (!GATED.has(defId) && !mine?.hermetic?.limit) return null;
   if ((st.answers[`vf:${defId}`] ?? 0) >= 7) return null;
   const gifted = c.virtues.some((v) => v.defId === 'the-gift');
   if (gifted && mine?.opens?.includes(defId)) return `The Gift opens it for ${mine.member}`;
@@ -204,8 +185,19 @@ export function traditionGate(defId: string, c: Pick<Character, 'virtues'>, data
   if (mine?.own.includes(defId)) return null;
   const other = TRADITIONS.find((x) => x.own.includes(defId));
   if (other) return `Of ${other.member}’s tradition, which this character does not follow`;
-  if (UNBUILT_OWN.includes(defId)) return 'Of a hedge tradition this character does not follow';
-  const def = data.vfById.get(defId);
-  if (mine?.hermetic && def?.categories.includes('Hermetic') && defId !== 'the-gift' && gifted && !mine.hermetic.includes(defId)) return `Not among the Hermetic Virtues and Flaws ${mine.member} may take`;
+  // a magus may take these as Hermetic Flaws (HMRE line 1068)
+  if (UNBUILT_OWN.includes(defId) && !(HERMETIC_TOO.has(defId) && c.virtues.some((v) => v.defId === 'hermetic-magus'))) return 'Of a hedge tradition this character does not follow';
+  // "Gruagach may only take Hermetic Virtues or Flaws on the above list, unless the troupe decides otherwise" (HMRE line 2953)
+  if (mine?.hermetic?.limit && offSuitableList(defId, c, data, t)) return `Not among the Hermetic Virtues and Flaws ${mine.member} may take`;
   return null;
+}
+
+/**
+ * Whether this is a Hermetic Virtue or Flaw off the list the chapter names as suitable for a Gifted
+ * member of the tradition: Quick build draws it only when nothing on the list fits (score.ts).
+ */
+export function offSuitableList(defId: string, c: Pick<Character, 'virtues'>, data: GameData, t: Tradition | undefined): boolean {
+  const list = t ? TRADITION_BY_ID.get(t)!.hermetic : undefined;
+  if (!list || defId === 'the-gift' || !c.virtues.some((v) => v.defId === 'the-gift')) return false;
+  return !!data.vfById.get(defId)?.categories.includes('Hermetic') && !list.ids.includes(defId);
 }

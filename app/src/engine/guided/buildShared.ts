@@ -102,8 +102,10 @@ export function choose(inp: BuildInput, c: Character, xs: Scored[], sizeOf: (s: 
   // and only one striking mark in all: a grave bodily Flaw, a bloodline or True Faith
   const struck = held.some(isStriking);
   const free = (s: Scored) => !marked.has(markGroup(s.def)) && !(struck && isStriking(s.def));
-  if (!inp.rng) return xs.find(free);
-  const pool = xs.filter(free).slice(0, top);
+  // one off a hedge tradition's suitable list only when nothing on it is left (score.ts, onListFirst)
+  const ys = xs.some((s) => !s.offList && free(s)) ? xs.filter((s) => !s.offList) : xs;
+  if (!inp.rng) return ys.find(free);
+  const pool = ys.filter(free).slice(0, top);
   return weightedPick(inp.rng, pool, (s) => rarity(s.def, c.type, sizeOf(s)) * Math.sqrt(Math.max(1, s.fit)));
 }
 

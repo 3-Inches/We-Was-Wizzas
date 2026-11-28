@@ -5,6 +5,7 @@
 
 import { COMPANION_FLAWS, MAGIC_STATUSES } from './magicCharacter';
 import { CHAR_NAMES, type CharType, type GameData, type VFNeed, type VFSize, type VirtueFlawDef } from '../../data';
+import { HEDGE_HERMETIC, HERMETIC_TOO } from '../../data/hedgeTraditionVirtues';
 import { HOUSE_BY_ID } from '../../data/houses';
 import type { CharVirtue, HouseRules } from '../types';
 import type { DerivedCharacter } from './derive';
@@ -239,8 +240,13 @@ export function vfProblems(d: DerivedCharacter, data: GameData, def: VirtueFlawD
   if (def.beings && !cv?.free && !isBeing) {
     push('being', 'error', `For ${def.beings.replace(/ \(.*\)$/, '')} only`, `${def.name} is for ${def.beings}, not for characters built with the normal character-creation rules.`);
   }
-  if (def.tradition && type === 'magus' && !cv?.free) {
+  // a Flaw the book lets a magus take as a Hermetic one is not another tradition's for a magus (HMRE line 1068)
+  if (def.tradition && type === 'magus' && !cv?.free && !HERMETIC_TOO.has(def.id)) {
     push('tradition', 'warning', `${def.tradition.replace(/ \(.*\)$/, '')} tradition`, `${def.name} belongs to the ${def.tradition} tradition; Hermetic magi do not normally take it.`);
+  }
+  // the one suitable list the book words as a limit; the others are a preference (hedgeTraditionVirtues.ts)
+  if (def.categories.includes('Hermetic') && def.id !== 'the-gift' && !cv?.free && others.some((o) => o.defId === 'gruagach' || o.defId === 'gruagach-master') && !HEDGE_HERMETIC.gruagach.ids.includes(def.id)) {
+    push('tradition', 'warning', 'Not on the gruagach’s list', `"Gruagach may only take Hermetic Virtues or Flaws on the above list, unless the troupe decides otherwise" (Hedge Magic, Gruagachan); ${def.name} is not on it.`);
   }
 
   // ---------------------------------------------------------------- special cases from the text
