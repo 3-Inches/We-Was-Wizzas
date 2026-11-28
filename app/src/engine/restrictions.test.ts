@@ -191,3 +191,22 @@ describe('Affinity taken after xp was spent', () => {
     expect(c.arts.Co.apprenticeship).toBe(21);
   });
 });
+
+describe('Blood of the Nephilim (DE line 3601)', () => {
+  // "…or Virtues or Flaws that affect your Size": each is refused beside it, whichever was taken first
+  for (const other of ['large', 'small-frame-flaw', 'dwarf-flaw', 'giant-blood', 'faerie-blood-jentil']) {
+    it(`does not go with ${other}`, () => {
+      const c = newCharacter('companion', 's');
+      addVirtue(c, data, other, data.vfById.get(other)!.sizes[0]);
+      addVirtue(c, data, 'blood-of-the-nephilim', 'Major');
+      expect(issues(c).some((i) => /cannot be combined/.test(i.message ?? '') && /Nephilim/.test(i.message ?? '')), other).toBe(true);
+      expect(vfAvailability(derive(newCharacter('companion', 's')), data, data.vfById.get('blood-of-the-nephilim')!)).toBeNull();
+    });
+  }
+  it('goes with a Virtue that does not touch Size', () => {
+    const c = newCharacter('companion', 's');
+    addVirtue(c, data, 'tough', 'Minor');
+    addVirtue(c, data, 'blood-of-the-nephilim', 'Major');
+    expect(issues(c).some((i) => /cannot be combined/.test(i.message ?? ''))).toBe(false);
+  });
+});

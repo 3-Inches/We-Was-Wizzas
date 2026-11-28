@@ -140,8 +140,13 @@ export const CROSS_REF_MECHANICS: Record<string, Mechanics> = {
   // ------------------------------------------------------------------ rules another out
   'blood-of-the-nephilim': {
     noGift: true,
-    excludes: ['true-faith', 'faerie-blood', 'strong-faerie-blood', 'giant-blood', 'mythic-blood', 'age-quickly-flaw', 'lycanthrope-flaw'],
-    restrictionText: 'You may not take The Gift or True Faith, Hermetic Virtues or Flaws, Methods or Powers, Virtues such as Giant, Mythic, or Faerie Blood, Flaws such as Age Quickly or Lycanthrope.',
+    // "…or Virtues or Flaws that affect your Size" (DE, Blood of the Nephilim): Large, Small Frame and Dwarf;
+    // Faerie Blood (Jentil) and (Laminak) and Mythic Blood (Zmey) are Faerie and Mythic Blood by name
+    excludes: [
+      'true-faith', 'faerie-blood', 'strong-faerie-blood', 'faerie-blood-jentil', 'faerie-blood-laminak', 'giant-blood', 'mythic-blood', 'mythic-blood-zmey', 'age-quickly-flaw', 'lycanthrope-flaw',
+      'large', 'small-frame-flaw', 'dwarf-flaw',
+    ],
+    restrictionText: 'You may not take The Gift or True Faith, Hermetic Virtues or Flaws, Methods or Powers…, Virtues such as Giant, Mythic, or Faerie Blood, Flaws such as Age Quickly or Lycanthrope, or Virtues or Flaws that affect your Size.',
   },
   'demonic-blood': { excludes: ['unaging', 'age-quickly-flaw'] },
   'mendicant-friar': { excludes: ['wealthy', 'poor-flaw'] },
