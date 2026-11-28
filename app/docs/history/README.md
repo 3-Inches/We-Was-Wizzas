@@ -1,13 +1,13 @@
 # History of the pull requests
 
-A record of the 87 merged pull requests, #1 (25 September 2026) to #87 (22 November 2026), from their numbers.
+A record of the 88 merged pull requests, #1 (25 September 2026) to #88 (22 November 2026), from their numbers.
 
 ## How to read this and keep it up
 
 - `stats.md` holds the numbers from git: files, lines added and removed, and the size of `app/src`, the generated data and the tests on `main` after each pull request. It comes from `python3 -I tools/history/stats.py`. Run it again after a merge. Its test count is a grep, a little below the true count.
 - The table below holds what each pull request's own text says: test time, test count, the sweep and the review. A cell is empty when the pull request did not say. Nothing is guessed.
 - Each new pull request adds its row here, with the times from its Checks section. `npm run qa:final` writes most of them to `scripts/qa/out/final.txt`.
-- "Fixed later by" names the pull request that fixed a fault this one made, where a pull request or an audit says so. A fault this one only found, or one that was there before it, is not counted against it: B7 was found by #65 but made with Quick build and the hedge traditions (#18, #51); Vitest's leak in `/tmp` (fixed #87) was there from the first test run, and #86 only felt it.
+- "Fixed later by" names the pull request that fixed a fault this one made, where a pull request or an audit says so, and `git log -S` on the faulty line confirms the fault was made here and not earlier. Audits have named the wrong maker: audit 3's C1 says #59 grew `HolyPart.tsx` by 112 lines, but it shrank it by 23. A fault this one only found, or one that was there before it, is not counted against it: B7 was found by #65 but made with Quick build and the hedge traditions (#18, #51); Vitest's leak in `/tmp` (fixed #87) was there from the first test run, and #86 only felt it.
 
 ## The pull requests
 
@@ -42,11 +42,11 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 25 | 2026-10-28 | Covenant fill-out |  |  | 120 / 0 |  |  |
 | 26 | 2026-10-28 | Writing and copying books |  | 398 | 120 / 0 |  |  |
 | 27 | 2026-10-29 | Game table dashboard; City & Guild |  | 410 | 121 / 0 |  |  |
-| 28 | 2026-10-29 | Living Rhine covenants |  | 425 | 223 / 0 |  | #31 (size), #32 (inflation) |
+| 28 | 2026-10-29 | Living Rhine covenants |  | 425 | 223 / 0 |  | #31 (size), #32, #33 (inflation) |
 | 29 | 2026-10-29 | Quick build fixes; Rhine |  | 446 | 744 / 0 |  |  |
 | 30 | 2026-10-29 | Magic powers; Rhine items |  | 467 | 852 / 0 |  |  |
 | 31 | 2026-10-30 | Quality pass; saga size cut |  | 471 | 852 / 0 |  |  |
-| 32 | 2026-10-30 | Essential Traits, inflation |  | 477 | 852 / 0 |  |  |
+| 32 | 2026-10-30 | Essential Traits, inflation |  | 477 | 852 / 0 |  | #33 |
 | 33 | 2026-10-30 | Calendar, stories, calamities |  | 497 | 852 / 0 |  |  |
 | 34 | 2026-10-30 | Teaching, lab help |  | 510 | 852 / 0 |  |  |
 | 35 | 2026-11-02 | Tutorials in one run; phone fixes |  | 517 | 852 / 0 |  |  |
@@ -58,8 +58,8 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 41 | 2026-11-06 | Play at the table |  |  | 951 / 0 |  |  |
 | 42 | 2026-11-06 | Seasons in three steps; Chronicle |  |  | 958 / 0 |  |  |
 | 43 | 2026-11-07 | Virtues that act in play |  | 613 | 958 / 0 |  |  |
-| 44 | 2026-11-12 | Realms of Power: The Divine |  | 639 | 958 / 0 |  |  |
-| 45 | 2026-11-14 | Cleanup pass; every House |  |  | 958 / 0 |  | #47 |
+| 44 | 2026-11-12 | Realms of Power: The Divine |  | 639 | 958 / 0 |  | #80, #84 (audit 3 5.15, 5.17) |
+| 45 | 2026-11-14 | Cleanup pass; every House |  |  | 958 / 0 |  | #46 (a Nephilim's Hebrew), #47 |
 | 46 | 2026-11-15 | Troupe card; import changes |  |  | 958 / 0 |  | #47 |
 | 47 | 2026-11-15 | Fixes from audit of #45-46 |  |  | 958 / 0 |  |  |
 | 48 | 2026-11-15 | Core book checked |  |  | 958 / 0 |  | #54, #55 (audit 2) |
@@ -73,7 +73,7 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 56 | 2026-11-17 | 2.1 books in step with upstream |  |  | 357 / 0 |  |  |
 | 57 | 2026-11-17 | 2.3 item effects out of spells |  |  | 357 / 0 |  |  |
 | 58 | 2026-11-17 | 1.3 hedge seasons on Seasons |  | 868 | 357 / 0 |  | #74, #82 (audit 3) |
-| 59 | 2026-11-17 | 1.4 Faith page |  | 889 | 357 / 0 |  | #74, #79, #80, #84 |
+| 59 | 2026-11-17 | 1.4 Faith page |  | 889 | 357 / 0 |  | #74 |
 | 60 | 2026-11-17 | 1.4b Warping waits in Resolve |  | 906 | 357 / 0 |  | #70, #83 (audit 3 A1, B1) |
 | 61 | 2026-11-17 | 1.4c great buildings, menagerie |  | 913 |  |  | #63 (checks), #74, #84 |
 | 62 | 2026-11-17 | 1.5 Guide toolkit page |  | 920 | 357 / 0 |  |  |
@@ -102,6 +102,7 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 85 | 2026-11-20 | Context compaction setting |  |  |  |  |  |
 | 86 | 2026-11-20 | Batch C: Quick build hedge/faerie |  | 1,054 | 2,250 / 0 | 10, and the lead's own |  |
 | 87 | 2026-11-22 | Reader links; qa:final | 157 s | 1,060 | 2,250 / 0 / 14 | 3, then 12 on the tooling |  |
+| 88 | 2026-11-22 | Retrospective: history, narrowed rules |  |  | docs only | two reviews of the history, one of a second retrospective |  |
 
 ## Jumps
 
@@ -156,6 +157,17 @@ Size jumps are from `stats.md`, a column growing by a fifth or more in one pull 
 *Rule:* "When a browser check crashes, check free disk and memory first, and write the cause into Found."
 
 **10. Busywork from the roadmap's rules.** #55, #56, #59, #60, #61, #62 and #63 each ticked the item before them; #63 did little else (audit 3, W7). Fixed by ticking an item in its own pull request.
+
+**11. A book's paragraph read only around its example.** About 30 faults in #1 to #51 dropped a sentence beside the formula or the worked example, most often its "not", "unless", "only" or "instead" (forensic review, 2026-11-28). Examples: one botch die for each negative trait, where the book says as many dice as the worst trait (RoP: Faerie line 5846); rounding down, where the book says "round up" (TMRE line 3683); the last sentence of the Vision botch dropped (HMRE line 3723). None in #54 to #69, where the faults were at the joins.
+*Rule (CLAUDE.md, "The books are the authority"):* read the whole paragraph of a rule, and test each of its exceptions at a value where it changes the answer. The rule is for rules taken from a book, not for all code.
+
+**12. Tests that could not fail.** #49's test of rote spells worked out its answer with the code's own formula. #50 tested at Iron −1, the one value where the wrong formula and the right one agree. #46's `holyBuild.test.ts:233` asserted a misreading of RoP: The Divine line 3663. Design principle 9 already says a test that restates the code proves nothing; the step 4 review is what holds it, and the rule in 11 says which value to test at.
+
+**13. The book's words, and pointers to them, checked by nothing.** 11 of 74 strings the toolkit shows as the book's words are cut or reworded without a mark; those in the rules check's restriction texts were made in #1, #3 and #8. The 64 Virtue texts written by hand are the toolkit's paraphrases, in "she", shown where the book's text goes. About 38 line pointers miss their heading; the 18 of the folk witch Virtues (#51) are evenly spaced four lines apart, so they were counted, not looked up. No quote was changed for gender or spelling.
+*Rule (CLAUDE.md):* a quotation keeps the book's words; "they" and American spelling are for the toolkit's own text. Batch F's tests hold the quotes and the pointers.
+
+**14. A helper made shared, and the old roads left.** #60 made `gainWarping` and said "every source of Warping goes through it", but vis study and the lab still added Warping their own way (audit 3, A1); its guard looked for `warpingPoints +=` and missed `entry.warpingPoints`. #55 fixed C5 on the Faerie cards alone. #86 wrote a second list of the hedge traditions' Virtues beside the one the rules check reads.
+*Rule (CLAUDE.md, "Before writing a list or a rule"):* a pull request that makes a helper to replace a way of doing something converts every old caller, or names those it leaves in Found. A guard on the model of `CHANGES_WARPING` (`src/quality.test.ts`) holds it where the old way can be matched.
 
 ## The eras compared
 
