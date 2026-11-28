@@ -40,6 +40,8 @@ Each point says what the owner wants, then what it means for a change.
 
 The owner's answers on particular cases, newest first, kept here when the roadmap's item for them is done. A session that finds its question answered here does not ask again.
 
+- **A tradition's "suitable" Hermetic Virtues and Flaws come first in Quick build** (28 November 2026). Where a hedge tradition's book calls a list "suitable" (HMRE line 690, for every hedge wizard; the folk witch's at line 1707, the learned magician's at line 4384), it is not a limit: the rules check does not refuse a Virtue off it. Quick build draws from the suitable ones before any other, so in practice it takes only those. A list the book makes a limit stays a limit: "Gruagach may only take Hermetic Virtues or Flaws on the above list, unless the troupe decides otherwise" (HMRE line 2953).
+- **A Virtue's card shows the book's text** (28 November 2026). The Virtue texts written by hand are replaced by the book's own words, pronouns and spelling as printed, not by summaries in "they".
 - **Batches D and E in one pull request** (22 November 2026): one fresh session builds both, so that the costs paid once a pull request (the adversarial review, `qa:final`, the lead's review) are paid once. An exception for these two batches, not a change to one batch a pull request.
 - **A book is read only by one who can read it** (20 November 2026). 4 in its language and Artes Liberales for its alphabet (DE line 16191), on every road a book is read: Plan a season, the standing activity and the clock. A book the character cannot read is not offered, with one line saying why.
 - **Great projects' rolls have their own part of Dice** (20 November 2026): Game Table › Dice › Great projects.
