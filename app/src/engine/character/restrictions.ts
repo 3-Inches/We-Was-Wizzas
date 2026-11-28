@@ -338,15 +338,15 @@ const MYSTERY_HOUSES = ['bjornaer', 'criamon', 'merinita', 'verditius'];
 const POWER_ABILITIES = new Set(['penetration', 'finesse', 'concentration']);
 
 /**
- * Arcane Abilities only a House's magi can learn, even with access to Arcane Abilities (DE,
- * Abilities: Heartbeast, Faerie Magic; DE, House Criamon; HoH:MC for Charms and House Merinita
- * Lore). A Virtue that grants one (Gorgiastic magi, say) still allows it.
+ * Arcane Abilities only a House's magi can learn, "even if they have access to Arcane Abilities"
+ * (DE line 7564, Faerie Magic; line 7587, Heartbeast). Charms are made by "all magi who study
+ * Faerie Magic" (HoH: MC line 3327), so they follow it. A Virtue that grants one still allows it.
+ * Not here: House Merinita Lore, which initiates "who have not been apprenticed to a member of the
+ * House" hold (HoH: MC line 201), and Enigmatic Wisdom, which comes by the Enigma, not the House.
  */
 const HOUSE_ABILITIES: Record<string, string[]> = {
   heartbeast: ['bjornaer'],
-  'enigmatic-wisdom': ['criamon'],
   'faerie-magic': ['merinita'],
-  'house-merinita-lore': ['merinita'],
   charms: ['merinita'],
 };
 
@@ -354,7 +354,8 @@ const HOUSE_ABILITIES: Record<string, string[]> = {
  * Can the character learn this Ability at all (DE, Characters chapter: Abilities)? General: anyone.
  * Academic, Arcane and Martial: magi, or a Virtue that gives access. Supernatural: only with the
  * Virtue that grants it (or The Gift, for hedge wizards). Spell Mastery: magi. Mystery Cult Lore:
- * initiates (a Mystery House, or Cabal Legacy). Heartbeast, Enigmatic Wisdom, Faerie Magic: their House.
+ * initiates (a Mystery House, or Cabal Legacy). Heartbeast, Faerie Magic: their House. Enigmatic
+ * Wisdom: the Enigma. Teaching and study add their own conditions (`mayLearn`, teaching.ts).
  */
 export function abilityAvailability(d: DerivedCharacter, data: GameData, abilityId: string, param?: string): { ok: boolean; reason?: string } {
   const def = data.abilityById.get(abilityId);
@@ -367,6 +368,12 @@ export function abilityAvailability(d: DerivedCharacter, data: GameData, ability
   // open for one choice only (a Nephilim's Hebrew): any other choice needs the usual Virtue
   const only = access.onlyAs.get(abilityId);
   if (only && (param === undefined || only.has(param.trim().toLowerCase()))) return { ok: true };
+  // "Characters may not learn Enigmatic Wisdom without being initiated into the mystery of the
+  // Enigma" (DE line 10014); The Enigma grants it (above). Gorgiastic magi "may have Enigmatic
+  // Wisdom and House Criamon Lore scores after character creation" (DE line 4063).
+  if (abilityId === 'enigmatic-wisdom') {
+    return d.char.virtues.some((v) => v.defId === 'gorgiastic') ? { ok: true } : { ok: false, reason: 'Only one initiated into the Enigma (a magus of House Criamon) can learn it' };
+  }
   const houses = HOUSE_ABILITIES[abilityId];
   if (houses && !(d.isMagus && houses.includes(d.char.house ?? ''))) {
     return { ok: false, reason: `Only magi of House ${houses.map((h) => HOUSE_BY_ID[h]?.name ?? h).join(' or ')} can learn it` };

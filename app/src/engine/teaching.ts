@@ -13,6 +13,7 @@ import { applySeason, computeStudy, newSeasonEntry, type StudyResult } from './l
 import type { Character, CharSpell, Season, SeasonLogEntry } from './types';
 import { abilityScoreFromXp } from './xp';
 import { learnsArts } from './firstChoice';
+import { abilityAvailability } from './character/restrictions';
 
 export interface Learner {
   c: Character;
@@ -68,21 +69,21 @@ export function commonLanguage(t: Learner, s: Learner): string | undefined {
 const scholarly = (x: Learner) => x.c.abilities.some((a) => (a.abilityId === 'dead-language' || a.abilityId.startsWith('dead-language-')) && (x.d.abilityByUid.get(a.uid)?.score ?? 0) >= 3);
 
 /**
- * Why a student cannot learn an Ability it has no score in, or nothing if it can: Academic, Arcane
- * and Martial Abilities need a Virtue or a magus (an Academic one Latin at 3 as well); a new
- * Supernatural Ability has its own rules; only the Gifted learn Parma Magica (DE, Abilities). A
- * familiar can learn Magic Theory (DE, Familiars).
+ * Why a student cannot learn an Ability it has no score in, or nothing if it can. First the one
+ * gate every road that adds an Ability passes (`abilityAvailability`: a Virtue or a magus for
+ * Academic, Arcane and Martial Abilities, the House Abilities, Parma Magica only for the Gifted),
+ * then what teaching and study add: a new Supernatural Ability is learned by its own rules, and an
+ * Academic one needs Latin at 3. A familiar can learn Magic Theory (DE, Familiars).
  */
 export function mayLearn(s: Learner, data: GameData, abilityId: string, param?: string): string | undefined {
   const { d } = s;
+  if (abilityId === 'magic-theory' && s.c.creature?.familiarOf) return undefined;
+  const gate = abilityAvailability(d, data, abilityId, param);
+  if (!gate.ok) return gate.reason ?? 'it cannot be learned';
   // a Virtue that opens one Ability only as one thing (Dead Language: Latin, say) opens that one
   if (param && d.abilityAccess.onlyAs.get(abilityId)?.has(param.trim().toLowerCase())) return undefined;
-  if (abilityId === 'parma-magica') return d.hasGift ? undefined : 'only the Gifted learn Parma Magica';
-  if (abilityId === 'magic-theory' && s.c.creature?.familiarOf) return undefined;
   const type = abilityTypeOf(data, abilityId);
-  if (type === 'Supernatural') return d.abilityAccess.abilities.has(abilityId) ? undefined : 'a new Supernatural Ability is learned by its own rules (DE, Learning Supernatural Abilities)';
-  if (type === 'General') return undefined;
-  if (!d.isMagus && !d.abilityAccess.types.has(type) && !d.abilityAccess.abilities.has(abilityId)) return `${type} Abilities need a Virtue that opens them`;
+  if (type === 'Supernatural' && !d.abilityAccess.abilities.has(abilityId)) return 'a new Supernatural Ability is learned by its own rules (DE, Learning Supernatural Abilities)';
   if (type === 'Academic' && !isLanguageAbility(abilityId) && !scholarly(s)) return 'an Academic Ability needs Latin (or another learned language) at 3 first';
   return undefined;
 }
