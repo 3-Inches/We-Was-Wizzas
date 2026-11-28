@@ -6,7 +6,8 @@
 //   warning – breaks a guideline ("should") or is very likely a mistake
 //   info    – reminders and suggestions
 
-import { CHARACTERISTICS, CHAR_NAMES, STATUS_CULTURES, abilityTypeOf, type GameData } from '../../data';
+import { CHARACTERISTICS, CHAR_NAMES, PARAMETERIZED_ABILITIES, STATUS_CULTURES, abilityTypeOf, type GameData } from '../../data';
+import { abilityRefName, namesAbility, splitAbilityRef } from '../abilityRef';
 import { LAB_ONLY_VF } from '../../data/restrictions';
 import { secondDivination } from '../hermeticMysteries';
 import type { Character, HouseRules } from '../types';
@@ -283,10 +284,22 @@ export function validateCharacter(d: DerivedCharacter, data: GameData, rules: Ho
     if (def.param && !def.param.optional && !v.cv.param) add({ id: `param-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${def.name}: choose the ${def.param.label}.` });
     for (const p of vfProblems(d, data, def, v.cv)) add({ id: p.id, code: p.code, vf: v.cv.uid, other: p.other, needIndex: p.needIndex, severity: p.severity, step: 'virtues', message: p.message, ref: p.ref, fix: p.fix });
     // a Virtue or Flaw about an Ability the character cannot learn (Puissant Heartbeast outside House Bjornaer), unless it is what gives the Ability
-    if (def.param?.kind === 'ability' && !def.param.multiple && v.cv.param && data.abilityById.get(v.cv.param) && !def.effects?.some((e) => e.type === 'grantAbility' || e.type === 'abilityAccess')) {
-      const av = abilityAvailability(d, data, v.cv.param);
-      if (!av.ok && !c.abilities.some((a) => a.abilityId === v.cv.param)) {
-        add({ id: `vf-ability-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${v.name}: this character cannot learn ${data.abilityById.get(v.cv.param)?.name} (${av.reason ?? 'not open to them'}).` });
+    if (def.param?.kind === 'ability' && !def.param.multiple && v.cv.param && !def.effects?.some((e) => e.type === 'grantAbility' || e.type === 'abilityAccess')) {
+      // one Ability of a kind is named with it, craft-type:Runes (abilityRef.ts)
+      const { abilityId, kind } = splitAbilityRef(v.cv.param);
+      const ab = data.abilityById.get(abilityId);
+      const held = c.abilities.filter((a) => a.abilityId === abilityId);
+      const av = ab && abilityAvailability(d, data, abilityId, kind);
+      if (!ab) {
+        add({ id: `vf-ability-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${v.name}: "${v.cv.param}" names no Ability; choose it again.` });
+      } else if (av && !av.ok && !held.length) {
+        add({ id: `vf-ability-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${v.name}: this character cannot learn ${ab.name} (${av.reason ?? 'not open to them'}).` });
+      } else if (PARAMETERIZED_ABILITIES[abilityId] && !kind) {
+        // "skill in one Craft does not imply skill in any others" (DE line 7474)
+        add({ id: `vf-ability-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${v.name}: say which ${PARAMETERIZED_ABILITIES[abilityId]}; each is an Ability of its own.` });
+      } else if (kind && held.length && !held.some((a) => namesAbility(v.cv.param, abilityId, a.param))) {
+        // a kind typed that names none of the character's: likely spelled two ways
+        add({ id: `vf-ability-${v.cv.uid}`, code: 'param', vf: v.cv.uid, severity: 'warning', step: 'virtues', message: `${v.name} names ${abilityRefName(v.cv.param, data)}, which the character does not have; they have ${held.map((a) => abilityRefName(`${abilityId}:${a.param ?? ''}`, data)).join(', ')}. Check the spelling.` });
       }
     }
     if (!data.inBooks(def)) add({ id: `book-${v.cv.uid}`, severity: 'info', step: 'virtues', message: `${def.name} comes from ${def.source.book}, which is not enabled for this saga.` });

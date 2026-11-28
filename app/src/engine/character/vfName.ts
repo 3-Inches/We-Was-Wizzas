@@ -3,17 +3,14 @@
 import type { GameData, VirtueFlawDef } from '../../data';
 import type { CharVirtue } from '../types';
 import { paramValues } from './derive';
+import { abilityRefName } from '../abilityRef';
 
 export function vfDisplayName(def: VirtueFlawDef | undefined, cv: CharVirtue, data?: GameData): string {
   const base = def?.name ?? cv.defId;
   if (!cv.param) return base;
   const one = (p: string) => {
-    if (def?.param?.kind === 'ability' && data) {
-      // an Ability of a kind, named with it: Craft: Runes (ParamInput)
-      const [id, ...kind] = p.split(':');
-      const name = data.abilityById.get(id)?.name;
-      return name && kind.length ? `${name.replace(/ \(Type\)$/, '')}: ${kind.join(':')}` : name ?? p;
-    }
+    // an Ability of a kind, named with it: Craft: Runes (ParamInput)
+    if (def?.param?.kind === 'ability' && data) return abilityRefName(p, data);
     if (def?.param?.kind === 'art' || def?.param?.kind === 'technique' || def?.param?.kind === 'form') {
       return ({ Cr: 'Creo', In: 'Intellego', Mu: 'Muto', Pe: 'Perdo', Re: 'Rego', An: 'Animal', Aq: 'Aquam', Au: 'Auram', Co: 'Corpus', He: 'Herbam', Ig: 'Ignem', Im: 'Imaginem', Me: 'Mentem', Te: 'Terram', Vi: 'Vim' } as Record<string, string>)[p] ?? p;
     }

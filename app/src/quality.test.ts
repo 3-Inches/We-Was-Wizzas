@@ -157,6 +157,21 @@ const RAW_WARPING: Record<string, string> = {
   'src/ui/pages/holy/HolyPowerCard.tsx': 'a holy power’s botch: the Divine Ascent follows, on its own card',
 };
 
+// a Virtue's Ability matched by hand: `e.ability === `${id}:${param}``, or its kind lowercased (Batch F, Found F6)
+const MATCHES_ABILITY_KIND = /\.ability\??\.toLowerCase\(\)|\.ability\s*===\s*`\$\{[^`]*\}:\$\{/;
+
+describe('an Ability of a kind', () => {
+  it('is matched through namesAbility (engine/abilityRef.ts), one way for every rule', () => {
+    const raw = sources.filter(([path, text]) => !path.endsWith('/abilityRef.ts') && MATCHES_ABILITY_KIND.test(text)).map(([path]) => path.replace(/^\.\//, 'src/'));
+    expect(raw, 'match a Virtue’s Ability with namesAbility').toEqual([]);
+  });
+
+  it('catches each way of matching it by hand', () => {
+    for (const t of ['e.ability === `${abilityId}:${param}`', 'e.ability?.toLowerCase() === x', 'e.ability.toLowerCase()']) expect(MATCHES_ABILITY_KIND.test(t), t).toBe(true);
+    for (const t of ['e.ability === id', "e.ability === '$param'", 'namesAbility(e.ability, id, param)']) expect(MATCHES_ABILITY_KIND.test(t), t).toBe(false);
+  });
+});
+
 // any change to Warping Points: `x.warpingPoints += n`, `= n`, `-= n`, `++`, and a season entry's `e.warpingPoints = n`
 const CHANGES_WARPING = /(?<!(?:let|const|var)\s+)\bwarpingPoints\s*(?:[-+*/]?=(?!=)|\+\+|--)|(?:\+\+|--)\s*[\w.?!]*\bwarpingPoints\b/;
 

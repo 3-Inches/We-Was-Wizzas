@@ -2,6 +2,7 @@
 // spells based on the character's type, House, concept archetypes, and existing choices.
 // Suggestions always explain *why*, and never override the player.
 
+import { abilityRefName } from './abilityRef';
 import { ARTS, ART_NAMES, type Art, type GameData, type VirtueFlawDef } from '../data';
 import type { DerivedCharacter } from './character/derive';
 import { vfProblems } from './character/restrictions';
@@ -85,10 +86,10 @@ export function recommend(d: DerivedCharacter, data: GameData, archetypeIds: str
       push({ kind: 'virtue', id: 'puissant-art', param: e.art, title: `Puissant ${ART_NAMES[e.art as Art]}`, reason: `You have ${e.fromName}; Puissant adds +3 to every total using that Art.`, score: 8, group: 'Synergy' });
     }
     if (e.type === 'abilityBonus' && typeof e.ability === 'string' && e.ability) {
-      push({ kind: 'virtue', id: 'affinity-with-ability', param: e.ability, title: `Affinity with ${data.abilityById.get(e.ability)?.name ?? e.ability}`, reason: `Pairs with ${e.fromName}; Affinity also raises the creation age cap by 2.`, score: 7, group: 'Synergy' });
+      push({ kind: 'virtue', id: 'affinity-with-ability', param: e.ability, title: `Affinity with ${abilityRefName(e.ability, data)}`, reason: `Pairs with ${e.fromName}; Affinity also raises the creation age cap by 2.`, score: 7, group: 'Synergy' });
     }
     if (e.type === 'abilityAffinity' && typeof e.ability === 'string' && e.ability) {
-      push({ kind: 'virtue', id: 'puissant-ability', param: e.ability, title: `Puissant ${data.abilityById.get(e.ability)?.name ?? e.ability}`, reason: `Pairs with ${e.fromName}.`, score: 6, group: 'Synergy' });
+      push({ kind: 'virtue', id: 'puissant-ability', param: e.ability, title: `Puissant ${abilityRefName(e.ability, data)}`, reason: `Pairs with ${e.fromName}.`, score: 6, group: 'Synergy' });
     }
     if (e.type === 'magicalFocus') {
       out.push({ kind: 'tip', title: 'Build around your Magical Focus', reason: 'Spells and lab work inside your focus add your lowest applicable Art again. Invest in the Technique and Form that the focus covers, and mark in-focus spells on the sheet.', score: 7, group: 'Synergy' });

@@ -1,6 +1,7 @@
 // Computes everything derivable about a character from its stored choices.
 // Pure functions: (character, game data, house rules) -> DerivedCharacter.
 
+import { namesAbility } from '../abilityRef';
 import { LEARNED_ART_IDS } from '../../data/hedgeLearned';
 import { WITCH_POWERS } from '../../data/hedgeFolkWitch';
 import { GRUAGACH_ART_IDS } from '../../data/hedgeGruagach';
@@ -488,11 +489,10 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
 
   // ---------------------------------------------------------------- abilities
   // a Virtue on one Ability of a kind names it (craft-type:Runes), and helps that one only (DE line 7474)
-  const ofKind = (e: { ability?: string }, id: string, param?: string) => !!param && e.ability?.toLowerCase() === `${id}:${param}`.toLowerCase();
   const abilityBonus = (id: string, param?: string) =>
-    eff('abilityBonus').filter((e) => e.ability === id || ofKind(e, id, param)).reduce((s, e) => s + (e.fromName.startsWith('Puissant') ? rules.puissantAbilityBonus : e.amount), 0);
+    eff('abilityBonus').filter((e) => namesAbility(e.ability, id, param)).reduce((s, e) => s + (e.fromName.startsWith('Puissant') ? rules.puissantAbilityBonus : e.amount), 0);
   const hasAffinity = (id: string, param?: string) =>
-    eff('abilityAffinity').some((e) => e.ability === id || ofKind(e, id, param));
+    eff('abilityAffinity').some((e) => namesAbility(e.ability, id, param));
   const capBonus = (id: string) => eff('abilityCapBonus').filter((e) => e.ability === id).reduce((s, e) => s + e.amount, 0);
   const linguist = eff('languageAffinity')[0];
   const ageCap = abilityCapForAge(magicChar ? SEASON_AGE[magicChar.season] : char.age);

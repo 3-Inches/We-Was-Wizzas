@@ -1,5 +1,6 @@
 // Long-term events (DE Chapter 10): seasonal advancement, aging, Twilight.
 
+import { namesAbility } from './abilityRef';
 import { CHARACTERISTICS, FORMS, TECHNIQUES, type Art, type Characteristic, type GameData } from '../data';
 import type { Character, SeasonLogEntry, XpSource } from './types';
 import { paramValues, type DerivedCharacter } from './character/derive';
@@ -138,7 +139,7 @@ export function computeStudy(d: DerivedCharacter, src: StudySource, target: { ar
   } else if (target.newAbility) {
     // an Affinity with an Ability not yet begun counts from its first season (DE, Affinity with Ability)
     const { abilityId, param } = target.newAbility;
-    if (d.effects.some((e) => e.type === 'abilityAffinity' && (e.ability === abilityId || (!!param && e.ability === `${abilityId}:${param}`)))) xp = withAffinity(total);
+    if (d.effects.some((e) => e.type === 'abilityAffinity' && namesAbility(e.ability, abilityId, param))) xp = withAffinity(total);
   }
   for (const e of d.effects) {
     if (e.type === 'advancementMultiplier' && (e.when === 'all' || (e.when as string[]).includes(kindKey))) {
