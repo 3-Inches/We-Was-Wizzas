@@ -2,13 +2,14 @@
 // exposure, adventure, raw vis, Worship or a season of lab work, worked out and logged on the season log.
 
 import { useState } from 'react';
+import { uid } from '../../../util/id';
 import { R } from '../../routes';
 import { Link } from 'react-router-dom';
-import { bestLesson, mayLearn, teachableSubjects } from '../../../engine/teaching';
-import { readProblems } from '../../../engine/books';
+import { bestLesson, teachableSubjects } from '../../../engine/teaching';
+import { bookAbility, studyProblem, unreadableBooks } from '../../../engine/books';
 import { abilityDisplayName, deriveCharacter } from '../../../engine/character/derive';
 import { specAbilities, specChar, specHighest } from '../../../engine/covenantRules';
-import { ARTS, ART_NAMES, FORMS, TECHNIQUES, abilityTypeOf, type Art } from '../../../data';
+import { ARTS, ART_NAMES, FORMS, TECHNIQUES, type Art } from '../../../data';
 import { applySeason, computeStudy, magianLinkedGains, newSeasonEntry, visForStudy, type StudySource } from '../../../engine/longterm';
 import { stressDie, describeStress } from '../../../engine/dice';
 import type { SeasonLogEntry } from '../../../engine/types';
@@ -231,6 +232,9 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
     const insightText = insight && insightPicked.length ? `; Secondary Insight: +1 ${insightPicked.join(', ')}` : '';
     const text = summary || (kind === 'other' ? 'Other activity' : `${KIND_LABEL[kind]}: ${subject}${res ? ` (+${res.xp} xp)` : ''}${linkedText ? `; Magian Lineage: ${linkedText}` : ''}${insightText}`);
     const entry = newSeasonEntry(year, season, ACTIVITY[kind], asExtra ? `Extra season (needs no sleep): ${text}` : text, gains);
+    // a lesson from a covenant-mate is logged on both: Unlog takes back both (owner.md, Decided)
+    const link = mate && mateD && logTeacher && teacherSlot ? uid() : undefined;
+    if (link) entry.link = link;
     if (asExtra) entry.extra = true;
     if (res) entry.sourceQuality = res.advancementTotal;
     if (kind === 'vis' && art) {
@@ -297,6 +301,7 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
         const ex = computeStudy(mateD, { kind: 'exposure', subject: 'Teaching' }, { abilityUid: tch.uid });
         const e = newSeasonEntry(year, season, 'teach', `${teacherSlot === 'extra' ? 'Extra season (needs no sleep): ' : ''}Taught ${subject} to ${c.name || 'a student'} (Exposure: Teaching +${ex.xp} xp)`, ex.xp ? { [`ability:${tch.uid}`]: ex.xp } : {});
         if (teacherSlot === 'extra') e.extra = true;
+        e.link = link;
         if (begunUndo(had, t).abilities) e.undo = begunUndo(had, t);
         applySeason(t, e, 1);
         t.seasonLog.push(e);
@@ -309,27 +314,12 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
     setVisBotch(0);
   };
 
-  // the character's own Ability a book is on: the same Ability, and the same one of it (Latin, not Greek)
-  // a book that names no one of an Ability taken as one thing (a Profession, a Lore: old saves' books) is on the character's
-  // own only when they have just one of it, and begins none
-  const named = (x?: string) => (x ?? '').trim().toLowerCase();
-  const unnamed = (b: (typeof library)[number]) => !b.param && !!data.abilityById.get(b.subject)?.parameterized;
-  const onBook = (a: { abilityId: string; param?: string }, b: (typeof library)[number]) =>
-    a.abilityId === b.subject && (b.param ? named(a.param) === named(b.param) : !unnamed(b) || c.abilities.filter((x) => x.abilityId === b.subject).length === 1);
-  // the books this character can study: on an Art, for one who learns the Arts; on an Ability they have, or
-  // one they may begin (Academic, Arcane and Martial need a Virtue, a Supernatural one its own: DE, Abilities)
-  const studied = (b: (typeof library)[number]) =>
-    (b.kind === 'summa' || b.kind === 'tractatus') &&
-    !b.corrupt &&
-    (b.subjectType === 'art' ? canStudyArts : b.subjectType === 'ability' && bookOnAbility(b));
-  // "A character can only study a Supernatural Ability from a book if he already has a score of at least one in that Ability" (DE line 16203)
-  function bookOnAbility(b: (typeof library)[number]) {
-    const mine = c!.abilities.find((a) => onBook(a, b));
-    if (abilityTypeOf(data, b.subject) === 'Supernatural') return !!mine && (d!.abilityByUid.get(mine.uid)?.score ?? 0) >= 1;
-    return !!mine || (!unnamed(b) && !mayLearn({ c: c!, d: d! }, data, b.subject, b.param));
-  }
-  // why this character cannot read the book chosen (DE line 16191): the troupe may overrule
-  const unreadable = book && (kind === 'summa' || kind === 'tractatus') ? readProblems(c, d, book) : [];
+  // the character's own Ability a book is on, and the books they can study: one rule with the standing
+  // activity Read and the priorities (`studyProblem`): a book they cannot read is not offered (DE line 16191)
+  const onBook = (a: { abilityId: string; param?: string }, b: (typeof library)[number]) => bookAbility(c, data, b) === a;
+  const studied = (b: (typeof library)[number]) => !studyProblem(c, d, data, b);
+  // the books left out because the character cannot read their language or alphabet, said in one line
+  const unreadable = unreadableBooks(c, d, data, library);
   const pickBook = (uid: string) => {
     setBookUid(uid);
     const b = library.find((x) => x.uid === uid);
@@ -616,7 +606,7 @@ export function PlanSeasonCard({ ed }: { ed: CharEditor }) {
       </div>
       {trainingNotAllowed && <p className="small bad-text">Arts cannot be learned by training (DE p.377); use teaching instead.</p>}
       {visNotAllowed && <p className="small bad-text">Raw vis teaches a Hermetic Art; choose an Art as the subject.</p>}
-      {unreadable.length > 0 && <p className="small warn-text">{c.name || 'This character'} cannot read {book!.title}: it needs {unreadable.join(' and ')} (DE, Reading Books). Log it only if the storyguide allows.</p>}
+      {(kind === 'summa' || kind === 'tractatus') && unreadable.length > 0 && <p className="small muted">Not offered: {unreadable.map((u) => `${u.book.title} (needs ${u.needs})`).join('; ')}. A book is read only in a language of 4 or more, with Artes Liberales for its alphabet (DE, Reading Books).</p>}
       {tractatusRead && <p className="small warn-text">This character has already read this tractatus; a tractatus gives experience only once.</p>}
       {res && (
         <div className="row" style={{ marginTop: 8 }}>

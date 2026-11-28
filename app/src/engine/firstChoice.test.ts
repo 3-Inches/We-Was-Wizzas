@@ -67,12 +67,12 @@ describe('the Hermetic Arts are offered only to a magus (A2)', () => {
     cov.specialists = [];
     cov.library = cov.library.filter((b) => b.subjectType === 'art' && (b.kind === 'summa' || b.kind === 'tractatus'));
     expect(cov.library.length).toBeGreaterThan(0);
-    const forWitch = bestStudy(witch, derive(witch), cov, s.saga.currentYear, s.saga.currentSeason, s.characters);
+    const forWitch = bestStudy(witch, derive(witch), cov, s.saga.currentYear, s.saga.currentSeason, s.characters, [], data);
     expect(forWitch).toBeUndefined();
     // a magus with no Arts would study one from the library
     const magus = structuredClone(s.characters.find((c) => c.type === 'magus' && cov.memberIds.includes(c.id))!);
     for (const a of ARTS) magus.arts[a] = {};
-    const forMagus = bestStudy(magus, derive(magus), cov, s.saga.currentYear, s.saga.currentSeason, s.characters);
+    const forMagus = bestStudy(magus, derive(magus), cov, s.saga.currentYear, s.saga.currentSeason, s.characters, [], data);
     expect(forMagus?.standing.target).toMatch(/^art:/);
   });
 

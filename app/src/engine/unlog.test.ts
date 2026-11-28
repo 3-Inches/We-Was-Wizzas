@@ -7,7 +7,7 @@ import { deriveCharacter } from './character/derive';
 import { newSeasonEntry, applySeason } from './longterm';
 import { newProject } from './projects';
 import { DEFAULT_HOUSE_RULES } from './types';
-import { labUndo, unlogSeason } from './unlog';
+import { canUnlogLinked, labUndo, unlogLinked, unlogSeason } from './unlog';
 import { purseOf } from './vis';
 import { workshopSeason } from './workshop';
 import { newCovenant } from './covenant';
@@ -94,5 +94,44 @@ describe('unlogging a season', () => {
     expect(r.covenants).toEqual([cov]);
     expect(cov.visStocks).toEqual([{ art: 'Vi', pawns: 3 }]);
     expect(cov.library[0].readBy).toEqual([]);
+  });
+});
+
+describe('a season logged with another’s is unlogged with it (owner.md, Decided, 19 November 2026)', () => {
+  const pair = () => {
+    const magus = newCharacter('magus', 's1');
+    magus.name = 'Flavia';
+    const helper = newCharacter('companion', 's1');
+    helper.name = 'Bertram';
+    const mt = ensureAbility(helper, 'magic-theory', {});
+    const lab = newSeasonEntry(1220, 'Spring', 'other', 'Lab: a spell');
+    lab.link = 'L1';
+    magus.seasonLog.push(lab);
+    const help = newSeasonEntry(1220, 'Spring', 'other', 'Helped Flavia in the lab', { [`ability:${mt.uid}`]: 2 });
+    help.link = 'L1';
+    applySeason(helper, help, 1);
+    helper.seasonLog.push(help);
+    return { magus, helper, lab, help, mt };
+  };
+
+  it('unlogging the helper’s season takes back the magus’s too, and says whose', () => {
+    const { magus, helper, help, mt } = pair();
+    const r = unlogLinked(helper, help.uid, [], [magus, helper]);
+    expect(r.ok).toBe(true);
+    expect(r.with).toEqual(['Flavia']);
+    expect(helper.seasonLog).toHaveLength(0);
+    expect(magus.seasonLog).toHaveLength(0);
+    expect(helper.abilities.find((a) => a.uid === mt.uid)?.xp.play ?? 0).toBe(0);
+    expect(r.characters.map((c) => c.name).sort()).toEqual(['Bertram', 'Flavia']);
+  });
+
+  it('a linked season that cannot be unlogged holds this one too', () => {
+    const { magus, helper, lab, help } = pair();
+    lab.undo = { final: 'The spell was learned.' };
+    const can = canUnlogLinked(help, helper, [magus, helper]);
+    expect(can.ok).toBe(false);
+    expect(can.why).toMatch(/Flavia’s season/);
+    expect(unlogLinked(helper, help.uid, [], [magus, helper]).ok).toBe(false);
+    expect(helper.seasonLog).toHaveLength(1);
   });
 });

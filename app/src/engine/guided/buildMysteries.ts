@@ -4,6 +4,7 @@
 // line 249). A magus of another House takes the Cabal Legacy Flaw, which "allows a magus character to
 // be designed with cult Virtues as normal Virtues" (The Mysteries, line 748), and one cult Virtue.
 
+import { secondDivination } from '../hermeticMysteries';
 import type { GameData, VFSize } from '../../data';
 import { HOUSE_BY_ID } from '../../data/houses';
 import { CRIAMON_STATIONS } from '../../data/mysteries';
@@ -57,7 +58,7 @@ export function addMystery(c: Character, st: GuidedState, inp: BuildInput, get: 
     const rec = recs.get(id);
     return ev.scored.find((s) => s.def.id === id) ?? (def && rec ? scoreOption(def, rec, st, ev.weights, get()) : undefined);
   };
-  const size = (s: Scored): VFSize => (s.def.sizes.includes('Minor') ? 'Minor' : s.def.sizes[0]);
+  const size = (s: Scored): VFSize => (secondDivination(c, s.def.id) || s.def.sizes.includes('Minor') ? 'Minor' : s.def.sizes[0]);
   const house = HOUSE_BY_ID[c.house]?.name ?? c.house;
   // a cult's Mystery the player names is taken through Cabal Legacy, even by a magus of a Mystery House
   const named = CULT_MYSTERIES.some((m) => (st.answers[`vf:${m.id}`] ?? 0) >= 7);

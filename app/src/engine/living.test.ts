@@ -14,6 +14,7 @@ import { ensureAbility, newCharacter } from './character/factory';
 import { applyStatBlock } from './character/statBlock';
 import { generateCharacter } from './generate/character';
 import { seeded } from './generate/random';
+import { languageScore } from './books';
 import { findLabText, findSumma, tractatusQuality } from './greatLibrary';
 import { newLab } from './lab';
 import { approachChance, buyCopyFrom, buildLivingCovenant, gatheringIn, livingIds, nextGatherings, tradeWith } from './living';
@@ -63,6 +64,18 @@ describe('the named magi, from their stat blocks', () => {
       expect(d.tally.virtuePoints, m.name).toBe(d.tally.flawPoints);
       const errors = validateCharacter(d, data, rules).filter((i) => i.severity === 'error' && !/age-based maximum/.test(i.message));
       expect(errors.map((i) => i.message), m.name).toEqual([]);
+    }
+  });
+
+  it('gives every written magus Latin 4 and Artes Liberales 1, so they can read the Order’s books (DE line 2521)', () => {
+    const printed = new Set(['Tabanus', 'Felicia', 'Philippus Niger', 'Imanitos Mendax', 'Falke', 'Ioannes Acer']);
+    for (const m of named.filter((x) => !x.ungifted && !printed.has(x.name))) {
+      const c = newCharacter('magus', 's', 1220);
+      c.house = m.house;
+      applyStatBlock(c, sheets[m.name], data, rules);
+      const d = deriveCharacter(c, data, rules);
+      expect(languageScore(c, d, 'Latin'), m.name).toBeGreaterThanOrEqual(4);
+      expect(d.abilities.find((a) => a.abilityId === 'artes-liberales')?.score ?? 0, m.name).toBeGreaterThanOrEqual(1);
     }
   });
 

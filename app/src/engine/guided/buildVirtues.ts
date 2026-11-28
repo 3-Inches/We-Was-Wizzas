@@ -2,6 +2,7 @@
 // pair when asked for, the best-fitting Virtues within the budget, a magus's magic of their own, the
 // Flaws that pay for them, and Minor Virtues for any points left over.
 
+import { secondDivination } from '../hermeticMysteries';
 import { ARTS, type Art, type VFSize, type VirtueFlawDef } from '../../data';
 import type { Character, GuidedState } from '../types';
 import { addVirtue, removeVirtue } from '../character/factory';
@@ -48,6 +49,7 @@ export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildIn
   const sizeFor = (s: Scored, room: number) => {
     const sizes = s.def.sizes.filter((z) => z !== 'Free' || s.def.sizes.length === 1);
     if (c.type === 'grog') return sizes.includes('Minor') ? 'Minor' : undefined;
+    if (secondDivination(c, s.def.id)) return 'Minor';
     return sizes.includes('Major') && s.fit >= 25 && room >= 3 ? 'Major' : sizes.includes('Minor') ? 'Minor' : sizes[0];
   };
 
@@ -131,7 +133,8 @@ export function buildVirtuesAndFlaws(c: Character, st: GuidedState, inp: BuildIn
 
 /** The Virtue that gives a Holy Power its Ability (Blessing's is named apart from the gruagach's Form). */
 export const powerVirtue = (abilityId: string) => (abilityId === 'blessing' ? 'blessing-power' : abilityId);
-const HOLY_VIRTUES = new Set([...HOLY_METHODS.map((m) => m.id), ...HOLY_POWERS.map((p) => powerVirtue(p.id))]);
+/** The Holy Methods and Powers (RoP: The Divine): a role that asks for them keeps them in a Plain build (generate/character.ts). */
+export const HOLY_VIRTUES = new Set([...HOLY_METHODS.map((m) => m.id), ...HOLY_POWERS.map((p) => powerVirtue(p.id))]);
 const isHolyVirtue = (id: string) => HOLY_VIRTUES.has(id);
 /** The Power each kind of Method calls first when nothing else decides. */
 const FIRST_POWER: Record<string, string[]> = { invocation: ['blessing', 'wonders', 'adjuration', 'cursing'], meditation: ['understanding', 'blessing', 'intervention', 'transcendence'], purity: ['intervention', 'transcendence', 'adjuration', 'cursing'] };

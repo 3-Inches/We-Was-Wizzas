@@ -180,23 +180,8 @@ export interface DerivedCharacter {
 
 const SIZE_POINTS: Record<string, number> = { Major: 3, Minor: 1, Free: 0 };
 
-export function vfDisplayName(def: VirtueFlawDef | undefined, cv: CharVirtue, data?: GameData): string {
-  const base = def?.name ?? cv.defId;
-  if (!cv.param) return base;
-  const one = (p: string) => {
-    if (def?.param?.kind === 'ability' && data) return data.abilityById.get(p)?.name ?? p;
-    if (def?.param?.kind === 'art' || def?.param?.kind === 'technique' || def?.param?.kind === 'form') {
-      return ({ Cr: 'Creo', In: 'Intellego', Mu: 'Muto', Pe: 'Perdo', Re: 'Rego', An: 'Animal', Aq: 'Aquam', Au: 'Auram', Co: 'Corpus', He: 'Herbam', Ig: 'Ignem', Im: 'Imaginem', Me: 'Mentem', Te: 'Terram', Vi: 'Vim' } as Record<string, string>)[p] ?? p;
-    }
-    return p;
-  };
-  const label = def?.param?.multiple ? paramValues(cv.param).map(one).join(', ') : one(cv.param);
-  if (/\(.*\)/.test(base)) return base.replace(/\(([^)]*)\)/, `(${label})`);
-  if (/ Ability$/.test(base)) return base.replace(/Ability$/, label);
-  if (/ Art$/.test(base)) return base.replace(/Art$/, label);
-  if (/Technique$|Form$/.test(base)) return base.replace(/(Technique|Form)$/, label);
-  return `${base} (${label})`;
-}
+import { vfDisplayName } from './vfName';
+export { vfDisplayName };
 
 /** The character's best total in an Ability (0 without it): the highest when several specialities or parameters share it. */
 export function abilityTotal(d: Pick<DerivedCharacter, 'abilities'>, id: string): number {
@@ -502,10 +487,12 @@ export function deriveCharacter(char: Character, data: GameData, rules: HouseRul
   }
 
   // ---------------------------------------------------------------- abilities
+  // a Virtue on one Ability of a kind names it (craft-type:Runes), and helps that one only (DE line 7474)
+  const ofKind = (e: { ability?: string }, id: string, param?: string) => !!param && e.ability?.toLowerCase() === `${id}:${param}`.toLowerCase();
   const abilityBonus = (id: string, param?: string) =>
-    eff('abilityBonus').filter((e) => e.ability === id || (param && e.ability === `${id}:${param}`)).reduce((s, e) => s + (e.fromName.startsWith('Puissant') ? rules.puissantAbilityBonus : e.amount), 0);
+    eff('abilityBonus').filter((e) => e.ability === id || ofKind(e, id, param)).reduce((s, e) => s + (e.fromName.startsWith('Puissant') ? rules.puissantAbilityBonus : e.amount), 0);
   const hasAffinity = (id: string, param?: string) =>
-    eff('abilityAffinity').some((e) => e.ability === id || (param && e.ability === `${id}:${param}`));
+    eff('abilityAffinity').some((e) => e.ability === id || ofKind(e, id, param));
   const capBonus = (id: string) => eff('abilityCapBonus').filter((e) => e.ability === id).reduce((s, e) => s + e.amount, 0);
   const linguist = eff('languageAffinity')[0];
   const ageCap = abilityCapForAge(magicChar ? SEASON_AGE[magicChar.season] : char.age);

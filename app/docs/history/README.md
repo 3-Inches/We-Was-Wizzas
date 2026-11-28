@@ -1,6 +1,6 @@
 # History of the pull requests
 
-A record of the 88 merged pull requests, #1 (25 September 2026) to #88 (22 November 2026), from their numbers.
+A record of the 89 merged pull requests, #1 (25 September 2026) to #90 (28 November 2026), from their numbers.
 
 ## How to read this and keep it up
 
@@ -103,6 +103,8 @@ Sweep pages are per width, both widths clean unless said. Before #67 the sweep v
 | 86 | 2026-11-20 | Batch C: Quick build hedge/faerie |  | 1,054 | 2,250 / 0 | 10, and the lead's own |  |
 | 87 | 2026-11-22 | Reader links; qa:final | 157 s | 1,060 | 2,250 / 0 / 14 | 3, then 12 on the tooling |  |
 | 88 | 2026-11-22 | Retrospective: history, narrowed rules |  |  | docs only |  |  |
+| 90 | 2026-11-28 | Batches D and E | 127 s (main 111 s, same container) | 1,077 | 2,250 / 0 / 14 | 10 (3 fixed, 1 by the lead, 1 not a fault, 5 to Found) |  |
+| 91 | 2026-11-28 | Forensic review: rules from the code, Batch F proposed | 102 s | 1,077 | docs, and #90's Faerie Sympathy fix | 14 on the diff, and a review of the forensic reports |  |
 
 ## Jumps
 

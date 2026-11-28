@@ -4,6 +4,7 @@
 // season did, not the source text, so a new kind of season, or a new record one changes, is caught
 // the first time a character can do it. The cards' own seasons are checked the same way, by pressing
 // their buttons, in src/ui/pages/unlogEverySeason.test.tsx.
+import { unlogLinked } from './unlog';
 import { describe, expect, it } from 'vitest';
 import { buildGameData } from '../data';
 import { deriveCharacter } from './character/derive';
@@ -84,7 +85,11 @@ function checkLessons(name: string, st: SagaState): { problems: string[]; lesson
     const before = structuredClone(x.characters);
     giveLesson(t, plan, x.saga.currentYear, x.saga.currentSeason);
     lessons++;
-    for (const c of x.characters) for (const e of c.seasonLog.filter((e) => !before.find((b) => b.id === c.id)!.seasonLog.some((y) => y.uid === e.uid))) unlogSeason(c, e.uid, x.covenants);
+    // the teacher's season alone is unlogged: the students' go with it (owner.md, Decided: Unlog takes back a linked season)
+    const te = t.c.seasonLog[t.c.seasonLog.length - 1];
+    const r = unlogLinked(t.c, te.uid, x.covenants, x.characters);
+    if (!r.ok) problems.push(`${name}: ${t0.name}'s lesson could not be unlogged: ${r.why}`);
+    if (r.with.length !== plan.students.length) problems.push(`${name}: ${t0.name}'s lesson named ${r.with.length} students, not ${plan.students.length}`);
     problems.push(...differences(before, x.characters).map((p) => `${name}: ${t0.name} taught ${plan.label}: ${p}`));
   }
   return { problems, lessons };

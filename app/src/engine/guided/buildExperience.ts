@@ -306,17 +306,19 @@ export function spendExperience(c: Character, st: GuidedState, inp: BuildInput, 
   spendTradition(c, st, inp, get, refresh, log);
   chooseTraditionMagic(c, inp, get, refresh, log, 'charms');
 
-  // every other pool: later life, Virtue pools
-  for (let guard = 0; guard < 8; guard++) {
-    const pools = get().d.budgets.filter((b) => !['native', 'childhood', 'apprenticeship', 'postGauntlet'].includes(b.id) && b.total - b.spent > 0 && b.kind !== 'art+ability');
-    const b = pools[0];
+  // every other pool: later life, Virtue pools, and an apprenticeship no tradition spent (a Lone Redcap's).
+  // A pool that takes nothing more is passed over, not the end: the pools after it are spent too (Batch D:
+  // a scholar's Educated left 5 xp, and Bardic, Vernacular and Physician of Salerno were left at 0)
+  const done = new Set<string>();
+  for (let guard = 0; guard < 40; guard++) {
+    const b = get().d.budgets.find((x) => !['native', 'childhood', 'postGauntlet'].includes(x.id) && !done.has(x.id) && x.total - x.spent > 0 && x.kind !== 'art+ability');
     if (!b) break;
     const before = b.total - b.spent;
     const spent = spendPoolOnAbilities(c, b, before, ranked, width + 2, inp, get, refresh, st, log);
     if (!spent) {
       // nothing ranked fits this pool: the first Abilities it allows
       const fallback = data.abilities.filter((a) => a.source.book === 'DE' && !a.id.endsWith('-type')).map((a) => ({ id: a.id, w: 1, tag: 'base' }));
-      if (!spendPoolOnAbilities(c, b, before, fallback, 3, inp, get, refresh, st, log)) break;
+      if (!spendPoolOnAbilities(c, b, before, fallback, 3, inp, get, refresh, st, log)) done.add(b.id);
     }
   }
   refresh();

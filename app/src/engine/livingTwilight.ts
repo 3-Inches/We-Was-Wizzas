@@ -52,6 +52,9 @@ export interface LivingTwilight {
   news: TribunalNews[];
 }
 
+/** How the Chronicle tells a season lost in Wizard's Twilight; time.ts finds the year so spent by it, and does not age it. */
+export const TWILIGHT_TOLD = 'was lost in Wizard’s Twilight';
+
 /**
  * Roll each Wizard's Twilight a living covenant's magus owes, oldest first: avoid it (Sta + Concentration
  * + Vim bonus + stress die vs Warping Score + points gained + Enigmatic Wisdom + local aura + stress die),
@@ -88,13 +91,13 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
     c.twilightScars = [...c.twilightScars.filter(Boolean), scar];
     const away = idx >= 10 ? { text: '', seasons: 0 } : timeAway(idx, rng);
     // after any seasons a Twilight already took from the world
-    const lost = c.seasonLog.filter((x) => x.told === 'was lost in Wizard’s Twilight' && seasonIndex(x.year, x.season) > seasonIndex(year, season));
+    const lost = c.seasonLog.filter((x) => x.told === TWILIGHT_TOLD && seasonIndex(x.year, x.season) > seasonIndex(year, season));
     const last = lost.sort((a, b) => seasonIndex(b.year, b.season) - seasonIndex(a.year, a.season))[0];
     let when = last ? { year: last.year, season: last.season } : { year, season };
     for (let i = 0; i < away.seasons; i++) {
       when = nextSeason(when.year, when.season);
       const e = newSeasonEntry(when.year, when.season, 'other', `In Wizard’s Twilight, from ${season} ${year}.`);
-      e.told = 'was lost in Wizard’s Twilight';
+      e.told = TWILIGHT_TOLD;
       e.applied = true;
       c.seasonLog.push(e);
     }
@@ -103,7 +106,17 @@ export function livingTwilight(c: Character, derive: (c: Character) => DerivedCh
     if (idx >= 10) c.wounds.dead = true;
     const gone = idx >= 10 ? 'passed into Final Twilight, and is gone from the world' : `was lost to the world for ${away.text}`;
     out.lines.push(`${who} entered Wizard’s Twilight from ${gained} Warping Points: ${detail}. ${who} ${gone}.`);
-    out.news.push({ uid: uid(), year, season, kind: idx >= 10 ? 'death' : 'event', covenantId, characterId: c.id, text: `${who} fell into Wizard’s Twilight and ${gone}${idx >= 10 ? '' : comprehended ? ', and came back wiser in the ways of magic' : ', marked by it'}.` });
+    out.news.push({ uid: uid(), year, season, kind: idx >= 10 ? 'death' : 'event', covenantId, characterId: c.id, text: `${who} fell into Wizard’s Twilight and ${gone}${idx >= 10 ? '' : comprehended ? ', and came back wiser in the ways of magic' : ', marked by it'}${idx >= 10 ? '' : '. A Virtue, Flaw or spell may have come of it: the storyguide says (DE, Wizard’s Twilight)'}.` });
   }
   return out;
+}
+
+/**
+ * Whether the year's aging roll is skipped for Twilight: one roll for every four seasons spent in it, counted
+ * across the years (livingTwilight logs each season lost, from the season after the Twilight began), so a
+ * year away that starts in Spring skips the aging of the year it ends in.
+ */
+export function twilightYear(c: Character, year: number): boolean {
+  const upTo = (y: number) => c.seasonLog.filter((x) => x.year <= y && x.told === TWILIGHT_TOLD).length;
+  return Math.floor(upTo(year) / 4) > Math.floor(upTo(year - 1) / 4);
 }

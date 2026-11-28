@@ -1,3 +1,4 @@
+import { vfSizesFor } from '../../../engine/hermeticMysteries';
 import { useMemo, useState } from 'react';
 import { STATUS_CULTURES, type VFCategory, type VFSize, type VirtueFlawDef } from '../../../data';
 import { addVirtue, removeVirtue } from '../../../engine/character/factory';
@@ -77,9 +78,9 @@ function TakenList({ ed }: { ed: CharEditor }) {
           <span className="name clickable" onClick={() => setOpen(open === v.cv.uid ? null : v.cv.uid)}>
             {v.name}
           </span>
-          {def && def.sizes.length > 1 && !v.cv.free ? (
+          {def && vfSizesFor(c, def, v.cv.uid).length > 1 && !v.cv.free ? (
             <select value={v.cv.size} onChange={(e) => update((x) => void (x.virtues.find((y) => y.uid === v.cv.uid)!.size = e.target.value as VFSize))}>
-              {def.sizes.map((s) => (
+              {vfSizesFor(c, def, v.cv.uid).map((s) => (
                 <option key={s}>{s}</option>
               ))}
             </select>

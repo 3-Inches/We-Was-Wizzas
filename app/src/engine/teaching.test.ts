@@ -236,6 +236,11 @@ describe('a magic character’s seasons (RoP: Magic, Advancement)', () => {
   it('left to the clock, a character studies the covenant’s best book or teacher when it teaches more than practice', () => {
     const st = saga();
     st.cov.library.push({ uid: 'b1', title: 'De Pugna', kind: 'summa', subjectType: 'ability', subject: 'brawl', level: 6, quality: 9, language: 'German' });
+    // unlettered, Bob cannot read it (DE line 16191), and practices instead
+    expect(advanceSeason(structuredClone(st), data, quiet).report.lines.find((l) => l.who === 'Bob')?.text).not.toMatch(/^Read De Pugna/);
+    const bob = st.characters.find((c) => c.name === 'Bob')!;
+    ensureAbility(bob, 'living-language', { laterLife: 50 }, 'German');
+    ensureAbility(bob, 'artes-liberales', { laterLife: 5 });
     const { state, report } = advanceSeason(st, data, quiet);
     expect(report.lines.find((l) => l.who === 'Bob')?.text).toMatch(/^Read De Pugna.*\+9 xp/);
     expect(loggedThisSeason(state.characters[1], 1220, 'Spring')[0].bookId).toBe('b1');

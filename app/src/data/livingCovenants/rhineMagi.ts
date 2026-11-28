@@ -5,7 +5,9 @@
 // paragraph or two; their stat blocks are written to match: the Arts and Abilities it names as their
 // strengths, Virtues and Flaws for what it says of them (Ricardus's incomprehensible writing, Jiphella's
 // bewitching eye, Signum Irruptus's lost arm, Odorpes's winter sleep), and Warping, Decrepitude and a
-// Longevity Ritual for their years. Personality Traits, titles and gilds stay in rhine.ts.
+// Longevity Ritual for their years, and Latin 4 and Artes Liberales 1 at least, so they can read the
+// Order's books (DE, Apprenticeship: "A character without a Latin score of least 4 and an Artes Liberales
+// score of at least 1 is unable to read the books of the Order"). Personality Traits, titles and gilds stay in rhine.ts.
 
 import type { StatBlock } from './types';
 
@@ -300,7 +302,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Orphedra: {
     characteristics: 'Int +3, Per +2, Pre –2, Com 0, Str –2, Sta +1, Dex +1, Qik 0',
     virtues: 'The Gift; Master; Faerie Magic*, Affinity with Faerie Magic, Affinity with Imaginem, Inventive Genius, Puissant Imaginem, Second Sight; Social Handicap (makes the skin crawl), Warped Magic, Weird Magic, Wrathful, Pessimistic',
-    abilities: 'Black Forest Lore 6 (bockmen), Concentration 5 (illusions), Faerie Lore 8 (dark fae), Faerie Magic 8 (cold and darkness), Finesse 5 (Imaginem), Folk Ken 3 (fears), Guile 5 (bargains), High German 5 (Swabian), Latin 5 (Hermetic usage), Magic Lore 4 (the forest), Magic Theory 8 (Imaginem), Order of Hermes Lore 3 (House Merinita), Parma Magica 6 (Mentem), Penetration 6 (Mentem), Second Sight 4 (glamour), Stealth 4 (forests), Survival 4 (forests)',
+    abilities: 'Artes Liberales 1 (Latin script), Black Forest Lore 6 (bockmen), Concentration 5 (illusions), Faerie Lore 8 (dark fae), Faerie Magic 8 (cold and darkness), Finesse 5 (Imaginem), Folk Ken 3 (fears), Guile 5 (bargains), High German 5 (Swabian), Latin 5 (Hermetic usage), Magic Lore 4 (the forest), Magic Theory 8 (Imaginem), Order of Hermes Lore 3 (House Merinita), Parma Magica 6 (Mentem), Penetration 6 (Mentem), Second Sight 4 (glamour), Stealth 4 (forests), Survival 4 (forests)',
     arts: 'Cr 15, In 12, Mu 22, Pe 22, Re 15, An 12, Aq 10, Au 12, Co 10, He 18, Ig 15, Im 25, Me 22, Te 8, Vi 15',
     spells: ['Panic of the Trembling Heart', 'Weight of a Thousand Hells', 'Pains of the Perpetual Worry', 'Gloom of Evening', 'Well without Light', 'Conjuration of the Indubitable Cold', 'Wizard’s Icy Grip', 'Winter’s Icy Touch', 'Phantasm of the Human Form', 'Haunt of the Living Ghost', 'Chamber of Invisibility', 'Curse of the Haunted Forest', 'Image Phantom'],
     moreSpells: 120, warping: '7 (5)', decrepitude: '2 (5)', confidence: '2 (4)', longevity: 14,
@@ -309,7 +311,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Jiphella: {
     characteristics: 'Int +2, Per +2, Pre +2, Com –1, Str +1, Sta +2, Dex –3, Qik –3',
     virtues: 'The Gift; Master; Entrancement; Affinity with Mentem, Faerie Blood (dark faerie); Dutybound (to Schadrit), Weak Personality; Disfigured, Wrathful, Loose Magic',
-    abilities: 'Black Forest Lore 3 (Dankmar), Charm 2 (covenfolk), Concentration 4 (Mentem), Entrancement 7 (servants), Faerie Lore 3 (the forest), Finesse 4 (Mentem), Folk Ken 5 (servants), High German 5 (Swabian), Latin 5 (Hermetic usage), Leadership 4 (covenfolk), Magic Theory 7 (Mentem), Order of Hermes Lore 3 (Dankmar’s enemies), Parma Magica 5 (Mentem), Penetration 5 (Mentem)',
+    abilities: 'Artes Liberales 1 (Latin script), Black Forest Lore 3 (Dankmar), Charm 2 (covenfolk), Concentration 4 (Mentem), Entrancement 7 (servants), Faerie Lore 3 (the forest), Finesse 4 (Mentem), Folk Ken 5 (servants), High German 5 (Swabian), Latin 5 (Hermetic usage), Leadership 4 (covenfolk), Magic Theory 7 (Mentem), Order of Hermes Lore 3 (Dankmar’s enemies), Parma Magica 5 (Mentem), Penetration 5 (Mentem)',
     arts: 'Cr 12, In 15, Mu 12, Pe 15, Re 22, An 5, Aq 5, Au 5, Co 10, He 6, Ig 5, Im 10, Me 25, Te 5, Vi 10',
     spells: ['Aura of Rightful Authority', 'Enslave the Mortal Mind', 'Confusion of the Numbed Will', 'The Call to Slumber', 'Scent of Peaceful Slumber', 'Posing the Silent Question', 'Peering into the Mortal Mind', 'Trust of Childlike Faith', 'Loss of But a Moment’s Memory', 'Rising Ire'],
     moreSpells: 60, warping: '4 (10)', decrepitude: '1 (0)', confidence: '1 (4)', longevity: 9,
@@ -337,7 +339,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Eric Ribecus': {
     characteristics: 'Int +1, Per +1, Pre +2, Com 0, Str +1, Sta +1, Dex +1, Qik –1',
     virtues: 'The Gift; Journeyman; Self-Confident*, Affinity with Aquam, Affinity with Auram, Keen Vision, Puissant Single Weapon, Warrior, Well-Traveled; Enemies (Oculus Septentrionalis); Reckless, Overconfident, Careless Sorcerer',
-    abilities: 'Athletics 3 (climbing rigging), Awareness 3 (ships), Brawl 3 (dagger), Charm 4 (flattery), Concentration 2 (Aquam), Danish 5 (Jutland), Finesse 3 (Aquam), Guile 3 (bluffs), Latin 4 (Hermetic usage), Leadership 4 (pirates), Low German 3 (Frisia), Magic Theory 5 (Aquam), North Sea Lore 4 (shoals), Parma Magica 3 (Ignem), Penetration 3 (Auram), Profession: Sailor 5 (raiding), Single Weapon 5 (sword), Swim 3 (rough seas)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 3 (climbing rigging), Awareness 3 (ships), Brawl 3 (dagger), Charm 4 (flattery), Concentration 2 (Aquam), Danish 5 (Jutland), Finesse 3 (Aquam), Guile 3 (bluffs), Latin 4 (Hermetic usage), Leadership 4 (pirates), Low German 3 (Frisia), Magic Theory 5 (Aquam), North Sea Lore 4 (shoals), Parma Magica 3 (Ignem), Penetration 3 (Auram), Profession: Sailor 5 (raiding), Single Weapon 5 (sword), Swim 3 (rough seas)',
     arts: 'Cr 10, In 6, Mu 10, Pe 8, Re 14, An 4, Aq 15, Au 14, Co 6, He 4, Ig 5, Im 8, Me 5, Te 5, Vi 6',
     spells: ['Break the Oncoming Wave', 'Push of the Gentle Wave', 'Waves of Drowning and Smashing', 'Chaos of the Angry Waves', 'Wind at the Back', 'Clouds of Thunderous Might', 'Jupiter’s Resounding Blow', 'Charge of the Angry Winds', 'Lungs of the Fish', 'Aura of Ennobled Presence', 'Disguise of the Transformed Image'],
     moreSpells: 20, warping: '3 (5)', confidence: '2 (4)', longevity: 8, apparentAge: 35,
@@ -347,7 +349,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Lucas von Beck': {
     characteristics: 'Int +2, Per –1, Pre +1, Com –1, Str +2, Sta +2, Dex 0, Qik –1',
     virtues: 'The Gift; Journeyman; Puissant Perdo*, Affinity with Corpus, Affinity with Perdo, Large, Privileged Upbringing; Wrathful, Proud, Weird Magic, Infamous',
-    abilities: 'Athletics 2 (boarding), Awareness 3 (ambush), Brawl 3 (fists), Concentration 3 (Perdo), Etiquette 3 (nobles), Finesse 3 (Perdo), High German 5 (Rhineland), Latin 4 (Hermetic usage), Leadership 3 (grogs), Magic Lore 2 (ghosts), Magic Theory 5 (Perdo), Parma Magica 4 (Corpus), Penetration 5 (Perdo Corpus), Ride 3 (warhorse), Single Weapon 4 (sword)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 2 (boarding), Awareness 3 (ambush), Brawl 3 (fists), Concentration 3 (Perdo), Etiquette 3 (nobles), Finesse 3 (Perdo), High German 5 (Rhineland), Latin 4 (Hermetic usage), Leadership 3 (grogs), Magic Lore 2 (ghosts), Magic Theory 5 (Perdo), Parma Magica 4 (Corpus), Penetration 5 (Perdo Corpus), Ride 3 (warhorse), Single Weapon 4 (sword)',
     arts: 'Cr 6, In 8, Mu 6, Pe 18, Re 10, An 6, Aq 5, Au 5, Co 14, He 5, Ig 8, Im 4, Me 8, Te 6, Vi 8',
     spells: ['The Wound That Weeps', 'Dust to Dust', 'Grip of the Choking Hand', 'Bane of the Decrepit Body', 'Curse of the Leprous Flesh', 'Incantation of the Milky Eyes', 'Twist of the Tongue', 'Awaken the Slumbering Corpse', 'Whispers through the Black Gate', 'Pit of the Gaping Earth', 'Rusted Decay of Ten-score Years'],
     moreSpells: 20, warping: '3 (3)', confidence: '1 (4)', longevity: 6,
@@ -385,7 +387,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Estrid Danesson': {
     characteristics: 'Int +1, Per +2, Pre +1, Com +1, Str 0, Sta +1, Dex +1, Qik –1',
     virtues: 'The Gift; Journeyman; Gentle Gift, Whistle Up The Wind; Affinity with Auram, Puissant Auram; Enemies (Eric Ribecus), Reckless [Major]; Hedge Wizard, Overconfident',
-    abilities: 'Athletics 2 (rigging), Awareness 3 (weather), Baltic Sea Lore 3 (harbors), Brawl 2 (fists), Charm 3 (sailors), Concentration 2 (Auram), Danish 5 (Ribe), Finesse 2 (Auram), Latin 4 (Hermetic usage), Low German 3 (Lübeck), Magic Theory 4 (Auram), North Sea Lore 3 (Danish coasts), Parma Magica 2 (Aquam), Penetration 2 (Auram), Profession: Sailor 6 (storms), Swim 3 (rough seas), Whistle Up The Wind 5 (storms)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 2 (rigging), Awareness 3 (weather), Baltic Sea Lore 3 (harbors), Brawl 2 (fists), Charm 3 (sailors), Concentration 2 (Auram), Danish 5 (Ribe), Finesse 2 (Auram), Latin 4 (Hermetic usage), Low German 3 (Lübeck), Magic Theory 4 (Auram), North Sea Lore 3 (Danish coasts), Parma Magica 2 (Aquam), Penetration 2 (Auram), Profession: Sailor 6 (storms), Swim 3 (rough seas), Whistle Up The Wind 5 (storms)',
     arts: 'Cr 8, In 5, Mu 6, Pe 4, Re 10, An 2, Aq 10, Au 12, Co 3, He 3, Ig 3, Im 4, Me 3, Te 2, Vi 5',
     spells: ['Wind at the Back', 'Break the Oncoming Wave', 'Push of the Gentle Wave', 'Clouds of Rain and Thunder', 'Broom of the Winds', 'Charge of the Angry Winds', 'Sailor’s Foretaste of the Morrow', 'Lungs of the Fish', 'Breath of Winter'],
     moreSpells: 10, warping: '1 (5)', confidence: '1 (3)',
@@ -438,7 +440,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Eule: {
     characteristics: 'Int +2, Per +3, Pre 0, Com –1, Str –1, Sta +1, Dex 0, Qik –1',
     virtues: 'The Gift; Master; Heartbeast (owl)*, Affinity with Intellego, Clear Thinker, Hermetic Prestige, Intuition, Puissant Intellego; Twilight Prone; Reclusive, Loose Magic',
-    abilities: 'Awareness 6 (at night), Code of Hermes 7 (judgments), Concentration 5 (Intellego), Finesse 4 (Intellego), Folk Ken 6 (petitioners), Heartbeast 8 (owl), High German 5 (Saxon), Latin 6 (Hermetic usage), Magic Lore 5 (owls), Magic Theory 8 (Intellego), Order of Hermes Lore 6 (Quaesitores), Parma Magica 7 (Mentem), Penetration 5 (Intellego), Stealth 5 (owl), Survival 4 (owl)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 6 (at night), Code of Hermes 7 (judgments), Concentration 5 (Intellego), Finesse 4 (Intellego), Folk Ken 6 (petitioners), Heartbeast 8 (owl), High German 5 (Saxon), Latin 6 (Hermetic usage), Magic Lore 5 (owls), Magic Theory 8 (Intellego), Order of Hermes Lore 6 (Quaesitores), Parma Magica 7 (Mentem), Penetration 5 (Intellego), Stealth 5 (owl), Survival 4 (owl)',
     arts: 'Cr 12, In 28, Mu 25, Pe 12, Re 15, An 25, Aq 10, Au 15, Co 20, He 12, Ig 8, Im 15, Me 22, Te 12, Vi 18',
     spells: ['Hunter’s Sense', 'Opening the Tome of the Animal’s Mind', 'Eyes of the Bat', 'Peering into the Mortal Mind', 'Posing the Silent Question', 'Frosty Breath of the Spoken Lie', 'Sight of the Transparent Motive', 'The Inexorable Search', 'Sense of the Lingering Magic'],
     moreSpells: 80, warping: '9 (40)', decrepitude: '3 (5)', confidence: '2 (0)', longevity: 16,
@@ -465,7 +467,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Indulius: {
     characteristics: 'Int +1, Per +1, Pre 0, Com –1, Str +1, Sta +2, Dex +1, Qik +1',
     virtues: 'The Gift; Master; Puissant Ignem*, Affinity with Ignem, Affinity with Penetration, Fast Caster, Tough, Warrior; Driven (to hunt down oath-breakers) [Major]; Proud, Clumsy Magic',
-    abilities: 'Athletics 3 (running), Awareness 4 (ambush), Brawl 3 (fists), Code of Hermes 5 (Wizard’s March), Concentration 4 (combat), Finesse 4 (Ignem), High German 5 (Thuringian), Hunt 4 (oath-breakers), Latin 5 (Hermetic usage), Leadership 3 (grogs), Magic Lore 3 (hedge wizards), Magic Theory 6 (Ignem), Order of Hermes Lore 4 (renunciates), Parma Magica 6 (Ignem), Penetration 7 (Ignem), Ride 3 (pursuit), Single Weapon 5 (sword)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 3 (running), Awareness 4 (ambush), Brawl 3 (fists), Code of Hermes 5 (Wizard’s March), Concentration 4 (combat), Finesse 4 (Ignem), High German 5 (Thuringian), Hunt 4 (oath-breakers), Latin 5 (Hermetic usage), Leadership 3 (grogs), Magic Lore 3 (hedge wizards), Magic Theory 6 (Ignem), Order of Hermes Lore 4 (renunciates), Parma Magica 6 (Ignem), Penetration 7 (Ignem), Ride 3 (pursuit), Single Weapon 5 (sword)',
     arts: 'Cr 18, In 12, Mu 10, Pe 20, Re 15, An 6, Aq 6, Au 8, Co 15, He 6, Ig 25, Im 6, Me 10, Te 8, Vi 15',
     spells: ['Pilum of Fire', 'Ball of Abysmal Flame', 'Arc of Fiery Ribbons', 'Coat of Flame', 'Circle of Encompassing Flames', 'Blade of the Virulent Flame', 'Flash of the Scarlet Flames', 'Burst of the Sweeping Flames', 'Ward against Heat and Flames', 'The Wound That Weeps', 'Demon’s Eternal Oblivion (PeVi 30)', 'Wind of Mundane Silence (PeVi 25)', 'Hunter’s Sense', 'Shadows of the Fires Past'],
     moreSpells: 60, warping: '3 (8)', decrepitude: '0 (4)', confidence: '2 (4)', longevity: 9,
@@ -474,7 +476,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Balastor: {
     characteristics: 'Int +2, Per +1, Pre 0, Com –2, Str +1, Sta +2, Dex +1, Qik +1',
     virtues: 'The Gift; Journeyman; The Enigma*, Affinity with Mentem, Puissant Mentem, Wilderness Sense; Feral Upbringing, Social Handicap (contempt for humanity), Warped Magic',
-    abilities: 'Athletics 3 (running), Awareness 4 (the wild), Brawl 3 (teeth and nails), Concentration 2 (Mentem), Enigmatic Wisdom 2 (the wild), Finesse 2 (Mentem), High German 4 (crude), Latin 4 (Hermetic usage), Magic Theory 3 (Mentem), Parma Magica 2 (Mentem), Penetration 2 (Mentem), Stealth 3 (the forest), Survival 4 (the forest), Wilderness Sense 2 (the forest)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 3 (running), Awareness 4 (the wild), Brawl 3 (teeth and nails), Concentration 2 (Mentem), Enigmatic Wisdom 2 (the wild), Finesse 2 (Mentem), High German 4 (crude), Latin 4 (Hermetic usage), Magic Theory 3 (Mentem), Parma Magica 2 (Mentem), Penetration 2 (Mentem), Stealth 3 (the forest), Survival 4 (the forest), Wilderness Sense 2 (the forest)',
     arts: 'Cr 6, In 4, Mu 6, Pe 8, Re 4, An 6, Aq 2, Au 2, Co 5, He 3, Ig 2, Im 4, Me 12, Te 2, Vi 5',
     spells: ['Rising Ire', 'Panic of the Trembling Heart', 'Calm the Motion of the Heart', 'Enchantment of Detachment', 'Trust of Childlike Faith', 'Tip of the Tongue', 'Words of the Unbroken Silence'],
     warping: '1 (4)', confidence: '1 (3)',
@@ -484,7 +486,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Beechleaf: {
     characteristics: 'Int +2, Per +1, Pre +1, Com –1, Str 0, Sta +1, Dex +1, Qik +1',
     virtues: 'The Gift; Journeyman; Faerie Magic*, Affinity with Herbam, Faerie Blood (dryad), Second Sight; Faerie Upbringing, Social Handicap (otherworldly), Warped Magic',
-    abilities: 'Animal Handling 1 (forest beasts), Awareness 3 (the forest), Concentration 1 (Herbam), Faerie Lore 4 (dryads), Faerie Magic 2 (trees), Finesse 1 (Herbam), High German 4 (rustic), Latin 4 (Hermetic usage), Magic Theory 3 (Herbam), Parma Magica 1 (Mentem), Penetration 1 (Herbam), Second Sight 2 (glamour), Stealth 2 (the forest), Survival 3 (the forest)',
+    abilities: 'Animal Handling 1 (forest beasts), Artes Liberales 1 (Latin script), Awareness 3 (the forest), Concentration 1 (Herbam), Faerie Lore 4 (dryads), Faerie Magic 2 (trees), Finesse 1 (Herbam), High German 4 (rustic), Latin 4 (Hermetic usage), Magic Theory 3 (Herbam), Parma Magica 1 (Mentem), Penetration 1 (Herbam), Second Sight 2 (glamour), Stealth 2 (the forest), Survival 3 (the forest)',
     arts: 'Cr 6, In 4, Mu 6, Pe 0, Re 5, An 3, Aq 2, Au 2, Co 2, He 10, Ig 0, Im 4, Me 3, Te 1, Vi 2',
     spells: ['Conjure the Sturdy Vine', 'Trap of the Entwining Vines', 'Probe Nature’s Hidden Lore', 'Hunt for the Wild Herb', 'Intuition of the Forest', 'Dance of the Staves', 'Strike of the Angered Branch', 'Pass the Unyielding Portal'],
     warping: '1 (0)', confidence: '1 (2)', gauntlet: 20,
@@ -492,7 +494,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Günther Lupus': {
     characteristics: 'Int +1, Per +1, Pre –1, Com 0, Str +1, Sta +2, Dex +1, Qik +1',
     virtues: 'The Gift; Journeyman; Heartbeast (wolf)*, Affinity with Animal, Keen Vision, Puissant Animal, Tough; Dark Secret (Eule’s Final Twilight); Careless Sorcerer',
-    abilities: 'Athletics 4 (running), Awareness 5 (scent), Brawl 5 (bite), Code of Hermes 3 (oath-breakers), Concentration 2 (Animal), Folk Ken 3 (petitioners), Guile 4 (“interpreting”), Heartbeast 5 (wolf), High German 5 (Saxon), Hunt 5 (tracking), Latin 4 (Hermetic usage), Magic Theory 4 (Animal), Parma Magica 3 (Mentem), Penetration 3 (Animal), Stealth 4 (the forest), Survival 4 (the forest)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 4 (running), Awareness 5 (scent), Brawl 5 (bite), Code of Hermes 3 (oath-breakers), Concentration 2 (Animal), Folk Ken 3 (petitioners), Guile 4 (“interpreting”), Heartbeast 5 (wolf), High German 5 (Saxon), Hunt 5 (tracking), Latin 4 (Hermetic usage), Magic Theory 4 (Animal), Parma Magica 3 (Mentem), Penetration 3 (Animal), Stealth 4 (the forest), Survival 4 (the forest)',
     arts: 'Cr 6, In 8, Mu 12, Pe 8, Re 8, An 14, Aq 3, Au 3, Co 10, He 4, Ig 3, Im 5, Me 8, Te 4, Vi 6',
     spells: ['Hunter’s Sense', 'Image of the Beast', 'Shiver of the Lycanthrope', 'Soothe the Ferocious Bear', 'Panic of the Elephant’s Mouse', 'Viper’s Gaze', 'Agony of the Beast', 'Calm the Motion of the Heart', 'Trust of Childlike Faith'],
     moreSpells: 20, warping: '2 (5)', confidence: '1 (3)', longevity: 5,
@@ -537,7 +539,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Marguerite: {
     characteristics: 'Int +2, Per 0, Pre +4, Com 0, Str –1, Sta 0, Dex 0, Qik –1',
     virtues: 'The Gift; Journeyman; Puissant Ignem*, Affinity with Ignem, Fast Caster, Great Presence; Proud, Overconfident, Deficient Form (Mentem)',
-    abilities: 'Awareness 2 (slights), Bargain 3 (cloth), Charm 1 (when she cares to), Concentration 2 (Ignem), Etiquette 3 (nobles), Finesse 2 (Ignem), French 5 (Norman), Guile 2 (cutting remarks), Latin 4 (Hermetic usage), Magic Theory 4 (Ignem), Normandy Lore 3 (ports), Parma Magica 3 (Ignem), Penetration 3 (Ignem), Profession: Merchant 2 (cross-Channel trade)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 2 (slights), Bargain 3 (cloth), Charm 1 (when she cares to), Concentration 2 (Ignem), Etiquette 3 (nobles), Finesse 2 (Ignem), French 5 (Norman), Guile 2 (cutting remarks), Latin 4 (Hermetic usage), Magic Theory 4 (Ignem), Normandy Lore 3 (ports), Parma Magica 3 (Ignem), Penetration 3 (Ignem), Profession: Merchant 2 (cross-Channel trade)',
     arts: 'Cr 10, In 4, Mu 5, Pe 10, Re 6, An 3, Aq 3, Au 4, Co 5, He 3, Ig 14, Im 6, Me 4, Te 3, Vi 5',
     spells: ['Pilum of Fire', 'Arc of Fiery Ribbons', 'Blade of the Virulent Flame', 'Flash of the Scarlet Flames', 'Palm of Flame', 'Lamp without Flame', 'Soothe the Raging Flames', 'Aura of Ennobled Presence', 'Winter’s Icy Touch'],
     moreSpells: 10, warping: '1 (5)', confidence: '1 (4)',
@@ -546,7 +548,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Odorpes: {
     characteristics: 'Int +1, Per +1, Pre –1, Com –2, Str +2, Sta +3, Dex –1, Qik +1',
     virtues: 'The Gift; Journeyman; Heartbeast (bear)*, Affinity with Animal, Large, Tough; Cyclic Magic (negative) — winter, Reclusive, Carefree',
-    abilities: 'Athletics 3 (climbing), Awareness 4 (scent), Brawl 6 (claws), Concentration 2 (Animal), Heartbeast 6 (bear), Hunt 4 (fish), Latin 4 (Hermetic usage), Lusatia Lore 4 (the river), Magic Theory 4 (Animal), Parma Magica 3 (Animal), Penetration 2 (Animal), Sorbian 5 (Lusatia), Stealth 2 (the forest), Survival 5 (the forest), Swim 3 (rivers)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 3 (climbing), Awareness 4 (scent), Brawl 6 (claws), Concentration 2 (Animal), Heartbeast 6 (bear), Hunt 4 (fish), Latin 4 (Hermetic usage), Lusatia Lore 4 (the river), Magic Theory 4 (Animal), Parma Magica 3 (Animal), Penetration 2 (Animal), Sorbian 5 (Lusatia), Stealth 2 (the forest), Survival 5 (the forest), Swim 3 (rivers)',
     arts: 'Cr 5, In 6, Mu 14, Pe 6, Re 6, An 14, Aq 4, Au 3, Co 10, He 8, Ig 3, Im 3, Me 4, Te 4, Vi 5',
     spells: ['Hunter’s Sense', 'Image of the Beast', 'Soothe the Ferocious Bear', 'Circle of Beast Warding', 'Gift of the Bear’s Fortitude', 'Beast of Outlandish Size', 'Hunt for the Wild Herb'],
     moreSpells: 10, warping: '2 (5)', confidence: '1 (1)', longevity: 5,
@@ -557,7 +559,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Signum Irruptus': {
     characteristics: 'Int +3, Per +1, Pre +1, Com 0, Str 0, Sta +1, Dex –1, Qik –1',
     virtues: 'The Gift; Master; The Enigma*, Affinity with Intellego, Puissant Magic Lore, Tough; Driven (to learn the trolls’ secret); Missing Hand, Reckless',
-    abilities: 'Awareness 3 (trolls), Concentration 4 (Intellego), East Norse 4 (Danish), Enigmatic Wisdom 4 (trolls), Faerie Lore 3 (trolls), Latin 5 (Hermetic usage), Leadership 2 (grogs), Low German 5 (Holstein), Magic Lore 6 (trolls), Magic Theory 6 (Intellego), Order of Hermes Lore 3 (the northern covenants), Parma Magica 5 (Mentem), Penetration 4 (Intellego), Survival 3 (marshes)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 3 (trolls), Concentration 4 (Intellego), East Norse 4 (Danish), Enigmatic Wisdom 4 (trolls), Faerie Lore 3 (trolls), Latin 5 (Hermetic usage), Leadership 2 (grogs), Low German 5 (Holstein), Magic Lore 6 (trolls), Magic Theory 6 (Intellego), Order of Hermes Lore 3 (the northern covenants), Parma Magica 5 (Mentem), Penetration 4 (Intellego), Survival 3 (marshes)',
     arts: 'Cr 12, In 18, Mu 12, Pe 15, Re 12, An 15, Aq 8, Au 8, Co 15, He 8, Ig 10, Im 8, Me 12, Te 12, Vi 15',
     spells: ['Hunter’s Sense', 'Image of the Beast', 'Opening the Tome of the Animal’s Mind', 'Sense the Feet That Tread the Earth', 'Eyes of the Eons', 'Tracks of the Faerie Glow', 'Sense of the Lingering Magic', 'Agony of the Beast', 'Cripple the Howling Wolf', 'Ward against the Beasts of Legend (ReAn 25)'],
     moreSpells: 40, warping: '4 (5)', confidence: '2 (3)', longevity: 7,
@@ -587,7 +589,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Urgen: {
     characteristics: 'Int +2, Per +1, Pre +1, Com –2, Str +4, Sta +2, Dex –1, Qik 0',
     virtues: 'The Gift; Archmage; Heartbeast (bear)*, Affinity with Animal, Affinity with Muto, Great Strength, Improved Characteristics, Tough; Wrathful [Major]; Infamous, Deficient Form (Imaginem)',
-    abilities: 'Athletics 4 (running), Awareness 5 (scent), Brawl 8 (claws), Code of Hermes 4 (Wizard War), Concentration 5 (Muto), Heartbeast 10 (bear), Hunt 5 (men), Intrigue 4 (the Hawthorn Gild), Latin 5 (Hermetic usage), Leadership 5 (the Hawthorn Gild), Low German 5 (Pomeranian), Magic Lore 5 (wild places), Magic Theory 8 (Muto), Order of Hermes Lore 5 (House Bjornaer), Parma Magica 8 (Corpus), Penetration 7 (Animal), Rügen Lore 6 (the island), Survival 6 (the forest)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 4 (running), Awareness 5 (scent), Brawl 8 (claws), Code of Hermes 4 (Wizard War), Concentration 5 (Muto), Heartbeast 10 (bear), Hunt 5 (men), Intrigue 4 (the Hawthorn Gild), Latin 5 (Hermetic usage), Leadership 5 (the Hawthorn Gild), Low German 5 (Pomeranian), Magic Lore 5 (wild places), Magic Theory 8 (Muto), Order of Hermes Lore 5 (House Bjornaer), Parma Magica 8 (Corpus), Penetration 7 (Animal), Rügen Lore 6 (the island), Survival 6 (the forest)',
     arts: 'Cr 15, In 15, Mu 30, Pe 25, Re 18, An 30, Aq 10, Au 12, Co 25, He 18, Ig 8, Im 10, Me 15, Te 12, Vi 20',
     spells: ['Agony of the Beast', 'Cripple the Howling Wolf', 'Commanding the Harnessed Beast', 'Mastering the Unruly Beast', 'Panic of the Elephant’s Mouse', 'Beast of Outlandish Size', 'Gift of the Bear’s Fortitude', 'Curse of Circe', 'The Beast Remade', 'Bane of the Decrepit Body', 'Clenching Grasp of the Crushed Heart', 'Steed of Vengeance', 'Curse of the Ravenous Swarm', 'Hunter’s Sense'],
     moreSpells: 120, warping: '6 (5)', decrepitude: '2 (0)', confidence: '3 (4)', longevity: 13,
@@ -596,7 +598,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Jon Arnsson': {
     characteristics: 'Int +1, Per 0, Pre +2, Com 0, Str +1, Sta +2, Dex 0, Qik –1',
     virtues: 'The Gift; Master; Heartbeast (lion)*, Affinity with Animal, Puissant Heartbeast, Strong-Willed, Tough, Warrior; Pious [Major]; Dutybound (to Crintera), Clumsy Magic',
-    abilities: 'Athletics 4 (leaping), Awareness 4 (intruders), Brawl 6 (claws), Code of Hermes 4 (Marches), Concentration 4 (Animal), Danish 4 (Zealand), Heartbeast 8 (lion), Hunt 3 (great beasts), Latin 5 (Hermetic usage), Leadership 4 (Crintera’s defenders), Low German 5 (Pomeranian), Magic Theory 7 (Animal), Order of Hermes Lore 4 (House Bjornaer), Parma Magica 7 (Corpus), Penetration 5 (Animal), Rügen Lore 5 (defenses), Single Weapon 4 (sword), Theology: Christian 4 (the Gospels)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 4 (leaping), Awareness 4 (intruders), Brawl 6 (claws), Code of Hermes 4 (Marches), Concentration 4 (Animal), Danish 4 (Zealand), Heartbeast 8 (lion), Hunt 3 (great beasts), Latin 5 (Hermetic usage), Leadership 4 (Crintera’s defenders), Low German 5 (Pomeranian), Magic Theory 7 (Animal), Order of Hermes Lore 4 (House Bjornaer), Parma Magica 7 (Corpus), Penetration 5 (Animal), Rügen Lore 5 (defenses), Single Weapon 4 (sword), Theology: Christian 4 (the Gospels)',
     arts: 'Cr 15, In 12, Mu 22, Pe 18, Re 15, An 25, Aq 8, Au 8, Co 20, He 10, Ig 8, Im 8, Me 12, Te 10, Vi 15',
     spells: ['Mastering the Unruly Beast', 'Soothe the Ferocious Bear', 'Circle of Beast Warding', 'Gift of the Bear’s Fortitude', 'Endurance of the Berserkers', 'The Gift of Vigor', 'Bind Wound', 'The Chirurgeon’s Healing Touch', 'Cripple the Howling Wolf', 'Ward against the Beasts of Legend (ReAn 25)', 'Aegis of the Hearth (ReVi 25)'],
     moreSpells: 60, warping: '5 (0)', decrepitude: '2 (3)', confidence: '2 (5)', longevity: 11,
@@ -605,7 +607,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Phyllia: {
     characteristics: 'Int +2, Per +2, Pre 0, Com 0, Str –1, Sta 0, Dex +1, Qik +1',
     virtues: 'The Gift; Master; Heartbeast (polecat)*, Affinity with Intellego, Puissant Stealth, Social Contacts, Well-Traveled; Busybody, Meddler; Craving for Travel, Short-Lived Magic',
-    abilities: 'Awareness 4 (gossip), Charm 4 (magi), Code of Hermes 4 (news), Concentration 3 (Intellego), Folk Ken 5 (magi), Heartbeast 5 (polecat), Intrigue 4 (news), Latin 5 (letters), Low German 5 (Pomeranian), Magic Theory 6 (Intellego), Order of Hermes Lore 7 (gossip), Parma Magica 5 (Mentem), Penetration 3 (Intellego), Rhine Tribunal Lore 6 (covenants), Ride 2 (long journeys), Stealth 5 (polecat), Survival 3 (roads)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 4 (gossip), Charm 4 (magi), Code of Hermes 4 (news), Concentration 3 (Intellego), Folk Ken 5 (magi), Heartbeast 5 (polecat), Intrigue 4 (news), Latin 5 (letters), Low German 5 (Pomeranian), Magic Theory 6 (Intellego), Order of Hermes Lore 7 (gossip), Parma Magica 5 (Mentem), Penetration 3 (Intellego), Rhine Tribunal Lore 6 (covenants), Ride 2 (long journeys), Stealth 5 (polecat), Survival 3 (roads)',
     arts: 'Cr 10, In 18, Mu 18, Pe 8, Re 12, An 15, Aq 6, Au 8, Co 12, He 8, Ig 5, Im 12, Me 12, Te 8, Vi 10',
     spells: ['Whispering Winds', 'The Ear for Distant Voices', 'Summoning the Distant Image', 'Prying Eyes', 'Eyes of the Eagle', 'Sight of the Transparent Motive', 'Posing the Silent Question', 'Hunter’s Sense', 'Seven-league Stride'],
     moreSpells: 40, warping: '3 (0)', confidence: '2 (2)', longevity: 8,
@@ -623,7 +625,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Istvan Padas': {
     characteristics: 'Int +1, Per +1, Pre +1, Com –1, Str +1, Sta +2, Dex 0, Qik +1',
     virtues: 'The Gift; Master; Heartbeast (horse)*, Affinity with Animal, Puissant Athletics, Strong-Willed, Tough, Warrior; Wrathful [Major]; Reckless, Loose Magic',
-    abilities: 'Athletics 5 (running), Awareness 4 (danger), Brawl 5 (hooves), Concentration 3 (Animal), Heartbeast 6 (horse), Hungarian 5 (Magyar), Latin 4 (Hermetic usage), Low German 3 (Pomeranian), Magic Theory 6 (Animal), Order of Hermes Lore 3 (Wilderists), Parma Magica 5 (Corpus), Penetration 4 (Animal), Ride 5 (bareback), Rügen Lore 3 (the island), Survival 4 (the plains)',
+    abilities: 'Artes Liberales 1 (Latin script), Athletics 5 (running), Awareness 4 (danger), Brawl 5 (hooves), Concentration 3 (Animal), Heartbeast 6 (horse), Hungarian 5 (Magyar), Latin 4 (Hermetic usage), Low German 3 (Pomeranian), Magic Theory 6 (Animal), Order of Hermes Lore 3 (Wilderists), Parma Magica 5 (Corpus), Penetration 4 (Animal), Ride 5 (bareback), Rügen Lore 3 (the island), Survival 4 (the plains)',
     arts: 'Cr 10, In 10, Mu 18, Pe 15, Re 12, An 18, Aq 6, Au 8, Co 15, He 10, Ig 6, Im 6, Me 8, Te 10, Vi 10',
     spells: ['Mastering the Unruly Beast', 'Commanding the Harnessed Beast', 'Gift of the Frog’s Legs', 'Seven-league Stride', 'Endurance of the Berserkers', 'Agony of the Beast', 'Cripple the Howling Wolf', 'Wind at the Back', 'Steed of Vengeance'],
     moreSpells: 30, warping: '3 (3)', confidence: '2 (2)', longevity: 7,
@@ -643,7 +645,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Handri: {
     characteristics: 'Int +3, Per +2, Pre +1, Com 0, Str –1, Sta +1, Dex 0, Qik –2',
     virtues: 'The Gift; Master; Faerie Magic*, Affinity with Faerie Magic, Clear Thinker, Puissant Faerie Magic, Quiet Magic, Second Sight, Subtle Magic; Dark Secret (he treats with survivors of House Diedne); Driven (to treat with the faerie courts), Faerie Friend (Rosmert, the Queen of Irencillia’s fae), Difficult Spontaneous Magic',
-    abilities: 'Awareness 4 (glamour), Bohemia Lore 4 (faerie places), Charm 4 (the fae), Concentration 5 (Faerie Magic), Etiquette 5 (faerie courts), Faerie Lore 9 (courts), Faerie Magic 6 (glamour), Finesse 4 (Imaginem), Folk Ken 4 (the fae), Guile 5 (secrecy), High German 5 (Bohemian), House Merinita Lore 5 (Primi), Intrigue 4 (House Merinita), Latin 6 (Hermetic usage), Magic Theory 9 (Faerie Magic), Order of Hermes Lore 5 (Primi), Parma Magica 6 (Mentem), Penetration 5 (Muto)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 4 (glamour), Bohemia Lore 4 (faerie places), Charm 4 (the fae), Concentration 5 (Faerie Magic), Etiquette 5 (faerie courts), Faerie Lore 9 (courts), Faerie Magic 6 (glamour), Finesse 4 (Imaginem), Folk Ken 4 (the fae), Guile 5 (secrecy), High German 5 (Bohemian), House Merinita Lore 5 (Primi), Intrigue 4 (House Merinita), Latin 6 (Hermetic usage), Magic Theory 9 (Faerie Magic), Order of Hermes Lore 5 (Primi), Parma Magica 6 (Mentem), Penetration 5 (Muto)',
     arts: 'Cr 15, In 18, Mu 25, Pe 10, Re 18, An 15, Aq 12, Au 12, Co 15, He 20, Ig 8, Im 22, Me 20, Te 10, Vi 18',
     spells: ['Piercing the Faerie Veil', 'Tracks of the Faerie Glow', 'Ward against Faeries of the Wood (ReHe 20)', 'Aura of Ennobled Presence', 'Image Phantom', 'Disguise of the Transformed Image', 'Shape of the Woodland Prowler', 'Stir the Slumbering Tree', 'Curse of the Haunted Forest', 'Words of the Unbroken Silence'],
     moreSpells: 100, warping: '5 (10)', decrepitude: '1 (0)', confidence: '3 (2)', longevity: 11,
@@ -652,7 +654,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Vinaria: {
     characteristics: 'Int +3, Per +1, Pre +2, Com +2, Str –2, Sta +1, Dex –1, Qik –2',
     virtues: 'The Gift; Archmage; Elemental Magic; Faerie Magic*, Puissant Faerie Magic, Social Contacts, Strong-Willed; Dark Secret (what befell her in Faerie Twilight); Twilight Prone',
-    abilities: 'Charm 4 (Primi), Code of Hermes 5 (councils), Concentration 6 (elements), Etiquette 6 (Primi), Faerie Lore 8 (the courts), Faerie Magic 8 (glamour), Finesse 6 (elements), Folk Ken 5 (magi), High German 5 (Bohemian), Intrigue 7 (Primi), Latin 6 (Hermetic usage), Magic Theory 10 (elements), Order of Hermes Lore 7 (Primi), Parma Magica 8 (Ignem), Penetration 7 (Ignem), Philosophiae 4 (the elements)',
+    abilities: 'Artes Liberales 1 (Latin script), Charm 4 (Primi), Code of Hermes 5 (councils), Concentration 6 (elements), Etiquette 6 (Primi), Faerie Lore 8 (the courts), Faerie Magic 8 (glamour), Finesse 6 (elements), Folk Ken 5 (magi), High German 5 (Bohemian), Intrigue 7 (Primi), Latin 6 (Hermetic usage), Magic Theory 10 (elements), Order of Hermes Lore 7 (Primi), Parma Magica 8 (Ignem), Penetration 7 (Ignem), Philosophiae 4 (the elements)',
     arts: 'Cr 25, In 15, Mu 22, Pe 25, Re 25, An 10, Aq 25, Au 25, Co 12, He 12, Ig 25, Im 22, Me 15, Te 25, Vi 18',
     spells: ['Ball of Abysmal Flame', 'Circle of Encompassing Flames', 'Deluge of Rushing and Dashing', 'Wrath of Whirling Winds and Water', 'The Incantation of Lightning', 'Teeth of the Earth Mother', 'Cascade of Rocks', 'Tower of Whirling Water', 'Flames of Sculpted Ice', 'Earth Shock', 'Gathering of the Stormy Might', 'Image Phantom', 'Phantasm of the Human Form', 'Aegis of the Hearth (ReVi 35)'],
     moreSpells: 150, warping: '7 (0)', decrepitude: '1 (5)', confidence: '3 (5)', longevity: 13,
@@ -661,7 +663,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Glesig: {
     characteristics: 'Int +2, Per +1, Pre –1, Com –1, Str +2, Sta +2, Dex 0, Qik –1',
     virtues: 'The Gift; Master; Faerie Magic*, Affinity with Terram, Large, Puissant Terram, Second Sight, Tough; Clumsy Magic, Covenant Upbringing, Faerie Friend (Humnel the troll), Social Handicap (blunt), Wrathful',
-    abilities: 'Awareness 3 (underground), Bohemia Lore 3 (mines), Concentration 4 (Terram), Craft: Smith 3 (copper), Faerie Lore 7 (subterranean fae), Faerie Magic 5 (earth), Finesse 3 (Terram), High German 5 (Bohemian), Latin 5 (Hermetic usage), Magic Theory 8 (Terram), Order of Hermes Lore 2 (House Merinita), Parma Magica 5 (Terram), Penetration 4 (Terram), Survival 4 (caves)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 3 (underground), Bohemia Lore 3 (mines), Concentration 4 (Terram), Craft: Smith 3 (copper), Faerie Lore 7 (subterranean fae), Faerie Magic 5 (earth), Finesse 3 (Terram), High German 5 (Bohemian), Latin 5 (Hermetic usage), Magic Theory 8 (Terram), Order of Hermes Lore 2 (House Merinita), Parma Magica 5 (Terram), Penetration 4 (Terram), Survival 4 (caves)',
     arts: 'Cr 15, In 15, Mu 18, Pe 15, Re 18, An 6, Aq 6, Au 4, Co 8, He 6, Ig 10, Im 10, Me 8, Te 25, Vi 12',
     spells: ['Eyes of the Treacherous Terrain', 'The Miner’s Keen Eye', 'Stone Tell of the Mind That Sits', 'Rock of Viscid Clay', 'Crest of the Earth Wave', 'The Earth Split Asunder', 'Hands of the Grasping Earth', 'Stone to Falling Dust', 'Wall of Protecting Stone', 'Tracks of the Faerie Glow', 'The Earth’s Carbuncle'],
     moreSpells: 50, warping: '4 (3)', confidence: '2 (3)', longevity: 9,
@@ -671,7 +673,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   Iacob: {
     characteristics: 'Int +2, Per +1, Pre +3, Com +1, Str –1, Sta +1, Dex –1, Qik –2',
     virtues: 'The Gift; Master; Gentle Gift; Faerie Magic*, Affinity with Mentem, Elder Gild Trained, Puissant Mentem; Dark Secret (the faerie religion); Ambitious, Overconfident, Unpredictable Magic',
-    abilities: 'Charm 6 (his voice), Concentration 4 (Mentem), Czech 4 (peasants), Dominion Lore 3 (the Church’s ways), Etiquette 3 (magi), Faerie Lore 5 (the court), Faerie Magic 4 (glamour), Finesse 4 (Mentem), Folk Ken 5 (believers), Guile 5 (secrecy), High German 5 (Bohemian), Intrigue 5 (the Elder Gild), Latin 5 (Hermetic usage), Leadership 4 (the faithful), Magic Theory 7 (Mentem), Order of Hermes Lore 4 (the gilds), Parma Magica 5 (Mentem), Penetration 5 (Mentem)',
+    abilities: 'Artes Liberales 1 (Latin script), Charm 6 (his voice), Concentration 4 (Mentem), Czech 4 (peasants), Dominion Lore 3 (the Church’s ways), Etiquette 3 (magi), Faerie Lore 5 (the court), Faerie Magic 4 (glamour), Finesse 4 (Mentem), Folk Ken 5 (believers), Guile 5 (secrecy), High German 5 (Bohemian), Intrigue 5 (the Elder Gild), Latin 5 (Hermetic usage), Leadership 4 (the faithful), Magic Theory 7 (Mentem), Order of Hermes Lore 4 (the gilds), Parma Magica 5 (Mentem), Penetration 5 (Mentem)',
     arts: 'Cr 15, In 12, Mu 15, Pe 10, Re 18, An 5, Aq 5, Au 5, Co 8, He 8, Ig 5, Im 15, Me 25, Te 5, Vi 12',
     spells: ['Memory of the Distant Dream', 'Pains of the Perpetual Worry', 'Rising Ire', 'Words of the Unbroken Silence', 'Aura of Rightful Authority', 'Enslave the Mortal Mind', 'Confusion of the Numbed Will', 'Recollection of Memories Never Quite Lived', 'Past of Another', 'Thoughts within Babble', 'Aura of Ennobled Presence'],
     moreSpells: 40, warping: '3 (5)', confidence: '2 (4)', longevity: 7, apparentAge: 32,
@@ -688,7 +690,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Richenda Spinosa': {
     characteristics: 'Int +2, Per +1, Pre +1, Com –1, Str 0, Sta +1, Dex +1, Qik 0',
     virtues: 'The Gift; Journeyman; Puissant Perdo*, Affinity with Herbam, Faerie Blood (Kupala), Puissant Herbam; Deficient Form (Ignem), Driven (to be revenged on her master), Wrathful',
-    abilities: 'Awareness 2 (slights), Concentration 2 (Herbam), Faerie Lore 3 (Kupala), Finesse 2 (Herbam), High German 3 (Bohemian), Latin 4 (Hermetic usage), Magic Theory 4 (Herbam), Parma Magica 3 (Ignem), Penetration 2 (Herbam), Polish 5 (Greater Poland), Single Weapon 2 (staff), Survival 2 (the forest)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 2 (slights), Concentration 2 (Herbam), Faerie Lore 3 (Kupala), Finesse 2 (Herbam), High German 3 (Bohemian), Latin 4 (Hermetic usage), Magic Theory 4 (Herbam), Parma Magica 3 (Ignem), Penetration 2 (Herbam), Polish 5 (Greater Poland), Single Weapon 2 (staff), Survival 2 (the forest)',
     arts: 'Cr 6, In 4, Mu 6, Pe 8, Re 8, An 3, Aq 3, Au 3, Co 5, He 12, Ig 6, Im 3, Me 3, Te 3, Vi 5',
     spells: ['Wall of Thorns', 'Trap of the Entwining Vines', 'Tangle of Wood and Thorns', 'Coils of the Entangling Plants', 'Transformation of the Thorny Staff', 'Piercing Shaft of Wood', 'Curse of the Rotted Wood', 'Plant’s Withering Bane', 'Repel the Wooden Shafts'],
     warping: '1 (3)', confidence: '1 (3)',
@@ -699,7 +701,7 @@ export const RHINE_SHEETS: Record<string, StatBlock> = {
   'Igor Rastvan': {
     characteristics: 'Int +3, Per 0, Pre +2, Com +1, Str 0, Sta +1, Dex –1, Qik –2',
     virtues: 'The Gift; Archmage; Affinity with Penetration, Affinity with Perdo, Mastered Spells, Puissant Penetration, Puissant Perdo; Pagan, Pious (to Radegast); Overconfident',
-    abilities: 'Awareness 3 (his flock), Concentration 6 (curses), Curse-Throwing 6 (at a distance), Faerie Lore 4 (the old gods), Finesse 5 (Perdo), High German 3 (Moravian), Latin 5 (Hermetic usage), Leadership 6 (worshippers), Magic Lore 6 (Slavic magic), Magic Theory 9 (Perdo), Moravia Lore 5 (pagan places), Moravian 5 (Wallachia), Order of Hermes Lore 4 (House Ex Miscellanea), Parma Magica 7 (Corpus), Penetration 9 (curses), Teaching 3 (his filii)',
+    abilities: 'Artes Liberales 1 (Latin script), Awareness 3 (his flock), Concentration 6 (curses), Curse-Throwing 6 (at a distance), Faerie Lore 4 (the old gods), Finesse 5 (Perdo), High German 3 (Moravian), Latin 5 (Hermetic usage), Leadership 6 (worshippers), Magic Lore 6 (Slavic magic), Magic Theory 9 (Perdo), Moravia Lore 5 (pagan places), Moravian 5 (Wallachia), Order of Hermes Lore 4 (House Ex Miscellanea), Parma Magica 7 (Corpus), Penetration 9 (curses), Teaching 3 (his filii)',
     arts: 'Cr 15, In 18, Mu 12, Pe 35, Re 15, An 12, Aq 10, Au 18, Co 30, He 12, Ig 10, Im 8, Me 20, Te 12, Vi 22',
     spells: ['The Kiss of Death', 'Clenching Grasp of the Crushed Heart', 'Curse of the Unportended Plague', 'Incantation of the Milky Eyes', 'Curse of the Leprous Flesh', 'Bane of the Decrepit Body', 'Black Whisper', 'Poisoning the Will', 'Curse of the Desert', 'The Incantation of Lightning', 'Clouds of Thunderous Might', 'Calling the Odious Drought', 'Whispers through the Black Gate'],
     moreSpells: 120, warping: '7 (5)', decrepitude: '2 (0)', confidence: '3 (5)', longevity: 12,

@@ -59,8 +59,8 @@ export function takeTradition(c: Character, st: GuidedState, inp: BuildInput, ct
     const w = tagWeights(st, ctx);
     const rune = favoredRunes(c, w, inp)[0];
     const pick = inp.rng ? Math.floor(inp.rng() * 3) : 0;
-    // Puissant Craft: Runes names Craft only, as the sheet's choice of an Ability can (roadmap, Found)
-    const [ability, name] = pick === 1 ? ['craft-type', 'Craft: Runes'] : pick === 2 ? ['rune-magic', 'Rune Magic'] : [rune.id, rune.name];
+    // Puissant Craft: Runes names the Craft, and helps it alone (DE line 7474)
+    const [ability, name] = pick === 1 ? ['craft-type:Runes', 'Craft: Runes'] : pick === 2 ? ['rune-magic', 'Rune Magic'] : [rune.id, rune.name];
     const cv = addVirtue(c, data, 'puissant-ability', 'Minor', ability, { free: true, freeReason: 'from a vitki’s master (Hedge Magic, Vitkir)' });
     cv.why = `from: the master’s specialty, ${name} (free)`;
     log.push(`Free Virtue from the master: Puissant ${name}.`);

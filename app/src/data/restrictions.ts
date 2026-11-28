@@ -6,6 +6,7 @@
 // These entries are merged under the hand-written mechanics (src/data/mechanics.ts), and saga house
 // rules can override any field. `excludes` is made symmetric when the data is assembled.
 
+import { HEDGE_DEFENSES, HEDGE_TRADITION_OWN } from './hedgeTraditionVirtues';
 import type { Mechanics } from './mechanics';
 import type { CharType, VFNeed } from './types';
 
@@ -45,29 +46,19 @@ const BEINGS: Record<string, string[]> = {
 
 // ------------------------------------------------------------------ hedge traditions
 // Members of these traditions take these Virtues and Flaws; Hermetic magi normally do not.
+const SHARED = (() => {
+  const all = Object.values(HEDGE_TRADITION_OWN).flatMap((t) => t.ids);
+  return new Set(all.filter((id, i) => all.indexOf(id) !== i));
+})();
 const TRADITIONS: Record<string, string[]> = {
-  // not Fetch: "other characters may also have access to a fetch" (Hedge Magic line 2879)
-  'Gruagachan (Hedge Magic)': [
-    'cailleach-magic', 'external-soul', 'give', 'take', 'gruagach-master', 'blessing', 'curse', 'flexible-gruagach-magic', 'shape', 'tattoo-mastery', 'vision',
-    'well-trained-gruagach', 'no-tattoo-magic-flaw', 'transformation-prone-flaw', 'incompatible-hedge-arts-flaw', 'inflexible-magic-flaw', 'poorly-trained-gruagach-flaw',
-    'weak-tattoo-magic-flaw',
-  ],
+  // the folk witches', gruagachan's, learned magicians' and vitkir's are read from one list, shared with Quick build
+  // (hedgeTraditionVirtues.ts); a Virtue two of them share, and the defenses, are any hedge wizard's
+  ...Object.fromEntries(Object.values(HEDGE_TRADITION_OWN).map((t) => [t.label, t.ids.filter((id) => !SHARED.has(id))])),
+  'hedge wizards (Hedge Magic)': [...HEDGE_DEFENSES, ...SHARED],
   'Elementalists (Hedge Magic)': [
     'elemental-affinity', 'elementalist-air', 'elementalist-earth', 'elementalist-fire', 'elementalist-water', 'elementalist-magic', 'elemental-medicine', 'elemental-philosophiae',
     'elemental-theurgy', 'type-controlling', 'type-divining', 'type-refining', 'type-summoning', 'weak-elemental-resistance-flaw',
   ],
-  'Folk Witches (Hedge Magic)': [
-    'folk-witch', 'flawed-folk-witch-gift-opening', 'life-linked-folk-witch-magic', 'concentrated-potions', 'expert-potion-brewer', 'painless-moon', 'well-trained-folk-witch',
-    'primitive-tradition-flaw', 'rarefied-tradition-flaw', 'harsh-moon-flaw', 'short-ranged-curses-flaw', 'silent-tradition-flaw', 'unstable-magic-flaw', 'poorly-trained-folk-witch-flaw',
-  ],
-  'Learned Magicians (Hedge Magic)': [
-    // Mythic Alchemy, Mythic Herbalism and Natural Magician suit others too (Hedge Magic)
-    'mathematicus-of-bologna', 'entreat-the-powers', 'entreat-the-realm-powers', 'strong-amulet-magic', 'strong-verbal-charms', 'tueor', 'succurro', 'vulnero', 'fortunam', 'magicam',
-    'salutem', 'skilled-master', 'charm-magician-flaw', 'intervention-prone-flaw', 'laboratory-magician-flaw', 'weak-verbal-charms-flaw',
-    'no-chartae-making-flaw', 'no-text-casting-flaw', 'poorly-trained-magician-flaw', 'weak-amulets-flaw', 'weak-chartae-flaw',
-  ],
-  'hedge wizards (Hedge Magic)': ['greater-magical-defenses', 'known-hedge-wizard-flaw', 'no-magical-defenses-flaw'],
-  'Vitkir (Hedge Magic)': ['major-magical-deficiency-flaw', 'minor-magical-deficiency-flaw', 'natt-thel-prone-flaw', 'short-lived-runes-flaw', 'deft-rune', 'major-rune-focus', 'mastered-rune', 'minor-rune-focus'],
   'Nightwalkers (Hedge Magic)': ['half-taltos', 'hamr', 'sleepwalker', 'nightwalker', 'versatile-phantasticum'],
   'Amazons (Rival Magic)': [
     'amazonian-slave-flaw', 'beloved-slave-flaw', 'bitter-mistress-flaw', 'frail-magic-flaw', 'friendly-mistress-flaw', 'magic-aura-temple-flaw', 'prolonged-apprenticeship-flaw',

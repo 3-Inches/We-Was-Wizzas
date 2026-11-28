@@ -39,6 +39,21 @@ describe('craft Virtues and Flaws', () => {
     expect(memberCraft(c)!.score).toBe(5);
   });
 
+  it('a Virtue on one Craft names it and helps it alone (DE line 7474: skill in one Craft does not imply skill in any others)', () => {
+    const c = newCharacter('companion', 's');
+    c.abilities.push({ uid: 'r', abilityId: 'craft-type', param: 'Runes', xp: { laterLife: 15 } });
+    c.abilities.push({ uid: 'w', abilityId: 'craft-type', param: 'Woodcarver', xp: { laterLife: 15 } });
+    const pv = addVirtue(c, data, 'puissant-ability', 'Minor', 'craft-type:Runes');
+    addVirtue(c, data, 'affinity-with-ability', 'Minor', 'craft-type:woodcarver');
+    const d = deriveCharacter(c, data, DEFAULT_HOUSE_RULES);
+    // Craft: Runes 2 (15 xp) + 2 for Puissant; Craft: Woodcarver 2, not helped by it
+    expect(d.abilityByUid.get('r')!.total).toBe(4);
+    expect(d.abilityByUid.get('w')!.total).toBe(2);
+    expect(d.abilityByUid.get('w')!.affinity).toBe(true);
+    expect(d.abilityByUid.get('r')!.affinity).toBeFalsy();
+    expect(d.virtues.find((v) => v.cv.uid === pv.uid)!.name).toBe('Puissant Craft: Runes');
+  });
+
   it('prices and pays a covenant craftsman by the score they work at', () => {
     expect(specialistCost(smith())).toBe(6);
     const palsied = smith(['palsied-hands-flaw']);

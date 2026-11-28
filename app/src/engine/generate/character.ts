@@ -19,6 +19,7 @@ import { autoBuild } from '../guided/autobuild';
 import { settleAntipathy } from '../guided/traditions';
 import { traditionOfAnswers, traditionVirtues } from '../guided/traditionRules';
 import { mysteryVirtueIds } from '../guided/buildMysteries';
+import { HOLY_VIRTUES } from '../guided/buildVirtues';
 import { CHAR_PRESETS } from '../guided/questions';
 import { fillChoices } from './paramChoices';
 import { takeImmunityFlaw } from '../covenantBoons';
@@ -239,9 +240,11 @@ function attempt(o: GenOptions, g: GenContext): Generated {
   }
   if (o.coreOnly) {
     const custom = new Set(saga.custom?.virtuesFlaws?.map((v) => v.id) ?? []);
-    // a role picked by hand still brings what it requires (the Plain choice's hint): a tradition's Virtues, or a Mystery's
+    // a role picked by hand still brings what it requires (the Plain choice's hint): a tradition's Virtues, a Mystery's,
+    // or the holy wonder-worker's Methods and Powers
     const t = chosen ? traditionOfAnswers(chosen.answers ?? {}) : undefined;
-    const required = new Set([...(t ? traditionVirtues(t) : []), ...((chosen?.answers?.['f-mystery'] ?? 0) >= 7 ? mysteryVirtueIds(data) : [])]);
+    const holy = (chosen?.answers?.['f-divine-powers'] ?? 0) >= 7 ? [...HOLY_VIRTUES] : [];
+    const required = new Set([...(t ? traditionVirtues(t) : []), ...((chosen?.answers?.['f-mystery'] ?? 0) >= 7 ? mysteryVirtueIds(data) : []), ...holy]);
     const asked = (id: string) => o.answers?.[`vf:${id}`] !== undefined || role.answers?.[`vf:${id}`] !== undefined || required.has(id);
     const beyond = data.virtuesFlaws.filter((d) => d.source.book !== 'DE' && !d.alsoIn?.some((a) => a.book === 'DE') && !custom.has(d.id) && !asked(d.id)).map((d) => d.id);
     st.declined = [...new Set([...st.declined, ...beyond])];
