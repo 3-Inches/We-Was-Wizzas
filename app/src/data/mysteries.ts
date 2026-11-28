@@ -42,6 +42,9 @@ export interface CriamonStation {
   bonus: number;
   bonusText: string;
   source: { book: string; line: number };
+  /** the station's own section, after the Scripts */
+  text?: string;
+  textSource?: { book: string; line: number; group?: string };
 }
 
 const data = raw as unknown as { virtues: MysteryVirtue[]; scripts: MysteryScript[]; stations: CriamonStation[] };
@@ -73,7 +76,8 @@ export function mysteryVirtueDefs(existing: Set<string>): VirtueFlawDef[] {
     out.push({
       id: s.id, name: `${s.name} (${s.path})`, kind: 'virtue', sizes: ['Major'], categories: ['Hermetic', 'Mystery'], tainted: false,
       notes: `Criamon ${s.path}, station ${s.order}`,
-      text: `${stationPower(s) ? `${stationPower(s)[0].toUpperCase()}${stationPower(s).slice(1)}. ` : ''}Initiated by ${s.avenue}.`, source: s.source, houses: ['criamon'], houseSeverity: 'warning',
+      // the station's own section, in the book's words (Batch F, item 4); the Script's line is kept for the Scripts
+      text: s.text ?? `${stationPower(s) ? `${stationPower(s)[0].toUpperCase()}${stationPower(s).slice(1)}. ` : ''}Initiated by ${s.avenue}.`, source: s.textSource ?? s.source, houses: ['criamon'], houseSeverity: 'warning',
     });
   }
   return out;

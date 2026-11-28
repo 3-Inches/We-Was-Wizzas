@@ -82,14 +82,14 @@ const EXPLICIT: Record<string, Mechanics> = {
     needs: [
       need(['greedy-flaw'], 'the Minor Personality Flaw Greedy (it counts as one of your normal Flaws)', {
         auto: { id: 'greedy-flaw', size: 'Minor' },
-        quote: 'Due to your great size, you must eat vast amounts of food, and have the Minor Personality Flaw Greedy (which counts as one of your normal Flaws).',
+        quote: 'Due to your great size, you must eat vast amounts of food (equal to what three normal people would eat in a day), and have the Minor Personality Flaw Greedy (which counts as one of your normal Flaws).',
       }),
     ],
   },
   'temporal-influence': notTypes(['grog'], 'Grogs may not take this Virtue.'),
   'outlaw-leader-flaw': notTypes(['grog'], 'Grogs may not take this Flaw.'),
   'tormenting-master-flaw': onlyTypes(['magus'], 'This Flaw is only applicable to magi, although other characters could take an analogous Story Flaw.'),
-  'divination-and-augury': onlyTypes(['magus'], 'It is only available to Hermetic magi, as it requires the magus to have Hermetic Arts opened.'),
+  'divination-and-augury': onlyTypes(['magus'], 'It is only available to Hermetic magi, as it requires the magus to have Hermetic Arts opened so as to model their divination.'),
   kabbalist: onlyTypes(['mythic'], 'This is a special Mythic Companion Social Status Virtue and must be taken by all kabbalists.'),
   // trade-bound craft Virtues: a farrier's horseshoes, a saddler's saddles (Grogs; Between Sand & Sea)
   'mythic-farrier': { needs: [need(['$craft:Farrier|Blacksmith'], 'a Craft that shoes horses (Farrier or Blacksmith)', { severity: 'warning' })] },
@@ -100,9 +100,9 @@ const EXPLICIT: Record<string, Mechanics> = {
   'brutal-artist-flaw': houseOnly(['jerbiton'], 'This Flaw is only available to magi of House Jerbiton.'),
   'consumed-casting-tools-flaw': houseOnly(['verditius'], 'This Flaw may only be taken by Verditius magi.'),
   'spontaneous-casting-tools-flaw': houseOnly(['verditius'], 'This Flaw can only be taken by Verditius magi.'),
-  'primogeniture-lineage-flaw': houseOnly(['verditius'], 'This Flaw can only be taken by magi of House Verditius.'),
+  'primogeniture-lineage-flaw': houseOnly(['verditius'], 'This Flaw can only be taken by magi of House Verditius, as a maga who has left the House is no longer a candidate for Primus.'),
   'vendetta-flaw': houseOnly(['verditius'], 'This Flaw is generally restricted to magi of House Verditius, as the custom of vendetta is limited to that House.', 'warning'),
-  'miles-flaw': houseOnly(['flambeau'], 'The character, who must be a member of House Flambeau, is a member of the milites.'),
+  'miles-flaw': houseOnly(['flambeau'], 'The character, who must be a member of House Flambeau, is a member of the milites (see ‘The Milites’ earlier in this chapter).'),
   'leper-magus': {
     ...houseOnly(['tytalus'], 'This Virtue can only be bought if the character also has the Leprosy Flaw, and is only available to magi trained in House Tytalus.'),
     requires: ['leprosy-flaw'],
@@ -125,9 +125,9 @@ const EXPLICIT: Record<string, Mechanics> = {
   'castratus-flaw': male('This Flaw is only available to characters who were born with testicles.'),
   'male-guild-sponsor': {
     femaleOnly: true,
-    restrictionText: 'This Virtue is only available to female characters. The character must select a separate guild Social Status Virtue as well.',
+    restrictionText: 'The character must select a separate guild Social Status Virtue as well as this free Virtue to represent her status in the guild system. This Virtue is only available to female characters…',
   },
-  'paid-rights': { femaleOnly: true, restrictionText: 'This Virtue is only available to female characters.' },
+  'paid-rights': { femaleOnly: true, restrictionText: 'This Virtue is only available to female characters…' },
 
   // ---------------------------------------------------------------- The Gift
   'holy-magic': { requiresGift: true, restrictionText: 'This Virtue is only available to characters with The Gift.' },
@@ -136,9 +136,9 @@ const EXPLICIT: Record<string, Mechanics> = {
   'mechanica-of-heron': { requiresGift: true, needs: [ACADEMIC], restrictionText: 'The character with this Virtue must have The Gift and possess a Virtue that allows access to Academic Abilities.' },
   'unbearable-to-beings-flaw': { needs: [GIFT_OR_AIR], excludes: ['blatant-gift-flaw'], restrictionText: 'Only characters with The Gift or Magical Air may take this Flaw, and it cannot be combined with the Blatant Gift.' },
   'inoffensive-to-beings': { needs: [GIFT_OR_AIR], restrictionText: 'UnGifted characters may take this Virtue only if they have the Flaw Magical Air.' },
-  'blatant-magical-air-flaw': { needs: [GIFT_OR_AIR], excludes: ['blatant-gift-flaw'], restrictionText: 'Only characters with a Magical Air or The Gift may take this Flaw; a character may not have both it and the Blatant Gift.' },
-  'magical-air-flaw': { noGift: true, restrictionText: 'You may not take this Flaw if you actually do have The Gift; see The Blatant Gift instead.' },
-  'failed-apprentice': { noGift: true, restrictionText: 'You may not have The Gift.' },
+  'blatant-magical-air-flaw': { needs: [GIFT_OR_AIR], excludes: ['blatant-gift-flaw'], restrictionText: 'Only characters with a Magical Air or The Gift may take this Flaw. … This effect is the same as the Blatant Gift, and a character may not have both Flaws.' },
+  'magical-air-flaw': { noGift: true, restrictionText: 'You may not take this Flaw if you actually do have The Gift; see The Blatant Gift (page 120) instead.' },
+  'failed-apprentice': { noGift: true, restrictionText: 'You may not have The Gift…' },
   'faerie-metamorphosis-flaw': {
     needs: [{ anyOf: ['$gift'], match: { category: 'Mythic Companion' }, label: 'The Gift, or a faerie equivalent such as a Mythic Companion Virtue' }],
     restrictionText: 'This Flaw can only be taken by characters with The Gift (as a Hermetic Flaw) or the faerie equivalent (as a Supernatural Flaw), such as a Mythic Companion Virtue.',
@@ -147,10 +147,10 @@ const EXPLICIT: Record<string, Mechanics> = {
   // ---------------------------------------------------------------- prerequisites
   'faerie-legacy': { needs: [FAERIE_BLOOD], restrictionText: 'This Virtue can only be taken by characters with Faerie Blood or Strong Faerie Blood.' },
   'faerie-heritage-flaw': { needs: [FAERIE_BLOOD], restrictionText: 'This Flaw can only be taken by characters with Faerie Blood or Strong Faerie Blood.' },
-  'tamed-magic': { requires: ['mutantum-magic'], restrictionText: 'This virtue may only be taken by characters who also begin with Mutantum Magic.' },
+  'tamed-magic': { requires: ['mutantum-magic'], restrictionText: 'This virtue may only be taken by characters who also begin with Mutantum Magic (see above).' },
   'demonic-might': { requires: ['demonic-blood'], restrictionText: 'You may only take this Virtue if your character has the Demonic Blood Virtue.' },
   'strong-angelic-heritage': { restrictionText: 'This Virtue may only be taken if you have the Major Virtue Blood of the Nephilim.' },
-  'hermetic-empowerment': { requires: ['spell-binding'], restrictionText: 'This Virtue requires the Virtue Spell Binding as a prerequisite.' },
+  'hermetic-empowerment': { requires: ['spell-binding'], restrictionText: 'This Virtue requires the Virtue Spell Binding (see Chapter 4) as a prerequisite…' },
   'invocation-magic': { requires: ['names-of-power'], restrictionText: 'This Virtue requires the Virtue Names of Power as a prerequisite.' },
   'ascendancy-to-the-hall-of-heroes': { requires: ['hermetic-theurgy'], restrictionText: 'The Virtue requires the Hermetic Theurgy Virtue as a prerequisite.' },
   'the-greater-dream-grimoire': { requires: ['dream-magic'], restrictionText: 'This Virtue requires the Dream Magic Virtue.' },
@@ -180,7 +180,7 @@ const EXPLICIT: Record<string, Mechanics> = {
     restrictionText: 'Characters may only take this Flaw if they have at least one Supernatural Ability or Art normally improved through experience points.',
   },
   'physician-of-salerno': { needs: [ACADEMIC], restrictionText: 'To take this Virtue, you must be able to take Academic Abilities.' },
-  'magic-items': { restrictionText: 'You must be a Redcap to take this Virtue.' },
+  'magic-items': { restrictionText: 'You must be a Redcap to take this Virtue…' },
   'feather-messenger': {
     needs: [need(['shapeshifter', 'skinchanger', 'heartbeast'], 'a way to take the form of a bird', { severity: 'warning' })],
     restrictionText: 'This Virtue is only available to a character who can take the form of a bird (which may be her natural form).',
@@ -193,7 +193,7 @@ const EXPLICIT: Record<string, Mechanics> = {
   },
   'diedne-magic': {
     needs: [{ match: { category: 'Story', size: 'Major', kind: 'flaw' }, label: 'a Major Story Flaw such as Dark Secret, which gives no Virtue points', auto: { id: 'dark-secret-flaw', size: 'Major', noPoints: true, param: 'Diedne lineage' } }],
-    restrictionText: 'You must keep your lineage hidden from the Order, giving you a Major Story Flaw. This is in addition to your normal allowance of Flaws, and does not grant you any points.',
+    restrictionText: 'You must keep your lineage hidden from the Order, giving you a Major Story Flaw — Dark Secret is an obvious choice, but you may choose a different one with troupe approval. This is in addition to your normal allowance of Flaws, and does not grant you any points with which to buy Virtues.',
   },
 
   // ---------------------------------------------------------------- incompatible combinations
@@ -227,7 +227,7 @@ const EXPLICIT: Record<string, Mechanics> = {
   'life-linked-art': { param: { kind: 'text', label: 'Free Virtue', options: ['Affinity with (Craft or Profession)', 'Free Expression', 'Inspirational', 'Puissant (Craft or Profession)'] } },
   'fickle-nature-flaw': { param: { kind: 'text', label: 'Personality Trait (at +4, with its opposite at +4)' } },
   'demonic-weakness-flaw': { param: { kind: 'text', label: 'Weakness' } },
-  'bound-to-role-role-flaw': { ...onlyTypes(['grog'], 'This Flaw may only be taken by grogs.'), param: { kind: 'text', label: 'Role' } },
+  'bound-to-role-role-flaw': { ...onlyTypes(['grog'], 'This Flaw may only be taken by grogs…'), param: { kind: 'text', label: 'Role' } },
   'hermetic-inclination-in-form': { param: { kind: 'form', label: 'Form', options: ['He', 'Im', 'Me', 'Te'] }, restrictionText: 'A Maestro, and only a maestro, may take this Virtue once, for a single Form.' },
   'mythic-characteristic': { param: { kind: 'characteristic', label: 'Characteristic' } },
   'tragic-characteristic-flaw': { param: { kind: 'characteristic', label: 'Characteristic' } },

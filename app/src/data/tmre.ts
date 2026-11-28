@@ -10,7 +10,7 @@ const TMRE_VF: VirtueFlawDef[] = [
     id: 'hermetic-alchemy', name: 'Hermetic Alchemy', kind: 'virtue', sizes: ['Minor'], categories: ['Hermetic'], tainted: false,
     source: { book: 'TMRE', line: 1488 },
     text:
-      'The magus extracts more vis from an aura, or vis of a Form rather than Vim. He crafts an object to hold the vis, chosen for its Shape and Material Bonuses, which add to the Creo Vim Lab Total for vis extraction (no more in all than his Magic Theory): a pawn of Vim for every 10 points, rounded up. For Form vis, the Lab Total is held to the Form as a requisite and yields a pawn for every 20 points, rounded up. Technique vis cannot be extracted this way. A Verditius may add his Craft and his runes. Hermetic Alchemy is needed for Philosophic Alchemy and the Lesser Elixir.',
+      "Hermetic Alchemy lets the magus extract more vis from an aura, or to extract Form-specific vis rather than Vim vis.",
   },
 ];
 

@@ -123,6 +123,24 @@ def criamon_stations(book_id):
                 'bonus': script_bonus(bonus.split(':', 1)[0]) if bonus else 0, 'bonusText': clean_inline(bonus.split(':', 1)[1].strip()) if ':' in bonus else '',
                 'source': {'book': book_id, 'line': i + 1},
             })
+    # each station's own section, after the Scripts: its text is the Virtue's, in the book's words
+    # the Script names one station otherwise than its section does
+    section_name = {'immortal ascension as repose': 'silencing discordant whispers and the threshold of repose'}
+    for st in out:
+        key = section_name.get(st['name'].lower(), st['name'].lower())
+        for i, l in enumerate(lines):
+            if re.match(r'^#{3,5}\s', l) and clean_inline(l.lstrip('#').strip()).lower().replace('exaliation', 'exaltation').endswith(key):
+                paras = []
+                for k in range(i + 1, len(lines)):
+                    if lines[k].startswith('#') or lines[k].startswith('>'):
+                        break
+                    if lines[k].strip():
+                        paras.append(lines[k].strip())
+                st['text'] = '\n\n'.join(paras)
+                st['textSource'] = {'book': book_id, 'line': i + 1}
+                if key != st['name'].lower():
+                    st['textSource']['group'] = 'Threshold of Repose'
+                break
     return out
 
 

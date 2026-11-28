@@ -32,7 +32,7 @@ function RefItem({ r, data }: { r: VFRef; data: GameData }) {
             {cites && ` · “${r.q}”`}
           </span>
         </summary>
-        <Markdown text={d.text} />
+        <VFWords def={d} />
         <Notes def={d} />
         <BookBadge book={d.source.book} line={d.source.line} />
       </details>
@@ -59,12 +59,22 @@ function RefItem({ r, data }: { r: VFRef; data: GameData }) {
   );
 }
 
+/** A Virtue's or Flaw's text: the book's words, or a summary marked as the toolkit's. */
+export function VFWords({ def }: { def: VirtueFlawDef }) {
+  return (
+    <>
+      {def.textIsSummary && <div className="small muted">In the toolkit’s words, not the book’s:</div>}
+      <Markdown text={def.text} />
+    </>
+  );
+}
+
 /** The text of a Virtue or Flaw, its toolkit notes, and the rules it refers to. */
 export function VFText({ def, data, notes = true }: { def: VirtueFlawDef; data: GameData; notes?: boolean }) {
   const refs = def.refs ?? [];
   return (
     <>
-      <Markdown text={def.text} />
+      <VFWords def={def} />
       {notes && <Notes def={def} />}
       {refs.length > 0 && (
         <div className="vf-refs">

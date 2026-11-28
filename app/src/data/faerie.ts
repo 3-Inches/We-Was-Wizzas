@@ -209,11 +209,11 @@ export const FAERIE_TRADITIONS = [
 const FAERIE_VF: VirtueFlawDef[] = [
   {
     id: 'decreased-might-flaw', name: 'Decreased Might', kind: 'flaw', sizes: ['Minor'], categories: ['Supernatural'], tainted: false, source: src(2159),
-    text: 'The faerie has only 1 point of Might instead of the usual 5. It keeps the powers that need no Might, such as regeneration and equipment without Encumbrance.',
+    text: "The faerie has only 1 point of Might, instead of the usual 5. Faeries with this Flaw retain the use of powers that do not require the expenditure of Might, like regeneration and the ability to generate equipment that does not cause Encumbrance.",
   },
   {
     id: 'restricted-might-flaw', name: 'Restricted Might', kind: 'flaw', sizes: ['Major', 'Minor'], categories: ['Supernatural'], tainted: false, source: src(2165),
-    text: 'Under certain conditions the faerie is nearly powerless: its supernatural effects end (but those on itself) and it can neither spend nor recover Might while they last. Major if they are common (daylight, winter: a quarter of the time or more); Minor if uncommon (a thunderstorm, the new moon).',
+    text: "The faerie is nearly powerless at certain times or under certain conditions. At the onset of these disadvantageous conditions, any ongoing supernatural effects that the creature has started with its powers immediately end, except for those that constantly affect the creature itself. As long as the conditions last, the creature is unable to spend or recover Might points.\n\nThis Flaw may be Major or Minor. If it is Major, the creature’s Might is restricted under relatively common circumstances, such as when exposed to daylight or during the winter. The conditions should be in effect at least one-quarter of the time. For the Minor version of this Flaw, the conditions are uncommon, such as during a thunderstorm or on the night of the new moon.",
   },
 ];
 

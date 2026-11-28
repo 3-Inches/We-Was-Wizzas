@@ -198,7 +198,9 @@ export interface VirtueFlawDef {
   categories: VFCategory[];
   tainted: boolean;
   notes?: string | null;
+  /** the book's words; or the toolkit's, when `textIsSummary` (shown marked as a summary) */
   text: string;
+  textIsSummary?: true;
   source: SourceRef;
   alsoIn?: SourceRef[];
   // --- hand-coded / derived mechanics ---

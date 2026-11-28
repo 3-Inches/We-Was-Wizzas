@@ -183,7 +183,7 @@ function autoTags(v: VirtueFlawDef): string[] {
 
 /**
  * Virtues several books give, whose quoted text only points into the book it was taken from: the
- * text a reader of any of them can use.
+ * text a reader of any of them can use. It is in the toolkit's words, so it is shown as a summary.
  */
 const VF_TEXT_FIXES: Record<string, string> = {
   ceremony:
@@ -313,7 +313,7 @@ export function buildGameData(opts: DataOptions = {}): GameData {
     const creatureOnly = mech.creatureOnly ?? (CREATURE_NOTE.test(v.notes ?? '') || (v.source.book.startsWith('RoP') && CREATURE_TEXT.test(v.text)));
     return {
       ...v,
-      ...(VF_TEXT_FIXES[v.id] ? { text: VF_TEXT_FIXES[v.id] } : {}),
+      ...(VF_TEXT_FIXES[v.id] ? { text: VF_TEXT_FIXES[v.id], textIsSummary: true as const } : {}),
       ...mech,
       effects,
       refs: v.refs ?? VF_REFS.refs[v.id],

@@ -12,10 +12,7 @@ const bookFiles = import.meta.glob<string>(['../../../reviewed/*.md', '../../../
 const lines = new Map(Object.entries(bookFiles).map(([p, t]) => [p.split('/').pop()!, t.split('\n')]));
 
 /** The book's own spelling of a heading, where it misprints the name (id -> the word as printed). */
-const BOOK_TYPOS: Record<string, string> = {
-  // "the Station of Exaliation" (HoH: MC line 2739)
-  'criamon-station-of-exaltation': 'Station of Exaliation',
-};
+const BOOK_TYPOS: Record<string, string> = {};
 
 /** Words only (a hyphen is a space: "Brother-Knight", Church line 4565): the parenthesized part of a name ("Cursing (Folk Witch)") is the toolkit's, not the book's. */
 export const headingWords = (s: string) =>

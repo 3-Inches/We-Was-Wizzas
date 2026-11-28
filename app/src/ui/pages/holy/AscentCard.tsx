@@ -80,7 +80,7 @@ export function AscentCard({ ed, aura, gained: fromPower }: { ed: CharEditor; au
         <button onClick={roll}>Roll</button>
       </div>
       {check.meditation > 0 && (
-        <label className="inline small" title="Realms of Power: The Divine, Meditation: “You may subtract your score in Meditation from your roll to avoid Divine Ascent, and this does not increase the number of additional Warping points you receive.”">
+        <label className="inline small" title="Realms of Power: The Divine, Meditation: “You may subtract your score in Meditation from your roll to avoid Divine Ascent, and this does not increase the number of additional Warping points you receive from the experience.”">
           <input type="checkbox" checked={welcome} onChange={(e) => setWelcome(e.target.checked)} /> Welcome the Ascent: subtract Meditation ({check.meditation}) from the roll; the Warping Points it brings are not increased
         </label>
       )}
