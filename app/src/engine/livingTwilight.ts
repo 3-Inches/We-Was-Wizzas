@@ -52,6 +52,9 @@ export interface LivingTwilight {
   news: TribunalNews[];
 }
 
+/** How the Chronicle tells a season lost in Wizard's Twilight; time.ts finds the year so spent by it, and does not age it. */
+export const TWILIGHT_TOLD = 'was lost in Wizard’s Twilight';
+
 /**
  * Roll each Wizard's Twilight a living covenant's magus owes, oldest first: avoid it (Sta + Concentration
  * + Vim bonus + stress die vs Warping Score + points gained + Enigmatic Wisdom + local aura + stress die),
@@ -60,9 +63,6 @@ export interface LivingTwilight {
  * time lost to the world, kept as seasons logged "in Twilight". Final Twilight takes the magus from play.
  * Changes `c`.
  */
-/** How the Chronicle tells a season lost in Wizard's Twilight; time.ts finds the year so spent by it, and does not age it. */
-export const TWILIGHT_TOLD = 'was lost in Wizard’s Twilight';
-
 export function livingTwilight(c: Character, derive: (c: Character) => DerivedCharacter, aura: number, covenantId: string | undefined, year: number, season: Season, rng: Rng): LivingTwilight {
   const out: LivingTwilight = { lines: [], news: [] };
   const who = c.name || 'The magus';
