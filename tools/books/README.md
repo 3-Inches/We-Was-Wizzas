@@ -70,3 +70,4 @@ So the pointers are the easy part. The extractors and the index are where the wo
 | `relocate.py` | Moves line pointers in `tools/extract/` and `app/src/` to follow the text. |
 | `datadiff.py` | Compares the generated data with the last commit's, entry by entry, and where each mechanic is filed. |
 | `UPSTREAM` | The upstream commit our books match. |
+| `exceptions.py` | For the adversarial review (CLAUDE.md, step 4): prints the "not", "unless", "only", "instead" and "except" sentences of each section a data file cites, or that the lines added since `origin/main` cite (`--diff`). It finds pointers as `relocate.py` does. An aid, not a check. |
